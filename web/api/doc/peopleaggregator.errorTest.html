@@ -1,0 +1,111 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method peopleaggregator.errorTest</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method peopleaggregator.errorTest</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: peopleaggregator.errorTest</h2>
+<div class="detail">
+<div class="description">Error test method, that takes no arguments and throws a fatal PHP error.</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_peopleaggregator.errorTest_method">User documentation for peopleaggregator.errorTest on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes a single struct as input, with the following keys:</p>
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>success</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">Should always fail - so false</div>
+<div class="example">Example: <code>False</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/xml/peopleaggregator/errorTest?">/api/xml/peopleaggregator/errorTest?</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 90<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;success&gt;false&lt;/success&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/json/peopleaggregator/errorTest?">/api/json/peopleaggregator/errorTest?</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 18<br>
+<br>
+{"success": false}</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 427<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;peopleaggregator.errorTest&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 627<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;success&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;0&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

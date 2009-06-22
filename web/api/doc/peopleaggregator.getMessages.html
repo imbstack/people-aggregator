@@ -1,0 +1,308 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method peopleaggregator.getMessages</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method peopleaggregator.getMessages</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: peopleaggregator.getMessages</h2>
+<div class="detail">
+<div class="description">List messages in a user's inbox or sent message folder.</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_peopleaggregator.getMessages_method">User documentation for peopleaggregator.getMessages on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes a single struct as input, with the following keys:</p>
+<div class="argument">
+<h3>authToken</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">An authentication token</div>
+<div class="example">Example: <code>as9d867f234o7asdf:928734982734987234:298374982734987234</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>folder</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The name of the folder to list</div>
+<div class="example">Example: <code>Inbox</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>detailLevel</h3>
+<div class="detail">
+<div class="type">Type: enum</div>
+<div class="description">How much detail you want to retrieve: 'all' to get message metadata and content, or 'summary' just to get metadata.</div>
+<div class="enum-values">Allowed values: <code>all</code>, <code>summary</code></div>
+<div class="example">Example: <code>all</code></div>
+<div class="default">Default: <code>all</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>page</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">The page you want to receive.</div>
+<div class="example">Example: <code>1</code></div>
+<div class="minimum">Minimum: <code>1</code></div>
+<div class="default">Default: <code>1</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>resultsPerPage</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">The number of messages you want to receive per page.</div>
+<div class="example">Example: <code>100</code></div>
+<div class="minimum">Minimum: <code>10</code></div>
+<div class="maximum">Maximum: <code>100</code></div>
+<div class="default">Default: <code>10</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>success</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true if the mailbox list request was processed successfully, or false if an error occurred</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>messages</h3>
+<div class="detail">
+<div class="type">Type: array</div>
+<h2 class="array-content">Content of each item:</h2>
+<div class="item">
+<h3>item</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>id</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Message ID</div>
+<div class="example">Example: <code>privmsg:123</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>sender</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>id</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">User ID of the user who sent the message</div>
+<div class="example">Example: <code>user:456</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>recipients</h3>
+<div class="detail">
+<div class="type">Type: array</div>
+<h2 class="array-content">Content of each item:</h2>
+<div class="item">
+<h3>item</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>login</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Login name of a user to whom the message was sent</div>
+<div class="example">Example: <code>myelin</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- item/detail -->
+</div><!-- item -->
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>title</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Message title</div>
+<div class="example">Example: <code>This is a message</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>content</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Message body</div>
+<div class="example">Example: <code>Hi... how are you?</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- item/detail -->
+</div><!-- item -->
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/xml/peopleaggregator/getMessages?authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&detailLevel=all&folder=Inbox&resultsPerPage=100&page=1">/api/xml/peopleaggregator/getMessages?authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&detailLevel=all&folder=Inbox&resultsPerPage=100&page=1</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 764<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;messages&gt;<br>
+&nbsp;&nbsp;&lt;item&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;content&gt;Hi... how are you?&lt;/content&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;title&gt;This is a message&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;id&gt;privmsg:123&lt;/id&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;recipients&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;login&gt;myelin&lt;/login&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/item&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/recipients&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;sender&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;id&gt;user:456&lt;/id&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/sender&gt;<br>
+&nbsp;&nbsp;&lt;/item&gt;<br>
+&nbsp;&lt;/messages&gt;<br>
+&nbsp;&lt;success&gt;true&lt;/success&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/json/peopleaggregator/getMessages?authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&detailLevel=all&folder=Inbox&resultsPerPage=100&page=1">/api/json/peopleaggregator/getMessages?authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&detailLevel=all&folder=Inbox&resultsPerPage=100&page=1</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 184<br>
+<br>
+{"messages": [{"content": "Hi... how are you?", "title": "This is a message", "id": "privmsg:123", "recipients": [{"login": "myelin"}], "sender": {"id": "user:456"}}], "success": true}</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 1838<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;peopleaggregator.getMessages&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;authToken&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;as9d867f234o7asdf:928734982734987234:298374982734987234&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;detailLevel&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;all&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;folder&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Inbox&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;resultsPerPage&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;100&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;page&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;1&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 3993<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;messages&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;array&gt;&lt;data&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;content&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Hi... how are you?&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;title&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;This is a message&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;id&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;privmsg:123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;recipients&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;array&gt;&lt;data&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;login&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;myelin&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;sender&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;id&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:456&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;success&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

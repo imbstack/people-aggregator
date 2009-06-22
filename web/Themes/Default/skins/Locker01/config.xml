@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>
+   <name>Locker01</name>
+   <previewImage>preview.gif</previewImage>
+   <networkCssFile></networkCssFile>
+   <groupCssFile></groupCssFile>
+   <userCssFile>locker01_skin.css</userCssFile>
+   <headerImageOk>yes</headerImageOk>
+   <headerImage>none</headerImage>
+   <userheaderImage>header.jpg</userheaderImage>
+   <groupheaderImage>none</groupheaderImage>
+ </config>

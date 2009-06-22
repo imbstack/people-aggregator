@@ -1,0 +1,378 @@
+{
+	"groups": [
+		{
+			"group_title": "",
+			"group_icon": "/Themes/Default/images/view_page.gif",
+			"selectors": [
+				{
+					"selector_id": "body",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "background-color",
+							"property_value": "#E0E0E0",
+							"property_description": "Page background color"
+						},
+						{
+							"property_id": "background-image",
+							"property_value": "url(/Themes/Default/images/bg_orange.gif)",
+							"property_description": "Page background image",
+							"property_defaults": [
+								"url(/Themes/Default/images/bg_blue.gif)",
+								"url(/Themes/Default/images/bg_grey.gif)",
+								"url(/Themes/Default/images/bg_grey_trans.gif)",
+								"url(/Themes/Default/images/bg_orange.gif)",
+								"url(/Themes/Default/images/bg_midgrey_trans.gif)",
+							]
+						},
+						{
+							"property_id": "font-family",
+							"property_value": "Lucida Sans Unicode,Lucida Grande",
+							"property_description": "Page font",
+							"property_defaults": [
+								"Arial,Helvetica",
+								"Arial Black,Gadget",
+								"Comic Sans MS",
+								"Courier New,Courier",
+								"Georgia",
+								"Impact,Charcoal",
+								"Lucida Console,Monaco",
+								"Lucida Sans Unicode,Lucida Grande",
+								"MS Sans Serif,Geneva",
+								"MS Serif,New York",
+								"Book Antiqua,Palatino",
+								"Tahoma,Geneva",
+								"Times New Roman,Times",
+								"Trebuchet MS,Helvetica",
+								"Verdana,Geneva"
+							]
+						}
+					]
+				},
+				{
+					"selector_id": "#body_shadow",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "visibility",
+							"property_value": "visible",
+							"property_description": "Show page background gradient"
+						}
+					]
+				}
+			]
+		},
+		{
+			"group_title": "",
+			"group_icon": "/Themes/Default/images/view_header.gif",
+			"selectors": [
+				{
+					"selector_id": "#header h1",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "font-family",
+							"property_value": "Lucida Sans Unicode,Lucida Grande",
+							"property_description": "Header font",
+							"property_defaults": [
+								"Arial,Helvetica",
+								"Arial Black,Gadget",
+								"Comic Sans MS",
+								"Courier New,Courier",
+								"Georgia",
+								"Impact,Charcoal",
+								"Lucida Console,Monaco",
+								"Lucida Sans Unicode,Lucida Grande",
+								"MS Sans Serif,Geneva",
+								"MS Serif,New York",
+								"Book Antiqua,Palatino",
+								"Tahoma,Geneva",
+								"Times New Roman,Times",
+								"Trebuchet MS,Helvetica",
+								"Verdana,Geneva"
+							]
+						},
+						{
+							"property_id": "color",
+							"property_value": "#fffffe",
+							"property_description": "Header color"
+						},
+						{
+							"property_id": "visibility",
+							"property_value": "visible",
+							"property_description": "Visible"
+						}
+					]
+				},
+				{
+					"selector_id": "#header h2",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "font-family",
+							"property_value": "Lucida Sans Unicode,Lucida Grande",
+							"property_description": "Sub header font",
+							"property_defaults": [
+								"Arial,Helvetica",
+								"Arial Black,Gadget",
+								"Comic Sans MS",
+								"Courier New,Courier",
+								"Georgia",
+								"Impact,Charcoal",
+								"Lucida Console,Monaco",
+								"Lucida Sans Unicode,Lucida Grande",
+								"MS Sans Serif,Geneva",
+								"MS Serif,New York",
+								"Book Antiqua,Palatino",
+								"Tahoma,Geneva",
+								"Times New Roman,Times",
+								"Trebuchet MS,Helvetica",
+								"Verdana,Geneva"
+							]
+						},
+						{
+							"property_id": "color",
+							"property_value": "#fffffe",
+							"property_description": "Sub-header color"
+						},
+						{
+							"property_id": "visibility",
+							"property_value": "visible",
+							"property_description": "Visible"
+						}
+					]
+				}
+			]
+		},
+		{
+			"group_title": "",
+			"group_icon": "/Themes/Default/images/view_modules.gif",
+			"selectors": [
+				{
+					"selector_id": ".module h1",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "background-color",
+							"property_value": "#860011",
+							"property_description": "Module header background color"
+						},
+						{
+							"property_id": "font-family",
+							"property_value": "Lucida Sans Unicode,Lucida Grande",
+							"property_description": "Module heading font",
+							"property_defaults": [
+								"Arial,Helvetica",
+								"Arial Black,Gadget",
+								"Comic Sans MS",
+								"Courier New,Courier",
+								"Georgia",
+								"Impact,Charcoal",
+								"Lucida Console,Monaco",
+								"Lucida Sans Unicode,Lucida Grande",
+								"MS Sans Serif,Geneva",
+								"MS Serif,New York",
+								"Book Antiqua,Palatino",
+								"Tahoma,Geneva",
+								"Times New Roman,Times",
+								"Trebuchet MS,Helvetica",
+								"Verdana,Geneva"
+							]
+						},
+						{
+							"property_id": "color",
+							"property_value": "#fffffe",
+							"property_description": "Module header color"
+						}
+					]
+				},
+				{
+					"selector_id": ".module",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "border-color",
+							"property_value": "#860011",
+							"property_description": "Module border color"
+						}
+
+					]
+				},
+        {
+          "selector_id": ".module div, .module div ul li",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "color",
+              "property_value": "#000000",
+              "property_description": "Module font color"
+            }
+          ]
+        },
+        {
+          "selector_id": ".module div a",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "color",
+              "property_value": "#000000",
+              "property_description": "Module links color"
+            }
+          ]
+        },
+        {
+          "selector_id": "div.module",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "background-color",
+              "property_value": "#860011",
+              "property_description": "Module background color"
+            },
+            {
+              "property_id": "background-image",
+              "property_value": "url(/Themes/Default/images/bg_module.gif)",
+              "property_description": "Module background image",
+              "property_defaults": [
+                "url(/Themes/Default/images/bg_module1.png)",
+                "url(/Themes/Default/images/bg_module2.png)",
+                "url(/Themes/Default/images/bg_module3.png)",
+                "url(/Themes/Default/images/bg_module4.png)",
+                "url(/Themes/Default/images/bg_module5.png)",
+                "url(/Themes/Default/images/bg_module1.gif)",
+                "url(/Themes/Default/images/bg_module2.gif)",
+                "url(/Themes/Default/images/bg_module3.gif)",
+                "url(/Themes/Default/images/bg_module4.gif)",
+                "url(/Themes/Default/images/bg_module5.gif)",
+                "url(/Themes/Default/images/bg_module6.gif)",
+                "url(/Themes/Default/images/bg_module7.gif)",
+                "url(/Themes/Default/images/bg_module8.gif)",
+                "url(/Themes/Default/images/bg_module9.gif)",
+              ]
+            },
+            {
+              "property_id": "font-family",
+              "property_value": "Lucida Sans Unicode,Lucida Grande",
+              "property_description": "Module content font",
+              "property_defaults": [
+                "Arial,Helvetica",
+                "Arial Black,Gadget",
+                "Comic Sans MS",
+                "Courier New,Courier",
+                "Georgia",
+                "Impact,Charcoal",
+                "Lucida Console,Monaco",
+                "Lucida Sans Unicode,Lucida Grande",
+                "MS Sans Serif,Geneva",
+                "MS Serif,New York",
+                "Book Antiqua,Palatino",
+                "Tahoma,Geneva",
+                "Times New Roman,Times",
+                "Trebuchet MS,Helvetica",
+                "Verdana,Geneva"
+              ]
+            }
+          ]
+        }
+			]
+		},
+		{
+			"group_title": "",
+			"group_icon": "/Themes/Default/images/view_container.gif",
+			"selectors": [
+				{
+					"selector_id": "#container",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "background-color",
+							"property_value": "#fffff0",
+							"property_description": "Container background color"
+						}
+					]
+				},
+				{
+					"selector_id": "#col_b, #col_d, ul#filters li.active a",
+					"selector_description": "",
+					"selector_properties": [
+						{
+							"property_id": "background-color",
+							"property_value": "#fffffe",
+							"property_description": "Main column background color"
+						},
+            {
+              "property_id": "color",
+              "property_value": "#000000",
+              "property_description": "Main column font color"
+            }
+					]
+				},
+        {
+          "selector_id": "#content",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "background-color",
+              "property_value": "#fffff0",
+              "property_description": "Side column background color"
+            }
+          ]
+        },
+        {
+          "selector_id": ".post_info, .blog, .events, .reviews, .peopleshowcase, .video, .audio, .image, .groupshowcase, .cd_group",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "background-color",
+              "property_value": "#fffffe",
+              "property_description": "Blog content background color"
+            },
+            {
+              "property_id": "font-family",
+              "property_value": "Lucida Sans Unicode,Lucida Grande",
+              "property_description": "Blog content font",
+              "property_defaults": [
+                "Arial,Helvetica",
+                "Arial Black,Gadget",
+                "Comic Sans MS",
+                "Courier New,Courier",
+                "Georgia",
+                "Impact,Charcoal",
+                "Lucida Console,Monaco",
+                "Lucida Sans Unicode,Lucida Grande",
+                "MS Sans Serif,Geneva",
+                "MS Serif,New York",
+                "Book Antiqua,Palatino",
+                "Tahoma,Geneva",
+                "Times New Roman,Times",
+                "Trebuchet MS,Helvetica",
+                "Verdana,Geneva"
+              ]
+            },
+            {
+              "property_id": "color",
+              "property_value": "#000000",
+              "property_description": "Blog content font color"
+            },
+            {
+              "property_id": "border-color",
+              "property_value": "#000000",
+              "property_description": "Blog content border color"
+            }
+          ]
+        },
+        {
+          "selector_id": ".blog div a, .events div a, .reviews div a, .peopleshowcase div a, .video div a, .audio div a, .image div a, .groupshowcase div a, .cd_group div a, .wide_content div a",
+          "selector_description": "",
+          "selector_properties": [
+            {
+              "property_id": "color",
+              "property_value": "#000000",
+              "property_description": "Blog content links color"
+            }
+          ]
+        }
+			]
+		}
+	]
+}

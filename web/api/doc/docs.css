@@ -1,0 +1,14 @@
+.api .namespace {
+}
+
+.method .detail {
+	padding-left: 2em;
+	border-left: solid 5px lightgrey;
+}
+
+.header {
+	margin: 0 0 0 0;
+	background: lightgrey;
+	padding: 1em;
+	font-style: italic;
+}

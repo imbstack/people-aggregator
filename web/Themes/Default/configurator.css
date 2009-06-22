@@ -1,0 +1,137 @@
+#conf_container { }
+
+div.cd_group {
+/*	background-color: #FFFFFF; */
+	padding: 10px;
+	border: 1px #cccccc solid;
+	width: 530px;
+	margin: 10px; }
+		
+div.cd_group_info {
+	float: left;
+	width: 110px; }
+
+div.cd_group_icon { }
+
+div.cd_group_ctrls {
+	float: left;
+	width: 418px; }
+
+div.cd_prop { width: 420px; }
+
+div.cd_prop_desc {
+	float: left;
+	width: 120px; }
+	
+*html div.cd_prop_desc { margin: 0 0 15px 0; }
+	
+div.cd_prop_ctrls {
+	float: left;
+	width: 210px; }
+
+p.cp_prop_desc {
+	width: 115px;
+	font-weight: bold; }
+	
+div.cd_clearall { clear: both; }
+
+ul.cu_image_list {
+	margin: 0;
+	padding: 0;
+}
+
+li.cl_image_list {
+	display: inline;
+	float: left;
+	width: 60px;
+}
+
+li.cl_image_list img {
+  background: silver;
+  width: 50px;
+  height: 50px;
+}
+	
+div.cd_choose_color {
+	color: #000;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 7px 0 5px 0;
+	height: 30px;
+	float: left; }
+	
+*html div.cd_choose_color { margin: -2px 0 5px 0; }
+
+ul.cu_choose_color {
+	margin: 0 0 0 10px;
+	padding: 0;
+	list-style: none; }
+
+li.cl_choose_color a {
+	display: block;
+	text-decoration: none;
+	color: #000; }
+
+li.cl_choose_color a {
+	background: url(images/buttonbar_start.gif) no-repeat left top;
+	display: block;
+	padding: 6px 10px 10px 10px;
+	font: 10px Lucida Sans Unicode, Lucida Grande, sans-serif; }
+	
+*html li.cl_choose_color a { padding: 5px 10px 10px 10px; }
+
+li.cl_choose_color {
+	background: url(images/buttonbar_end.gif) no-repeat right top;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	float: left; }
+
+li.cl_choose_color a:hover { color: #FF4500; }
+
+input.cp_inputtext {
+	border: 1px solid #cccccc;
+	font-size: 10px;
+	width: 200px; }
+
+select.cp_select { margin: 10px 0 0 0; }
+
+*html select.cp_select { margin: 0; }
+
+select.cp_select option { font-size: 10px; }
+
+input.cp_inputcheckbox { margin: 10px 0 0 0; }
+
+*html input.cp_inputcheckbox { margin: 0; }
+
+#colorpicker_cont {
+	z-index: 1000;
+	background-color: #f0f0f0;
+	border: 2px #cccccc solid;
+	width: 195px;
+	height: 220px;
+	padding: 5px; }
+	
+#colorpicker { }
+
+#wheel { border: 1px solid red; }
+
+#colorpicker_cont2 {
+	z-index: 999;
+	background-color: #ffffff;
+	width: 205px;
+	height: 220px; }
+	
+*html #colorpicker_cont2 { height: 235px; }
+
+#colorpicker_close {
+	height: 25px;
+	padding: 0 0 0 55px; }
+	
+div.cd_ctrls {
+	width: 550px;
+	margin: 10px;
+	text-align: center; }
+	
+div.cd_ctrls input { margin: 0 10px 0 0; }
+	

@@ -1,0 +1,137 @@
+
+div.buddyimg {
+    position:relative;
+    z-index:24;
+    float:left;
+    width:auto;
+    height: auto;
+}
+
+div.buddyimg:hover{ z-index:250; background:;}
+
+div.tooltip {
+  width:184px;
+  height: 256px;
+  color: #444;
+}
+
+div.tooltip_containter {
+  position: relative;
+  float: right;
+  width: 124px;
+}
+
+.moz_cont {
+  margin-top: 8px;
+  margin-right: 16px;
+}
+
+.ie_cont {
+  margin-top: 8px;
+  margin-right: 6px;
+}
+
+.mozttip {
+  display:none; 
+  position: absolute;
+  KHTMLOpacity: 0.0;
+  MozOpacity: 0.0;
+  opacity: 0.0;
+  background: url('/Themes/Default/javascript/facewall/tooltip/bubble.png') no-repeat top;
+  z-index: 1500;
+}
+
+iframe.tooltip {
+  display:none;
+  width:186px;
+  height: 258px;
+  color: #444;
+  background: none;
+  position: absolute;
+  z-index: 1500;
+}
+
+.iettip {
+ background-image: none;
+ filter: alpha(opacity:0); 
+ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='/Themes/Default/javascript/facewall/tooltip/bubble.png');
+}
+
+div.tooltip div.tooltip_header {
+  width: 122px;
+  position: relative;
+  float: right;
+  color: #444;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+}
+
+div.tooltip div.tooltip_footer {
+  width: 122px;
+  position: relative;
+  float: right;
+  margin-top: 4px;
+  color: #444;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+}
+
+div.tooltip div.tooltip_footer a {
+  color: #444;
+  font-size: 11px;
+  font-weight: bold;
+  position: relative;
+}
+
+div.tooltip div.tooltip_footer a:hover {
+  color: #fe9147;
+  text-decoration: none;
+}
+
+
+div.tooltip div.tooltip_inner {
+  position: relative;
+  float: right;
+  width: 122px;
+  height: 192px;
+}
+
+div.tooltip div.tooltip_inner div.tooltip_img {
+  width: 120px;
+  height: 120px;
+  padding: 2px;
+  margin-bottom:6px;
+  border: 1px;
+  border-style:solid;
+  border-color:#bbb;
+  display: block;
+}
+
+div.tooltip div.tooltip_inner div.tooltip_img a {
+  position: relative;
+  text-decoration: none;
+}
+
+div.tooltip div.tooltip_inner div.tooltip_img  img {
+  border: none;
+}
+
+
+div.tooltip div.tooltip_inner table {
+  font-size: 11px;
+  width: 124px;
+  height: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: none;
+}
+
+div.tooltip div.tooltip_inner table td {
+  height: 12pt;
+  padding: 0px;
+  color: #444;
+  background: none;
+  border-bottom: 1px solid #bbb;
+}

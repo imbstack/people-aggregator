@@ -1,0 +1,5 @@
+<?php
+
+$api_desc = array('name'=>'Example Project API','methods'=>array('example.echo'=>array('argstyle'=>'named','return'=>array('content'=>array('echoText'=>array('type'=>'string'),'success'=>array('type'=>'boolean')),'type'=>'hash','allow_extra_keys'=>0),'args'=>array('echoText'=>array('type'=>'string')),'type'=>'get')));
+
+?>

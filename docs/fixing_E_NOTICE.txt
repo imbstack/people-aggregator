@@ -1,0 +1,90 @@
+Common issues with PHP Notices and how to fix them
+===================================================
+/!\ CAUTION /!\ 
+The use of the '@' operator that is suggested in the following is essentially a form of error supressing. As such it should be used wisely, and in places where it makes sense to have a more readeable code. DO NOT use this for function returns (BAD: $r = @somefunc($var);)... See end of this doc for examples of where code refactoring is called for to better test for errors inszead of suprssing them...
+/!\ CAUTION /!\ 
+
+!. Testing for things that *might* not exist
+===================================================
+
+Examples that lead to Notices being thrown:
+
+	if ($_POST['some_param']) { ... }
+	$sort_by = ( $params['sort_by'] ) ? $params['sort_by'] : 'created';
+
+
+FIX:
+
+Use the '@' operator. 
+Prefixing the var with '@' returns NULL for the var if it is not set etc.
+
+This is equivalent to writing:
+	(!empty($myVar)) ? $myVar : NULL
+
+Fixed Examples:
+
+	if (@$_POST['some_param']) {}
+	$sort_by = ( @$params['sort_by'] ) ? $params['sort_by'] : 'created';
+
+2. Other common code patterns that are more serious
+===================================================
+
+a) creating variables only in if() clauses, but later testing for them
+
+	if ($someContition) {
+		$myVar = 'this and that';
+		$doStuff = TRUE;
+	}
+	// more code
+	if ($doStuff) {
+		// things to do
+	}
+
+FIX:
+
+* either move the conditional code execution INSIDE the first if() clause
+* initialize the conditional var BEFORE the if() clause to NULL or FALSE 
+
+	$doStuff = FALSE;
+	if ($someContition) {
+		$myVar = 'this and that';
+		$doStuff = TRUE;
+	}
+	// more code
+	if ($doStuff) {
+		// things to do
+	}
+
+3. Some fun examples:
+===================================================
+
+	if ( $this->sort_by == 'alphabetic' || !$this->sort_by) { ... }
+
+This code is explicitly testing for the NON-exisitance of an object property (or it's FALSE value)...
+This can be fixed as outline above, but maybe the code flow should be changed...
+
+	if ($_SESSION['user']['id']) { }
+... well err... what if no one is logged in? Using the '@' here will fix the Notice, yet maybe some refactorig would be wise here. (there is PA::$user etc)
+
+4. Problematic code that throws Notices...
+===================================================
+
+Things like
+	while ( $links[$i]->category_id == $links[$j]->category_id )  { }
+can throw a Notice like:
+Notice:  Undefined offset:  210 in ...
+This is a pointer to a more serious underlying logic problem, two arrays that are *assumed* to have matching entries, but do not...
+
+5- Common issues in api code:
+===================================================
+
+Returning variables that might never have been created:
+    if ($res->numRows() > 0) {
+      while ($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
+        $result[] = $row;
+      }
+    }
+    return $result;
+
+Well, what if there are no rows?
+Adding $result = array() before the if () will fix this problem, as we then have an empty arry to return.

@@ -1,0 +1,190 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method blogger.getUsersBlogs</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method blogger.getUsersBlogs</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: blogger.getUsersBlogs</h2>
+<div class="detail">
+<div class="description">(Blogger+metaWeblog API) Get a list of blogs that a user can access.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_blogger.getUsersBlogs_method">User documentation for blogger.getUsersBlogs on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes 3 arguments, NOT a single struct, like most other methods in this API.</p>
+<div class="argument">
+<h3>appkey</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Appkey - not required.</div>
+<div class="example">Example: <code>none</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>login</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">User's login name.</div>
+<div class="example">Example: <code>testme</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>password</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">User's password.</div>
+<div class="example">Example: <code>testuser123</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: array</div>
+<h2 class="array-content">Content of each item:</h2>
+<div class="item">
+<h3>item</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>isAdmin</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true if the user is an administrator for the blog.</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>url</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The URL of the blog.</div>
+<div class="example">Example: <code>http://peopleaggregator.net/user.php?uid=123</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>blogid</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The ID of the blog (you can pass this to metaWeblog.newPost etc to identify the blog).</div>
+<div class="example">Example: <code>user:123</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>blogName</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The name of the blog.</div>
+<div class="example">Example: <code>Test User's blog</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- item/detail -->
+</div><!-- item -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/xml/blogger/getUsersBlogs?appkey=none&login=testme&password=testuser123">/api/xml/blogger/getUsersBlogs?appkey=none&login=testme&password=testuser123</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 346<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;item&gt;<br>
+&nbsp;&nbsp;&lt;url&gt;http://peopleaggregator.net/user.php?uid=123&lt;/url&gt;<br>
+&nbsp;&nbsp;&lt;isAdmin&gt;true&lt;/isAdmin&gt;<br>
+&nbsp;&nbsp;&lt;blogid&gt;user:123&lt;/blogid&gt;<br>
+&nbsp;&nbsp;&lt;blogName&gt;Test User's blog&lt;/blogName&gt;<br>
+&nbsp;&lt;/item&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/json/blogger/getUsersBlogs?appkey=none&login=testme&password=testuser123">/api/json/blogger/getUsersBlogs?appkey=none&login=testme&password=testuser123</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 128<br>
+<br>
+[{"url": "http://peopleaggregator.net/user.php?uid=123", "isAdmin": true, "blogid": "user:123", "blogName": "Test User's blog"}]</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 730<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;blogger.getUsersBlogs&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;none&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;testme&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;testuser123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 1743<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;array&gt;&lt;data&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;url&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://peopleaggregator.net/user.php?uid=123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;isAdmin&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;blogid&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;blogName&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Test User's blog&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

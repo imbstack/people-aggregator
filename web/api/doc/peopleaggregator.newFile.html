@@ -1,0 +1,271 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method peopleaggregator.newFile</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method peopleaggregator.newFile</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: peopleaggregator.newFile</h2>
+<div class="detail">
+<div class="description">Creates a new media object on the server, either by uploading a file or by supplying a URL.  (FIXME - upload probably only works in XML-RPC mode at the moment.  REST *might* work, but it's not guaranteed and not tested.)  This lets you upload media (image, audio, video) files, i.e. it presents an API to the upload function in media_gallery.php.  Either the 'url' parameter, or both the 'filename' and 'data' parameters, must be supplied.</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_peopleaggregator.newFile_method">User documentation for peopleaggregator.newFile on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes a single struct as input, with the following keys:</p>
+<div class="argument">
+<h3>authToken</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">An authentication token</div>
+<div class="example">Example: <code>as9d867f234o7asdf:928734982734987234:298374982734987234</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>filename</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Filename of uploaded file</div>
+<div class="example">Example: <code>my-picture.jpg</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>url</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">URL to use instead of uploaded file (if no filename and data are provided)</div>
+<div class="example">Example: <code>http://example.org/my-remote-picture.jpg</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>type</h3>
+<div class="detail">
+<div class="type">Type: enum</div>
+<div class="description">File class</div>
+<div class="enum-values">Allowed values: <code>image</code>, <code>audio</code>, <code>video</code></div>
+<div class="example">Example: <code>image</code></div>
+<div class="default">Default: <code>image</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>title</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Title to use when displaying the file</div>
+<div class="example">Example: <code>A picture of me.</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>content</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Description of the file</div>
+<div class="example">Example: <code>Picture of me crossing a pond at Blue Skies, Kaiapoi, New Zealand.  Taken by my girlfriend on 11 May 2006.</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>tags</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Comma-separated list of tags</div>
+<div class="example">Example: <code>one, two, three</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>context</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">ID of the album (retrieved from peopleaggregator.getAlbums or peopleaggregator.newAlbum) in which to place this file.</div>
+<div class="example">Example: <code>album:52</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>access</h3>
+<div class="detail">
+<div class="type">Type: enum</div>
+<div class="description">Who can see this file</div>
+<div class="enum-values">Allowed values: <code>nobody</code>, <code>everybody</code>, <code>relations</code></div>
+<div class="example">Example: <code>everybody</code></div>
+<div class="default">Default: <code>nobody</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>data</h3>
+<div class="detail">
+<div class="type">Type: binary</div>
+<div class="description">File contents.  (XML-RPC: send as a base64 object.)</div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>success</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true if the file was successfully received and saved, or false if an error occurred.</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>id</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">ID of the newly uploaded file</div>
+<div class="example">Example: <code>file:123</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>url</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">URL of the newly uploaded file</div>
+<div class="example">Example: <code>http://peopleaggregator.org/files/my-picture.jpg</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xml/peopleaggregator/newFile">/api/xml/peopleaggregator/newFile</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 387<br>
+<br>
+authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&content=Picture+of+me+crossing+a+pond+at+Blue+Skies%2C+Kaiapoi%2C+New+Zealand.++Taken+by+my+girlfriend+on+11+May+2006.&title=A+picture+of+me.&url=http%3A%2F%2Fexample.org%2Fmy-remote-picture.jpg&type=image&tags=one%2C+two%2C+three&filename=my-picture.jpg&access=everybody&context=album%3A52&data=binary+data+goes+here</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 211<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;url&gt;http://peopleaggregator.org/files/my-picture.jpg&lt;/url&gt;<br>
+&nbsp;&lt;id&gt;file:123&lt;/id&gt;<br>
+&nbsp;&lt;success&gt;true&lt;/success&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/json/peopleaggregator/newFile">/api/json/peopleaggregator/newFile</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 387<br>
+<br>
+authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&content=Picture+of+me+crossing+a+pond+at+Blue+Skies%2C+Kaiapoi%2C+New+Zealand.++Taken+by+my+girlfriend+on+11+May+2006.&title=A+picture+of+me.&url=http%3A%2F%2Fexample.org%2Fmy-remote-picture.jpg&type=image&tags=one%2C+two%2C+three&filename=my-picture.jpg&access=everybody&context=album%3A52&data=binary+data+goes+here</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 94<br>
+<br>
+{"url": "http://peopleaggregator.org/files/my-picture.jpg", "id": "file:123", "success": true}</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 3486<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;peopleaggregator.newFile&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;authToken&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;as9d867f234o7asdf:928734982734987234:298374982734987234&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;access&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;everybody&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;title&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;A picture of me.&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;url&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://example.org/my-remote-picture.jpg&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;data&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;base64&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YmluYXJ5IGRhdGEgZ29lcyBoZXJl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/base64&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;tags&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;one, two, three&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;filename&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;my-picture.jpg&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;content&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Picture of me crossing a pond at Blue Skies, Kaiapoi, New Zealand.  Taken by my girlfriend on 11 May 2006.&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;context&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;album:52&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;type&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;image&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 1212<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;url&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://peopleaggregator.org/files/my-picture.jpg&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;id&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;file:123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;success&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

@@ -1,0 +1,251 @@
+<?php
+/*
+ * Project:     PeopleAggregator: a social network developement platform
+ * File:        customize_ui.php, web file to let user customize their UI.
+ *              This is personal page of user visible to himself only
+ * Author:      Martin Spernau
+ * Description: This file uses
+ *              page renderer to display the block modules
+ * The lastest version of PeopleAggregator can be obtained from:
+ * http://peopleaggregator.org
+ * For questions, help, comments, discussion, etc. please visit 
+ * http://wiki.peopleaggregator.org/index.php
+ *
+ */
+$login_required = TRUE;
+$use_theme = 'Beta';
+include "web/includes/page.php";
+
+require_once "api/User/User.php";
+require_once "web/includes/functions/user_page_functions.php";
+// define("DESKTOP_IMAGE_DISPLAY", 1);
+global $query_count_on_page;
+$query_count_on_page = 0;
+
+if (!($uid)) {
+  header("Location: login.php?error=1");
+  exit;
+}
+
+$logged_user = new User();
+$logged_user->load((int)$uid);
+
+global $login_uid;
+$type=@$_GET['type'];
+if (@$_POST['profile_type'] == 'ui') {
+ // global var $_base_url has been removed - please, use PA::$url static variable
+
+ $ignore = Array('profile_type', 'submit');
+  if (isset($_POST['submit'])) {
+    foreach ($_POST as $k=>$v) {
+      if (! in_array($k, $ignore)) {
+        $profile[$k]['name'] = $k;
+        $profile[$k]['value'] = $v;
+      }
+    }
+  } else if (isset($_POST['restore_default'])) {
+    foreach ($_POST as $k=>$v) {
+       $profile[$k]=NULL; // we simply remove the setting if present
+    }
+  }
+  $user = new User();
+  $user->user_id = $login_uid;
+  $user->save_profile_section($profile, 'ui');
+  $msg_id=2008;
+  $type='style';
+}
+
+// accessing page settings data
+// in term of Modules this page is identical to the User's page!
+$setting_data = ModuleSetting::load_setting(PAGE_USER_PRIVATE, $uid);
+
+ // user general info
+ $user_data_general = array();
+   
+ $user_generaldata = User::load_user_profile($uid, (int)$_SESSION['user']['id'], GENERAL);
+ $user_data_general = sanitize_user_data ($user_generaldata);
+
+ // LOAD Personal data
+   $user_personaldata = User::load_user_profile($uid, (int)$_SESSION['user']['id'], PERSONAL);
+   $user_data_personal = sanitize_user_data ($user_personaldata);
+ 
+ // Load Professional Data
+   $user_professionaldata = User::load_user_profile($uid, (int)$_SESSION['user']['id'], PROFESSIONAL);
+ 
+ $user_data_professional = sanitize_user_data ($user_professionaldata);
+ 
+
+ $data = array('user_data_general'=>$user_data_general, 'user_data_personal'=>$user_data_personal, 'user_data_professional'=>$user_data_professional);
+
+$user_data_external = 
+  sanitize_user_data(User::load_user_profile($uid,$uid, 'external'));
+
+$delicious_id = @$user_data_external['delicious'];
+$flickr_id = @$user_data_external['flickr_email'];
+
+ // try and get the Flickr nsid if user has imported profile
+ $user_data_flickr = sanitize_user_data ( User::load_user_profile($uid,$uid, 'flickr') );
+ $flickr_nsid = @$user_data_flickr['nsid'];
+
+
+// Loading user relations (relation ids)
+$relations_ids = Relation::get_all_user_ids((int)$_SESSION['user']['id'],5);
+// $onload="ajax_call_method(ajax_titles, $uid, ajax_urls);";
+// see if we have a user defined CSS 
+$user_data_ui = sanitize_user_data(User::load_user_profile($uid,$uid, 'ui'));
+$skin_var = sanitize_user_data(User::load_user_profile($uid,$uid, 'skin')); 
+// accessing page settings data
+$setting_data = ModuleSetting::load_setting(PAGE_USER_PRIVATE, $uid);
+function setup_module($column, $moduleName, $obj) {
+  global $logged_user, $setting_data, $flickr_id, $flickr_nsid, $delicious_id, $uid, $data;
+  global $content_type,$post_type_message,$paging,$relations_ids,$post_type_message,$post_type;
+  global $type, $user_data_ui, $skin_var, $setting_data, $user_info;
+  switch ($moduleName) {
+    case 'CustomizeUIModule':
+      $obj->uid = $uid;
+      $obj->type = $type;
+      $obj->data = $data;
+      $obj->user_data_ui = $user_data_ui;
+      $obj->skin_var = $skin_var;
+      $obj->setting_data = $setting_data;
+    break;  
+    case 'InRelationModule':
+      $obj->user_name = $logged_user->first_name;
+      $obj->uid = $uid;
+      $obj->links = $relations_ids;
+    break;
+     case 'EventCalendarSidebarModule':
+        $obj->assoc_type = "user"; // this is the personal calendar
+        $obj->assoc_id = $logged_user->user_id;
+        $obj->may_edit = true; // we wouldn't be seeing this page is we weren't the user, right?
+      break;
+    case 'ImagesModule':       
+      $obj->mode = PRI;
+      $obj->uid = $uid;
+    break;
+    case 'UserPhotoModule': 
+      $obj->block_type = 'UserPhotoBlock';
+      $obj->uid = $logged_user->user_id;
+    break;
+    case 'FlickrModule': 
+      $obj->uid = $uid;
+      if (!$flickr_id && !$flickr_nsid) return "skip";   
+        $obj->block_type = 'UserPhotoBlock';
+        $obj->flickr_id = $flickr_id;
+        $obj->flickr_nsid = $flickr_nsid;
+    break;
+    case 'LinkModule': 
+     if (!$delicious_id) return "skip";   
+      $obj->block_type = 'UserPhotoBlock';
+      $obj->delicious_id = $delicious_id;
+      $obj->title = 'Delicious';
+    break;
+    case 'MyGroupsModule': 
+      $obj->block_type = 'usergroups';
+      $obj->title = 'My Groups';
+      $obj->uid = $uid;
+    break;
+    case 'RecentCommentsModule': 
+      $obj->title = 'My Recent Comments';
+      $obj->block_type = 'usercomments';
+      $obj->uid = $uid;
+    break;
+    case 'AboutUserModule': 
+      $obj->title = 'About:';
+      $obj->block_type = 'AboutUser';
+      $obj->uid = $uid;
+    break;
+    case 'UserMessagesModule':
+      $obj->mode = PRI;
+      $obj->block_type = "NetworkCategory";
+    break;
+    case 'ShowContentModule':      
+      $obj->cid = $_GET['cid']; 
+      $obj->content_type = $content_type;
+      $obj->type = 'user';
+      $obj->uid = $uid;
+      $obj->orientation = CENTER;
+      $obj->message = $post_type_message[$post_type];
+      $obj->Paging["page"] = $paging["page"];
+      $obj->Paging["show"] = $paging["show"];
+      $obj->block_heading = $_SESSION['user']['first_name']. '\'s Blog';
+    break;
+    case 'RelationsModule';
+    case 'MyLinksModule';
+    case 'MyNetworksModule';
+      $obj->uid = $uid;
+    break;
+   }
+   $obj->mode = PRI;
+}
+
+
+// replace the center Module with out CustomizeUIModule
+$setting_data['middle'] = 
+  Array('CustomizeUIModule'); // , 'ModuleSelectorModule'
+
+// print_r($setting_data);
+
+$page = new PageRenderer("setup_module", PAGE_USER_CUSTOMIZE_UI, sprintf(__("%s - Themes - %s"), $login_user->get_name(), $network_info->name), "container_three_column.tpl", "header_user.tpl", PRI, "NetworkCategory", $network_info,'',$setting_data);
+
+$parameter = "";
+if ($type == "style" ) {
+  // load all support code
+  // these should eventually be collapsed into one file
+  $parameter .= js_includes('iutil.js');
+  $parameter .= js_includes('json.js');
+  $parameter .= js_includes('idrag.js');
+  $parameter .= js_includes('isortables.js');
+  // for style editor
+  $parameter .= js_includes('jsonStringify.js');
+  // $parameter .= js_includes('jquery.js');
+  $parameter .= js_includes('jquery.compat-1.0.js');
+  $parameter .= js_includes('configurator.js');
+  $parameter .= js_includes('conf_css.js');
+  $parameter .= js_includes('farbtastic.js ');
+}
+if ($login_uid) {
+$page_id = PAGE_USER_PRIVATE;
+$parameter .= "<script language='javascript' type='text/javascript'>
+  // var uid = $login_uid;
+  var page_id = $page_id;
+  </script>";
+}
+
+// let's see if we have collapsed modules
+$parameter .= "\n<script language='javascript' type='text/javascript'>\n";
+$parameter .= "var collapsed";
+if(!empty($setting_data['collapsed'])) {
+  require_once("JSON.php");
+  $json = new Services_JSON();
+  $parameter .= " = ".$json->encode($setting_data['collapsed']);
+}
+$parameter .= "\n</script>\n";
+$page->add_header_html($parameter);
+// $page->header->set('new_module_render', $new_module_render);
+
+$css_path = $current_theme_path.'/calendar.css';
+$page->add_header_css($css_path);
+$page->add_header_html(js_includes('calendar.js'));
+
+
+if ($type == "style" ) {
+  // adding some New Css files require for this page only
+  $css_path = $current_theme_path.'/configurator.css';
+  $page->add_header_css($css_path);
+  $css_path = $current_theme_path.'/farbtastic.css';
+  $page->add_header_css($css_path);
+}
+if (!empty($_GET['msg_id']) || !empty($msg_id)) {
+  $msg_id = (!empty($msg_id))? $msg_id: $_GET['msg_id'];
+}
+
+if ($type == 'module_selector') {
+  $parameter .= js_includes('messages.js');//added for checking and unchecking all the checkboxes for modules.
+  $page->add_header_html($parameter);
+}
+uihelper_error_msg(@$msg_id);
+uihelper_set_user_heading($page);
+echo $page->render();
+
+?>

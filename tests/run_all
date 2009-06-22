@@ -1,0 +1,15 @@
+pushd `dirname $0`/..
+
+tools/api_test/test_api.py || exit 1;
+
+cd tests/php
+
+phpunit AllTests.php || exit 1
+
+cd ../ui
+
+phpunit FullInstallTest.php || exit 1
+
+echo "All tests pass; safe to commit now!"
+
+popd

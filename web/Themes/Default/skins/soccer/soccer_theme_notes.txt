@@ -1,0 +1,29 @@
+Enclosed are assets needed for Soccer User Theme.
+
+All paths are set with the assumption the theme directory resides at   Themes/Default/skins/Soccer/
+
+
+This theme DOES NOT use the page ID names in the body tag. The theme has been tested on user.php and user_blog.php in Firefox 1.5 and IE6.
+
+Note that this theme has a taller desktop image space by 50 pixels. It turns out that, if inserted, the desktop image stretches to 200 pixels tall. The default in this theme is no desktop image.
+
+
+THEME DEMO:
+
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_Soccer/user.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_Soccer/user_blog.html
+
+
+All css for the Theme is in a style sheet placed after the network_skin.css called
+soccer_skin.css. I developed the theme while linking to the existing layout.css and network_skin.css on peepagg.net. Probably no
+reason to change them.
+
+The css file and images directory should reside together in a directory below Themes called City.
+I have supplied the config.xml file although I do not understand the usage of the homePageLink and link tags.
+
+The soccer_skin.css will serve as a default setings reference.
+
+Marc S
+marcs@broadbandmechanics.com
+
+

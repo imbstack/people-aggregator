@@ -1,0 +1,21 @@
+
+..mceIframeContainer {
+
+  border: 1px solid red;
+  background: silver;
+
+}
+
+.quote {
+  padding: 6px;
+  position: relative;
+  color: #727172;
+  border: 1px solid #C3CCD6;
+}
+
+.quote_header {
+  padding-left: 6px;
+  margin-top: 4px;
+  color: #687683;
+  background: #C3CCD6;
+}

@@ -1,0 +1,284 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method peopleaggregator.newContent</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method peopleaggregator.newContent</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: peopleaggregator.newContent</h2>
+<div class="detail">
+<div class="description">Add a content item (a blog post, or any SB microcontent type) to the system.</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_peopleaggregator.newContent_method">User documentation for peopleaggregator.newContent on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes a single struct as input, with the following keys:</p>
+<div class="argument">
+<h3>authToken</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">An authentication token for the user creating the content.</div>
+<div class="example">Example: <code>as9d867f234o7asdf:928734982734987234:298374982734987234</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>context</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Where to place the content: leave blank to post to your blog, pass a user ID to post to another user's blog (currently not permitted), or pass a group ID to post to a group blog.</div>
+<div class="example">Example: <code>user:26</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>title</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Title of the content item.</div>
+<div class="example">Example: <code>PeopleAggregator lives!</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>content</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Content of the content.</div>
+<div class="example">Example: <code>Testing, testing - this is the first post.</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>trackbacks</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Space-separated list of URLs to trackback.</div>
+<div class="example">Example: <code>http://topicexchange.com/t/test/ http://example.org/foobar/trackback</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>tags</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Comma-separated list of tags.</div>
+<div class="example">Example: <code>peepagg, people aggregator</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>success</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true if the content has been successfully saved, or false on failure.</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>id</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">ID of the created content.</div>
+<div class="example">Example: <code>content:1234</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>url</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The URL of the created content.</div>
+<div class="example">Example: <code>http://example.org/peepagg/content.php?cid=1234</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>msg</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Human-readable status message</div>
+<div class="example">Example: <code>Added content to myelin's blog.</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>errors</h3>
+<div class="detail">
+<div class="type">Type: array</div>
+<h2 class="array-content">Content of each item:</h2>
+<div class="item">
+<h3>item</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>code</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Machine-readable error message</div>
+<div class="example">Example: <code>trackback_failed</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>msg</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Human-readable status message</div>
+<div class="example">Example: <code>Trackback to http://example.com/bad-url failed</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- item/detail -->
+</div><!-- item -->
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xml/peopleaggregator/newContent">/api/xml/peopleaggregator/newContent</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 308<br>
+<br>
+authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&content=Testing%2C+testing+-+this+is+the+first+post.&context=user%3A26&tags=peepagg%2C+people+aggregator&trackbacks=http%3A%2F%2Ftopicexchange.com%2Ft%2Ftest%2F+http%3A%2F%2Fexample.org%2Ffoobar%2Ftrackback&title=PeopleAggregator+lives%21</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 545<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;url&gt;http://example.org/peepagg/content.php?cid=1234&lt;/url&gt;<br>
+&nbsp;&lt;msg&gt;Added content to myelin's blog.&lt;/msg&gt;<br>
+&nbsp;&lt;errors&gt;<br>
+&nbsp;&nbsp;&lt;item&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;msg&gt;Trackback to http://example.com/bad-url failed&lt;/msg&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;code&gt;trackback_failed&lt;/code&gt;<br>
+&nbsp;&nbsp;&lt;/item&gt;<br>
+&nbsp;&lt;/errors&gt;<br>
+&nbsp;&lt;id&gt;content:1234&lt;/id&gt;<br>
+&nbsp;&lt;success&gt;true&lt;/success&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/json/peopleaggregator/newContent">/api/json/peopleaggregator/newContent</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 308<br>
+<br>
+authToken=as9d867f234o7asdf%3A928734982734987234%3A298374982734987234&content=Testing%2C+testing+-+this+is+the+first+post.&context=user%3A26&tags=peepagg%2C+people+aggregator&trackbacks=http%3A%2F%2Ftopicexchange.com%2Ft%2Ftest%2F+http%3A%2F%2Fexample.org%2Ffoobar%2Ftrackback&title=PeopleAggregator+lives%21</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 238<br>
+<br>
+{"url": "http://example.org/peepagg/content.php?cid=1234", "msg": "Added content to myelin's blog.", "errors": [{"msg": "Trackback to http://example.com/bad-url failed", "code": "trackback_failed"}], "id": "content:1234", "success": true}</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 2263<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;peopleaggregator.newContent&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;authToken&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;as9d867f234o7asdf:928734982734987234:298374982734987234&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;tags&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;peepagg, people aggregator&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;trackbacks&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://topicexchange.com/t/test/ http://example.org/foobar/trackback&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;title&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;PeopleAggregator lives!&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;content&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Testing, testing - this is the first post.&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;context&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:26&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 2730<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;url&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://example.org/peepagg/content.php?cid=1234&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;msg&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Added content to myelin's blog.&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;errors&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;array&gt;&lt;data&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;msg&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Trackback to http://example.com/bad-url failed&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;code&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;trackback_failed&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;id&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;content:1234&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;success&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

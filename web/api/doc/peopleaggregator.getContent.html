@@ -1,0 +1,324 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method peopleaggregator.getContent</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method peopleaggregator.getContent</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: peopleaggregator.getContent</h2>
+<div class="detail">
+<div class="description">Retrieve content (blog posts, event info, media, reviews, showcases, listings) from the community ("global") blog, a particular user, a group, a tag, or a search query.</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_peopleaggregator.getContent_method">User documentation for peopleaggregator.getContent on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes a single struct as input, with the following keys:</p>
+<div class="argument">
+<h3>context</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The context from which to retrieve content: specify 'global' to retrieve content from the community blog, 'user:123' to retrieve content from user #123's blog, 'group:42' to retrieve content from group #42's blog, 'tag:2' to retrieve content with tag #2, or 'search:search terms' to retrieve content matching a search query.</div>
+<div class="example">Example: <code>user:26</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>detailLevel</h3>
+<div class="detail">
+<div class="type">Type: enum</div>
+<div class="description">How much detail you want to retrieve: 'all' to get post metadata, content and SB XML, 'content' to get metadata and content, or 'summary' just to get metadata.</div>
+<div class="enum-values">Allowed values: <code>all</code>, <code>content</code>, <code>summary</code></div>
+<div class="example">Example: <code>all</code></div>
+<div class="default">Default: <code>all</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>page</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">Page number to retrieve.</div>
+<div class="example">Example: <code>2</code></div>
+<div class="minimum">Minimum: <code>1</code></div>
+<div class="default">Default: <code>1</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>resultsPerPage</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">How many content items you wish to retrieve per page.</div>
+<div class="example">Example: <code>42</code></div>
+<div class="minimum">Minimum: <code>10</code></div>
+<div class="maximum">Maximum: <code>100</code></div>
+<div class="default">Default: <code>10</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>success</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true on success, false on failure.</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>msg</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Message indicating success or failure detail.</div>
+<div class="example">Example: <code>Retrieved 42 blog entries</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>detailLevel</h3>
+<div class="detail">
+<div class="type">Type: enum</div>
+<div class="description">How much detail was shown (see detailLevel argument for detail).</div>
+<div class="enum-values">Allowed values: <code>all</code>, <code>content</code>, <code>summary</code></div>
+<div class="example">Example: <code>all</code></div>
+<div class="default">Default: <code>all</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>page</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">Page number of retrieved info.</div>
+<div class="example">Example: <code>2</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>resultsPerPage</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">Number of content items per results page.</div>
+<div class="example">Example: <code>42</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>totalPages</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">The total number of pages available.</div>
+<div class="example">Example: <code>96</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>totalResults</h3>
+<div class="detail">
+<div class="type">Type: int</div>
+<div class="description">The total number of content items available.</div>
+<div class="example">Example: <code>4000</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>items</h3>
+<div class="detail">
+<div class="type">Type: array</div>
+<h2 class="array-content">Content of each item:</h2>
+<div class="item">
+<h3>item</h3>
+<div class="detail">
+<div class="type">Type: hash</div>
+<h2 class="hash-content">Attributes:</h2>
+<div class="attribute">
+<h3>id</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">ID of the retrieved content item.</div>
+<div class="example">Example: <code>content:123</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>url</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Permalink of the retrieved content item.</div>
+<div class="example">Example: <code>http://peopleaggregator.org/content.php?cid=140</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>title</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Title of the content item.</div>
+<div class="example">Example: <code>PeopleAggregator lives!</code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+<div class="attribute">
+<h3>content</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Content of the content.</div>
+<div class="example">Example: <code>Testing, testing - this is the first post.</code></div>
+<div class="default">Default: <code></code></div>
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- item/detail -->
+</div><!-- item -->
+</div><!-- attribute/detail -->
+</div><!-- attribute -->
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/xml/peopleaggregator/getContent?detailLevel=all&resultsPerPage=42&page=2&context=user%3A26">/api/xml/peopleaggregator/getContent?detailLevel=all&resultsPerPage=42&page=2&context=user%3A26</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 827<br>
+<br>
+&lt;response&gt;<br>
+&nbsp;&lt;totalPages&gt;96&lt;/totalPages&gt;<br>
+&nbsp;&lt;success&gt;true&lt;/success&gt;<br>
+&nbsp;&lt;items&gt;<br>
+&nbsp;&nbsp;&lt;item&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;url&gt;http://peopleaggregator.org/content.php?cid=140&lt;/url&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;content&gt;Testing, testing - this is the first post.&lt;/content&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;id&gt;content:123&lt;/id&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;title&gt;PeopleAggregator lives!&lt;/title&gt;<br>
+&nbsp;&nbsp;&lt;/item&gt;<br>
+&nbsp;&lt;/items&gt;<br>
+&nbsp;&lt;detailLevel&gt;all&lt;/detailLevel&gt;<br>
+&nbsp;&lt;resultsPerPage&gt;42&lt;/resultsPerPage&gt;<br>
+&nbsp;&lt;msg&gt;Retrieved 42 blog entries&lt;/msg&gt;<br>
+&nbsp;&lt;totalResults&gt;4000&lt;/totalResults&gt;<br>
+&nbsp;&lt;page&gt;2&lt;/page&gt;<br>
+&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>GET <a href="../../api/json/peopleaggregator/getContent?detailLevel=all&resultsPerPage=42&page=2&context=user%3A26">/api/json/peopleaggregator/getContent?detailLevel=all&resultsPerPage=42&page=2&context=user%3A26</a> HTTP/1.1</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 333<br>
+<br>
+{"totalPages": 96, "success": true, "items": [{"url": "http://peopleaggregator.org/content.php?cid=140", "content": "Testing, testing - this is the first post.", "id": "content:123", "title": "PeopleAggregator lives!"}], "detailLevel": "all", "resultsPerPage": 42, "msg": "Retrieved 42 blog entries", "totalResults": 4000, "page": 2}</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 1513<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;peopleaggregator.getContent&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;detailLevel&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;all&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;resultsPerPage&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;42&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;page&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;2&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;context&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:26&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 4223<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;totalPages&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;96&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;success&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;items&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;array&gt;&lt;data&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;struct&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;url&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;http://peopleaggregator.org/content.php?cid=140&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;content&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Testing, testing - this is the first post.&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;id&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;content:123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;title&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;PeopleAggregator lives!&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/data&gt;&lt;/array&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;detailLevel&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;all&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;resultsPerPage&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;42&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;msg&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;Retrieved 42 blog entries&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;totalResults&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;4000&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;page&lt;/name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;int&gt;2&lt;/int&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/member&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/struct&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

@@ -1,0 +1,345 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This network_skin.css is the secondary CSS document in the teired system and is used to define aesthetic styling information. */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document */
+			
+/* PeopleAggregator Group Default created by Marc Senasac <marcs@broadbandmechanics.com> and updated February 5, 2007 */
+/* modified to zen_columns.css by Marc S on 4/10/07 */
+
+
+/* reorder Columns with padding corrections */
+
+
+#bg_blog_post { 
+	margin-top: -2px;
+	margin-left: 0px;
+	width: 600px;
+	height: 714px; }
+
+#col_a {
+	margin-top: 10px;
+	margin-left: 0px;
+	margin-right: 7px;
+	width: 200px;
+	float: right; }
+
+*html #col_a { margin-left: 4px; }
+*html #col_a { margin-right: 3px; }
+
+
+#col_b {
+	width: 578px;
+	margin-left: 11px;
+	margin-right: 8px;
+	float: left;
+	overflow: hidden;
+	min-height: 800px;
+	max-height: auto; }
+	
+*html #col_b { margin-left: 6px; }
+
+#col_c {
+	margin-top: 10px;
+	width: 200px;
+	float: left; }
+
+body {
+	background: #FFFFFF url(none);
+	}
+
+
+#container {
+	background-color: #FFFFFF;
+	margin-bottom: 10px;
+}
+
+
+/* This area adjusts the main nav height. Main nav moved down for some  skins. */
+
+#header {
+	background-image: url(images/group_sand_hdr.jpg);
+	}
+
+
+/* Main Text Headers */
+
+
+
+#header h1, #header h1 a {
+	color: #FFFFFF;
+}
+		
+#header h2 {
+	color: #666666;
+}
+	
+	
+	
+
+/* Main First Tier Nav Bar */
+
+/*
+
+#first_tier_navbar li a#current {
+	background-color: #0099FF;
+	color: #FFFFFF;
+}
+*/
+
+/* Main Second Tier Nav Bar */
+
+/*
+#navbar_header ul {
+background-color: #0099FF;
+ }
+
+
+
+
+
+#second_tier_navbar li { 
+	color: #FFFFFF;
+}
+
+
+#second_tier_navbar li.active a {
+	background-color: #0099FF;
+	font-weight: bold;
+	padding: 4px; }
+
+#second_tier_navbar a:link,
+#second_tier_navbar a:visited { 
+	color: #FFFFFF; 
+}
+
+#second_tier_navbar a:hover { 
+	color: #FFFFFF;
+}
+
+*/
+
+
+/* Module body and headers. Col_A styles the tool bar type module column. Remove 2 col_a below for 2 default module columns */
+
+.module {
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #FFFFFF;
+	}
+
+
+.module h1 {
+	color: #FFFFFF;
+	background-color: #666666;
+}
+
+
+#LogoModule {
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #FFFFFF;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #FFFFFF;
+}
+
+/*
+
+#AdsByGoogleModule {
+	border: 1px solid #CCCCCC;
+}
+
+*/
+
+/* Add the next 3 tags to main styles */
+
+/* Arrow in module headers. Added to Main Styles? */
+
+.module h1 img {
+	padding-right: 5px;
+}
+
+
+
+/* Browse Tag Module Only. Added to Main Styles? */
+
+.module_browse_tag {
+padding: 5px;
+}
+
+/* Padding for bottom of blog. This tag already exists in network_skin. Just add the 10px padding to the bottom. */
+
+.wide_content,
+.module_wide {
+	padding-bottom: 10px; 
+	
+}
+
+
+/* Module Delimiters  */
+
+
+
+.module_icon_list li {
+
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #EEEEEE;
+}
+
+.module_tagcloud ul li {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #EEEEEE;
+}
+
+
+.module_definition_list dt {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #EEEEEE;
+}
+
+	
+	
+
+.wide_content,
+.module_wide { 
+	border-top: 1px solid #666666;
+}
+
+/* H1 in the center column. */
+
+
+.wide_content h1,
+.module_wide h1 {
+	color: #000000;
+}
+
+
+
+
+.login_box a:link,
+.login_box a:visited {
+	text-decoration: underline;
+	color: #666666;
+	font-size: 11px;
+}
+
+.login_box a:hover {
+	text-decoration: none;
+	color: #666666;
+}
+
+/* ID login dropdown */
+
+.id_list {
+	border-top: 1px none #CCCCCC;
+	}
+
+.id_item {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+
+.id_list .id_name a:link,
+.id_list .id_name a:visited {
+	color: #666666;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .id_name a:hover { text-decoration: underline; }
+
+
+.id_list .edit_logoff {
+        text-align:left;
+	padding: 2px 0 2px 51px;
+ 	background-color: #FF9900;
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+
+.id_params {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	margin: 0;
+	padding: 5px 0 0 0;
+	background-color: #FF9900;
+	 }
+         
+/* Shortcut menu icons */
+
+#shortcut_post {
+	background-image:url(images/shrtcut_post.gif);
+	background-repeat: no-repeat;
+	background-position: 12px center;
+}
+#shortcut_widgets {
+	background-image:url(images/shrtcut_widgets.gif);
+	background-repeat: no-repeat;
+	background-position: 12px center;
+}
+#shortcut_messages {
+	background-image:url(images/shrtcut_messages.gif);
+	background-repeat: no-repeat;
+	background-position: 12px center;
+}
+#shortcut_edit {
+	background-image:url(images/shrtcut_edit.gif);
+	background-repeat: no-repeat;
+	background-position: 12px center;
+}
+#shortcut_configure  {
+  background-image:url(images/shrtcut_config.gif);
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+#shortcut_external {
+	background-image:url(images/shrtcut_external.gif);
+	background-repeat: no-repeat;
+	background-position: 12px center;
+}
+	 
+/* Tabs on modules */
+
+.module_tabbed_image_list ul {
+	border-left: 1px solid #CCCCCC;
+	}
+	
+
+/* Previous next selector */	
+	
+.prev_next a {
+	border: solid 1px #0099FF;
+
+}
+	
+.prev_next a:visited {
+	border: solid 1px #0099FF;
+}
+
+.prev_next a:hover {
+	border-color: #0099FF;
+	background-color: #0099FF;
+}
+	
+.prev_next .selected {
+	color: #0099FF;
+	border: solid 1px #0099FF;
+
+}
+
+
+
+
+/* View All Colors */	
+
+.view_all {
+	border: 1px solid #CCCCCC;
+	background-color: #EEEEEE;
+}
+
+#footer {
+	padding-bottom: 20px;
+
+}
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>
+   <name>City</name>
+   <previewImage>preview.jpg</previewImage>
+   <networkCssFile>City_skin.css</networkCssFile>
+   <groupCssFile></groupCssFile>
+   <userCssFile></userCssFile>   
+   <headerImageOk>no</headerImageOk>
+   <headerImage>none</headerImage>
+ </config>

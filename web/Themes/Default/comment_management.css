@@ -1,0 +1,16 @@
+/* CSS for comment_management.php */
+
+.comment_manage_pane {
+	
+}
+
+.bulk_comment_summary td {
+	border-bottom: solid 1px black;
+	background: #e0e0e0;
+	margin: 0 0 0 0;
+	vertical-align: top;
+}
+
+.bulk_comment_summary tr {
+	margin: 0 0 0 0;
+}

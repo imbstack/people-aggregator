@@ -1,0 +1,1 @@
+example_api_desc = {"name": "Example Project API", "methods": {"example.echo": {"argstyle": "named", "return": {"content": {"echoText": {"type": "string"}, "success": {"type": "boolean"}}, "type": "hash", "allow_extra_keys": 0}, "args": {"echoText": {"type": "string"}}, "type": "get"}}}

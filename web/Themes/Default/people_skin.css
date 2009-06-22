@@ -1,0 +1,120 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This user_skin.css is used to modify styles in prior sheets to create unique, cunstom pages - in this example, unique colors for a user page */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document. */
+/* Please use this sheet in conjunction with 2 previous "layout" and "skin" sheets. */
+      
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> October 10, 2006 */
+
+
+
+#thumbwrap {
+  padding: 0;
+  margin: 15px;
+}
+
+#thumbwrap li {
+  display: -moz-inline-box;
+/*  display: inline-block; David adjusting for im presence */
+  /*\*/ vertical-align: bottom; /**/
+  float:left;
+  display:inline;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+#thumbwrap a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+#AIMBuddyListBuddyInfo { 
+  background-color:#FFF;
+  border: 1px solid black;
+  left: 200px;
+  width:370px;
+  z-index: 100;
+}
+
+#AIMBuddyListContainer { 
+  position: relative;
+  top:0px; left:0px;
+  height: 0px;
+  }
+#AIMBuddyListBuddyInfo { 
+  background-color:#FFF;
+  border: 1px solid black;
+  left: 200px;
+  width:370px;
+  z-index: 100;
+}
+
+
+#thumbwrap img {
+  vertical-align: bottom;
+}
+
+#thumbwrap .caption {
+  display: block;
+  padding: .3em 5px;
+  font-size: .9em;
+  line-height: .8;
+  w\idth: 80px;  /* Moz, IE6 */
+}
+
+/* David adding Instant Message presence layout for facewall below each picture */
+#thumbwrap .im_presence {
+  display: block;
+  padding: 0 5px;
+  vertical-align:middle;
+
+  height:.5em;
+	margin: 0px;
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: bold;
+
+  w\idth: 80px;  /* Moz, IE6 */
+}
+
+#thumbwrap .im_presence a{
+  display:inline;
+}
+
+/* Ensures vertical spacing, buddies on separate lines. */
+#BuddyPopup .buddy {
+	display: block;
+	clear: left;
+}
+
+*html #thumbwrap li {
+  width: 80px;
+  w\idth: 80px;
+  display: inline;
+  margin: 0 5px 5px 5px;
+}
+
+*html #thumbwrap {
+  height: 0;
+  he\ight: auto;
+  zoom: 1;
+  display: inline;
+}
+
+
+*html #nav_prev-next li {
+  display: inline;
+  width: 20px;
+  text-align: center;
+}
+/* Modify by saurabh<saurabh.khare@tekritisoftware.com> on 16 Nov */
+*html .nav_prev_next li {
+  display: inline;
+  width: 20px;
+  text-align: center;
+}

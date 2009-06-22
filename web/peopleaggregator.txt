@@ -1,0 +1,3 @@
+This file is used by the configuration system (config/index.php) to
+make sure we can access the PeopleAggregator root directory over the
+web.

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>
+   <name>Soccer</name>   
+   <previewImage>preview.jpg</previewImage>   
+   <networkCssFile></networkCssFile>
+   <groupCssFile></groupCssFile>
+   <userCssFile>soccer_skin.css</userCssFile>   
+   <headerImage>none</headerImage>
+   <userheaderImage>none</userheaderImage>
+   <groupheaderImage>none</groupheaderImage>
+   <headerImageOk>no</headerImageOk>
+ </config>

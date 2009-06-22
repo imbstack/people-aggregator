@@ -1,0 +1,1 @@
+moved to web/includes/blocks/createcontent.php for security reasons

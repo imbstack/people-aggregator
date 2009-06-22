@@ -1,0 +1,268 @@
+PeopleAggregator
+
+Software Best Practices
+
+---
+
+VERSION HISTORY
+
+initial version: Phillip Pearson, 2006-07-20
+added CSS discussion: Martin Spernau 2006-07-30
+
+---
+
+INTRODUCTION
+
+Here are a few notes about PHP, HTML and CSS style and how certain things should 
+be done in the PeopleAggregator code.  I'm not sure if this qualifies as a "best 
+practices" document, but hopefully it will be helpful for someone :)
+
+---
+
+DON'T REPEAT YOURSELF ("DRY")
+
+Try to avoid having the same code appearing in multiple places in the system.  If you 
+
+Use constants instead of using a number in many places in the code.  For 
+example, if the number 42 means "married", then define("RELATION_MARRIED", 42) 
+and from then on, use RELATION_MARRIED instead of 42.
+
+---
+
+CHECK ERRORS CLOSE TO WHERE THEY OCCUR
+
+---
+
+DON'T TRUST THE USER
+
+A lot of code in PeopleAggregator lets the user override the $uid variable by 
+specifying a 'uid' parameter in the URL.  This is dangerous when used in 
+anything private or anything that can change a user's data as even though the UI 
+may not allow it, it may be possible to trick the system into changing or 
+displaying someone else's information.
+
+You must assume that the user has full control of all data sent to the web 
+server - the query string ($_GET), the POSTDATA ($_POST), cookies, file uploads, 
+etc.
+
+If you want to store some data (e.g. the user ID) and use it in a later script, 
+store it in the database or the session; do not trust the user to hold it and 
+pass it back unchanged.
+
+
+---
+
+PAGERENDERER
+
+This is a special case of "don't repeat yourself" (above).  Many of the php 
+files in the web directory contain a complete copy of the page rendering code. 
+I have moved this out into api/PageRenderer/PageRenderer.php, and we should try 
+to use that instead of copying all the code into each script.
+
+To convert a page to use PageRenderer:
+
+* include includes/page.php
+
+* instantiate a PageRenderer object and display the results of its
+  render() method
+
+	$page = new PageRenderer("setup_module", PAGE_EDIT_PROFILE, "Edit your 
+	profile - PeopleAggregator", "edit_profile_pa.tpl", "header.tpl", NULL, 
+	$network_info);
+
+	echo $page->render();
+	
+* write the setup_module() function
+
+	It should have a signature like this:
+
+	  function setup_module($column, $moduleName, $obj)
+
+	Move all the instantiation of left, middle and right modules
+	into the function using a switch statement like this:
+
+	  switch ($column) {
+	    case 'left':
+	      // leftModule init stuff goes here - make sure you rename $leftModule to $moduleName
+	      break;
+	    case 'middle':
+	      // likewise for middleModule init
+	      break;
+	    case 'right':
+	      // and rightModule init
+	      break;
+	  }
+
+	You will have to add a line at the top to reference any vars
+	used in the initialization, as you are inside a function now
+	rather than in the global scope.  e.g.:
+
+	  global $uid, $relation_ids;
+
+* remove any html header generation etc, making sure you keep the
+  onload info - this must be passed into the PageRenderer constructor.
+
+* test!
+
+	Load the old page and the new one side by side in a browser
+	and make sure things like the top menu are correct, and that
+	none of the modules are missing their data.  Often this
+	happens because of a missing global declaration.
+
+---
+
+IMAGE RESIZING
+
+Three things are important when presenting images on the web: getting the aspect 
+ratio right, using width and height attributes, and minimising the download 
+size.
+
+-> ASPECT RATIO
+
+If someone uploads a 2000x1500 image, and the screen space available for it is 
+100x200, you can't just scale the image to 100x200 or it will look terrible -
+everything will be much taller and thinner than in the original.  You have to 
+scale it down so that the width:height ratio is the same as in the original, but 
+it fits inside the new box.
+
+One way to do this is to find the ratio required to scale each dimension down to 
+fit the box, then pick the smallest ratio and use that to scale the whole image.
+
+e.g.:
+
+	100 / 2000 = 0.05
+	200 / 1500 = 0.13
+
+So the image should be scaled by 0.05 - and the output image will be 100x75. 
+Note that this is smaller than the display box, so it will need to be vertically 
+centered or aligned.
+
+If you are enlarging an image, the same rule applies.  Let's say you have a 
+200x100 image that you are enlarging to fit a 400x300 box:
+
+	400 / 200 = 2
+	300 / 100 = 3
+	
+So the image should be scaled by 2 - and the output image will be 400x200, which 
+once again will need to be vertically centered or aligned.
+
+-> WIDTH AND HEIGHT ATTRIBUTES
+
+When displaying an image, you should always put width and height attributes on 
+the <img> tag.  Note that you should NOT use these to do the actual resizing -
+if you send a 200x100 image to the user, the <img> tag should have width="200" 
+height="100", or the image will look bad on the client as browsers don't always 
+use resizing algorithms that look good.
+
+-> MINIMISING DOWNLOAD SIZE
+
+This is pretty much the same as the last point - make sure you resize on the 
+server.  PeopleAggregator used to just send out the images that people had 
+uploaded rather than resizing them, which meant often you would have to download 
+a 3MB image just to see a 50x50 representation of someone's face in a facewall. 
+There's no need to send a 3000x2000 image when a 50x50 one will do.
+
+---
+
+DAL
+
+---
+
+SEMANTIC CSS
+
+Use the cascade, Luke
+
+Imagine the following (very common) scenario: One block of re-useable HTMl needs
+to be displayed in different contexts. Now instead of re-defining all the class
+atributes of the HTML tags involved (in the PHP/HTML code AND in the CSS styles)
+consider the 'cascade' part of cascading style sheets: You can use the ID or
+CLASS attribute of an ENCLOSING HTML tag to select different styling for the
+embedded HTML.
+
+Example: 
+<style> 
+.parent-box {border: 2px solid red;} 
+.inner box {padding: 5px; color: blue;}
+
+.parent-box2 {border: 2px solid blue;} 
+/* instead of defining a NEW class for inner-box */ 
+.parent-box2 .inner box {color: red;} 
+/* also notice, we ONLY change what NEEDS changing, 
+*  and don't repeat what stays the same 
+*/ 
+</style>
+<div class="parent-box">
+  <div class="inner-box">Content ... </div>
+</div>
+<div class="parent-box2">
+  <div class="inner-box">Content ... </div>
+</div>
+
+Group before you copy
+
+In the above example this was already touched. Do not repeat things that don't
+change. If there are a number of style rules common to a lot of classes,
+try grouping them. And then override with a new definition per class what needs
+to be different:
+
+.text, h2, p, li { font-family: Verdane, Arial, sans-serif; color: black;
+padding: 3px; margin: 4em; } 
+h2 { font-size: 2em; color: red; } 
+li { list-style: none; margin: 0; }
+
+This obviously can be combined powerfully with the CSS cascade. You can
+specificaly override certain styling rules (color, size, etc) depending on the
+ENCLOSING HTML.
+
+
+Cumutative class attributes
+
+Don't forget that the class attribute is a space seperated LIST of attributes.
+You can 'on the fly' modify a certain HTML element that has a base class applied
+by adding in another class identifier: 
+<div class"text special">Special Text</div> 
+The resulting style will be a 'mix' of the two classes '.text' and '.special'.
+But be careful: all the rules of inheritance and importance of CSS apply. Try
+not to overuse this feature, it can have unpredictable (counter-intuitive)
+results when the two class definitions 'combat' a certain rule. The more
+specific rule will win. The cumulative class approach works best when the
+classes involved define or change specific styles that the other classes don't
+define.
+
+Styling and Layout
+
+You can sort CSS style sheet definitions into two rough categories: Layout
+(padding, margin, position, display) and styling (color, font, background)
+
+In some cirumstances it can make sense to keep these two seperate. Styling
+changes usually do not have big consequences on the page layout. But things like
+position, margins, borders etc can wreck a CSS page overall easily. It makes
+sense to 'protect' the layout related definitions o a degree by breaking them
+out into their own definitions. Especially if you consider the complexety of
+cross-browser layout tricks...
+
+---
+
+PHP SETTING: allow_call_time_pass_reference = Off
+
+You should configure PHP on your development server as follows:
+
+    allow_call_time_pass_reference = Off
+
+This will give you a warning whenever a call to a function forces a
+parameter into a reference, like this:
+
+    function foo($bar) {
+    }
+
+    foo(&$something);
+
+The correct way to do this is:
+
+    function foo(&$bar) {
+    }
+
+    foo($something);
+
+This way you can be sure that the function really knows that it is
+allowed to mutate the argument, and avoid unexpected side effects.

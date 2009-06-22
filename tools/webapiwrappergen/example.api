@@ -1,0 +1,27 @@
+api:
+ name: Example Project API
+ namespace: example
+ methods:
+ -
+  example.echo:
+   type: get
+   desc: GET-type echo test method, that just sends back its input data.
+   args:
+   -
+    echoText:
+     type: string
+     desc: Text to return to the caller.
+     eg: Iñtërnâtiônàlizætiøn
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     echoText:
+      type: string
+      desc: The string that was passed by the caller.
+      eg: Iñtërnâtiônàlizætiøn

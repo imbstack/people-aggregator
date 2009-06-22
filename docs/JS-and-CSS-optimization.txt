@@ -1,0 +1,45 @@
+JS and CSS optimization
+-----------------------
+Author: Marek Kuziel <marek.kuziel@encode.net.nz>
+
+The idea and part of the code is based on this blog entry:
+
+    http://rakaz.nl/item/make_your_pages_load_faster_by_combining_and_compressing_javascript_and_css_files
+
+Here is list of the files containing JS and CSS code:
+
+default_config.php                          # Configuration
+ext/JavaScriptPacker                        # JS packer
+ext/class.JavaScriptPacker.php              #     version for PHP5
+ext/class.JavaScriptPacker.php4             #     version for PHP4
+api/PageRenderer/PageRenderer.php           # New JS, CSS and extra HTML data handlers
+web/combinator.php                          # Modifed version of combine.php file from the blog entry (see link above)
+web/includes/functions/html_generate.php    # New JS handler implemented
+
+Few notes:
+
+1.) web/combinator.php
+    - Processes special JS and CSS URLs
+    - Packs the JS files (this is disabled at the moment because some of the JS files could already
+      be packed. Can be enabled after all JS files checked)
+    - Gzips JS and CSS files and sends them to client
+    - Caches gziped versions for future use
+
+2.) JS packer that web/combinator.php uses was added to original file. You can find the packer at
+http://dean.edwards.name/packer/ and download it at http://dean.edwards.name/download/#packer .
+
+    Code identifies what version of PHP is installed and decides to use either PHP4 or PHP5 version
+of the packer respectively.
+
+    Packer can be switched on by setting $use_js_packer to TRUE in default_config.php. Default FALSE.
+
+    JS optimization can be turn on by setting $use_js_optimizer to TRUE. Default FALSE.
+
+3.) CSS optimization can be turn on by setting $use_css_optimizer to TRUE. Default FALSE.
+
+4.) html_generate.php now implement js_include in very different way:
+    - It adds all requested JS files into the array that is organized by paths to the JS files
+    - PageRenderer contains new method get_extra_head_html that uses data from it
+    - PageRenderer has also reimplemented add_header_css and method in almost same way as
+      js_include is reimplemented
+    - add_header_js method is now only alias of js_includes method

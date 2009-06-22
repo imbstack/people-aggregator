@@ -1,0 +1,15 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This user_skin.css is used to modify styles in prior sheets to create unique, cunstom pages - in this example, unique colors for a user page */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document. */
+/* Please use this sheet in conjunction with 2 previous "layout" and "skin" sheets. */
+      
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> September 21, 2006 */
+/* Modified by marcs@broadbandmechanics.com September 26, 2006 */
+/* Modified by fabrizio@evectors.it October 10, 2006 */
+/* Modified by fabrizio@evectors.it October 30, 2006 */
+
+
+/* We added a class for changing the cursor shape on the User page */ 
+.module h1 {
+  cursor: move !important;
+}  

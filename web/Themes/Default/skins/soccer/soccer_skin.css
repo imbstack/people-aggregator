@@ -1,0 +1,542 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This network_skin.css is the secondary CSS document in the teired system and is used to define aesthetic styling information. */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document */
+			
+/* Soccer Skin created by Marc Senasac <marcs@broadbandmechanics.com> and updated January 25, 2007 */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 4, 2007 for IE6 fixes and login dropdown styling */
+
+body {
+	background: #66CC00;
+	color: #333333;
+	}
+	
+
+a:link,
+a:visited { 
+	color: #000000;
+	text-decoration: none;
+ }
+
+a:hover { 
+	color: #000000;
+	text-decoration: underline;
+ }
+
+
+
+
+
+/* Default Body Shadow height is 500px. 200 added and 200 added to container margin height below. */
+
+#body_shadow {
+	background: url(images/bg.png);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 500px; }
+	
+*html #body_shadow {
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/soccer/images/bg.png',sizingMethod="crop"); }
+
+
+#container {
+	background-color: transparent;
+}
+
+
+/* Main nav moved down for this skin */
+
+#header {
+	background-image: none;
+	height: 200px;
+	}
+
+#header ul {
+	top: 180px; 
+}
+
+*+html #header ul { top: 180px; }
+	
+	
+#shadow { 
+	background-image: url(images/bg_page.png);
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/soccer/images/bg_page.png');
+	}
+
+#header_navbar_back { 
+	background: url(images/header_navbar_back.png) no-repeat;
+	width: 1016px;
+	height: 200px;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/soccer/images/header_navbar_back.png');
+/*  margin-left: -10px; */ } 
+
+
+
+/* Main First Tier Nav Bar */
+#first_tier_navbar { 
+	color: #333333;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+
+#first_tier_navbar a:link,
+#first_tier_navbar a:visited { 
+	color: #333333;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#first_tier_navbar a:hover { 
+	color: #333333;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+#first_tier_navbar li a#current {
+	background-color: #FFFFFF;
+	color: #000000;
+	padding-bottom: 9px;
+}
+
+
+
+
+
+
+
+/* Main Second Tier Nav Bar */
+
+
+#navbar_header ul {
+background-color: transparent;
+ }
+ 
+		
+
+#second_tier_navbar li { 
+	color: #333333;
+
+}
+
+
+#second_tier_navbar a:link,
+#second_tier_navbar a:visited { 
+	color: #333333; 
+}
+
+#second_tier_navbar a:hover { 
+
+}
+
+
+#second_tier_navbar li.active a {
+	color: #000000;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	padding-top: 1px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+}
+
+
+#bg_blog_post { 
+	background: url(images/bg_blog_posts.png);
+	background-repeat: no-repeat;
+	background-color: none;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/soccer/images/bg_blog_posts.png'); }
+	
+	
+
+
+/* Left Nav for User Blog contact links. Shows on user blogs only */
+
+#navbar_left ul {
+	color:#000000;
+}
+
+#navbar_left a:link,
+#navbar_left a:visited { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+}
+#navbar_left a:hover { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+
+/* Move column A down. Remove this for default from layout.css  */
+
+/*
+#col_a {
+margin-top: 100px; 
+} */
+
+/* Move column B down. Remove this for default from layout.css  10px padding for bottom of blog */
+
+
+/*
+#col_b {
+	background-image: url(images/bg_col_b.gif); 
+	background-repeat: repeat-y; 
+	padding-bottom: 10px; 
+	background-color: #50D1F6;
+}
+
+*/
+
+#header h1 {
+	color: #FFFFFF; }
+		
+#header h2 {
+	color: #009EDD; }
+
+
+
+/* Module body and headers. Col_A styles the tool bar type module column. Remove 2 col_a below for 2 default module columns */
+
+.module {
+	margin-bottom: 10px;
+	background-image: url(images/bg_module_ball.gif);
+	background-repeat: repeat-y;
+	background-color: #999999;
+	overflow: hidden;
+	border: 1px #FFFFFF none; 
+	}
+
+
+.module h1 {
+	width: 189px;
+	color: #FFFFFF;
+	padding: 2px 2px 2px 7px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #FFA500 url(images/bg_top_module.png) no-repeat;
+ 	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/soccer/images/bg_top_module.png');
+}
+
+
+
+/* Add the next 3 tags to main styles */
+
+/* Arrow in module headers. Added to Main Styles? */
+
+.module h1 img {
+	padding-right: 5px;
+}
+
+
+
+/* Browse Tag Module Only. Added to Main Styles? */
+
+.module_browse_tag {
+padding: 5px;
+}
+
+/* Padding for bottom of blog. This tag already exists in network_skin. Just add the 10px padding to the bottom. */
+
+.wide_content,
+.module_wide {
+	padding-bottom: 10px; 
+	
+}
+
+
+
+
+/* ad module only */
+
+
+/*
+
+#AdsByGoogleModule {
+	border: 1px #FFFFFF solid; 
+	}
+	
+	*/
+
+
+
+/* Module Delimiters  */
+
+
+
+.module_icon_list li {
+
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #EEEEEE;
+}
+
+.module_tagcloud ul li {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #EEEEEE;
+}
+
+
+.module_definition_list dt {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #EEEEEE;
+}
+
+/* Modify Gallery Module drop-shadowsfor different color backgrounds */
+
+
+/*
+
+.image_list img {
+	padding: 5px;
+	background: url(none) no-repeat 0 0;
+}
+
+*/
+
+
+
+
+/* Tabs on modules */
+
+.module_tabbed_image_list ul {
+	background: #000000 url(images/bg_navbar_filters.jpg) repeat-x
+	}
+
+.module_tabbed_image_list li.active a {
+	background: url(images/bg_navbar_filters_active.jpg);
+	background-repeat: repeat-x;
+color: #000000; }
+
+.module_tabbed_image_list ul li a {
+	border-right: 1px solid #0090C9;
+	border-left: 1px solid #91E9F7;
+}
+
+.module_tabbed_image_list ul li a:hover {
+	background: url(images/bg_navbar_filters_active.jpg);
+	color: #333333;
+	text-decoration: none;
+}
+
+
+
+.login_box{
+	position: absolute;
+	background: #50D1F6;
+	border-right: 1px #009EDC solid;
+	border-left: 1px #009EDC solid;
+	border-bottom: 1px #009EDC solid;
+	padding: 7px 7px 2px;
+	right: 10px;
+	font-size: 13px;
+	text-align: center;
+	color: #FFFFFF;
+	border-top-width: 0;
+	border-top-style: none;
+	}
+	
+	
+.login_box a:link,
+.login_box a:visited {
+	text-decoration: underline;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+.login_box a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+/* ID login dropdown */
+
+.id_list {
+	border-top: 1px none #CCCCCC;
+	}
+
+.id_item {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+
+.id_list .id_name a:link,
+.id_list .id_name a:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .id_name a:hover { text-decoration: underline; }
+
+.id_list .edit_logoff {
+	padding: 2px 0 2px 0;
+	background-color: #666666;
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+.id_list .edit_logoff a:link,
+.id_list .edit_logoff a:visited {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .edit_logoff a:hover { text-decoration: underline; }
+
+.id_params {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	margin: 0;
+	padding: 5px 0 0 0;
+	background-color: #666666; }
+	
+/* The Big Middle content section abd it's tabs */  /* put border-top: none; here if single pixel line on top is desired to be moved */
+
+
+.wide_content,
+.module_wide {
+	margin: 0px;
+	padding-bottom: 10px; 
+	border: 1px solid #999999;
+}
+
+
+/* center column nav (third tier) */
+
+.wide_content ul#filters {
+/* 	margin: 0px 0px 8px 0px; */
+	background: url(images/bg_navbar_filters.jpg) repeat-x; }
+
+.wide_content ul#filters li a {
+/*	padding: 5px 10px 3px 10px; */
+	border-right: 1px solid #0090C9;
+	border-left: 1px solid #91E9F7;
+}
+
+.wide_content ul#filters li a:link,
+.wide_content ul#filters li a:visited { 
+	color: #333333;
+}
+
+
+.wide_content ul#filters li a:hover {
+	color: #000000;
+	background: url(images/bg_navbar_filters_active.jpg) repeat-x;
+}
+
+.wide_content ul#filters li.active a {
+	color: #000000;
+	background: url(images/bg_navbar_filters_active.jpg) repeat-x;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	height: 13px;
+}
+
+
+/* H1 in the center column. */
+
+
+.wide_content h1,
+.module_wide h1 {
+	color: #333333;
+}
+
+
+.wide_content h1 a:link,
+.wide_content h1 a:visited,
+.module_wide h1 a:link,
+.module_wide h1 a:visited {
+
+	color: #333333;
+}
+
+.wide_content h1 a:hover,
+.wide_content h1 a:hover {
+
+	color: #FFFFFF;
+}
+
+#pg_people .wide_content h1 {
+margin-bottom: 14px;
+}
+
+#pg_showcontent .module_wide h1 {
+margin-bottom: 14px;
+}
+
+/* Blogposts */
+
+
+
+.date {
+	color:#666666;
+	/* text-align: right;
+	margin-top: 0px;
+	margin-right: 11px; */
+}
+	
+	
+.view_all {
+	border: 1px solid #999999;
+	margin: 5px 70px 5px 70px;
+	padding: 3px;
+	text-align: center;
+	background-color: transparent;
+}
+
+
+
+
+/* Footer links adjustment */
+
+
+#footer {
+	color: #CCFF99;
+}
+
+
+#footer a:link,
+#footer a:visited {
+	color: #CCFF99;
+}
+
+#footer a:hover {
+	color: #CCFF99;
+}
+
+
+/* Foreground element below */
+
+/*
+
+#foreground_element {
+	background-image: url(images/front_earth.png);
+	width: 322px;
+	height: 457px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Planets/images/front_earth.png');
+	top: 320px;
+	right: -200px;
+	position: absolute; 
+	}
+	
+*/
+#ViewAllMembersModule {
+  float:left;
+}
+
+.blog h1 a:hover, .events h1 a:hover, .reviews h1 a:hover, .peopleshowcase h1 a:hover, .video h1 a:hover, .audio h1 a:hover, .image h1 a:hover, .groupshowcase h1 a:hover {
+  text-decoration: underline;
+  color: #000000; }

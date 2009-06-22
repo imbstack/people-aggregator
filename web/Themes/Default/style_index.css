@@ -1,0 +1,584 @@
+/* Home Splash Page Styles */
+/* Modified August 28, 2006 by marcs@broadbandmechanics.com */
+
+body 
+{
+  background-color: #7189A9;
+  background-image: url(images/back.jpg);
+  background-repeat: repeat-x;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+a:link,
+a:visited {
+  color: #7189A9;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #7189A9;
+  text-decoration: underline;
+}
+
+#wrapper {
+  background-color: #E1E1E1;
+  width: 1014px;
+  height: auto;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.header {
+  background-image: url(images/header_pa.gif);
+  width: 982px;
+  height: 110px;
+  margin-left: 16px;
+}
+
+h1 {
+  position: relative;
+  margin-left: 300px;
+  top: 74px;
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: bold;
+  color: B1B1B1;
+  margin-top: 0px;
+}
+
+.login  {
+  font-size: 12px;
+  font-family: "Arial Black";
+  line-height: 12px;
+  text-align: center;
+  position: relative;
+  top: -25px;
+  margin-left: 780px;
+}
+
+*html .login  {
+  top: -35px;
+}
+
+.login a:link,
+.login a:visited {
+  color: #7189A9;
+  text-decoration: underline;
+}
+
+.login a:hover {
+  color: #7189A9;
+  text-decoration: none;
+}
+
+.first_row {
+  width: 982px;
+  height: 224px;
+  margin-left: 16px;
+  margin-top: 11px;
+}
+
+*html .first_row {
+  height: 340px;
+}
+
+.first_row .cel_one {
+  float: left;
+  width: 485px;
+  height: 224px;
+  margin-right: 17px;
+  margin-left: 20px;
+}
+
+*html .first_row .cel_one {
+  width: 485px;
+  margin-left: 10px;
+}
+
+.first_row .cel_one a:link,
+.first_row .cel_one a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.first_row .cel_one .spanone a:hover {
+  color: #FF9900;
+  text-decoration: none;
+}
+
+.first_row .cel_one .spantwo a:hover {
+  color: #9B9C9E;
+  text-decoration: none;
+}
+
+.first_row .cel_one .spanthree a:hover {
+  color: #0099FF;
+  text-decoration: none;
+}
+
+.first_row .cel_two {
+  float: left;
+  background-image: url(images/bg_middlebox2.jpg);
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 224px;
+  margin-right: 20px;
+}
+
+.first_row .cel_three {
+  float: left;
+  background-image: url(images/bg_middlebox2.jpg);
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 224px;
+}
+  .first_row .cel_three img {
+  margin-top: 9px;
+}
+.first_row .cel_three table {
+  margin-top: 5px;
+}
+
+.first_row .cel_three td {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.second_row {
+  width: 982px;
+  height: 270px;
+  margin-left: 16px;
+  margin-top: 20px;
+}
+
+*html .second_row {
+  margin-top: -100px;
+}
+
+.second_row .cel_one {
+  float: left;
+  width: 502px;
+  height: 270px;
+  background-image: url(images/bg_bigbox.jpg);
+  margin-right: 20px;
+}
+
+.second_row .cel_two {
+  float: left;
+  background-image: url(images/bg_minibox.jpg);
+  width: 220px;
+  height: 270px;
+  margin-right: 20px;
+}
+
+.second_row .cel_three {
+  float: left;
+  background-image: url(images/bg_minibox.jpg);
+  width: 220px;
+  height: 270px;
+}
+
+.number1 {
+  position: relative;
+  font-size: 50px;
+  font-family: Arial Black;
+  top: -15px;
+}
+
+.text1 {
+  position: relative;
+  top: -76px;
+  left: 40px;
+  font-size: 30px;
+  font-family: Arial Black;
+  width: 250px;
+}
+
+.info_text1 {
+  position: relative;
+  top: -76px;
+  left: 40px;
+  color: #000000;
+  font-size: 14px;
+  font-family: Trebuchet MS;
+  line-height: 14px;
+}
+
+.number2 {
+  position: relative;
+  font-size: 50px;
+  font-family: Arial Black;
+  margin-top: -80px;
+}
+
+.text2 {
+  position: relative;
+  top: -60px;
+  left: 40px;
+  font-size: 30px;
+  font-family: Arial Black;
+  width: 250px;
+}
+
+.info_text2 {
+  position: relative;
+  top: -60px;
+  left: 40px;
+  color: #000000;
+  font-size: 14px;
+  font-family: Trebuchet MS;
+  width: 400px;
+  line-height: 14px;
+}
+
+.number3 {
+  position: relative;
+  font-size: 50px;
+  font-family: Arial Black;
+  margin-top: -60px;
+}
+
+.text3 {
+  position: relative;
+  top: -58px;
+  left: 40px;
+  font-size: 30px;
+  font-family: Arial Black;
+  width: 250px;
+}
+
+.info_text3 {
+  position: relative;
+  top: -58px;
+  left: 40px;
+  color: #000000;
+  font-size: 14px;
+  font-family: Trebuchet MS;
+  width: 400px;
+  line-height: 14px;
+}
+
+h2 {
+  color: #B1B1B1;
+  font-family: "Trebuchet MS";
+  font-size: 20px;
+  padding-top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 0;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  line-height: 1.2em;
+  
+}
+
+.text  {
+  font-size: 12px;
+  font-family: "Trebuchet MS";
+  line-height: 14px;
+  padding: 0 13px}
+
+.text img {
+  margin-top: -5px;
+}
+
+.showcase img {
+  margin-top: 0;
+  margin-bottom: -5px;
+  margin-left: 6px;
+}
+
+*html .showcase img {
+  margin-top: -10px;
+  margin-bottom: -15px;
+}
+
+.footer {
+  background-image: url(images/footer.jpg);
+  background-repeat: no-repeat;
+  width: 1014px;
+  height: 72px;
+}
+
+.footer_text{
+  position: relative;
+  color: #000000;
+  font-size: 11px;
+  font-family: Trebuchet MS;
+  margin-left: 18px;
+  top: 18px;
+}
+/* TRY this code  */
+.paging-links{
+    font-size: 12px;
+}
+a.paging-links:visited, a.paging-links:active, a.paging-links:link{
+    color: #333333;
+    text-decoration: none;
+}
+a.paging-links:hover{
+    color: #333333;
+    text-decoration: underline;
+}
+.inputrow{
+    padding: 0;
+    margin: 0;
+    width:220px;
+    font-size: 12px;
+    line-height: 12px;
+}
+.inputrow img{
+    vertical-align: middle;
+}
+.input_image{
+    float: right;
+    vertical-align: middle;
+}
+.input_box{
+    border-style: inset;
+    border: 1px solid silver;
+    width: 83px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+#sxip .input_box{
+    width: 138px;
+    margin-left: 6px;
+}
+#openid .input_box{
+    width: 125px;
+}
+.white{
+    color: #ffffff;
+}
+.bold, .bold-font{
+    font-weight: bold;
+}
+a.login-text
+{
+    color:#748BAB;
+    font-size:10px;
+    text-decoration:underline;
+    margin:0px;
+    padding:0px;
+}
+a:hover.login-text
+{
+    color:#748BAB;
+    text-decoration:underline;
+    margin:0px;
+    padding:0px;
+}
+.login-parent-width{
+    width: 372px;
+}
+.login-child-width{
+    width: 285px;
+}
+.login-top{
+    background: url('images/login-top.jpg') no-repeat;
+    height: 8px;
+}
+.manage-content-child-block{
+    width: 574px;
+}
+.background-color-white{
+    background-color: #fff;
+}
+.login-layer .error{
+    color: red;
+    font-weight: bold;
+}
+div#login-layer{
+    position: absolute;
+    display: none;
+    top: 26px;
+    right: 30px;
+    width: 250px;
+    margin: 0;
+}
+.login-layer{
+    background-color: #ff9900;
+    /*padding: 6px;*/
+}
+.login-layer-index{
+    background-color: #E1E1E1;
+    padding: 6px;
+}
+#login-header{
+    position: relative;
+    height: 14px;
+    width: 220px;
+    text-align: right;
+}
+.login-layer-index .corner-lr,
+.login-layer-index .corner-ur,
+.login-layer-index .corner-ul,
+.login-layer-index .corner-ll
+{
+    background-image: none;
+}
+.border-y{
+    border: solid 1px black;
+}
+.home-page-posts-btn-alternate-bgcolor{
+    background-color: #EEEEEE;
+}
+.block-gray-border{
+    border: solid 1px #323335;
+}
+.forget-box-width{
+    width: 250px;
+}
+.white-fonts-matter-size{
+    padding-left: 12px;
+}
+.forget-content-width{
+    width: 235px;
+}
+#sxip .input_box{
+    width: 138px;
+    margin-left: 6px;
+}
+.width-forget-parent{
+    width: 250px;
+}
+#openid .input_box{
+    width: 125px;
+}
+.inputrow img{
+    vertical-align: middle;
+}
+.input_image{
+    float: right;
+    vertical-align: middle;
+}
+.corner-lr{
+    position: relative;
+    background: url(images/crnr_wht_lr.gif) white bottom right no-repeat;
+    margin-bottom: 6px;
+}
+.corner-ur{
+    position: relative;
+    background: url(images/crnr_wht_ur.gif) transparent top right no-repeat;
+    padding-right: 4px;
+}
+.corner-ul{
+    position: relative;
+    background: url(images/crnr_wht_ul.gif) transparent top left no-repeat;
+    padding-bottom: 4px;
+    padding-top: 6px;
+}
+.corner-ll{
+    background: url(images/crnr_wht_ll.gif) transparent bottom left no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 4px;
+    height: 4px;
+    font-size: 2px;
+}
+.home-page-posts-btn-child-parent{
+    font-size: 11px;
+    padding: 3px 0px 3px 5px;
+    background-color: #CCCCCC;
+}
+.home-page-posts-btn-alternate-bgcolor{
+    background-color: #EEEEEE;
+}
+.right-margin{
+    margin-right: 5px;
+}
+.home-page-posts-btn-parent{
+    width: 184px;
+    margin: auto;
+}
+.home-page-left-adds-block-child{
+    width: 190px;
+    height: 36px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-bottom: solid 1px #7699C2;
+}
+.font-size-14{
+font-size:14px;
+}
+.top-margin-8{
+    margin-top: 8px;
+}
+.font-size-12{
+    font-size: 12px;
+}
+.top-margin-3{
+    margin-top: 3px;
+}
+.find-people-margin-bottom{
+    margin-bottom: 8px;
+}
+ul.forget-pass{
+    padding: 0px 0px 0px 15px;
+    font-size: 12px;
+    color: #000000;
+}
+li.forget-password{
+    padding-top: 3px;
+}
+.people-sub-child-parent-padd{
+    padding-left: 5px;
+}
+.text-centre{
+    text-align: center;
+}
+.find-people-margin-bottom{
+    margin-bottom: 8px;
+}
+.posts-block-left-padding{
+    padding-left: 25px;
+}
+.forget-arrow{
+    padding: 8px 5px 3px 25px;
+    width: 10px;
+}
+.padding-top-8{
+    padding-top: 8px;
+}
+.font-sky-blue{
+    color: #3C74A3;
+}
+.align-justify{
+    text-align: justify;
+}
+.padding-left-5{
+    padding-left: 5px;
+}
+a.management-link-module:visited, a.management-link-module:active, a.management-link-module:link{
+    color: #40709F;
+    text-decoration: none;
+}
+a.management-link-module:hover{
+    color: #40709F;
+    text-decoration: underline;
+}
+.login-child
+{ 
+  width:230px; 
+  height:8px;
+}
+.fleft, .suns{
+    float: left;
+}
+.fright{
+    float: right;
+}
+.width-244
+{
+  width:244px;
+}
+.padding-10{
+    padding: 10px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}

@@ -1,0 +1,50 @@
+/* Adding a New Css for fixing some UI issues */
+#toc {
+  margin: 0 0 0 20px;
+  width: 180px;
+  float: left;
+  padding:0px 10px 0px 10px; }
+
+.group_overview {
+  margin-bottom:19px;
+}
+#div_epm1 {
+  margin-top:16px;
+}
+#message_body input{
+  margin-left:-100px;
+}
+#message_body textarea{
+  margin-left:-100px;
+}
+#configure_network h4 {
+  font-size: 13px;
+}
+/* Added gurpreet.singh@tekritisoftware.com March 17, 2007 */
+#message_col_b {
+  width:775px; height: 533px;
+}
+#message_col_b form fieldset {
+  height: 450px;
+}
+#message_body .field_bigger {
+  height: 300px;
+}
+#message_body textarea {
+  border: 1px solid #ccc;
+  height: 300px;
+  width: 400px;
+  margin-top: -2px; 
+}
+/* for the login page Added by saurabh<saurabh.khare@tekritisoftware.com> on 19 March 2007 */
+*html #box_login .boxuserpass form{
+  margin-left:10px;
+}
+.buttonbar ul {
+  margin: 0 0 0 0px;
+}
+
+#GroupAccessModule .module_html { 
+  text-align: center;
+  font-weight: normal; 
+}

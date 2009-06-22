@@ -1,0 +1,37 @@
+
+body, td, pre {
+  color: #000000;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+body {
+  background-color: #ffffff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+p {
+  margin: 2px;
+/*  border: 1px solid #eee; */
+}
+
+.quote {
+  padding: 6px;
+  position: relative;
+  color: #727172;
+  border: 1px solid #C3CCD6;
+}
+
+.quote_header {
+  padding-left: 6px;
+  margin-top: 4px;
+  color: #687683;
+  background: #C3CCD6;
+}

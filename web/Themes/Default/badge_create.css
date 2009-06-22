@@ -1,0 +1,56 @@
+/* CSS for badge_create.php */
+
+.badge_pane h2 {
+	font-size: 2em;
+	background-color: #f0f0ff;
+	margin: 0;
+}
+
+#badge_preview {
+}
+
+.badge_section {
+	border: solid #f0f0f0 1px;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.friend_pic {
+	margin: 0.5em 0 0 0.5em;
+	cursor: pointer;
+	float: left;
+	width: 80px;
+	height: 105px;
+	background-color: #f0f0f0;
+	border: solid 2px white;
+	text-align: center;
+	padding: 0.5em;
+	overflow: hidden;
+}
+
+.included_friend {
+	border: solid 2px #c0c0ff;
+	background-color: #e0e0ff;
+}
+
+/* We should have a systemwide error class, but for the moment... */
+.badge_error {
+	color: black;
+	background-color: red;
+	font-size: 2em;
+	border: solid black 1px;
+	padding: 0.5em 1em 0.5em 1em;
+	font-weight: bold;
+}
+
+.badge_section_included {
+	font-size: 0.5em;
+}
+
+.badge_section_disabled {
+	color: red;
+}
+
+textarea#badge_html {
+	width: 100%;
+}

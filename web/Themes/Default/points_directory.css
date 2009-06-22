@@ -1,0 +1,127 @@
+.points_list {
+  display: block;
+  padding: 0px;
+  margin: 12px;
+  color: #000;
+}
+.points_list li {
+   width: 100%;
+   height: 102px;
+   list-style: none;
+   background-color: #feb546;
+   margin-top: 2px;
+   margin-bottom: 2px;
+   border: 1px solid #000;
+}
+.points_list li div {
+    float: left;
+    padding: 4px;
+    margin-right: 2px;
+    position: relative;
+}
+
+.points_list li div h2 {
+   margin: 0px;
+   padding: 0px;
+   font-size: 22px;
+   font-weight: normal;
+   margin-bottom: 6px;
+}
+
+.points_descr {
+  width: 96%;
+  height: 48px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.points_center {
+  width: 218px;
+  height: 92px;
+  padding: 0px;
+  margin: 0px;
+/*
+   border: 1px solid #000;
+*/
+}
+
+.points_details {
+  width: 72px;
+  height: 92px;
+/*
+   border: 1px solid #000;
+*/
+}
+
+.points_user {
+  width: 64px;
+  height: 92px;
+/*
+   border: 1px solid #000;
+*/
+}
+
+.points_rating {
+  width: 56px;
+  height: 92px;
+   text-align: center;
+   font-weight: bold;
+/*
+   border: 1px solid #000;
+*/
+}
+
+.points_rating p {
+   font-size: 28px;
+   margin-bottom: 6px;
+}
+
+
+.points_buttons {
+}
+
+.points_message,
+.points_message_error {
+ margin: 12px;
+ padding: 4px;
+ font-size: 12px;
+ font-weight: bold;
+}
+
+.points_message {
+  color: green;
+  border: 1px solid green;
+  background-color: #c6fed9;
+}
+
+.points_message_error {
+  color: red;
+  border: 1px solid red;
+  background-color: #fee8e7;
+}
+
+.points_details table {
+  border: none;
+  padding: 1px;
+  margin: 1px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.points_details table td {
+  height: 32px;
+  vertical-align: bottom;
+}
+
+.points_details table td.categ {
+   width: 70px;
+   height: 32px;
+   background-color: none;
+   background-image: url(/images/black_box.gif);
+   color: yellow;
+   font-weight: bold;
+   text-transform: uppercase;
+   text-align: center;
+   vertical-align: middle;
+   margin-bottom: 2px;
+}

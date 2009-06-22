@@ -1,0 +1,1714 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This network_skin.css is the secondary CSS document in the teired system and is used to define aesthetic styling information. */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document */
+      
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> September 21, 2006 */
+/* Modified by marcs@broadbandmechanics.com September 26, 2006 */
+/* Modified by fabrizio@evectors.it October 10, 2006 */
+/* Modified by fabrizio@evectors.it October 16, 2006 */
+/* Modified by fabrizio@evectors.it October 19, 2006 */
+/* Modified by fabrizio@evectors.it October 30, 2006 */
+/* Modified by fabrizio@evectors.it November 17, 2006 */
+
+/* Modified as "Leaves" skin December 11, 2006 by Marc Senasac. Many styles modified and added including custom style section at the end of this document  */
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #FFFFFF;
+  background-color: #296F64;
+  background-image: url(images/bg_locker.jpg);
+}
+
+a:link,
+a:visited { 
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* #container { 
+  background-color: #ffffff;
+} */
+
+
+#body_shadow {
+  background: url(images/bg.png);
+  background-repeat: no-repeat;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg.png');
+  width: 100%;
+  height: 500px;
+}
+
+
+
+
+#shadow { 
+  background: url(images/bg_page.png);
+    background-repeat: no-repeat;
+  background-color: none;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_page.png');
+} 
+
+#bg_blog_post { 
+  margin: 0 auto;
+  margin-top: -2px;
+/*  background: url(images/bg_blog_posts.png);
+  background-repeat: no-repeat;
+  background-color: none;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_blog_posts.png'); */
+  width: 600px;
+  height: 714px;
+}
+
+#header ul {
+  position: absolute;
+  float: right;
+  margin-left: 500px;
+  width: 500px;
+  margin-right: 10px;
+  top: 117px;
+}
+
+*html #header ul {
+  top: 128px;
+}
+    
+#header ul li {
+  display: inline;
+}
+
+.login_box{
+  position: absolute;
+/*  background: url(images/login_back.gif);
+  background-repeat: repeat-x; */
+  border-right: #FFF;
+  border-left: #FFF;
+  border-bottom: #FFF;
+  background-color: #000000;
+  padding: 7px 7px 0 7px;
+  right: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: #FFFFFF;
+  border-width: 0 1px 1px 1px;
+  border-style: none solid solid solid;
+}
+
+.login_box img {
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.login_box span {
+  float: left;
+  text-align: left;
+}
+
+.login_box a:link,
+.login_box a:visited {
+  text-decoration: underline;
+  color: #ffffff;
+  font-size: 11px;
+}
+
+.login_box a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+
+#first_tier_navbar { 
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0;
+  text-align: right;
+  padding: 0 5px 6px 5px;
+}
+
+*html #first_tier_navbar { 
+  padding: 1px 5px 7px 5px;
+}
+
+#first_tier_navbar ul { 
+  margin: 0;
+  padding: 0;
+}
+
+#first_tier_navbar a:link,
+#first_tier_navbar a:visited { 
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#first_tier_navbar a:hover { 
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#first_tier_navbar li a:link { 
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#first_tier_navbar li a#current {
+  margin-right: 0;
+  margin-left: 0;
+  background-color: #D2D2D2;
+  padding: 3px 5px 6px 5px;
+  color: #000000;
+}
+
+*html #first_tier_navbar li a#current {
+  padding: 4px 5px 7px 5px;
+}
+
+#header_navbar_back { 
+  background: url(images/header_navbar_back.png);
+  background-repeat: no-repeat;
+  width: 1016px;
+  height: 150px;
+  background-color: none;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/header_navbar_back.png');
+}
+
+#peopleaggregator_networks {
+  color: #FFFFFF;
+  border-bottom: 1px solid #000000;
+  background-color: orange;
+}
+
+#peopleaggregator_networks h1 {
+  float: left;
+  font-size: 16px;
+  margin: 4px 0 0 0;
+}
+
+*html #peopleaggregator_networks h1 {
+  margin: 3px 0 0 0;
+}
+
+#peopleaggregator_networks ul {
+  float: right;
+  font-size: 11px;
+  margin: 5px 0 0 0;
+}
+
+#peopleaggregator_networks ul li {
+  display: inline;
+}
+
+#peopleaggregator_networks a {
+  color: #ffffff;
+}
+
+/* #header {
+  background-image: url(images/header_image.jpg)
+} */
+
+#header h1 {
+  position: absolute;
+  top: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+    
+#header h2 {
+  position: absolute;
+  top: 65px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+
+#footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+#footer ul li {
+  display: inline;
+}
+
+
+
+.module {
+  width: 198px;
+  margin-bottom: 10px;
+  border-color: #FFFF;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.module h1{
+  width: 189px;
+  color: #FFFF;
+  padding: 2px 2px 2px 7px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: verdana;
+  font-size: 12px;
+  background: url(images/bg_top_module.png);
+  background-repeat: no-repeat;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module.png');
+}
+
+*html .module h1{
+  width: 198px;
+  margin-bottom: -3px;
+}
+
+.module h1 img{
+  padding-right: 2px;
+}
+
+/*
+.color {
+  background: url(images/lightGradient_back.gif);
+  background-repeat: repeat-x;
+}
+*/
+.module select {
+  border: 1px solid #ccc;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 9px;
+}
+
+.module_icon_list ul {
+  margin: 8px 0 0 0;
+  list-style: none;
+  width: 154px;
+}
+
+*html .module_icon_list ul {
+  width: 194px;
+}
+
+.module_icon_list li {
+  display: block;
+  height: 35px;
+  margin-left: -35px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  list-style: none;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+*html .module_icon_list li {
+  margin-left: 5px;
+}
+
+.module_icon_list li a {
+  display: block;
+  text-decoration: none;
+}
+
+.module_icon_list li a:hover {
+  display: block;
+  text-decoration: underline;
+}
+
+.module_icon_list img {
+  float: left;
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+.module_icon_list span {
+  display: block;
+  padding-right: 5px !important;
+  padding-top: 3px !important;
+}
+
+.module_tagcloud {
+  width: 195px;
+  margin-bottom: 10px;
+}
+
+*html .module_tagcloud {
+  margin-top: 8px;
+}
+
+.module_tagcloud ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.module_tagcloud ul li {
+  margin-left: -35px;
+  margin-bottom: 3px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.module_tagcloud ul li span {
+  float: right;
+  margin-top: -12px;
+}
+
+*html .module_tagcloud ul li span {
+  margin-top: -15px;
+}
+
+.module_definition_list {
+  width: 198px;
+  margin-bottom: 10px;
+}
+
+.module_definition_list dl {
+  width: 194px;
+  margin-left: 4px;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.module_definition_list dt {
+  margin-left: 4px;
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 0;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.module_definition_list dt span{
+  display: block;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.module_html {
+  width: 195px;
+  margin-bottom: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+*html .module_html img {
+  margin-bottom: -2px;
+}
+
+.module_html_text {
+  padding: 5px;
+}
+
+*html .module_html_text {
+  width: 185px;
+  padding-right: 0;
+}
+
+.module_html_text img {
+  margin-left: -5px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.wide_content {
+  text-align: center;
+  margin-top: -16px;
+  color: #333333;
+}
+
+.date {
+  margin-top: -10px;
+  margin-bottom: 18px;
+}
+
+.wide_content ul {
+  padding: 0;
+  margin: 1px 0 0 0;
+  background: url(images/bg_navbar_filters.jpg);
+  background-repeat: repeat-x;
+  height: 21px;
+  float: left;
+  width: 578px;
+  font-weight: bold;
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+
+*html .wide_content ul {
+  margin-top: 16px;
+  z-index: 500;
+}
+
+.wide_content ul li {
+  display: inline;
+}
+
+.wide_content ul li a {
+  padding: 5px 10px 3px 10px;
+  text-decoration: none;
+  float: left;
+  border-right-width: 1px;
+/*  border-left-width: 1px; */
+  border-right-style: solid;
+/*  border-left-style: solid; */
+  border-right-color: #FFFFFF;
+/*  border-left-color: #EEEEEE;  */
+}
+
+.wide_content ul li a:hover {
+  background-color: #fff;
+  text-decoration: none;
+  color: #333333;
+}
+
+.wide_content li.active a {
+  background: url(images/bg_navbar_filters_active.jpg);
+  background-repeat: repeat-x;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  height: 13px;
+  color: #333333;
+}
+
+.wide_content h1{
+  font-size: 22px;
+  color: #999999;
+  font-weight: normal;
+  text-align: center;
+}
+
+.wide_content_edit_page {
+  width: 793px;
+  margin-left: 5px;
+}
+
+.wide_content_edit_page h1{
+  width: 793px;
+  background-;
+  color: #ffffff;
+  padding: 2px;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+*html .wide_content_edit_page {
+  width: 790px;
+}
+
+*html .wide_content_edit_page h1{
+  width: 790px;
+}
+
+.wide_content_edit_page ul li {
+  display: inline;
+}
+
+.blog, .events, .reviews, .peopleshowcase, .video, .audio, .image, .groupshowcase {
+  width: 536px;
+  margin-left: 11px;
+  border: 1px solid #7B7B7B;
+  margin-top: 5px;
+  text-align: left;
+  padding: 10px;
+}
+
+.blog {
+  background-color: #ffffff;
+  border: 1px solid #CCCCCC;
+}
+
+.events {
+  background-color: #ffffff;
+}
+
+.reviews {
+  background-color: #ffffff;
+}
+
+.peopleshowcase {
+  background-color: #ffffff;
+}
+
+.video {
+  background-color: #ffffff;
+}
+
+.audio {
+  background-color: ffffff;
+}
+
+.image {
+  background-color: ffffff;
+}
+
+.groupshowcase {
+  background-color: ffffff;
+}
+
+.blog a:link, .events a:link, .reviews a:link, .peopleshowcase a:link, .video a:link, .audio a:link, .image a:link, .groupshowcase a:link,
+.blog a:visited, .events a:visited, .reviews a:visited, .peopleshowcase a:visited, .video a:visited, .audio a:visited, .image a:visited, .groupshowcase a:visited {
+  text-decoration: none;
+  color: #0099FF;;
+}
+
+.blog a:hover, .events a:hover, .reviews a:hover, .peopleshowcase a:hover, .video a:hover, .audio a:hover, .image a:hover, .groupshowcase a:hover {
+  color: #0099FF;
+  text-decoration: underline;
+}
+
+*html .blog, .events, .reviews, .peopleshowcase, .video, .audio, .image, .groupshowcase {
+  margin-left: 0;
+}
+
+.blog h1, .events h1, .reviews h1, .peopleshowcase h1, .video h1, .audio h1, .image h1, .groupshowcase h1 {
+  text-align: left;
+  margin: 0 0 10px 0;
+  color: #0099FF;
+}
+
+.blog h1 a:link, .events h1 a:link, .reviews h1 a:link, .peopleshowcase h1 a:link, .video h1 a:link, .audio h1 a:link, .image h1 a:link, .groupshowcase h1 a:link,
+.blog h1 a:visited, .events h1 a:visited, .reviews h1 a:visited, .peopleshowcase h1 a:visited, .video h1 a:visited, .audio h1 a:visited, .image h1 a:visited, .groupshowcase h1 a:visited {
+  text-decoration: none;
+  color: #000000;
+}
+
+.blog h1 a:hover, .events h1 a:hover, .reviews h1 a:hover, .peopleshowcase h1 a:hover, .video h1 a:hover, .audio h1 a:hover, .image h1 a:hover, .groupshowcase h1 a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+.blog img, .events img, .reviews img, .peopleshowcase img, .video img, .audio img, .image img, .groupshowcase img {
+  margin-right: 11px;
+  margin-left: -9px;
+  margin-top: -9px;
+  float: left;
+}
+
+.post_info {
+  margin-top: 20px;
+  color: #7B7B7B;
+}
+
+.post_info a:link,
+.post_info a:visited {
+  color: #7B7B7B;
+  text-decoration: none;
+}
+
+.post_info a:hover {
+  color: #7B7B7B;
+  text-decoration: underline;
+}
+
+.module_tabbed_image_list ul {
+  padding: 0;
+  margin: 0 0 0 0;
+    background: url(images/bg_tabbed_image_list.jpg);
+  background-repeat: repeat-x;
+  height: 17px;
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+*html .module_tabbed_image_list ul {
+  margin-bottom: 0;
+}
+
+.module_tabbed_image_list ul li {
+  display: inline;
+}
+
+.module_tabbed_image_list ul li a {
+  padding: 2px 5px 3px 5px;
+  text-decoration: none;
+  float: left;
+  border-right: 1px solid #FFFFFF;
+  /* border-left: 1px solid #DDDDDC; */
+}
+
+.module_tabbed_image_list ul li a:hover {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+}
+
+.module_tabbed_image_list li.active a {
+  background: url(images/bg_navbar_filters_active.jpg);
+  background-repeat: repeat-x;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  height: 13px;
+}
+
+.image_list {
+  margin-left: -25px;
+  margin-bottom: 0;
+}
+
+.image_list ul li {
+  display: inline;
+}
+
+.image_list img {
+  padding: 5px;
+  /* background: url(images/bg_photo.gif) no-repeat 0 0; */
+}
+
+.module_messages ul {
+  margin-left: -30px;
+}
+
+*html .module_messages ul {
+  margin-left: 10px;
+}
+
+.module_messages ul li {
+  list-style: none;
+}
+
+.module_enable_module ul {
+  margin-left: -40px;
+}
+
+*html .module_enable_module ul {
+  margin-left: 0;
+}
+
+.module_enable_module ul li {
+  list-style: none;
+}
+
+.module_flickr {
+  margin-left: -25px;
+  margin-bottom: 0;
+}
+
+.module_flickr ul li {
+  display: inline;
+}
+
+.module_flickr img {
+  padding: 5px;
+/* background: url(images/bg_photo.gif) no-repeat 0 0; */
+} 
+
+.view_all {
+  border: 1px solid #FFFFFF;
+  margin: 5px 70px 5px 70px;
+  padding: 3px;
+  text-align: center;
+/*  background: url(images/bg_view_all.gif) no-repeat 0 0; */
+}
+
+
+.module_browse_groups ul,
+.module_more_info ul {
+  margin: 0;
+  padding: 5px 0 5px 0;
+}
+
+.module_browse_groups li,
+.module_more_info li {
+  list-style: none;
+  margin: 0 0 5px 10px;
+  font-weight: bold;
+}
+
+.module_browse_groups ul ul,
+.module_more_info ul ul {
+  padding: 0;
+  margin: 5px 0 5px 0;
+}
+
+.module_browse_groups li li,
+.module_more_info li li {
+  font-weight: normal;
+  border-bottom: 1px solid #cdcdcd;
+  margin-right: 20px;
+}
+
+/* new */
+
+#navbar_header ul {
+  text-align: right;
+  background-color: #d2d2d2;
+  margin: 0;
+  padding: 5px 30px 5px 0;
+}
+    
+#navbar_header ul li {
+  display: inline;
+}
+
+#second_tier_navbar li.active a {
+  font-weight: bold;
+}
+
+.module_wide {
+  width: 576px;
+  margin-left: 0;
+  margin-top: 0;
+  border-color: #860011;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.module_wide h1{
+  width: 574px;
+  background-color: #860011;
+  color: #ffffff;
+  padding: 2px 2px 2px 7px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: verdana;
+  font-size: 12px;
+  background: url(images/bg_top_module_big.png);
+  background-repeat: no-repeat;
+  _background-image: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module_big.png');
+}
+
+.module_wide form {
+  padding: 7px 10px 10px 10px;
+  margin: 0;
+  font-size: 11px;
+}
+
+.module_wide form input {
+  border: 1px solid #000000;
+  font-size: 11px;
+}
+
+.module_wide .input_text {
+  width: 330px;
+}
+
+*html .module_wide .input_text {
+  padding: 2px;
+}
+
+.module_wide .button_go {
+  background-color: #cdcdcd;
+  border: #666666 1px solid;
+  padding: 0 2px 0 2px;
+}
+
+*html .module_wide .button_go {
+  padding: 0 4px 1px 4px;
+}
+
+.module_wide form select {
+  border: 1px solid #000000;
+  font-size: 11px;
+}
+
+.module_wide .nav_prev-next {
+  text-align: center;
+  padding: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
+}
+
+.module_wide ul#nav_label {
+  list-style-type: none;
+  padding: 0 0 24px 6px;
+  border-bottom: 1px solid #cdcdcd;
+  margin: 10px 0 0 0;
+}
+
+*html .module_wide ul#nav_label {
+  padding: 0 0 25px 6px;
+}
+
+.module_wide ul#nav_label li {
+  float: left;
+  height: 21px;
+  background-color: #cdcdcd;
+  margin: 2px 2px 0 2px;
+  border: 1px solid #cdcdcd;
+}
+
+.module_wide ul#nav_label li#active {
+  border-bottom: 1px solid #ffffff;
+  background-color: #fff;
+}
+
+.module_wide li#active a {
+  color: #000;
+  border-bottom: 1px solid #ffffff;
+}
+
+.module_wide #nav_label a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-decoration: none;
+  padding: 4px;
+}
+
+.module_wide #nav_label a:hover {
+  background: #fff;
+}
+
+*html .module_wide #nav_label a:hover {
+  border-bottom: 1px solid #ffffff;
+}
+
+.module_wide table {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-bottom: 1px dotted #d2d2d2;
+}
+
+.module_wide ul {
+  margin-left: -30px;
+}
+
+*html .module_wide ul {
+  margin-left: 10px;
+}
+
+.module_wide li {
+  display: inline;
+}
+
+
+
+
+
+/* Created by kapil juneja <kapil.juneja@tekritisoftware.com> November 10, 2006 */
+.display_false {
+  display:none;   
+}
+.display_true {
+  display:block;   
+}
+/* Created by Kapil Juneja <kapil.juneja@tekritisoftware.com> 15, November 2006 for relation links*/
+a img{
+  border:0;
+}
+/* Modified by  saurabh <saurabh.khare@tekritisoftware.com> 23, November 2006 for relation links */
+#navbar_left ul {
+  position: absolute;
+  width: 470px;
+  top: 118px;
+  float:left;
+  margin-left:10px;
+  padding:0;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 12px;
+}
+#navbar_left li {
+ display:inline;
+}
+#navbar_left a:link,
+#navbar_left a:visited { 
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+#navbar_left a:hover { 
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* Created by shahab <shahabuddin@tekritisoftware.com> October 25, 2006 for Network Modules */
+
+#mod_featured_network
+{
+width:190px;
+height:72px;
+background:url(images/featured-network.gif) no-repeat;
+}
+
+#mod_featured_network ul
+{
+margin:30px 0px 0px 40px;
+padding:0px;
+}
+
+*html #mod_featured_network ul
+{
+margin-left:0px;
+}
+
+#mod_video_tour
+{
+width:190px;
+height:72px;
+background:url(images/video-tour-marc.gif) no-repeat;
+}
+
+#mod_video_tour ul
+{
+margin:0px 0px 0px 40px;
+padding:0px;
+}
+
+*html #mod_video_tour ul
+{
+margin-left:0px;
+}
+/* CSS Added for Register and Login Page by kapil <kapil.juneja@tekritisoftware.com> 16 Nov 2006*/
+/* CSS Modified for Register and Login Page by kapil <kapil.juneja@tekritisoftware.com> 16 Nov 2006*/
+
+#login_window_content{
+  background-color:#FF9900; 
+  border:solid 1px #000000; 
+  width:300px;
+  float:left;
+}
+#signup_content{
+  background-color:#EEEEEE; 
+  border:solid 1px #000000; 
+  width:230px;
+  float:left;
+  padding:5px;
+  margin-left:5px;
+}
+#signup_content h2{
+  font-size:14px;
+  font-weight:bold;
+  font-family:Verdana;
+}
+#signup_content h3{ 
+  font-size:12px;
+  font-weight:bold;
+  font-family:Verdana;
+  padding-left:11px;
+}
+#signup_content li{
+  font-size:11px;
+  font-weight:normal;
+  width:100%;
+  float:left;
+  margin:0;
+  padding:0;
+}
+#login_hints{
+  width:290px;
+  float:left;
+  margin-left:5px;
+  font-family:verdena;
+}
+#login_hints h2{
+  font-size: 14px;
+  font-weight:bold;
+  color:#003399;
+}
+#login_hints ul li{
+  margin-top:10px;
+  padding-top:10px;
+}
+#welcome_message h2{
+  font-family:Verdana;
+  font-size:12px;
+  font-weight:bold;
+}
+#welcome_message p{
+  font-family:Verdana;
+  font-size:12px;
+}
+#welcome_message ul li{
+  font-family:Verdana;
+  font-size:12px;
+  list-style-type:none;
+  display:list-item;
+}
+#register_form{
+  width:450px; 
+  margin:auto;
+  padding:0px;
+}
+/* Created by kapil juneja <kapil.juneja@tekritisoftware.com> 16 Nov 2006 for invitation*/
+
+#invitation_status ul{
+  margin:0;
+  padding:0;
+}
+#invitation_status ul li{
+  list-style-type:none;
+  display:list-item;
+}
+
+/* Created by shahab <shahabuddin@tekritisoftware.com> 16 Nov 2006 for Permalink, content management & forgot password*/
+
+.permalink{
+  width: 590px;
+  margin-bottom: 10px;
+  background-color: #CDDAFF;
+}
+
+.permalink ul li
+{
+    list-style-type:none;
+}
+
+#content_management{
+  width: 590px;
+  margin-bottom: 10px;
+}
+
+#content_management ul li
+{
+    list-style-type:none;
+}
+
+#forgot_pass
+{
+    width: 590px;
+  margin-bottom: 10px;
+}
+
+#forgot_pass h2
+{
+    font-size:14px;
+}
+
+#forgot_pass ul li
+{
+    list-style-type:none;
+    display:list-item;
+}
+
+/* Created by shahab <shahabuddin@tekritisoftware.com> 16 Nov 2006 for Media Gallery & Group*/
+
+.media_gallery_thumb ul li
+{
+    list-style-type:none;
+    display:list-item;
+}
+
+.media_gallery_thumb h2
+{
+    font-size:10px;
+}
+
+.media_gallery_list
+{
+    width:590px;
+    border:0px;
+}
+
+.media_gallery_list td
+{
+    border-bottom:solid 1px black;
+}
+
+.media_gallery_upload ul li
+{
+    list-style-type:none;
+    display:list-item;
+    
+}
+.display_false
+{
+  display:none;   
+}
+
+.display_true
+{
+  display:block;   
+}
+/* Added by Gurpreet Singh <gurpreet.singh@tekritisoftware.com> 16 Nov 2006 for messages section*/
+#message_content ul li
+{
+    margin:0px;
+    padding:0px;
+    display:list-item;
+    list-style-type:none;
+    font-size:14px;
+}
+/* Created by kapil juneja <kapil.juneja@tekritisoftware.com> 16 Nov 2006 for edit_relation*/
+#edit_relations p {
+  text-align:center;
+}
+#relation_type ul li {
+  width:100px; 
+  margin:0; 
+  padding:0; 
+  text-align:center;
+  list-style-type:none;
+  display:inline;
+  float:left;
+}
+#relation_type h2 {
+  font-size:12px; 
+  margin:0; 
+  padding:0; 
+  font-weight:normal;
+}
+#display_message ul li
+{
+    margin:0px;
+    padding:0px;
+    display:list-item;
+    list-style-type:none;
+    font-size:14px;
+}
+/* Created by kapil juneja <kapil.juneja@tekritisoftware.com> 16 Nov 2006 for link_management*/
+#manage_link_button ul li{
+  list-style-type:none;
+  display:list-item;
+}
+#manage_data table{
+  border:0;
+}
+#mod_view_member ul li{
+  list-style-type:none;
+  display:list-item;
+}
+/* media full view */
+.wide_content_media_full_view{
+    width: 1000px;
+ }
+
+.wide_content_media_full_view h1{
+    width: 994px;
+    color: #ffffff;
+    padding: 2px;
+    font-size: 12px;
+    margin-top: 0;
+    background: #860011 url(images/bg_top_module_big.png);
+    background-repeat: repeat;
+    _background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module_big.png');
+    
+
+}
+
+.wide_content_media_full_view ul li {
+    display:list-item;
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+
+#media_full_view_pic
+{
+    width:600px;
+    margin:auto;
+}
+
+.wide_content_media_full_view li.center_text
+{
+    text-align:center;
+}
+
+.wide_content_media_full_view li.right_text
+{
+    text-align:right;
+}
+/* Created by kapil <kapil.juneja@tekritisoftware.com> 16 Nov 2006 for content page */
+#content_type {
+  width:100%;
+  border:solid 1px #000;
+}
+#content_type ul {
+  margin:auto;
+  width:800px;
+}
+#content_type li{
+  list-style-type:none;
+  display:inline;
+  margin-left:10px;
+}
+#content_post {
+  width:100%;
+  background-color:#eee;
+}
+.steps ul {
+  margin:auto;
+  width:800px;
+  padding:0;
+}
+.steps ul li{
+  list-style-type:none;
+  display:inline;
+  padding:0;
+  margin:0;
+}
+.steps li h2 {
+  font-family:Arial Black;
+  font-size:50px;
+  color:#999999;
+  width:40px;
+  float:left;
+  margin-top:-7px;
+  padding:0;
+}
+*html.steps li h2 {
+  margin-top:-8px;
+}
+.steps li h3 {
+  margin:0;
+  padding:0;
+  color:#999;
+  font:18px Arial Black;
+}
+.steps li p {
+  margin:0;
+  padding:0;
+  font:10px verdana;
+  width:580px;
+}
+*html .steps li p {
+  width:550px;
+}
+#route_targets {
+  width:330px; 
+  float:left;
+}
+#route_targets h4{
+  font:bold 10px Verdana;
+  margin:0;
+  padding:0;
+}
+#route_targets p{
+  font:9px Verdana;
+  margin:0;
+  padding:0;
+  width:100%
+}
+#external_blogs {
+  width:330px; 
+  float:right;
+}
+#external_blogs h4{
+  font:bold 10px Verdana;
+  margin:0;
+  padding:0;
+}
+#external_blogs p{
+  font:9px Verdana;
+  margin:0;
+  padding:0;
+  width:100%
+}
+/* Created by saurabh <saurabh.khare@tekritisoftware.com> 16 Nov 2006 for required form fields*/
+.required {
+  color:red;
+}
+#bg_post { 
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-color: none;
+  _background-image: none;
+  width: 600px;
+  height: 714px;
+}
+
+/* Created by kapil juneja <kapil.juneja@tekritisoftware.com> 23 Nov 2006 for manage network user, network content */
+#tablelist td
+{
+  width:50px;
+}
+
+
+/* custom styles */
+
+/* #container {
+  background-color: transparent;
+} */
+
+#col_b {
+  background-image: url(images/bg_col_b.gif);
+  background-repeat: repeat-y;
+  padding-bottom: 10px;
+}
+
+
+.module_icon_list li {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #EEEEEE;
+}
+
+.module_definition_list dt {
+  
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #EEEEEE;
+}
+
+
+#header h1 {
+  font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+  color: #FFFFFF;
+/*  background-color: #000000;
+    padding-right: 5px;
+  padding-bottom: 4px;
+  padding-left: 5px; */
+}
+    
+#header h2 {
+  color: #FFFFFF;
+}
+#navbar_left ul {
+  color:#000000;
+  
+}
+#navbar_left a:link,
+#navbar_left a:visited { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+}
+#navbar_left a:hover { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#first_tier_navbar { 
+  color: #000000;
+}
+#first_tier_navbar a:link,
+#first_tier_navbar a:visited { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#first_tier_navbar a:hover { 
+  color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* added by Kuldeep.banga@tekritisoftware.com 
+ This class was defined in original theme's css but not in other skins
+ */
+.page_button{
+  position: absolute;
+  padding: 0;
+  right: 10px;
+  top: 65px;
+}
+
+/* end custom styles */
+
+/* transparent example */
+/*
+
+module {
+  border: 1px solid #FFFFFF;
+  background-color: #000000;
+  filter:alpha(50);
+  -moz-opacity:0.5;
+  opacity:0.5;
+  -khtml-opacity:0.5;
+}
+*/
+#CustomizeUIModule .set {
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px #cccccc solid;
+  width: 520px;
+  margin: 10px 0 0 15px;
+}
+
+#CustomizeUIModule .set img {
+  float: left;
+}
+
+#CustomizeUIModule .field {
+  margin-left: 125px;
+  padding-bottom: 8px;
+  border-bottom: 1px #cccccc dashed;
+  margin-bottom: 10px;
+  width: 390px;
+}
+
+#CustomizeUIModule h4
+{
+  margin-top: 0px;
+  margin-bottom: 6px;
+  float: left;
+  width: 150px;
+}
+
+/* 
+#CustomizeUIModule input {
+  border: 1px solid #ccc;
+  font-size: 10px;
+}
+*/
+
+#CustomizeUIModule #checkbox {
+  font-size: 2em;
+}
+
+#CustomizeUIModule label {
+  vertical-align: .4em;
+}
+
+#CustomizeUIModule form input.text {
+  border: 1px solid #ccc;
+  font-size: 10px;
+  padding: 2px;
+  margin-left: 0;
+}
+
+#CustomizeUIModule form select {
+  border: 1px solid #ccc;
+  font-size: 11px;
+}
+
+#CustomizeUIModule .fieldend {
+  margin-left: 125px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+#CustomizeUIModule form .normal  { width: 150px; }
+
+/*----*/
+
+.wide_content ul.members_list {
+  margin: 0;
+  padding: 0;
+}
+
+.wide_content ul.members_list li {
+  display: inline;
+  float: left;
+  margin: 0 0 10px 10px;
+}
+
+.wide_content ul.members_list li a {
+  display: block;
+}
+
+.wide_content ul.members_list li a:hover {
+  background-color: #CCC;
+}
+
+.wide_content .members_list table {
+  width: 274px;
+  border: 1px solid #a6a7b0;
+}
+
+.wide_content .members_list td.photo {
+  padding: 2px;
+  width: 68px;
+}
+
+.wide_content .members_list h2
+{
+  margin: 0 0 5px 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.wide_content .members_list table.rel_status
+{
+  background-color: #a6a7b0;
+  padding: 0;
+  margin: 0;
+  border-color: #A6A7B0;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+}
+
+.wide_content .members_list table.rel_status td
+{
+  padding: 1px;
+  
+  color: white;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.wide_content .members_list table.rel_status td a
+{
+  display: block;
+  color: #ffffff;
+  text-align: center;
+}
+
+.wide_content .members_list table.rel_status td a:hover
+{
+  color: black;
+  text-decoration: none;
+}
+
+
+
+/* network config */
+
+.network_config #col_d
+{
+  background-color: #ffffff;
+}
+
+.network_config #first_tier_navbar li a#current {
+  background-color: #F28601;
+  color: #ffffff;
+}
+
+.network_config #navbar_header ul {
+  background-color: #F28601;
+}
+
+#toc {
+  background-color: #F28601;
+}
+
+#toc ul
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: bold;
+}
+
+#toc ul a
+{
+  color: white;
+}
+
+#toc ul li
+{
+  margin: 6px 0 2px 0;
+}
+
+#toc ul ul
+{
+  background-color: #FFF;
+  padding: 4px;
+  list-style-type: square;
+}
+
+#toc ul ul a
+{
+  color: #666;
+}
+
+#toc ul ul li
+{
+  margin: 0 0 0 15px;
+}
+
+#toc ul ul li.active
+{
+  color: #000;
+}
+
+#toc input
+{
+  border-color: #999;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 10px;
+  width: 150px;
+  margin: 0 4px 0 0;
+  float: left;
+}
+
+#toc .search_button
+{
+  border-color: #FFF;
+  border-width: 1px;
+  border-style: solid;
+  float: left;
+  padding: 0 2px 0 2px;
+}
+
+.network_config form fieldset.center_box {
+  width: 690px;
+  border: 1px solid #cdcdcd;
+  margin: 10px 0 0 21px;
+}
+
+*html .network_config form fieldset.center_box {
+  margin: 10px 0 0 31px;
+}
+
+.network_config fieldset.center_box .field,
+.network_config fieldset.center_box .field_medium,
+.network_config fieldset.center_box .field_big,
+.network_config fieldset.center_box .field_bigger {
+  font: normal 10px Verdana;
+  color: #000;
+  width: 690px;
+  margin-bottom: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #cdcdcd;
+}
+
+
+
+
+/*-----*/
+
+#second_tier_filters
+{
+  /*clear: both;*/
+  border-bottom: #999;
+  border-width: 0 0 1px 0;
+  border-style: none none solid none;
+  margin: -5px 0 0 0;
+  height: 20px;
+  padding: 0;
+  width: 972px;
+}
+
+#second_tier_filters ul {
+  margin: 0 0 0 -15px;
+}
+
+*html #second_tier_filters ul {
+  margin: 0 0 0 15px;
+}
+
+#second_tier_filters ul li
+{
+  display: inline;
+}
+
+#second_tier_filters ul li.active a {
+  font-weight: bold;
+}
+
+.ext_service_image
+{
+  float: left;
+  width: 220;
+  height: 120;
+  border: 1px solid #999;
+  padding: 5px;
+  margin: 5px;
+}
+
+.ext_service_description {
+  float: left;
+  margin: 0 0 0 10px;
+  min-height: 130px;
+  max-height: auto;
+}
+
+.ext_service .buttonbar {
+  clear: both;
+  margin-left: -4px;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>
+   <name>Sun</name>   
+   <previewImage>preview.gif</previewImage>
+   <type>User</type>
+   <networkCssFile></networkCssFile>
+   <groupCssFile></groupCssFile>
+   <userCssFile>sun_skin.css</userCssFile>
+   <headerImage>none</headerImage>
+   <userheaderImage>none</userheaderImage>
+   <groupheaderImage>none</groupheaderImage>
+   <headerImageOk>no</headerImageOk>
+ </config>

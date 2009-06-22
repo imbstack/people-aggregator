@@ -1,0 +1,25 @@
+-------------------- Class Name Report Abuse -------------------------------
+
+Function named :- 
+  1 => Save
+  2 => Get
+  3 => GetMultiples
+  4 => Getcount
+
+
+-------------------------  Test Cases  -------------------------------
+
+function:- Save()
+Good Test --  it should insert the data into 'reportabuse' table
+Bad Test -- not empty 'parent type', 'parent id', body, report_id
+Bad Test -- not valid 'parent type' , 'parent id', 'report id'
+
+function Get() 
+Good test -- it gives us the data in the basis of report_id
+Bad test --  not empty report id
+Bad test -- invalid report id
+
+Function GetMultiples() 
+Good Test -- it gives us the data in the basis of parent_type and Id
+Bad Test -- not empty parent_type, parent_id, report_id
+Bad Test -- invalid parent_type, parent_id, report_id

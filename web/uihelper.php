@@ -1,0 +1,1 @@
+moved to web/includes/uihelper.php for security reasons

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <name>Zen Columns</name> 
+  <previewImage>preview.gif</previewImage>
+  <networkCssFile></networkCssFile>
+  <groupCssFile>zen_columns.css</groupCssFile>
+  <userCssFile></userCssFile>
+  <headerImage></headerImage>
+  <userheaderImage></userheaderImage>
+  <groupheaderImage>group_sand_hdr.jpg</groupheaderImage>
+  <headerImageOk>yes</headerImageOk>
+</config>

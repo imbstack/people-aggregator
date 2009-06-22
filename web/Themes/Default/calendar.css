@@ -1,0 +1,278 @@
+/* special CSS to keep sidebar calendar modules from changing height */
+#EventCalendarSidebarModule .month-calendar {
+	height: 250px;
+	overflow: hidden;
+}
+
+/* positioning for the calendar.php UI */
+.editmainpage .month-calendar {
+  float: left;
+  margin-right: 50px;
+  _margin-right: 25px;
+}
+#eventui {
+  float: left;
+  margin-left: 0px;
+  /*_margin-left: 200px;*/
+}
+
+/* this here is needed to make CSS themes that have light color font behave */
+.month-calendar ul li,
+.month-calendar ul li a,
+.month-calendar ul li a:link,
+.month-calendar ul li a:visited,
+.month-calendar ul li a:active,
+.month-calendar ul li a:hover {
+  color:#666666;
+}
+
+/* calendar style */
+.month-calendar ul.calendar {
+ width: 338px;
+ height: 360px;
+ margin: 0;
+ padding: 0;
+ background-color: #ccc;
+}
+
+*html .month-calendar ul.calendar {
+ width: 340px;
+}
+
+.month-calendar ul.calendar li.calendarcell {
+  float: left;
+  list-style: none;
+  margin: 1px;
+  width: 46px; height: 46px;
+  background-color: white;
+ font-size: 12px;
+ overflow: hidden;
+}
+
+/*
+*html ul.calendar li.calendarcell {
+  width: 44px; height: 44px;  
+}
+*/
+
+.month-calendar ul.calendar li.header {
+ width: 338px;
+ height: 20px;
+ padding-bottom: 4px;
+ font-size: 14px;
+ font-weight: bold;
+ text-align: center;
+ background-color: #fff;
+}
+
+.month-calendar ul.calendar li.dayheader {
+  height: 16px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ccc;
+}
+
+.month-calendar ul.calendar li.header .month-prev,
+.month-calendar ul.calendar li.header .month-next {
+  margin: 0 30px;
+  font-size: normal;
+  font-weight: normal;
+}
+
+.month-calendar ul.calendar li.header .month-prev {
+  float: left;
+}
+
+.month-calendar ul.calendar li.header .month-next {
+  float: right;
+}
+
+
+.month-calendar ul.calendar .daynumber {
+  position: absolute;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.month-calendar ul.calendar li.today {
+  background-color: #ccc;
+}
+
+.month-calendar ul.calendar li.hasevents {
+  background-color: #666;
+}
+
+.month-calendar ul.calendar li.today .daynumber {
+  color: #fff;
+}
+
+.month-calendar ul.calendar li.hovering {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.month-calendar ul.calendar .hovering .daynumber {
+  color: #fff;
+}
+
+.month-calendar ul.calendar .hovertip {
+  display: none;
+}
+
+.month-calendar ul.calendar .hovering .hovertip {
+  position: relative;
+  top: 18px;
+  display: block;
+}
+
+.month-calendar ul.calendar li.hovering ul.eventlist,
+.month-calendar ul.calendar li.hasevents a.create-event {
+  display: none;
+}
+
+/* hide this link if we are already on the edit page */
+.editmainpage .month-calendar .goto-edit {
+  display: none;
+}
+
+/* alternative style for event list */
+.month-calendar ul.list {
+  width: 336px;
+  height: auto;
+  margin:0; padding: 0;
+  background-color: #ccc;
+}
+
+.month-calendar ul.list li.calendarcell,
+.month-calendar ul.list .daynumber,
+.month-calendar ul.list .create-event {
+  display: none;
+}
+
+.month-calendar ul.list li.header {
+  display: block;
+  width: 334px; /* full width of ul minus margins */
+  height: 20px;
+  padding-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #fff;
+}
+
+.month-calendar ul.list li.header .month-prev {
+  float: left;
+}
+.month-calendar ul.list li.header .month-next {
+  float: right;
+}
+.month-calendar ul li.header .calendar-style,
+.month-calendar ul li.header .list-style {
+  padding: 2px 8px 2px 8px; 
+}
+
+.month-calendar ul.list li.hasevents {
+  display: none;
+}
+
+.month-calendar ul.calendar li.listview {
+	display: none;
+}
+
+.month-calendar ul.list li.listview {
+	display: block;
+  list-style: none;
+  width: 336px;
+  margin: 1px 0;
+  padding: 4px 0;
+  height: auto;
+  background-color: white;
+  color:#666666;
+}
+.month-calendar ul.list li.listview a {
+	display: block;
+  padding-left: 16px;
+}
+
+/* Size OVERRIDES for the SIDEBAR version */
+.module .month-calendar ul.calendar {
+ width: 196px;
+ height: 218px;
+ /* all else as above */
+}
+
+*html .module .month-calendar ul.calendar {
+ width: 198px;
+}
+
+.module .month-calendar ul.calendar li.calendarcell {
+  width: 26px; height: 26px;
+}
+
+
+.module .month-calendar ul.calendar li.header,
+.module .month-calendar ul.list li.header {
+  width: 196px !important;
+  font-size: 9px;
+}
+
+.module .month-calendar ul.calendar li.header {
+  height: 12px;
+}
+
+.module .month-calendar ul.calendar li.header .month-prev,
+.module .month-calendar ul.calendar li.header .month-next {
+  margin: 0 10px;
+  font-weight: normal;
+}
+
+.module .month-calendar ul.calendar li.dayheader,
+.module .month-calendar ul.list li.dayheader {
+  height: 12px;
+  font-size: 9px;
+}
+
+.module .month-calendar ul li.header .calendar-style,
+.module .month-calendar ul li.header .list-style {
+  padding: 1px 4px 1px 4px; 
+  font-size: 9px;
+}
+
+.module .month-calendar ul.calendar .daynumber {
+  font-size: 9px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.module .month-calendar ul.calendar .hovering .hovertip {
+  top: 11px;
+  font-size: 8px;
+}
+
+.module .month-calendar ul.list {
+ width: 196px;
+ /* all else as above */
+}
+
+.module .month-calendar ul.list li {
+  width: 196px;
+  *margin-left: 0;
+  *padding-left: 0;
+}
+.module .month-calendar ul.list li ul.eventlist, .module .month-calendar ul.list li ul.eventlist li {
+	width: 175px;
+}
+
+/* added by chanderkant jangra on 20-09-2007  */
+.editmainpage form input.text {
+	border: 1px solid #ccc;
+	font-size: 10px;
+	padding: 2px;
+	float: left;
+	margin-left: 10px; 
+        _margin-left: 0px; 
+}
+
+

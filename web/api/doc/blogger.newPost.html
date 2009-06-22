@@ -1,0 +1,167 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="docs.css"/>
+<title>PeopleAggregator API: method blogger.newPost</title>
+</head>
+<body>
+<div class="api"><h1><a href="peopleaggregator.html">PeopleAggregator API</a>: method blogger.newPost</h1>
+
+<p><a href="#arguments">Arguments</a> | <a href="#return">Return value</a> | <a href="#rest-xml">REST (XML) example</a> | <a href="#rest-json">REST (JSON) example</a> | <a href="#xml-rpc">XML-RPC example</a></p>
+<div class="method">
+<h2>Method: blogger.newPost</h2>
+<div class="detail">
+<div class="description">(Blogger API) Creates a new content item.  (DEPRECATED - use metaWeblog.newPost if possible).  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]</div>
+<div class="doc-link"><a href="http://wiki.peopleaggregator.org/WSAPI_blogger.newPost_method">User documentation for blogger.newPost on the PeopleAggregator wiki</a></div>
+<h3 id="arguments">Arguments (see also <a href="auth.php">Authentication</a>)</h3><div class="detail">
+<p>If calling by XML-RPC, note that this method takes 6 arguments, NOT a single struct, like most other methods in this API.</p>
+<div class="argument">
+<h3>appkey</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Appkey - not required.</div>
+<div class="example">Example: <code>none</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>blogid</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).</div>
+<div class="example">Example: <code>user:123</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>login</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">User's login name.</div>
+<div class="example">Example: <code>testme</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>password</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">User's password.</div>
+<div class="example">Example: <code>testuser123</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>content</h3>
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">Post content.</div>
+<div class="example">Example: <code><p>This is a test post.</p></code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+<div class="argument">
+<h3>publish</h3>
+<div class="detail">
+<div class="type">Type: boolean</div>
+<div class="description">true if the post should be published immediately, or false if it should be kept as a draft.</div>
+<div class="example">Example: <code>True</code></div>
+</div><!-- argument/detail -->
+</div><!-- argument -->
+</div><!-- detail -->
+<h3 id="return">Return value (see also <a href="exceptions.php">Exceptions</a>)</h3>
+<div class="return">
+<div class="detail">
+<div class="type">Type: string</div>
+<div class="description">The post ID of the created post (suitable for sending back to metaWeblog.editPost and metaWeblog.getPost).</div>
+<div class="example">Example: <code>user:123:456</code></div>
+</div><!-- return/detail -->
+</div><!-- return -->
+<h3 id="rest-xml">Example REST (XML) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xml/blogger/newPost">/api/xml/blogger/newPost</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 122<br>
+<br>
+appkey=none&content=%3Cp%3EThis+is+a+test+post.%3C%2Fp%3E&login=testme&password=testuser123&blogid=user%3A123&publish=True</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/xml<br>
+Content-Length: 50<br>
+<br>
+&lt;response&gt;user:123:456&lt;/response&gt;<br>
+</code> 
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="rest-json">Example REST (JSON) request</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/json/blogger/newPost">/api/json/blogger/newPost</a> HTTP/1.1<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 122<br>
+<br>
+appkey=none&content=%3Cp%3EThis+is+a+test+post.%3C%2Fp%3E&login=testme&password=testuser123&blogid=user%3A123&publish=True</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: application/x-javascript<br>
+Content-Length: 14<br>
+<br>
+"user:123:456"</code>
+</div><!-- detail -->
+</div><!-- detail -->
+<h3 id="xml-rpc">Example XML-RPC call</h3>
+<div class="detail">
+<h4>Request</h4>
+<div class="detail">
+<code>POST <a href="../../api/xmlrpc">/api/xmlrpc</a> HTTP/1.1<br>
+Content-Type: text/xml<br>
+Content-Length: 1264<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodCall&gt;<br>
+&nbsp;&nbsp;&lt;methodName&gt;blogger.newPost&lt;/methodName&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;none&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;testme&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;testuser123&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;&amp;lt;p&amp;gt;This is a test post.&amp;lt;/p&amp;gt;&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;boolean&gt;1&lt;/boolean&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodCall&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+<h4>Response</h4>
+<div class="detail">
+<code>HTTP/1.1 200 OK<br>
+Content-Type: text/xml<br>
+Content-Length: 338<br>
+<br>
+&lt;?xml version='1.0'?&gt;<br>
+&nbsp;&lt;methodResponse&gt;<br>
+&nbsp;&nbsp;&lt;params&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;value&gt;&lt;string&gt;user:123:456&lt;/string&gt;&lt;/value&gt;<br>
+&nbsp;&nbsp;&nbsp;&lt;/param&gt;<br>
+&nbsp;&nbsp;&lt;/params&gt;<br>
+&nbsp;&lt;/methodResponse&gt;<br>
+&nbsp;</code>
+</div><!-- detail -->
+</div><!-- detail -->
+</div><!-- method/detail -->
+</div><!-- method -->
+</div><!-- api -->
+</body>
+</html>

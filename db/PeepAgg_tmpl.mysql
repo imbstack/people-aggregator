@@ -1,0 +1,566 @@
+-- phpMyAdmin SQL Dump
+-- version 2.6.0-pl3
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Server version: 4.1.7
+-- PHP Version: 5.0.3RC2-dev
+--
+-- Database: `peopleaggregator`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_users_roles`
+--
+
+CREATE TABLE `/%network_name%/_users_roles` (
+`user_id` INT( 11 ) NOT NULL ,
+`role_id` INT( 2 ) DEFAULT '-1' NOT NULL
+);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_contentcollections_albumtype`
+--
+
+
+CREATE TABLE `/%network_name%/_contentcollections_albumtype` (
+`contentcollection_id` INT( 11 ) NOT NULL ,
+`album_type_id` INT( 2 ) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `/%network_name%/_images`
+-- 
+
+CREATE TABLE `/%network_name%/_images` (
+  `content_id` int(11) NOT NULL default '0',
+  `image_file` varchar(255) NOT NULL default '',
+  `image_perm` int(2) NOT NULL default '0'
+) ;
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `/%network_name%/_audios`
+-- 
+
+CREATE TABLE `/%network_name%/_audios` (
+  `content_id` int(11) NOT NULL default '0',
+  `audio_file` varchar(255) NOT NULL default '',
+  `audio_perm` int(2) NOT NULL default '0'
+) ;
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `/%network_name%/_videos`
+-- 
+
+CREATE TABLE `/%network_name%/_videos` (
+  `content_id` int(11) NOT NULL default '0',
+  `video_file` varchar(255) NOT NULL default '',
+  `video_perm` int(2) NOT NULL default '0'
+) ;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_contents`
+--
+
+CREATE TABLE `/%network_name%/_contents` (
+  `content_id` int(11) NOT NULL default '0',
+  `author_id` int(11) NOT NULL default '0',
+  `type` int(2) NOT NULL default '0',
+  `title` varchar(255) NOT NULL default '',
+  `is_active` tinyint(1) NOT NULL default '0',
+  `body` longtext NOT NULL,
+  `allow_comments` tinyint(1) NOT NULL default '0',
+  `collection_id` int(11) NOT NULL default '0',
+  `created` int(11) NOT NULL default '0',
+  `changed` int(11) NOT NULL default '0',
+  `trackbacks` text,
+  `display_on` tinyint(1) NULL default '0',
+  PRIMARY KEY  (`content_id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_announcements`
+--
+
+CREATE TABLE `/%network_name%/_announcements` (
+    `content_id` int(11) NOT NULL,
+    `announcement_time` int(11) NOT NULL default '0',
+    `announcement_time_end` int(11) NOT NULL default '0',
+    `position` tinyint(1) NOT NULL default '0',
+    `status` tinyint(1) NOT NULL default '0',
+    `is_active` tinyint(1) NOT NULL default '0'
+  );
+  
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_content_types`
+--
+
+CREATE TABLE `/%network_name%/_content_types` (
+  `type_id` int(2) NOT NULL default '0',
+  `name` varchar(50) NOT NULL default '',
+  `description` text,
+  PRIMARY KEY  (`type_id`)
+);
+
+--
+-- Dumping data for table `/%network_name%/_content_types`
+--
+
+
+INSERT INTO `/%network_name%/_content_types` VALUES ('1', 'BlogPost', '');
+INSERT INTO `/%network_name%/_content_types` VALUES ('2', 'Review', '');
+INSERT INTO `/%network_name%/_content_types` VALUES ('3', 'Event', '');
+INSERT INTO `/%network_name%/_content_types` VALUES ('4', 'Image', '');
+INSERT INTO `/%network_name%/_content_types` VALUES ('5', 'Audio', '');
+INSERT INTO `/%network_name%/_content_types` VALUES ('6', 'Video', '');
+INSERT INTO `/%network_name%/_content_types` VALUES (7, 'SBMicroContent', 'SBMicroContent');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_trackback_contents`
+--
+
+CREATE TABLE `/%network_name%/_trackback_contents` (
+  `index` int(11) NOT NULL auto_increment,
+  `trackback` text NOT NULL,
+  `content_id` int(11) NOT NULL default '0',
+  `title` varchar(255) NOT NULL default '',
+  `excerpt` text,
+  PRIMARY KEY  (`index`)
+);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_tags_contentcollections`
+--
+
+CREATE TABLE `/%network_name%/_tags_contentcollections` (
+  `tag_id` int(11) NOT NULL default '0',
+  `collection_id` int(11) NOT NULL default '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_tags_contents`
+--
+
+CREATE TABLE `/%network_name%/_tags_contents` (
+  `tag_id` int(11) NOT NULL default '0',
+  `content_id` int(11) NOT NULL default '0'
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_contentcollections`
+--
+
+CREATE TABLE `/%network_name%/_contentcollections` (
+  `collection_id` int(11) NOT NULL default '0',
+  `type` int(2) NOT NULL default '0',
+  `title` varchar(255) NOT NULL default '',
+  `author_id` int(11) NOT NULL default '0',
+  `description` longtext,
+  `is_active` tinyint(1) NOT NULL default '0',
+  `created` int(11) NOT NULL default '0',
+  `changed` int(11) NOT NULL default '0',
+  `picture` text,
+  PRIMARY KEY  (`collection_id`)
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_contentcollection_types`
+--
+
+CREATE TABLE `/%network_name%/_contentcollection_types` (
+  `type_id` int(11) NOT NULL default '0',
+  `name` varchar(50) NOT NULL default '',
+  `description` text,
+  PRIMARY KEY  (`type_id`)
+);
+
+
+INSERT INTO `/%network_name%/_contentcollection_types` VALUES ('1', 'Group', '');
+INSERT INTO `/%network_name%/_contentcollection_types` VALUES ('2', 'Album', '');
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_comments`
+--
+
+CREATE TABLE `/%network_name%/_comments` (
+  `comment_id` int(11) NOT NULL auto_increment,
+  `content_id` int(11) NOT NULL default '0',
+  `user_id` int(11) NOT NULL default '0',
+  `subject` varchar(255) default NULL,
+  `comment` longtext NOT NULL,
+  `created` int(11) NOT NULL default '0',
+  `changed` int(11) NOT NULL default '0',
+  `is_active` tinyint(1) NOT NULL default '0',
+  `name` varchar(100) default NULL,
+  `email` varchar(100) default NULL,
+  `homepage` varchar(100) default NULL,
+  PRIMARY KEY  (`comment_id`)
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_groups`
+--
+
+
+CREATE TABLE `/%network_name%/_groups` (
+  `group_id` int(11) NOT NULL default '0',
+  `access_type` tinyint(1) NOT NULL default '0',
+  `reg_type` int(2) NOT NULL default '0',
+  `is_moderated` tinyint(1) NOT NULL default '0',
+  `category_id` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`group_id`)
+) TYPE=MyISAM;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_groups_users`
+--
+
+CREATE TABLE `/%network_name%/_groups_users` (
+  `group_id` int(11) NOT NULL default '0',
+  `user_id` int(11) NOT NULL default '0',
+  `user_type` varchar(50) NOT NULL default ''
+) TYPE=MyISAM;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_moderation_queue`
+--
+
+CREATE TABLE `/%network_name%/_moderation_queue` (
+  `collection_id` int(11) NOT NULL default '0',
+  `item_id` int(11) NOT NULL default '0',
+  `type` varchar(20) NOT NULL default ''
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_invitations`
+--
+
+
+CREATE TABLE `/%network_name%/_invitations` (
+`inv_id` VARCHAR( 255 ) NOT NULL ,
+`user_id` INT( 11 ) NOT NULL ,
+`inv_user_id` INT( 11 ) NOT NULL ,
+`inv_user_email` VARCHAR( 255 ) NOT NULL ,
+`inv_collection_id` INT( 11 ) NOT NULL ,
+`inv_status` INT( 2 ) NOT NULL ,
+`inv_data` LONGTEXT NOT NULL ,
+PRIMARY KEY ( `inv_id` )
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_boardmessages`
+--
+
+CREATE TABLE `/%network_name%/_boardmessages` (
+  `boardmessage_id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL default '',
+  `body` longtext,
+  `created` int(11) default '0',
+  `changed` int(11) default '0',
+  `user_id` int(11) default '0',
+  `allow_anonymous` tinyint(1) default '1',
+  `user_name` varchar(100) default NULL,
+  `email` varchar(100) default NULL,
+  `homepage` varchar(255) default NULL,
+  `parent_id` int(11) default '0',
+  `parent_type` varchar(50) default NULL,
+  PRIMARY KEY  (`boardmessage_id`)
+) TYPE=MyISAM  ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_categories_boardmessages`
+--
+
+CREATE TABLE `/%network_name%/_categories_boardmessages` (
+  `category_id` int(11) NOT NULL default '0',
+  `boardmessage_id` int(11) NOT NULL default '0'
+) TYPE=MyISAM;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_content_routing_destinations`
+--
+
+CREATE TABLE `/%network_name%/_content_routing_destinations` (
+  `index_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL default '0',
+  `blog_name` varchar(50) NOT NULL default '',
+  `blog_url` varchar(255) NOT NULL default '',
+  `user_name` varchar(50) NOT NULL default '',
+  `password` varchar(20) NOT NULL default '',
+  `blog_type` char(2) NOT NULL default '',
+  PRIMARY KEY  (`index_id`)
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_categories`
+--
+
+CREATE TABLE `/%network_name%/_categories` (
+  `category_id` int(11) NOT NULL auto_increment,
+  `position` varchar(255) default NULL,
+  `name` varchar(255) default NULL,
+  `description` text,
+  `is_active` tinyint(1) default '0',
+  `created` int(11) default '0',
+  `changed` int(11) default '0',
+  PRIMARY KEY  (`category_id`)
+) TYPE=MyISAM AUTO_INCREMENT=57 ;
+
+
+--------------------------------------------------------------
+--
+-- Table structure for table `/%network_name%/_network_links`
+-- 
+
+CREATE TABLE `/%network_name%/_network_links` (
+  `link_id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `category_id` int(11) default NULL,
+  `created` int(11) default NULL,
+  `changed` int(11) default NULL,
+  `is_active` tinyint(1) default NULL,
+  PRIMARY KEY  (`link_id`)
+) TYPE=MyISAM ;
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `/%network_name%/_network_linkcategories`
+-- 
+
+CREATE TABLE `/%network_name%/_network_linkcategories` (
+  `category_id` int(11) NOT NULL auto_increment,
+  `category_name` varchar(255) default NULL,
+  `user_id` int(11) default NULL,
+  `created` int(11) default NULL,
+  `changed` int(11) default NULL,
+  `is_active` tinyint(1) default NULL,
+  PRIMARY KEY  (`category_id`)
+) TYPE=MyISAM;
+
+
+--
+-- Dumping data for table `/%network_name%/_categories`
+--
+
+INSERT INTO `/%network_name%/_categories` VALUES (1, '1>', 'Activities', 'Description of Activities', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (2, '2>', 'Alumni & Schools', 'Description of Alumni & Schools', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (3, '3>', 'Arts & Entertainment', 'Description of Arts & Entertainment', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (4, '4>', 'Automotive', 'Description of Automotive', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (5, '5>', 'Business', 'Description of Business', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (6, '6>', 'Cities & Neighborhoods', 'Description of Cities & Neighborhoods', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (7, '7>', 'Company', 'Description of Company', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (8, '8>', 'Computers & Internet', 'Description of Computers & Internet', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (9, '9>', 'Countries & Regional', 'Description of Countries & Regional', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (10, '10>', 'Cultures & Community', 'Description of Cultures & Community', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (11, '11>', 'Family & Home', 'Description of Family & Home', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (12, '12>', 'Fashion & Beauty', 'Description of Fashion & Beauty', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (13, '13>', 'Food, Drink & Wine', 'Description of Food, Drink & Wine', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (14, '14>', 'Games', 'Description of Games', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (15, '15>', 'Gay, Lesbian & Bi', 'Description of Gay, Lesbian & Bi', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (16, '16>', 'Government & Politics', 'Description of Government & Politics', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (17, '17>', 'Health, Wellness & Fitness', 'Description of Health, Wellness & Fitness', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (18, '18>', 'Hobbies & Crafts', 'Description of Hobbies & Crafts', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (19, '19>', 'Individuals', 'Description of Individuals', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (20, '20>', 'Music', 'Description of Neighborhoods  Music', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (21, '21>', 'Pets & Animals', 'Description of Pets & Animals', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (22, '22>', 'Recreation & Sports', 'Description of Recreation & Sports', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (23, '23>', 'Religion & Beliefs', 'Description of Religion & Beliefs', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (24, '24>', 'Romance & Relationships', 'Description of Romance & Relationships', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (25, '25>', 'Schools & Education', 'Description of Schools & Education', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (26, '26>', 'Science & History', 'Description of Science & History', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (27, '27>', 'Travel', 'Description of Travel', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (28, '28>', 'Others', 'Description of Others', 1, 1136967446, 1136967446);
+INSERT INTO `/%network_name%/_categories` VALUES (29, '1>29>', 'Sub Activities', 'Sub Description of Activities', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (30, '2>30>', 'Sub Alumni & Schools', 'Sub Description of Alumni & Schools', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (31, '3>31>', 'Sub Arts & Entertainment', 'Sub Description of Arts & Entertainment', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (32, '4>32>', 'Sub Automotive', 'Sub Description of Automotive', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (33, '5>33>', 'Sub Business', 'Sub Description of Business', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (34, '6>34>', 'Sub Cities & Neighborhoods', 'Sub Description of Cities & Neighborhoods', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (35, '7>35>', 'Sub Company', 'Sub Description of Company', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (36, '8>36>', 'Sub Computers & Internet', 'Sub Description of Computers & Internet', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (37, '9>37>', 'Sub Countries & Regional', 'Sub Description of Countries & Regional', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (38, '10>38>', 'Sub Cultures & Community', 'Sub Description of Cultures & Community', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (39, '11>39>', 'Sub Family & Home', 'Sub Description of Family & Home', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (40, '12>40>', 'Sub Fashion & Beauty', 'Sub Description of Fashion & Beauty', 1, 1136971089, 1136971089);
+INSERT INTO `/%network_name%/_categories` VALUES (41, '13>41>', 'Sub Food, Drink & Wine', 'Sub Description of Food, Drink & Wine', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (42, '14>42>', 'Sub Games', 'Sub Description of Games', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (43, '15>43>', 'Sub Gay, Lesbian & Bi', 'Sub Description of Gay, Lesbian & Bi', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (44, '16>44>', 'Sub Government & Politics', 'Sub Description of Government & Politics', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (45, '17>45>', 'Sub Health, Wellness & Fitness', 'Sub Description of Health, Wellness & Fitness', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (46, '18>46>', 'Sub Hobbies & Crafts', 'Sub Description of Hobbies & Crafts', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (47, '19>47>', 'Sub Individuals', 'Sub Description of Individuals', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (48, '20>48>', 'Sub Neighborhoods  Music', 'Sub Description of Neighborhoods  Music', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (49, '21>49>', 'Sub Pets & Animals', 'Sub Description of Pets & Animals', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (50, '22>50>', 'Sub Recreation & Sports', 'Sub Description of Recreation & Sports', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (51, '23>51>', 'Sub Religion & Beliefs', 'Sub Description of Religion & Beliefs', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (52, '24>52>', 'Sub Romance & Relationships', 'Sub Description of Romance & Relationships', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (53, '25>53>', 'Sub Schools & Education', 'Sub Description of Schools & Education', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (54, '26>54>', 'Sub Science & History', 'Sub Description of Science & History', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (55, '27>55>', 'Sub Travel', 'Sub Description of Travel', 1, 1136971090, 1136971090);
+INSERT INTO `/%network_name%/_categories` VALUES (56, '28>56>', 'Sub Others', 'Sub Description of Others', 1, 1136971090, 1136971090);
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_contents_sbmicrocontents`
+--
+
+CREATE TABLE `/%network_name%/_contents_sbmicrocontents` (
+  `content_id` int(11) NOT NULL default '0',
+  `microcontent_id` int(11) NOT NULL default '0'
+) TYPE=MyISAM;
+
+
+-- --------------------------------------------------------
+
+
+
+--
+-- Table structure for table `/%network_name%/_page_settings`
+--
+
+CREATE TABLE `/%network_name%/_page_settings` (
+  `user_id` int(11) NOT NULL default '0',
+  `page_id` int(11) NOT NULL default '0',
+  `settings` text,
+  `lft` tinytext NOT NULL,
+  `middle` tinytext NOT NULL,
+  `rght` tinytext NOT NULL
+) TYPE=MyISAM;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `/%network_name%/_page_default_settings`
+--
+
+CREATE TABLE `/%network_name%/_page_default_settings` (
+  `page_id` int(11) NOT NULL default '0',
+  `page_name` varchar(255) NOT NULL default '',
+  `default_settings` text,
+  `lft` tinytext NOT NULL,
+  `middle` tinytext NOT NULL,
+  `rght` tinytext NOT NULL,
+  PRIMARY KEY  (`page_id`)
+) TYPE=MyISAM;
+
+-- --------------------------------------------------------
+
+--
+-- Tables for module settings table-- START
+--
+CREATE TABLE `/%network_name%/_modules_settings` (
+  `module_name` varchar(255) NOT NULL default '',
+  `module_id` int(11) NOT NULL default '0',
+  `is_active` tinyint(2) NOT NULL default '1',
+  `title` varchar(100) NOT NULL default ''
+) TYPE=MyISAM;
+
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `/%network_name%/_modules_settings` (example data- could be changed)
+--
+
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('delicious', 2, 1, 'Delicious');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('flickr', 1, 1, 'Flickr');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('NewestGroupsModule', 3, 1, 'Newest Groups');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('LargestGroupsModule', 4, 1, 'Largest Groups');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('MyGroupsModule', 5, 1, 'My Groups');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsByCategoryModule', 6, 1, 'Groups by Category');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('AdsByGoogleModule', 7, 1, 'Ads by Gooooogle');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('LogoModule', 8, 1, 'Logo');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsInCategoryModule', 9, 1, 'Groups:');
+
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('RelationsModule', 10, 1, 'Relations');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserTasksModule', 11, 1, 'My Tasks');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserAudiosModule', 12, 1, 'Audios');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserVideosModule', 13, 1, 'Videos');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserPhotoModule', 14, 1, 'Photo');
+
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserMessagesModule', 15, 1, 'My Messages');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserImagesModule', 16, 1, 'Images');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('FlickrModule', 17, 1, 'Flickr');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('LinkModule', 18, 1, 'Delicious');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('ShowContentModule', 19, 1, 'Content');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserInformationModule', 20, 1, 'User Profile');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserCaptionModule', 21, 1, 'Caption');
+
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('MembersFacewallModule', 22, 1, 'Members');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('PopularTagsModule', 23, 1, 'Popular Tags');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsFacewallModule', 24, 1, 'Groups');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('LogoModule', 25, 1, 'Logos');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('ShowContentModule', 26, 1, 'Content');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('RecentPostModule', 27, 1, 'Recent Post');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('StatisticsModule', 28, 1, 'Statistics');
+INSERT INTO `/%network_name%/_modules_settings` VALUES ('AdsByGoogleModule', 29, 1, 'Adds By Google');

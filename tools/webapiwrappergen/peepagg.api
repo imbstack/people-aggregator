@@ -1,0 +1,1694 @@
+api:
+ name: PeopleAggregator API
+ namespace: peopleaggregator
+ methods:
+ -
+  peopleaggregator.echo:
+   type: get
+   desc: GET-type echo test method, that just sends back its input data.
+   args:
+   -
+    echoText:
+     type: string
+     desc: Text to return to the caller.
+     eg: Iñtërnâtiônàlizætiøn
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     echoText:
+      type: string
+      desc: The string that was passed by the caller.
+      eg: Iñtërnâtiônàlizætiøn
+ -
+  peopleaggregator.echoPost:
+   type: post
+   desc: POST-type echo test method, that just sends back its input data.
+   args:
+   -
+    echoText:
+     type: string
+     desc: Text to return to the caller.
+     eg: Iñtërnâtiônàlizætiøn
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     echoText:
+      type: string
+      desc: The string that was passed by the caller.
+      eg: Iñtërnâtiônàlizætiøn
+ -
+  peopleaggregator.errorTest:
+   type: get
+   desc: Error test method, that takes no arguments and throws a fatal PHP error.
+   args: {}
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: Should always fail - so false
+      eg: false
+ -
+  peopleaggregator.exceptionTest:
+   type: get
+   desc: Error test method, that takes no arguments and throws an exception.
+   args: {}
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: Should always fail - so false
+      eg: false
+ -
+  peopleaggregator.login:
+   type: post
+   desc: Given a user name and password, returns an authentication token (suitable for passing as the authToken parameter to many methods).
+   args:
+   -
+    login: {type: string, desc: "User login name", eg: marc}
+   -
+    password: {type: string, desc: "User password", eg: marcspassword}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "True on success, false on failure.", eg: true}
+    -
+     authToken: {type: string, desc: "An authentication token.", eg: "123576abcdef6572134"}
+    -
+     tokenLifetime: {type: int, desc: "The number of seconds for which the authentication token will be valid.", eg: 86400}
+ -
+  peopleaggregator.checkToken:
+   type: get
+   desc: Indicates whether a token is valid or not
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "True if the token is valid, false otherwise", eg: true}
+    -
+     login: {type: string, desc: "The login name of the user for which this token is valid", eg: marc}
+    -
+     tokenLifetime: {type: int, desc: "The number of seconds for which the token is still valid.", eg: 86001}
+ -
+  peopleaggregator.newUser:
+   type: post
+   desc: Creates a new user.  Note that this method has an unusual authentication system; it requires the system admin password.  This is because it's not meant to be completely public; it's for system integration use, if you want to separately register users.
+   args:
+   -
+    adminPassword: {type: string, desc: The admin password from local_config.php, eg: asjkdghf}
+   -
+    homeNetwork: {type: string, desc: The home network of the new user, eg: randomnetwork, default: default}
+   -
+    login: {type: string, desc: The user's login name, eg: phil}
+   -
+    firstName: {type: string, desc: , eg: Phillip}
+   -
+    lastName: {type: string, desc: , eg: Pearson}
+   -
+    password: {type: string, desc: , eg: foobar}
+   -
+    email: {type: string, desc: , eg: phil@example.com}
+#   -
+#    photo: {type: string, desc: , eg: }
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the user has successfully been created, false on failure.", eg: true}
+    -
+     msg: {type: string, desc: Detailed response information, eg: User phil created successfully}
+    -
+     id: {type: string, desc: ID of the new user, eg: "user:432"}
+ -
+  peopleaggregator.getUserList:
+   type: get
+   desc: Returns the list of users on the current site.  (Do we want this to be public?  Right now
+   args:
+   -
+    page:
+     type: int
+     desc: The page you want to receive.
+     eg: 1
+     min: 1
+     default: 1
+   -
+    resultsPerPage:
+     type: int
+     desc: The number of users you want to receive per page.
+     eg: 100
+     min: 10
+     max: 100
+     default: 100
+   -
+    profileImageSize: {type: enum, desc: "Dimensions of profile images to return (for detailLevel 'pics' or above)", values: [none, 50x50, 127x135, full], default: none, eg: 50x50}
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     page:
+      type: int
+      desc: The current result page.
+      eg: 1
+    -
+     totalUsers:
+      type: int
+      desc: The total number of users available.
+      eg: 234
+    -
+     totalPages:
+      type: int
+      desc: The total number of pages available.
+      eg: 3
+    -
+     resultsPerPage:
+      type: int
+      desc: The max number of users shown per page.
+      eg: 100
+    -
+     users:
+      type: array
+      desc: A page of users.
+      item:
+       type: hash
+       content:
+       -
+        id:
+         type: string
+         desc: The user's ID.
+         eg: "user:123"
+       -
+        login:
+         type: string
+         desc: The user's login name.
+         eg: gaurav
+       -
+        image:
+         type: hash
+         desc: Relation's profile image (returned for detailLevel 'pics' or above).
+         optional: true
+         content:
+         -
+          url: {type: string, desc: "URL of relation's profile image", eg: "http://example.org/peepagg/files/12345_image.jpg"}
+         -
+          width: {type: int, desc: "Width of relation's profile image", eg: 420}
+         -
+          height: {type: int, desc: "Height of relation's profile image", eg: 960}
+ -
+  peopleaggregator.getUserProfile:
+   desc: Returns a user's profile information.
+   type: get
+   args:
+   -
+    login:
+     type: string
+     desc: User's login name.
+     eg: myelin
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true on success, false on failure.", eg: true}
+    -
+     login:
+      type: string
+      desc: User's login name.
+      eg: myelin
+    -
+     name:
+      type: string
+      desc: User's full name.
+      eg: Phillip Pearson
+    -
+     id:
+      type: string
+      desc: User's ID.
+      eg: "user:26"
+    -
+     url:
+      type: string
+      desc: User's profile URL.
+      eg: http://example.org/peepagg/user/1234
+    -
+     profile:
+      type: hash
+      desc: Full profile information.
+      allow_extra_keys: true
+      content:
+      -
+       general:
+        type: hash
+        desc: basic profile information.
+        allow_extra_keys: true
+        content:
+        -
+         dob: {type: date, desc: date of birth, eg: "1980-03-22", optional: true}
+# -
+#  peopleaggregator.editUserProfile
+ -
+  peopleaggregator.newUserRelation:
+   desc: "Creates a new relationship.  TODO: figure out how authentication will work here.  This method will require authentication.  We will get the login of the user creating the relation out of the auth info, so only the 'target' user need be specified in the args for this method."
+   type: post
+   args:
+   -
+    authToken:
+     type: string
+     desc: Authentication token for the user creating the relation (see authentication documentation for more info).
+     eg: 8976234abcdef1234
+   -
+    login:
+     type: string
+     desc: Login name for the user at the other end of the relationship.
+     eg: marccanter
+   -
+    relation:
+     type: enum
+     desc: The type of relationship.
+     values: [ "havent met", acquaintance, relation, "good relation", "best relation" ]
+     eg: relation
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: true if the relationship was successfully added, otherwise false.
+      eg: true
+    -
+     msg:
+      type: string
+      desc: Success or failure detail.
+      eg: Relationship successfully added.
+ -
+  peopleaggregator.deleteUserRelation:
+   desc: "Deletes an existing relationship.  (Requires authentication.)"
+   type: post
+   args:
+   -
+    authToken:
+     type: string
+     desc: Authentication token for the user creating the relation (see authentication documentation for more info).
+     eg: 8976234abcdef1234
+   -
+    login:
+     type: string
+     desc: Login name for the user at the other end of the relationship.
+     eg: marccanter
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: true if the relationship was successfully added, otherwise false.
+      eg: true
+    -
+     msg:
+      type: string
+      desc: Success or failure detail.
+      eg: Relationship successfully deleted.
+ -
+  peopleaggregator.editUserRelation:
+   desc: "Modifies an existing relationship.  (Requires authentication.)"
+   type: post
+   args:
+   -
+    authToken:
+     type: string
+     desc: Authentication token for the user creating the relation (see authentication documentation for more info).
+     eg: 8976234abcdef1234
+   -
+    login:
+     type: string
+     desc: Login name for the user at the other end of the relationship.
+     eg: marccanter
+   -
+    relation:
+     type: enum
+     desc: The (new) type of relationship.
+     values: [ "havent met", acquaintance, relation, "good relation", "best relation" ]
+     eg: relation
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: true if the relationship was successfully added, otherwise false.
+      eg: true
+    -
+     msg:
+      type: string
+      desc: Success or failure detail.
+      eg: Relationship successfully deleted.
+ -
+  peopleaggregator.getUserRelation:
+   desc: "Gets details of an existing relationship, or returns a relation_not_exist error if no such relationship exists."
+   type: get
+   args:
+   -
+    login:
+     type: string
+     desc: Login name for the user who 'owns' the relationship.
+     eg: myelin
+   -
+    relation_login: {type: string, desc: "Login name for the other user in the relationship.", eg: marccanter}
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: true if the relationship exists, otherwise false.
+      eg: true
+    -
+     msg:
+      type: string
+      desc: Success or failure detail.
+      eg: Relationship exists.
+    -
+     relation:
+      type: enum
+      desc: The type of relationship.
+      values: [ "havent met", acquaintance, relation, "good relation", "best relation" ]
+      eg: relation
+ -
+  peopleaggregator.getUserRelations:
+   desc: Returns a user's friends and other relations.
+   type: get
+   args:
+   -
+    login:
+     type: string
+     desc: User's login name.
+     eg: marc
+#   -
+#    detailLevel: {type: enum, desc: "How much detail you want to retrieve: 'basic' to get just id/login/relation/url, 'pics' to see that plus profile image, or 'all' to get as much as possible (currently all == pics).", values: [basic, pics, all], default: basic, eg: all}
+   -
+    profileImageSize: {type: enum, desc: "Dimensions of profile images to return (for detailLevel 'pics' or above)", values: [50x50, 127x135, full], default: full, eg: 50x50}
+   -
+    page:
+     type: int
+     desc: Page of relations to return.  The first page is page 1.
+     min: 1
+     default: 1
+     eg: 2
+   -
+    resultsPerPage:
+     type: int
+     desc: How many relations you want to receive per "page".
+     min: 10
+     max: 100
+     default: 100
+     eg: 12
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     msg: {type: string, desc: Human-readable status message, eg: Retrieved relations 1-12 for user marc}
+    -
+     login:
+      type: string
+      desc: User's login name.
+      eg: marc
+    -
+     page:
+      type: int
+      desc: The current page of results.
+      eg: 2
+    -
+     resultsPerPage:
+      type: int
+      desc: Number of results returned per page.
+      eg: 50
+      default: 100
+    -
+     totalResults:
+      type: int
+      desc: Total number of bugs in result set.
+      eg: 51
+    -
+     totalPages:
+      type: int
+      desc: Total number of pages in result set.  If you pass this as the 'page' variable, you will receive the final page in the result set.
+      eg: 2
+    -
+     relations:
+      type: array
+      singular: relation
+      item:
+       type: hash
+       content:
+       -
+        id:
+         type: string
+         desc: ID of related user.
+         eg: "user:42"
+       -
+        login:
+         type: string
+         desc: Relation's login name.
+         eg: marccanter
+       -
+        relation:
+         type: enum
+         desc: The type of relationship.
+         values: [ "havent met", acquaintance, relation, "good relation", "best relation" ]
+         eg: relation
+       -
+        url:
+         type: string
+         desc: Relation's profile URL.
+         eg: http://example.org/peepagg/user/12345
+       -
+        image:
+         type: hash
+         desc: Relation's profile image (returned for detailLevel 'pics' or above).
+         optional: true
+         content:
+         -
+          url: {type: string, desc: "URL of relation's profile image", eg: "http://example.org/peepagg/files/12345_image.jpg"}
+         -
+          width: {type: int, desc: "Width of relation's profile image", eg: 420}
+         -
+          height: {type: int, desc: "Height of relation's profile image", eg: 960}
+
+ -
+  peopleaggregator.getCategories:
+   desc: Returns the list of categories in the system.
+   type: get
+   args: []
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     msg: {type: string, desc: Human-readable status message, eg: Retrieved categories 1-12.}
+    -
+     totalResults:
+      type: int
+      desc: Total number of bugs in result set.
+      eg: 51
+    -
+     categories:
+      type: array
+      singular: category
+      item:
+       type: hash
+       content:
+       -
+        id:
+         type: string
+         desc: Category ID
+         eg: "cat:42"
+       -
+        name:
+         type: string
+         desc: The name of the category.
+         eg: QA feedback.
+       -
+        groupCount: {type: int, desc: "The number of groups in this category.", eg: 42}
+ -
+  peopleaggregator.getGroups:
+   desc: Returns the list of groups in the system.
+   type: get
+   args:
+   -
+    page:
+     type: int
+     desc: Page of relations to return.  The first page is page 1.
+     min: 1
+     default: 1
+     eg: 1
+   -
+    resultsPerPage:
+     type: int
+     desc: How many relations you want to receive per "page".
+     min: 10
+     max: 100
+     default: 100
+     eg: 12
+   -
+    context: {type: string, desc: "The context from which to retrieve content: specify 'global' to retrieve the global group list, 'user:123' to retrieve user #123's group memberships, or [FIXME - not implemented yet] 'tag:123' to retrieve groups with tag #123.", eg: "user:26", default: global}
+   return:
+    type: hash
+    content:
+    -
+     success:
+      type: boolean
+      desc: True on success, false on failure.
+      eg: true
+    -
+     msg: {type: string, desc: Human-readable status message, eg: Retrieved groups 1-12.}
+    -
+     page:
+      type: int
+      desc: The current page of results.
+      eg: 2
+    -
+     resultsPerPage:
+      type: int
+      desc: Number of results returned per page.
+      eg: 50
+      default: 100
+    -
+     totalResults:
+      type: int
+      desc: Total number of bugs in result set.
+      eg: 51
+    -
+     totalPages:
+      type: int
+      desc: Total number of pages in result set.  If you pass this back in as the 'page' variable, you will receive the final page in the result set.
+      eg: 2
+    -
+     groups:
+      type: array
+      singular: group
+      item:
+       type: hash
+       content:
+       -
+        id:
+         type: string
+         desc: Group's database ID
+         eg: "group:42"
+       -
+        name:
+         type: string
+         desc: The name of the group.
+         eg: QA feedback.
+       -
+        memberCount: {type: int, desc: The number of members in the group., eg: 12}
+       -
+        url: {type: string, desc: URL of the group., eg: "http://peopleaggregator.net/group.php?gid=42"}
+ -
+  peopleaggregator.newGroup:
+   desc: Create a group
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token.", eg: "123576abcdef6572134"}
+   -
+    name: {type: string, desc: Group name, eg: "PeepAgg test group"}
+   -
+    category: {type: string, desc: Category ID for this group, eg: "cat:1"}
+   -
+    tags: {type: string, desc: Comma-separated list of tags applying to this group, eg: "peepagg, testing, hello"}
+   -
+    description: {type: string, desc: Detailed description of the group, eg: "A group for all PA testers"}
+   -
+    image: {type: string, desc: "URL of an image of/for the group", eg: "http://example.org/mygroup.jpg"}
+   -
+    accessType: {type: enum, desc: "Whether the group is public or members-only", values: [public, members], eg: public}
+   -
+    registrationType: {type: enum, desc: "Who can register", values: [open, moderated, invite], eg: open}
+   -
+    moderationType: {type: enum, desc: "Show content immediately or require moderation?", values: [direct, moderated], eg: direct}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true on success, false on failure", eg: true}
+    -
+     id: {type: string, desc: "ID of the created group", eg: "group:1234"}
+ -
+  peopleaggregator.deleteGroup:
+   desc: Deletes a group.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token.", eg: "123576abcdef6572134"}
+   -
+    id: {type: string, desc: "ID of the group to delete", eg: "group:1234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the group was successfully deleted, or false if an error occurred (e.g. the group does not exist, or you don't have permission to delete it)", eg: true}
+ -
+  peopleaggregator.findGroup:
+   desc: Searches for a group by name.
+   type: post
+   args:
+   -
+    name: {type: string, desc: "Name (or part of name) of group to locate", eg: "cricket"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if group search succeeded (including if zero groups were found), or false if something went wrong", eg: true}
+    -
+     groups:
+      type: array
+      desc: Groups located by search
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "ID of group", eg: "group:1234"}
+       -
+        name: {type: string, desc: "Name of group", eg: "Indian Cricket"}
+ -
+  peopleaggregator.joinGroup:
+   desc: Joins a user to a group.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token.", eg: "123576abcdef6572134"}
+   -
+    id: {type: string, desc: "ID of the group to join", eg: "group:1234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if you have successfully joined the group or your application has been sent to a moderator, or false if you were already joined, or are not permitted to join", eg: true}
+    -
+     joinState: {type: enum, desc: "'joined' if you were able to join the group immediately.  'in_moderation' if your application has been sent to a moderator.", values: [joined, in_moderation], eg: joined}
+ -
+  peopleaggregator.leaveGroup:
+   desc: Removes a user from a group.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token.", eg: "123576abcdef6572134"}
+   -
+    id: {type: string, desc: "ID of the group to leave", eg: "group:1234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if you have successfully left the group, or false if you were not a member or an error occurred", eg: true}
+ -
+  peopleaggregator.getContent:
+   desc: Retrieve content (blog posts, event info, media, reviews, showcases, listings) from the community ("global") blog, a particular user, a group, a tag, or a search query.
+   type: get
+   args:
+   -
+    context: {type: string, desc: "The context from which to retrieve content: specify 'global' to retrieve content from the community blog, 'user:123' to retrieve content from user #123's blog, 'group:42' to retrieve content from group #42's blog, 'tag:2' to retrieve content with tag #2, or 'search:search terms' to retrieve content matching a search query.", eg: "user:26"}
+   -
+    detailLevel: {type: enum, desc: "How much detail you want to retrieve: 'all' to get post metadata, content and SB XML, 'content' to get metadata and content, or 'summary' just to get metadata.", values: [all, content, summary], default: all, eg: all}
+   -
+    page: {type: int, desc: "Page number to retrieve.", default: 1, min: 1, eg: 2}
+   -
+    resultsPerPage: {type: int, desc: "How many content items you wish to retrieve per page.", default: 10, min: 10, max: 100, eg: 42}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true on success, false on failure.", eg: true}
+    -
+     msg: {type: string, desc: "Message indicating success or failure detail.", eg: "Retrieved 42 blog entries"}
+    -
+     detailLevel: {type: enum, desc: "How much detail was shown (see detailLevel argument for detail).", values: [all, content, summary], default: all, eg: all}
+    -
+     page: {type: int, desc: "Page number of retrieved info.", eg: 2}
+    -
+     resultsPerPage: {type: int, desc: "Number of content items per results page.", eg: 42}
+    -
+     totalPages: {type: int, desc: "The total number of pages available.", eg: 96}
+    -
+     totalResults: {type: int, desc: "The total number of content items available.", eg: 4000}
+    -
+     items:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "ID of the retrieved content item.", eg: "content:123"}
+       -
+        url: {type: string, desc: "Permalink of the retrieved content item.", eg: "http://peopleaggregator.org/content.php?cid=140"}
+       -
+        title: {type: string, desc: "Title of the content item.", eg: "PeopleAggregator lives!"}
+       -
+        content: {type: string, desc: "Content of the content.", eg: "Testing, testing - this is the first post.", default: ""}
+ -
+  peopleaggregator.getBoardMessages:
+   type: get
+   desc: Retrieve a forum topic, or a list of forum topics in a group.
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token for the user reading the messages (leave blank for anonymous - allowed for some topics).", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234", default: ""}
+   -
+    context: {type: string, desc: "ID of group for which to read the topic list, or ID of topic to retrieve messages", eg: "group:123"}
+   -
+    page:
+     type: int
+     desc: The page you want to receive.
+     eg: 1
+     min: 1
+     default: 1
+   -
+    resultsPerPage:
+     type: int
+     desc: The number of messages you want to receive per page.
+     eg: 100
+     min: 10
+     max: 100
+     default: 100
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true on success, false on failure", eg: true}
+    -
+     page:
+      type: int
+      desc: The current result page.
+      eg: 1
+    -
+     totalMessages:
+      type: int
+      desc: The total number of messages available.
+      eg: 234
+    -
+     totalPages:
+      type: int
+      desc: The total number of pages available.
+      eg: 3
+    -
+     resultsPerPage:
+      type: int
+      desc: The max number of messages shown per page.
+      eg: 100
+    -
+     messages:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "ID of the message", eg: "group:123:msg:456"}
+       -
+        title: {type: string, desc: "Title of the topic or message", eg: "Hello world"}
+       -
+        content: {type: string, desc: "Main body of the topic or message", eg: "This could be several lines long, but it's not."}
+       -
+        created: {type: string, desc: "When the message was created", eg: "(FIXME: some sort of standard date value?)"}
+       -
+        author:
+         type: hash
+         content:
+         -
+          id: {type: string, desc: "Author's user ID, or empty for an anonymous post", eg: "user:26"}
+         -
+          name: {type: string, optional: true, desc: "Author's user name", eg: "myelin"}
+ -
+  peopleaggregator.newBoardMessage:
+   type: post
+   desc: Create a new topic in a group, or reply to an existing topic.
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token for the user creating the content (leave blank if posting anonymously - allowed for some topics).", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234", default: ""}
+   -
+    context: {type: string, desc: "ID of group in which to create the new topic, or the topic to reply to", eg: "group:123"}
+   -
+    title: {type: string, desc: "Title of new topic", eg: "This is a topic"}
+   -
+    content: {type: string, desc: "Content of new topic", eg: "This is the main body of the new topic"}
+   -
+    allowAnonymous: {type: boolean, desc: "If creating a new topic, this flag defines whether anonymous posts to the topic will be permitted", eg: true, default: true}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the topic was successfully created, or false otherwise", eg: true}
+    -
+     id: {type: string, desc: "ID of the newly created topic or message", eg: "msg:123456"}
+ -
+  peopleaggregator.newContent:
+   type: post
+   desc: Add a content item (a blog post, or any SB microcontent type) to the system.
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token for the user creating the content.", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    context: {type: string, desc: "Where to place the content: leave blank to post to your blog, pass a user ID to post to another user's blog (currently not permitted), or pass a group ID to post to a group blog.", eg: "user:26", default: ""}
+   -
+    title: {type: string, desc: "Title of the content item.", eg: "PeopleAggregator lives!"}
+   -
+    content: {type: string, desc: "Content of the content.", eg: "Testing, testing - this is the first post.", default: ""}
+#   -
+#    structuredContent: {type: string, desc: "Structured Blogging XML chunk - for Structured Blogging content", eg: '<event type="event/conference"></event>', default: ""}
+   -
+    trackbacks: {type: string, desc: "Space-separated list of URLs to trackback.", eg: "http://topicexchange.com/t/test/ http://example.org/foobar/trackback", default: ""}
+   -
+    tags: {type: string, desc: "Comma-separated list of tags.", eg: "peepagg, people aggregator"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the content has been successfully saved, or false on failure.", eg: true}
+    -
+     id: {type: string, desc: "ID of the created content.", eg: "content:1234"}
+    -
+     url: {type: string, desc: "The URL of the created content.", eg: "http://example.org/peepagg/content.php?cid=1234"}
+    -
+     msg: {type: string, desc: Human-readable status message, eg: "Added content to myelin's blog."}
+    -
+     errors:
+      type: array
+      item:
+       type: hash
+       allow_extra_keys: true
+       content:
+       -
+        code: {type: string, desc: Machine-readable error message, eg: "trackback_failed"}
+       -
+        msg: {type: string, desc: Human-readable status message, eg: "Trackback to http://example.com/bad-url failed"}
+# -
+#  peopleaggregator.editContent:
+#   desc: Modifies an existing content item.
+#   type: post
+# -
+#  peopleaggregator.deleteContent:
+#   desc: Deletes a content item.
+#   type: post
+
+# metaWeblog API:
+#  http://www.xmlrpc.com/metaWeblogApi
+#  http://www.xmlrpc.com/stories/storyReader$2460
+
+ -
+  blogger.getUserInfo:
+   type: get
+   desc: "(Blogger+metaWeblog API) Get information about a user.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    appkey: {type: string, desc: "Appkey - not required.", eg: "none"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   return:
+    type: hash
+    content:
+    -
+     nickname: {type: string, desc: "User's login name", eg: "joepublic"}
+    -
+     userid: {type: string, desc: "User's ID number", eg: "user:123"}
+    -
+     email: {type: string, desc: "The user's e-mail address", eg: "me@privacy.com"}
+    -
+     url: {type: string, desc: "URL of user's public page", eg: "http://example.org/user.php?uid=123"}
+    -
+     lastname: {type: string, desc: "User's last name", eg: "Public"}
+    -
+     firstname: {type: string, desc: "User's first name", eg: "Joe"}
+ -
+  metaWeblog.getUserInfo:
+   alias: blogger.getUserInfo
+ -
+  blogger.getUsersBlogs:
+   type: get
+   desc: "(Blogger+metaWeblog API) Get a list of blogs that a user can access.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    appkey: {type: string, desc: "Appkey - not required.", eg: "none"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   return:
+    type: array
+    item:
+     type: hash
+     content:
+     -
+      isAdmin:
+       type: boolean
+       desc: true if the user is an administrator for the blog.
+       eg: true
+     -
+      url:
+       type: string
+       desc: The URL of the blog.
+       eg: http://peopleaggregator.net/user.php?uid=123
+     -
+      blogid:
+       type: string
+       desc: The ID of the blog (you can pass this to metaWeblog.newPost etc to identify the blog).
+       eg: user:123
+     -
+      blogName:
+       type: string
+       desc: The name of the blog.
+       eg: Test User's blog
+ -
+  metaWeblog.getUsersBlogs:
+   alias: blogger.getUsersBlogs
+ -
+  metaWeblog.getCategories:
+   type: get
+   desc: "(metaWeblog API) Get the list of categories from a blog.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container for which you wish to get a category list (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   return:
+    type: array
+    item:
+     type: hash
+     content:
+     -
+      categoryId: {type: string, desc: "ID of this category (used when posting to it)", eg: "1"}
+     -
+      categoryName: {type: string, desc: "Name of the category", eg: "Random stuff"}
+     -
+      description: {type: string, desc: "Description of this category", eg: "Things that don't fit into any other category"}
+     -
+      rssUrl: {type: string, desc: "URL of the RSS feed of this category", eg: "http://peepagg/something/feed/cat/123"}
+     -
+      htmlUrl: {type: string, desc: "URL of the HTML rendering of this category", eg: "http://peepagg/something/display/cat/123"}
+ -
+  blogger.getRecentPosts:
+   type: get
+   desc: "(Blogger API) Get a number of recent posts from a blog.  (DEPRECATED - use metaWeblog.getRecentPosts if possible).  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    appkey: {type: string, desc: "Appkey - not required.", eg: "none"}
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    n_posts: {type: int, desc: "The number of posts to retrieve", eg: 10, max: 50}
+   return:
+    type: array
+    item:
+     type: hash
+     content:
+     -
+      dateCreated: {type: datetime, desc: "The post's timestamp", eg: "2006-05-20T12:34:56Z"}
+     -
+      userid: {type: string, desc: "The user ID for the user who created this post", eg: "marc"}
+     -
+      postid: {type: string, desc: "The ID of this post", eg: "user:123:456"}
+     -
+      content: {type: string, desc: "Post content", eg: "It really is."}
+ -
+  metaWeblog.getRecentPosts:
+   type: get
+   desc: "(metaWeblog API) Get a number of recent posts from a blog.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    n_posts: {type: int, desc: "The number of posts to retrieve", eg: 10, max: 50}
+   return:
+    type: array
+    item:
+     type: hash
+     content:
+     -
+      dateCreated: {type: datetime, desc: "The post's timestamp", eg: "2006-05-20T12:34:56Z"}
+     -
+      userid: {type: string, desc: "The user ID for the user who created this post", eg: "marc"}
+     -
+      postid: {type: string, desc: "The ID of this post", eg: "user:123:456"}
+     -
+      title: {type: string, desc: "Post title", eg: "This is a post"}
+     -
+      description: {type: string, desc: "Post content", eg: "It really is."}
+     -
+      link: {type: string, desc: "Link associated with this post", eg: "marc"}
+     -
+      permaLink: {type: string, desc: "Permalink of this post", eg: "http://example.org/content.php?cid=456"}
+     -
+      categories:
+       type: array
+       desc: List of categories attached to this post
+       item:
+        type: string
+        desc: "Name of a category (ID of a category?)"
+        eg: "Uncategorized"
+ -
+  metaWeblog.getPost:
+   type: get
+   desc: "(metaWeblog API) Get detail of a post from a blog.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   argstyle: positional
+   args:
+   -
+    postid: {type: string, desc: "ID of the post you wish to delete (in the form returned by metaWeblog.newPost).", eg: "user:123:456"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   return:
+    type: hash
+    content:
+    -
+     dateCreated: {type: datetime, desc: "The post's timestamp", eg: "2006-05-20T12:34:56Z"}
+    -
+     userid: {type: string, desc: "The user ID for the user who created this post", eg: "marc"}
+    -
+     postid: {type: string, desc: "The ID of this post", eg: "user:123:456"}
+    -
+     title: {type: string, desc: "Post title", eg: "This is a post"}
+    -
+     description: {type: string, desc: "Post content", eg: "It really is."}
+    -
+     link: {type: string, desc: "Link associated with this post", eg: "marc"}
+    -
+     permaLink: {type: string, desc: "Permalink of this post", eg: "http://example.org/content.php?cid=456"}
+ -
+  metaWeblog.newPost:
+   desc: "(metaWeblog API) Creates a new content item.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   type: post
+   argstyle: positional
+   args:
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    post:
+     type: hash
+     allow_extra_keys: true
+     content:
+     -
+      title: {type: string, desc: "Post title.", eg: "Test post", default: ""}
+     -
+      link: {type: string, desc: "Something the post links to.", eg: "http://example.org/a_link.html", default: ""}
+     -
+      description: {type: string, desc: "Post content.", eg: "<p>This is a test post.</p>"}
+#     -
+#      categories:
+#       type: array
+#       item: {type: string, desc: "Category name.", eg: "Random Category"}
+   -
+    publish: {type: boolean, desc: "true if the post should be published immediately, or false if it should be kept as a draft.", eg: true}
+   return:
+    type: string
+    desc: The post ID of the created post (suitable for sending back to metaWeblog.editPost and metaWeblog.getPost).
+    eg: "user:123:456"
+ -
+  metaWeblog.editPost:
+   desc: "(metaWeblog API) Modifies an existing content item.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   type: post
+   argstyle: positional
+   args:
+   -
+    postid: {type: string, desc: "Identifier for the post you wish to modify (as returned from metaWeblog.newPost).", eg: "user:123:345"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    post:
+     type: hash
+     allow_extra_keys: true
+     content:
+     -
+      title: {type: string, desc: "Post title.", eg: "Test post", default: ""}
+     -
+      link: {type: string, desc: "Something the post links to.", eg: "http://example.org/a_link.html", default: ""}
+     -
+      description: {type: string, desc: "Post content.", eg: "<p>This is a test post.</p>"}
+#     -
+#      categories:
+#       type: array
+#       item: {type: string, desc: "Category name.", eg: "Random Category"}
+   -
+    publish: {type: boolean, desc: "true if the post should be published immediately, or false if it should be kept as a draft.", eg: true}
+   return:
+    type: boolean
+    desc: Always returns 'true'
+    eg: true
+ -
+  blogger.newPost:
+   desc: "(Blogger API) Creates a new content item.  (DEPRECATED - use metaWeblog.newPost if possible).  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]"
+   type: post
+   argstyle: positional
+   args:
+   -
+    appkey: {type: string, desc: "Appkey - not required.", eg: "none"}
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    content: {type: string, desc: "Post content.", eg: "<p>This is a test post.</p>"}
+   -
+    publish: {type: boolean, desc: "true if the post should be published immediately, or false if it should be kept as a draft.", eg: true}
+   return:
+    type: string
+    desc: The post ID of the created post (suitable for sending back to metaWeblog.editPost and metaWeblog.getPost).
+    eg: "user:123:456"
+ -
+  metaWeblog.newPost:
+   desc: "(metaWeblog API) Creates a new content item.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE METAWEBLOG API IS XML-RPC ONLY]"
+   type: post
+   argstyle: positional
+   args:
+   -
+    blogid: {type: string, desc: "Identifier for the 'blog' container you wish to publish to (blogids can be obtained by calling blogger.getUsersBlogs() and looking for the 'blogid' parameter in the array items in the returned data).", eg: "user:123"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    post:
+     type: hash
+     allow_extra_keys: true
+     content:
+     -
+      title: {type: string, desc: "Post title.", eg: "Test post", default: ""}
+     -
+      link: {type: string, desc: "Something the post links to.", eg: "http://example.org/a_link.html", default: ""}
+     -
+      description: {type: string, desc: "Post content.", eg: "<p>This is a test post.</p>"}
+#     -
+#      categories:
+#       type: array
+#       item: {type: string, desc: "Category name.", eg: "Random Category"}
+   -
+    publish: {type: boolean, desc: "true if the post should be published immediately, or false if it should be kept as a draft.", eg: true}
+   return:
+    type: string
+    desc: The post ID of the created post (suitable for sending back to metaWeblog.editPost and metaWeblog.getPost).
+    eg: "user:123:456"
+# -
+#  metaWeblog.editPost:
+#   desc: (metaWeblog API) Modifies an existing content item.
+#   type: post
+ -
+  blogger.deletePost:
+   desc: "(Blogger+metaWeblog API) Deletes a content item.  [NOTE: DO NOT USE THE REST FORM OF THIS API CALL; THE BLOGGER API IS XML-RPC ONLY]"
+   type: post
+   argstyle: positional
+   args:
+   -
+    appkey: {type: string, desc: "Appkey - not required.", eg: "none"}
+   -
+    postid: {type: string, desc: "ID of the post you wish to delete (in the form returned by metaWeblog.newPost).", eg: "user:123:456"}
+   -
+    login: {type: string, desc: "User's login name.", eg: "testme"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   -
+    publish: {type: boolean, desc: "true if the deletion should be published immediately, or false if not.", eg: true}
+   return:
+    type: boolean
+    desc: Always returns true
+    eg: true
+ -
+  metaWeblog.deletePost:
+   alias: blogger.deletePost
+# -
+#  peopleaggregator.moderateContent:
+#   desc: Releases a content item from moderation
+#   type: post
+# -
+#  peopleaggregator.getComments:
+#   desc: Retrieves the comments on a content item
+#   type: get
+# -
+#  peopleaggregator.addComment:
+#   desc: Adds a comment on a content item
+#   type: post
+ -
+  peopleaggregator.getFolders:
+   desc: List a user's mail folders.
+   type: get
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the mailbox list request was processed successfully, or false if an error occurred", eg: true}
+    -
+     folders:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        name: {type: string, desc: "Folder name", eg: "Inbox"}
+ -
+  peopleaggregator.getMessages:
+   desc: List messages in a user's inbox or sent message folder.
+   type: get
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    folder: {type: string, desc: "The name of the folder to list", eg: Inbox}
+   -
+    detailLevel: {type: enum, desc: "How much detail you want to retrieve: 'all' to get message metadata and content, or 'summary' just to get metadata.", values: [all, summary], default: all, eg: all}
+   -
+    page:
+     type: int
+     desc: The page you want to receive.
+     eg: 1
+     min: 1
+     default: 1
+   -
+    resultsPerPage:
+     type: int
+     desc: The number of messages you want to receive per page.
+     eg: 100
+     min: 10
+     max: 100
+     default: 10
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the mailbox list request was processed successfully, or false if an error occurred", eg: true}
+    -
+     messages:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "Message ID", eg: "privmsg:123"}
+       -
+        sender:
+         type: hash
+         content:
+         -
+          id: {type: string, desc: "User ID of the user who sent the message", eg: "user:456"}
+       -
+        recipients:
+         type: array
+         item:
+          type: hash
+          content:
+          -
+           login: {type: string, desc: "Login name of a user to whom the message was sent", eg: "myelin"}
+       -
+        title: {type: string, desc: "Message title", eg: "This is a message"}
+       -
+        content: {type: string, desc: "Message body", eg: "Hi... how are you?", default: ""}
+ -
+  peopleaggregator.sendMessage:
+   desc: Sends a private message to another user
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    recipients: {type: string, desc: "Comma-separated list of login names of message recipient", eg: "myelin ,marc"}
+   -
+    title: {type: string, desc: "Message title", eg: "This is a message"}
+   -
+    content: {type: string, desc: "Message body", eg: "Hi... how are you?"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the message was sent successfully, or false if an error occurred.", eg: true}
+ -
+  peopleaggregator.newFile:
+   desc: Creates a new media object on the server, either by uploading a file or by supplying a URL.  (FIXME - upload probably only works in XML-RPC mode at the moment.  REST *might* work, but it's not guaranteed and not tested.)  This lets you upload media (image, audio, video) files, i.e. it presents an API to the upload function in media_gallery.php.  Either the 'url' parameter, or both the 'filename' and 'data' parameters, must be supplied.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    filename: {type: string, desc: "Filename of uploaded file", eg: "my-picture.jpg", optional: true}
+   -
+    url: {type: string, desc: "URL to use instead of uploaded file (if no filename and data are provided)", eg: "http://example.org/my-remote-picture.jpg", optional: true}
+   -
+    type: {type: enum, desc: "File class", eg: image, values: [image, audio, video], default: image}
+   -
+    title: {type: string, desc: "Title to use when displaying the file", eg: "A picture of me."}
+   -
+    content: {type: string, desc: "Description of the file", eg: "Picture of me crossing a pond at Blue Skies, Kaiapoi, New Zealand.  Taken by my girlfriend on 11 May 2006."}
+   -
+    tags: {type: string, desc: "Comma-separated list of tags", eg: "one, two, three", default: ""}
+   -
+    context: {type: string, desc: "ID of the album (retrieved from peopleaggregator.getAlbums or peopleaggregator.newAlbum) in which to place this file.", eg: "album:52"}
+   -
+    access: {type: enum, desc: "Who can see this file", values: [nobody, everybody, relations], eg: everybody, default: nobody}
+   -
+    data: {type: binary, desc: "File contents.  (XML-RPC: send as a base64 object.)", optional: true}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the file was successfully received and saved, or false if an error occurred.", eg: true}
+    -
+     id: {type: string, desc: "ID of the newly uploaded file", eg: "file:123"}
+    -
+     url: {type: string, desc: "URL of the newly uploaded file", eg: "http://peopleaggregator.org/files/my-picture.jpg"}
+# -
+#  peopleaggregator.deleteFile:
+#   type: post
+ -
+  peopleaggregator.getAlbums:
+   type: get
+   desc: Retrieve all albums that a given user, or an anonymous viewer, can access.
+   args:
+   -
+    authToken: {type: string, desc: "If present, an authentication token for the user to act as.", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234", optional: true}
+#   -
+#    accessRequired: {type: enum, desc: "The level of access required to an album.  If 'write', only albums that are writeable by the authenticated user will be shown.  If 'read', all albums that are visible to the user (or an anonymous viewer, if no authToken is given) will be shown.", values: [read, write], eg: read, default: write}
+   -
+    context: {type: string, desc: "'user:123' to return all visible personal albums for user 123, or if an authToken is provided: 'user' to return all your personal albums, 'group' to return your groups, or 'all' to return your albums *and* groups", eg: "user", default: "user"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the file was successfully received and saved, or false if an error occurred.", eg: true}
+    -
+     albums:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "Album ID", eg: "user:26:album:42"}
+       -
+        access: {type: enum, desc: "Access level the given user (or anonymous viewer) has to this album.  'write' means you can publish to the album, whereas 'read' means you can view the album.", values: [read, write], eg: read}
+       -
+        title: {type: string, desc: "Album name", eg: "My family photos"}
+       -
+        created: {type: string, desc: "When the message was created", eg: "(FIXME: some sort of standard date value?)", optional: true}
+       -
+        type:
+         type: array
+         desc: Content types allowed.  Personal albums only allow one content type, but group albums can hold multiple content types.  (Actually, behind the scenes, your content is split into multiple albums.  We might give these all different IDs at some point - not sure yet.)
+         item: {type: enum, desc: "Content type allowed", values: [image, audio, video], eg: image}
+ -
+  peopleaggregator.getFiles:
+   type: get
+   desc: Retrieve all media files in a given album or group.
+   args:
+   -
+    authToken: {type: string, desc: "Authentication token for the user whose files you want to query", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    context: {type: string, desc: "A group ID to retrieve media files from a group, or an album ID to retrieve media files from an album", eg: "group:42"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the file was successfully received and saved, or false if an error occurred.", eg: true}
+    -
+     files:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        id: {type: string, desc: "File ID", eg: "file:42"}
+       -
+        url: {type: string, desc: "URL of file (or blank if an error occurred reading the file - e.g. if the file has been deleted)", eg: "http://peopleaggregator.org/files/something.jpg", optional: true}
+       -
+        title: {type: string, desc: "Title for file description", eg: "Picture of something"}
+       -
+        content: {type: string, desc: "Long description of file", eg: "I can't remember what this is, but it's definitely something."}
+       -
+        created: {type: string, desc: "When the file was uploaded", eg: "(FIXME: some sort of standard date value?)", optional: true}
+       -
+        type: {type: enum, desc: "File class", values: [image, audio, video], eg: image}
+       -
+        author: {type: string, desc: "ID of user who uploaded the file", eg: "user:26"}
+       -
+        width: {type: int, desc: "Width of image (only for image files)", eg: 42, optional: true}
+       -
+        height: {type: int, desc: "Height of image (only for image files)", eg: 42, optional: true}
+ -
+  peopleaggregator.deleteFile:
+   type: post
+   desc: Deletes a media file.
+   args:
+   -
+    authToken: {type: string, desc: "Authentication token for the user who wants to delete the file", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    id: {type: string, desc: "ID of the file to delete", eg: "file:42"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the file was successfully received and saved, or false if an error occurred.", eg: true}
+# -
+#  peopleaggregator.newAlbum:
+#   type: post
+
+ -
+  peopleaggregator.getPersonas:
+   desc: Get a list of the user's personas.
+   type: get
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the persona list request was processed successfully, or false if an error occurred", eg: true}
+    -
+     personas:
+      type: array
+      item:
+       type: hash
+       content:
+       -
+        persona_id: {type: int, desc: "Persona ID", eg: "123"}
+       -
+        user_id: {type: int, desc: "User ID", eg: "123"}
+       -
+        persona_service_id: {type: int, desc: "Persona Service ID", eg: "123"}
+       -
+        sequence: {type: int, desc: "Sequence", eg: "1"}
+       -
+        name: {type: string, desc: "Persona Name", eg: "My MySpace Persona"}
+       -
+        configuration: {type: string, desc: "JSON Persona Configuration", eg: json}
+
+ -
+  peopleaggregator.countPersonas:
+   desc: Count the number of personas a user has.
+   type: get
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the persona list request was processed successfully, or false if an error occurred", eg: true}
+    -
+     count: {type: int, desc: "Count of personas", eg: "5"}
+
+ -
+  peopleaggregator.getPersona:
+   desc: Get a user's persona by index.
+   type: get
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    index: {type: int, desc: "The zero based index of the persona to retrieve", eg: "0"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the persona list request was processed successfully, or false if an error occurred", eg: true}
+    -
+     persona:
+      type: hash
+      content:
+      -
+       persona_id: {type: int, desc: "Persona ID", eg: "123"}
+      -
+       user_id: {type: int, desc: "User ID", eg: "123"}
+      -
+       persona_service_id: {type: int, desc: "Persona Service ID", eg: "123"}
+      -
+       sequence: {type: int, desc: "Sequence", eg: "1"}
+      -
+       name: {type: string, desc: "Persona Name", eg: "My MySpace Persona"}
+      -
+       configuration: {type: string, desc: "JSON Persona Configuration", eg: json}
+
+ -
+  peopleaggregator.newPersona:
+   desc: Creates a new persona.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    name: {type: string, desc: "Persona name", eg: "my-picture.jpg"}
+   -
+    persona_service_id: {type: int, desc: "Persona service id", eg: 123}
+   -
+    sequence: {type: int, desc: "Sequence number", eg: "1"}
+   -
+    configuration: {type: string, desc: "JSON persona configuration", eg: json}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the request was processed successfully, or false if an error occurred", eg: true}
+    -
+     persona_id: {type: int, desc: "Persona ID", eg: "123"}
+
+ -
+  peopleaggregator.deletePersona:
+   desc: Delete an existing persona.
+   type: post
+   args:
+   -
+    authToken: {type: string, desc: "An authentication token", eg: "as9d867f234o7asdf:928734982734987234:298374982734987234"}
+   -
+    index: {type: int, desc: "The zero based index of the persona to delete", eg: "0"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the request was processed successfully, or false if an error occurred", eg: true}
+ -
+  peopleaggregator.listAds:
+   desc: List advertisements to be shown on a given page
+   type: get
+   args:
+   -
+    page_type: {type: enum, desc: "Page on which the ads are to be shown", values: [homepage, user_public, group], default: homepage, eg: homepage}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if the user has successfully been created, false on failure.", eg: true}
+    -
+     msg: {type: string, desc: Detailed response information, eg: User phil created successfully}
+    -
+     ads:
+      type: array
+      desc: An advertisement
+      item:
+       type: hash
+       content:
+       -
+        id:
+         type: string
+         desc: Advertisement ID
+         eg: "ad:123"
+       -
+        title:
+         type: string
+         desc: Advertisement title
+         eg: "Priceless!"
+       -
+        description:
+         type: string
+         desc: Advertisement detail
+         eg: "Some text describing the ad (or in the ad?) would go here, if I was more imaginative."
+       -
+        image:
+         type: hash
+         desc: Image to be shown in advertisement.
+         optional: true
+         content:
+         -
+          url: {type: string, desc: "URL of image", eg: "http://example.org/peepagg/files/ad_image.jpg"}
+         -
+          width: {type: int, desc: "Width of image", eg: 420}
+         -
+          height: {type: int, desc: "Height of image", eg: 960}
+       -
+        url:
+         type: string
+         optional: true
+         desc: URL to send the user to when the ad is clicked
+         eg: "http://example.com/landing_page"
+       -
+        javascript:
+         type: string
+         optional: true
+         desc: Advertisement javascript
+         eg: "alert('panic!')"
+       -
+        orientation: {type: string, desc: "Horizontal, vertical position (with comma) of the ad module, as two integers", eg: "2,1"}
+ -
+  peopleaggregator.getFriendAddresses:
+   type: get
+   desc: Get user friend list from Plaxo or WindowsLive services.
+   args:
+   -
+    serviceName: {type: string, desc: "Name of destination service: Plaxo or WindowsLive", eg: "Plaxo"}
+   -
+    login: {type: string, desc: "User's authentication ID. (email address or Aol screen name)", eg: "testuser@live.com or testuser21"}
+   -
+    password: {type: string, desc: "User's password.", eg: "testuser123"}
+   return:
+    type: hash
+    content:
+    -
+     success: {type: boolean, desc: "true if user friend list readed sucessfuly. , false on failure.", eg: true}
+    -
+     msg: {type: string, desc: Human-readable status message, eg: Retrieved 8 contacts.}
+    -
+     contacts:
+      type: array
+      desc: List of user's contacts
+      item:
+       type: hash
+       content:
+       -
+        UserName:
+         type: string
+         desc: Name retrieved from user's address book
+         eg: "Jhon Smith"
+       -
+        Email:
+         type: string
+         desc: Email address retrieved from user's address book
+         eg: "testuser@live.com!"

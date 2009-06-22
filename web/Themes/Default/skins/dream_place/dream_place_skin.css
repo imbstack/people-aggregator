@@ -1,0 +1,625 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This network_skin.css is the secondary CSS document in the teired system and is used to define aesthetic styling information. */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document */
+			
+/* Dream Place Skin created by Marc Senasac <marcs@broadbandmechanics.com> January 5, 2007 */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> January 25, 2007 */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 1, 2007 with additional IE6-7 conflict fixes */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 2, 2007 references to iepngfix.htc removed */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 4, 2007 iepngfix.htc replaced on blog bg and 2nd tier nav */
+
+
+
+body {
+	background: none;
+	background-color: #336600;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #336600;
+	}
+	
+	
+a:link,
+a:visited { 
+	color: #336600;
+	text-decoration: none;
+ }
+
+a:hover { 
+	color: #336600;
+	text-decoration: underline;
+ }
+
+
+/* Default Body Shadow height is 500px. 200 added and 200 added to container margin height below. */
+
+*html #body_shadow {
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/dream_places/images/bg_700_sh.jpg'); 
+	background: url(images/bg_700_sh.jpg) no-repeat center;
+}
+
+#body_shadow {
+	background: url(images/bg_700_sh.jpg) no-repeat center;
+	width: 100%;
+	height: 700px;
+}
+
+
+
+#pg_network_home #body_shadow {
+	background: url(images/bg_700_networks_home.jpg) no-repeat center;
+	width: 100%;
+	height: 700px;
+}
+
+#pg_people #body_shadow {
+	background: url(images/bg_700_people.jpg) no-repeat center;
+	width: 100%;
+	height: 700px;
+}
+
+#pg_groups_home #body_shadow {
+	background: url(images/bg_700_groups_home.jpg) no-repeat center;
+	width: 100%;
+	height: 700px;
+}
+
+
+#container { 
+  background-color: transparent;
+  width: 1016px;
+  margin: 0 auto;
+  margin-top: -800px;
+}
+
+#header {
+	background-image: none
+}
+	
+#shadow { 
+	background: none;
+	background-repeat: no-repeat;
+	background-color: none;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
+}
+
+#header_navbar_back { 
+	background: url(images/header_navbar_back150.png) no-repeat;
+	width: 1016px;
+	height: 150px;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/dream_place/images/header_navbar_back150.png');
+	
+} 
+
+#page_people #header_navbar_back,
+#page_network_home #header_navbar_back { 
+	background: url(images/header_navbar_back150_clean.png) no-repeat;
+	width: 1016px;
+	height: 150px;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/dream_place/images/header_navbar_back150_clean.png');
+	
+} 
+
+
+
+/* Main First Tier Nav Bar */
+#first_tier_navbar { 
+	color: #336600;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+
+#first_tier_navbar a:link,
+#first_tier_navbar a:visited { 
+	color: #336600;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#first_tier_navbar a:hover { 
+	color: #336600;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+#first_tier_navbar li a#current {
+	margin-right: 0;
+	margin-left: 0;
+	background-color: #336600;
+	padding: 3px 5px 7px 5px;
+	color: #FFFFFF;
+}
+
+
+
+
+/* Main Second Tier Nav Bar */
+
+img, #navbar_header ul { behavior: url(iepngfix.htc); }
+		
+
+#navbar_header ul {
+margin: 0;
+padding: 5px 10px 5px 0px;
+background-color: transparent;
+background-image: url(images/bg_nav_tier2.png);
+background-repeat: no-repeat;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/dream_place/images/bg_nav_tier2.png');
+ }
+ 
+
+
+#second_tier_navbar li { 
+	color: #FFFFFF;
+	padding-right: 5px;
+
+}
+
+
+#second_tier_navbar li.active a {
+	background-color: #336600;
+	font-weight: bold;
+	padding: 4px; }
+
+#second_tier_navbar a:link,
+#second_tier_navbar a:visited { 
+	color: #FFFFFF; 
+}
+
+#second_tier_navbar a:hover { 
+	color: #FFFFFF;
+}
+
+
+img, #bg_blog_post { behavior: url(iepngfix.htc); }
+
+
+#bg_blog_post { 
+	background: url(images/bg_blog_posts2.png) no-repeat 0px 0px;
+	background-repeat: no-repeat;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_noneThemes/Default/skins/dream_place/images/bg_blog_posts2.png'); 
+}
+
+
+
+
+
+
+/* Move column A down. Remove this for default from layout.css  */
+
+
+/*
+ 
+#col_a {
+margin-top: 100px; 
+}
+*/
+
+
+
+/* Move column B down. Remove this for default from layout.css  10px padding for bottom of blog */
+
+
+#col_b {
+	background: url(images/bg_col_b.jpg); 
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	margin-top: 100px; }
+
+
+
+
+#header h1 {
+	position: absolute;
+	top: 30px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 16px;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	color: #ffffff; }
+		
+#header h2 {
+	position: absolute;
+	top: 65px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 16px;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	color: #ffffff; }
+
+
+
+/* Module body and headers. Col_A styles the tool bar type module column. Remove 2 col_a below for 2 default module columns */
+
+.module {
+	width: 198px;
+	color: #336600;
+	margin-bottom: 10px;
+	background-image: none;
+	background-repeat: repeat-y;
+	border-color: #FFFFFF;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #FFFFFF;
+	overflow: hidden;
+border: 1px #FFFFFF solid; }
+
+
+/*	
+
+#col_a .module {
+	width: 198px;
+	margin-bottom: 0px;
+	border-color: #00FFFF;
+	border-width: 1px;
+	border-style: none;
+	padding-bottom: 0px;
+	color: #ffffff;
+background-color: #999999; }
+
+*/
+
+.module h1{
+	width: 189px;
+	color: #FFFFFF;
+	padding: 2px 2px 2px 7px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #336600 url(images/bg_top_module.png) no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Dream_place/images/bg_top_module.png');
+	
+	}
+
+/*
+#col_a .module h1{
+	width: 189px;
+	color: #FFF;
+	padding: 2px 2px 2px 7px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #000000 url(images/bg_top_module.png) no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module.png');
+}
+
+*/
+
+
+/* Module Delimiters  */
+
+
+.module_icon_list li {
+
+	border-bottom: 1px solid #336600;
+}
+
+.module_tagcloud ul li {
+	border-bottom: 1px solid #336600;
+}
+
+
+.module_definition_list dt {
+	border-bottom: 1px solid #336600;
+}
+
+/* Tabs on modules */
+
+.module_tabbed_image_list ul {
+	background: #336600 none repeat-x;
+	}
+
+.module_tabbed_image_list li.active a {
+	background: none;
+	background-color: #FFFFFF;
+	background-repeat: repeat-x;
+color: #336600; }
+
+
+.module_tabbed_image_list a:link,
+.module_tabbed_image_list a:visited { 
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.module_tabbed_image_list a:hover { 
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+
+
+.login_box{
+	position: absolute;
+	background: none;
+	background-color: #336600;
+	border-right: 1px #FFFFFF solid;
+	border-left: 1px #FFFFFF solid;
+	border-bottom: 1px #FFFFFF solid;
+	padding: 7px 7px 2px;
+	right: 10px;
+	font-size: 13px;
+	text-align: center;
+	color: #ffffff;
+	border-top-width: 0;
+	border-top-style: none;
+	}
+	
+.login_box a:link,
+.login_box a:visited {
+	text-decoration: underline;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+.login_box a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+
+/* ID login dropdown */
+
+.id_list {
+	border-top: 1px none #CCCCCC;
+	}
+
+.id_item {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+
+.id_list .id_name a:link,
+.id_list .id_name a:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .id_name a:hover { text-decoration: underline; }
+
+.id_list .edit_logoff {
+	padding: 2px 0 2px 0;
+	background-color: #666666;
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+.id_list .edit_logoff a:link,
+.id_list .edit_logoff a:visited {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .edit_logoff a:hover { text-decoration: underline; }
+
+.id_params {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	margin: 0;
+	padding: 5px 0 0 0;
+	background-color: #666666; }
+	
+/* The Big Middle content section abd it's tabs */  /* put border-top: none; here if single pixel line on top is desired to be moved */
+
+
+
+.wide_content,
+.module_wide {
+	margin: 0 -1px 0 1px;
+	border-top: 1px solid #ffffff;
+	padding-bottom: 10px; 
+	background: none; 
+	background-repeat: no-repeat;
+	background-color: #none;
+}
+
+*html .wide_content,
+*html .module_wide {
+	border: 1px none #999999;
+}
+
+
+/* center column nav (third tier) */
+
+.wide_content ul#filters {
+	margin: 0px 0px 8px 0px;
+	background: none; 
+	background-repeat: repeat-x;
+	background-color: #336600; }
+
+.wide_content ul#filters li a {
+	padding: 5px 10px 3px 10px;
+	text-decoration: none;
+	float: left;
+	border-right: 1px solid #FFFFFF;
+	/* border-left: 1px solid #DFDFDF; */
+	height: 13px;
+}
+
+.wide_content ul#filters li a:link,
+.wide_content ul#filters li a:visited { 
+	color: #FFFFFF;
+}
+
+
+.wide_content ul#filters li a:hover {
+ color: #336600;
+	background-color: #fff;
+	text-decoration: none;
+	height: 13px;
+}
+
+.wide_content ul#filters li.active a {
+color: #336600;
+	background: white;
+	background-repeat: repeat-x;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	height: 13px;
+}
+
+/* Specific Module Tweak: More padding for browse tags module */
+
+.module_browse_tag {
+padding: 6px;
+}
+
+
+/* H1 in the center column. Pulled to the left from the default center position for the date to appear on the right. Date below */
+
+
+.wide_content h1,
+.module_wide h1 {
+	font-size: 22px;
+	color: #336600;
+	font-weight: normal;
+/*	text-align: left;
+	margin-left: 11px;
+margin-bottom: -16px;*/
+}
+
+#page_people .wide_content h1 {
+margin-bottom: 14px;
+}
+
+#page_showcontent .module_wide h1 {
+margin-bottom: 14px;
+}
+
+/* Blog Post Display stuff */
+
+.blog h1, .events h1, .reviews h1, .peopleshowcase h1, .video h1, .audio h1, .image h1, .groupshowcase h1 {
+	color: #336600;
+	text-align: left;
+	font-weight: normal;
+	margin: 0 0 10px 0;
+ }
+	
+	.blog, .events, .reviews, .peopleshowcase, .video, .audio, .image, .groupshowcase {
+	color: #336600; }
+
+.date {
+	color:#336600;
+/*	text-align: right;
+	margin-top: 0px;
+	margin-right: 11px;*/
+}
+
+.description {
+	color:#336600;
+/*	text-align: right;
+	margin-top: 0px;
+	margin-right: 11px;*/
+}
+
+/* Forms Stuff */
+
+/*
+.wide_content fieldset.center_box legend,
+.wide_content fieldset.col_b_fieldset legend {
+
+	color: #444444;
+}
+
+*/
+
+
+
+/* 	 General Controls */
+
+
+.view_all {
+	border: 1px solid #336600;
+	margin: 5px 70px 5px 70px;
+	padding: 3px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.prev_next a {
+	padding: 2px 6px;
+	border: solid 1px #336600;
+	background: #fff;
+	text-decoration: none;
+}
+	
+.prev_next a:visited {
+	padding: 2px 6px;
+	border: solid 1px #336600;
+	background: #fff;
+	text-decoration: none;
+}
+
+.prev_next a:hover {
+	color: #fff;
+	background: #336600;
+	border-color: #FFFFFF;
+	text-decoration: none;
+}
+	
+.prev_next .selected {
+	padding: 2px 6px;
+	border-color: #fff;
+	font-size: 11px;
+	vertical-align: top;
+	background: #fff;
+}
+
+
+/* 	 As stated: The foreground Element */
+
+#foreground_element {
+background-image: url(images/frontbranch.png);
+width: 187px;
+height: 116px;
+background-repeat: no-repeat;
+_background-image: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Dream_place/images/frontbranch.png');
+top: 27px;
+left: 140px;
+position: absolute; }
+
+#page_people #foreground_element,
+#page_network_home #foreground_element {
+background-image: none;
+width: 187px;
+height: 116px;
+background-repeat: no-repeat;
+_background-image: none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
+top: 27px;
+left: 140px;
+position: absolute; }
+
+	
+	
+	
+
+.module_browse_tag {
+padding: 6px;
+}
+
+/* For arrows spacing in module header. This should go back into the master */
+
+.module h1 img {
+padding-right: 4px; }
+
+#col_d .wide_content {
+  background:white;
+  border:none;
+  width: 752px;
+}
+#navbar_content_type #second_tier_navbar a{
+  color: #000000;
+}

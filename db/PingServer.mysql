@@ -1,0 +1,34 @@
+-- phpMyAdmin SQL Dump
+-- version 2.6.1-pl3
+-- http://www.phpmyadmin.net
+-- 
+-- Host: localhost
+-- Generation Time: Jun 07, 2006 at 04:55 PM
+-- Server version: 4.1.12
+-- PHP Version: 5.0.4
+-- 
+-- Database: `ping_server`
+-- 
+
+-- --------------------------------------------------------
+-- Create a database with name ping_server first.
+-- 
+-- Table structure for table `ping_data`
+-- 
+
+CREATE TABLE `ping_data` (
+  `pa_id` bigint(20) NOT NULL auto_increment,
+  `pa_url` varchar(255) default NULL,
+  `pa_activity` int(1) default NULL,
+  `pa_user_url` varchar(255) default NULL,
+  `pa_user_name` varchar(50) default NULL,
+  `pa_permalink` varchar(255) default NULL,
+  `pa_title` varchar(100) default NULL,
+  `pa_group_url` varchar(255) default NULL,
+  `pa_group_name` varchar(50) default NULL,
+  `pa_network_url` varchar(255) default NULL,
+  `pa_network_name` varchar(50) default NULL,
+  `pa_created` int(11) default NULL,
+  PRIMARY KEY  (`pa_id`)
+) ;
+        

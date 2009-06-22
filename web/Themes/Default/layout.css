@@ -1,0 +1,122 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This lauout.css is the initial CSS document in the 3 teired system and is used to define the geographic structure of pages. */
+/* All aesthetic styling information for pages should be placed in subsequent sheets and not in this document */
+      
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> September 21, 2006 */
+/* Modified by marcs@broadbandmechanics.com September 25, 2006 for width matching improvements */
+/* Modified by fabrizio@evectors.it September 26, 2006 */
+/* Modified by marcs@broadbandmechanics.com September 26, 2006 */
+/* Modified by fabrizio@evectors.it October 10, 2006 */
+/* Modified by fabrizio@evectors.it October 16, 2006 */
+/* Modified by fabrizio@evectors.it December 15, 2006 */
+/* Modified by fabrizio@evectors.it December 22, 2006 */
+/* Modified by fabrizio@evectors.it February 19, 2006 */
+
+
+/* Network hat layout */
+
+#peopleaggregator_networks {
+	width: 100%;
+	height: 27px;
+	background: url(images/panet_back.gif);
+	background-repeat: repeat-x; }
+
+.peopleaggregator_networks_dimension {
+	width: 1016px;
+	margin: 0 auto; }
+
+/* Page layout below the network hat */
+
+#shadow { 
+	width: 1032px;
+	height: 600px;
+	margin: 0 auto;
+	margin-top: -500px;
+	z-index: 100; }
+
+#container { 
+	width: 1016px;
+	margin: 0 auto;
+	margin-top: -600px;
+	margin-bottom: 10px;
+	min-height: 900px;
+	max-height: auto; }
+
+#header {
+	position: relative;
+	width: 1016px;
+	height: 150px; }
+
+#navbar_header {
+	width: auto;
+	height: 25px; }
+
+#bg_blog_post { 
+	margin: 0 auto;
+	margin-top: -2px;
+	width: 600px;
+	height: 714px; }
+
+.no_second_tier #bg_blog_post { margin-top: -15px; }
+
+.no_second_tier #bg_blog_big { margin-top: -15px; }
+
+#content  {
+	width: auto;
+	overflow: auto;
+	clear: both;
+	margin-top: -714px;
+	top: 177px; }
+
+/* 2-3 column content section below header */
+
+#col_a {
+	margin-top: 10px;
+	margin-left: 8px;
+	width: 200px;
+	float: left; }
+
+*html #col_a { margin-left: 4px; }
+
+#col_b {
+	width: 578px;
+	margin-left: 11px;
+	margin-right: 11px;
+	float: left;
+	overflow: hidden;
+	min-height: 800px;
+	max-height: auto; }
+
+#col_c {
+	margin-top: 10px;
+	width: 200px;
+	float: left; }
+
+#col_d {
+	margin: 0 0 0 21px;
+	width: 972px;
+	min-height: 800px;
+	max-height: auto; }
+
+#toc {
+	margin: 0 0 0 20px;
+	width: 180px;
+	float: left;
+	padding: 50px 10px 10px 10px; }
+
+*html #toc { margin: 0 0 0 10px; }
+
+.network_config .wide_content {
+	margin: 0;
+	width: 732px;
+	float: left; }
+
+#footer {
+	position: relative;
+	margin: 10px 0 0 0;
+	padding: 5px 0 20px 0;
+	width: 100%;
+	text-align: center;
+	font-size: 11px; }
+
+

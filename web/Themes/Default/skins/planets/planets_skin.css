@@ -1,0 +1,819 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This network_skin.css is the secondary CSS document in the teired system and is used to define aesthetic styling information. */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document */
+			
+/* planets Skin created by Marc Senasac <marcs@broadbandmechanics.com> January 19, 2007 */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> January 25, 2007 */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> January 31, 2007 with additional IE6-7 conflict fixes */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 1, 2007 with additional IE6-7 conflict fixes */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 2, 2007 references to iepngfix.htc removed */
+/* Updated by Marc Senasac <marcs@broadbandmechanics.com> February 4, 2007 iepngfix.htc replaced on blog bg and 2nd tier nav */
+
+
+
+
+body {
+	background: #000000 url(images/bg_2.jpg) repeat;
+	}
+	
+
+
+a:link,
+a:visited { 
+	color: #999999;
+	text-decoration: none;
+ }
+
+a:hover { 
+	color: #999999;
+	text-decoration: underline;
+ }
+
+
+
+
+
+/* Default Body Shadow height is 500px. 200 added and 200 added to container margin height below. */
+
+
+
+*html #body_shadow {
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_noneThemes/Default/skins/planets/images/bg_stars.jpg'); 
+	background: url(images/bg_stars.jpg) no-repeat center;
+	}
+	
+
+#body_shadow {
+	background: url(images/bg_stars.jpg) no-repeat center;
+	width: 100%;
+	height: 500px;
+}
+
+
+#pg_homepage #body_shadow {
+	background: url(images/bg_red_planet.jpg) no-repeat center;
+	width: 100%;
+	height: 500px;
+}
+
+
+#pg_people #body_shadow {
+	background: url(images/bg_blue_planet.jpg) no-repeat center;
+	width: 100%;
+	height: 500px;
+}
+
+
+#pg_groups_home #body_shadow {
+	background: url(images/bg_moon.jpg) no-repeat center;
+	width: 100%;
+	height: 500px;
+}
+
+
+
+
+#container {
+	background-color: transparent;
+	width: 1016px;
+	margin: 0 auto;
+	margin-top: -600px;
+	
+}
+
+#header {
+	background-image: none}
+	
+	
+#shadow { 
+	background: none;
+	background-repeat: no-repeat;
+	background-color: none;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
+}
+
+#header_navbar_back { 
+	background: url(_images/header_navbar_back.png) no-repeat;
+	width: 1016px;
+	height: 150px;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_images/header_navbar_back.png');
+/*  margin-left: -10px; */ } 
+
+/* Main First Tier Nav Bar */
+#first_tier_navbar { 
+	color: #999999;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+
+#first_tier_navbar a:link,
+#first_tier_navbar a:visited { 
+	color: #999999;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#first_tier_navbar a:hover { 
+	color: #999999;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+#first_tier_navbar li a#current {
+	margin-right: 0;
+	margin-left: 0;
+	background-color: #000000;
+	padding: 3px 5px 7px 5px;
+	color: #999999;
+}
+
+
+/* Main Second Tier Nav Bar */
+
+img, #navbar_header ul { behavior: url(iepngfix.htc); }
+		
+#navbar_header ul {
+margin: 0;
+padding: 5px 10px 5px 0px;
+background-color: transparent;
+background-image: url(images/bg_nav_tier2.png);
+background-repeat: no-repeat;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/planets/images/bg_nav_tier2.png');
+ }
+ 
+
+#pg_network_home #navbar_header ul {
+background-color: transparent;
+background-image: url(_none/bg_nav_tier2.png);
+background-repeat: no-repeat;
+margin: 0;
+padding: 5px 10px 5px 0px;
+ }
+ 
+#pg_showcontent #navbar_header ul {
+background-color: transparent;
+background-image: url(_none/bg_nav_tier2.png);
+background-repeat: no-repeat;
+margin: 0;
+padding: 5px 10px 5px 0px;
+ }
+ 
+#pg_homepage #navbar_header ul {
+background-color: transparent;
+background-image: url(_none/bg_nav_tier2.png);
+background-repeat: no-repeat;
+margin: 0;
+padding: 5px 10px 5px 0px;
+ }
+*/
+
+
+
+
+#second_tier_navbar li { 
+	color: #999999;
+	padding-right: 5px;
+
+}
+
+
+#second_tier_navbar li.active a {
+	background-color: #000000;
+	font-weight: bold;
+	padding: 4px; }
+
+#second_tier_navbar a:link,
+#second_tier_navbar a:visited { 
+	color: #999999; 
+}
+
+#second_tier_navbar a:hover { 
+	color: #999999;
+}
+
+img, #bg_blog_post { behavior: url(iepngfix.htc); }
+
+#bg_blog_post { 
+	background: url(images/bg_blog_posts2.png) no-repeat 0px 0px;
+	background-repeat: no-repeat;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=':_none/Themes/Default/skins/planets/images/bg_blog_posts2.png');
+	
+}
+
+
+/* Move column A down. Remove this for default from layout.css  */
+
+
+#col_a {
+margin-top: 100px; 
+}
+
+/* Move column B down. Remove this for default from layout.css  10px padding for bottom of blog */
+
+
+#col_b {
+	margin-top: 100px;
+	background-color: transparent;
+}
+
+
+
+#header h1 {
+	position: absolute;
+	top: 30px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	color: #D97700; }
+		
+#header h2 {
+	position: absolute;
+	top: 65px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	color: #999999; }
+
+
+
+/* Module body and headers. Col_A styles the tool bar type module column. Remove 2 col_a below for 2 default module columns */
+
+.module {
+	width: 198px;
+	color: #999999;
+	margin-bottom: 10px;
+	background-image: none;
+	background-repeat: repeat-y;
+	background-color: transparent;
+	overflow: hidden;
+	border: 1px #666666 solid; 
+	}
+
+
+	
+#col_a .module {
+	width: 198px;
+	margin-bottom: 0px;
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	padding-bottom: 0px;
+	color: #999999;
+	background-color: #666666; }
+
+	
+#pg_showcontent #col_a .module {
+
+	margin-bottom: 10px;
+ }
+ 
+#pg_network_home #col_a .module {
+
+	margin-bottom: 10px;
+ }
+
+
+.module h1 {
+	width: 189px;
+	color: #000000;
+	padding: 2px 2px 2px 7px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #666666 url(images/bg_top_module.png) no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/bg_top_module.png');
+}
+
+
+#col_a .module h1 {
+	width: 189px;
+	color: #999999;
+	padding: 2px 2px 2px 7px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #333333 url(none) no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/planets/images/bg_top_module.png');
+}
+
+
+
+.module #module_browse_groups {
+	background-color: #00CC99;
+}
+
+
+/* Browse Tag Module Only. Added to Main Styles? */
+
+.module_browse_tag {
+padding: 5px;
+}
+
+/* ad module only */
+
+#AdsByGoogleModule {
+	border: 1px #999999 solid; 
+	}
+	
+	
+/* afeatured network module only */
+
+#mod_featured_net {
+	background: url(images/net_image.jpg) no-repeat center top;
+	border: 1px #999999 solid;
+	}
+#mod_featured_net img {
+	vertical-align: top;
+	}
+	
+/* #mod_featured_net img { behavior: url(iepngfix.htc); } */
+	
+	
+#col_a #mod_featured_net h1 {
+	width: 189px;
+	color: #000000;
+	padding: 2px 2px 2px 7px;
+	margin: 0;
+	font-family: verdana;
+	font-size: 12px;
+	background: #999999 url(none) no-repeat;
+}
+
+
+/* Module Delimiters  */
+
+
+.module_icon_list li {
+
+	border-bottom: 1px solid #999999;
+}
+
+.module_tagcloud ul li {
+	border-bottom: 1px solid #999999;
+}
+
+
+.module_definition_list dt {
+	border-bottom: 1px solid #999999;
+}
+
+/* Modify Gallery Module drop-shadowsfor different color backgrounds */
+
+.image_list img {
+	padding: 5px;
+	background: url(none) no-repeat 0 0;
+}
+
+/* Tabs on modules */
+
+.module_tabbed_image_list ul {
+	background: #000000 url(images/bg_navbar_filters.jpg) repeat-x
+	}
+
+.module_tabbed_image_list li.active a {
+	background: url(images/bg_navbar_filters_active.jpg);
+	background-repeat: repeat-x;
+color: #000000; }
+
+.module_tabbed_image_list ul li a {
+	border-right: 1px solid #666666;
+	border-left: 1px solid #999999;
+}
+
+.module_tabbed_image_list ul li a:hover {
+	background: url(images/bg_navbar_filters_active.jpg);
+	color: #333333;
+	text-decoration: none;
+}
+
+
+
+.login_box{
+	position: absolute;
+	background: #000000 none;
+	border-right: 1px #cccccc solid;
+	border-left: 1px #cccccc solid;
+	border-bottom: 1px #cccccc solid;
+	padding: 7px 7px 2px;
+	right: 10px;
+	font-size: 13px;
+	text-align: center;
+	color: #999999;
+	border-top-width: 0;
+	border-top-style: none;
+	}
+	
+.login_box a:link,
+.login_box a:visited {
+	text-decoration: underline;
+	color: #999999;
+	font-size: 11px;
+}
+
+.login_box a:hover {
+	text-decoration: none;
+	color: #999999;
+}
+
+/* ID login dropdown */
+
+.id_list {
+	border-top: 1px none #CCCCCC;
+	}
+
+.id_item {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+
+.id_list .id_name a:link,
+.id_list .id_name a:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .id_name a:hover { text-decoration: underline; }
+
+.id_list .edit_logoff {
+	padding: 2px 0 2px 0;
+	background-color: #666666;
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;}
+
+.id_list .edit_logoff a:link,
+.id_list .edit_logoff a:visited {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none; }
+
+.id_list .edit_logoff a:hover { text-decoration: underline; }
+
+.id_params {
+	border-top: 1px none #DFDFDF;
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	margin: 0;
+	padding: 5px 0 0 0;
+	background-color: #666666; }
+	
+/* The Big Middle content section abd it's tabs */  /* put border-top: none; here if single pixel line on top is desired to be moved */
+
+
+
+.wide_content,
+.module_wide {
+	margin: 0px;
+	padding-bottom: 10px; 
+	border: 1px solid #999999;
+}
+
+*html .wide_content,
+*html .module_wide {
+	border: 1px none #999999;
+}
+
+
+/* center column nav (third tier) */
+
+.wide_content ul#filters {
+/* 	margin: 0px 0px 8px 0px; */
+	background: #000000 url(images/bg_navbar_filters.jpg) repeat-x; }
+
+.wide_content ul#filters li a {
+/*	padding: 5px 10px 3px 10px; */
+	text-decoration: none;
+	float: left;
+	border-right: 1px solid #666666;
+	border-left: 1px solid #999999;
+	height: 13px;
+}
+
+.wide_content ul#filters li a:link,
+.wide_content ul#filters li a:visited { 
+	color: #999999;
+}
+
+
+.wide_content ul#filters li a:hover {
+	color: #000000;
+	background: url(images/bg_navbar_filters_active.jpg) repeat-x;
+}
+
+.wide_content ul#filters li.active a {
+	color: #000000;
+	background: url(images/bg_navbar_filters_active.jpg) repeat-x;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	height: 13px;
+}
+
+
+/* H1 in the center column. Pulled to the left from the default center position for the date to appear on the right. Date below */
+.wide_content h1,
+.module_wide h1 {
+	font-size: 22px;
+	color: #999999;
+	font-weight: bold;
+/*	text-align: left;
+	margin-left: 11px;
+	margin-bottom: -16px;*/
+}
+
+
+.wide_content h1 a:link,
+.wide_content h1 a:visited,
+.module_wide h1 a:link,
+.module_wide h1 a:visited {
+
+	color: #999999;
+}
+
+.wide_content h1 a:hover,
+.wide_content h1 a:hover {
+
+	color: #FFFFFF;
+}
+
+#pg_people .wide_content h1 {
+margin-bottom: 14px;
+}
+
+#pg_showcontent .module_wide h1 {
+margin-bottom: 14px;
+}
+
+/* Blogposts */
+
+
+/* Correction for H1 to the left side of blogpost module above */
+
+.blog h1, .events h1, .reviews h1, .peopleshowcase h1, .video h1, .audio h1, .image h1, .groupshowcase h1 {
+	text-align: left;
+	font-weight: normal;
+	margin: 0 0 10px 0;
+	color: #999999; }
+	
+	.blog, .events, .reviews, .peopleshowcase, .video, .audio, .image, .groupshowcase {
+	color: #999999; }
+	
+	
+
+.blog {
+	background-color: #000000;
+	background-image: url(images/bkpost_blog.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.events {
+	background-color: #000000;
+	background-image: url(images/bkpost_event.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.reviews {
+	background-color: #000000;
+	background-image: url(images/bkpost_review.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.peopleshowcase {
+	background-color: #000000;
+	background-image: url(images/bkpost_people.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.video {
+	background-color: #000000;
+	background-image: url(images/bkpost_video.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.audio {
+	background-color: #000000;
+	background-image: url(images/bkpost_audio.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.image {
+	background-color: #000000;
+	background-image: url(images/bkpost_image.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.groupshowcase {
+	background-color: #000000;
+	background-image: url(images/bkpost_group.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+/* Forms Stuff */
+
+.wide_content fieldset.center_box legend,
+.wide_content fieldset.col_b_fieldset legend,
+.module_wide fieldset.center_box legend {
+
+	color: #999999;
+}
+
+.field label{
+	color: #999999;
+}
+
+
+.date {
+	color:#999999;
+/*	text-align: right;
+	margin-top: 0px;
+	margin-right: 11px;*/
+}
+	
+.description {
+	color:#999999;
+/*	text-align: right;
+	margin-top: 0px;
+	margin-right: 11px;*/
+}
+	
+.view_all {
+	border: 1px solid #999999;
+	margin: 5px 70px 5px 70px;
+	padding: 3px;
+	text-align: center;
+	background-color: #000000;
+}
+
+
+.prev_next a {
+	color: #000000;
+	padding: 2px 6px;
+	border: solid 1px #000000;
+	background: #fff;
+	text-decoration: none;
+}
+	
+.prev_next a:visited {
+	color: #000000;
+	padding: 2px 6px;
+	border: solid 1px #000000;
+	background: #fff;
+	text-decoration: none;
+}
+
+.prev_next a:hover {
+	color: #999999;
+	background: #000000;
+	border-color: #999999;
+	text-decoration: none;
+}
+	
+.prev_next .selected {
+	color: #FF6600;
+	padding: 2px 6px;
+	border: solid 1px #FF6600;
+	font-size: 11px;
+	vertical-align: top;
+	background: #fff;
+}
+
+
+
+
+
+#foreground_element {
+	background-image: url(images/front_earth.png);
+	width: 322px;
+	height: 457px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_earth.png');
+	top: 320px;
+	right: -200px;
+	position: absolute; 
+	}
+	
+	
+	
+#pg_homepage #foreground_element {
+	background-image: url(images/front_planet.png);
+	width: 228px;
+	height: 249px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_planet.png');
+	top: 400px;
+	left: -165px;
+	position: absolute; 
+	}
+	
+#pg_groups_home #foreground_element {
+	background-image: url(images/front_earth_sm.png);
+	width: 223px;
+	height: 241px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_earth_sm.png');
+	top: 300px;
+	left: -140px;
+	position: absolute; 
+	}
+	
+#pg_people #foreground_element {
+	background-image: url(images/front_planet.png);
+	width: 228px;
+	height: 249px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_planet.png');
+	top: 300px;
+	right: -165px;
+	position: absolute; 
+	}
+	
+	
+#pg_showcontent #foreground_element {
+	background-image: url(none);
+	width: 228px;
+	height: 249px;
+	background-repeat: no-repeat;
+	_background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/planets/images/front_earth.png');
+	top: 400px;
+	left: -165px;
+	position: absolute; 
+	}
+
+/* Specific Module Tweak: More padding for browse tags module  This should go back into the master */
+
+.module_browse_tag {
+padding: 6px;
+}
+
+/* For arrows spacing in module header. This should go back into the master */
+
+.module h1 img {
+padding-right: 4px; }
+
+/*Changing the text color for the invitation of group page*/
+#col_b #invite_group_div .field_medium label{
+  color: #999999;
+}
+#col_b #GroupInvitationModule {
+  color: #999999;
+}
+#col_b #InvitationStatusModule legend{
+  color: #999999;
+}
+#col_d .wide_content {
+  background:white;
+  border:none;
+  width: 752px;
+}
+#col_b #InvitationModule label{
+  color: #999999;
+}
+#col_b #RegisterModule legend{
+  color: #999999;
+}
+#col_b #RegisterModule label{
+  color: #999999;
+}
+#col_b #RegisterModule form .field_medium {
+  color: #999999;
+}
+#col_b #AddGroupModule form label{
+  color: #999999;
+}
+#col_b #AddGroupModule form .field{
+  color: #999999;
+}
+#col_b #AdminNetSettings form label{
+  color: #999999;
+}
+#col_b #GroupInvitationModule form .field_medium h4{
+  color: #999999;
+}
+#col_b #GroupInvitationModule form .field_big h4{
+  color: #999999;
+}
+#col_b #GroupInvitationModule form .field_bigger h4{
+  color: #999999;
+}

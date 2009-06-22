@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>
+   <name>Planets</name>   
+   <previewImage>preview.gif</previewImage>   
+   <networkCssFile>planets_skin.css</networkCssFile>
+   <groupCssFile></groupCssFile>
+   <userCssFile></userCssFile>
+   <headerImageOk>yes</headerImageOk>
+   <headerImage>none</headerImage>
+   <userheaderImage>none</userheaderImage>
+   <groupheaderImage>none</groupheaderImage>
+ </config>

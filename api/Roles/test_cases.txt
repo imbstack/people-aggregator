@@ -1,0 +1,23 @@
+1. function name create
+Test cases - 
+a) good test : Following class vars are set - name, description, created, changed. After settings this should go into database
+b) bad test : if name is empty it should throw an exception
+c) bad test : if description is empty it should throw an exception
+
+2. function name update
+Test cases - id should be set
+a) good test : when id is set it should update the row
+b) bad test : when id is blank it should throw an error
+c) good test : it should only update following tuples - name, description, changed
+
+3. function name get
+Test cases - id should be set to get the role
+a) good test : when id is set it should return the row
+b) bad test : when id is not set it should throw an exception
+
+4. function name get_multiple
+Test cases - 
+a) good test - function should return all the rows in db if no filter is set
+b) good test - function should return values in paginated format if pagination variable is set
+c) good test - function should return count if count is set
+

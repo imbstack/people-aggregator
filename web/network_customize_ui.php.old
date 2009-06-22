@@ -1,0 +1,132 @@
+<?php
+  /**
+ * Project:     PeopleAggregator: a social network developement platform
+ * File:        network_customize_ui.php, web file to set Featured network for PeopleAggregator
+ * Author:      tekritisoftware
+ * Version:     1.1
+ * Description: This file displays, all the networks present over in the PeopleAggregator
+                Network Skin for the Network ,Network  Admin can choose the skin for the Network,desktop image as well as Customize UI , setup module . 
+               
+ * The lastest version of PeopleAggregator can be obtained from:
+ * http://peopleaggregator.org
+ * For questions, help, comments, discussion, etc. please visit 
+ * http://wiki.peopleaggregator.org/index.php
+ *
+ */
+  
+/** This file is used to change the skin of the network.
+* Anonymous user can not access this page;
+*/
+define("DESKTOP_IMAGE_DISPLAY", 1);
+$login_required = TRUE;
+//including necessary files
+$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+include "web/includes/page.php";
+require_once "web/includes/network.inc.php";
+/****TODO change following when applying roles to spawned networks******/
+global $login_uid, $network_info;
+if ($network_info->type == MOTHER_NETWORK_TYPE) {
+  $authorization_required = TRUE;
+  //there is specific task assigned to each page
+  //you can see array of tasks in authorize.inc.php
+  $page_task = 'manage_themes';//meta networks 
+  require_once "web/includes/authorize.inc.php";
+  $configure_permission = check_user_permission($page_task);//set from authorize.inc.php
+} else {//old method for spawned networks
+  $configure_permission = current_user_can('customize_ui');
+}
+/********/
+// For authentication
+
+$permission_denied_msg = '';
+if ( !$configure_permission ) {
+  $error = TRUE;
+  $msg = "Sorry! you are not authorized to view the content of this page";
+}
+$type = @$_GET['type'];
+$parameter = '';
+if ($type == 'style' || isset($_POST['restore_default'])) {
+  // load all support code
+  // these should eventually be collapsed into one file
+  $parameter .= js_includes('iutil.js');
+  $parameter .= js_includes('json.js');
+  $parameter .= js_includes('idrag.js');
+  $parameter .= js_includes('isortables.js');
+  // for style editor
+  $parameter .= js_includes('jsonStringify.js');
+  // $parameter .= js_includes('jquery.js');
+  $parameter .= js_includes('jquery.compat-1.0.js');
+  $parameter .= js_includes('configurator.js');
+  $parameter .= js_includes('conf_css.js');
+  $parameter .= js_includes('farbtastic.js ');
+}
+if ($type == 'module') {
+  //include this file only when module selector is under view
+  require_once "web/includes/blocks/network_module_selector.php";
+}
+  $setting_data = array( 'left'=>array( 'NetworkStatisticsModule' ,'MyNetworksModule'),
+                         'middle'=>array( 'NetworkCustomizeUIModule' ),
+                         'right'=>array( 'NetworksCategoryModule' )
+                        );
+ $css_data = inline_css_style();
+  
+  $total_network = Network::get_total_networks();
+  function setup_module($column, $module, $obj) {
+  global $configure_permission,$type,$css_data,$module_settings,$page_id;
+  global $total_network,$login_uid,$page_uid;
+  
+  if (!$configure_permission) return 'skip';
+   switch ($module) {
+      case 'NetworkCustomizeUIModule':
+        $obj->type = $type;
+        $obj->data = $css_data;
+        $obj->module_settings = $module_settings;
+        $obj->page_id = $page_id;
+      break;
+      case 'NetworksCategoryModule':
+        $obj->total_network = $total_network;
+      break;
+      case 'MyNetworksModule':
+        if (!$login_uid) return "skip";
+        if ($page_uid && ($page_uid !=$login_uid)) {
+          $obj->uid = $page_uid;
+          $page_user = get_user();
+          $obj->title = ucfirst($page_user->first_name).'\'s Networks';
+          $obj->user_name = $page_user->login_name;
+        }
+        else {
+          $obj->uid = $login_uid;          
+        }
+      break;
+    }
+    //$obj->type = $_GET['type'];
+  }
+
+  
+  $page = new PageRenderer("setup_module", PAGE_NETWORK_THEMES, "Network Themes", 'container_three_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info,'',$setting_data);
+
+
+$msg_string = (!empty($msg)) ? $msg : @$_GET['msg_id'];
+
+uihelper_error_msg($msg_string);
+
+$page->html_body_attributes ='class="no_second_tier"';
+
+$page->add_header_html($parameter);
+
+if ($type == 'style') {
+  // adding some New Css files require for this page only
+  $css_path = $current_theme_path.'/configurator.css';
+  $page->add_header_css($css_path);
+  $css_path = $current_theme_path.'/farbtastic.css';
+  $page->add_header_css($css_path);
+}
+
+if ($type == 'module') {
+  $parameter .= js_includes('messages.js');//added for checking and unchecking all the checkboxes for modules.  
+  $page->add_header_html($parameter);
+}
+uihelper_get_network_style();
+echo $page->render();
+  
+?>

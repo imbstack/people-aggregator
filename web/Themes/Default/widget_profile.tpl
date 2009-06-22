@@ -1,0 +1,1 @@
+<p><?= __("Showing profile fields in sidebar widget.") ?></p>

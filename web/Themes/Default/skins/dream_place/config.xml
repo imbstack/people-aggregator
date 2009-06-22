@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <config>   
+   <name>Dream Places</name> 
+  <previewImage>preview.jpg</previewImage>
+  <networkCssFile>dream_place_skin.css</networkCssFile>
+  <groupCssFile></groupCssFile>
+  <userCssFile></userCssFile>
+  <headerImageOk>Yes</headerImageOk>
+  <headerImage>none</headerImage>
+ </config>

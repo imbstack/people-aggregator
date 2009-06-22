@@ -1,0 +1,51 @@
+Enclosed are assets needed for Planets Network Theme.
+
+All paths are set with the assumption the theme directory resides at
+Themes/Default/skins/Planets/
+
+This theme uses the page ID names in the body tag in the 5 pages
+below. Complete body ID tag usage is listed at:
+
+    http://wiki.broadbandmechanics.com/index.php/Pages
+
+(Important Note: as noted in the wiki comments, the ID for the people
+page breaks he naming convention. The ID is pg_people while the php
+page is called peoples.php.)
+
+
+The theme alos uses the div <div id="foreground_element"></div> just
+before the close body tag in the 5 pages listed below.
+
+THEME DEMO:
+
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Planets/index.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Planets/people.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Planets/groups_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Planets/networks_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Planets/showcontent.html
+
+
+All css for the Theme is in a style sheet placed after the
+network_skin.css called planets_skin.css. I developed the theme while
+linking to the existing layout.css and network_skin.css on
+peepagg.net. Probably no reason to change them.
+
+The css file and images directory should reside together in a
+directory below Themes/Default/skins/ called Planets.
+
+The supplied iepngfix.htc file needs to be moved up two levels to the
+same level as the php pages.
+
+The image directory at the same top level needs to contain the
+supplied blank.gif file.
+
+
+I have supplied a settings file to define what controls are available
+to users for customization of theme. A couple settings items are
+noted. At this time I do not have a sense of how this document will be
+formatted for final deployment.
+
+The planets_skin.css will serve as a default setings reference.
+
+Marc S
+marcs@broadbandmechanics.com

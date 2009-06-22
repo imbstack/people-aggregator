@@ -1,0 +1,125 @@
+
+
+
+Personal:
+======================================================================
+
+1. Personal data (required)
+----------------------------------------------------------------------
+
+-Login Name (nick)
+-First Name
+-Last Name
+-Email
+-Photo
+-Date of Birth
+
+
+2. Home address (required - home ADR)
+----------------------------------------------------------------------
+
+-City
+-State/Province
+-Country
+-Zip/Postal Code
+
+
+3. Organisation data (School - optional)
+----------------------------------------------------------------------
+
+-College Name
+-Degree (title in this case)
+
+
+4. Additional data (optional) stored as notes
+----------------------------------------------------------------------
+
+-Ethnicity              *
+-Religion               *
+-Political View         *
+-Passion                *
+-programming, internet  *
+-Activities             *
+-Books                  *
+-Movies                 *
+-Music                  *
+-TV Shows               *
+-Cuisines               *                
+-Summary                *
+
+======================================================================
+
+
+
+Professional:
+======================================================================
+
+1. Personal data (required)
+----------------------------------------------------------------------
+
+-Login Name (nick)
+-First Name
+-Last Name
+-Email
+-Photo
+-Date of Birth
+
+
+2a. Home address (required - home ADR)
+----------------------------------------------------------------------
+
+-City
+-State/Province
+-Country
+-Zip/Postal Code
+
+
+2b. Work address (optional - work ADR)
+----------------------------------------------------------------------
+
+-City
+-State/Province
+-Country
+-Zip/Postal Code
+
+
+3a. Organisation data (Professional - optional - current company)
+----------------------------------------------------------------------
+
+-Company
+-Title
+-Website
+-Headline       *
+-Industry       *
+-Career Skills  *
+
+
+3b. Organisation data (Professional - optional - prior company)
+----------------------------------------------------------------------
+
+-Prior Company
+-Prior Title
+
+
+4. Additional data (optional) stored as notes
+----------------------------------------------------------------------
+
+-College Name    *
+-Degree          *
+-Languages       *
+-Honor & Awards  *
+-Summary         *
+======================================================================
+
+
+
+LEGEND:
+
+[*] -> data marked with this simbol will be stored into field "note"
+----------------------------------------------------------------------
+
+-
+-
+-
+
+

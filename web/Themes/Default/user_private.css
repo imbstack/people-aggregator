@@ -1,0 +1,48 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This user_skin.css is used to modify styles in prior sheets to create unique, cunstom pages - in this example, unique colors for a user page */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document. */
+/* Please use this sheet in conjunction with 2 previous "layout" and "skin" sheets. */
+			
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> September 21, 2006 */
+/* Modified by marcs@broadbandmechanics.com September 26, 2006 */
+
+
+
+.color {
+	background-color: #FFE7AF;
+}
+
+.blog {
+	background-color: #FFE7AF;
+}
+
+.events {
+	background-color: #FFE7AF;
+}
+
+.reviews {
+	background-color: #FFE7AF;
+}
+
+.peopleshowcase {
+	background-color: #FFE7AF;
+}
+
+.video {
+	background-color: #FFE7AF;
+}
+
+.audio {
+	background-color: #FFE7AF;
+}
+
+.image {
+	background-color: #FFE7AF;
+}
+
+.groupshowcase {
+	background-color: #FFE7AF;
+}
+.drag{
+    cursor: move;
+}

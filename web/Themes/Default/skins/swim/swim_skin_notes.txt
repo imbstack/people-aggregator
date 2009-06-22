@@ -1,0 +1,39 @@
+Enclosed are assets needed for Swim Network Theme.
+
+All paths are set with the assumption the theme directory resides at   Themes/Default/skins/Swim/
+
+
+This theme uses the page ID names in the body tag in the 5 pages below. Complete body ID tag usage is listed at:
+http://wiki.broadbandmechanics.com/index.php/Pages  (Important Note: as noted in the wiki comments, the ID for the people page breaks he naming convention. The ID is pg_people while the php page is called peoples.php.)
+
+
+The theme alos uses the div <div id="foreground_element"></div> just before the close body tag in the 5 pages listed below.
+
+THEME DEMO:
+
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Swim/index.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Swim/people.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Swim/groups_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Swim/networks_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Themes_Test_Swim/showcontent.html
+
+
+All css for the Theme is in a style sheet placed after the network_skin.css called
+swim_skin.css. I developed the theme while linking to the existing layout.css and network_skin.css on peepagg.net. Probably no
+reason to change them.
+
+The css file and images directory should reside together in a directory below Themes called Swim.
+
+The supplied iepngfix.htc file needs to be moved up two levels to the same level as the php pages. 
+
+The image directory at the same top level needs to contain the supplied blank.gif file.
+
+Also, although I have supplied a settings file to define what controls are available to users for customization
+of theme, I do not have  a sense of how this document will be formatted.
+
+The swim_skin.css will serve as a default setings reference.
+
+Marc S
+marcs@broadbandmechanics.com
+
+

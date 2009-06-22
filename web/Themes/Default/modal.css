@@ -1,0 +1,228 @@
+.editmainpage form fieldset,
+.editmainpage form fieldset .buttonbar a,
+.editmainpage form fieldset #filters a
+/*
+.editmainpage a:link,
+.editmainpage a:visited
+*/
+{
+  color: #666666;
+}
+
+/* styles for export screen */
+div#user_info li textarea.copyme {
+  height: 300px;
+  width: 220px;
+}
+
+#user_detail {
+  margin-left: 360px;
+}
+#user_info {
+  float:left;
+  width: 240px;
+}
+
+/* styles for external accounts screen */
+
+#available-info {
+  float: left;
+}
+#available-info fieldset.ext_service {
+  width: 300px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  clear: both;
+}
+#available-info .buttonbar {
+  margin: 0;
+  float: left;
+  clear: none;
+}
+#available-info .ext_service_description {
+  position: relative;
+  height: auto;
+  min-height: 0;
+}
+#available-info .service_paths {
+  display: none;
+}
+#available-info .ext_service_description:hover .service_paths {
+  iop: 10px; left: 10px;
+  position: absolute;
+  display: block;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  z-index: 300;
+}
+#available-info .ext_service_image img {
+  height: 35px; width: 35px;
+}
+
+#connected-info {
+  position: relative;
+  margin-left: 320px;
+}
+
+#connected-info fieldset.ext_service {
+  position: relative;
+  width: auto;
+  border: none;
+}
+
+#connected-info .ext_service_description {
+  width: 300px;
+}
+
+#connected-info .buttonbar {
+  margin: 0;
+  width: auto;
+  clear: none;
+}
+
+#modal_overlay {
+  background-image: url(images/overlay.png);
+  position: absolute;
+  margin: auto;
+  top: 0; left: 0;
+  z-index: 3000;
+  width:  100%; height: 100%;
+}
+
+* html #modal_overlay {
+  background-color: #000;
+  background-color: transparent;
+  background-image: url(images/blank.gif);
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Themes/Default/images/overlay.png", sizingMethod="scale");
+}
+
+#modal_window {
+  top: 100px; left: 0px;
+  position: absolute;
+  padding:5px;
+  background: #fff;
+  border: 1px solid black;
+  overflow: auto;
+/*
+  width: 400px;
+  height: 400px;
+*/
+  z-index: 3500;
+  color:#666666;
+}
+
+#modal_window h3 {
+  display: block;
+  border:none;
+  background: #c1c1c1;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px;
+  margin: 0px;
+  margin-bottom: 8px;
+}
+
+/* this here is needed to make CSS themes that have light color font behave */
+#modal_window ul li,
+#modal_window ul li a,
+#modal_window ul li a:link,
+#modal_window ul li a:visited,
+#modal_window ul li a:active,
+#modal_window ul li a:hover {
+  color:#666666;
+}
+
+#modal_window a.hide {
+  float: right;
+  /* eyecandy to make this look
+     like the default hide button for PA
+  */
+/*
+	border-top: 1px solid #e0e0e0;
+	border-right: 1px solid #686868;
+	border-bottom: 1px solid #686868;
+	border-left: 1px solid #e0e0e0;
+	padding: 1px 5px 1px 5px;
+	font-size: 12px;
+	background-color: #CCC;
+	font-weight: bold;
+  text-align:center;
+  font-size:14px;
+*/
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url(images/close-icon.gif);
+}
+
+#modal_window p.header {
+  width: auto;
+  margin-top: 1em;
+  clear: both;
+  font-weight: bold;
+}
+
+#modal_window ul {
+  list-style: none;
+  clear: both;
+  margin-bottom: 3em;
+}
+
+#modal_window div.buttonbar {
+  margin: 0;
+  margin-left: 155px;
+}
+
+#modal_window ul.friendlist,
+#modal_window ul.videolist,
+#modal_window ul.profile,
+#modal_window ul.Status,
+#modal_window ul.pictures,
+#modal_window ul.prettyprint {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+#modal_window ul.friendlist div.buttonbar,
+#modal_window ul.friendlist .buttonbar ul,
+#modal_window ul.friendlist .buttonbar li {
+  height: 15px;
+  margin: 0; padding: 0;
+}
+
+#modal_window ul.friendlist div.buttonbar a {
+  padding: 0; margin: 0;
+}
+
+#modal_window ul.friendlist li,
+#modal_window ul.pictures li {
+  float: left;
+  padding: .4em;
+  list-style: none;
+  width: 120px;
+  height: 120px;
+	overflow: hidden;
+}
+
+#modal_window ul.friendlist li img,
+#modal_window ul.pictures li img {
+  width: auto;
+  height: 64px;
+}
+
+#modal_window ul.videolist li {
+  list-style: none;
+  width: 140px;
+  height: 220px;
+  float: left;
+  padding: .4em;
+  overflow: hidden;
+}
+
+#modal_window ul.FacebookProfile li,
+#modal_window ul.Status li,
+#modal_window ul.prettyprint li {
+  list-style: none;
+}

@@ -1,0 +1,27 @@
+Enclosed are assets needed for Sun User Theme.
+
+All paths are set with the assumption the theme directory resides at   Themes/Default/skins/Sun/
+
+
+This theme DOES NOT use the page ID names in the body tag. The theme has been tested on user.php and user_blog.php in Firefox 1.5 and IE6.
+
+
+THEME DEMO:
+
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_Sun/user.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_Sun/user_blog.html
+
+
+All css for the Theme is in a style sheet placed after the network_skin.css called
+locker01_skin.css. I developed the theme while linking to the existing layout.css and network_skin.css on peepagg.net. Probably no
+reason to change them.
+
+The css file and images directory should reside together in a directory below Themes called Sun.
+I have supplied the config.xml file although I do not understand the usage of the homePageLink and link tags.
+
+The sun_skin.css will serve as a default setings reference.
+
+Marc S
+marcs@broadbandmechanics.com
+
+

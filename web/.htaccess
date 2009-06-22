@@ -1,0 +1,45 @@
+Options -MultiViews +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Disallow access to .svn directories
+    RewriteCond %{SCRIPT_FILENAME} /\.svn/
+    RewriteRule . - [F,L]
+    # ErrorDocument 403 "Web access to Subversion metadata is not permitted"
+
+    # Routing rewrites:
+    # /users/username/ -> user_blog.php?login=username
+    # RewriteRule ^users/([^/]+)/?$ user_blog.php?login=$1 [QSA]
+    # /pages/title/ -> pages.php?caption=title
+    # RewriteRule ^links/([^/]+)/?$ pages.php?caption=$1
+    # RewriteRule ^Celebrity/([^/]+)/?$ celebrity.php?name=$1 [QSA]
+    RewriteCond %{REQUEST_URI}  !^/api/[^/]+\.php/.*
+    RewriteCond %{REQUEST_URI}  !^/api/doc/.*
+    RewriteRule ^api\/([^/]+)\/(.*)$  /api/$1.php/$2    [L,R]
+    RewriteRule (.*) dispatcher.php [L]
+
+#    RewriteRule ^.*\.(php|js|json|xml|css|ico|gif|jpg|jpeg|png|bmp|swf).*$ dispatcher.php
+
+
+    # {{{ Custom handler for compressing CSS and JavaScript files
+    # Implementation inspired and uses code from:
+    # http://rakaz.nl/item/make_your_pages_load_faster_by_combining_and_compressing_javascript_and_css_files
+    #
+    # Usage: following rules will automatically throw any .js or .css file into the combinator.php
+    #
+    # However, using this technique the desired way of including JavaScript and CSS files should be:
+    # /path/to/file/firstFile.js:secondFile.js:thirdFile.js
+    #
+    # which will pass all the desired JavaScript files to combinator which will compressed them
+    # altogether. Files are separated using ':' character.
+    #
+    # Previous has a huge impact on performance
+    # Uncomment following two rules to use nice URLs for CSS and JS optimization.
+    # Also set optimizers_use_url_rewrite to true in default_config.php
+    #RewriteRule ^(.*\.css) /combinator.php?t=css&f=$1 [L,QSA]
+    #RewriteRule ^(.*\.js) /combinator.php?t=javascript&f=$1 [L,QSA]
+    # }}}
+</IfModule>
+
+# ErrorDocument 404  /dispatcher.php

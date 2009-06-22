@@ -1,0 +1,166 @@
+img {
+
+	behavior: url("/Themes/Default/images/pngbehavior.htc");
+
+}
+
+/* .sfondo {
+	z-index: 0;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	text-align: center;
+	width: 194px;
+	height: 399px;
+	background-image: url('images/sfondo_prova.jpg');
+
+} */
+
+.base {
+	z-index: 10;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	text-align: center;
+}
+
+.photo {
+	z-index: 10;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.photoup {
+	z-index: 100;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.event {
+	z-index: 90;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.buddytext {
+	padding: 3px;
+	margin: 0px;
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.metadata {
+	z-index: 50;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #303030;
+	display: none;
+	font-family: Verdana;
+	font-size: 11px;
+	color: white;
+}
+
+.metadatainfo {
+	z-index: 100;
+	font-family: Verdana;
+	font-size: 11px;
+	position: absolute;
+	text-align: left;
+	vertical-align: middle;
+	width: 100px;
+	height: 90px;
+	color: white;
+	background-color: grey;
+	display: none;
+}
+
+.metatext_left {
+	margin-left: 110px;
+	margin-top: 5px;
+	z-index: 100;
+	font-family: Verdana;
+	font-size: 11px;
+	text-align: left;
+	vertical-align: middle;
+	height: 90px;
+	color: white;
+
+}
+.metatext_right {
+	margin-right: 110px;
+	margin-top: 5px;
+	z-index: 100;
+	font-family: Verdana;
+	font-size: 11px;
+	text-align: right;
+	vertical-align: middle;
+	height: 90px;
+	color: white;
+}
+
+.status {
+	z-index: 50;
+	font-family: Verdana;
+	font-size: 10px;
+	text-align: left;
+	width: 87px;
+	height: 20px;	
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	background-image: url('images/back_status.jpg');
+	display: none;
+}
+
+.bubble {
+	z-index: 150;
+	width: 150px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	display: none;
+}
+
+.bubbletext {
+	z-index: 200;
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: left;
+	width: 90px;
+	height: 60px;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	display: none;
+}
+
+.action {
+	z-index: 100;
+	padding: 2px;
+	margin: 0px;
+	position: absolute;
+	display: none;
+}
+
+.control {
+	position: absolute;
+	margin: 0px;
+	padding: 5px;
+	background-color: #FFFFF0;
+}
+

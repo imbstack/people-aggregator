@@ -1,0 +1,33 @@
+
+.msg_dlg_body div.msg_body {
+  margin: auto;
+  width: 80%;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+
+.msg_dlg_body div.msg_foot {
+  padding-top: 8px;
+  margin: auto;
+  width: 80%;
+  text-align: center;
+  border: none;
+}
+
+
+.msg_dlg_body h1 {
+  font-size: 10pt;
+  font-weight: bold;
+  text-align: center;
+  width:100% !important;
+}
+
+.msg_dlg_body ul {
+  margin: 0;
+  padding: 0;
+}
+
+.msg_dlg_body ul li {
+  list-style: none;
+  padding-bottom: 5px;
+}

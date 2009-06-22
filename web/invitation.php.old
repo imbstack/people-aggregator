@@ -1,0 +1,227 @@
+<?php 
+/*
+ * Project:     PeopleAggregator: a social network developement platform
+ * File:        invitation.php, web file to invite user's friend fo join PeopleAggregator
+ * Author:      tekritisoftware
+ * Version:     1.1
+ * Description: This file displays the people invitation page of the site. With this page user can invite
+ *              it's friend through their ID's Or PeopleAggregator login names It uses
+ *              page renderer to display the block modules
+ * The lastest version of PeopleAggregator can be obtained from:
+ * http://peopleaggregator.org
+ * For questions, help, comments, discussion, etc. please visit 
+ * http://wiki.peopleaggregator.org/index.php
+ *
+ */
+$login_required = TRUE;
+$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+include "web/includes/page.php";
+require_once "api/Invitation/Invitation.php";
+require_once "web/includes/functions/mailing.php";
+require_once "web/includes/urls.php";
+// for query count
+global $query_count_on_page, $network_info, $current_theme_rel_path;
+$query_count_on_page = 0;
+
+if (isset($_POST['submit'])) { // if form is posted
+
+  filter_all_post($_POST);
+  if (!empty($_POST['email_user_name'])) {
+  
+    $friend_user_name = trim($_POST['email_user_name']);
+    $friend_user_name_array = explode(',', $friend_user_name);
+    $cnt_usr_name = count($friend_user_name_array);
+    for ($counter = 0; $counter < $cnt_usr_name; $counter++) {
+      try {
+        $user_obj = new User();
+        $user_obj->load(trim($friend_user_name_array[$counter]));
+        if ($user_obj->email == $_SESSION['user']['email']) {
+          $msg = 6002; //you can not invite your self
+        } else {
+          $valid_user_login_names[] = $user_obj->login_name;
+          $valid_usr_name_email[] = $user_obj->email;
+        } 
+      } catch (PAException $e)   {
+        if (!empty($friend_user_name_array[$counter])) {
+          $msg .= '<br />' . $friend_user_name_array[$counter];
+        } 
+      }
+    }  // end for
+    if (!empty($msg) && !(is_int($msg))) {
+      $msg = 'Following user names are not valid <br />' . $msg;
+    }
+  }  // end if : if user names are supplied.
+  
+  $invalid = array();
+  if (!empty($_POST['email_id'])) {
+  
+    $friend_email = trim($_POST['email_id']);
+    $friend_email_array = explode(',', $friend_email);
+    $cnt_email = count($friend_email_array);
+    $self_invite = FALSE;
+    $error = FALSE;
+    $user_id = $uid;
+    
+    // Check for valid-invalid email addresses start
+    for ($counter = 0; $counter < $cnt_email; $counter++) {
+      $email_validation = validate_email(trim($friend_email_array[$counter]));
+      if ($email_validation == '0') {
+        $invalid[] = trim($friend_email_array[$counter]);
+      }
+      else if ($friend_email_array[$counter] == $_SESSION["user"]["email"]) {
+        $self_invite = TRUE;
+      } else {
+        $valid_user_first_emails[] = $friend_email_array[$counter];
+        $valid_email[] = trim($friend_email_array[$counter]);
+      }
+    }
+  }  
+  // Check for valid-invalid email addresses end
+  // Action for valid-invalid email addresses start
+  if (empty($friend_email) && empty($friend_user_name)) { // if email field is left empty
+    if ($network_info->type == MOTHER_NETWORK_TYPE) {
+      $msg = 6003;
+    } else {
+      $msg = 6001;
+    }  
+    $error_email = TRUE;
+    $error = TRUE;
+  } else if (!empty($friend_email) && !empty($friend_user_name)) {
+    $msg = 7026;
+    $error = TRUE;
+  } elseif ($self_invite) { // if self invitation is made
+    $msg = 6002;
+    $error_email = TRUE;
+    $error = TRUE;
+  } elseif (sizeof($invalid) > 0) { // if invalid email addresses are supplied
+    $invalid_cnt = count($invalid);
+    $msg = '';
+    for ($counter = 0; $counter < $invalid_cnt; $counter++) {
+      if (!empty($invalid[$counter])) {
+        $msg .= '<br />'.$invalid[$counter];
+      }  
+    }
+    if (!empty($msg)) {
+      $msg = "<br />Following email addresses are not valid:" . $msg;
+    } else {
+      $msg = '<br /> Invalid Email addresses';
+    }
+    $error_email = TRUE;
+    $error = TRUE;
+  } else if (empty($msg)) { // At this point invitation could be made
+    $msg = '';
+      if (!empty($valid_email) && !empty($valid_usr_name_email)) {
+        $valid_email = array_merge($valid_email, $valid_usr_name_email);
+        $valid_user_first_emails = array_merge($valid_user_first_emails, $valid_user_login_names);
+      } else if( !empty($valid_usr_name_email)) {
+        $valid_email = $valid_usr_name_email;
+        $valid_user_first_emails = $valid_user_login_names;
+      }
+      $valid_cnt = count($valid_email);
+      $message = nl2br($_POST['message']);
+      for ($counter = 0; $counter < $valid_cnt; $counter++) {
+        $inv = new Invitation();
+        $inv->user_id =  $_SESSION['user']['id'];
+        $inv->username = $_SESSION['user']['name'];
+        // for invitation not for any group invitation collection id is -1
+        $inv->inv_collection_id = -1;
+        $inv->inv_status = INVITATION_PENDING;
+        $auth_token = get_invitation_token(LONG_EXPIRES, $valid_email[$counter]);
+        $token = '&amp;token='.$auth_token;
+        $link_desc = wordwrap(PA::$url . "/register.php?InvID=$inv->inv_id", 120, "<br>", 1);
+        $inv->register_url = "<a href=\"". PA::$url . "/register.php?InvID=$inv->inv_id\">$link_desc</a>";
+        
+        $acc_link_desc = wordwrap(PA::$url . "/login.php?action=accept&InvID=$inv->inv_id$token", 120, "<br>", 1);
+        $inv->accept_url = "<a href=\"". PA::$url . "/login.php?action=accept&InvID=$inv->inv_id$token\">$acc_link_desc</a>";
+        
+        $inv->inv_user_id = NULL;
+        $inv->inv_user_first_name = $valid_user_first_emails[$counter];
+        $inv->inv_email = $valid_email[$counter];
+        $inv->inv_summary = "Invitation from $user->first_name $user->last_name to join ".PA::$site_name;
+        if($message != CUSTOM_INVITATION_MESSAGE){
+        $inv->inv_message = !empty($message) ? $message : NULL;
+        }
+        if ($error != TRUE) {
+          try {
+            $inv->send();
+          }
+          catch (PAException $e) {
+            $msg = "$e->message";
+            $save_error = TRUE;
+          }
+        }
+        if (isset($save_error) && $save_error == TRUE) {
+          $msg = "Sorry: you are unable to invite a friend. <br /> Reason: " . $msg;
+        } else {
+          // invitation has been sent, now send mail
+          $user = new User();
+          $user->load((int)$_SESSION['user']['id']);
+          $invitee_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');          
+          $network_icon_image = uihelper_resize_mk_img($network_info->inner_logo_image, 219, 35, DEFAULT_NETWORK_ICON,  'alt="'.$network_info->name.'"');          
+          $invitee_url = url_for('user_blog', array('login'=>$user->login_name));
+          $mail_type= "invite_pa";
+          $array_of_data = 
+          array(
+          'first_name'=>$user->first_name ,
+          'last_name'=>$user->last_name, 
+          'user_name'=> $user->login_name,
+          'user_id'=>$user->user_id, 
+          'message'=>$inv->inv_message,
+          'accept_url'=>$inv->accept_url, 
+          'register_url'=>$inv->register_url, 
+          'invited_user_name'=> $inv->inv_user_first_name,
+          'invitee_image'=>$invitee_image,
+          'network_name' => $network_info->name,
+          'network_description' => $network_info->description,
+          'network_icon_image' => $network_icon_image,
+          'invitee_url' => $invitee_url,
+          'config_site_name' => PA::$site_name
+          );
+           $check = pa_mail($inv->inv_email, $mail_type, $array_of_data, $user->email);
+          $msg .= '<br />'.$valid_user_first_emails[$counter];
+          if ($counter == ($valid_cnt - 1)) {
+            $msg = "<br />An Invitation has been sent to -" . $msg;
+          }
+        }
+    } // end for : invitation to multiple email
+    $_POST = array(); // unset $_POST, if invitation has been successfully made.
+  } // end else invitation could be made 
+} // end if form is posted
+
+// invitation.php-specific module initialization code
+function setup_module($column, $moduleName, $obj) {
+    switch ($column) {
+    case 'left':
+        if ($moduleName=='RecentCommentsModule') {
+            $obj->cid = (!empty($_REQUEST['cid']))?$_REQUEST['cid']:NULL;
+            $obj->block_type = HOMEPAGE;
+            $obj->mode = PRI;
+        }
+        break;
+
+    case 'middle':
+        $obj->content_id = (!empty($_REQUEST['cid']))?$_REQUEST['cid']:NULL;
+        $obj->mode = PUB;
+        $obj->block_type = 'media_management';
+
+        if ($moduleName == 'InvitationModule') {
+            global $msg;
+            $obj->msg = $msg;
+        }
+        break;
+    }
+}
+
+
+$page = new PageRenderer("setup_module", PAGE_INVITATION, sprintf(__("Invite people - %s"), $network_info->name), 'container_three_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+
+$page->add_header_html(js_includes('common.js'));
+$page->add_header_html(js_includes('invite.js'));        //-- added by: Zoran Hron 
+$page->add_header_html(js_includes('ModalWindow.js'));   //--
+$page->add_header_css($current_theme_path.'/modal.css'); //-- end
+
+
+uihelper_error_msg($msg);
+uihelper_get_network_style();
+echo $page->render();
+?>

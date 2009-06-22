@@ -1,0 +1,245 @@
+<?php
+$login_required = TRUE;
+$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+include "web/includes/page.php";
+require_once "api/ImageResize/ImageResize.php";
+include_once "api/ModuleSetting/ModuleSetting.php";
+require_once "web/includes/functions/auto_email_notify.php";
+require_once "web/includes/functions/mailing.php";
+require_once "web/includes/constants.php";
+require_once "web/includes/functions/user_page_functions.php";
+require_once "api/Activities/Activities.php";
+require_once "api/api_constants.php";
+
+global $current_theme_path, $network_info;
+$extra = unserialize($network_info->extra);
+// for query count
+global $query_count_on_page;
+
+$query_count_on_page = 0;
+
+$action = (isset($_GET['action'])) ? $_GET['action'] : '';
+
+
+if ($action == 'delete') {
+  $delete_id = $_GET['uid'];
+  Relation::delete_relation(PA::$login_uid, $delete_id, PA::$network_info->network_id);
+
+  $cache_id = 'relation_private_'.PA::$login_uid;
+  CachedTemplate::invalidate_cache($cache_id);
+
+  $cache_id = 'relation_public_'.PA::$login_uid;
+  CachedTemplate::invalidate_cache($cache_id);
+  
+  
+  // invalidate cache of user who is being added in relation module
+    $cache_id = 'in_relation_private_'.$delete_id;
+    CachedTemplate::invalidate_cache($cache_id);
+
+    $cache_id = 'in_relation_public_'.$delete_id;
+    CachedTemplate::invalidate_cache($cache_id);
+
+
+  header("Location: " . PA::$url . PA_ROUTE_USER_PUBLIC . '/' . $delete_id . "&delete=1");
+}
+
+$is_error = FALSE;
+$edit = FALSE;
+$uid = PA::$login_uid;
+if( empty($_GET['uid']) ) {$is_error = TRUE;}
+$relation_uid = $_GET['uid'];
+$message = NULL;
+if( $relation_uid == $uid) {
+  $message = MessagesHandler::get_message(1050);
+  $is_error = TRUE;
+}
+
+
+// TODO: Need to get entry of uid, relation_uid from table, not all the relation of uid
+//getting relations of logged in user
+$all_relations = Relation::get_all_relations((int)$uid);
+$relationship_level = 2; //default relation level id is 2 for friend
+$in_family = false;
+
+foreach( $all_relations as $relation ) {
+  if( $relation_uid ==  $relation['user_id']) {
+    $relationship_level = $relation['relation_type_id'];
+    $in_family = $relation['in_family'];
+    $status = $relation['status'];
+    if ($status == PENDING) {
+      $extra = unserialize($network_info->extra);
+      if ($extra['reciprocated_relationship'] == NET_YES && ($action == "add")) {
+        $message = __('Your request for adding ').$relation['login_name'].__(' as a relation has already been sent');
+      }
+    }
+  }
+}
+
+//loading user who will be edited/updated as a relation
+$user = new User();
+try {
+  $user->load( (int)$relation_uid );
+  $title = __('Edit Relationship').' - '.$user->first_name.' '.$user->last_name; //title of the web page
+  //picture and login relation
+  $relation_picture = $user->picture;
+  $login_name = $user->login_name;
+}
+catch ( PAException $e ) {
+  $message = $e->message;
+  $is_error = TRUE;
+}
+if (isset( $_POST['submit'] )) {
+  $rel_creater = new User();
+  $rel_creater->load((int)PA::$login_uid);
+ 
+  $relation_uid = $_GET['uid'];
+  $relationship_level = $_POST['level'];  
+  if ($extra['reciprocated_relationship'] == NET_YES) {
+    $status = PENDING;
+  } else {
+    $status = APPROVED;
+  }
+  try {
+    $relation = Relation::get_relation($rel_creater->user_id, $relation_uid, PA::$network_info->network_id);
+    $edit = ($relation) ? TRUE : FALSE;
+  } catch (PAException $e) {
+    $edit = FALSE;
+  }
+  try {    
+    if (isset($_POST['in_family'])) {
+      // If the user has checked the in_family checkbox.
+      Relation::add_relation($uid, $relation_uid, $relationship_level, PA::$network_info->address, PA::$network_info->network_id, NULL, NULL, NULL, true, $status);
+      
+    } else {
+      Relation::add_relation($uid, $relation_uid, $relationship_level, PA::$network_info->address, PA::$network_info->network_id, NULL, NULL, NULL, NULL, $status);
+    }
+    $relation_obj = Relation::getRelationData($rel_creater->user_id, $relation_uid, PA::$network_info->network_id);
+/*    
+    // relationship establisher image
+    $rel_creater_picture = uihelper_resize_mk_user_img($rel_creater->picture, 80, 80,'alt="'.$rel_creater->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
+*/    
+    if($edit == FALSE) {
+      if($extra['reciprocated_relationship'] == NET_YES) {
+        $invited_user = new User();
+        $invited_user->load((int)$related_uid);
+        
+        PANotify::send("friend_request_sent", $invited_user, $rel_creater, $relation_obj);
+   
+/*   
+//        $approve_deny_url = PA::$url .'/view_all_members.php?view_type=in_relations&uid='.$user->user_id;
+        $appr_deny_url = PA::$url .'/view_all_members.php?view_type=in_relations&uid='.$user->user_id.'&login_required=true';
+        $approve_deny_url = "<a href=\"$appr_deny_url\">$appr_deny_url</a>";
+        // defining array to be sent, to fill message frame
+        $params = array(
+        'first_name'=> PA::$login_user->first_name,
+        'last_name' => PA::$login_user->last_name,
+        'user_id'   => PA::$login_uid,
+        'approve_deny_url'=>$approve_deny_url, 
+        'invited_user_name' => $user->login_name, 
+        'recipient_username' => $user->login_name, 
+        'recipient_firstname' => $user->first_name, 
+        'recipient_lastname' => $user->last_name, 
+        'requestor_image' => $rel_creater_picture, 
+        'to'=> $user->email, 
+        'requested_user_id' => $user->user_id,
+        'config_site_name'=>PA::$site_name);
+        // send notification
+        auto_email_notification_members('relationship_requested', $params);
+*/        
+      } else {
+      
+        $_my_friends_url = PA::$url.'/'.FILE_VIEW_ALL_MEMBERS.'?view_type=in_relations&uid='.$relation_uid.'&login_required=true';
+        $_user_url = PA::$url . PA_ROUTE_USER_PUBLIC . '/' . $rel_creater->user_id;
+        $my_friends_url = "<a href=\"$_my_friends_url\">$_my_friends_url</a>";
+        $user_url = "<a href=\"$_user_url\">$_user_url</a>";
+        
+        $params['related_uid'] = $relation_uid;      
+        $params['related_user'] = $user->login_name;
+        $params['user_name'] = $rel_creater->login_name;
+        $params['user_id'] = $rel_creater->user_id;
+        $params['user_image'] = $rel_creater_picture;
+        $params['to'] = $user->email;
+        $params['my_friends_url'] = $my_friends_url;
+        $params['user_url'] = $user_url;
+        $params['config_site_name'] = PA::$site_name;
+        auto_email_notification('relation_added', $params );
+        auto_email_notification_members('relationship_created_with_other_member', $params);   
+        //for rivers of people
+        $activity = 'user_friend_added';//for rivers of people
+        $activities_extra['info'] = ($login_name.' added new friend with id ='.$relation_uid);
+        $extra = serialize($activities_extra);
+        $object = $relation_uid;
+        Activities::save($login_uid, $activity, $object, $extra); 
+      }
+    }  
+//invalidate cache of logged in user's relation module
+    $cache_id = 'relation_private_'.$uid;
+    CachedTemplate::invalidate_cache($cache_id);
+
+    $cache_id = 'relation_public_'.$uid;
+    CachedTemplate::invalidate_cache($cache_id);
+// invalidate cache of user who is being added in relation module
+    $cache_id = 'in_relation_private_'.$relation_uid;
+    CachedTemplate::invalidate_cache($cache_id);
+
+    $cache_id = 'in_relation_public_'.$relation_uid;
+    CachedTemplate::invalidate_cache($cache_id);
+    if ($extra['reciprocated_relationship'] == NET_NO) {
+      if ( $_POST['action'] ) {
+        header("Location: " . PA::$url . PA_ROUTE_USER_PUBLIC . '/' . $relation_uid);
+        exit;
+      }
+    } else {
+      header("Location: " . PA::$url . PA_ROUTE_USER_PRIVATE . '/' . "msg_id=1051"); // request sent
+      exit;
+    }
+
+  }
+  catch (PAException $e) {
+    $message = $e->message; 
+  }
+}
+
+function setup_module($column, $moduleName, $obj) {
+    global $uid, $relationship_level, $login_name, $relation_picture, $relation_uid, $is_error, $in_family, $status;
+
+    switch ($column) {
+    case 'left':      
+      if ($moduleName != 'LogoModule') {
+         $obj->block_type = HOMEPAGE;
+      }        
+    break;
+
+    case 'middle':      
+      $obj->relation_uid = $relation_uid;
+      $obj->login_name = $login_name;
+      $obj->relation_picture = $relation_picture;
+      $obj->relationship_level = $relationship_level;
+      $obj->is_error = $is_error;
+      $obj->in_family = $in_family;
+      $obj->status = $status;
+    break;
+
+    case 'right':      
+    break;
+    }
+    $obj->uid = $uid;
+    $obj->mode = PUB;
+}
+$page = new PageRenderer("setup_module", PAGE_EDIT_RELATION, $title, "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+
+if ( $message ) {  
+  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl->set('message', $message);
+  $page->add_module("middle", "top", $msg_tpl->fetch());
+}
+
+$theme_details = get_user_theme($login_uid);
+if (is_array($theme_details['css_files'])) {
+  foreach ($theme_details['css_files'] as $key => $value) {
+    $page->add_header_css($value);
+  }
+}
+echo $page->render();
+
+?>

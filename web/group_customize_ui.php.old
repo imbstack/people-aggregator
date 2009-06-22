@@ -1,0 +1,155 @@
+<?php
+  /**
+ * Project:     PeopleAggregator: a social network developement platform
+ * File:        network_customize_ui.php, web file to set Featured network for PeopleAggregator
+ * Author:      tekritisoftware
+ * Version:     1.1
+ * Description: This file displays, all the networks present over in the PeopleAggregator
+                Network Skin for the Network ,Network  Admin can choose the skin for the Network,desktop image as well as Customize UI , setup module . 
+               
+ * The lastest version of PeopleAggregator can be obtained from:
+ * http://peopleaggregator.org
+ * For questions, help, comments, discussion, etc. please visit 
+ * http://wiki.peopleaggregator.org/index.php
+ *
+ */
+  
+/** This file is used to change the skin of the network.
+* Anonymous user can not access this page;
+*/
+
+$login_required = TRUE;
+//including necessary files
+$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+include "web/includes/page.php";
+require_once "web/includes/network.inc.php";
+require_once "web/includes/functions/group_functions.php";
+
+global $login_uid;
+
+$msg = '';
+$msg_id = NULL;
+  
+$gid = (int)$_GET['gid'];
+if (!empty($gid)) {
+  $group_data = ContentCollection::load_collection($gid, $login_uid);
+  $is_admin = Group::is_admin($gid, $login_uid);
+}
+
+$type = @$_GET['type'];
+$page_id = PAGE_GROUP;
+$parameter = js_includes('common.js ');
+
+if (!empty($_GET['msg_id'])) {
+  $msg_id = $_GET['msg_id'];
+}
+if ($type == 'style') {
+  // load all support code
+  // these should eventually be collapsed into one file
+  $parameter .= js_includes('iutil.js');
+  $parameter .= js_includes('json.js');
+  $parameter .= js_includes('idrag.js');
+  $parameter .= js_includes('isortables.js');
+  // for style editor
+  $parameter .= js_includes('jsonStringify.js');
+  // $parameter .= js_includes('jquery.js');
+  $parameter .= js_includes('jquery.compat-1.0.js');
+  $parameter .= js_includes('configurator.js');
+  $parameter .= js_includes('conf_css.js');
+  $parameter .= js_includes('farbtastic.js ');
+  
+}
+  
+  $group_var = new Group();
+  $group_var->collection_id = $gid;
+  $group_info = $group_var->get_group_theme_detail();
+  $extra = NULL;
+  $extra = unserialize($group_info['extra']);
+
+  
+  if(empty($extra['module_setting'])) {
+    global $settings_new;
+    $module_settings = $settings_new[PAGE_GROUP]['data'];
+  }
+  else {
+    $module_settings = $extra['module_setting'];
+  }
+  if(!$is_admin) $msg_id = 9001;
+  
+  // Counting for total Number of Groups
+  $total_groups = Group::get_total_groups();
+
+  function setup_module($column, $module, $obj) {
+  global $group_data, $type, $css_data, $module_settings, $page_id;
+  global $login_uid, $page_uid, $is_admin, $gid, $extra, $total_groups;
+   switch ($module) {
+      case 'GroupCustomizeUIModule':
+      if(!$is_admin) return 'skip';
+        $obj->type = $type;
+        $obj->data = @$extra['style']['user_json'];
+        $obj->module_settings = $module_settings;
+        $obj->page_id = $page_id;
+        $obj->gid = $gid;
+        $obj->theme = @$extra['theme'];
+        $obj->header_image = $group_data->header_image;
+        $obj->header_image_action = $group_data->header_image_action;
+        $obj->display_header_image = $group_data->display_header_image;
+      break;
+            
+      case 'GroupStatsModule':
+      case 'GroupAccessModule':
+        $obj->group_details['title'] = $group_data->title;
+        $obj->group_details['created'] = date("F d, Y h:i A", $group_data->created);
+        $obj->group_details['collection_id'] = $gid;
+	//        $obj->group_details['is_member'] = $is_member; // never set?
+        $obj->group_details['is_admin'] = $is_admin;
+        $obj->group_details['picture'] = $group_data->picture;
+        $obj->group_details['category_name'] = $group_data->category_name;
+        $obj->group_details['members'] = Group::get_member_count($gid);
+        if( $group_data->reg_type == $group_data->REG_OPEN ) {
+          $access_type = ' Open';
+        } else {
+          $access_type = ' Moderated';
+        }  
+        $obj->group_details['access_type'] = $access_type;    
+        $obj->group_details['author_id'] = $group_data->author_id;
+        $user = new User();
+        $user->load((int)$group_data->author_id);
+        $obj->group_details['author_picture'] = $user->picture;
+        $obj->group_details['author_name'] = $user->login_name;
+      break;
+      case 'GroupsCategoryModule':
+        $obj->total_groups= $total_groups;
+      break;
+    }
+    
+  
+  }
+
+  
+//  $page = new PageRenderer("setup_module", PAGE_GROUP_THEME, "Group Themes", 'container_three_column.tpl', 'header_group.tpl', PRI, HOMEPAGE, $network_info,'',$setting_data);
+  $page = new PageRenderer("setup_module", PAGE_GROUP_THEME, "Group Themes", 'container_three_column.tpl', 'header_group.tpl', PRI, HOMEPAGE, $network_info,'');
+  
+  
+$page->add_header_html($parameter);
+
+if ($type == 'style') {
+  // adding some New Css files require for this page only
+  $css_path = $current_theme_path.'/configurator.css';
+  $page->add_header_css($css_path);
+  $css_path = $current_theme_path.'/farbtastic.css';
+  $page->add_header_css($css_path);
+}
+
+if ($type == 'module') {
+  $parameter .= js_includes('messages.js');//added for checking and unchecking all the checkboxes for modules.
+  $page->add_header_html($parameter);
+}
+
+uihelper_error_msg($msg_id);
+uihelper_get_group_style($gid);
+
+
+echo $page->render();
+  
+?>

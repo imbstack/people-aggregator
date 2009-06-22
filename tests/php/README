@@ -1,0 +1,46 @@
+README
+------
+
+I made skeleton for full PHPUnit testing of PA.
+
+All testing suites run from tests/php/AllTests.php
+
+Here's how to run it:
+{{{
+    cd tests/php
+    php AllTests.php
+}}}
+
+At the moment AllTests.php includes and runs all the PHPUnit tests in tests/php directory and newly created
+api tests.
+
+I started testing code from within api directory. Therefore I created tests/php/Api directory for all
+api related tests. All PHPUnit tests for api are included in one suite which is located in tests/php/Api/AllTests.php
+
+Main AllTests.php file includes Api_AllTests and runs it as suite.
+
+At the moment there is only one test for testing of category: Api/Category/CategoryTest.php
+
+The tests does speed and sql test of build_all_category_list method of api/Category/Category.php
+
+SQL test uses new test called SqlOptimizationTest.php which is stripped down version of MysqlPerformanceTest.php
+
+The difference is that SqlOptimizationTest does nothing if you run it with PHPUnit. Have a look
+at Api/Category/CategoryTest.php code to see how SqlOptimizationTest code is used in the SQL test.
+
+So now we have nice PHPUnit skeleton where we can include all PHPUnit test for PA.
+
+My idea is to split the tests into three groups:
+1.) Tests for speed. Prefix 'testSpeed'. Use either custom timers to measure speed or PHPUnit_Extensions_PerformanceTestCase
+2.) Tests for SQL. Prefix 'testSql'. Use SqlOptimizationTest
+3.) Tests of functionality. Prefix 'test'. Usual unit tests for testing functioanlity of PA
+
+Advantages:
+1.) PA will fully use PHPUnit tests for testing,
+2.) Speed tests will alarm developers when particular part of code changes speed (speed test fails) when the code changes,
+3.) SQL tests will alarm developers when particular part of SQL changes (SQL test fails) when the SQL changes.
+
+2007-03-27
+
+Marek
+(with small modifications from Phil)

@@ -1,0 +1,32 @@
+Enclosed are assets needed for City Network Theme.
+
+All paths are set with the assumption the theme directory resides at   Themes/Default/skins/City/
+
+
+This theme uses the page ID names in the body tag in the 5 pages below. Complete body ID tag usage is listed at:
+http://wiki.broadbandmechanics.com/index.php/Pages  (Important Note: as noted in the wiki comments, the ID for the people page breaks he naming convention. The ID is pg_people while the php page is called peoples.php.)
+
+
+THEME DEMO:
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_City/index.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_City/people.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_City/groups_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_City/networks_home.html
+http://pokemon.broadbandmechanics.com/~marcs/peeps/skins/Theme_Test_City/showcontent.html
+
+
+All css for the Theme is in a style sheet placed after the network_skin.css called
+city_skin.css. I developed the theme while linking to the existing layout.css and network_skin.css on peepagg.net. Probably no
+reason to change them.
+
+The css file and images directory should reside together in a directory below Themes called City.
+
+
+I have supplied the config.xml file although I do not understand the usage of the homePageLink and link tags.
+
+The city_skin.css will serve as a default setings reference.
+
+Marc S
+marcs@broadbandmechanics.com
+
+

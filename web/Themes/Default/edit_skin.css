@@ -1,0 +1,121 @@
+/* This CSS document is part of a multi-tiered style sheet system.  */
+/* This user_skin.css is used to modify styles in prior sheets to create unique, cunstom pages - in this example, unique colors for a user page */
+/* All layout information for pages should be placed in the previous "layout" style sheet and not in this document. */
+/* Please use this sheet in conjunction with 2 previous "layout" and "skin" sheets. */
+      
+/* Created by Fabrizio Bolzicco <fabrizio@evectors.it> October 10, 2006 */
+
+
+
+/*form fieldset {
+  width: 700px;
+  display: block;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #999;
+  font-size: 11px;
+  background-color: #fff;
+  margin-left: -40px;
+}
+
+form legend {
+  padding: 0;
+  color: #283f69;
+  font: bold 13px Verdana;
+}
+    
+form legend {
+  margin-bottom: 10px;
+}
+
+form .field {
+  clear: both;
+  font: normal 9px Verdana;
+  color: #000;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #dddddd;
+  padding-bottom: 5px;
+}
+
+form .field h4 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  float: left;
+  width: 150px;
+  font: normal 12px Verdana, sans-serif;
+  color: #000;
+}
+
+form div.input {
+  margin-left: 150px;
+  border: 1px dotted #ccc;
+  float: left;
+}
+    
+form input.text {
+  border: 1px solid #ccc;
+  font-size: 11px;
+}
+    
+form select {
+  border: 1px solid #ccc;
+  font-size: 11px;
+}
+    
+form button {
+  border: 1px solid #ccc;
+  font-size: 11px;
+  margin-left: 10px;
+}
+
+
+form .normal  { width: 28em; }
+form .long   { width: 400px }
+form .short   { width: 10em; }
+form .longer  { width: 19em; }
+
+form .select_access {
+  margin-left: 600px;
+  float: left;
+  width: 100px;
+  margin-top: -22px;
+}
+
+*html form .select_access {
+  margin-left: 300px;
+}
+
+form hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}*/
+
+/* Modified by saurabh <saurabh.khare@tekritisoftware.com> Nov 2,2006 for upload field in media gallery */
+/*form .col_b_fieldset {
+  width: 510px;
+  display: block;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #999;
+  font-size: 11px;
+  background-color: #fff;
+  margin-left: 0px;
+}*/
+/* Created by Kapil Juneja <kapil.juneja@tekritisoftware.com> Nov 16, 2006 */
+
+/*form textarea {
+  border: 1px solid #ccc;
+  height:30px;
+  width:300px;
+}
+#import h2 {
+  font-size:12px;
+}
+#user_info {
+  width:330px;
+  float:left;
+}
+#user_info ul li {
+ list-style-type:none;
+  display:list-item;
+}*/

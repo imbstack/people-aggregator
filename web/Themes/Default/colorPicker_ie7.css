@@ -1,0 +1,10 @@
+.ilstyle {
+	margin: 2px 0 3px 4px;
+	width: 14px;
+	height: 12px;
+}
+
+.boxstyle {
+	outline: 1px solid #000000;
+	border: 1px solid #000000;
+}
