@@ -31,19 +31,19 @@ class MyGroupsModule extends Module {
           } else {
             $this->uid = PA::$login_uid;          
           }
-          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1);
+          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1, 'created', 'DESC', 'private', 'regular');
         break;
         case PAGE_USER_PUBLIC:
           $this->uid = PA::$page_uid;
           $this->title = abbreviate_text((ucfirst(PA::$page_user->first_name).'\'s '), 18, 10);
           $this->title .= __('Groups');
           $this->user_name = PA::$page_user->login_name;
-          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1, 'created','DESC', 'public');
+          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1, 'created','DESC', 'public', 'regular', 'regular');
         break;
         case PAGE_USER_PRIVATE:
           $this->title = __('My Groups');
           $this->uid = PA::$login_uid;
-          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1, 'created','DESC', 'public');
+          $this->usergroups = Group::get_user_groups((int)$this->uid, FALSE, 5, 1, 'created','DESC', 'public', 'regular');
         break;
     }
   }

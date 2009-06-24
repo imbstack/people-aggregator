@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<page>
+  <page_id>322</page_id>
+  <page_name>Family Settings</page_name>
+  <is_configurable>1</is_configurable>
+  <data>
+    <left>
+      <item>MyFamiliesModule</item>
+    </left>
+    <middle>
+      <item>EditFamilyModule</item>
+    </middle>
+    <right>
+    </right>
+    <javascripts/>
+    <page_css/>
+    <page_theme>Default</page_theme>
+    <body_attributes/>
+    <access_permission/>
+    <navigation_code><![CDATA[
+        $level_2['highlight'] = 'directory';
+      ]]></navigation_code>
+    <boot_code><![CDATA[
+      if($uid = $app->getRequestParam('uid')) {
+        $user = new User();
+        try {
+          $user->load((int)$uid);
+          $module_shared_data['user_info'] = $user;
+        } catch(Exception $e) {
+          $module_shared_data['user_info'] = null;
+        }
+      }
+      if($gid = $app->getRequestParam('gid')) {
+        try {
+          $mode = $app->getRequestParam('mode');
+          $group = ContentCollection::load_collection((int)$gid);
+          $module_shared_data['group_info'] = $group;
+          $member_type = Group::get_user_type(PA::$login_uid, (int)$gid);
+          $module_shared_data['member_type'] = $member_type;
+          $module_shared_data['members'] = Group::get_member_count($gid);
+          $owner = new User();
+          $owner->load((int)$module_shared_data['group_info']->author_id);
+          $module_shared_data['author_picture'] = $owner->picture;
+          $module_shared_data['author_name'] = $owner->login_name;
+          $module_shared_data['access_type'] = ($module_shared_data['group_info']->reg_type == $module_shared_data['group_info']->REG_OPEN) ? ' Open': ' Moderated';
+          $module_shared_data['total_groups'] = Group::get_total_groups();
+          $module_shared_data['is_member'] = Group::member_exists($gid, PA::$login_uid);
+          $module_shared_data['is_admin'] = Group::is_admin($gid, PA::$login_uid);
+
+          $module_shared_data['calendar_info']['assoc_type'] = "group";
+          $module_shared_data['calendar_info']['assoc_id'] = $gid;
+          $module_shared_data['calendar_info']['title'] = 'Group Events';
+          $module_shared_data['calendar_info']['mode'] = PUB;
+
+          if($member_type == NOT_A_MEMBER) {
+            $module_shared_data['calendar_info']['may_edit'] = false;
+          } else {
+            $module_shared_data['calendar_info']['may_edit'] = true;
+          }
+        } catch(Exception $e) {
+          $module_shared_data['group_info'] = null;
+        }
+      }
+      if($nid = $app->getRequestParam('nid')) {
+        try {
+          $network = Network::get_by_id((int)$nid);
+          $module_shared_data['network_info'] = $network;
+          $extra = unserialize($network->extra);
+          $module_shared_data['extra'] = $extra;
+        } catch(Exception $e) {
+          $module_shared_data['network_info'] = null;
+          $module_shared_data['extra'] = null;
+        }
+      } else if(!empty(PA::$network_info)) {
+        $module_shared_data['network_info'] = PA::$network_info;
+        $extra = unserialize(PA::$network_info->extra);
+        $module_shared_data['extra'] = $extra;
+      } else {
+        $module_shared_data['network_info'] = null;
+        $module_shared_data['extra'] = null;
+      }
+      if($cid = $app->getRequestParam('cid')) {
+        try {
+          $content = Content::load_content((int)$cid, PA::$login_uid);
+          $module_shared_data['content_info'] = $content;
+        } catch(Exception $e) {
+          $module_shared_data['content_info'] = null;
+        }
+      }
+      uihelper_get_network_style();
+    ]]></boot_code>
+    <page_template>container_three_column.tpl</page_template>
+    <header_template>header.tpl</header_template>
+    <page_mode>public</page_mode>
+    <block_type>Homepage</block_type>
+    <page_type>network</page_type>
+  </data>
+</page>

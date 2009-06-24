@@ -129,7 +129,7 @@ $_PA->default_album_titles = array(
 *
 **/
 
-$_PA->useTypedGroups = FALSE; // set TRUE if you want to use this feature
+$_PA->useTypedGroups = true; // set TRUE if you want to use this feature
 
 // Set of types that are available for TypedGroup creation and listing
 // this controls what types of TypedGroup will show up in the Directory

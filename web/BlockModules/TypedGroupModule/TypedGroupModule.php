@@ -90,7 +90,7 @@ class TypedGroupModule extends Module {
     }
 
     // Do we already have a bound Entity?
-    // we need to load the generic oarent class, as we do noot yet know the type
+    // we need to load the generic parent class, as we do noot yet know the type
     if ($typedEntity = TypedGroupEntity::load_for_group($this->gid)) {
 		  $this->entity = $typedEntity;
 		  // get info about what profile fields this has

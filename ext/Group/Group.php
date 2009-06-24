@@ -697,7 +697,7 @@ class Group extends ContentCollection {
     * @param string search string
     * to do add pagination
     */
-   public static function get_all ($search_string = '', $number = 'all', $cnt=FALSE, $show='ALL', $page=0, $sort_by='created', $direction='DESC') {
+   public static function get_all ($search_string = '', $number = 'all', $cnt=FALSE, $show='ALL', $page=0, $sort_by='created', $direction='DESC', $type='regular') {
      Logger::log("Enter: Group::get_all() ");
 
      if ($number == 'all') {
@@ -717,10 +717,21 @@ class Group extends ContentCollection {
 
 
      if ($search_string == '') {
-       $res = Dal::query("SELECT G.*,CC.*,C.name FROM {contentcollections} AS CC, {groups} AS G LEFT JOIN {categories} AS C ON G.category_id = C.category_id WHERE CC.collection_id = G.group_id AND CC.is_active = 1 AND G.reg_type <> ? ORDER BY $order_by $limit", array(REG_INVITE));
+       $res = Dal::query("SELECT G.*,CC.*,C.name FROM {contentcollections} AS CC, {groups} AS G LEFT JOIN {categories} AS C ON G.category_id = C.category_id 
+       WHERE CC.collection_id = G.group_id 
+       AND CC.is_active = 1 
+       AND G.reg_type <> ? 
+       AND group_type = '$type'
+       ORDER BY $order_by $limit", array(REG_INVITE));
      }
      else {
-       $res = Dal::query("SELECT G.*,CC.*,C.name FROM {contentcollections} AS CC, {groups} AS G LEFT JOIN {categories} AS C ON G.category_id = C.category_id WHERE CC.collection_id = G.group_id AND CC.is_active = 1 AND G.reg_type <> ? AND (CC.title like ? OR CC.description like ?) ORDER BY $order_by $limit", array(REG_INVITE, "%".addslashes($search_string)."%", "%".addslashes($search_string)."%"));
+       $res = Dal::query("SELECT G.*,CC.*,C.name FROM {contentcollections} AS CC, {groups} AS G LEFT JOIN {categories} AS C ON G.category_id = C.category_id 
+       WHERE CC.collection_id = G.group_id 
+       AND CC.is_active = 1 
+       AND G.reg_type <> ? 
+       AND group_type = '$type'
+       AND (CC.title like ? OR CC.description like ?) 
+       ORDER BY $order_by $limit", array(REG_INVITE, "%".addslashes($search_string)."%", "%".addslashes($search_string)."%"));
      }
      if ( $cnt ) {
         return $res->numRows();
@@ -745,7 +756,7 @@ class Group extends ContentCollection {
     * @access public
     * @param string search string
     */
-   public static function get_largest_groups ($number = 'all') {
+   public static function get_largest_groups ($number = 'all', $type="regular") {
      Logger::log("Enter: Group::get_largest_groups() ");
      if ( $number == 'all' ) {
       $limit = '';
@@ -753,7 +764,10 @@ class Group extends ContentCollection {
       $limit = ' LIMIT '.$number;
      }
      $sql = "SELECT DISTINCT(GU.group_id), COUNT(GU.user_id) as cnt
-              FROM {groups_users} as GU LEFT JOIN {groups} as G on GU.group_id = G.group_id where G.reg_type <> ? GROUP BY GU.group_id ORDER BY cnt DESC $limit";
+              FROM {groups_users} as GU LEFT JOIN {groups} as G on GU.group_id = G.group_id 
+              WHERE G.reg_type <> ? 
+              AND group_type = '$type'
+              GROUP BY GU.group_id ORDER BY cnt DESC $limit";
      $data = array(0=>REG_INVITE);// Reg_Type 2 is for Invite Only Groups.
      $res = Dal::query($sql, $data);
      $groups = array();
@@ -864,7 +878,7 @@ class Group extends ContentCollection {
    * @access public
    * @param int $user_id
    */
-  public static function get_user_groups ($user_id, $cnt=FALSE, $show='ALL', $page=0, $sort_by='created', $direction='DESC', $type='private') {
+  public static function get_user_groups ($user_id, $cnt=FALSE, $show='ALL', $page=0, $sort_by='created', $direction='DESC', $type='private', $group_type=NULL) {
     Logger::log("Enter: Group::get_user_groups() | Args:  \$user_id = $user_id");
 
     $order_by = $sort_by.' '.$direction;
@@ -874,11 +888,15 @@ class Group extends ContentCollection {
       $start = ($page -1)* $show;
       $limit = 'LIMIT '.$start.','.$show;
     }
+    
+    $type_select = "";
+    if ($group_type) {
+    	$type_select = "AND G.group_type='$group_type'";
+    }
 
     if ( $type=='public' ) {
-      $sql = "SELECT GU.group_id,GU.user_id,GU.user_type,CC.title
-              FROM
-              {groups_users} AS GU,
+      $sql = "SELECT GU.group_id, GU.user_id, GU.user_type, CC.title
+              FROM {groups_users} AS GU,
               {contentcollections} AS CC,
               {groups} AS G
               WHERE GU.user_id = ?
@@ -886,13 +904,22 @@ class Group extends ContentCollection {
                 AND CC.is_active=?
                 AND G.group_id = GU.group_id
                 AND G.reg_type<> ?
+                $type_select
               $limit";
 
       $data_array = array($user_id,1,REG_INVITE);
       $res = Dal::query($sql,$data_array);
 
     } else {
-      $res = Dal::query("SELECT GU.*,CC.title FROM {groups_users} AS GU LEFT JOIN {contentcollections} AS CC ON GU.group_id=CC.collection_id WHERE user_id = ? $limit", array($user_id));
+      $res = Dal::query("SELECT GU.*, CC.title 
+      	FROM {groups_users} AS GU 
+      	LEFT JOIN {contentcollections} AS CC 
+      		ON GU.group_id=CC.collection_id 
+      	LEFT JOIN {groups} AS G 
+      		ON G.group_id=CC.collection_id 
+      	WHERE user_id = ? 
+      	$type_select
+      	$limit", array($user_id));
     }
     if ( $cnt ) {
       return $res->numRows();
@@ -1104,7 +1131,7 @@ class Group extends ContentCollection {
     return $result;
   }
 
-    public static function get_groups_by_user($uid=FALSE, $cnt=FALSE, $show='ALL', $page=1, $sort_by='created', $direction='DESC') {
+    public static function get_groups_by_user($uid=FALSE, $cnt=FALSE, $show='ALL', $page=1, $sort_by='created', $direction='DESC', $group_type='regular') {
     Logger::log("Enter: Group::get_groups_by_user() ");
      if ( $sort_by =='members') {
          $order_by = 'members'.' '.$direction;
@@ -1136,8 +1163,10 @@ class Group extends ContentCollection {
         LEFT JOIN {users} AS U
         ON U.user_id = (SELECT user_id FROM {groups_users} WHERE group_id = CC.collection_id AND user_type = 'owner')
         LEFT JOIN {groups} AS G on CC.collection_id = G.group_id
-        WHERE GU.user_id = ? GROUP BY CC.collection_id ORDER BY $order_by $limit";
-        $res = Dal::query($sql,$uid);
+        WHERE GU.user_id = ? 
+        AND G.group_type='$group_type'
+        GROUP BY CC.collection_id ORDER BY $order_by $limit";
+        $res = Dal::query($sql, $uid);
 
      }
 
@@ -1152,12 +1181,14 @@ class Group extends ContentCollection {
           FROM {contentcollections} AS CC
           INNER JOIN {groups_users} AS GU
           ON GU.group_id = CC.collection_id
-          AND CC.is_active =1
+          AND CC.is_active = 1
           LEFT JOIN {users} AS U
           ON U.user_id = (SELECT user_id FROM {groups_users} WHERE group_id = CC.collection_id AND user_type = 'owner')
           LEFT JOIN {groups} AS G
           ON CC.collection_id = G.group_id
-          WHERE G.reg_type <> ? GROUP BY CC.collection_id ORDER BY $order_by $limit";
+          WHERE G.reg_type <> ? 
+          AND G.group_type = '$group_type'
+          GROUP BY CC.collection_id ORDER BY $order_by $limit";
           $res = Dal::query($sql, REG_INVITE);
      }
 
@@ -1177,10 +1208,11 @@ class Group extends ContentCollection {
     * use for searching Groups
     * @access public
     */
-  public static function get_groups_info_by_search($condition, $cnt=FALSE, $show='ALL', $page=1, $sort_by='created', $direction='DESC', $user_id=NULL) {
+  public static function get_groups_info_by_search($condition, $cnt=FALSE, $show='ALL', $page=1, $sort_by='created', $direction='DESC', $user_id=NULL, $group_type='regular') {
     Logger::log("Enter: Group::get_groups_info_by_search()");
     $data = array();
     $user_text = '';
+    
     $data[] = '%'.$condition['keyword'].'%';
     $name = $condition['name_string'];
     if ($sort_by == 'members' ) {
@@ -1200,6 +1232,9 @@ class Group extends ContentCollection {
     if($user_id) {
       $user_text = 'AND GU.user_id = ?';
     }
+    
+    $type_select = "AND G.group_type=$group_type";
+    
     $sql= "SELECT count(GU.user_id) AS members,
            CC.collection_id AS group_id,
            CC.title AS group_name,
@@ -1208,16 +1243,18 @@ class Group extends ContentCollection {
            U.last_name AS owner_last_name,
            U.login_name AS owner_login_name,
            G.*,
-           U.user_id AS owner_id FROM {contentcollections} AS CC
+           U.user_id AS owner_id 
+           FROM {contentcollections} AS CC
            INNER JOIN {groups_users} AS GU
-           ON GU.group_id = CC.collection_id
-           AND CC.is_active =1 $user_text
+           	ON GU.group_id = CC.collection_id
+           	AND CC.is_active =1 $user_text
            LEFT JOIN {users} AS U
-           ON U.user_id = (SELECT user_id FROM {groups_users} WHERE group_id = CC.collection_id AND user_type = 'owner')
+           	ON U.user_id = (SELECT user_id FROM {groups_users} WHERE group_id = CC.collection_id AND user_type = 'owner')
            LEFT JOIN {groups} AS G
-           ON CC.collection_id = G.group_id
+           	ON CC.collection_id = G.group_id
            WHERE CC.$name LIKE ?
            AND G.reg_type <> ?
+           $type_select
            GROUP BY CC.collection_id
            ORDER BY $order_by $limit";
     array_push($data, REG_INVITE);

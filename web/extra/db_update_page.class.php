@@ -2034,6 +2034,11 @@ $this->qup_all_networks("2007-06-21 Arvind altered table for advertisements on a
     "INSERT INTO `tasks_roles` (role_id, task_id) VALUES (8, 3)"
     ));
 
+    $this->qup_all_networks("2009-06-25, by: Martin - altering groups table to make typedgroup group_type possible", "ALTER TABLE {groups} CHANGE group_type group_type VARCHAR( 64 ) NOT NULL DEFAULT 'regular'");
+
+    $this->qup_all_networks("2009-06-26, by: Martin -setting all TypedGroups to the right group_type also", "UPDATE {groups} AS G LEFT JOIN {entities} AS E ON E.entity_id = G.group_id SET G.group_type='typedgroup' WHERE E.entity_service='typedgroup'");
+
+
     // finally, run the 'safe' updates in net_extra.php.
     run_net_extra();
 

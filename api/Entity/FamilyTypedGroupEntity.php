@@ -1,5 +1,7 @@
 <?php
-class BusinessTypedGroupEntity extends TypedGroupEntity {
+require_once 'api/Entity/TypedGroupEntity.php';
+require_once("api/Entity/TypedGroupEntityRelation.php");
+class FamilyTypedGroupEntity extends TypedGroupEntity {
 
 	// all this is supposed to add is the list of profile fields a Business has
 	public function get_profile_fields() {
@@ -38,6 +40,7 @@ class BusinessTypedGroupEntity extends TypedGroupEntity {
 			'child' => __("Child")
 		);
 	}
+	
 
 }
 ?>

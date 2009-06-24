@@ -115,6 +115,11 @@ define_once ('PAGE_USER_CONTACTS', 206);
 
 define_once ('PAGE_TYPED_DIRECTORY', 300);
 define_once ('PAGE_POINTS_DIRECTORY', 310);
+define_once ('PAGE_FAMILY_DIRECTORY', 320);
+define_once ('PAGE_FAMILY', 321);
+define_once ('PAGE_FAMILY_EDIT', 322);
+
+
 
 define_once ('PAGE_CREATE_DYNAMIC_PAGE', 727);
 

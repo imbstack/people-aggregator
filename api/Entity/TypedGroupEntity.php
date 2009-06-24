@@ -1,5 +1,6 @@
 <?php
 require_once 'api/Entity/Entity.php';
+require_once 'ext/Group/Group.php';
 
 class TypedGroupEntity extends Entity {
 
@@ -85,7 +86,6 @@ class TypedGroupEntity extends Entity {
 	}
 
 	public static function sync($data) {
-// echo "<pre>".print_r($data, 1)."</pre>";
 		$entity = (object)array(
 			'entity_service' => 'typedGroup',
 			'entity_type' => $data['type'],
@@ -94,6 +94,15 @@ class TypedGroupEntity extends Entity {
 			'attributes' => $data,
 		);
 		parent::sync($entity);
+		// also update the group that this corresponds to
+		$g = new Group();
+		try {
+			$g->load((int)$data['group_id']);
+			$g->group_type = 'typedgroup';
+			$g->save();
+		} catch (PAException $e) {
+			throw $e;
+		}
 	}
 }
 ?>

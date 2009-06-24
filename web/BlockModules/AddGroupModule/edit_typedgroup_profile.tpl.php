@@ -32,7 +32,9 @@ if (empty($type)) {
       <div class="field">
         <h4><label><?=__("Entity Type")?></label></h4>
         <div class="center">
-        <?= $mod->availTypes[$mod->dynFields->getVal('type')]?>
+        <?= (@$mod->availTypes[$mod->dynFields->getVal('type')]) ?
+        $mod->availTypes[$mod->dynFields->getVal('type')] 
+        : $mod->dynFields->getVal('type')?>
         </div>
       </div>
 		<br style="clear:both" />

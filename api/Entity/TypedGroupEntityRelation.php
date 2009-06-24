@@ -79,5 +79,19 @@ class TypedGroupEntityRelation extends EntityRelation {
 		}
 		return NULL;
 	}
+
+	public static function get_relation_for_user($uid, $type=NULL) {
+		$relation = array(
+			'subject_service' => 'internal',
+			'subject_type' => 'user',
+			'subject_id' => $uid,
+			'object_service' => 'typedGroup',
+		);
+		if ($type) {
+			$relation['object_type'] = $type;
+		}
+		$match = parent::load_match($relation);
+		return $match;
+	}
 }
 ?>
