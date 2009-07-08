@@ -11,7 +11,7 @@
  * these file types and handle file downloads.
  *
  * @author     Zoran Hron <zhron@broadbandmechanics.com>
- * @version    0.1.8
+ * @version    0.2.0
  *
  * @note       Do not forget that this script will be called
  *             before any other script for any WEB Request
@@ -82,9 +82,11 @@ define( "PCRE_MATCH_STRING",
         $guery_str = process_query_string($_SERVER['REDIRECT_QUERY_STRING']);
     }
 
-    if($dispatcher_scheme != $routing_scheme) {
-      header("Location: " . $routing_scheme . "://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);// "$path_pref/$file_name" . $path_info . $guery_str);
-      exit;
+    if(PA_SSL_SECURITY_ON) {
+      if($dispatcher_scheme != $routing_scheme) {
+        header("Location: " . $routing_scheme . "://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);// "$path_pref/$file_name" . $path_info . $guery_str);
+        exit;
+      }
     }
 
     switch($file_type) {
@@ -238,6 +240,9 @@ define( "PCRE_MATCH_STRING",
          if(true == preg_match('!'.$_expr.'!i', $url, $_matches)) {
            if(!empty($expr_tmp[1])) {
              $routing_scheme = strtolower($expr_tmp[1]);
+           }
+           if(PA_SSL_FORCE_HTTPS_URLS) {
+              $routing_scheme = 'https';
            }
            $current_route   = getRouteForMask($url);
            array_shift($_matches);

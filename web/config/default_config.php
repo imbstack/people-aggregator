@@ -480,10 +480,10 @@ PA::$tekmedia_iframe_form_path = PA::$tekmedia_site_url.'/Integration/MyForm.php
  * SSL settings
 **/
 
-// override in project default_config.php or local_config.php to allow or disallow UrlHelper to generate https URLs
-PA::$ssl_security_on = false;
+// allow UrlHelper to generate https URLs
+PA::$ssl_security_on = PA_SSL_SECURITY_ON;
 
 // set true to force the https url scheme for whole PA site (all urls and links will be converted)
-PA::$ssl_force_https_urls = false;
+PA::$ssl_force_https_urls = PA_SSL_FORCE_HTTPS_URLS;
 
 ?>

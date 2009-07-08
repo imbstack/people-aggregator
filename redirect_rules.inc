@@ -126,7 +126,7 @@
     *
     *
     **/
-    "^/myAccount/editProfile[\/]?(.*)$" => "/dynamic.php?page_id=24&%s",
+    "^/myAccount/editProfile[\/]?(.*)$ HTTPS" => "/dynamic.php?page_id=24&%s",
 
     /**
     *

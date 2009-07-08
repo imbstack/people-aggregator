@@ -87,6 +87,9 @@ class EditProfileModule extends Module {
   }
 
   public function handleSaveProfile($request_method, $request_data) {
+    global $error_msg;
+
+    $error_msg = null;
     switch ($request_method) {
       case 'POST':
         filter_all_post(&$request_data);
@@ -94,14 +97,17 @@ class EditProfileModule extends Module {
           $saveHandler = $request_data['profile_type'].'ProfileSave';
           if (method_exists($this, $saveHandler)) {
             $this->$saveHandler($request_data);
+          } else {
+            $error_msg = __("EditProfileModule::handleSaveProfile() - Unknown save handler!");
           }
         }
       break;
     }
-    $this->setWebPageMessage();
+//    $this->setWebPageMessage();
   }
 
   public function basicProfileSave($request_data) {
+    global $error_msg;
     $this->isError = TRUE;
 
     if (empty($request_data['first_name'])) {
@@ -152,13 +158,14 @@ class EditProfileModule extends Module {
         $dynProf->processPOST('basic');
         $dynProf->save('basic');
         $this->message = __('Profile updated successfully.');
-        $this->redirect2 = PA_ROUTE_EDIT_PROFILE;
-        $this->queryString = '?type='.$this->profile_type;
+//        $this->redirect2 = PA_ROUTE_EDIT_PROFILE;
+//        $this->queryString = '?type='.$this->profile_type;
         $this->isError = FALSE;
       } catch (PAException $e) {
         $this->message = $e->message;
       }
     }
+    $error_msg = $this->message;
   }
 
   public function handleDeleteUserPic($request_method, $request_data) {
@@ -167,12 +174,13 @@ class EditProfileModule extends Module {
         $this->user_info->picture = NULL;
         $this->user_info->save();
         $this->message = 16019;
-        $this->redirect2 = PA_ROUTE_EDIT_PROFILE;
-        $this->queryString = '?type='.$this->profile_type;
+//        $this->redirect2 = PA_ROUTE_EDIT_PROFILE;
+//        $this->queryString = '?type='.$this->profile_type;
         $this->isError = FALSE;
-        $this->setWebPageMessage();
+//        $this->setWebPageMessage();
       break;
     }
+    $error_msg = $this->message;
   }
 
   function render() {

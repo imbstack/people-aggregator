@@ -69,6 +69,7 @@ if (@$_POST['submit'] || @$_GET['action'] == 'login') { // if form is submitted
     // also try the 'basic' slot
     if (!$is_pass_ok) $is_pass_ok = $user->get_profile_field('basic', 'password_ok');
 
+
     if(empty($is_pass_ok) || ($is_pass_ok == 0)) {
       $need_to_change_passwd = true;
     }

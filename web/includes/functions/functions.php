@@ -31,7 +31,7 @@ function get_path_to_root()
 * recently entered your password.)
 */
 function check_session($login_required=TRUE, $redirect_function=NULL) {
-  global $network_info;
+
   $msg = __("Sorry - you are not logged in or you have been logged out due to inactivity. Please, log in again.");
   session_start();
 
@@ -79,7 +79,7 @@ function check_session($login_required=TRUE, $redirect_function=NULL) {
     //
     if ($login_required) {
       //if user is not in network Do nothing FIX ME Do we need to do something?
-      if (empty($network_info)) {
+      if (empty(PA::$network_info)) {
         // Do nothing may be in future we will need to do something Mothership
       } else {
  /**
@@ -108,11 +108,11 @@ function check_session($login_required=TRUE, $redirect_function=NULL) {
           $page_access = TRUE;
         }
 
-        $user_type = @Network::get_user_type( $network_info->network_id, $_SESSION['user']['id'] );
+        $user_type = @Network::get_user_type( PA::$network_info->network_id, $_SESSION['user']['id'] );
 
         if( !$page_access ) {
           $user_action = (isset($_SESSION['user']['action'])) ? $_SESSION['user']['action'] : '';
-          $redirect_page = ($network_info->is_private() && ($user_action != 'leave network')) ? PA::$url . "/request.php" : PA::$url . PA_ROUTE_HOME_PAGE . '/';
+          $redirect_page = (PA::$network_info->is_private() && ($user_action != 'leave network')) ? PA::$url . "/request.php" : PA::$url . PA_ROUTE_HOME_PAGE . '/';
           if( $user_type == DISABLED_MEMBER ) {
             $redirect_url = $redirect_page . "?msg=7003";
           }

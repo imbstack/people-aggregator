@@ -238,12 +238,16 @@ class User_Registration {
         $this->newuser->save();
 	if ($this->newuser->picture) Storage::link($this->newuser->picture, array("role" => "avatar", "user" => $this->newuser->user_id));
 
-        // saving data in user profile data also -- for search
+        /* The following code should now be obsolete as this is done in User->save() */
+        // saving data in user profile data also -- for searching making more easier
         $data_array = array(
         array('uid'=>$this->newuser->user_id, 'name'=>'first_name', 'value'=>$this->newuser->first_name, 'type'=>BASIC, 'perm'=>1),
         array('uid'=>$this->newuser->user_id, 'name'=>'last_name', 'value'=>$this->newuser->last_name, 'type'=>BASIC, 'perm'=>1),
         // Password Status
-        // -> if the user registered successfully, the password must be ok
+        //
+        //  - password is NOT OK as long as the length of password is less than 10 characters
+        //    (rule applied in dologin.php)
+        //
         array('uid'=>$this->newuser->user_id, 'name'=>'password_ok', 'value'=> 1, 'type'=>BASIC, 'perm'=>1),
         );
 
