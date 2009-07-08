@@ -1,5 +1,4 @@
 <?php
-
 /* BOOT main network, detect local networks
 
 procedure:
@@ -23,6 +22,10 @@ procedure:
 
 
 $host = PA_SERVER_NAME;
+
+if(PA::$ssl_force_https_urls == true) {
+  $base_url = str_replace("http", 'https', $base_url);
+}
 
 if (!$_PA->enable_networks || !$domain_suffix) {
 	// spawning disabled
@@ -66,14 +69,14 @@ if (!$_PA->enable_networks || !$domain_suffix) {
 				define("CURRENT_NETWORK_URL_PREFIX", "www");
 				$network_prefix = "default";
 			}
-      $network_folder = null;   
+      $network_folder = null;
 			$core_network_folder = PA::$core_dir . "/networks/$network_prefix";       // network exists in CORE ?
       $proj_network_folder = PA::$project_dir . "/networks/$network_prefix";    // network exists in PROJECT ?
 			if(is_dir($core_network_folder)) {
-        $network_folder = $core_network_folder;   
+        $network_folder = $core_network_folder;
       } else if(is_dir($proj_network_folder)) {
-        $network_folder = $proj_network_folder;   
-      }   
+        $network_folder = $proj_network_folder;
+      }
       if($network_folder) {
 				// network exists
 				if (!defined("CURRENT_NETWORK_URL_PREFIX"))

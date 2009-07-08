@@ -38,7 +38,7 @@ $params_profile[0] = Array(0 => $user->user_id, 1 => $field_name, 2 => $status, 
 $user->save_user_profile_fields($params_profile, $field_type, $field_name);
 
 if (!empty($_GET['mode']) && htmlspecialchars($_GET['mode']) == 'blog_rss') {
-  header("Location:" . PA::$url . '/' . FILE_EDIT_PROFILE . "?type=blogs_rss&msg_id=9025");
+  header("Location:" . PA::$url . PA_ROUTE_EDIT_PROFILE . "?type=blogs_rss&msg_id=9025");
   exit;
 }
 header("Location: " . PA::$url . PA_ROUTE_USER_PRIVATE . '/' . "msg_id=9025");

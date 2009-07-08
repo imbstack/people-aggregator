@@ -45,12 +45,12 @@ foreach($default_notification_settings as $setting => $data) {
       if(!isset($notification_settings[$setting])) {                     // only if not already exists in user settings
         $notification_settings[$setting]['caption'] =  $data['caption'];
         $notification_settings[$setting]['value'] = $data['value'];
-      }  
+      }
     } else {
       if(isset($notification_settings[$setting])) {
         unset($notification_settings[$setting]);
-      }   
-    } 
+      }
+    }
 }
 
 if(!isset($notification_settings['msg_waiting_blink'])) {                     // only if not already exists in user settings
@@ -61,7 +61,7 @@ if(!isset($notification_settings['msg_waiting_blink'])) {                     //
 // change "their" to "my", etc.
 foreach($notification_settings as $setting=>$data) {
   if (! empty($data['caption'])) {
-    $caption = 
+    $caption =
       preg_replace(
         Array('/they/','/their/','/themselves/','/them/'),
         Array('I','my','myself','me'),
@@ -76,7 +76,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'notifications')) {
     $notification_settings = getDefaults();
   } else {
     // $this is  DynamicProfile class instance
-    // $this->processPOST('notifications');  
+    // $this->processPOST('notifications');
     foreach($notification_settings as $k => $v) {
       if($v['value'] <> -1) {
         $emailVal = (empty($_POST[$k.'_email']))?0:1;
@@ -85,15 +85,15 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'notifications')) {
         if(isset($notification_settings[$k]['value'])) {
           $notification_settings[$k]['value'] = $s;
         }
-      }  
+      }
     }
     if(empty($_POST['msg_waiting_blink'])){
       $notification_settings['msg_waiting_blink'] = NET_NO;
     } else if($_POST['msg_waiting_blink'] == NET_YES) {
       $notification_settings['msg_waiting_blink'] = NET_YES;
-    } 
+    }
   }
-  
+
   // save this to profile
   $profile['settings']['name'] = 'settings';
   $profile['settings']['value'] =
@@ -101,7 +101,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'notifications')) {
 
   $this->user->{'notifications'} = $profile;
   // save away!
-  $this->user->save_profile_section($profile, 'notifications'); 
+  $this->user->save_profile_section($profile, 'notifications');
 	global $error_msg;
 	$error_msg = __('Profile updated successfully.');
 }
@@ -116,7 +116,7 @@ echo "</pre>";
 
 ?>
   <h1><?= __("Notifications") ?></h1>
-      <form enctype="multipart/form-data" action="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=notifications&action=save" method="post">
+      <form enctype="multipart/form-data" action="" method="post">
       <input type="hidden" name="profile_type" value="notifications" />
         <fieldset>
     <table id="tablelist" width="100%" cellpadding="3" cellspacing="3">
@@ -138,7 +138,7 @@ echo "</pre>";
           case NET_EMAIL: $chkd_registered = ' CHECKED ';  $chkd_msg = '';  break;
           case NET_MSG: $chkd_registered = '';  $chkd_msg = ' CHECKED ';  break;
           case NET_BOTH: $chkd_registered = ' CHECKED ';  $chkd_msg = ' CHECKED ';  break;
-          default: $chkd_registered = '';  $chkd_msg = '';  
+          default: $chkd_registered = '';  $chkd_msg = '';
         }
       ?>
       <?php $style = ($value['value'] == -1) ? " style=\"display: none\"" : ""; ?>
@@ -169,7 +169,7 @@ echo "</pre>";
   </tr>
 </table>
         </fieldset>
-        
+
 <div class="button_position">
   <input type="submit" class="button-submit" name="submit" value="<?= __("Apply Changes") ?>" />
   <input type="submit" class="button-submit" name="submit" value="<?= __("Restore default settings") ?>" />

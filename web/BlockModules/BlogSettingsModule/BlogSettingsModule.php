@@ -54,7 +54,7 @@ class BlogSettingsModule extends Module {
         $params_profile = array(array($this->uid, $field_name, $status, $field_type, 1, null));
         $this->user->save_user_profile_fields($params_profile, $field_type, $field_name);
         if (!empty($request_data['mode']) && htmlspecialchars($request_data['mode']) == 'blog_rss') {
-          $location = PA::$url . '/' . FILE_EDIT_PROFILE . '?type=blogs_rss&msg_id=9025';
+          $location = PA::$url . PA_ROUTE_EDIT_PROFILE . '?type=blogs_rss&msg_id=9025';
         } else {
           $location = PA::$url . PA_ROUTE_USER_PRIVATE . '/' . 'msg_id=9025';
         }
@@ -63,7 +63,8 @@ class BlogSettingsModule extends Module {
         break;
       case 'GET':
         if (!empty($request_data['mode']) && htmlspecialchars($request_data['mode']) == 'blog_rss') {
-          header('Location:'. PA::$url.'/'.FILE_EDIT_PROFILE.'?type=blogs_rss&msg_id=9025'); exit;
+          header('Location:'. PA::$url . PA_ROUTE_EDIT_PROFILE . '?type=blogs_rss&msg_id=9025'); 
+          exit;
         }
         break;
     }

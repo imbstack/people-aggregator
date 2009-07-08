@@ -359,7 +359,7 @@ $(document).ready(
           $.post(url,
             {},
             function() {
-              document.location.href = 'edit_profile.php?type=external&exttype=connected';
+              document.location.href = '/myAccount/editProfile?type=external&exttype=connected';
             }
           );
         }

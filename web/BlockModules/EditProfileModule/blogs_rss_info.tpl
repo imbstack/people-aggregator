@@ -52,7 +52,7 @@ require_once PA::$blockmodule_path . "/EditProfileModule/blog_setting.tpl";
 ?>
 
   <h1><?= __("Blogs/RSS") ?></h1>
-    <form enctype="multipart/form-data" action="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=blogs_rss&action=save" method="post">
+    <form enctype="multipart/form-data" action="" method="post">
     <input type="hidden" name="profile_type" value="blogs_rss" />
 
     <fieldset>

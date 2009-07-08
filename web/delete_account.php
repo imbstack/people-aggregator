@@ -16,5 +16,5 @@ if ($network_info->type == MOTHER_NETWORK_TYPE) {
 } else  {
   $msg = 7032;
 }
-header("Location: edit_profile.php?type=delete_account&msg_id=$msg");
+header("Location: " . PA::$url . PA_ROUTE_EDIT_PROFILE . "?type=delete_account&msg_id=$msg");
 ?>

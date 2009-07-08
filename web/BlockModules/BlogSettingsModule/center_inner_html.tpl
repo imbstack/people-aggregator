@@ -21,7 +21,7 @@
           <input type='hidden' name='action' value='BlogSetting'>
     <ul><li><a onclick='form_submit();' style="color:#000;cursor:pointer; cursor:hand;" ><?=__("Save")?></a></li>
       <li><a href="<?= PA::$url . PA_ROUTE_USER_PUBLIC . "/" . $_SESSION['user']['id'] ?>" style="color:#000" ><?=__("View my public page")?></a></li>
-      <li><a href="<?= PA::$url?>/edit_profile.php?type=blogs_rss" style="color:#000" ><?=__("Configure external blog")?></a></li>
+      <li><a href="<?= PA::$url , PA_ROUTE_EDIT_PROFILE . "?type=blogs_rss"?>" style="color:#000" ><?=__("Configure external blog")?></a></li>
     </ul>
 </div>
 </div>

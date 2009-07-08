@@ -699,7 +699,6 @@ class PA {
                             ),
                        ),
   );
-
   // Core root directory
   public static $core_dir;
 
@@ -755,6 +754,15 @@ class PA {
 
   public static $people_noun = 'People';
   public static $mypage_noun = 'Me';
+  
+  // user data settings
+  // moving these from constants to PA:: vars
+  public static $password_min_length = 5;
+  public static $password_max_length = 15;
+  
+  // where to send user after login
+  public static $after_login_page = '/';
+
 
   public static function logged_in() { return !empty(PA::$login_uid); }
 
@@ -773,6 +781,12 @@ class PA {
   public static $tekmedia_server;
   public static $tekmedia_site_url;
   public static $tekmedia_iframe_form_path;
+
+  // set true to allow UrlHelper to generate https URLs
+  public static $ssl_security_on;
+
+  // set true to force the https url scheme for whole PA site (all urls and links will be converted)
+  public static $ssl_force_https_urls;
 
   //Static method which will check whether the content moderation is on for the current network
   //TRUE -> If content moderation is on, FALSE otherwise

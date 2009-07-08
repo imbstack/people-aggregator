@@ -32,10 +32,10 @@ class ChangePasswordModule extends Module {
           $message = __('Please confirm your new password');
         } else if ($request_data['confirm_password'] != $request_data['password']) {
           $message = __('Passwords do not match. Please re-enter');
-        } else if (strlen($request_data['password']) < MIN_PASSWORD_LENGTH) {
-          $message = sprintf(__('Password should be of %s characters or more.'), MIN_PASSWORD_LENGTH);
-        } else if (strlen($request_data['password']) > MAX_PASSWORD_LENGTH) {
-          $this->message = sprintf(__('Password should be less than %s charcaters.'), MAX_PASSWORD_LENGTH);
+        } else if (strlen($request_data['password']) < PA::$password_min_length) {
+          $message = sprintf(__('Password should be of %s characters or more.'), PA::$password_min_length);
+        } else if (strlen($request_data['password']) > PA::$password_max_length) {
+          $this->message = sprintf(__('Password should be less than %s charcaters.'), PA::$password_max_length);
         }
         
         //if $message is set then there is an error

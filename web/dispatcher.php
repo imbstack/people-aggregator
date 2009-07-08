@@ -17,7 +17,7 @@
  *             before any other script for any WEB Request
  *             because rewritting rule in .htacces file forwarding
  *             all those requests here!
- */
+ **/
 
 include dirname(__FILE__) . "/../../project_config.php";
 
@@ -40,10 +40,12 @@ define( "PCRE_MATCH_STRING",
         "(.*)$!i"
       );
 
- global $current_route, $route_query_str;
+ global $current_route, $route_query_str, $routing_scheme;
 
  $routes = array();
  $current_route = null;
+ $dispatcher_scheme = sprintf('http%s', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == TRUE ? 's': ''));
+ $routing_scheme = $dispatcher_scheme;
 
  $prr_succes = @include_once($project_dir . DIRECTORY_SEPARATOR . "redirect_rules.inc");
  $crr_succes = @include_once($core_dir . DIRECTORY_SEPARATOR . "redirect_rules.inc");
@@ -79,6 +81,12 @@ define( "PCRE_MATCH_STRING",
     } else if(isset($_SERVER['REDIRECT_QUERY_STRING'])) {
         $guery_str = process_query_string($_SERVER['REDIRECT_QUERY_STRING']);
     }
+
+    if($dispatcher_scheme != $routing_scheme) {
+      header("Location: " . $routing_scheme . "://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);// "$path_pref/$file_name" . $path_info . $guery_str);
+      exit;
+    }
+
     switch($file_type) {
       case 'php':
         $_SERVER['SCRIPT_FILENAME'] = $file_path;
@@ -221,11 +229,16 @@ define( "PCRE_MATCH_STRING",
  }
 
  function checkRedirections($routes, $url, &$matches) {
-  global $current_route;
+  global $current_route, $routing_scheme;
     if(false == preg_match(PCRE_MATCH_STRING, $url, $matches)) {
-       foreach($routes as $_expr => $_route) {
+       foreach($routes as $expr_arr => $_route) {
+         $expr_tmp = split(' ', $expr_arr);
+         $_expr = $expr_tmp[0];
          $_matches = array();
          if(true == preg_match('!'.$_expr.'!i', $url, $_matches)) {
+           if(!empty($expr_tmp[1])) {
+             $routing_scheme = strtolower($expr_tmp[1]);
+           }
            $current_route   = getRouteForMask($url);
            array_shift($_matches);
            if(count($_matches) > 0) {

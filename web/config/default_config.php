@@ -459,6 +459,7 @@ define("GROUP_MEMBER_ROLE", 6);     // Group Member Role
 /** -----------------------------------------------------------------------------------------
  * Tekmedia keys.
 **/
+
 //constants defined for tekmedia
 PA::$video_accesskey = 'aab3238922bcc25a6f606eb525ffdc56';
 PA::$video_secretkey = '871a67b6d6c4aae206c1b853536d7f4f';
@@ -473,4 +474,16 @@ PA::$tekmedia_site_url = 'http://www.glued.in';
 
 //The iframe path to upload video on Tek media side
 PA::$tekmedia_iframe_form_path = PA::$tekmedia_site_url.'/Integration/MyForm.php';
+
+
+/** -----------------------------------------------------------------------------------------
+ * SSL settings
+**/
+
+// override in project default_config.php or local_config.php to allow or disallow UrlHelper to generate https URLs
+PA::$ssl_security_on = false;
+
+// set true to force the https url scheme for whole PA site (all urls and links will be converted)
+PA::$ssl_force_https_urls = false;
+
 ?>

@@ -82,6 +82,11 @@ function check_session($login_required=TRUE, $redirect_function=NULL) {
       if (empty($network_info)) {
         // Do nothing may be in future we will need to do something Mothership
       } else {
+ /**
+ *   NOTE: Code bellow is obsolete!
+ *
+ *   TODO: should be removed !
+ **/
         $script_name = $_SERVER['SCRIPT_NAME'];
         $tmp_array = explode ('/', $script_name);
         $script_name =  end ($tmp_array);

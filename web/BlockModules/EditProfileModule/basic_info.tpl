@@ -1,5 +1,5 @@
 <h1><?= __("Basic info") ?></h1>
-<form enctype="multipart/form-data" action="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=basic" method="post" name="formBasicProfile">
+<form enctype="multipart/form-data" action="" method="post" name="formBasicProfile">
   <fieldset>
     <div class="field">
       <h4><?= __("Login Name") ?></h4>
@@ -30,7 +30,7 @@
         }
       ?>
     </div>
-    
+
     <div class="field">
       <h4><label for="last-name"> <?= __("Last Name") ?></label></h4>
       <?php
@@ -45,7 +45,7 @@
         }
       ?>
     </div>
-    
+
     <div class="field">
       <h4><span class="required"> * </span><label for="user-email"><?= __("Email") ?></label></h4>
       <?php

@@ -6,7 +6,7 @@ $profile = &$this->user->{'professional'};
 
 if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
   global $msg, $nsg2, $msg_pro, $uploaddir;
-  
+
   require_once "web/includes/classes/file_uploader.php";
   if (!empty($_FILES['user_cv']['name'])) {
      $myUploadobj = new FileUploader; //creating instance of file.
@@ -25,18 +25,18 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
      $_POST['user_cv']['value'] = $user_cv;
    }
 
-  // $this is  DynamicProfile class instance  
+  // $this is  DynamicProfile class instance
   $this->processPOST('professional');
   if (! $error) {
     try {
-      // $this is  DynamicProfile class instance  
+      // $this is  DynamicProfile class instance
       $this->save('professional', PROFESSIONAL);
     } catch (PAException $e) {
       $msg = "$e->message";
       $save_error = TRUE;
     }
   }
-  
+
   if ($error == TRUE || $save_error == TRUE) {
     $msg = __('Sorry: you are unable to save data').'<br>'.__('Reason: ')."$msg";
   } else {
@@ -47,22 +47,22 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
 ?>
 
   <h1><?= __("Professional Info") ?></h1>
-      <form enctype="multipart/form-data" action="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=professional&action=save" method="post" >
+      <form enctype="multipart/form-data" action="" method="post" >
         <fieldset>
     <div class="field">
-      <h4><label for="multiple_select"><?= __("Select for All") ?></label></h4>            
+      <h4><label for="multiple_select"><?= __("Select for All") ?></label></h4>
       <div>
-      <?php echo uihelper_get_user_access_list('select_multiple', 
-        'NONE', 
+      <?php echo uihelper_get_user_access_list('select_multiple',
+        'NONE',
         $other_params = ' onchange="javascript: set_all_perms(this)"');?>
     </div><br />
   </div>
-  
+
   <?php
     $label = __("Upload CV");
     $fieldname = "user_cv";
     $f = @$this->user->{'professional'}[$fieldname];
-    $v = @$f['value'];    
+    $v = @$f['value'];
   ?>
       <div class="field_medium">
         <h4><label for="<?=$fieldname.'[value]'?>"><?=$label?></label></h4>
@@ -70,14 +70,14 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
         <input type="file" class="text normal" id="user_cv" name="user_cv" />
         </div>
         <div>
-        <?php 
+        <?php
           print uihelper_get_user_access_list($fieldname."[perm]", $f["perm"]);
         ?>
         </div>
             <div class="field_text">
               <?= __("Valid file types are .doc and .pdf") ?>.
-              <?php if (!empty($v)) { 
-              ?><span class="required"><?= __("This will replace your current CV") ?> (<a href="<?= htmlspecialchars(Storage::getURL($v)) ?>">click here to download</a>)<span> 
+              <?php if (!empty($v)) {
+              ?><span class="required"><?= __("This will replace your current CV") ?> (<a href="<?= htmlspecialchars(Storage::getURL($v)) ?>">click here to download</a>)<span>
               <? } ?>
             </div>
       </div>
@@ -100,10 +100,10 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
             $this->textarea(__("Honors &amp; Awards"), "awards", "professional");
           ?>
         </fieldset>
-        
+
         <div class="button_position">
           <input type="hidden" name="profile_type" value="professional" />
           <input type="submit" name="submit" value="<?= __("Apply Changes") ?>" />
         </div>
-        
+
       </form>

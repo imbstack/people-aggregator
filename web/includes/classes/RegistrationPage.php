@@ -58,7 +58,7 @@ class RegistrationPage {
 		       $this->reg_user->newuser->first_name, $this->reg_user->newuser->last_name,
 		       $this->reg_user->newuser->email,
 		       $this->reg_user->newuser->picture);
-      $_SESSION['login_source'] = 'password'; // password recently entered, so enable access to edit_profile.php etc
+      $_SESSION['login_source'] = 'password'; // password recently entered, so enable access to edit profile
 
       PANotify::send("new_user_registered", PA::$network_info, $this->reg_user->newuser, array());
 

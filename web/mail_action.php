@@ -129,7 +129,7 @@ if($newuser) {//if token is valid
           exit;
         }
         if(isset($_GET['action']) && ($_GET['action']=='profile')) { //redirect user to edit his profile
-          header("Location: ". PA::$url ."/edit_profile.php?uid=".$user->user_id);
+          header("Location: ". PA::$url . PA_ROUTE_EDIT_PROFILE . "?uid=".$user->user_id);
           exit;
         }
         if(isset($_GET['uid'])) { //redirect someone to user's public page
