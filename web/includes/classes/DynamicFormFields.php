@@ -209,11 +209,15 @@ class DynamicFormFields {
           <select name="<?=$fieldname?>" id="<?=$fieldname?>" class="select-txt">
             <option value=""> - Select -</option>
           <?php 
-          for ($i=0; $i<count($values); $i++) {
+          foreach ($values as $i=>$label) {
               // have we been passed value/label or just a list
               if (is_array($values[$i])) {
               	$cv = $values[$i]['value'];
               	$cl = $values[$i]['label'];
+              } else if (!is_numeric($i)) {
+              	// this is a dict
+              	$cv = $i;
+              	$cl = $label;
               } else {
               	$cv = $cl = $values[$i];
               }

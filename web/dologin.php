@@ -54,31 +54,7 @@ if (@$_POST['submit'] || @$_GET['action'] == 'login') { // if form is submitted
   if ($u > 0) { // if authetication succeeded
     $pal = new PA_Login();
     $remember_me = (isset($_POST['remember']) && $_POST['remember'] == 1);
-    // verify if their password is conform
-    $need_to_change_passwd = false;
-    if(strlen($password) < PA::$password_min_length) {
-      $remember_me = false;
-      $need_to_change_passwd = true;
-    }
     $pal->log_in($u, $remember_me, "password");
-
-    // we nned to record if the password is ok or not
-    $user = new User();
-    $user->load((int)$u);
-    $is_pass_ok = $user->get_profile_field(BASIC, 'password_ok');
-    // also try the 'basic' slot
-    if (!$is_pass_ok) $is_pass_ok = $user->get_profile_field('basic', 'password_ok');
-
-
-    if(empty($is_pass_ok) || ($is_pass_ok == 0)) {
-      $need_to_change_passwd = true;
-    }
-/*
-    $user->save_profile_section(
-        array('password_ok' => array('value' => !$need_to_change_passwd, 'perm'=>1)),
-        BASIC, TRUE);
-        // NOTE: we use the preserve=TRUE here to ensire that other data is not erased
-*/
 
     // verify token
     if (!empty($token)) { // if token isn't empty
@@ -165,12 +141,6 @@ if (@$_POST['submit'] || @$_GET['action'] == 'login') { // if form is submitted
       header("Location: ".PA_ROUTE_HOME_PAGE."/msg=$msg");exit;
     }
 
-    // if the password did not conform
-    if($need_to_change_passwd) {
-      $msg = sprintf(__("Please change your password as soon as possible. Your new password must be least %d characters long."), PA::$password_min_length);
-      $location = PA_ROUTE_EDIT_PROFILE."?msg=$msg";
-      $return_url =NULL;
-    }
 
     // redirect user
     if ($return_url) {

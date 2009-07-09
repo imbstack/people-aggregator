@@ -42,7 +42,7 @@ if (empty($type)) {
 	foreach ($mod->profilefields as $i=>$field) {
 		switch ($field['type']) {
 			case 'stateselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->states);
+				$mod->dynFields->select($field['label'], $field['name'], PA::getStatesList());
 			break;
 			case 'industryselect':
 				$mod->dynFields->select($field['label'], $field['name'], $_PA->industries);
@@ -51,7 +51,7 @@ if (empty($type)) {
 				$mod->dynFields->select($field['label'], $field['name'], $_PA->religions);
 			break;
 			case 'countryselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->countries);
+				$mod->dynFields->select($field['label'], $field['name'], PA::getCountryList());
 			break;
 			case 'urltextfield':
 				$mod->dynFields->textfield($field['label'], $field['name']);

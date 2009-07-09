@@ -47,6 +47,8 @@ if (!empty($atts['logo'])) {
 
 <table>
 <?php
+$statesList = PA::getStatesList();
+$countryList = PA::getCountryList();
 foreach ($mod->profilefields as $i=>$field) {
 	if ('logo' == $field['name']) continue;
 	if ('slogan' == $field['name']) continue;
@@ -73,6 +75,12 @@ foreach ($mod->profilefields as $i=>$field) {
 			} else {
 				$value = '';
 			}
+		break;
+		case 'stateselect':
+			$value = @$statesList[$attval];
+		break;
+		case 'countryselect':
+			$value = @$countryList[$attval];
 		break;
 		case 'dateselect':
 			$day = @$atts[$field['name'].'_day']['value'];

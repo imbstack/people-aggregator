@@ -243,12 +243,6 @@ class User_Registration {
         $data_array = array(
         array('uid'=>$this->newuser->user_id, 'name'=>'first_name', 'value'=>$this->newuser->first_name, 'type'=>BASIC, 'perm'=>1),
         array('uid'=>$this->newuser->user_id, 'name'=>'last_name', 'value'=>$this->newuser->last_name, 'type'=>BASIC, 'perm'=>1),
-        // Password Status
-        //
-        //  - password is NOT OK as long as the length of password is less than 10 characters
-        //    (rule applied in dologin.php)
-        //
-        array('uid'=>$this->newuser->user_id, 'name'=>'password_ok', 'value'=> 1, 'type'=>BASIC, 'perm'=>1),
         );
 
         $this->newuser->save_user_profile($data_array, BASIC);

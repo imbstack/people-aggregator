@@ -19,7 +19,8 @@ if (!empty($atts['slogan'])) {
 	?><a href="<?=PA::$url.PA_ROUTE_FAMILY_DIRECTORY?>"><?=__("Family")?></a></td>
 </tr>
 <?php
-
+$statesList = PA::getStatesList();
+$countryList = PA::getCountryList();
 foreach ($mod->profilefields as $i=>$field) {
 	if ('logo' == $field['name']) continue;
 	if ('slogan' == $field['name']) continue;
@@ -47,6 +48,12 @@ foreach ($mod->profilefields as $i=>$field) {
 				$value = '';
 			}
 		break;
+		case 'stateselect':
+			$value = @$statesList[$attval];
+		break;
+		case 'countryselect':
+			$value = @$countryList[$attval];
+		break;
 		case 'dateselect':
 			$day = @$atts[$field['name'].'_day']['value'];
 			$month = @$atts[$field['name'].'_month']['value'];
@@ -73,10 +80,11 @@ foreach ($mod->profilefields as $i=>$field) {
   <?= __('Leave this Family') ?>
   </a>
 <?php } ?>
-
 <?php if (!empty(PA::$login_uid) ) { ?>
-	<form action="<?= PA::$url.PA_ROUTE_FAMILY?>/action=<?=
-	(empty($mod->is_member)) ? 'join' : 'update' ?>&amp;gid=<?= $mod->group_details->collection_id?>">
+	<form action="<?= PA::$url.PA_ROUTE_FAMILY?>/">
+	<input type="hidden" name="action" value="<?=
+	(empty($mod->is_member)) ? 'join' : 'update' ?>" />
+	<input type="hidden" name="gid" value="<?= $mod->group_details->collection_id?>" />
 	<?php if ($mod->is_member) { ?>
 		<b><?=$mod->relationTypeString?></b>
 		<a href="#" onclick="$('#relationType').toggle(); return false;"><?=__("Update relation")?></a>

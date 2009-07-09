@@ -128,10 +128,6 @@ class EditProfileModule extends Module {
       	$new_password_ok = true;
       }
     }
-		// add info about conform password here
-		if (!empty($set_new_password)) {
-			$_POST['password_ok']['value'] = $new_password_ok;
-		}
 
     if (empty($this->message) && !empty($_FILES['userfile']['name'])) {
       global $uploaddir;

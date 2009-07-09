@@ -78,9 +78,9 @@ class FamilyModule extends Module {
 
     if (!$this->is_member) {
       if((!empty($this->group_details) ? $this->group_details->reg_type : NULL) && $this->group_details->reg_type == REG_MODERATED) {
-        $this->join_this_group_string = __('Request to join this group as');
+        $this->join_this_group_string = __('Request to join this family as');
       } else {
-        $this->join_this_group_string = __('Join This Group as');
+        $this->join_this_group_string = __('Join This family as');
       }
     } else {
     	// get the relationType for this user
@@ -265,15 +265,16 @@ class FamilyModule extends Module {
         }
     }
   private function handleGET_join($request_data) {
+		require_once "api/Activities/Activities.php";
     global $_PA, $error_msg;
-    if (PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
+    if (PA::$login_uid && !empty($this->shared_data['group_info'])) {
       $group = $this->shared_data['group_info'];
       if (!Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) {
-        $user  = $this->shared_data['login_user'];
+        $user  = PA::$login_user;
         $login_name = $user->login_name;
         $group_invitation_id = (!empty($request_data['GInvID'])) ? $request_data['GInvID'] : null;
         try {
-          $user_joined = $group->join((int)PA::$login_uid, $_SESSION['user']['email'],$group_invitation_id);
+          $user_joined = $group->join((int)PA::$login_uid, $user->email, $group_invitation_id);
           // for rivers of people
           $activity = 'group_joined';//for rivers of people
           $activity_extra['info'] = ($login_name.' joined a new group');
@@ -325,7 +326,7 @@ class FamilyModule extends Module {
         }
 
         $gid = (int)$request_data['gid'];
-        if(!(Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) && $group->reg_type == REG_MODERATED) { // if it is a manual join not an invited join
+        if(!(Group::member_exists($gid, (int)PA::$login_uid)) && $group->reg_type == REG_MODERATED) { // if it is a manual join not an invited join
           $mail_type = 'group_join_request';
           $error_msg = sprintf(__("Your request to join \"%s\" has been submitted to the owner of the group."), stripslashes($group->title));
         } else {
