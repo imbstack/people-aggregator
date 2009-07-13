@@ -385,6 +385,7 @@ class PageRenderer {
       $this->module_arrays[$module_column] = $array_modules;
     }
 
+    /*
     $pages = Advertisement::get_pages(); // get pages where ads is to be displayed
     $display_ad = FALSE;
     foreach ($pages as $page) {
@@ -393,6 +394,16 @@ class PageRenderer {
         break;
       }
     }
+    */
+
+    // the following code does exactly the same as 
+    // the above commented, only much more efficient
+    // because it'snot loading ALL pages
+    $display_ad = false;
+    if (preg_match("/(network|group)/", $this->setting_data['page_type'])) {
+    	$display_ad = true;
+    }
+    
 
     if ($display_ad) {
       // get all ads
@@ -480,6 +491,7 @@ class PageRenderer {
         }
       }
 
+    /*
     $pages = Advertisement::get_pages(); // get pages where ads is to be displayed
     $display_ad = FALSE;
     foreach ($pages as $page) {
@@ -488,6 +500,16 @@ class PageRenderer {
         break;
       }
     }
+    */
+
+    // the following code does exactly the same as 
+    // the above commented, only much more efficient
+    // because it'snot loading ALL pages
+    $display_ad = false;
+    if (preg_match("/(network|group)/", $this->setting_data['page_type'])) {
+    	$display_ad = true;
+    }
+    
 
     if ($display_ad) {
       // get all ads
