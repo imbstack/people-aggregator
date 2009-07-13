@@ -2033,6 +2033,9 @@ $this->qup_all_networks("2007-06-21 Arvind altered table for advertisements on a
     "INSERT INTO `tasks_roles` (role_id, task_id) VALUES (7, 3)",
     "INSERT INTO `tasks_roles` (role_id, task_id) VALUES (8, 3)"
     ));
+    
+    $this->qup_all_networks("2009-07-11, by: Martin - adding performance critical INDEX to groups_users",
+              "ALTER TABLE {groups_users} ADD INDEX user_type_index (group_id, user_id, user_type)");
 
     $this->qup_all_networks("2009-06-25, by: Martin - altering groups table to make typedgroup group_type possible", "ALTER TABLE {groups} CHANGE group_type group_type VARCHAR( 64 ) NOT NULL DEFAULT 'regular'");
 
