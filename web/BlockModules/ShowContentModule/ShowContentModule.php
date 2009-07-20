@@ -224,30 +224,37 @@ class ShowContentModule extends Module {
         $this->Paging["count"] = $this->links =  $this->group->get_contents_for_collection($type = 'all',$cnt=TRUE,'all' , 0, $sort_by='created', $direction='DESC');
         $this->contents = $this->group->get_contents_for_collection($type = 'all', $cnt=FALSE, $this->Paging["show"], $this->Paging["page"],'created','DESC');
       }
-      $this->group_owner = FALSE;
-      $perm_params = array('permissions' => 'manage_groups, manage_roles');
-      $has_adm_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
-      if ($has_adm_permission || Group::is_admin($this->group->collection_id, PA::$login_uid)) {
-        $this->group_owner = TRUE;
-      }
-      $this->group_member = FALSE;
-      if (Group::member_exists($this->group->collection_id, PA::$login_uid)) {
-        $this->group_member = TRUE;
-      }
-
-      $perm_params = array('permissions' => 'manage_groups');
-      $has_mod_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
-      $this->group_moderator = FALSE;
-      if($has_mod_permission || ($this->shared_data['member_type'] == 'moderator')) {
-        $this->group_moderator = TRUE;
-      }
       
-      $this->ad_manager = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
-      // check for manageads of group permissions
-      if (!$this->ad_manager) {
-      	// we do this checl only if the user is not already permitted to manage ads
-      	$this->ad_manager = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, array('permissions' => 'manage_ads'));
-			}
+      $this->group_owner = FALSE;
+      $this->group_member = FALSE;
+      $this->group_moderator = FALSE;
+      $this->ad_manager = FALSE;
+      if (PA::$login_uid) {
+      	// all permission tests only make sense if we HAVE a user
+				$perm_params = array('permissions' => 'manage_groups, manage_roles');
+				$has_adm_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
+				if ($has_adm_permission || Group::is_admin($this->group->collection_id, PA::$login_uid)) {
+					$this->group_owner = TRUE;
+				}
+				$this->group_member = FALSE;
+				if (Group::member_exists($this->group->collection_id, PA::$login_uid)) {
+					$this->group_member = TRUE;
+				}
+	
+				$perm_params = array('permissions' => 'manage_groups');
+				$has_mod_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
+				$this->group_moderator = FALSE;
+				if($has_mod_permission || ($this->shared_data['member_type'] == 'moderator')) {
+					$this->group_moderator = TRUE;
+				}
+				
+				$this->ad_manager = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
+				// check for manageads of group permissions
+				if (!$this->ad_manager) {
+					// we do this checl only if the user is not already permitted to manage ads
+					$this->ad_manager = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, array('permissions' => 'manage_ads'));
+				}
+      }
 
 
       $this->title = chop_string(sprintf(__("%s's Group Blog"), $this->group->title,32));

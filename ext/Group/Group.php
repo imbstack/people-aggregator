@@ -807,6 +807,8 @@ class Group extends ContentCollection {
     */
    public static function is_admin($group_id, $user_id) {
      Logger::log("Enter: Group::is_admin() | Args: \$group_id = $group_id, \$user_id = $user_id");
+     
+     if (!$user_id) return false; // how can an annon user be admin ^^
 
      $is_super_user = false;
      if (defined('SUPER_USER_ID')) {                        // check if super user exists else raise exception
