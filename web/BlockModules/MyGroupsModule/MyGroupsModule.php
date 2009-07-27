@@ -14,6 +14,7 @@ class MyGroupsModule extends Module {
   public $usergroups = array();
 
   public function __construct() {
+    parent::__construct();
   }
     
   //code for module initialization

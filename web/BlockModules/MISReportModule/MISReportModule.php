@@ -19,7 +19,9 @@ class MISReportModule extends Module {
   public $profile_visits_by_user;
   public $relationship_stats;
   public $email_addresses;
+
   function __construct() {
+    parent::__construct();
     $this->title = __('MIS Reports');
     $this->html_block_id = 'MISReportModule';
   }

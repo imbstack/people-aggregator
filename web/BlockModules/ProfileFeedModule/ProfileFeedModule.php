@@ -42,6 +42,7 @@ class ProfileFeedModule extends Module {
   * Initializes html_block_id and title for the module
   */  
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'ProfileFeedModule';
     $this->title = __('Blogs');
   }

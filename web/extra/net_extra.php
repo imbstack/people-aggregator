@@ -1,6 +1,6 @@
 <?php
-global $core_dir;
-require_once $core_dir . "/web/extra/net_extra.class.php";
+
+require_once PA::$core_dir . "/web/extra/net_extra.class.php";
 
 // This is called from db_update.php, ONCE, i.e. during installation.
 function run_net_extra_once_only() {

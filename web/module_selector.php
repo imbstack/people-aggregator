@@ -133,11 +133,11 @@
     $page->add_module("middle", "top", $m);
   } 
   $page->html_body_attributes ='class="no_second_tier network_config"';
-  $css_path = $current_theme_path.'/layout.css';
+  $css_path = PA::$theme_url . '/layout.css';
   $page->add_header_css($css_path);
-  $css_path = $current_theme_path.'/network_skin.css';
+  $css_path = PA::$theme_url . '/network_skin.css';
   $page->add_header_css($css_path);
-  $css_path = $current_theme_path.'/admin2.css';
+  $css_path = PA::$theme_url . '/admin2.css';
   $page->add_header_css($css_path);
   
   echo $page->render();

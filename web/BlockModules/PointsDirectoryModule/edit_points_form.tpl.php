@@ -1,5 +1,5 @@
 <?php
- require_once "web/includes/classes/xhtmlTagHelper.class.php";
+ require_once "web/includes/classes/xHtml.class.php";
  $rating_points = array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
  $back_url = PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?uid=" . PA::$login_uid;
 ?>
@@ -24,7 +24,7 @@
       <h4><span class="required"> * </span><label for="form_data_category"><?=__("Category")?></label></h4>
       <div  id="edit_category">
       <?php if(count($categories) > 0) : ?>
-        <?= TagHelper::selectTag(array_combine(array_values($categories), array_values($categories)),
+        <?= xHtml::selectTag(array_combine(array_values($categories), array_values($categories)),
                                  array('name'=> 'form_data[category]', 'id' => 'form_data_category'),
                                  (!empty($item['category'])) ? $item['category'] : null) ?>&nbsp;
         <a href="javascript:" id="switch_categ"><?=__("or click here to add a new")?></a>
@@ -36,7 +36,7 @@
 
     <div class="field">
       <h4><span class="required"> * </span><label for="form_data_rating"><?=__("Rating Points")?></label></h4>
-      <?= TagHelper::selectTag(array_combine(array_values($rating_points), array_values($rating_points)),
+      <?= xHtml::selectTag(array_combine(array_values($rating_points), array_values($rating_points)),
                                array('name'=> 'form_data[rating]', 'id' => 'form_data_rating'),
                                (!empty($item['rating'])) ? $item['rating'] : null) ?>
     </div>

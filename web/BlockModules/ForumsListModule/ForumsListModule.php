@@ -14,6 +14,7 @@ class ForumsListModule extends Module {
   const max_title_length = 28;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Forums List');
     $this->class_name = get_class($this);
     $this->html_block_id = 'ForumsListModule';

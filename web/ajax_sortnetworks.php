@@ -14,7 +14,7 @@
 $login_required = FALSE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
-require "$current_blockmodule_path/NewestNetworkModule/NewestNetworkModule.php";
+require PA::$blockmodule_path . "/NewestNetworkModule/NewestNetworkModule.php";
 $uid = @$_GET['uid'];
 $selected_option = @$_GET['sort_by'];
 

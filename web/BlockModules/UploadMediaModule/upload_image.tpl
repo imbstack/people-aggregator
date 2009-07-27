@@ -45,7 +45,7 @@
     
     </div>
     
-    <div class="field_choose" id="addmore_button"><?= __("Add More") ?><img src="<?php echo $current_theme_path;?>/images/plus.gif" alt="<?= __("Add More") ?>" onclick="javascript:addmedia('block','media_gallery')"  />
+    <div class="field_choose" id="addmore_button"><?= __("Add More") ?><img src="<?php echo PA::$theme_url;?>/images/plus.gif" alt="<?= __("Add More") ?>" onclick="javascript:addmedia('block','media_gallery')"  />
           
     <div><?= __("Or finish below") ?>.</div>
   </div> 

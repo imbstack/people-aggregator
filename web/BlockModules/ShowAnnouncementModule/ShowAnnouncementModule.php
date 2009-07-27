@@ -26,6 +26,7 @@ class ShowAnnouncementModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
    function __construct() {
+    parent::__construct();
     $this->html_block_id = "ShowAnnouncementModule";
     $this->main_block_id = "mod_announcement";
     $this->title = __('Announcements');
@@ -41,7 +42,7 @@ class ShowAnnouncementModule extends Module {
   }
 
   function generate_inner_html ($announcement) {
-    global $current_theme_path;
+     
     // global var $_base_url has been removed - please, use PA::$url static variable
 
     $inner_html = '';    

@@ -13,7 +13,7 @@ require_once "api/Category/Category.php";
 //require_once "web/includes/functions/auto_email_notify.php";
 require_once "api/Messaging/MessageDispatcher.class.php";
 
-global $current_theme_path;
+ 
 
 $cid = (int) $_REQUEST['cid'];
 if ( !$cid) {
@@ -59,9 +59,9 @@ if ( $_GET['action'] == 'join' ) {
 }
 
 default_exception();
-$parameter = '<script type="text/javascript" language="javascript" src="'.$current_theme_path.'/base_javascript.js"></script></script>
-<script type="text/javascript" language="javascript" src="'.$current_theme_path.'/javascript/prototype.js"></script>
-<script type="text/javascript" language="javascript" src="'.$current_theme_path.'/javascript/scriptaculous.js"></script>';
+$parameter = '<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/base_javascript.js"></script></script>
+<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/prototype.js"></script>
+<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/scriptaculous.js"></script>';
 html_header("Networks in category", $parameter);
 $setting_data = ModuleSetting::load_setting(PAGE_NETWORKS_CATEGORY, $uid);
 $leftModulesFromDB = $setting_data['left'];
@@ -70,7 +70,7 @@ $rightModulesFromDB = $setting_data['right'];
 
 $page = & new Template(CURRENT_THEME_FSPATH."/groups.tpl");
 
-$page->set('current_theme_path', $current_theme_path);
+$page->set('current_theme_path', PA::$theme_url);
 
 
 //header of group page
@@ -79,8 +79,8 @@ html_body($optional_parameters);
 
 //header of group page
 $header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
-$header->set('current_theme_path', $current_theme_path);
-$header->set('current_theme_rel_path', $current_theme_rel_path);
+$header->set('current_theme_path', PA::$theme_url);
+$header->set('current_theme_rel_path', PA::$theme_rel);
 // find navigation link for header
 $navigation = new Navigation;
 $navigation_links = $navigation->get_links();
@@ -133,7 +133,7 @@ foreach ( $rightModulesFromDB as $rightModule)
 }
 //right of group page
 $footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
-$footer->set('current_theme_path', $current_theme_path);
+$footer->set('current_theme_path', PA::$theme_url);
 
 //page settings
 $page->set('top_navigation_bar', $top_navigation_bar);
@@ -142,7 +142,7 @@ $page->set('array_left_modules', $array_left_modules);
 $page->set('array_middle_modules', $array_middle_modules);
 $page->set('array_right_modules', $array_right_modules);
 $page->set('footer', $footer);
-$page->set('current_theme_path', $current_theme_path);
+$page->set('current_theme_path', PA::$theme_url);
 echo $page->fetch();
 print '</body></html>';
 ?>

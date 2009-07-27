@@ -11,6 +11,7 @@ class InvitationStatusModule extends Module {
   public $pending_invitation;
 
   public function __construct() {
+    parent::__construct();
     $this->title = __("Invitation Status");
   }
 

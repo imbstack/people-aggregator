@@ -11,6 +11,7 @@ class FacewallModule extends Module {
   public $selected_option;
 
   function __construct() {
+    parent::__construct();
   }
 
   function render() {
@@ -29,10 +30,8 @@ class FacewallModule extends Module {
   }
 
   function generate_inner_html($links) {
-    global $current_theme_path;
-    global $network_info, $current_blockmodule_path;
     
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     $this->rel_term = __('Friend'); // default title
     if(isset($extra['relationship_show_mode']['term'])) {
       $this->rel_term = $extra['relationship_show_mode']['term'];
@@ -60,7 +59,7 @@ class FacewallModule extends Module {
       $obj_inner_template->set('selected_option', $this->selected_option);
     }
     $obj_inner_template->set('rel_term', $this->rel_term);
-    $obj_inner_template->set('current_theme_path', $current_theme_path);
+    $obj_inner_template->set('current_theme_path', PA::$theme_url);
     $inner_html = $obj_inner_template->fetch();
     return $inner_html;
   }

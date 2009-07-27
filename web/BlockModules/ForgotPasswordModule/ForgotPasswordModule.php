@@ -12,11 +12,12 @@ class ForgotPasswordModule extends Module {
   public $email;
   public $is_post_set;
   public $title;
+
   public function __construct() {
+    parent::__construct();
     $this->is_post_set = FALSE;
   }
   
-
   public function initializeModule($request_method, $request_data) {
     if ($request_method == 'POST') {
       $this->is_post_set = TRUE;

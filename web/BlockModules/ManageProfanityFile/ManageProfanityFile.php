@@ -7,6 +7,7 @@ class ManageProfanityFile extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
   }
 
 
@@ -30,14 +31,12 @@ class ManageProfanityFile extends Module {
   }
   
   function get_links() {
-    global  $_PA;
-
     if(file_exists(PA::$project_dir . "/web/config/profanity_words.txt")) {
       $content = file_get_contents(PA::$project_dir . "/web/config/profanity_words.txt");
     } else if(file_exists(PA::$core_dir . "/web/config/profanity_words.txt")) {
       $content = file_get_contents(PA::$core_dir ."/web/config/profanity_words.txt");
     } else {
-      $content = join("\r\n", $_PA->profanity); //If no file yet, use defaults
+      $content = join("\r\n", PA::$config->profanity); //If no file yet, use defaults
     }
     return $content;
   }

@@ -26,6 +26,7 @@ class ActivitiesModule extends Module {
 
   function __construct() {
   global $app;
+    parent::__construct();
     $this->html_block_id = 'ActivitiesModule';
     $this->title = __('Activity Feed');
     $this->selected = 0;

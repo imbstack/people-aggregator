@@ -8,6 +8,7 @@ class ManageRankingPointsModule extends Module {
   public $module_placement = 'middle';
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Manage Ranking points');
   }
 
@@ -100,7 +101,6 @@ class ManageRankingPointsModule extends Module {
   }
   
   function set_inner_template($template_fname) {
-    global $current_blockmodule_path;
     $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
   }
 

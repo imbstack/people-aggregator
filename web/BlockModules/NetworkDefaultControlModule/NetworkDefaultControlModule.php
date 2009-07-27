@@ -2,7 +2,7 @@
 require_once "ext/Album/Album.php";
 require_once "web/includes/constants.php";
 require_once "web/includes/classes/XmlConfig.class.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 
 class NetworkDefaultControlModule extends Module {
 
@@ -11,11 +11,12 @@ class NetworkDefaultControlModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = "AdminNetSettings";
   }
 
    function render() {
-    $conf = new PaConfiguration();
+    $conf = new NetworkConfig();
 //    echo "<pre>".print_r($conf,1)."</pre>";
 /*
     $store = new XmlConfig("web/config/backend.xml");
@@ -40,7 +41,7 @@ class NetworkDefaultControlModule extends Module {
     return $content;
   }
   function generate_inner_html() {
-    global $current_theme_path;
+     
 
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html_'.$this->tpl_to_load.'.tpl';
     $net_details = & new Template($tmp_file);

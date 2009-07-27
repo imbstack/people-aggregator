@@ -1,7 +1,4 @@
 <?php 
-// global var $_base_url has been removed - please, use PA::$url static variable
-
-global $current_theme_path;
 $local_image_variable = FALSE;
 // todo this array and highlight logic is used in 3 places
 // move it to one place
@@ -47,8 +44,8 @@ $links_array = array(
 </div>
 <div class="table">
 <?php 
-global $_PA;
-if (empty($_PA->simple['use_simpleblog'])) { 
+ 
+if (empty(PA::$config->simple['use_simpleblog'])) { 
 ?>
 <ul id="filters">
 
@@ -84,15 +81,15 @@ if (empty($_PA->simple['use_simpleblog'])) {
    ?>
   <tr>
    <td>
-     <a href="<?php echo $linkForEditing; ?>"><img src="<?php echo $current_theme_path;?>/images/16_edit.gif" alt="edit" title="Edit" height="16" width="16" border="0" /></a>
-     <a href="#" onclick="return delete_media_content(document.delete_content,'<?php echo $linkForDeleting;?>');" ><img  src="<?php echo $current_theme_path;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
+     <a href="<?php echo $linkForEditing; ?>"><img src="<?php echo PA::$theme_url;?>/images/16_edit.gif" alt="edit" title="Edit" height="16" width="16" border="0" /></a>
+     <a href="#" onclick="return delete_media_content(document.delete_content,'<?php echo $linkForDeleting;?>');" ><img  src="<?php echo PA::$theme_url;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
    </td>
    <td><a href="<?= PA::$url . PA_ROUTE_CONTENT . "/cid=" . $links[$i]['content_id'] ?>">
      <?=chop_string($links[$i]['title']);?> </a>
    </td>
      <?php if (!$type_image || $local_image_variable) {
                   if ($links[$i]['type_name'] == 'BlogPost') {
-                    $type_image = $current_theme_path."/images/type-blog.gif";
+                    $type_image = PA::$theme_url."/images/type-blog.gif";
                     $local_image_variable=TRUE;
                   }
 

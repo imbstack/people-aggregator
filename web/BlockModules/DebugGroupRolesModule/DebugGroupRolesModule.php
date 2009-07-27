@@ -7,6 +7,11 @@ class DebugGroupRolesModule extends Module {
   public $module_type = 'group';
   public $module_placement = 'middle';
   public $outer_template = 'outer_public_center_module.tpl';
+
+  function __construct() {
+    parent::__construct();
+  }
+
   function initializeModule($request_method, $request_data) {
     if (empty($this->shared_data['group_info'])) return 'skip';
     $this->group_details = $this->shared_data['group_info'];

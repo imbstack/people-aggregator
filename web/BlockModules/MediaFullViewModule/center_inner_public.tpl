@@ -1,4 +1,4 @@
-<?php global  $login_uid, $current_theme_path;
+<?php
 require_once "api/Permissions/PermissionsHandler.class.php";
 
       $param_array = array('permissions' => 'view_abuse_report_form');
@@ -89,7 +89,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
 
    <div id="buttonbar">
      <ul>
-       <?php if ($links->author_id == $login_uid) { ?>
+       <?php if ($links->author_id == PA::$login_uid) { ?>
        <li>
          <a href="<?= PA::$url . "/edit_media.php?cid=$links->content_id&type=$links->type" ?>"><?= __("Edit") ?></a>
        </li>
@@ -130,7 +130,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
      <?php if(PermissionsHandler::can_user(PA::$login_uid, $param_array) && ($links->author_id != PA::$login_uid)) {?>
        <li><a href="javascript: return void();" onclick="javascript: showhide_block('report_abuse_div');" > Report Abuse </a></li>
      <? } ?>
-     <?php if(!empty($login_uid)) { ?>
+     <?php if(!empty(PA::$login_uid)) { ?>
      <li><a href="javascript:" onclick="showhide_block('display_comment');" >Comment</a></li>
      <? } ?>
     </ul>

@@ -396,7 +396,7 @@ function route_to_outputthis ($title, $body) {
 
 function setup_module($column, $moduleName, $obj) {
     global $sb_mc_type, $cid,$ccid,$error_array,$err_album_name_exist,$content_type,$sb_types;
-    global $_PA, $display, $is_edit, $album_save_error, $data_array,$error, $sb_mc_type,$targets;
+    global $display, $is_edit, $album_save_error, $data_array,$error, $sb_mc_type,$targets;
     global $show_external_blogs, $outputthis_error_mesg;
     global $post_err, $permission_to_post, $obj_content_type;
     switch ($column) {
@@ -431,7 +431,7 @@ $page = new PageRenderer("setup_module", PAGE_POSTCONTENT, "Create content", "co
 $page->add_header_html(js_includes('forms.js'));
 // and the modal overlay functions
 $page->add_header_html(js_includes('attach_media_modal.js'));
-$css_path = $current_theme_path.'/modal.css';
+$css_path = PA::$theme_url . '/modal.css';
 $page->add_header_css($css_path);
 
 uihelper_error_msg($post_err);

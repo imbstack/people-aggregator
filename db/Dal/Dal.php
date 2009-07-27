@@ -26,7 +26,7 @@ class Dal {
 
 <h1>Database not found</h1>
 
-<p>Please check your <code>local_config.php</code> file and ensure that the <code>$peepagg_dsn</code> variable is set and points to a valid database.</p>
+<p>Please check your <code>AppConfig.xml</code> file and ensure that the <code>$peepagg_dsn</code> variable is set and points to a valid database.</p>
 
 <p>Currently, either the database doesn't exist, the user doesn't exist, or the password in <code>$peepagg_dsn</code> is incorrect.</p>
 
@@ -81,7 +81,7 @@ class Dal {
 
   private static function execute_post_hooks($sql, $args) {
     $query_time = microtime(TRUE) - Dal::$_query_start_time;
-    
+
     // log query, if logging is started
     if (Dal::$_query_log !== NULL) {
       Dal::$_query_log[] = $sql;
@@ -102,11 +102,11 @@ class Dal {
 
     $db = Dal::get_connection();
     $sql = Dal::validate_sql ($sql);
-    
+
     Dal::execute_pre_hooks($sql, $args);
     $sth = $db->query($sql, $args);
     Dal::execute_post_hooks($sql, $args);
-    
+
     if (PEAR::isError($sth)) {
       Logger::log(" Throwing exception DB_QUERY_FAILED | Message: ".$sth->getMessage().
         " | SQL that caused this exception: ".$sql, LOGGER_ERROR);
@@ -317,9 +317,9 @@ class Dal {
   public static function quote($s) {
     return Dal::get_connection()->escapeSimple($s);
   }
-  
+
   /**
-  * This function will return the enum values available 
+  * This function will return the enum values available
   * for a given table and field
   */
   public static function get_enum_values($table, $field) {

@@ -1,7 +1,4 @@
 <?php 
-global  $_PA, $network_info;
-global $current_theme_path;
-
 require_once "api/Login/PA_Login.class.php";
 
   $showId = 'pa';
@@ -33,7 +30,7 @@ require_once "api/Login/PA_Login.class.php";
 <h1><?=__('Login')?></h1>
 <div class="description" style="text-align: center">
 
-  <?=sprintf(__("%s login."),  $network_info->name)?> <br />
+  <?=sprintf(__("%s login."),  PA::$network_info->name)?> <br />
   <?= __('You can login directly if you have an account,<br />or you can <b><a href="/register.php">sign up right now</a></b> to create a new account.')?>
 
 </div>
@@ -68,7 +65,7 @@ require_once "api/Login/PA_Login.class.php";
               <li>
                 <ul class="box_simple">
                   <li><input tabindex="<? echo $tabindex + 12;?>" type="checkbox"  name="remember" value="1" <?= empty($_COOKIE[PA_Login::$cookie_name]) ? '' : 'checked="checked"' ?> /><?= __("Remember me on this computer") ?> </li>
-                  <li><input tabindex="<? echo $tabindex + 13;?>" type="image" id="loginbutton" alt="log in" value="log in" src="<?=$current_theme_path;?>/images/login-butt.gif" /><br />
+                  <li><input tabindex="<? echo $tabindex + 13;?>" type="image" id="loginbutton" alt="log in" value="log in" src="<?=PA::$theme_url;?>/images/login-butt.gif" /><br />
                   <a tabindex="<? echo $tabindex + 14;?>" href="<?= PA::$url . PA_ROUTE_FORGET_PASSWORD ?>"><?= __("Forgot your password?") ?></a></li>
                 </ul>
               </li>

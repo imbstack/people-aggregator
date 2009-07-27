@@ -10,6 +10,7 @@ class LargestGroupsModule extends GroupModule {
   public $limit = 5;
   
   public function __construct() {
+    parent::__construct();
     $this->title = sprintf(__("Largest %s"), PA::$group_noun_plural);
   }
   //module initialization code .

@@ -4,7 +4,7 @@ $current_url = PA::$url . $app->current_route . $app->current_query;
 $current_url = preg_replace("#\&template\=[^\&]+#", '', $current_url);
 $change_template_JS = "javascript: location.href=\"". $current_url ."&template=\"+$(this).val();";
 
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
   if(!empty($_GET['email_type']) && ($template <> 'text_only')) {
     echo $tiny_mce->installTinyMCE();
   }
@@ -47,7 +47,7 @@ require_once "web/includes/classes/xhtmlTagHelper.class.php";
     </div>
     <div class="field">
     <h4><label for="template"><?= __("Email Template") ?></label></h4>
-    <?= TagHelper::selectTag($template_list, array('id' => 'template', 'name' => 'template', 'onchange' => $change_template_JS), $template) ?>
+    <?= xHtml::selectTag($template_list, array('id' => 'template', 'name' => 'template', 'onchange' => $change_template_JS), $template) ?>
     </div>
     <div class="field_bigger">
     <h4><label for="message"><?= __("Message") ?></label></h4>

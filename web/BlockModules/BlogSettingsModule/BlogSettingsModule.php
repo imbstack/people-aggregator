@@ -12,11 +12,12 @@ class BlogSettingsModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->title = null;
   }
 
   public function initializeModule($request_method, $request_data) {
-  	global $_PA;
+  	 
     if (!(PA::$login_uid)) {
       header("Location: login.php?error=1");
       exit;
@@ -24,7 +25,7 @@ class BlogSettingsModule extends Module {
     $this->uid = PA::$login_uid;
     $this->user = PA::$login_user;
 
-		if (!empty($_PA->simple['use_simpleblog'])) {
+		if (!empty(PA::$config->simple['use_simpleblog'])) {
       return 'skip';
     }
 		

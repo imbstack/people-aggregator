@@ -1307,14 +1307,14 @@ function api_get_url_of_path($raw_path) {
     
     $base_path = "$prefix_path/web";
     
-    if (strpos($path, $base_path) !== 0) throw new PAException(GENERAL_SOME_ERROR, "Upload directory ($uploaddir) appears to be outside PA::\$path (".PA::$path.")");
+    if (strpos($path, $base_path) !== 0) throw new PAException(GENERAL_SOME_ERROR, "Upload directory (".PA::$upload_path.") appears to be outside PA::\$path (".PA::$path.")");
     
     $url = PA::$url . substr($path, strlen($base_path));
     return $url;
 }
 
 function peopleaggregator_getAlbums($args) {
-    global $_PA;
+     
 
     if (!empty($args['authToken'])) {
 	$user = User::from_auth_token($args['authToken']);
@@ -1372,7 +1372,7 @@ function peopleaggregator_getAlbums($args) {
 		    // insert default album for this type
 		    $albums_out[] = array(
 			'id' => "user:$user->user_id:album:default:".API::$album_type_from_id[$alb_type],
-			'title' => $_PA->default_album_titles[$alb_type],
+			'title' => PA::$config->default_album_titles[$alb_type],
 			'access' => "write",
 			'type' => array(API::$album_type_from_id[$alb_type]),
 			);
@@ -1448,14 +1448,12 @@ function api_get_url_of_file($fn) {
 	return $fn;
     }
 
-    global $uploaddir;
-    $upload_path = realpath($uploaddir);
+    $upload_path = realpath(PA::$upload_path);
     $upload_url = api_get_url_of_path($upload_path);
     return $upload_url."/".rawurlencode(basename($fn));
 }
 
 function peopleaggregator_newFile($args) {
-    global  $uploaddir;
 
     $user = User::from_auth_token($args['authToken']);
     $title = strip_tags($args['title']);
@@ -1516,7 +1514,7 @@ function peopleaggregator_newFile($args) {
 	    
 	case 'file':
 	    // we're uploading a file - figure out where to put it
-	    $upload_path = realpath($uploaddir);
+	    $upload_path = realpath(PA::$upload_path);
 	    
 	    // make a filename that isn't already used
 	    $fn_munge = ""; $munge_serial = 0;

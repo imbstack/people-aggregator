@@ -1,7 +1,6 @@
 <?php
-  global $current_theme_path, $network_info;
   if( !$is_error ) {
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     $relation = $extra['relationship_options'];
 
     $show_mode = 1;
@@ -29,11 +28,11 @@
     <?php endif; ?>
     <div id="relation_type" style="display:<?= ($show_mode == 2) ? 'block' : 'none' ?>">
       <ul>
-        <li><img src="<?php echo $current_theme_path.'/images'?>/havent-met.jpg" alt="havent met" /> <h2><?php echo $relation['most_distant_relation']['value'] ;?></h2> <input id="level5" name="level" value="5" <?php if ($relationship_level == 5)  { ?> checked="checked" <?php } ?> type="radio"></li>
-        <li><img src="<?php echo $current_theme_path.'/images'?>/acquaintance.jpg" alt="acquaintance" /> <h2><?php echo $relation['distant_relation']['value'] ;?></h2> <input id="level1" name="level" value="1" <?php if ($relationship_level == 1)  { ?> checked="checked" <?php } ?> type="radio"></li>
-        <li><img src="<?php echo $current_theme_path.'/images'?>/friend.jpg" alt="friend" /> <h2><?php echo $relation['relation']['value'] ;?></h2> <input id="level2" name="level" value="2" <?php if ($relationship_level == 2)  { ?> checked="checked" <?php } else if (empty($relationship_level)) { ?> checked="checked" <?php } ?> type="radio"></li>
-        <li><img src="<?php echo $current_theme_path.'/images'?>/good-friend.jpg" alt="good friend" /> <h2><?php echo $relation['close_relation']['value'] ;?></h2> <input id="level3" name="level" <?php if ($relationship_level == 3)  { ?> checked="checked" <?php } ?> value="3" type="radio"></li>
-        <li><img src="<?php echo $current_theme_path.'/images'?>/best-friend.jpg" alt="best friend" /> <h2><?php echo $relation['closest_relation']['value'] ;?></h2> <input id="level4" name="level" <?php if ($relationship_level == 4)  { ?> checked="checked" <?php } ?> value="4" type="radio"></li>
+        <li><img src="<?php echo PA::$theme_url . '/images'?>/havent-met.jpg" alt="havent met" /> <h2><?php echo $relation['most_distant_relation']['value'] ;?></h2> <input id="level5" name="level" value="5" <?php if ($relationship_level == 5)  { ?> checked="checked" <?php } ?> type="radio"></li>
+        <li><img src="<?php echo PA::$theme_url . '/images'?>/acquaintance.jpg" alt="acquaintance" /> <h2><?php echo $relation['distant_relation']['value'] ;?></h2> <input id="level1" name="level" value="1" <?php if ($relationship_level == 1)  { ?> checked="checked" <?php } ?> type="radio"></li>
+        <li><img src="<?php echo PA::$theme_url . '/images'?>/friend.jpg" alt="friend" /> <h2><?php echo $relation['relation']['value'] ;?></h2> <input id="level2" name="level" value="2" <?php if ($relationship_level == 2)  { ?> checked="checked" <?php } else if (empty($relationship_level)) { ?> checked="checked" <?php } ?> type="radio"></li>
+        <li><img src="<?php echo PA::$theme_url . '/images'?>/good-friend.jpg" alt="good friend" /> <h2><?php echo $relation['close_relation']['value'] ;?></h2> <input id="level3" name="level" <?php if ($relationship_level == 3)  { ?> checked="checked" <?php } ?> value="3" type="radio"></li>
+        <li><img src="<?php echo PA::$theme_url . '/images'?>/best-friend.jpg" alt="best friend" /> <h2><?php echo $relation['closest_relation']['value'] ;?></h2> <input id="level4" name="level" <?php if ($relationship_level == 4)  { ?> checked="checked" <?php } ?> value="4" type="radio"></li>
       </ul>
     </div>
     <input type='hidden' name='action' value='EditRelation'>

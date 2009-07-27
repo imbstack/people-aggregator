@@ -1,8 +1,5 @@
 <?php 
-global $_PA, $network_info;
-
-$can_manage_network = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_settings'));;
-
+  $can_manage_network = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_settings'));;
 ?>
         <div class="id_list" id="id_list">
 <!--          This div is added for open and close script -->

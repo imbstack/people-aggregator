@@ -7,6 +7,7 @@ class NetworkBulletinsModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->title = __("Manage Network Bulletins");
     $this->html_block_id = "NetworkBulletinsModule";
   }
@@ -18,7 +19,7 @@ class NetworkBulletinsModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_theme_path;
+     
     switch( $this->mode ) {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';

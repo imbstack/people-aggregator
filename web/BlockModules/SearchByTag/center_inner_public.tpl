@@ -1,5 +1,5 @@
-<?php  global $login_uid, $current_theme_path;?>
-
+<?php 
+?>
 <h1>Tag Search</h1>
 
 <form action="<?php echo PA::$url;?>/tag_base_search.php" method="get">
@@ -19,7 +19,7 @@
            }
         ?>
       </select>
-    <input type = "image" src="<?echo $current_theme_path;?>/images/go-btn.gif" />
+    <input type = "image" src="<?echo PA::$theme_url;?>/images/go-btn.gif" />
     </div>
   </fieldset>  
 </form>

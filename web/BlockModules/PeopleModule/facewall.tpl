@@ -1,6 +1,6 @@
 <?php
 
-global $current_theme_path,$aim_api_key, $aim_presence_key;
+global $aim_api_key, $aim_presence_key;
 $query_string = null;
   if (!empty($_REQUEST)) {
   // code for appending the GET string in filters

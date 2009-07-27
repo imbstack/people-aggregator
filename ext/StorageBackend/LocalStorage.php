@@ -19,11 +19,11 @@ class LocalStorage extends StorageBackend {
 	$url = NULL;
 
     public function __construct() {
-	global $_PA;
+	 
 	// path to files (default from default_config.php: PA::$path/web/files)
-	$this->path = $_PA->local_storage_path;
-	$this->url = PA::$url . '/' . $_PA->local_storage_rel_url;
-	$this->rel_url = PA::$local_url . '/' . $_PA->local_storage_rel_url;
+	$this->path = PA::$config->local_storage_path;
+	$this->url = PA::$url . '/' . PA::$config->local_storage_rel_url;
+	$this->rel_url = PA::$local_url . '/' . PA::$config->local_storage_rel_url;
     }
 
     // Copy a file from $current_filename into the storage directory

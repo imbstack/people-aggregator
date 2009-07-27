@@ -1,4 +1,4 @@
-<?php global  $current_theme_path;
+<?php  
   $field_name = 'user_type';
   $value = DISABLED_MEMBER;
   if( $super_user_and_mothership ) {

@@ -1,13 +1,12 @@
 <?php
-  global  $_PA, $network_info;
-  global $current_route;
+//  global $current_route;
 
   $all_post_params = $_GET;
   unset($all_post_params['post_type']);
   //  unset($all_post_params['page_id']);
 
   // To display network owner specified title on home page.
-  $extra = unserialize($network_info->extra);
+  $extra = unserialize(PA::$network_info->extra);
   $block_heading_net= @$extra['network_group_title'];
 
   $block_heading = (!empty( $block_heading)) ? $block_heading : $block_heading_net;

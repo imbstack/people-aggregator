@@ -48,8 +48,6 @@ function uihelper_plural($number, $singular, $zerotext=NULL, $plural=NULL) {
 
 // get the url to a user's homepage
 function uihelper_user_url($user_or_id) {
-  // global var $_base_url has been removed - please, use PA::$url static variable
-
   if ($user_or_id instanceof User) {
     $user_or_id = $user_or_id->user_id;
   }
@@ -57,10 +55,6 @@ function uihelper_user_url($user_or_id) {
 }
 
 function uihelper_upload_gallery($uid, $_POST, $_FILES, $type, $k=0) {
-  // global var $path_prefix has been removed - please, use PA::$path static variable
-  global $uploaddir;
-  // global var $_base_url has been removed - please, use PA::$url static variable
-
 
   require_once "api/User/User.php";
   require_once "api/Tag/Tag.php";
@@ -110,12 +104,12 @@ function uihelper_upload_gallery($uid, $_POST, $_FILES, $type, $k=0) {
     $file_name_dynamic_type = $file_name_dynamic; //"$file_name_dynamic"."$type";
     $newname = $_FILES[$file_name_dynamic_type]['name'];
 
-    $uploadfile = $uploaddir.basename($_FILES[$file_name_dynamic_type]['name']);
+    $uploadfile = PA::$upload_path.basename($_FILES[$file_name_dynamic_type]['name']);
 
     $myUploadobj = new FileUploader(); //creating instance of file.
     $image_type = "$file_type";
     $value= $file_name_dynamic_type;
-    $file = $myUploadobj->upload_file($uploaddir, $value, true, true, $image_type);
+    $file = $myUploadobj->upload_file(PA::$upload_path, $value, true, true, $image_type);
     $msg = NULL;
     if( $file == false) {
       $msg = $myUploadobj->error;
@@ -295,7 +289,6 @@ function uihelper_generate_center_content($cid, $permalink=0, $show=0) {
     $permalink_content = uihelper_generate_center_content_permalink($cid,$show);
     return $permalink_content;
   }
-  global $current_theme_path;
   //if we are in network then cached file's id should have content as well as network id
   if(PA::$network_info) {
     $nid = '_network_'.PA::$network_info->network_id;
@@ -408,7 +401,7 @@ function uihelper_generate_center_content($cid, $permalink=0, $show=0) {
     $middle_content->set('inner_block_id', 'inner_block_'.$content->content_id);
 
     $middle_content->set('user_name', $content_user->login_name);
-    $middle_content->set('current_theme_path', $current_theme_path);
+    $middle_content->set('current_theme_path', PA::$theme_url);
     $middle_content->set('back_page', $back_page);
 
     $middle_content->set('image_media_gallery', $image_media_gallery);
@@ -429,7 +422,7 @@ function uihelper_generate_center_content($cid, $permalink=0, $show=0) {
 
 
 function uihelper_generate_center_content_permalink($cid, $show=0) {
-  global $app, $current_theme_path;
+  global $app;
   $image_media_gallery = FALSE;
   $back_page = PA::$url . $app->current_route;
   $content = Content::load_content((int)$cid, (int)PA::$login_uid);
@@ -517,7 +510,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
   $type=$type.'Permalink';
   // comments
   $comments_list_tpl = & new Template(CURRENT_THEME_FSPATH."/center_comments.tpl");
-  $comments_list_tpl->set('current_theme_path', $current_theme_path);
+  $comments_list_tpl->set('current_theme_path', PA::$theme_url);
   $comments_list_tpl->set('comments', $comments);
   $comments_list_tpl->set('author_id', $content->author_id);
   // Setting the variable for the abuse form ...
@@ -526,7 +519,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
 
   //comment form
   $comment_form_tpl = & new Template(CURRENT_THEME_FSPATH."/comment_form.tpl");
-  $comment_form_tpl->set('current_theme_path', $current_theme_path);
+  $comment_form_tpl->set('current_theme_path', PA::$theme_url);
   if (isset(PA::$login_uid)) {
     $user = new User();
     $user->load((int)PA::$login_uid);
@@ -600,7 +593,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
   $middle_content->set('picture_name', $content_user->picture); //  to set picture name for diplaying in contets
   $middle_content->set('user_id', $content_user->user_id);
   $middle_content->set('user_name', $content_user->first_name.' '.$content_user->last_name);
-  $middle_content->set('current_theme_path', $current_theme_path);
+  $middle_content->set('current_theme_path', PA::$theme_url);
   $middle_content->set('back_page', $back_page);
   $middle_content->set('comments', $comments_list);
   $middle_content->set('comment_form', $comment_form);
@@ -628,7 +621,6 @@ Usage:on forum page for message board
 **/
 
 function load_info(){
-  global $current_theme_path;
   $request_info = array();
   if (!empty($_REQUEST['gid'])) {
     $request_info['parent_id'] = $_REQUEST['gid'];
@@ -666,7 +658,6 @@ function load_info(){
 
 // for media gallery post in groups
 function uihelper_upload_gallery_for_group($uid, $_POST, $_FILES, $type, $k=0) {
-  global $uploaddir;
 
   require_once "api/User/User.php";
   require_once "api/Tag/Tag.php";
@@ -705,13 +696,13 @@ function uihelper_upload_gallery_for_group($uid, $_POST, $_FILES, $type, $k=0) {
   $file_name_dynamic_type = $file_name_dynamic; //"$file_name_dynamic"."$type";
   $newname = $_FILES[$file_name_dynamic_type]['name'];
 
-  $uploadfile = $uploaddir.basename($_FILES[$file_name_dynamic_type]['name']);
+  $uploadfile = PA::$upload_path.basename($_FILES[$file_name_dynamic_type]['name']);
 
   $myUploadobj = new FileUploader; //creating instance of file.
   $image_type = "$file_type";
   $value= $file_name_dynamic_type;
 
-  $file = $myUploadobj->upload_file($uploaddir,$value,true,true,$image_type);
+  $file = $myUploadobj->upload_file(PA::$upload_path,$value,true,true,$image_type);
 
   if( $file == false) {
     $msg = $myUploadobj->error;
@@ -892,7 +883,6 @@ function verify_image_url($image_url) {
   */
 
 function manage_user_desktop_image( $image, $desktop_image_action, $options=NULL) {
-  global $current_theme_rel_path;
 
   if (!defined("NEW_STORAGE") || !preg_match("|^pa://|", $image)) {
     if (!($image_attrib = @getimagesize(PA::$project_dir . "/web/files/$image"))) {
@@ -906,7 +896,7 @@ function manage_user_desktop_image( $image, $desktop_image_action, $options=NULL
   list($opts, $repeat) = uihelper_explain_desktop_image_action($desktop_image_action);
 
   // We use 1024x150 as the size so the header image doesn't shift when we click on the theme selector
-  $img_desktop_info = uihelper_resize_img($image, 1024, 150, "$current_theme_rel_path/images/default_desktop_image.jpg", 'alt="Desktop image."', $opts);
+  $img_desktop_info = uihelper_resize_img($image, 1024, 150, PA::$theme_rel . "/images/default_desktop_image.jpg", 'alt="Desktop image."', $opts);
   $img_desktop_info['repeat']= $repeat;
   return $img_desktop_info;
 }
@@ -946,12 +936,11 @@ function uihelper_explain_desktop_image_action($desktop_image_action) {
 
 // This function return the networks css path
 function get_network_css() {
-  global $current_theme_path;
 
   // TODO intregate with Mothership info
   $result = array();
 
-  $result['network'] = $current_theme_path.'/network.css';
+  $result['network'] = PA::$theme_url . '/network.css';
 
   if (!empty(PA::$network_info)) {
     $extra = unserialize(PA::$network_info->extra);
@@ -962,7 +951,7 @@ function get_network_css() {
     $skin_info = skin_details($extra['network_skin']);
     $css = @$skin_info['networkCssFile'];
     $result[$extra['network_skin'].'_skin'] =
-    $current_theme_path.'/skins/'.$extra['network_skin'].'/'.$css;
+    PA::$theme_url . '/skins/'.$extra['network_skin'].'/'.$css;
   }
 
   return $result;
@@ -970,7 +959,6 @@ function get_network_css() {
 
 // This function return the network header image
 function get_network_image() {
-  global $current_theme_path, $current_theme_rel_path;
   $header_image = array();
   $extra = unserialize(PA::$network_info->extra);
 
@@ -990,12 +978,12 @@ function get_network_image() {
       $skin_info = skin_details($extra['network_skin']);
       $header_image = array();
       if (!empty($skin_info['headerImage'])) {
-        $header_image['img'] = $current_theme_path.'/skins/'.$extra['network_skin'].'/images/'.$skin_info['headerImage'];
+        $header_image['img'] = PA::$theme_url . '/skins/'.$extra['network_skin'].'/images/'.$skin_info['headerImage'];
         $header_image['repeat'] = 'no-repeat';
       }
     } else {
       // Default skin has been selected.
-      $header_image['img'] = $current_theme_path.'/images/header_image.jpg';
+      $header_image['img'] = PA::$theme_url . '/images/header_image.jpg';
       $header_image['repeat'] = 'no-repeat';
     }
 
@@ -1030,7 +1018,7 @@ function get_network_image() {
           $repeat = 'no-repeat';
           break;
       }
-      $header_image_temp = uihelper_resize_img($extra['basic']['header_image']['name'], 1024, 191, "$current_theme_rel_path/images/header_image.jpg",'alt="Desktop image."',$opts);
+      $header_image_temp = uihelper_resize_img($extra['basic']['header_image']['name'], 1024, 191, PA::$theme_rel . "/images/header_image.jpg",'alt="Desktop image."',$opts);
       $header_image['img']= $header_image_temp['url'];
       $header_image['repeat'] = $repeat;
     }
@@ -1042,20 +1030,19 @@ function get_network_image() {
 }
 // This function return the path of skin  header image
 function  get_skin_details() {
-  global $current_theme_path;
   $result = array();
   if (!empty(PA::$network_info)) {
     $extra = unserialize(PA::$network_info->extra);
     // checking that whether any theme is selected for network or not
     if (isset($extra['network_skin']) && !empty($extra['network_skin'])) {
-      $result['path'] = $current_theme_path .'/skins/'. $extra['network_skin'] ;
+      $result['path'] = PA::$theme_url .'/skins/'. $extra['network_skin'] ;
       $result['name'] = $extra['network_skin'];
     } else {
-      $result['path'] = $current_theme_path;
+      $result['path'] = PA::$theme_url;
       $result['name'] = 'default';
     }
   } else {
-    $result['path'] = $current_theme_path;
+    $result['path'] = PA::$theme_url;
     $result['name'] = '';
   }
   return $result;
@@ -1117,10 +1104,9 @@ function make_css ($data) {
 
 
 function get_user_theme ($uid=null) {
-  global  $current_theme_path;
 
   $current_skin = array();
-  $current_skin['css_files'] = array($current_theme_path.'/network.css');
+  $current_skin['css_files'] = array(PA::$theme_url . '/network.css');
 
   if (!empty($uid)) {
     $user = new User();
@@ -1128,14 +1114,14 @@ function get_user_theme ($uid=null) {
     $skin_theme = $user->get_profile_field("skin", "theme");
     if (empty($skin_theme)) $skin_theme = "defaults";
 
-    $current_skin['skin_path'] = $current_theme_path.'/skins/'.$skin_theme;
+    $current_skin['skin_path'] = PA::$theme_url . '/skins/'.$skin_theme;
     $skin_info = skin_details($skin_theme);
 
     if (!empty($skin_info['userheaderImage'])) {
-      $current_skin['header_image'] = $current_theme_path.'/skins/'.$skin_theme.'/images/'.$skin_info['userheaderImage'];
+      $current_skin['header_image'] = PA::$theme_url . '/skins/'.$skin_theme.'/images/'.$skin_info['userheaderImage'];
     }
 
-    $current_skin['css_files'][] = $current_theme_path.'/skins/'.$skin_theme.'/'.$skin_info['userCssFile'];
+    $current_skin['css_files'][] = PA::$theme_url . '/skins/'.$skin_theme.'/'.$skin_info['userCssFile'];
   }
   return $current_skin;
 }
@@ -1226,7 +1212,6 @@ function get_skins($skin_type='network') {
 * if 'headerImageOk' element in config.xml is 'yes' then custom header is allowed otherwise not
 */
 function is_custom_header_allowed($uid) {
-  global $current_theme_path;
   $return = false;
   $current_skin = sanitize_user_data(User::load_user_profile($uid,$uid, 'skin'));
 
@@ -1244,8 +1229,7 @@ function is_custom_header_allowed($uid) {
 * function to get the detail of the skin by reading its config file.
 */
 function skin_details($skin_name) {
-  global  $current_theme_rel_path;
-  $config_file = '/web/'.$current_theme_rel_path.'/skins/'.$skin_name.'/config.xml';
+  $config_file = '/web/'.PA::$theme_rel.'/skins/'.$skin_name.'/config.xml';
   if(file_exists(PA::$project_dir . $config_file)) {
     $config_file = PA::$project_dir . $config_file;
   } else if(file_exists(PA::$core_dir . $config_file)) {
@@ -1276,7 +1260,6 @@ function skin_details($skin_name) {
 * Funtion to get the group css. Current default css for the group will be returned as functionality for cutomizing group view is not there
 */
 function get_group_theme($gid) {
-  global  $current_theme_path;
 
   $group_var = new Group();
   $group_var->collection_id = $gid;
@@ -1291,15 +1274,15 @@ function get_group_theme($gid) {
     $skin_var['theme'] = $extra['theme'];
   }
   $current_skin = array();
-  $current_skin['css_files'] = array($current_theme_path.'/network.css');
+  $current_skin['css_files'] = array(PA::$theme_url . '/network.css');
 
-  $current_skin['skin_path'] = $current_theme_path.'/skins/'.$skin_var['theme'];
+  $current_skin['skin_path'] = PA::$theme_url . '/skins/'.$skin_var['theme'];
   $skin_info = skin_details($skin_var['theme']);
 
-  $current_skin['header_image'] = $current_theme_path.'/skins/'.$skin_var['theme'].'/images/'.$skin_info['groupheaderImage'];
+  $current_skin['header_image'] = PA::$theme_url . '/skins/'.$skin_var['theme'].'/images/'.$skin_info['groupheaderImage'];
 
   $current_skin['css_files'][] =
-  $current_theme_path.'/skins/'.$skin_var['theme'].'/'.$skin_info['groupCssFile'];
+  PA::$theme_url . '/skins/'.$skin_var['theme'].'/'.$skin_info['groupCssFile'];
 
   $current_skin['header_image_allowed'] = ($skin_info['headerImageOk'] == 'yes')? TRUE: FALSE;
   return $current_skin;
@@ -1559,7 +1542,6 @@ function uihelper_create_comment_form($param) {
 
 
 function rating($rating_type, $type_id, $scale=5) {
-  global $current_theme_path;
   require_once 'api/Rating/Rating.php';
   require_once 'ext/PA_Rating/PA_Rating.php';
   $return = array('overall'=>null, 'new'=>null);
@@ -1573,15 +1555,15 @@ function rating($rating_type, $type_id, $scale=5) {
       $faded_stars_count = $scale - $stars_count;
       $existing_rating = null;
       for ($cnt = 0; $cnt < $stars_count; ++$cnt) {
-        $return['overall'] .= '<img src="'.$current_theme_path.'/images/star.gif" alt="star" />';
+        $return['overall'] .= '<img src="'.PA::$theme_url . '/images/star.gif" alt="star" />';
       }
       for ($cnt = 0; $cnt < $faded_stars_count; ++$cnt) {
-        $return['overall'] .= '<img src="'.$current_theme_path.'/images/starfaded.gif" alt="star" />';
+        $return['overall'] .= '<img src="'.PA::$theme_url . '/images/starfaded.gif" alt="star" />';
       }
     }
   } else {
     for ($cnt = 0; $cnt < $scale; ++$cnt) {
-      $return['overall'] .= '<img src="'.$current_theme_path.'/images/starfaded.gif" alt="star" />';
+      $return['overall'] .= '<img src="'.PA::$theme_url . '/images/starfaded.gif" alt="star" />';
     }
   }
 
@@ -1598,11 +1580,11 @@ function rating($rating_type, $type_id, $scale=5) {
     if ($counter == $user_rating) {
       $return['new'] .= ' current_rating';
     }
-    $return['new'] .= '" src="'.$current_theme_path.'/images/star.gif" alt="star" id="star_'.$type_id.'_'.$counter.'" onmouseover="javascript:toggle_stars.mouseover('.$counter.', '.$type_id.')" onmouseout="javascript:toggle_stars.mouseout('.$counter.', '.$type_id.')" onclick="javascript:toggle_stars.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.')" />';
+    $return['new'] .= '" src="'.PA::$theme_url . '/images/star.gif" alt="star" id="star_'.$type_id.'_'.$counter.'" onmouseover="javascript:toggle_stars.mouseover('.$counter.', '.$type_id.')" onmouseout="javascript:toggle_stars.mouseout('.$counter.', '.$type_id.')" onclick="javascript:toggle_stars.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.')" />';
   }
 
   for (; $counter <= $scale; ++$counter) {
-    $return['new'] .= '<img class="user_star" src="'.$current_theme_path.'/images/starfaded.gif" alt="star" id="star_'.$type_id.'_'.$counter.'" onmouseover="javascript:toggle_stars.mouseover('.$counter.', '.$type_id.')" onmouseout="javascript:toggle_stars.mouseout('.$counter.', '.$type_id.')" onclick="javascript:toggle_stars.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.')" />';
+    $return['new'] .= '<img class="user_star" src="'.PA::$theme_url . '/images/starfaded.gif" alt="star" id="star_'.$type_id.'_'.$counter.'" onmouseover="javascript:toggle_stars.mouseover('.$counter.', '.$type_id.')" onmouseout="javascript:toggle_stars.mouseout('.$counter.', '.$type_id.')" onclick="javascript:toggle_stars.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.')" />';
   }
 
   return $return;
@@ -1714,7 +1696,6 @@ function show_all_contents_for_tag($tag_array, $tag_link = FILE_TAG_SEARCH, $nam
 function thumbs_rating($rating_type, $type_id, $scale=1) {
 
   // User can rate any entity . An entity can be User, content, comments etc
-  global $current_theme_path;
   require_once 'api/Rating/Rating.php';
   require_once 'ext/PA_Rating/PA_Rating.php';
   $return = array('overall'=>null, 'new'=>null);
@@ -1744,19 +1725,19 @@ function thumbs_rating($rating_type, $type_id, $scale=1) {
     if(!empty($user_rating)) {
       //  user give the rating to that content
       if($user_rating == 1 )
-      $return['new'] = 'Your Recommendation:<img src="'.$current_theme_path.'/images/rec_yes1.png" alt="star" />';
+      $return['new'] = 'Your Recommendation:<img src="'.PA::$theme_url . '/images/rec_yes1.png" alt="star" />';
       else
-      $return['new'] = 'Your Recommendation:<img src="'.$current_theme_path.'/images/rec_no1.png" alt="star" />';
+      $return['new'] = 'Your Recommendation:<img src="'.PA::$theme_url . '/images/rec_no1.png" alt="star" />';
       return $return;
     }
   }
   // image of thumbs up
   $counter = 1;
-  $return['new'] = 'Make Recommendation:<b><img src="'.$current_theme_path.'/images/rec_yes1.png" alt="star" id="star_'.$type_id.'_'.$counter.'" onclick="javascript:thumbs_rating.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.','.PA::$login_uid.')" style="cursor:pointer" /></b>';
+  $return['new'] = 'Make Recommendation:<b><img src="'.PA::$theme_url . '/images/rec_yes1.png" alt="star" id="star_'.$type_id.'_'.$counter.'" onclick="javascript:thumbs_rating.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.','.PA::$login_uid.')" style="cursor:pointer" /></b>';
 
   // image of thumbs down
   $counter = -1;
-  $return['new'] .= '<b><img src="'.$current_theme_path.'/images/rec_no1.png" alt="star" id="star_'.$type_id.'_'.$counter.'" onclick="javascript:thumbs_rating.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.','.PA::$login_uid.')" style="cursor:pointer" /></b>';
+  $return['new'] .= '<b><img src="'.PA::$theme_url . '/images/rec_no1.png" alt="star" id="star_'.$type_id.'_'.$counter.'" onclick="javascript:thumbs_rating.click('.$counter.', '.$type_id.', \''.$rating_type.'\', '.$scale.','.PA::$login_uid.')" style="cursor:pointer" /></b>';
 
   return $return;
 }

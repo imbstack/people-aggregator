@@ -53,12 +53,12 @@ class GroupActionsModule {
   }
 
   private function handleGET_update($request_data) {
-    global $_PA, $error_msg;
+    global $error_msg;
     if (PA::$login_uid && !empty($this->shared_data['group_info'])) {
       $group = $this->shared_data['group_info'];
       if (Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) {
         // deal with TypedGroup Relations
-        if (!empty($_PA->useTypedGroups)) {
+        if (!empty(PA::$config->useTypedGroups)) {
             require_once("api/Entity/TypedGroupEntityRelation.php");
             $uid = PA::$login_uid;
             $gid = $group->collection_id;
@@ -75,7 +75,7 @@ class GroupActionsModule {
     }
 
   private function handleGET_join($request_data) {
-    global $_PA, $error_msg;
+    global $error_msg;
     if (PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
       $group = $this->shared_data['group_info'];
       if (!Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) {
@@ -122,7 +122,7 @@ class GroupActionsModule {
 
       if (@$user_joined) {
         // deal with TypedGroup Relations
-        if (!empty($_PA->useTypedGroups)) {
+        if (!empty(PA::$config->useTypedGroups)) {
             require_once("api/Entity/TypedGroupEntityRelation.php");
             $uid = PA::$login_uid;
             $gid = $group->collection_id;
@@ -155,7 +155,7 @@ class GroupActionsModule {
 
 
   private function handleGET_leave($request_data) {
-    global $_PA, $error_msg;
+    global $error_msg;
     if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
       $group = $this->shared_data['group_info'];
       $user  = $this->shared_data['login_user'];
@@ -171,7 +171,7 @@ class GroupActionsModule {
       } else {
         $error_msg = sprintf(__("You are not member of \"%s\"."), stripslashes($group->title));
       }
-      if (!empty($_PA->useTypedGroups)) {
+      if (!empty(PA::$config->useTypedGroups)) {
         require_once 'api/Entity/TypedGroupEntityRelation.php';
         TypedGroupEntityRelation::delete_relation(PA::$login_uid, $request_data['gid'], PA::$network_info->network_id);
       }
@@ -182,7 +182,7 @@ class GroupActionsModule {
   }
 
   private function handleGET_delete($request_data) {
-    global $_PA, $error_msg;
+    global $error_msg;
     if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user']) && ((@$_POST['content_type'] != 'media'))) {
       $group = $this->shared_data['group_info'];
       $user  = $this->shared_data['login_user'];
@@ -191,7 +191,7 @@ class GroupActionsModule {
         // Deleting all the activities of this group from activities table for rivers of people module
         Activities::delete_for_group($request_data['gid']);
 
-        if (!empty($_PA->useTypedGroups)) {
+        if (!empty(PA::$config->useTypedGroups)) {
             require_once 'api/Entity/TypedGroupEntity.php';
             require_once("api/Entity/TypedGroupEntityRelation.php");
             TypedGroupEntityRelation::delete_all_relations($request_data['gid']);

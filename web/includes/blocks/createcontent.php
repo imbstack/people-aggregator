@@ -141,8 +141,8 @@ if (isset($_POST['publish']) && $content_type == 'BlogPost') {
     } else {
       $display_on_homepage = NO_DISPLAY_ON_HOMEPAGE;//This will not show up on homepage - flag has opposite values
     }
-		global $_PA;
-		if (!empty($_PA->simple['omit_routing'])) {
+		 
+		if (!empty(PA::$config->simple['omit_routing'])) {
 			$ccid = (!empty($_REQUEST['ccid'])) ? $_REQUEST['ccid'] : -1;
 			$post_saved = BlogPost::save_blogpost(0, PA::$login_uid, $_POST["blog_title"], $_POST["description"], NULL, $terms, $ccid, 1, $display_on_homepage);
 		} else {
@@ -201,7 +201,7 @@ if (isset($_POST['publish']) && $content_type == 'BlogPost') {
       Activities::save($user->user_id, $activity, $object,$extra);
     }
 
-    if (empty($_PA->simple['omit_routing'])) {
+    if (empty(PA::$config->simple['omit_routing'])) {
 			//save post in groups
     	$routed_to_groups = route2groups();
     }

@@ -1,5 +1,4 @@
 <?php
-  global  $current_theme_path;
 ?>
 <div class="module_tabbed_image_list" id='module_tabbed_image_list'>
  <ul>
@@ -19,7 +18,7 @@
            $permalink = (!empty($gid)) ? PA::$url .'/media_full_view.php?gid='.$gid.'&amp;type=image&amp;cid='.$cid : PA::$url .'/media_full_view.php?cid='.$cid.'&amp;type=image&amp;media';
 //            $permalink = PA::$url .'/media_full_view.php?cid='.$cid.'&amp;type=image&media';
            if(strstr($image, 'http://')) {
-            $image= (verify_image_url($image)) ? $image:$current_theme_path.'/images/no_img_found.gif';
+            $image= (verify_image_url($image)) ? $image:PA::$theme_url . '/images/no_img_found.gif';
      ?>
     <li>
         <a href="<?php echo $permalink; ?>">
@@ -75,7 +74,7 @@
           //$title = chop_string($links['audios'][$counter]['title'], 9); ?>
     <li>
       <a href="<?php echo $permalink; ?>">
-      <img width="21" height="16" src="<?php echo $current_theme_path."/images/li_audio.gif";?>" alt="PA" border="0" />
+      <img width="21" height="16" src="<?php echo PA::$theme_url."/images/li_audio.gif";?>" alt="PA" border="0" />
      <span><b><?php echo _out($links['audios'][$counter]['title']); ?></b><br /></span></a></li>
     <?php   }                    
           } else { echo '<li>'.__("No audio has been published yet.").'</li>'; } ?>                  

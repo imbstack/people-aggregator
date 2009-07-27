@@ -1,10 +1,9 @@
 <?php
-global $_PA, $user, $login_uid;
 
 $profile = &$this->user->{'general'};
 
 $non_us_state = FALSE;
-if(!empty($profile['state']) && !in_array($profile['state'], $_PA->states)) {
+if(!empty($profile['state']) && !in_array($profile['state'], array_values(PA::getStatesList()))) {
   $non_us_state = TRUE;
 }
 
@@ -68,7 +67,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
     try {
       // $this is  DynamicProfile class instance
       $this->save('general', GENERAL);
-      Tag::add_tags_to_user($user->user_id, $terms);
+      Tag::add_tags_to_user(PA::$user->user_id, $terms);
     } catch (PAException $e) {
       $msg = "$e->message";
       $save_error = TRUE;
@@ -110,7 +109,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
           $this->textfield(__("Address"), "homeAddress1", 'general',NULL, TRUE, NULL);
           $this->textfield(__("Address 2"), "homeAddress2", 'general',NULL, TRUE, NULL);
           $this->textfield(__("City"), "city", 'general');
-//          $this->select(__('State/Province'), 'state', $_PA->states, 'general');
+//          $this->select(__('State/Province'), 'state', array_values(PA::getStatesList()), 'general');
           ?>
 <!--
           <div class="field" id="other_state_div" style="display:none;">

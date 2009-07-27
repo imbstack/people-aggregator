@@ -1,6 +1,6 @@
 <?php // global var $_base_url has been removed - please, use PA::$url static variable
 
-  global $current_theme_path; ?>
+    ?>
 <div class="module_definition_list">
 <dl>
 <?php

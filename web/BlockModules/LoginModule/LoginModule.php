@@ -7,6 +7,7 @@ class LoginModule extends Module {
   public $outer_template = 'outer_public_center_single_wide_module.tpl';  
   
   function __construct() {
+    parent::__construct();
     $this->html_block_id = "LoginModule";
   }
 
@@ -18,7 +19,7 @@ class LoginModule extends Module {
   }
   
   function generate_center_public_inner_html () {
-    global $current_theme_path;    
+         
 
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . "/inner_html.tpl";
 

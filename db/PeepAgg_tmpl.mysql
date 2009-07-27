@@ -1,229 +1,305 @@
 -- phpMyAdmin SQL Dump
--- version 2.6.0-pl3
+-- version 2.11.9.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Server version: 4.1.7
--- PHP Version: 5.0.3RC2-dev
---
+-- Generation Time: Jul 13, 2009 at 05:37 PM
+-- Server version: 5.0.67
+-- PHP Version: 5.2.6
 -- Database: `peopleaggregator`
 --
 
 
 
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_users_roles`
---
-
-CREATE TABLE `/%network_name%/_users_roles` (
-`user_id` INT( 11 ) NOT NULL ,
-`role_id` INT( 2 ) DEFAULT '-1' NOT NULL
-);
-
-
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_contentcollections_albumtype`
+-- Table structure for table `activity_types`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_activity_types` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(50) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `points` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM  AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `activity_types`
+--
+
+INSERT INTO `/%network_name%/_activity_types` (`id`, `title`, `type`, `description`, `points`) VALUES
+(1, 'User image upload', 'user_image_upload', 'Points will be give to user who has uploaded an image. ', 1),
+(2, 'User video upload', 'user_video_upload', 'Points will be give to user who has uploaded a video. ', 1),
+(3, 'User audio upload', 'user_audio_upload', 'Points will be give to user who has uploaded an audio. ', 1),
+(4, 'User post a blog', 'user_post_a_blog', 'Points will be give to user who has posted a blog. ', 1),
+(5, 'User post a comment', 'user_post_a_comment', 'Points will be give to user who has posted a comment. ', 1),
+(6, 'User friend requested', 'user_friend_requested', 'Points will be give to user who has friend requested. ', 1),
+(7, 'User friend added', 'user_friend_added', 'Points will be give to user who has friend added. ', 1),
+(8, 'User friend send a message', 'user_friend_send_a_message', 'Points will be give to user who has received a friend message. ', 1),
+(9, 'Group created', 'group_created', 'Points will be give to user who has a group created. ', 1),
+(10, 'Group joined', 'group_joined', 'Points will be give to user who has joined to a group. ', 1),
+(11, 'Group image upload', 'group_image_upload', 'Points will be give to user who has a group image uploaded. ', 1),
+(12, 'Group video upload', 'group_video_upload', 'Points will be give to user who has a group video uploaded. ', 1),
+(13, 'Group audio upload', 'group_audio_upload', 'Points will be give to user who has a group audio uploaded. ', 1),
+(14, 'Group post a blog', 'group_post_a_blog', 'Points will be give to user who has posted a group blog. ', 1),
+(15, 'Network joined', 'network_joined', 'Points will be give to user who has joined to a network. ', 1),
+(16, 'Network created', 'network_created', 'Points will be give to user who has created a network. ', 1),
+(17, 'Content modified', 'content_modified', 'This activity should not be ranked. It is used for activities log only.', 0),
+(18, 'Network settings updated', 'network_settings_updated', 'This activity should not be ranked. It is used for activities log only.', 0),
+(19, 'Group settings updated', 'group_settings_updated', 'This activity should not be ranked. It is used for activities log only.', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisements`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_advertisements` (
+  `ad_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `ad_image` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `ad_script` text,
+  `title` varchar(255) default NULL,
+  `description` text,
+  `page_id` int(11) default NULL,
+  `orientation` varchar(255) default NULL,
+  `is_active` tinyint(1) default NULL,
+  `created` int(11) default NULL,
+  `changed` int(11) default NULL,
+  `display_count` int(11) default '0',
+  `hit_count` int(11) default '0',
+  `type` enum('ad','textpad') NOT NULL default 'ad',
+  `group_id` int(11) default NULL,
+  PRIMARY KEY  (`ad_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `advertisements`
 --
 
 
-CREATE TABLE `/%network_name%/_contentcollections_albumtype` (
-`contentcollection_id` INT( 11 ) NOT NULL ,
-`album_type_id` INT( 2 ) NOT NULL
-);
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `announcements`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_announcements` (
+  `content_id` int(11) NOT NULL,
+  `announcement_time` int(11) NOT NULL default '0',
+  `position` tinyint(1) NOT NULL default '0',
+  `status` tinyint(1) NOT NULL default '0',
+  `is_active` tinyint(1) NOT NULL default '0'
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `announcements`
+--
 
 -- --------------------------------------------------------
 
--- 
--- Table structure for table `/%network_name%/_images`
--- 
+--
+-- Table structure for table `audios`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
 
-CREATE TABLE `/%network_name%/_images` (
-  `content_id` int(11) NOT NULL default '0',
-  `image_file` varchar(255) NOT NULL default '',
-  `image_perm` int(2) NOT NULL default '0'
-) ;
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `/%network_name%/_audios`
--- 
-
-CREATE TABLE `/%network_name%/_audios` (
+CREATE TABLE IF NOT EXISTS `/%network_name%/_audios` (
   `content_id` int(11) NOT NULL default '0',
   `audio_file` varchar(255) NOT NULL default '',
-  `audio_perm` int(2) NOT NULL default '0'
-) ;
-
-
--- --------------------------------------------------------
-
--- 
--- Table structure for table `/%network_name%/_videos`
--- 
-
-CREATE TABLE `/%network_name%/_videos` (
-  `content_id` int(11) NOT NULL default '0',
-  `video_file` varchar(255) NOT NULL default '',
-  `video_perm` int(2) NOT NULL default '0'
-) ;
-
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_contents`
---
-
-CREATE TABLE `/%network_name%/_contents` (
-  `content_id` int(11) NOT NULL default '0',
-  `author_id` int(11) NOT NULL default '0',
-  `type` int(2) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `is_active` tinyint(1) NOT NULL default '0',
-  `body` longtext NOT NULL,
-  `allow_comments` tinyint(1) NOT NULL default '0',
-  `collection_id` int(11) NOT NULL default '0',
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `trackbacks` text,
-  `display_on` tinyint(1) NULL default '0',
+  `audio_perm` int(2) NOT NULL default '0',
   PRIMARY KEY  (`content_id`)
-);
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `audios`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_announcements`
+-- Table structure for table `blog_badges`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_announcements` (
-    `content_id` int(11) NOT NULL,
-    `announcement_time` int(11) NOT NULL default '0',
-    `announcement_time_end` int(11) NOT NULL default '0',
-    `position` tinyint(1) NOT NULL default '0',
-    `status` tinyint(1) NOT NULL default '0',
-    `is_active` tinyint(1) NOT NULL default '0'
-  );
-  
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_content_types`
---
-
-CREATE TABLE `/%network_name%/_content_types` (
-  `type_id` int(2) NOT NULL default '0',
-  `name` varchar(50) NOT NULL default '',
-  `description` text,
-  PRIMARY KEY  (`type_id`)
-);
-
---
--- Dumping data for table `/%network_name%/_content_types`
---
-
-
-INSERT INTO `/%network_name%/_content_types` VALUES ('1', 'BlogPost', '');
-INSERT INTO `/%network_name%/_content_types` VALUES ('2', 'Review', '');
-INSERT INTO `/%network_name%/_content_types` VALUES ('3', 'Event', '');
-INSERT INTO `/%network_name%/_content_types` VALUES ('4', 'Image', '');
-INSERT INTO `/%network_name%/_content_types` VALUES ('5', 'Audio', '');
-INSERT INTO `/%network_name%/_content_types` VALUES ('6', 'Video', '');
-INSERT INTO `/%network_name%/_content_types` VALUES (7, 'SBMicroContent', 'SBMicroContent');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_trackback_contents`
---
-
-CREATE TABLE `/%network_name%/_trackback_contents` (
-  `index` int(11) NOT NULL auto_increment,
-  `trackback` text NOT NULL,
-  `content_id` int(11) NOT NULL default '0',
+CREATE TABLE IF NOT EXISTS `/%network_name%/_blog_badges` (
+  `user_id` int(11) NOT NULL,
+  `badge_tag` varchar(32) NOT NULL,
+  `badge_config` text NOT NULL,
+  `badge_id` int(11) NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
-  `excerpt` text,
-  PRIMARY KEY  (`index`)
-);
+  `is_active` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`badge_id`),
+  KEY `user_badges` (`is_active`,`user_id`,`badge_tag`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
-
+--
+-- Dumping data for table `blog_badges`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_tags_contentcollections`
+-- Table structure for table `boardmessages`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_tags_contentcollections` (
-  `tag_id` int(11) NOT NULL default '0',
-  `collection_id` int(11) NOT NULL default '0'
-);
+-- CREATE TABLE IF NOT EXISTS `/%network_name%/_boardmessages` (
+--  `boardmessage_id` int(11) NOT NULL auto_increment,
+--  `title` varchar(255) NOT NULL default '',
+--  `body` longtext,
+--  `created` int(11) default '0',
+--  `changed` int(11) default '0',
+--  `user_id` int(11) default '0',
+--  `allow_anonymous` tinyint(1) default '1',
+--  `user_name` varchar(100) default NULL,
+--  `email` varchar(100) default NULL,
+--  `homepage` varchar(255) default NULL,
+--  `parent_id` int(11) default '0',
+--  `parent_type` varchar(50) default NULL,
+--  PRIMARY KEY  (`boardmessage_id`),
+--  KEY `parent_id` (`parent_id`),
+--  KEY `parent_type` (`parent_type`),
+--  KEY `user_id` (`user_id`)
+-- ) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `boardmessages`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_tags_contents`
+-- Table structure for table `categories`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_tags_contents` (
-  `tag_id` int(11) NOT NULL default '0',
-  `content_id` int(11) NOT NULL default '0'
-);
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_contentcollections`
---
-
-CREATE TABLE `/%network_name%/_contentcollections` (
-  `collection_id` int(11) NOT NULL default '0',
-  `type` int(2) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `author_id` int(11) NOT NULL default '0',
-  `description` longtext,
-  `is_active` tinyint(1) NOT NULL default '0',
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `picture` text,
-  PRIMARY KEY  (`collection_id`)
-);
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_contentcollection_types`
---
-
-CREATE TABLE `/%network_name%/_contentcollection_types` (
-  `type_id` int(11) NOT NULL default '0',
-  `name` varchar(50) NOT NULL default '',
+CREATE TABLE IF NOT EXISTS `/%network_name%/_categories` (
+  `category_id` int(11) NOT NULL auto_increment,
+  `position` varchar(255) default NULL,
+  `name` varchar(255) default NULL,
   `description` text,
-  PRIMARY KEY  (`type_id`)
-);
+  `type` enum('Default','Content') NOT NULL default 'Default',
+  `is_active` tinyint(1) default '0',
+  `created` int(11) default '0',
+  `changed` int(11) default '0',
+  PRIMARY KEY  (`category_id`),
+  KEY `active_position` (`is_active`,`position`)
+) TYPE=MyISAM  AUTO_INCREMENT=57 ;
 
+--
+-- Dumping data for table `categories`
+--
 
-INSERT INTO `/%network_name%/_contentcollection_types` VALUES ('1', 'Group', '');
-INSERT INTO `/%network_name%/_contentcollection_types` VALUES ('2', 'Album', '');
-
+INSERT INTO `/%network_name%/_categories` (`category_id`, `position`, `name`, `description`, `type`, `is_active`, `created`, `changed`) VALUES
+(1, '1>', 'Activities', 'Description of Activities', 'Default', 1, 1136967446, 1136967446),
+(2, '2>', 'Alumni & Schools', 'Description of Alumni & Schools', 'Default', 1, 1136967446, 1136967446),
+(3, '3>', 'Arts & Entertainment', 'Description of Arts & Entertainment', 'Default', 1, 1136967446, 1136967446),
+(4, '4>', 'Automotive', 'Description of Automotive', 'Default', 1, 1136967446, 1136967446),
+(5, '5>', 'Business', 'Description of Business', 'Default', 1, 1136967446, 1136967446),
+(6, '6>', 'Cities & Neighborhoods', 'Description of Cities & Neighborhoods', 'Default', 1, 1136967446, 1136967446),
+(7, '7>', 'Company', 'Description of Company', 'Default', 1, 1136967446, 1136967446),
+(8, '8>', 'Computers & Internet', 'Description of Computers & Internet', 'Default', 1, 1136967446, 1136967446),
+(9, '9>', 'Countries & Regional', 'Description of Countries & Regional', 'Default', 1, 1136967446, 1136967446),
+(10, '10>', 'Cultures & Community', 'Description of Cultures & Community', 'Default', 1, 1136967446, 1136967446),
+(11, '11>', 'Family & Home', 'Description of Family & Home', 'Default', 1, 1136967446, 1136967446),
+(12, '12>', 'Fashion & Beauty', 'Description of Fashion & Beauty', 'Default', 1, 1136967446, 1136967446),
+(13, '13>', 'Food, Drink & Wine', 'Description of Food, Drink & Wine', 'Default', 1, 1136967446, 1136967446),
+(14, '14>', 'Games', 'Description of Games', 'Default', 1, 1136967446, 1136967446),
+(15, '15>', 'Gay, Lesbian & Bi', 'Description of Gay, Lesbian & Bi', 'Default', 1, 1136967446, 1136967446),
+(16, '16>', 'Government & Politics', 'Description of Government & Politics', 'Default', 1, 1136967446, 1136967446),
+(17, '17>', 'Health, Wellness & Fitness', 'Description of Health, Wellness & Fitness', 'Default', 1, 1136967446, 1136967446),
+(18, '18>', 'Hobbies & Crafts', 'Description of Hobbies & Crafts', 'Default', 1, 1136967446, 1136967446),
+(19, '19>', 'Individuals', 'Description of Individuals', 'Default', 1, 1136967446, 1136967446),
+(20, '20>', 'Music', 'Music', 'Default', 1, 1136967446, 1136967446),
+(21, '21>', 'Pets & Animals', 'Description of Pets & Animals', 'Default', 1, 1136967446, 1136967446),
+(22, '22>', 'Recreation & Sports', 'Description of Recreation & Sports', 'Default', 1, 1136967446, 1136967446),
+(23, '23>', 'Religion & Beliefs', 'Description of Religion & Beliefs', 'Default', 1, 1136967446, 1136967446),
+(24, '24>', 'Romance & Relationships', 'Description of Romance & Relationships', 'Default', 1, 1136967446, 1136967446),
+(25, '25>', 'Schools & Education', 'Description of Schools & Education', 'Default', 1, 1136967446, 1136967446),
+(26, '26>', 'Science & History', 'Description of Science & History', 'Default', 1, 1136967446, 1136967446),
+(27, '27>', 'Travel', 'Description of Travel', 'Default', 1, 1136967446, 1136967446),
+(28, '28>', 'Others', 'Description of Others', 'Default', 1, 1136967446, 1136967446),
+(29, '1>29>', 'Sub Activities', 'Sub Description of Activities', 'Default', 1, 1136971089, 1136971089),
+(30, '2>30>', 'Sub Alumni & Schools', 'Sub Description of Alumni & Schools', 'Default', 1, 1136971089, 1136971089),
+(31, '3>31>', 'Sub Arts & Entertainment', 'Sub Description of Arts & Entertainment', 'Default', 1, 1136971089, 1136971089),
+(32, '4>32>', 'Sub Automotive', 'Sub Description of Automotive', 'Default', 1, 1136971089, 1136971089),
+(33, '5>33>', 'Sub Business', 'Sub Description of Business', 'Default', 1, 1136971089, 1136971089),
+(34, '6>34>', 'Sub Cities & Neighborhoods', 'Sub Description of Cities & Neighborhoods', 'Default', 1, 1136971089, 1136971089),
+(35, '7>35>', 'Sub Company', 'Sub Description of Company', 'Default', 1, 1136971089, 1136971089),
+(36, '8>36>', 'Sub Computers & Internet', 'Sub Description of Computers & Internet', 'Default', 1, 1136971089, 1136971089),
+(37, '9>37>', 'Sub Countries & Regional', 'Sub Description of Countries & Regional', 'Default', 1, 1136971089, 1136971089),
+(38, '10>38>', 'Sub Cultures & Community', 'Sub Description of Cultures & Community', 'Default', 1, 1136971089, 1136971089),
+(39, '11>39>', 'Sub Family & Home', 'Sub Description of Family & Home', 'Default', 1, 1136971089, 1136971089),
+(40, '12>40>', 'Sub Fashion & Beauty', 'Sub Description of Fashion & Beauty', 'Default', 1, 1136971089, 1136971089),
+(41, '13>41>', 'Sub Food, Drink & Wine', 'Sub Description of Food, Drink & Wine', 'Default', 1, 1136971090, 1136971090),
+(42, '14>42>', 'Sub Games', 'Sub Description of Games', 'Default', 1, 1136971090, 1136971090),
+(43, '15>43>', 'Sub Gay, Lesbian & Bi', 'Sub Description of Gay, Lesbian & Bi', 'Default', 1, 1136971090, 1136971090),
+(44, '16>44>', 'Sub Government & Politics', 'Sub Description of Government & Politics', 'Default', 1, 1136971090, 1136971090),
+(45, '17>45>', 'Sub Health, Wellness & Fitness', 'Sub Description of Health, Wellness & Fitness', 'Default', 1, 1136971090, 1136971090),
+(46, '18>46>', 'Sub Hobbies & Crafts', 'Sub Description of Hobbies & Crafts', 'Default', 1, 1136971090, 1136971090),
+(47, '19>47>', 'Sub Individuals', 'Sub Description of Individuals', 'Default', 1, 1136971090, 1136971090),
+(48, '20>48>', 'Sub Neighborhoods  Music', 'Sub Description of Neighborhoods  Music', 'Default', 1, 1136971090, 1136971090),
+(49, '21>49>', 'Sub Pets & Animals', 'Sub Description of Pets & Animals', 'Default', 1, 1136971090, 1136971090),
+(50, '22>50>', 'Sub Recreation & Sports', 'Sub Description of Recreation & Sports', 'Default', 1, 1136971090, 1136971090),
+(51, '23>51>', 'Sub Religion & Beliefs', 'Sub Description of Religion & Beliefs', 'Default', 1, 1136971090, 1136971090),
+(52, '24>52>', 'Sub Romance & Relationships', 'Sub Description of Romance & Relationships', 'Default', 1, 1136971090, 1136971090),
+(53, '25>53>', 'Sub Schools & Education', 'Sub Description of Schools & Education', 'Default', 1, 1136971090, 1136971090),
+(54, '26>54>', 'Sub Science & History', 'Sub Description of Science & History', 'Default', 1, 1136971090, 1136971090),
+(55, '27>55>', 'Sub Travel', 'Sub Description of Travel', 'Default', 1, 1136971090, 1136971090),
+(56, '28>56>', 'Sub Others', 'Sub Description of Others', 'Default', 1, 1136971090, 1136971090);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_comments`
+-- Table structure for table `categories_boardmessages`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_comments` (
+-- CREATE TABLE IF NOT EXISTS `/%network_name%/_categories_boardmessages` (
+--  `category_id` int(11) NOT NULL default '0',
+--  `boardmessage_id` int(11) NOT NULL default '0',
+--  KEY `boardmessage_to_category` (`boardmessage_id`,`category_id`),
+--  KEY `category_to_boardmessage` (`category_id`,`boardmessage_id`)
+-- ) TYPE=MyISAM;
+
+--
+-- Dumping data for table `categories_boardmessages`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_comments` (
   `comment_id` int(11) NOT NULL auto_increment,
   `content_id` int(11) NOT NULL default '0',
   `user_id` int(11) NOT NULL default '0',
@@ -235,115 +311,159 @@ CREATE TABLE `/%network_name%/_comments` (
   `name` varchar(100) default NULL,
   `email` varchar(100) default NULL,
   `homepage` varchar(100) default NULL,
-  PRIMARY KEY  (`comment_id`)
-);
+  `ip_addr` varchar(32) NOT NULL,
+  `referrer` text NOT NULL,
+  `user_agent` varchar(255) NOT NULL,
+  `spam_state` int(11) NOT NULL default '0',
+  `akismet_spam` tinyint(1) default NULL,
+  `parent_id` int(11) default NULL,
+  `parent_type` varchar(100) default NULL,
+  PRIMARY KEY  (`comment_id`),
+  KEY `comments_for_content` (`is_active`,`content_id`,`created`),
+  KEY `comments_by_user` (`is_active`,`user_id`,`created`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `comments`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_groups`
+-- Table structure for table `contentcollections`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-
-CREATE TABLE `/%network_name%/_groups` (
-  `group_id` int(11) NOT NULL default '0',
-  `access_type` tinyint(1) NOT NULL default '0',
-  `reg_type` int(2) NOT NULL default '0',
-  `is_moderated` tinyint(1) NOT NULL default '0',
-  `category_id` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`group_id`)
-) TYPE=MyISAM;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_groups_users`
---
-
-CREATE TABLE `/%network_name%/_groups_users` (
-  `group_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  `user_type` varchar(50) NOT NULL default ''
-) TYPE=MyISAM;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_moderation_queue`
---
-
-CREATE TABLE `/%network_name%/_moderation_queue` (
+CREATE TABLE IF NOT EXISTS `/%network_name%/_contentcollections` (
   `collection_id` int(11) NOT NULL default '0',
-  `item_id` int(11) NOT NULL default '0',
-  `type` varchar(20) NOT NULL default ''
-);
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_invitations`
---
-
-
-CREATE TABLE `/%network_name%/_invitations` (
-`inv_id` VARCHAR( 255 ) NOT NULL ,
-`user_id` INT( 11 ) NOT NULL ,
-`inv_user_id` INT( 11 ) NOT NULL ,
-`inv_user_email` VARCHAR( 255 ) NOT NULL ,
-`inv_collection_id` INT( 11 ) NOT NULL ,
-`inv_status` INT( 2 ) NOT NULL ,
-`inv_data` LONGTEXT NOT NULL ,
-PRIMARY KEY ( `inv_id` )
-);
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_boardmessages`
---
-
-CREATE TABLE `/%network_name%/_boardmessages` (
-  `boardmessage_id` int(11) NOT NULL auto_increment,
+  `type` int(2) NOT NULL default '0',
   `title` varchar(255) NOT NULL default '',
-  `body` longtext,
-  `created` int(11) default '0',
-  `changed` int(11) default '0',
-  `user_id` int(11) default '0',
-  `allow_anonymous` tinyint(1) default '1',
-  `user_name` varchar(100) default NULL,
-  `email` varchar(100) default NULL,
-  `homepage` varchar(255) default NULL,
-  `parent_id` int(11) default '0',
-  `parent_type` varchar(50) default NULL,
-  PRIMARY KEY  (`boardmessage_id`)
-) TYPE=MyISAM  ;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_categories_boardmessages`
---
-
-CREATE TABLE `/%network_name%/_categories_boardmessages` (
-  `category_id` int(11) NOT NULL default '0',
-  `boardmessage_id` int(11) NOT NULL default '0'
+  `author_id` int(11) NOT NULL default '0',
+  `description` longtext,
+  `is_active` tinyint(1) NOT NULL default '0',
+  `created` int(11) NOT NULL default '0',
+  `changed` int(11) NOT NULL default '0',
+  `picture` text,
+  PRIMARY KEY  (`collection_id`),
+  KEY `is_active` (`is_active`)
 ) TYPE=MyISAM;
 
+--
+-- Dumping data for table `contentcollections`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contentcollections_albumtype`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_contentcollections_albumtype` (
+  `contentcollection_id` int(11) NOT NULL,
+  `album_type_id` int(2) NOT NULL,
+  KEY `album_type_to_contentcollection` (`album_type_id`,`contentcollection_id`),
+  KEY `contentcollections_to_album_type` (`contentcollection_id`,`album_type_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `contentcollections_albumtype`
+--
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_content_routing_destinations`
+-- Table structure for table `contentcollection_types`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_content_routing_destinations` (
+CREATE TABLE IF NOT EXISTS `/%network_name%/_contentcollection_types` (
+  `type_id` int(11) NOT NULL default '0',
+  `name` varchar(50) NOT NULL default '',
+  `description` text,
+  PRIMARY KEY  (`type_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `contentcollection_types`
+--
+
+INSERT INTO `/%network_name%/_contentcollection_types` (`type_id`, `name`, `description`) VALUES
+(1, 'Group', ''),
+(2, 'Album', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contents`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_contents` (
+  `content_id` int(11) NOT NULL default '0',
+  `author_id` int(11) NOT NULL default '0',
+  `type` int(2) NOT NULL default '0',
+  `title` varchar(255) NOT NULL default '',
+  `is_active` tinyint(1) NOT NULL default '0',
+  `body` longtext NOT NULL,
+  `allow_comments` tinyint(1) NOT NULL default '0',
+  `collection_id` int(11) NOT NULL default '0',
+  `created` int(11) NOT NULL default '0',
+  `changed` int(11) NOT NULL default '0',
+  `trackbacks` text,
+  `display_on` tinyint(1) default '0',
+  `is_html` tinyint(1) default '1',
+  PRIMARY KEY  (`content_id`),
+  KEY `homepage_content` (`is_active`,`display_on`,`collection_id`,`created`),
+  KEY `homepage_typed_content` (`is_active`,`display_on`,`collection_id`,`type`,`created`),
+  KEY `user_content` (`is_active`,`collection_id`,`author_id`,`created`),
+  KEY `user_typed_content` (`is_active`,`collection_id`,`author_id`,`type`,`created`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `contents`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contents_sbmicrocontents`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_contents_sbmicrocontents` (
+  `content_id` int(11) NOT NULL default '0',
+  `microcontent_id` int(11) NOT NULL default '0',
+  KEY `content_to_microcontent` (`content_id`,`microcontent_id`),
+  KEY `microcontent_to_content` (`microcontent_id`,`content_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `contents_sbmicrocontents`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_routing_destinations`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_content_routing_destinations` (
   `index_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL default '0',
   `blog_name` varchar(50) NOT NULL default '',
@@ -351,34 +471,513 @@ CREATE TABLE `/%network_name%/_content_routing_destinations` (
   `user_name` varchar(50) NOT NULL default '',
   `password` varchar(20) NOT NULL default '',
   `blog_type` char(2) NOT NULL default '',
-  PRIMARY KEY  (`index_id`)
-);
+  PRIMARY KEY  (`index_id`),
+  KEY `user_id` (`user_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `content_routing_destinations`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_types`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_content_types` (
+  `type_id` int(2) NOT NULL default '0',
+  `name` varchar(50) NOT NULL default '',
+  `description` text,
+  PRIMARY KEY  (`type_id`),
+  KEY `name` (`name`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `content_types`
+--
+
+INSERT INTO `/%network_name%/_content_types` (`type_id`, `name`, `description`) VALUES
+(1, 'BlogPost', ''),
+(2, 'Review', ''),
+(3, 'Event', ''),
+(4, 'Image', ''),
+(5, 'Audio', ''),
+(6, 'Video', ''),
+(7, 'SBMicroContent', 'SBMicroContent'),
+(8, 'Question', 'Question'),
+(12, 'TekVideo', 'TekVideo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entities`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_entities` (
+  `id` int(11) NOT NULL auto_increment,
+  `entity_service` varchar(32) NOT NULL,
+  `entity_type` varchar(32) NOT NULL,
+  `entity_id` varchar(64) NOT NULL,
+  `entity_name` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `entity_service` (`entity_service`,`entity_type`,`entity_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `entities`
+--
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_categories`
+-- Table structure for table `entityattributes`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_categories` (
-  `category_id` int(11) NOT NULL auto_increment,
-  `position` varchar(255) default NULL,
-  `name` varchar(255) default NULL,
+CREATE TABLE IF NOT EXISTS `/%network_name%/_entityattributes` (
+  `id` int(11) NOT NULL,
+  `attribute_name` varchar(32) NOT NULL,
+  `attribute_value` text NOT NULL,
+  `attribute_permission` int(11) default NULL,
+  KEY `id` (`id`,`attribute_name`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `entityattributes`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entityrelationattributes`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_entityrelationattributes` (
+  `id` int(11) NOT NULL,
+  `attribute_name` varchar(32) NOT NULL,
+  `attribute_value` text NOT NULL,
+  `attribute_permission` int(11) default NULL,
+  KEY `id` (`id`,`attribute_name`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `entityrelationattributes`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entityrelations`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_entityrelations` (
+  `id` int(11) NOT NULL auto_increment,
+  `subject_service` varchar(32) NOT NULL,
+  `subject_type` varchar(32) NOT NULL,
+  `subject_id` varchar(64) NOT NULL,
+  `relation_type` varchar(32) NOT NULL,
+  `object_service` varchar(32) NOT NULL,
+  `object_type` varchar(32) NOT NULL,
+  `object_id` varchar(64) NOT NULL,
+  `start_time` int(11) NOT NULL,
+  `end_time` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `object_service` (`object_service`,`object_type`,`object_id`,`relation_type`,`end_time`),
+  KEY `subject_service` (`subject_service`,`subject_type`,`subject_id`,`relation_type`,`end_time`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `entityrelations`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `footer_links`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_footer_links` (
+  `id` int(11) NOT NULL auto_increment,
+  `caption` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `is_active` tinyint(1) default NULL,
+  `extra` text,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `footer_links`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groups`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_groups` (
+  `group_id` int(11) NOT NULL default '0',
+  `access_type` tinyint(1) NOT NULL default '0',
+  `reg_type` int(2) NOT NULL default '0',
+  `is_moderated` tinyint(1) NOT NULL default '0',
+  `category_id` int(11) NOT NULL default '0',
+  `header_image` text,
+  `header_image_action` int(2) default NULL,
+  `display_header_image` varchar(40) default '1',
+  `extra` text,
+  `group_type` varchar(64) NOT NULL default 'regular',
+  PRIMARY KEY  (`group_id`),
+  KEY `category_id` (`category_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `groups`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groups_users`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_groups_users` (
+  `group_id` int(11) NOT NULL default '0',
+  `user_id` int(11) NOT NULL default '0',
+  `user_type` varchar(50) NOT NULL default '',
+  `created` int(11) default NULL,
+  KEY `users_groups` (`user_id`,`group_id`),
+  KEY `user_type_index` (`group_id`,`user_id`,`user_type`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `groups_users`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_images` (
+  `content_id` int(11) NOT NULL default '0',
+  `image_file` varchar(255) NOT NULL default '',
+  `image_perm` int(2) NOT NULL default '0',
+  PRIMARY KEY  (`content_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `images`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invitations`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_invitations` (
+  `inv_id` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `inv_user_id` int(11) NOT NULL,
+  `inv_user_email` varchar(255) NOT NULL,
+  `inv_collection_id` int(11) NOT NULL,
+  `inv_status` int(2) NOT NULL,
+  `inv_data` longtext NOT NULL,
+  PRIMARY KEY  (`inv_id`),
+  KEY `inv_collection_id` (`inv_collection_id`),
+  KEY `inv_status` (`inv_status`),
+  KEY `user_id` (`user_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `invitations`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_items` (
+  `item_id` int(11) NOT NULL auto_increment,
+  `type` tinyint(1) NOT NULL,
+  `title` text NOT NULL,
   `description` text,
-  `is_active` tinyint(1) default '0',
-  `created` int(11) default '0',
-  `changed` int(11) default '0',
-  PRIMARY KEY  (`category_id`)
-) TYPE=MyISAM AUTO_INCREMENT=57 ;
+  `url` text,
+  `status` tinyint(1) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `created` int(11) NOT NULL,
+  `picture` text,
+  `changed` int(11) NOT NULL,
+  `changed_by` int(11) NOT NULL,
+  PRIMARY KEY  (`item_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
-
---------------------------------------------------------------
 --
--- Table structure for table `/%network_name%/_network_links`
--- 
+-- Dumping data for table `items`
+--
 
-CREATE TABLE `/%network_name%/_network_links` (
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items_collection`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_items_collection` (
+  `item_id` int(11) NOT NULL,
+  `collection_id` int(11) NOT NULL,
+  `is_default` tinyint(1) NOT NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `items_collection`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items_content`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_items_content` (
+  `item_id` int(11) NOT NULL,
+  `content_id` int(11) NOT NULL,
+  `is_default` tinyint(1) NOT NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `items_content`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items_data`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_items_data` (
+  `item_id` int(11) NOT NULL,
+  `field_name` text NOT NULL,
+  `field_value` text NOT NULL,
+  `seq` tinyint(1) NOT NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `items_data`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items_user`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_items_user` (
+  `item_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `joined` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `items_user`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_messages`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_item_messages` (
+  `id` int(11) NOT NULL auto_increment,
+  `item_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `url` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `item_messages`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_videos`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_media_videos` (
+  `id` int(11) NOT NULL auto_increment,
+  `video_id` varchar(50) NOT NULL,
+  `content_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `category_id` int(11) default NULL,
+  `external_thumbnail` text,
+  `internal_thumbnail` text,
+  `email_id` varchar(11) NOT NULL,
+  `views` int(11) default NULL,
+  `embed_tag` text,
+  `view_url` text,
+  `duration` int(11) default NULL,
+  `status` int(5) default NULL,
+  `video_perm` int(5) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `media_videos`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `moderation_queue`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_moderation_queue` (
+  `collection_id` int(11) NOT NULL default '0',
+  `item_id` int(11) NOT NULL default '0',
+  `type` varchar(20) NOT NULL default '',
+  KEY `collection_id` (`collection_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `moderation_queue`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_settings`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_modules_settings` (
+  `module_name` varchar(255) NOT NULL default '',
+  `module_id` int(11) NOT NULL default '0',
+  `is_active` tinyint(2) NOT NULL default '1',
+  `title` varchar(100) NOT NULL default '',
+  KEY `is_active` (`is_active`),
+  KEY `module_id` (`module_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `modules_settings`
+--
+
+INSERT INTO `/%network_name%/_modules_settings` (`module_name`, `module_id`, `is_active`, `title`) VALUES
+('delicious', 2, 1, 'Delicious'),
+('flickr', 1, 1, 'Flickr'),
+('NewestGroupsModule', 3, 1, 'Newest Groups'),
+('LargestGroupsModule', 4, 1, 'Largest Groups'),
+('MyGroupsModule', 5, 1, 'My Groups'),
+('GroupsByCategoryModule', 6, 1, 'Groups by Category'),
+('AdsByGoogleModule', 7, 1, 'Ads by Gooooogle'),
+('LogoModule', 8, 1, 'Logo'),
+('GroupsInCategoryModule', 9, 1, 'Groups:'),
+('RelationsModule', 10, 1, 'Relations'),
+('UserTasksModule', 11, 1, 'My Tasks'),
+('UserAudiosModule', 12, 1, 'Audios'),
+('UserVideosModule', 13, 1, 'Videos'),
+('UserPhotoModule', 14, 1, 'Photo'),
+('UserMessagesModule', 15, 1, 'My Messages'),
+('UserImagesModule', 16, 1, 'Images'),
+('FlickrModule', 17, 1, 'Flickr'),
+('LinkModule', 18, 1, 'Delicious'),
+('ShowContentModule', 19, 1, 'Content'),
+('UserInformationModule', 20, 1, 'User Profile'),
+('UserCaptionModule', 21, 1, 'Caption'),
+('MembersFacewallModule', 22, 1, 'Members'),
+('PopularTagsModule', 23, 1, 'Popular Tags'),
+('GroupsFacewallModule', 24, 1, 'Groups'),
+('LogoModule', 25, 1, 'Logos'),
+('ShowContentModule', 26, 1, 'Content'),
+('RecentPostModule', 27, 1, 'Recent Post'),
+('StatisticsModule', 28, 1, 'Statistics'),
+('AdsByGoogleModule', 29, 1, 'Adds By Google');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `network_links`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_network_links` (
   `link_id` int(11) NOT NULL auto_increment,
   `title` varchar(255) default NULL,
   `url` varchar(255) default NULL,
@@ -386,181 +985,539 @@ CREATE TABLE `/%network_name%/_network_links` (
   `created` int(11) default NULL,
   `changed` int(11) default NULL,
   `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`link_id`)
-) TYPE=MyISAM ;
+  PRIMARY KEY  (`link_id`),
+  KEY `cat_title` (`category_id`,`title`),
+  KEY `is_active` (`is_active`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `network_links`
+--
 
 -- --------------------------------------------------------
 
--- 
--- Table structure for table `/%network_name%/_network_linkcategories`
--- 
+--
+-- Table structure for table `network_linkcategories`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
 
-CREATE TABLE `/%network_name%/_network_linkcategories` (
+CREATE TABLE IF NOT EXISTS `/%network_name%/_network_linkcategories` (
   `category_id` int(11) NOT NULL auto_increment,
   `category_name` varchar(255) default NULL,
   `user_id` int(11) default NULL,
   `created` int(11) default NULL,
   `changed` int(11) default NULL,
   `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`category_id`)
-) TYPE=MyISAM;
-
+  PRIMARY KEY  (`category_id`),
+  KEY `user_cat` (`user_id`,`category_name`,`category_id`),
+  KEY `user_active` (`user_id`,`is_active`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `/%network_name%/_categories`
+-- Dumping data for table `network_linkcategories`
 --
-
-INSERT INTO `/%network_name%/_categories` VALUES (1, '1>', 'Activities', 'Description of Activities', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (2, '2>', 'Alumni & Schools', 'Description of Alumni & Schools', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (3, '3>', 'Arts & Entertainment', 'Description of Arts & Entertainment', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (4, '4>', 'Automotive', 'Description of Automotive', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (5, '5>', 'Business', 'Description of Business', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (6, '6>', 'Cities & Neighborhoods', 'Description of Cities & Neighborhoods', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (7, '7>', 'Company', 'Description of Company', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (8, '8>', 'Computers & Internet', 'Description of Computers & Internet', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (9, '9>', 'Countries & Regional', 'Description of Countries & Regional', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (10, '10>', 'Cultures & Community', 'Description of Cultures & Community', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (11, '11>', 'Family & Home', 'Description of Family & Home', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (12, '12>', 'Fashion & Beauty', 'Description of Fashion & Beauty', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (13, '13>', 'Food, Drink & Wine', 'Description of Food, Drink & Wine', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (14, '14>', 'Games', 'Description of Games', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (15, '15>', 'Gay, Lesbian & Bi', 'Description of Gay, Lesbian & Bi', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (16, '16>', 'Government & Politics', 'Description of Government & Politics', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (17, '17>', 'Health, Wellness & Fitness', 'Description of Health, Wellness & Fitness', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (18, '18>', 'Hobbies & Crafts', 'Description of Hobbies & Crafts', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (19, '19>', 'Individuals', 'Description of Individuals', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (20, '20>', 'Music', 'Description of Neighborhoods  Music', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (21, '21>', 'Pets & Animals', 'Description of Pets & Animals', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (22, '22>', 'Recreation & Sports', 'Description of Recreation & Sports', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (23, '23>', 'Religion & Beliefs', 'Description of Religion & Beliefs', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (24, '24>', 'Romance & Relationships', 'Description of Romance & Relationships', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (25, '25>', 'Schools & Education', 'Description of Schools & Education', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (26, '26>', 'Science & History', 'Description of Science & History', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (27, '27>', 'Travel', 'Description of Travel', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (28, '28>', 'Others', 'Description of Others', 1, 1136967446, 1136967446);
-INSERT INTO `/%network_name%/_categories` VALUES (29, '1>29>', 'Sub Activities', 'Sub Description of Activities', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (30, '2>30>', 'Sub Alumni & Schools', 'Sub Description of Alumni & Schools', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (31, '3>31>', 'Sub Arts & Entertainment', 'Sub Description of Arts & Entertainment', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (32, '4>32>', 'Sub Automotive', 'Sub Description of Automotive', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (33, '5>33>', 'Sub Business', 'Sub Description of Business', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (34, '6>34>', 'Sub Cities & Neighborhoods', 'Sub Description of Cities & Neighborhoods', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (35, '7>35>', 'Sub Company', 'Sub Description of Company', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (36, '8>36>', 'Sub Computers & Internet', 'Sub Description of Computers & Internet', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (37, '9>37>', 'Sub Countries & Regional', 'Sub Description of Countries & Regional', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (38, '10>38>', 'Sub Cultures & Community', 'Sub Description of Cultures & Community', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (39, '11>39>', 'Sub Family & Home', 'Sub Description of Family & Home', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (40, '12>40>', 'Sub Fashion & Beauty', 'Sub Description of Fashion & Beauty', 1, 1136971089, 1136971089);
-INSERT INTO `/%network_name%/_categories` VALUES (41, '13>41>', 'Sub Food, Drink & Wine', 'Sub Description of Food, Drink & Wine', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (42, '14>42>', 'Sub Games', 'Sub Description of Games', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (43, '15>43>', 'Sub Gay, Lesbian & Bi', 'Sub Description of Gay, Lesbian & Bi', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (44, '16>44>', 'Sub Government & Politics', 'Sub Description of Government & Politics', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (45, '17>45>', 'Sub Health, Wellness & Fitness', 'Sub Description of Health, Wellness & Fitness', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (46, '18>46>', 'Sub Hobbies & Crafts', 'Sub Description of Hobbies & Crafts', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (47, '19>47>', 'Sub Individuals', 'Sub Description of Individuals', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (48, '20>48>', 'Sub Neighborhoods  Music', 'Sub Description of Neighborhoods  Music', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (49, '21>49>', 'Sub Pets & Animals', 'Sub Description of Pets & Animals', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (50, '22>50>', 'Sub Recreation & Sports', 'Sub Description of Recreation & Sports', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (51, '23>51>', 'Sub Religion & Beliefs', 'Sub Description of Religion & Beliefs', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (52, '24>52>', 'Sub Romance & Relationships', 'Sub Description of Romance & Relationships', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (53, '25>53>', 'Sub Schools & Education', 'Sub Description of Schools & Education', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (54, '26>54>', 'Sub Science & History', 'Sub Description of Science & History', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (55, '27>55>', 'Sub Travel', 'Sub Description of Travel', 1, 1136971090, 1136971090);
-INSERT INTO `/%network_name%/_categories` VALUES (56, '28>56>', 'Sub Others', 'Sub Description of Others', 1, 1136971090, 1136971090);
-
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `/%network_name%/_contents_sbmicrocontents`
+-- Table structure for table `page_default_settings`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-CREATE TABLE `/%network_name%/_contents_sbmicrocontents` (
-  `content_id` int(11) NOT NULL default '0',
-  `microcontent_id` int(11) NOT NULL default '0'
-) TYPE=MyISAM;
-
-
--- --------------------------------------------------------
-
-
-
---
--- Table structure for table `/%network_name%/_page_settings`
---
-
-CREATE TABLE `/%network_name%/_page_settings` (
-  `user_id` int(11) NOT NULL default '0',
-  `page_id` int(11) NOT NULL default '0',
-  `settings` text,
-  `lft` tinytext NOT NULL,
-  `middle` tinytext NOT NULL,
-  `rght` tinytext NOT NULL
-) TYPE=MyISAM;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `/%network_name%/_page_default_settings`
---
-
-CREATE TABLE `/%network_name%/_page_default_settings` (
+CREATE TABLE IF NOT EXISTS `/%network_name%/_page_default_settings` (
   `page_id` int(11) NOT NULL default '0',
   `page_name` varchar(255) NOT NULL default '',
   `default_settings` text,
   `lft` tinytext NOT NULL,
   `middle` tinytext NOT NULL,
   `rght` tinytext NOT NULL,
+  `is_configurable` binary(1) default '0',
   PRIMARY KEY  (`page_id`)
 ) TYPE=MyISAM;
 
+--
+-- Dumping data for table `page_default_settings`
+--
+
 -- --------------------------------------------------------
 
 --
--- Tables for module settings table-- START
+-- Table structure for table `page_settings`
 --
-CREATE TABLE `/%network_name%/_modules_settings` (
-  `module_name` varchar(255) NOT NULL default '',
-  `module_id` int(11) NOT NULL default '0',
-  `is_active` tinyint(2) NOT NULL default '1',
-  `title` varchar(100) NOT NULL default ''
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_page_settings` (
+  `assoc_id` int(11) NOT NULL default '0',
+  `page_id` int(11) NOT NULL default '0',
+  `settings` text,
+  `assoc_type` varchar(12) NOT NULL default 'user',
+  `middle` tinytext NOT NULL,
+  `rght` tinytext NOT NULL,
+  KEY `user_page` (`assoc_id`,`page_id`)
 ) TYPE=MyISAM;
 
+--
+-- Dumping data for table `page_settings`
+--
 
 -- --------------------------------------------------------
 
 --
--- Dumping data for table `/%network_name%/_modules_settings` (example data- could be changed)
+-- Table structure for table `rating`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
 --
 
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('delicious', 2, 1, 'Delicious');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('flickr', 1, 1, 'Flickr');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('NewestGroupsModule', 3, 1, 'Newest Groups');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('LargestGroupsModule', 4, 1, 'Largest Groups');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('MyGroupsModule', 5, 1, 'My Groups');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsByCategoryModule', 6, 1, 'Groups by Category');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('AdsByGoogleModule', 7, 1, 'Ads by Gooooogle');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('LogoModule', 8, 1, 'Logo');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsInCategoryModule', 9, 1, 'Groups:');
+CREATE TABLE IF NOT EXISTS `/%network_name%/_rating` (
+  `index_id` int(11) NOT NULL auto_increment,
+  `rating_type` enum('user','content','collection','tag','comment','network','celebrity','radio1_channel') NOT NULL default 'content',
+  `type_id` int(11) NOT NULL default '0',
+  `attribute_id` smallint(3) NOT NULL default '-1',
+  `rating` mediumint(5) NOT NULL default '0',
+  `max_rating` mediumint(5) NOT NULL default '0',
+  `user_id` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`index_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('RelationsModule', 10, 1, 'Relations');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserTasksModule', 11, 1, 'My Tasks');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserAudiosModule', 12, 1, 'Audios');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserVideosModule', 13, 1, 'Videos');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserPhotoModule', 14, 1, 'Photo');
+--
+-- Dumping data for table `rating`
+--
 
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserMessagesModule', 15, 1, 'My Messages');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserImagesModule', 16, 1, 'Images');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('FlickrModule', 17, 1, 'Flickr');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('LinkModule', 18, 1, 'Delicious');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('ShowContentModule', 19, 1, 'Content');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserInformationModule', 20, 1, 'User Profile');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('UserCaptionModule', 21, 1, 'Caption');
+-- --------------------------------------------------------
 
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('MembersFacewallModule', 22, 1, 'Members');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('PopularTagsModule', 23, 1, 'Popular Tags');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('GroupsFacewallModule', 24, 1, 'Groups');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('LogoModule', 25, 1, 'Logos');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('ShowContentModule', 26, 1, 'Content');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('RecentPostModule', 27, 1, 'Recent Post');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('StatisticsModule', 28, 1, 'Statistics');
-INSERT INTO `/%network_name%/_modules_settings` VALUES ('AdsByGoogleModule', 29, 1, 'Adds By Google');
+--
+-- Table structure for table `recent_media_track`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_recent_media_track` (
+  `id` int(11) NOT NULL auto_increment,
+  `cid` int(11) default NULL,
+  `type` int(1) default NULL,
+  `created` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `cid` (`cid`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `recent_media_track`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_reviews` (
+  `review_id` int(11) NOT NULL auto_increment,
+  `is_active` tinyint(1) NOT NULL default '1',
+  `subject_type` varchar(32) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `title` varchar(255) default NULL,
+  `body` text NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY  (`review_id`),
+  KEY `by_subject` (`is_active`,`subject_type`,`subject_id`),
+  KEY `by_freshness` (`is_active`,`subject_type`,`created`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `reviews`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_abuse`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_report_abuse` (
+  `report_id` int(11) NOT NULL auto_increment,
+  `parent_type` varchar(100) default NULL,
+  `parent_id` int(11) NOT NULL,
+  `reporter_id` int(11) default NULL,
+  `body` text,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY  (`report_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `report_abuse`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(100) default NULL,
+  `description` tinytext,
+  `created` int(11) default NULL,
+  `changed` int(11) default NULL,
+  `read_only` tinyint(1) NOT NULL default '0',
+  `type` set('user','network','group') NOT NULL default 'network',
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM  AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `/%network_name%/_roles` (`id`, `name`, `description`, `created`, `changed`, `read_only`, `type`) VALUES
+(1, 'Administrator', 'Administrator permissions', 1247098333, 1247098333, 1, 'network'),
+(2, 'Login User', 'Ordinary logged in users permissions', 1247098333, 1247098333, 1, 'network'),
+(3, 'Anonymous', 'Anonymous users permissions', 1247098333, 1247098333, 1, 'network'),
+(4, 'Group Administrator', 'User can manage Group settings, members and contents', 1247098334, 1247098334, 1, 'group'),
+(5, 'Group Moderator', 'The user has the same permissions as well as the Group Admin but can not assign Roles to other users', 1247098334, 1247098334, 1, 'group'),
+(6, 'Group Member', 'User can create Events and post to the Group, Forum and their Personal Blog', 1247098334, 1247098334, 1, 'group'),
+(7, 'Ad Manager', 'User can manage Network Ads and Group specific Ads', 1247098335, 1247098335, 1, 'network'),
+(8, 'Group Ad Manager', 'Group Member can manage Ads for this specific Group', 1247098335, 1247098335, 1, 'group');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `static_pages`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_static_pages` (
+  `id` int(11) NOT NULL auto_increment,
+  `caption` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `page_text` text,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `static_pages`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supergroup_data`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_supergroup_data` (
+  `group_id` int(11) NOT NULL,
+  `field_name` varchar(255) NOT NULL,
+  `field_value` text,
+  `setting` enum('ecommerce','mailing_list','playlist','showcasing') NOT NULL,
+  `seq` int(11) default '0'
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `supergroup_data`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supergroup_settings`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_supergroup_settings` (
+  `group_id` int(11) NOT NULL,
+  `ecommerce` binary(1) NOT NULL default '0',
+  `mailing_list` binary(1) NOT NULL default '0',
+  `playlist` binary(1) NOT NULL default '0',
+  `showcasing` binary(1) NOT NULL default '0',
+  `image` varchar(255) default NULL,
+  `flash_script` text,
+  PRIMARY KEY  (`group_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `supergroup_settings`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags_contentcollections`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_tags_contentcollections` (
+  `tag_id` int(11) NOT NULL default '0',
+  `collection_id` int(11) NOT NULL default '0',
+  KEY `contentcollection_to_tag` (`collection_id`,`tag_id`),
+  KEY `tag_to_contentcollection` (`tag_id`,`collection_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `tags_contentcollections`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags_contents`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_tags_contents` (
+  `tag_id` int(11) NOT NULL default '0',
+  `content_id` int(11) NOT NULL default '0',
+  KEY `tag_to_content` (`tag_id`,`content_id`),
+  KEY `content_to_tags` (`content_id`,`tag_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `tags_contents`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags_item`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_tags_item` (
+  `tag_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `tags_item`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks_roles`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_tasks_roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `task_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM  AUTO_INCREMENT=93 ;
+
+--
+-- Dumping data for table `tasks_roles`
+--
+
+INSERT INTO `/%network_name%/_tasks_roles` (`id`, `task_id`, `role_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1),
+(11, 11, 1),
+(12, 12, 1),
+(13, 13, 1),
+(14, 14, 1),
+(15, 15, 1),
+(16, 16, 1),
+(17, 17, 1),
+(18, 18, 1),
+(19, 19, 1),
+(20, 20, 1),
+(21, 21, 1),
+(22, 22, 1),
+(23, 23, 1),
+(24, 24, 1),
+(25, 25, 1),
+(26, 26, 1),
+(27, 27, 1),
+(28, 28, 1),
+(29, 29, 1),
+(30, 30, 1),
+(31, 31, 1),
+(32, 10, 2),
+(33, 12, 2),
+(34, 13, 2),
+(35, 14, 2),
+(36, 15, 2),
+(37, 16, 2),
+(38, 20, 2),
+(39, 22, 2),
+(40, 24, 2),
+(41, 29, 2),
+(42, 31, 2),
+(43, 22, 3),
+(44, 24, 3),
+(45, 6, 4),
+(46, 9, 4),
+(47, 10, 4),
+(48, 12, 4),
+(49, 13, 4),
+(50, 14, 4),
+(51, 15, 4),
+(52, 16, 4),
+(53, 17, 4),
+(54, 18, 4),
+(55, 19, 4),
+(56, 21, 4),
+(57, 22, 4),
+(58, 23, 4),
+(59, 24, 4),
+(60, 25, 4),
+(61, 26, 4),
+(62, 30, 4),
+(63, 31, 4),
+(64, 6, 5),
+(65, 9, 5),
+(66, 10, 5),
+(67, 12, 5),
+(68, 13, 5),
+(69, 14, 5),
+(70, 15, 5),
+(71, 16, 5),
+(72, 18, 5),
+(73, 19, 5),
+(74, 21, 5),
+(75, 22, 5),
+(76, 23, 5),
+(77, 24, 5),
+(78, 26, 5),
+(79, 30, 5),
+(80, 31, 5),
+(81, 9, 6),
+(82, 10, 6),
+(83, 12, 6),
+(84, 13, 6),
+(85, 14, 6),
+(86, 22, 6),
+(87, 30, 6),
+(88, 31, 6),
+(89, 15, 6),
+(90, 16, 6),
+(91, 3, 7),
+(92, 3, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trackback_contents`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_trackback_contents` (
+  `index` int(11) NOT NULL auto_increment,
+  `trackback` text NOT NULL,
+  `content_id` int(11) NOT NULL default '0',
+  `title` varchar(255) NOT NULL default '',
+  `excerpt` text,
+  PRIMARY KEY  (`index`),
+  KEY `trackbacks_for_content` (`content_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `trackback_contents`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_roles`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:33 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_users_roles` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(2) NOT NULL default '-1',
+  `extra` varchar(8048) NOT NULL default 'a:3:{s:4:"user";b:0;s:7:"network";b:1;s:6:"groups";a:0:{}}',
+  KEY `user_id` (`user_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `users_roles`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_popularity`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_user_popularity` (
+  `user_id` int(11) NOT NULL,
+  `popularity` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY  (`user_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `user_popularity`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+-- Creation: Jul 13, 2009 at 05:30 PM
+-- Last update: Jul 13, 2009 at 05:30 PM
+--
+
+CREATE TABLE IF NOT EXISTS `/%network_name%/_videos` (
+  `content_id` int(11) NOT NULL default '0',
+  `video_file` varchar(255) NOT NULL default '',
+  `video_perm` int(2) NOT NULL default '0',
+  PRIMARY KEY  (`content_id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `videos`
+--
+-- --------------------------------------------------------

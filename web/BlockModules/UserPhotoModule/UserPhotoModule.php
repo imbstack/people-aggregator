@@ -9,7 +9,7 @@ class UserPhotoModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
   
   function __construct() {
-
+    parent::__construct();
     $this->title = __('Photo');
     $this->main_block_id = "mod_photo";
     $this->html_block_id = 'UserPhotoModule';
@@ -34,7 +34,6 @@ class UserPhotoModule extends Module {
  }
 
  function generate_inner_html () {
-  global $current_blockmodule_path;
     switch ( $this->mode ) {
      case PRI:
         $this->outer_template = 'outer_private_side_module.tpl';

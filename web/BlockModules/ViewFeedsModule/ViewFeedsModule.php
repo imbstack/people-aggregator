@@ -15,6 +15,7 @@ class ViewFeedsModule extends Module {
   public $feed_id;
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'ViewFeedsModule';
     $this->title = null;
   }

@@ -1,13 +1,12 @@
 <? 
 $login_required = FALSE;
 include_once("web/includes/page.php");
-global $current_theme_path, $current_theme_rel_path;
 ?>
 
 <!-- Derived from Phil's update page. Minimal changes to affect the People Aggregator utility format CSS. -->
 <!-- Changes include, linking to external style sheet, bringing footer linke to the head of the document and including in a greater head <div>, consolidating the red warning <div> styles into a single style in the sheet called warning. -->
 
-<link href="<?php echo $current_theme_path;?>/pa_utility_template.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo PA::$theme_url;?>/pa_utility_template.css" rel="stylesheet" type="text/css" />
 <body>
 <head>
 <title>PeopleAggregator</title>

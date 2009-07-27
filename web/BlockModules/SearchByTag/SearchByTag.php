@@ -13,6 +13,7 @@ class SearchByTag extends Module {
   public $page_links, $page_prev, $page_next, $page_count;
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'SearchByTag';
   }
   /**

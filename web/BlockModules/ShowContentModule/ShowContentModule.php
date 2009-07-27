@@ -18,6 +18,7 @@ class ShowContentModule extends Module {
   public $group;
 
   function __construct() {
+    parent::__construct();
     $this->title = __("Contents");
     $this->html_block_id = "ShowContentModule";
   }
@@ -26,7 +27,7 @@ class ShowContentModule extends Module {
 
 
   public function initializeModule($request_method, $request_data)  {
-    global $_PA, $error_msg, $post_type_message, $paging;
+    global $error_msg, $post_type_message, $paging;
 
     $this->request_data = $request_data;
 
@@ -110,7 +111,7 @@ class ShowContentModule extends Module {
 
     if(!empty($this->shared_data['user_info'])) {
       $user = $this->shared_data['user_info'];
-      if(empty($_PA->simple['use_simpleblog'])) {
+      if(empty(PA::$config->simple['use_simpleblog'])) {
 	      $data_profile = $this->shared_data['user_profile'];
         if (count($data_profile) == 0) {
           return 'skip';
@@ -224,7 +225,7 @@ class ShowContentModule extends Module {
         $this->Paging["count"] = $this->links =  $this->group->get_contents_for_collection($type = 'all',$cnt=TRUE,'all' , 0, $sort_by='created', $direction='DESC');
         $this->contents = $this->group->get_contents_for_collection($type = 'all', $cnt=FALSE, $this->Paging["show"], $this->Paging["page"],'created','DESC');
       }
-      
+
       $this->group_owner = FALSE;
       $this->group_member = FALSE;
       $this->group_moderator = FALSE;
@@ -240,14 +241,14 @@ class ShowContentModule extends Module {
 				if (Group::member_exists($this->group->collection_id, PA::$login_uid)) {
 					$this->group_member = TRUE;
 				}
-	
+
 				$perm_params = array('permissions' => 'manage_groups');
 				$has_mod_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
 				$this->group_moderator = FALSE;
 				if($has_mod_permission || ($this->shared_data['member_type'] == 'moderator')) {
 					$this->group_moderator = TRUE;
 				}
-				
+
 				$this->ad_manager = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
 				// check for manageads of group permissions
 				if (!$this->ad_manager) {
@@ -255,7 +256,6 @@ class ShowContentModule extends Module {
 					$this->ad_manager = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, array('permissions' => 'manage_ads'));
 				}
       }
-
 
       $this->title = chop_string(sprintf(__("%s's Group Blog"), $this->group->title,32));
 
@@ -319,9 +319,6 @@ class ShowContentModule extends Module {
   }
 
   function generate_inner_html($contents) {
-    global $current_theme_path,$login_uid,$page_uid;
-    // global var $_base_url has been removed - please, use PA::$url static variable
-
     $request_data = $this->request_data;
 
     $inner_html = '';
@@ -334,7 +331,7 @@ class ShowContentModule extends Module {
           <li><a href="'.PA::$url .'/content_management.php">
             '.__("Manage posts").'</a>
           </li>
-          <li><a href="'.PA::$url . PA_ROUTE_USER_PUBLIC . '/' . $login_uid . '">
+          <li><a href="'.PA::$url . PA_ROUTE_USER_PUBLIC . '/' . PA::$login_uid . '">
             '.__("View my public page").'</a>
           </li>
         </ul>
@@ -371,7 +368,7 @@ class ShowContentModule extends Module {
         if (!empty($this->ad_manager)) {
         	$inner_html .= '<li><a href="'.PA::$url.PA_ROUTE_GROUP_AD_CENTER .'?gid='.$request_data['gid'].'">'.__("Manage Ads").'</a></li>';
         }
-        if ((empty($this->group_member) && empty($this->group_owner)) && !empty($login_uid)) {
+        if ((empty($this->group_member) && empty($this->group_owner)) && !empty(PA::$login_uid)) {
           if (!empty($this->join_this_group_string)) {
               $inner_html .= '<li><a href="'. PA::$url . PA_ROUTE_GROUP . '/action=join&amp;gid='.$request_data['gid'].'">'. $this->join_this_group_string.'</a></li>';
           } else {

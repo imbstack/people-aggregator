@@ -15,7 +15,7 @@ $login_required = FALSE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require_once "ext/Group/Group.php";
-require "$current_blockmodule_path/NewestGroupsModule/NewestGroupsModule.php";
+require PA::$blockmodule_path . "/NewestGroupsModule/NewestGroupsModule.php";
 
 $uid = @$_GET['uid'];
 $selected_option = @$_GET['sort_by'];

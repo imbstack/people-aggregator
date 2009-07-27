@@ -8,6 +8,7 @@ class GroupStatsModule extends Module {
   public $group_details;
 
   public function __construct() {
+    parent::__construct();
     $this->title = __('Group Statistics');
   }
 

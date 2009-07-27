@@ -1,4 +1,4 @@
-<?php global $app, $current_theme_path;
+<?php global $app;
   $alb = (!empty($_GET['album_id'])) ? '&album_id='.$_GET['album_id']:null;
   $current_url = PA::$url . $app->current_route;
  

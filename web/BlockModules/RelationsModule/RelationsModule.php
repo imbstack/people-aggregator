@@ -10,6 +10,7 @@ class RelationsModule extends Module {
   public $rel_term;
 
   public function __construct() {
+    parent::__construct();
   }
 
   public function initializeModule($request_method, $request_data) { 

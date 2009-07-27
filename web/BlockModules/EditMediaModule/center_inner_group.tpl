@@ -1,6 +1,4 @@
-<?php // global var $_base_url has been removed - please, use PA::$url static variable
-
-      global $current_theme_path, $current_theme_rel_path;
+<?php 
       
       if ($media_data->type == '4') {
         $media_type = "image";
@@ -10,7 +8,7 @@
            $image_show = "<img src=\"$image_path\"  alt=\"PA\" height=\"70\" width=\"50\"/>";
         }
         else {
-           $path = uihelper_resize_img($image_path, 70, 50, "$current_theme_rel_path/images/header_image.jpg",'alt="image."');
+           $path = uihelper_resize_img($image_path, 70, 50, PA::$theme_rel . "/images/header_image.jpg",'alt="image."');
            $croped_path = $path['url'];
            $image_show = "<img src=\"$croped_path\"  alt=\"PA\" />";
       }  
@@ -19,10 +17,10 @@
       else if($media_data->type == '5') {
         $media_type = "audio";
         $ret_url = PA::$url . PA_ROUTE_MEDIA_GALLEY_AUDIOS . "/view=groups_media&gid=" . $media_data->parent_collection_id;
-        $image_path =  "$current_theme_path/images/audio_img.jpg";
+        $image_path =  PA::$theme_url . "/images/audio_img.jpg";
         $file = $media_data->file_name;
         
-        $path = uihelper_resize_img($image_path, 70, 50, "$current_theme_rel_path/images/audio_img.jpg",'alt="image."');
+        $path = uihelper_resize_img($image_path, 70, 50, PA::$theme_rel . "/images/audio_img.jpg",'alt="image."');
         
         $croped_path = $path['url'];
         $image_show = "<img src=\"$croped_path\"  alt=\"PA\" />";
@@ -32,7 +30,7 @@
         $ret_url = PA::$url . PA_ROUTE_MEDIA_GALLEY_VIDEOS . "/view=groups_media&gid=" . $media_data->parent_collection_id;
         $image_path =  "files/".$media_data->internal_thumbnail;
         $file = @$media_data->file_name;
-        $path = uihelper_resize_img($image_path, 70, 50, "$current_theme_rel_path/images/video_img.jpg",'alt="image."');
+        $path = uihelper_resize_img($image_path, 70, 50, PA::$theme_rel . "/images/video_img.jpg",'alt="image."');
         
         $croped_path = $path['url'];
         $image_show = "<img src=\"$croped_path\"  alt=\"PA\" />";

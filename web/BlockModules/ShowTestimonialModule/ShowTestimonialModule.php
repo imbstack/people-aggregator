@@ -9,6 +9,7 @@ class ShowTestimonialModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
   }
   
   public function initializeModule($request_method, $request_data) {

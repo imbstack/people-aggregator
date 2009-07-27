@@ -227,7 +227,7 @@ class Navigation {
   @return - it sets class variables level_1,level_2,level_3 which can be used further.
   **/
   function make_links() {
-    global $_PA;
+     
 
     $user_id = (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : 0;
     ////These are level 1 links shown in top navigation bar
@@ -265,7 +265,7 @@ class Navigation {
       unset($level_1['home_network']);
     }
 
-    if ($_PA->enable_network_spawning) {
+    if (PA::$config->enable_network_spawning) {
       $level_1['create_network'] = array(
 	'caption'=>__('Create a network'),
 	'url'=>$this->mothership_info['extra']['links']['create_network']);
@@ -286,7 +286,7 @@ class Navigation {
                                   'url'=>$this->base_url . PA_ROUTE_GROUPS
 																	),
     										);
-		if (!empty($_PA->useTypedGroups)) {
+		if (!empty(PA::$config->useTypedGroups)) {
 			$level_2 = $level_2 + array(
                        'directory' => array('caption'=>__('Directory'),
                                   'url'=>$this->base_url.PA_ROUTE_TYPED_DIRECTORY
@@ -639,7 +639,7 @@ class Navigation {
   public function get_links($optional = NULL) {
     //initialization
 
-    global $page_uid,$login_uid, $dynamic_page;
+    global $dynamic_page;
 
     if (isset($_SESSION['user']['id'])) {
       $extra = unserialize($this->network_info->extra);
@@ -660,8 +660,8 @@ class Navigation {
     if ( isset($user_groups) && sizeof($user_groups) ) {
       $this->users_first_group_id($user_groups[0]['gid']);
     }
-    if ( $login_uid ) {
-      $this->set_uid($login_uid);
+    if ( PA::$login_uid ) {
+      $this->set_uid(PA::$login_uid);
     }
     else {
       $this->set_anonymous();
@@ -735,58 +735,58 @@ class Navigation {
         $app->setRequestParam('uid', PA::$login_uid, 'POST');
       case PAGE_USER_PUBLIC:
       case PAGE_USER_PRIVATE:
-        if (!$page_uid && !$login_uid) {
+        if (!PA::$page_uid && !PA::$login_uid) {
           throw new PAException("", "Invalid page access");
         }
-        if ( $page_uid ) {//uid get variable set
+        if ( PA::$page_uid ) {//uid get variable set
           //these links are to be added in front
           $def_relations_term = 'Friend';
           if (isset($extra['relationship_show_mode']['term'])) {
             $def_relations_term = $extra['relationship_show_mode']['term'];
           }
           $relation_already_exists_links = array('send_message' => array('caption'=>__('Send a message'),
-                                  'url'=>$this->base_url.PA_ROUTE_ADDMESSAGE.'/uid='.$page_uid
+                                  'url'=>$this->base_url.PA_ROUTE_ADDMESSAGE.'/uid='.PA::$page_uid
                                   ),
                        'change_relationship' => array('caption'=> __('Change Relation'),
-                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/uid='.$page_uid.'&amp;do=change&amp;action=EditRelation'
+                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/uid='.PA::$page_uid.'&amp;do=change&amp;action=EditRelation'
                                   ),
                         'delete_relationship' => array('caption'=>sprintf(__('Delete as %s'), __($def_relations_term)),
-                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/do=delete&amp;uid='.$page_uid.'&amp;action=EditRelation',
+                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/do=delete&amp;uid='.PA::$page_uid.'&amp;action=EditRelation',
                                   'extra'=>' onclick ="return delete_confirmation_msg(\''.__('Are you sure you want to delete this Relationship?').'\') "'
                                   ),
 /*
                       'send_testimonial' => array('caption'=>__('Write Testimonial'),
-                                  'url'=>$this->base_url.'/'.FILE_WRITE_TESTIMONIAL.'?uid='.$page_uid
+                                  'url'=>$this->base_url.'/'.FILE_WRITE_TESTIMONIAL.'?uid='.PA::$page_uid
                                   ),
                        'user_comment' => array ('caption' =>__('Write Comment'),
-                                 'url' => $this->base_url.'/'.FILE_WRITE_USER_COMMENT.'?uid='.$page_uid
+                                 'url' => $this->base_url.'/'.FILE_WRITE_USER_COMMENT.'?uid='.PA::$page_uid
                                   )
 */
                          );
           $relation_does_not_exists_links = array('send_message' => array('caption'=>__('Send a message'),
-                                  'url'=>$this->base_url.PA_ROUTE_ADDMESSAGE.'/uid='.$page_uid
+                                  'url'=>$this->base_url.PA_ROUTE_ADDMESSAGE.'/uid='.PA::$page_uid
                                   ),
                        'make_connection' => array('caption'=> sprintf(__('Add as %s'), __($def_relations_term)),
-                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/uid='.$page_uid.'&amp;do=add&amp;action=EditRelation'
+                                  'url'=>$this->base_url.PA_ROUTE_EDIT_RELATIONS.'/uid='.PA::$page_uid.'&amp;do=add&amp;action=EditRelation'
                                   ),
 /*
                        'send_testimonial' => array('caption'=>__('Write Testimonial'),
-                                  'url'=>$this->base_url.'/'.FILE_WRITE_TESTIMONIAL.'?uid='.$page_uid
+                                  'url'=>$this->base_url.'/'.FILE_WRITE_TESTIMONIAL.'?uid='.PA::$page_uid
                                   ),
                        'user_comment' => array ('caption' =>__('Write Comment'),
-                              'url' => $this->base_url.'/'.FILE_WRITE_USER_COMMENT.'?uid='.$page_uid
+                              'url' => $this->base_url.'/'.FILE_WRITE_USER_COMMENT.'?uid='.PA::$page_uid
                                  )
 */
 
                        );
-          if ($page_uid==$login_uid) {//login and get uid same means user's public page
+          if (PA::$page_uid==PA::$login_uid) {//login and get uid same means user's public page
             $level_2['highlight'] = 'user';
             $level_3 = $this->get_level_3('user');
           } else {
             // make left and right links
             //user's public page requires different link rendering
             if (!empty($relations_ids)) {
-              if (in_array($page_uid, $relations_ids)) {
+              if (in_array(PA::$page_uid, $relations_ids)) {
                 $left_user_public_links = $relation_already_exists_links;
               } else {
                 $left_user_public_links = $relation_does_not_exists_links;
@@ -817,7 +817,7 @@ class Navigation {
        }
        else {
           $level_2['highlight'] = 'people';
-          if ($page_uid == $login_uid) {
+          if (PA::$page_uid == PA::$login_uid) {
           $level_3 = $this->get_level_3('people');
           if ((!empty($_GET['view_type'])) && ($_GET['view_type'] == 'relations')) {
             $level_3['highlight'] = 'my_friends';
@@ -840,7 +840,7 @@ class Navigation {
       /*----------------------------------------------------*/
       case FILE_UPLOAD_MEDIA :
       case PAGE_MEDIA_GALLERY :
-        if ($login_uid) {
+        if (PA::$login_uid) {
           if(isset($_GET['view']) && 'groups_media' == $_GET['view']){ //user is viewing group gallery
             $level_2['highlight'] = 'groups';
             $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
@@ -849,9 +849,9 @@ class Navigation {
             $level_2['highlight'] = 'people';
             $level_3 = $this->get_level_3('people');
             $level_3['highlight'] = 'friends_gallery';
-          } else if( ($page_uid != $login_uid) && ($page_uid!='') ) { //user is viewing his private page gallery
+          } else if( (PA::$page_uid != PA::$login_uid) && (PA::$page_uid!='') ) { //user is viewing his private page gallery
             $level_2['highlight'] = 'people';
-          } else if (($page_uid == $login_uid) || (!$page_uid)) {
+          } else if ((PA::$page_uid == PA::$login_uid) || (!PA::$page_uid)) {
             $level_2['highlight'] = 'user';
             $level_3 = $this->get_level_3('user');
             $level_3['highlight'] = 'my_gallery';
@@ -859,7 +859,7 @@ class Navigation {
         }
         else {
 
-          if(!empty($page_uid)) {// for anonymous user
+          if(!empty(PA::$page_uid)) {// for anonymous user
              $level_2['highlight'] = 'people';
           }
         }

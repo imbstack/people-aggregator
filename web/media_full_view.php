@@ -8,7 +8,7 @@ if(isset($_REQUEST['login_required']) && ($_REQUEST['login_required'] == 'true')
 $use_theme = 'Beta';
 include_once("web/includes/page.php");
 // global var $path_prefix has been removed - please, use PA::$path static variable
-global $current_theme_path;
+ 
 
 
 require_once "api/ImageResize/ImageResize.php";

@@ -13,6 +13,7 @@ class RecentCommentsModule extends Module {
   public $cid;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Recent Comments');
   }
 

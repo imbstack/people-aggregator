@@ -9,6 +9,7 @@ class ChangePasswordModule extends Module {
   
   
   function __construct() {
+    parent::__construct();
     $this->title = __('Change Password');
     $this->main_block_id = "mod_change_pass";
   }

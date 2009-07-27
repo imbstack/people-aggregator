@@ -45,10 +45,10 @@ if (empty($type)) {
 				$mod->dynFields->select($field['label'], $field['name'], PA::getStatesList());
 			break;
 			case 'industryselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->industries);
+				$mod->dynFields->select($field['label'], $field['name'], PA::$config->industries);
 			break;
 			case 'religionselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->religions);
+				$mod->dynFields->select($field['label'], $field['name'], PA::$config->religions);
 			break;
 			case 'countryselect':
 				$mod->dynFields->select($field['label'], $field['name'], PA::getCountryList());

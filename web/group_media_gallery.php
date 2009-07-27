@@ -77,7 +77,7 @@ $page = new PageRenderer("setup_module", PAGE_GROUP_MEDIA_GALLERY, "Group Media 
   if ($type == 'Images') { 
     $parameter = js_includes('jtip.js');
     $page->add_header_html($parameter);
-    $css = $current_theme_path.'/jtip.css';
+    $css = PA::$theme_url . '/jtip.css';
     $page->add_header_css($css);
   }
   uihelper_error_msg($msg);

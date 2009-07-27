@@ -1,5 +1,5 @@
 <?php
-  global $current_theme_path;
+   
   global $login_uid,$page_uid;
 ?>  
 <div class="module_browse_groups">

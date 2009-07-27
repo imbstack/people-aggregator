@@ -20,6 +20,7 @@ class PostContentModule extends Module {
   public $err_album_name_exist;
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'PostContentModule';
     $this->id = 0;
   }
@@ -42,7 +43,6 @@ class PostContentModule extends Module {
   }
 
   function generate_inner_html() {
-    global $_PA, $current_theme_path, $network_info;
 		if($this->id) {
 			$this->load_data();
 		}
@@ -51,12 +51,11 @@ class PostContentModule extends Module {
 			$this->group = Group::load_group_by_id((int)$this->ccid);
 
 		}
-		
 		$inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_blog.tpl';
     
     $inner_html_blog = & new Template($inner_template);
-    $inner_html_blog->set_object('network_info', $network_info);
-    $inner_html_blog->set('current_theme_path', $current_theme_path);
+    $inner_html_blog->set_object('network_info', PA::$network_info);
+    $inner_html_blog->set('current_theme_path', PA::$theme_url);
     // $inner_html_blog->set('links', $this->links);
     $inner_html_blog->set('cid', $this->id);
     $inner_html_blog->set('ccid', $this->ccid);
@@ -74,8 +73,8 @@ class PostContentModule extends Module {
 	    $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private_simple.tpl';
 
     $inner_html_gen = & new Template($inner_template);
-    $inner_html_gen->set_object('network_info', $network_info);
-    $inner_html_gen->set('current_theme_path', $current_theme_path);
+    $inner_html_gen->set_object('network_info', PA::$network_info);
+    $inner_html_gen->set('current_theme_path', PA::$theme_url);
     /*$inner_html_gen->set('title', $this->title);*/
     // $inner_html_gen->set('links', $this->links);
     $inner_html_gen->set('sb_mc_type', @$this->sb_mc_type);
@@ -105,7 +104,7 @@ class PostContentModule extends Module {
   
   function getContent()
   {
-    global $current_theme_path;
+     
 
     $mc = new SBMicroContent();
     $mc->set_mc_type($this->sb_mc_type);
@@ -128,7 +127,7 @@ class PostContentModule extends Module {
   }
   
   function load_data($error_msg='') {
-    global $current_theme_path;
+     
     $this->categories = Category::build_all_category_list();
     if (!empty($error_msg)) {
       $this->error_msg = $error_msg;

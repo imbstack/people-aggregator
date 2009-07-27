@@ -1,5 +1,4 @@
 <?php
-  global  $user, $current_theme_path;
   error_reporting(E_ALL); // for testing only!
 
 ?>
@@ -23,13 +22,13 @@
   }
   //--------------------------------------------------------------------------------------------
 
-  $merger = new ProfileMerger($user, NULL);
+  $merger = new ProfileMerger(PA::$login_user, NULL);
   $sections = array_merge( array('core'), array_keys($merger->userSections) );
 
   $normalizer = new Normalizer('pa2hcard');
 
   // setting parameters for the XSLT to include/exclude sections etc
-  $normalizer->setParameter('','paUid',$user->user_id);
+  $normalizer->setParameter('','paUid',PA::$login_user->user_id);
   $normalizer->setParameter('','paUrl',PA::$url);
   
   //---- profile and compyny types: added by Zoran Hron -----
@@ -60,7 +59,7 @@
       );
 /*------------------------------------------------------------ */      
 
-  $user_image = uihelper_resize_img($user->picture, 35, 35, DEFAULT_USER_PHOTO_REL, 'alt="User image."');
+  $user_image = uihelper_resize_img(PA::$login_user->picture, 35, 35, DEFAULT_USER_PHOTO_REL, 'alt="User image."');
   $user_photo = $user_image['url'];
   $normalizer->setParameter('', 'userPic', $user_photo);
 // show the form with previews

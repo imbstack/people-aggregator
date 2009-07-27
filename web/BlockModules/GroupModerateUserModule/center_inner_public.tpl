@@ -1,4 +1,4 @@
-<?php global $current_theme_path;?>
+<?php  ?>
 <ul id="filters">
   <li><a href="<?php echo PA::$url .PA_ROUTE_GROUP_MODERATION ?>/view=members&gid=<?php echo $group_id;?>"><?= __("Moderate Group Members") ?></a></li>
   <li class="active"><a href="<?php echo PA::$url .PA_ROUTE_GROUP_MODERATION ?>/view=users&gid=<?php echo $group_id;?>"><?= __("Moderate Membership") ?></a></li>

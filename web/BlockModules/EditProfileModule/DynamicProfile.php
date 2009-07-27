@@ -358,9 +358,11 @@ class DynamicProfile {
   }
 
   public function dateselect($label, $fieldname, $section, $seq=NULL, $show_access_list=true) {
-    global $_PA;
-    $monthnames = $_PA->months;
-    $years = $_PA->years;
+     
+    $_months = array_values(PA::getMonthsList());
+    array_unshift($_months, " ");
+    $monthnames = $_months;
+    $years = PA::getYearsList();
 
     $f = @$this->user->{$section}[$fieldname];
     if ($seq) {

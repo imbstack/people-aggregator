@@ -206,8 +206,8 @@ class Network {
   }
 
   public function is_private() {
-    global $_PA;
-    if ($_PA->all_networks_are_private) return TRUE;
+     
+    if (PA::$config->all_networks_are_private) return TRUE;
     if ($this->type == PRIVATE_NETWORK_TYPE) return TRUE;
     return FALSE;
   }
@@ -1053,7 +1053,6 @@ class Network {
     //check to see if network folder exists and is_writable
     // right now it contains only one condition
     // further checks can be added here
-    global  $_PA;
 
     if (!PA::$network_capable) {
       return array('error' => TRUE, 'error_msg' => __("Cannot create networks: this installation is not configured for network operation."));
@@ -1064,7 +1063,7 @@ class Network {
       return array('error' => TRUE, 'error_msg' => sprintf(__('Cannot create networks: %s is not writable'), $network_folder));
     }
 
-    if (!$_PA->enable_network_spawning) {
+    if (!PA::$config->enable_network_spawning) {
       return array('error' => TRUE, 'error_msg' => __("Cannot create networks: Network spawning has been disabled on this installation."));
     }
 

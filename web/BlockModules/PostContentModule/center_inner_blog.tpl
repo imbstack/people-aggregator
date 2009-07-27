@@ -1,6 +1,6 @@
 <?php
 
-global $_PA;
+ 
 require_once "api/Permissions/PermissionsHandler.class.php";
 require_once "web/includes/classes/TinyMCE.class.php";
   $tiny = new TinyMCE('blog');
@@ -27,7 +27,7 @@ install_tinymce('full');
 </fieldset>    
 <br clear="all" />
 
-<?php if (!empty($_PA->simple['use_attachmedia']) && $permission_to_upload) { 
+<?php if (!empty(PA::$config->simple['use_attachmedia']) && $permission_to_upload) { 
 include('attach_media.tpl.php');
 ?>
 <!--

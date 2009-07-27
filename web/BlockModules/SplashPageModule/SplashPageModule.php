@@ -12,6 +12,7 @@
     public $links;
     
     function __construct() {
+      parent::__construct();
       $this->title = 'Configure Splash Page';
       $this->html_block_id = "SplashPageModule";
     }

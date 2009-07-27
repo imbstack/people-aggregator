@@ -9,20 +9,7 @@
  define("DEFAULT_BLOCK_TYPE", 'Homepage');
  define("DEFAULT_BODY_ATTR",  "");
  define("DEFAULT_PAGE_TYPE", 'network');
- 
-/**
- *
- * @class DynamicPageException
- *
- * @author     Zoran Hron <zhron@broadbandmechanics.com>
- *
- */
- class DynamicPageException extends Exception {
 
-    public function __construct($message, $code = 0) {
-      parent::__construct('DynamicPageException: ' . $message, $code);
-    }
- }
 
 /**
  *
@@ -51,7 +38,7 @@
   public $navigation_code = null;
   public $boot_code       = null;
   public $save_page       = false;
-  
+
   public function __construct($page_id = 0, $old_conf_array = array(), $config_dir = DYNAMIC_PAGES_DIR) {
     parent::__construct($page_id, $config_dir, $old_conf_array);
   }
@@ -59,12 +46,12 @@
   public function __destruct() {
     if($this->save_page) {        // page data will be stored on exit
       parent::__destruct();
-    }  
+    }
   }
 
   public function initialize($new_settings = null) {
-  
-    $this->checkXmlConfigStructure($new_settings);
+
+//    $this->checkXmlConfigStructure($new_settings);
     $this->page_name       = (string)$this->getConfigData('page_name', '//page');
     $this->is_configurable = (bool)$this->getConfigData('is_configurable', '//page');
     $this->left    = $this->getModules("left");
@@ -83,7 +70,7 @@
     $this->boot_code         = $this->getConfigData('boot_code', '//page/data');
     $this->page_type         = $this->getConfigData('page_type', '//page/data');
   }
-  
+
   private function checkXmlConfigStructure($new_settings) {
     $default_navigation_code = "";
     $default_boot_code =
@@ -136,11 +123,11 @@
     if(!$this->hasConfigSection('data', '//page')) {
       $this->addConfigSection('data', '//page');
     }
-    
+
     if(!$this->hasConfigSection('page_id', '//page')) {
       $this->addConfigData('page_id', $this->page_id, '//page');
     }
-    
+
     if(isset($new_settings['page_name']) /* && ($new_settings['page_name'] != null) */) {
       if($this->hasConfigSection('page_name', '//page')) {
         $this->removeConfigData('page_name', '//page');
@@ -149,7 +136,7 @@
     } else if(!$this->hasConfigSection('page_name', '//page')) {
       $this->addConfigData('page_name', 'Page name not defined!', '//page');
     }
-    
+
     if(isset($new_settings['is_configurable'])) {
       if($this->hasConfigSection('is_configurable', '//page')) {
         $this->removeConfigData('is_configurable', '//page');
@@ -171,7 +158,7 @@
         $this->addConfigSection($layout, '//page/data');
       }
     }
-    
+
     if(isset($new_settings['javascripts']) /* && ($new_settings['javascripts'] != null) */) {
       $this->removeConfigSection('javascripts', '//page/data');  // clear javascripts data
       $this->addConfigSection('javascripts', '//page/data');     //
@@ -223,7 +210,7 @@
       }
     }
   }
-  
+
   public function getModules($layout_string) {
      $module_names = array();
      if($modules = $this->getConfigData('item', "//page/data/$layout_string")) {
@@ -246,30 +233,30 @@
      $this->modified = true;
 //     $this->initialize();
   }
-  
+
   public function removeModule($layout_string, $module_name) {
     $this->removeConfigData('item', "//page/data/$layout_string", $module_name);
 //    $this->initialize();
   }
 
   public function getJavascripts() {
-     $scripts = array(); 
+     $scripts = array();
      if($_scripts = $this->getConfigData('item', '//page/data/javascripts')) {
        $scripts = $_scripts;
      }
      return $scripts;
   }
-  
+
   public function addJavascripts($scriptname) {
      $this->addConfigData('item', $scriptname, '//page/data/javascripts');
 //     $this->initialize();
   }
-  
+
   public function removeJavascripts($scriptname) {
      $this->removeConfigData('item', '//page/data/javascripts', $scriptname);
 //     $this->initialize();
   }
-  
+
   public function getPageCSS() {
      $css_fnames = array();
      if($_css_fnames = $this->getConfigData('item', '//page/data/page_css')) {
@@ -277,23 +264,23 @@
      }
      return $css_fnames;
   }
-  
+
   public function addPageCSS($fname) {
      $this->addConfigData('item', $fname, '//page/data/page_css');
 //     $this->initialize();
   }
-  
+
   public function removePageCSS($fname) {
      $this->removeConfigData('item', '//page/data/page_css', $fname);
 //     $this->initialize();
   }
-  
- 
+
+
   public function buildPageSettings($new_settings) {
     $this->initialize($new_settings);
     return $this->getPageSettings();
   }
-  
+
   public function getPageSettings() {
     $page_settings = array();
     $page_settings['page_id']         = $this->page_id;
@@ -316,6 +303,20 @@
     $page_settings['boot_code']         = $this->boot_code;
     return $page_settings;
   }
-  
 }
+
+/**
+ *
+ * @class DynamicPageException
+ *
+ * @author     Zoran Hron <zhron@broadbandmechanics.com>
+ *
+ */
+ class DynamicPageException extends Exception {
+
+    public function __construct($message, $code = 0) {
+      parent::__construct('DynamicPageException: ' . $message, $code);
+    }
+ }
+
 ?>

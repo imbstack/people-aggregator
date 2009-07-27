@@ -20,6 +20,7 @@ class SelectPollModule extends Module {
   public $current_poll;
 
   public function __construct() {
+    parent::__construct();
     $this->poll_id = array();
     $this->content_id = array();
     $this->options = array();

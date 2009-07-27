@@ -5,12 +5,14 @@ class EditMediaModule extends Module {
   public $module_type = 'user|group|network';
   public $module_placement = 'middle';
   public $outer_template = 'outer_public_center_module.tpl';
+
   function __construct() {
+    parent::__construct();
     $this->html_block_id = "EditMediaModule";
   }
 
   function render() {
-   global $current_theme_path;
+    
    if ($this->contentcollection_type == '1') {  // if contentcolectin is group
       $data = $this->media_data;
     }
@@ -27,7 +29,7 @@ class EditMediaModule extends Module {
       }
       else if ($data->type == AUDIO) {
         $this->media_type = 'Audio';
-        $this->image_path =  "$current_theme_path/images/audio_img.jpg";
+        $this->image_path =  PA::$theme_url . "/images/audio_img.jpg";
         
         if( $this->contentcollection_type == 2 ) {
           $audio_albums = Album::load_all($this->author_id, AUDIO_ALBUM);

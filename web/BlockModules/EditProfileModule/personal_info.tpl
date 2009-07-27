@@ -1,5 +1,5 @@
 <?php
-global $_PA, $msg1, $user_personal_data, $login_uid;
+global $msg1, $user_personal_data;
 global $error_msg;
 
 // echo "<pre>" . print_r($this->user,1) . "</pre>";
@@ -38,9 +38,9 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'personal')) {
     </div><br />
   </div>
   <?php
-    $this->select(__('Ethnicity'), 'ethnicity', $_PA->ethnicities, 'personal');
-    $this->select(__('Religion'), 'religion', $_PA->religions, 'personal');
-    $this->select(__('Political View'), 'political_view', $_PA->political_views, 'personal');
+    $this->select(__('Ethnicity'), 'ethnicity', PA::$config->ethnicities, 'personal');
+    $this->select(__('Religion'), 'religion', PA::$config->religions, 'personal');
+    $this->select(__('Political View'), 'political_view', PA::$config->political_views, 'personal');
     $this->textarea(__("Passion"), "passion", "personal");
     $this->textarea(__("Activities"), "activities", "personal");
     $this->textarea(__("Books"), "books", "personal");

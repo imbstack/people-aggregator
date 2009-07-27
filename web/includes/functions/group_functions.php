@@ -2,16 +2,15 @@
   require_once "web/includes/classes/file_uploader.php";
   
   function header_image() {
-  global $uploaddir;
   
   $header_image_action = $_POST['header_image_option'];
   $display_header_image = $_POST['desktop_image_display'];  
   
     if (!empty($_FILES['headerphoto']['name']) && empty($_POST['restore_default'])) {
-      $uploadfile = $uploaddir . basename($_FILES['headerphoto']['name']);
+      $uploadfile = PA::$upload_path . basename($_FILES['headerphoto']['name']);
       $myUploadobj = new FileUploader; //creating instance of file.
       $image_type = 'image';
-      $file = $myUploadobj->upload_file($uploaddir, 'headerphoto', true, true, $image_type);
+      $file = $myUploadobj->upload_file(PA::$upload_path, 'headerphoto', true, true, $image_type);
         
       if ($file == false) {
         throw new PAException(GROUP_PARAMETER_ERROR, "File upload error: ".$myUploadobj->error);

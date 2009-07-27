@@ -7,7 +7,9 @@ class ExternalFeedModule extends Module {
   public $module_type = 'user';
   public $module_placement = 'left|right';
   public $outer_template = 'outer_public_side_module.tpl';
+
   function __construct() {    
+    parent::__construct();
     $this->html_block_id = "ExternalFeedModule";
     $this->title = __('External Feeds');    
   }

@@ -29,6 +29,7 @@ class EditRelationModule extends Module {
   public $is_error = FALSE;
 
   function __construct() {
+    parent::__construct();
   }
 
   public function initializeModule($request_method, $request_data) {

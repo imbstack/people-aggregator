@@ -1,7 +1,7 @@
 <?php
-  global $_PA, $current_theme_path, $uploaddir, $current_theme_rel_path, $app;
+  global $app;
   $level_2 = $navigation_links['level_2'];
-  if (!empty($_PA->simple['use_simplenav'])) {
+  if (!empty(PA::$config->simple['use_simplenav'])) {
     $level_3 = array();
 	  $left_user_public_links = array();
   } else {
@@ -30,7 +30,7 @@
     <div class="language_bar">
       <?php foreach(array_keys($app->installed_languages) as $lang) {
         $src_url = add_querystring_var($app->request_uri, "lang", $lang);
-        echo "<a href=\"$src_url\"><img src= \"$current_theme_path/images/flags/$lang.png\" /></a> ";
+        echo "<a href=\"$src_url\"><img src= \"" . PA::$theme_url . "/images/flags/$lang.png\" /></a> ";
       } ?>
     </div>
   <?php endif; ?>
@@ -45,11 +45,10 @@
      <? if (!PA::$login_uid) { ?>
       <div class="login_box">
         <b><?= __("Already a member?") ?></b><br />
-        <a href="<?php echo PA::$url;?>/login.php"><b><?= __("Login now") ?></b></a> or <a href="<?php echo PA::$url;?>/register.php"><b><?= __("register") ?></b></a>
+        <a href="<?= UrlHelper::url_for(PA::$url."/login.php", array(), "https") ?>"><b><?= __("Login now") ?></b></a> <?= __("or") ?> <a href="<?= UrlHelper::url_for(PA::$url."/register.php", array(), "https") ?>"><b><?= __("Register") ?></b></a>
       </div>
       <? } else {
-             $login_user = new User();
-             $login_user->load((int)$_SESSION['user']['id']);
+             $login_user = PA::$login_user;
              $user_name = $login_user->first_name." ".$login_user->last_name;
              $style = ' style="width:185px"';
       ?>
@@ -70,19 +69,19 @@
           <div class="page_button">
 
             <?php $level_1 = $navigation_links['level_1'];
-          unset($level_1['highlight']); 
+          unset($level_1['highlight']);
         if(is_array($level_1) && array_key_exists("join_network",$level_1))
       {  ?>
-       <a href="<?php echo $level_1["join_network"]["url"];?>"><img src="<?php echo $current_theme_path ?>/images/networkjoin.gif" alt="" height="32" width="185" border="0"></a>
+       <a href="<?php echo $level_1["join_network"]["url"];?>"><img src="<?php echo PA::$theme_url ?>/images/networkjoin.gif" alt="" height="32" width="185" border="0"></a>
        <?}?>
       <?php
       $is_admin_member = (!empty($is_admin_member) ? $is_admin_member : NULL);
       if(is_array($level_3) && array_key_exists("group_home",$level_3) && array_key_exists("join",$level_3))
       {   ?>
 
-       <a href="<?php echo $level_3["join"]["url"];?>"><img src="<?php echo $current_theme_path ?>/images/groupjoin.gif" alt="" height="32" width="185" border="0"></a>
+       <a href="<?php echo $level_3["join"]["url"];?>"><img src="<?php echo PA::$theme_url ?>/images/groupjoin.gif" alt="" height="32" width="185" border="0"></a>
        <?} else if($is_admin_member) { ?>
-       <a href="<?= PA::$url . PA_ROUTE_GROUP_INVITE . "/gid=" . $_REQUEST['gid'] ?>"><img src="<?php echo $current_theme_path?>/images/invite.gif" alt="" height="32" width="185" border="0" /></a>
+       <a href="<?= PA::$url . PA_ROUTE_GROUP_INVITE . "/gid=" . $_REQUEST['gid'] ?>"><img src="<?php echo PA::$theme_url ?>/images/invite.gif" alt="" height="32" width="185" border="0" /></a>
        <? }  ?>
       </div>
       <? } ?>

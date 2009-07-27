@@ -1,4 +1,4 @@
-<?php global $current_theme_path; ?>
+<?php   ?>
   
 <div class="module_browse_groups">
   

@@ -16,7 +16,7 @@ class GroupModerateContentModule extends Module {
   public $page_links, $page_prev, $page_next, $page_count;
 
   function __construct() {
-
+    parent::__construct();
     $this->html_block_id = 'GroupModerateContentModule';
     $this->block_type = 'GroupModerateContent';
     $this->id = 0;
@@ -135,10 +135,9 @@ class GroupModerateContentModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_blockmodule_path;
     switch ( $this->mode ) {
      default:
-       $tmp_file = "$current_blockmodule_path/GroupModerateContentModule/center_inner_public.tpl";
+       $tmp_file = PA::$blockmodule_path . "/GroupModerateContentModule/center_inner_public.tpl";
     }
 
     $inner_html_gen = & new Template($tmp_file);

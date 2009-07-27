@@ -25,7 +25,6 @@ class TakeATourModule extends Module {
   }
 
   function generate_inner_html () {
-    global  $current_blockmodule_path;
 
     $inner_template = NULL;
     switch ( $this->mode ) {

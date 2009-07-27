@@ -1,5 +1,5 @@
 <?php
-  global  $current_theme_path;
+   
 ?>
 <div class="module_tagcloud">
 <ul>

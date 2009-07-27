@@ -104,7 +104,7 @@ if (is_array($theme_details['css_files'])) {
   }
 }
 
-$css_path = $current_theme_path.'/modal.css';
+$css_path = PA::$theme_url . '/modal.css';
 $page->add_header_css($css_path);
 
 if ( @$_GET['updated'] == 1) {

@@ -227,7 +227,7 @@ class Album extends ContentCollection {
   }
 
   public static function get_or_create_default($author_id, $alb_type) {
-    global $_PA;
+     
 
     if (empty($author_id)) {
       throw new PAException(INVALID_ID, "Empty author_id");
@@ -251,7 +251,7 @@ class Album extends ContentCollection {
       $album->author_id = $author_id;
       $album->title = 
 	$album->name = 
-	$album->description = $_PA->default_album_titles[$alb_type];
+	$album->description = PA::$config->default_album_titles[$alb_type];
       $album->save();
       Logger::Log("Album::get_or_create_default($alb_type, $author_id) created an album: ".$album->collection_id);
     }

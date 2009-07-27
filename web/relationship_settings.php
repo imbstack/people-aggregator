@@ -12,7 +12,7 @@ require_once "api/Validation/Validation.php";
 require_once "api/Tag/Tag.php";
 require_once "web/includes/network.inc.php";
 require_once "web/includes/constants.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 $error = FALSE;
 
 $curr_user = (isset(PA::$login_uid)) ? PA::$login_uid : 0;
@@ -43,7 +43,7 @@ if(!empty($_REQUEST['config_action'])) {
           //  echo "<pre>".print_r($_REQUEST,1)."</pre>";
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $imported_defaults = $imported_config->getRelationShipSettings();
  //           echo "<pre>".print_r($imported_defaults,1)."</pre>";
             $msg = __("File ") . $_FILES['local_file']['name'] . __(" loaded successfully.") . "<br />"
@@ -59,7 +59,7 @@ if(!empty($_REQUEST['config_action'])) {
     break;
     case 'restore_defaults':
       try {
-        $imported_config = new PaConfiguration();
+        $imported_config = new NetworkConfig();
         $imported_defaults = $imported_config->getRelationShipSettings();
         $msg = __('Default settings sucessfully restored.') . "<br />"
                      . __("Click \"Save\" button to store new settings.");
@@ -130,7 +130,7 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
       $nid = $network->save();
       $msg = MessagesHandler::get_message(7012);
       if(!empty($_REQUEST['config_action']) && ($_REQUEST['config_action'] == 'store_as_defaults')) {
-        $export_config = new PaConfiguration();
+        $export_config = new NetworkConfig();
         $export_config->buildNetworkSettings($network);
         $export_config->storeSettingsLocal();
         $msg = 'Network default configuration file "' . $export_config->settings_file . '" successfully updated.';

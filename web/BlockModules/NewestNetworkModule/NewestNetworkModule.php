@@ -9,6 +9,7 @@ class NewestNetworkModule extends Module {
   public $sorting_options, $selected_option;
 
   public function __construct() {
+    parent::__construct();
   }
 
   public function initializeModule($request_method, $request_data) {

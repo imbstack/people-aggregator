@@ -1,7 +1,4 @@
 <?php 
-// global var $_base_url has been removed - please, use PA::$url static variable
-
-global $current_theme_path;
 $local_image_variable = FALSE;
 if ($type !='forum') {
   $button['title'] = 'Manage forum';
@@ -45,14 +42,14 @@ if ($type !='forum') {
    <?php for ($i=1; $i <= $cnt; $i++) { ?>
   <tr>
    <td>
-     <a href="<?php echo $links[$i]['edit_link']; ?>"><img src="<?php echo $current_theme_path;?>/images/16_edit.gif" alt="edit" title="<?= __("Edit") ?>" height="16" width="16" border="0" /></a>
-     <a href="<?php echo $links[$i]['delete_link']; ?>"><img src="<?php echo $current_theme_path;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
+     <a href="<?php echo $links[$i]['edit_link']; ?>"><img src="<?php echo PA::$theme_url;?>/images/16_edit.gif" alt="edit" title="<?= __("Edit") ?>" height="16" width="16" border="0" /></a>
+     <a href="<?php echo $links[$i]['delete_link']; ?>"><img src="<?php echo PA::$theme_url;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
    </td>
    <td><a href="<?php echo $links[$i]['hyper_link']; ?>">
      <?=chop_string($links[$i]['title']);?> </a>
    </td>
      <?php if (empty($type_image) || !empty($local_image_variable)) {
-               $type_image = $current_theme_path."/images/type-blog.gif";
+               $type_image = PA::$theme_url."/images/type-blog.gif";
             } 
    ?>   
    <td><img src="<?=$type_image;?>" alt="PA" /></td>

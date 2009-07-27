@@ -1,7 +1,7 @@
 <?php
 // we need to prevent premature sending of headers
 ob_start();
-global  $current_theme_path;
+ 
 $login_required = FALSE;
 $login_never_required = TRUE; // because this page must be visible even if you are not logged in and on a private network!
 $use_theme = 'Beta';

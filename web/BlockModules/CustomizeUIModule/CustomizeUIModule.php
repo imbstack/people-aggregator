@@ -8,7 +8,7 @@
 // * Enable Module
 
 require_once "tools/modules/ModulesInfo.class.php";
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
 require_once "web/includes/classes/file_uploader.php";
 
 class CustomizeUIModule extends Module {
@@ -31,6 +31,7 @@ class CustomizeUIModule extends Module {
   
   public $outer_template = 'outer_customize_ui_module.tpl';
   function __construct() {
+    parent::__construct();
   }
 
   function initializeModule($request_method, $request_data) {
@@ -177,7 +178,7 @@ class CustomizeUIModule extends Module {
     }           
     $tag_attrs = array('name' => "form_data[page_id]",
                        'onchange' => "javascript: document.location='".$this->url ."&pid='+this.value");
-    $select_tag = xhtmlTagHelper::selectTag($select_options, $tag_attrs, $selected);
+    $select_tag = xHtml::selectTag($select_options, $tag_attrs, $selected);
 
     if(empty($module_settings['left'])) {
       $module_settings['left'] = array();
@@ -200,7 +201,7 @@ class CustomizeUIModule extends Module {
     }  
     $template_tag_attrs = array('name' => "form_data[page_template]",
                                 'onchange' => "javascript: document.location='".$this->url . "&pid=$this->pid&page_template='+this.value");
-    $template_select_tag = xhtmlTagHelper::selectTag(array_flip($page_templates), $template_tag_attrs, $selected_template);
+    $template_select_tag = xHtml::selectTag(array_flip($page_templates), $template_tag_attrs, $selected_template);
     
     
     $mod_info = new ModulesInfo(array(PA::$project_dir.DIRECTORY_SEPARATOR.PA::$blockmodule_path,
@@ -222,7 +223,7 @@ class CustomizeUIModule extends Module {
     ksort($side_select_options);
     $side_tag_attrs = array('name' => "add_side_module",
                             'onchange' => "javascript: document.location='".$this->url ."&pid=$this->pid&page_template=$this->template_selected&side_module='+this.value");
-    $side_select_tag = xhtmlTagHelper::selectTag($side_select_options, $side_tag_attrs, $side_selected);
+    $side_select_tag = xHtml::selectTag($side_select_options, $side_tag_attrs, $side_selected);
     
     $middle_selected = null;
     $middle_current_selecion = null;
@@ -237,7 +238,7 @@ class CustomizeUIModule extends Module {
     ksort($middle_select_options);
     $middle_tag_attrs = array('name' => "add_middle_module",
                               'onchange' => "javascript: document.location='".$this->url ."&pid=$this->pid&page_template=$this->template_selected&middle_module='+this.value");
-    $middle_select_tag = xhtmlTagHelper::selectTag($middle_select_options, $middle_tag_attrs, $middle_selected);
+    $middle_select_tag = xHtml::selectTag($middle_select_options, $middle_tag_attrs, $middle_selected);
 
     
     if(!is_null($this->middle_selected)) {

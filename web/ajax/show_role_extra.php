@@ -4,7 +4,7 @@
  require_once "api/Roles/Roles.php";
  require_once "ext/Group/Group.php";
 
- global $current_theme_path;
+  
 
     $selected_role = null;
     $sel_role_id = (!empty($_REQUEST['role_id'])) ? $_REQUEST['role_id'] : null;

@@ -28,9 +28,9 @@ if($_GET['status'] == 'TRUE') {
 	    $new_al = new Album(VIDEO_ALBUM);
   	  $new_al->author_id = PA::$login_uid;
   	  $new_al->type = 2;
-  	  global $_PA;
+  	   
   	  $new_al->description = $new_im_al->name = $new_al->title =
-    	$_PA->default_album_titles[VIDEO_ALBUM];
+    	PA::$config->default_album_titles[VIDEO_ALBUM];
     	$new_al->save();
   	  $album = $new_al->collection_id;
 		}

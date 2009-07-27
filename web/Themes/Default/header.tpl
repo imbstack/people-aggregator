@@ -1,7 +1,7 @@
 <?php
-  global $_PA, $current_theme_path, $uploaddir, $current_theme_rel_path, $app;
+  global $app;
   $level_2 = $navigation_links['level_2'];
-  if (!empty($_PA->simple['use_simplenav'])) {
+  if (!empty(PA::$config->simple['use_simplenav'])) {
     $level_3 = array();
 	  $left_user_public_links = array();
   } else {
@@ -25,7 +25,7 @@
     <div class="language_bar">
       <?php foreach(array_keys($app->installed_languages) as $lang) {
         $src_url = add_querystring_var($app->request_uri, "lang", $lang);
-        echo "<a href=\"$src_url\"><img src= \"$current_theme_path/images/flags/$lang.png\" /></a> ";
+        echo "<a href=\"$src_url\"><img src= \"" . PA::$theme_url . "/images/flags/$lang.png\" /></a> ";
       } ?>
     </div>
   <?php endif; ?>
@@ -41,11 +41,10 @@
      <?  if(!isset($_SESSION['user'])) { ?>
       <div class="login_box">
         <b><?= __("Already a member?") ?></b><br />
-        <a href="<?php echo PA::$url;?>/login.php"><b><?= __("Login now") ?></b></a> <?= __("or") ?> <a href="<?php echo PA::$url;?>/register.php"><b><?= __("Register") ?></b></a>
+        <a href="<?= UrlHelper::url_for(PA::$url."/login.php", array(), "https") ?>"><b><?= __("Login now") ?></b></a> <?= __("or") ?> <a href="<?= UrlHelper::url_for(PA::$url."/register.php", array(), "https") ?>"><b><?= __("Register") ?></b></a>
       </div>
       <? } else {
-             $login_user = new User();
-             $login_user->load((int)$_SESSION['user']['id']);
+             $login_user = PA::$login_user;
              $user_name = $login_user->first_name." ".$login_user->last_name;
              $style = ' style="width:185px"';
       ?>
@@ -65,11 +64,11 @@
               //to get the path of current skin image path
               $current_skin_path = $current_skin['path'];
               $level_1 = $navigation_links['level_1'];
-              unset($level_1['highlight']); 
+              unset($level_1['highlight']);
    if(is_array($level_1) && !array_key_exists("join_network",$level_1)) { ?>
-       <a href="<?php echo PA::$url . PA_ROUTE_INVITE;?>"><img src="<?php echo $current_theme_path?>/images/invite.gif" alt="" height="32" width="185" border="0" /></a>
+       <a href="<?php echo PA::$url . PA_ROUTE_INVITE;?>"><img src="<?php echo PA::$theme_url ?>/images/invite.gif" alt="" height="32" width="185" border="0" /></a>
    <?php } else { ?>
-       <a href="<?php echo $level_1["join_network"]["url"];?>"><img src="<?php echo $current_theme_path ?>/images/networkjoin.gif" alt="" height="32" width="185" border="0"></a>
+       <a href="<?php echo $level_1["join_network"]["url"];?>"><img src="<?php echo PA::$theme_url ?>/images/networkjoin.gif" alt="" height="32" width="185" border="0"></a>
    <? }  ?>
       </div>
       <? } ?>

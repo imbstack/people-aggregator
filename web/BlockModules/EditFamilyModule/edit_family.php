@@ -1,5 +1,5 @@
 <?php
-global $_PA;
+ 
 $image_actions[0] = 
     array('caption'=>'Stretch to fit', 'value'=>DESKTOP_IMAGE_ACTION_STRETCH);
   $image_actions[1] = 
@@ -21,10 +21,10 @@ $image_actions[0] =
 
 <style>
 .field {
-	clear: both;
+    clear: both;
 }
 .field .center {
-	width: 320px !important;
+    width: 320px !important;
 }
 </style>
 
@@ -36,48 +36,48 @@ $op = (empty($mod->entity)) ? "create_entity" : "edit_entity";
 <?= $mod->dynFields->hidden("name");?>
 
 <?php
-	if (@$mod->err) {
-		echo '<div class="error">';
-		echo _out($mod->err);
-		echo '</div>';
-	}
+    if (@$mod->err) {
+        echo '<div class="error">';
+        echo _out($mod->err);
+        echo '</div>';
+    }
 ?>
 <?php
 $type = $mod->dynFields->getVal('type');
-	$mod->dynFields->hidden("type");
+    $mod->dynFields->hidden("type");
   ?>
   <?php
-	foreach ($mod->profilefields as $i=>$field) {
-		switch ($field['type']) {
-			case 'stateselect':
-				$mod->dynFields->select($field['label'], $field['name'], PA::getStatesList());
-			break;
-			case 'industryselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->industries);
-			break;
-			case 'religionselect':
-				$mod->dynFields->select($field['label'], $field['name'], $_PA->religions);
-			break;
-			case 'countryselect':
-				$mod->dynFields->select($field['label'], $field['name'], PA::getCountryList());
-			break;
-			case 'urltextfield':
-				$mod->dynFields->textfield($field['label'], $field['name']);
-			break;
-			case 'textfield':
-				$mod->dynFields->textfield($field['label'], $field['name']);
-			break;
-			case 'image':
-				$mod->dynFields->image($field['label'], $field['name']);
-			break;
-			case 'dateselect':
-				$mod->dynFields->dateselect($field['label'], $field['name']);
-			break;
-			default:
-				echo print_r($field);
-			break;
-		}
-	}
+    foreach ($mod->profilefields as $i=>$field) {
+        switch ($field['type']) {
+            case 'stateselect':
+                $mod->dynFields->select($field['label'], $field['name'], PA::getStatesList());
+            break;
+            case 'industryselect':
+                $mod->dynFields->select($field['label'], $field['name'], PA::$config->industries);
+            break;
+            case 'religionselect':
+                $mod->dynFields->select($field['label'], $field['name'], PA::$config->religions);
+            break;
+            case 'countryselect':
+                $mod->dynFields->select($field['label'], $field['name'], PA::getCountryList());
+            break;
+            case 'urltextfield':
+                $mod->dynFields->textfield($field['label'], $field['name']);
+            break;
+            case 'textfield':
+                $mod->dynFields->textfield($field['label'], $field['name']);
+            break;
+            case 'image':
+                $mod->dynFields->image($field['label'], $field['name']);
+            break;
+            case 'dateselect':
+                $mod->dynFields->dateselect($field['label'], $field['name']);
+            break;
+            default:
+                echo print_r($field);
+            break;
+        }
+    }
 
 
 ?>

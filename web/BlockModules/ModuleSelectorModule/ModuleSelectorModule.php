@@ -35,6 +35,7 @@ class ModuleSelectorModule extends Module {
   */
   
   function __construct() {
+    parent::__construct();
   }
   
   /**

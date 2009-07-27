@@ -67,6 +67,6 @@
     <block_type>Homepage</block_type>
     <page_type>network</page_type>
   </data>
-  <is_configurable>1</is_configurable>
+  <is_configurable>0</is_configurable>
   <page_name>create_network</page_name>
 </page>

@@ -7,6 +7,7 @@ class StaticPageDisplayModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {    
+    parent::__construct();
     $this->block_type = 'StaticPageDisplayModule';
     $this->html_block_id = 'StaticPageDisplayModule';
   }

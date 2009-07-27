@@ -11,6 +11,7 @@ class RecentTagsModule extends Module {
   public $cid, $tags_id_name, $page_id, $limit;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Browse Tags');
   }
 

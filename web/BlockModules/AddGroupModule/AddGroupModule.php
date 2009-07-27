@@ -26,14 +26,14 @@ class AddGroupModule extends Module {
   public $group_types;
 
   function __construct() {
-
+    parent::__construct();
     $this->title = __('Create Group');
     $this->html_block_id = get_class($this);
     $this->id = 0;
   }
 
   function load_data($error_msg='', $request_data=NULL) {
-    global $_PA, $global_form_data;
+    global $global_form_data;
     $array_tmp = array();
     $this->categories = Category::build_root_list();
     if(is_array($this->categories)){
@@ -93,7 +93,7 @@ class AddGroupModule extends Module {
     }
     $this->tag_entry = str_replace('"','&quot;',@$this->tag_entry);
 
-        if (!empty($_PA->useTypedGroups)) {
+        if (!empty(PA::$config->useTypedGroups)) {
             require_once 'web/includes/classes/DynamicFormFields.php';
             $this->gid = $this->id;
             $this->availTypes = TypedGroupEntity::get_avail_types();
@@ -133,7 +133,7 @@ class AddGroupModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-      global $_PA;
+       
         if (!empty($request_data['gid'])) {
             $this->id = $request_data['gid'];
         }
@@ -154,7 +154,6 @@ class AddGroupModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_blockmodule_path;
     switch ( $this->mode ) {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
@@ -183,7 +182,6 @@ class AddGroupModule extends Module {
   }
 
     public function handlePOST($request_data) {
-        global  $_PA, $uploaddir, $network_info;
         require_once "web/includes/classes/file_uploader.php";
         require_once "api/Activities/Activities.php";
         require_once "api/api_constants.php";
@@ -238,7 +236,7 @@ class AddGroupModule extends Module {
                 } else {
                     $myUploadobj = new FileUploader; //creating instance of file.
                     $image_type = 'image';
-                    $file = $myUploadobj->upload_file($uploaddir, 'groupphoto', true, true, $image_type);
+                    $file = $myUploadobj->upload_file(PA::$upload_path, 'groupphoto', true, true, $image_type);
                     if ($file == false) {
                         throw new PAException(GROUP_PARAMETER_ERROR, __("File upload error: ").$myUploadobj->error);
                     }
@@ -287,7 +285,7 @@ class AddGroupModule extends Module {
                         $group_owner->set_user_role($user_roles);
                      }
 
-                    if (!empty($_PA->useTypedGroups) && !empty($request_data['type'])) {
+                    if (!empty(PA::$config->useTypedGroups) && !empty($request_data['type'])) {
                         $this->gid = $this->id;
                         switch ($request_data['op']) {
                             case 'create_entity':

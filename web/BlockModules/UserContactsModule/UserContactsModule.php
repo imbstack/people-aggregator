@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 
 require_once "api/User/UserContact.class.php";
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
 require_once "web/includes/classes/CSVParser.class.php";
 include_once( "api/ProfileIO/map/CSVDataMapper.class.php");
 require_once "api/Messaging/MessageDispatcher.class.php";
@@ -17,6 +17,7 @@ class UserContactsModule extends Module {
   private $valid_cvs_mime_types = array('application/octet-stream', 'text/csv', 'text/plain', 'application/vnd.ms-excel');
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Contacts');
     $this->outer_template =  "outer_public_center_edit_profile_module.tpl";
     $this->contacts = array();
@@ -357,7 +358,7 @@ class UserContactsModule extends Module {
         }
         $html .= "<h4 style=\"margin: 0px;\">" . __("General") . "</h4>";
         $li_contents = $this->buildHtmlList($contact_extra['general']);
-        $html .= xhtmlTagHelper::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
+        $html .= xHtml::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
       }
       if(!empty($contact_extra['personal'])) {
         if(!empty($contact_extra['personal']['picture'])) {
@@ -367,12 +368,12 @@ class UserContactsModule extends Module {
         }
         $html .= "<h4 style=\"margin: 0px;\">" . __("Personal") . "</h4>";
         $li_contents = $this->buildHtmlList($contact_extra['personal']);
-        $html .= xhtmlTagHelper::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
+        $html .= xHtml::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
       }
       if(!empty($contact_extra['professional'])) {
         $html .= "<h4 style=\"margin: 0px;\">" . __("Professional") . "</h4>";
         $li_contents = $this->buildHtmlList($contact_extra['professional']);
-        $html .= xhtmlTagHelper::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
+        $html .= xHtml::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
       }
       if(!empty($contact_extra['extra'])) {
         if(!empty($contact_extra['extra']['business_photo'])) {
@@ -382,7 +383,7 @@ class UserContactsModule extends Module {
         }
         $html .= "<h4 style=\"margin: 0px;\">" . __("Other") . "</h4>";
         $li_contents = $this->buildHtmlList($contact_extra['extra']);
-        $html .= xhtmlTagHelper::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
+        $html .= xHtml::ulistTag($li_contents, array("style" => "list-style-type: none; display: inline;"));
       }
       echo $html;
     } else {

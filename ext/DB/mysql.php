@@ -44,7 +44,7 @@ require_once 'DB/common.php';
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/DB
  */
-class DB_mysql extends DB_common
+//class DB_mysql extends DB_common
 {
     // {{{ properties
 

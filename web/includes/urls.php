@@ -6,12 +6,12 @@
  *  @param    $type - string - it will take up the file name
  *  @param    $params - array - contains extra params - uid, cid, current_url
  *  @return   fancy url of the user
- *  Note      $_PA->enable_fancy_url should be set to TRUE in local_config.php
+ *  Note      PA::$config->enable_fancy_url should be set to TRUE in local_config.php
  */
  
 function get_url($type, $params) {
-  global $_PA;
-  if (empty($_PA->enable_fancy_url)) {
+   
+  if (empty(PA::$config->enable_fancy_url)) {
     return $params['current_url'];
   }
   //fancy url for user
@@ -35,7 +35,7 @@ function get_url($type, $params) {
 // Including everything from $_GET not explicitly overridden:
 //  $url = url_for("user", array("login" => "marc", "post_type" => "blog"), $_GET);
 function url_for($controller, $params, $current_params=NULL) {
-  global $_PA;
+   
 
   // Default to sending the request to the script $controller.php
   $prefix = $controller.'.php';
@@ -52,7 +52,7 @@ function url_for($controller, $params, $current_params=NULL) {
   }
 
   // If fancy URLs are enabled: see if we can find any known patterns.
-  if ($_PA->enable_fancy_url) {
+  if (PA::$config->enable_fancy_url) {
     switch ($controller) {
       case 'user':
       case 'user_blog':
@@ -83,7 +83,7 @@ function url_for($controller, $params, $current_params=NULL) {
 
   // Build final URL
   $url = PA::$url.'/'.$prefix;
-    if( !($controller == "pages_links" && $_PA->enable_fancy_url) ) {
+    if( !($controller == "pages_links" && PA::$config->enable_fancy_url) ) {
       if (!empty($encoded_params)) {
         $url .= '?'.implode("&", $encoded_params);
       }

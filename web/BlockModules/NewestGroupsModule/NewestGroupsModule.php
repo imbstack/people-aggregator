@@ -11,6 +11,7 @@ class NewestGroupsModule extends GroupModule {
   public $module_placement = 'left|right';
 
   function __construct() {
+    parent::__construct();
     $this->links = $this->get_links();
     $this->title = sprintf(__('Newest %s'), __(PA::$group_noun_plural));
     $this->html_block_id = 'NewestGroupsModule';

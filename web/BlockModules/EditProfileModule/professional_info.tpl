@@ -1,17 +1,17 @@
 <?php
-global $_PA;
+ 
 
 // echo "<pre>" . print_r($this->user,1) . "</pre>";
 $profile = &$this->user->{'professional'};
 
 if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
-  global $msg, $nsg2, $msg_pro, $uploaddir;
+  global $msg, $nsg2, $msg_pro;
 
   require_once "web/includes/classes/file_uploader.php";
   if (!empty($_FILES['user_cv']['name'])) {
      $myUploadobj = new FileUploader; //creating instance of file.
      $file_type = 'doc';
-     $file = $myUploadobj->upload_file($uploaddir,'user_cv',true,true,$file_type);
+     $file = $myUploadobj->upload_file(PA::$upload_path,'user_cv',true,true,$file_type);
      if( $file == false) {
        $msg = $myUploadobj->error;
        $error = TRUE;

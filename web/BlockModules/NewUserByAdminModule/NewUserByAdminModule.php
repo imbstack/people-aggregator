@@ -7,7 +7,7 @@ class NewUserByAdminModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
   
   function __construct() {
-  
+    parent::__construct();
     $this->html_block_id = "NewUserByAdminModule";
     $this->main_block_id = "mod_newuser_by_admin";
   }

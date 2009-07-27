@@ -11,6 +11,7 @@ class RequestModule extends Module {
   public $success_msg;
 
   public function __construct() {
+    parent::__construct();
     $this->title = __('Send request for joining network');
   }
 

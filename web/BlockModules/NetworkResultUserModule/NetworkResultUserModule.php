@@ -11,6 +11,7 @@ class NetworkResultUserModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->main_block_id = "mod_network_user_result";
     $this->title = __('Manage Users');
   }

@@ -1,5 +1,5 @@
 <?php
-global $_PA;
+ 
 $image_actions[0] = 
     array('caption'=>'Stretch to fit', 'value'=>DESKTOP_IMAGE_ACTION_STRETCH);
   $image_actions[1] = 
@@ -18,7 +18,7 @@ $image_actions[0] =
           <input type="text" class="text longer" name="groupname" value="<?php echo $groupname;?>" id="group_name" maxlength="254" />
          </div>
 			<?php
-			if (!empty($_PA->useTypedGroups)) {
+			if (!empty(PA::$config->useTypedGroups)) {
 				include("edit_typedgroup_profile.tpl.php");
 			}
 			?>

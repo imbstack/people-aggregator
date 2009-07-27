@@ -1,6 +1,6 @@
 <?php // global var $_base_url has been removed - please, use PA::$url static variable
 
-  global $current_theme_path;
+   
   $size = sizeof($tags_id_name);  
 ?>
 <div class="module_browse_tag">

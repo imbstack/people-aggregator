@@ -1,8 +1,7 @@
 <?php
 ?>
 <form enctype="multipart/form-data" method="POST" action="" >
-<?php global $current_theme_path;
-global $network_info; 
+<?php 
 $option = $form_data['extra']['user_defaults']['desktop_image']['option'];
 ?>
 <fieldset class="center_box">

@@ -1,7 +1,7 @@
 <?php
 require_once "api/Logger/Logger.php";
 require_once "api/PAException/PAException.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 require_once "web/includes/classes/UrlHelper.class.php";
 require_once "api/Messaging/MessageRenderer.class.php";
 require_once "ext/EmailMessages/EmailMessages.php";
@@ -67,7 +67,7 @@ class MessageDispatcher {
     $this->requester_obj   = $requester_obj;
     $this->recipient_obj   = $recipient_obj;
     $this->associated_obj  = $assoc_obj;
-    $this->config_obj = new PaConfiguration();
+    $this->config_obj = new NetworkConfig();
     $this->message_obj = $this->getMessage();
   }
 

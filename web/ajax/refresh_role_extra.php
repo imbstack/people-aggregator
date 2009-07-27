@@ -4,7 +4,7 @@
  require_once "api/Roles/Roles.php";
  require_once "ext/Group/Group.php";
 
- global $current_theme_path;
+  
 
       $user_id = (int)$_REQUEST['uid'];
       $group_id = (!empty($_REQUEST['gid']) && ($_REQUEST['gid'] != '-1')) ? $_REQUEST['gid'] : null;

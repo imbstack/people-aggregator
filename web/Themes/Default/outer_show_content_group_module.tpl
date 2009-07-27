@@ -1,6 +1,5 @@
 <?php
-  global $_PA, $login_uid;
-  $link = PA::$url . PA_ROUTE_GROUP; //.'/'.basename($_SERVER['SCRIPT_NAME']);
+  $link = PA::$url . PA_ROUTE_GROUP;
   if( !empty( $_GET['uid'] ) ) {
     $query_string = '&amp;uid='.$_GET['uid'];
   }

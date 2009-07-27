@@ -1,5 +1,5 @@
 <?php 
-global  $current_theme_path;
+ 
 // the containing page is expected to have set
 // $may_edit, $assoc_id, $assoc_type, $assoc_title
 
@@ -407,14 +407,13 @@ function put_event_data($ev) {
 }
 
 function image_uploaded() {
-  global $uploaddir;
   if (empty($_FILES['userfile']['name'])) {
     return false;
   } else {
-    $uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
+    $uploadfile = PA::$upload_path.basename($_FILES['userfile']['name']);
     $myUploadobj = new FileUploader; // creating instance of file.
     $image_type = 'image';
-    $file = $myUploadobj->upload_file($uploaddir, 'userfile', true, true, $image_type);
+    $file = $myUploadobj->upload_file(PA::$upload_path, 'userfile', true, true, $image_type);
     if( $file == false) {
       throw new PAException(INVALID_ID, "Error uploading image " 
       . $myUploadobj->error);

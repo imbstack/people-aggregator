@@ -1,5 +1,5 @@
 <?php
-	global $_PA;
+	 
 ?>
 <style>
 .field {
@@ -34,16 +34,16 @@
 foreach ($mod->profilefields as $i=>$field) {
 	switch ($field['type']) {
 		case 'stateselect':
-			$mod->dynFields->select($field['label'], $field['name'], $_PA->states);
+			$mod->dynFields->select($field['label'], $field['name'], array_values(PA::getStatesList()));
 		break;
 		case 'industryselect':
-			$mod->dynFields->select($field['label'], $field['name'], $_PA->industries);
+			$mod->dynFields->select($field['label'], $field['name'], PA::$config->industries);
 		break;
 		case 'religionselect':
-			$mod->dynFields->select($field['label'], $field['name'], $_PA->religions);
+			$mod->dynFields->select($field['label'], $field['name'], PA::$config->religions);
 		break;
 		case 'countryselect':
-			$mod->dynFields->select($field['label'], $field['name'], $_PA->countries);
+			$mod->dynFields->select($field['label'], $field['name'], array_values(PA::getCountryList()));
 		break;
 		case 'urltextfield':
 			$mod->dynFields->textfield($field['label'], $field['name']);

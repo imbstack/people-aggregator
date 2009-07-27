@@ -9,6 +9,7 @@ class NetworkLeftLinksModule extends Module {
   public $outer_template = 'outer_network_settings_left.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'SearchGroupsModule';
     $this->task_perms = array('manage_settings'=>FALSE,
                         'meta_networks'=>FALSE,
@@ -48,13 +49,12 @@ class NetworkLeftLinksModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_theme_path, $network_info, $login_uid;
 
-    if ($network_info->type == MOTHER_NETWORK_TYPE) {
-      if ($login_uid == SUPER_USER_ID) {
+    if (PA::$network_info->type == MOTHER_NETWORK_TYPE) {
+      if (PA::$login_uid == SUPER_USER_ID) {
         $this->set_perms('all');
       } else {
-        $tasks = $this->get_user_task_permissions($login_uid);
+        $tasks = $this->get_user_task_permissions(PA::$login_uid);
         if (count($tasks) == 0) {
           $this->set_perms('none');
         } else {
@@ -62,12 +62,12 @@ class NetworkLeftLinksModule extends Module {
         }
       }
     } else { //spawned networks admin has all permissions
-        if (Network::is_admin($network_info->network_id, $login_uid) || $login_uid == SUPER_USER_ID) {//owner of network
+        if (Network::is_admin(PA::$network_info->network_id, PA::$login_uid) || PA::$login_uid == SUPER_USER_ID) {//owner of network
           $this->set_perms('all');
           //todo - quick fix here
           $this->task_perms['meta_networks'] = FALSE;
         } else {
-          $tasks = $this->get_user_task_permissions($login_uid);
+          $tasks = $this->get_user_task_permissions(PA::$login_uid);
           if (count($tasks) == 0) {
             $this->set_perms('none');
           } else {
@@ -76,7 +76,7 @@ class NetworkLeftLinksModule extends Module {
         }
 
     }
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     $network_content_moderation = FALSE;
     if (@$extra['network_content_moderation'] == NET_YES) { // this can be empty or not set
       $network_content_moderation = TRUE;

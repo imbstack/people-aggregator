@@ -11,13 +11,14 @@ class ViewAllMembersModule extends Module {
   public $page_links, $page_prev, $page_next, $page_count,$network_info;
 
   function __construct() {
+    parent::__construct();
     $this->title = __("View all Members");
     $this->html_block_id = "ViewAllMembersModule";
   }
 
 
    function render() {
-   	global $_PA;
+   	 
     if ($this->view_type == 'all') {
       $this->Paging["count"] =  Network::get_members(array( 'network_id'=>$this->network_info->network_id, 'cnt'=>TRUE));
       $param = array('show'=>$this->Paging["show"],'page'=>$this->Paging["page"],'network_id'=>$this->network_info->network_id);
@@ -68,7 +69,7 @@ class ViewAllMembersModule extends Module {
           	'login_name'=>$user->login_name,
           	'created'=>$user->created
           );
-          if (!empty($_PA->useTypedGroups)) {
+          if (!empty(PA::$config->useTypedGroups)) {
           	require_once 'api/Entity/TypedGroupEntityRelation.php';
           	// see if we have a special relation of this user to the group
           	list($relType,$u['membertype']) = TypedGroupEntityRelation::get_relation_to_group($member['user_id'], (int)$this->gid);
@@ -87,7 +88,6 @@ class ViewAllMembersModule extends Module {
 
 
   function generate_inner_html () {
-    global $current_blockmodule_path;
     $Pagination = new Pagination;
     $Pagination->setPaging($this->Paging);
     $this->page_prev = $Pagination->getPreviousPage();

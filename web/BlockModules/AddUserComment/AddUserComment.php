@@ -22,6 +22,7 @@ class AddUserComment extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->title = __("Write Comment for ");
     $this->html_block_id = 'AddUserComment';
   }

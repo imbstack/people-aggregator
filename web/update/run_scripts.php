@@ -18,18 +18,19 @@ require_once "api/PAException/PAException.php";
 
 function upd_write($s) {
     if (isset($_SERVER['REQUEST_METHOD'])) {
-	echo "<h3>".htmlspecialchars($s)."</h3>\n";
+	echo "<tr><td>".htmlspecialchars($s)."</td><td style='color: blue'>INFO</td></tr>\n";
     } else {
 	echo "$s\n";
     }
     flush();
 }
 
-function run_update_scripts() {
+function run_update_scripts($silent = false) {
 
     if (!defined("PEEPAGG_UPDATING")) define("PEEPAGG_UPDATING", 1);
-
-    upd_write("Running database upgrade script ...");
+    if(!$silent) {
+      upd_write("Running database upgrade script ...");
+    }
     $upd = new db_update_page();
     $upd->main();
 
@@ -41,7 +42,7 @@ function run_update_scripts() {
         throw new PAException(GENERAL_SOME_ERROR, "Unable to install default module settings");
 */
 }
-
+/*
 if (realpath(@$_SERVER['SCRIPT_FILENAME']) == realpath(__FILE__)) {
     upd_write("Running all scripts to update the system to the latest version.");
 
@@ -57,5 +58,5 @@ if (realpath(@$_SERVER['SCRIPT_FILENAME']) == realpath(__FILE__)) {
         upd_write("AN ERROR OCCURRED: ".$e->getMessage());
     }
 }
-
+*/
 ?>

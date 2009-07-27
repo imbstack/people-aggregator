@@ -30,7 +30,7 @@
           </div>
           </div>
           
-          <div class="field_choose" id="addmore_audiobutton"><?= __("Add More") ?><img src="<?php echo $current_theme_path;?>/images/plus.gif" alt="<?= __("Add More") ?>"  onclick="javascript:addaudiomedia('block','group_audio')"  />
+          <div class="field_choose" id="addmore_audiobutton"><?= __("Add More") ?><img src="<?php echo PA::$theme_url;?>/images/plus.gif" alt="<?= __("Add More") ?>"  onclick="javascript:addaudiomedia('block','group_audio')"  />
           
           <div><?= __("Or finish below") ?>.</div>
           </div>

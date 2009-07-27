@@ -1,4 +1,5 @@
-<?php global $current_theme_path?>
+<?php 
+?>
 <div id="image_gallery_upload">
 <form enctype="multipart/form-data" action="<?= PA::$url?>/groupmedia_post.php?type=Images<?php
 if (!empty($_REQUEST['gid'])) echo '&amp;gid='.$_REQUEST['gid'] ?>" method="POST">

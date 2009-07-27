@@ -27,11 +27,12 @@ class EditProfileModule extends Module {
   public $user_info;
 
   function __construct() {
-    global $_PA;
+     
+    parent::__construct();
     $this->main_block_id = "mod_edit_profile";
     $this->block_type = 'EditProfile';
 
-    if (empty($_PA->simple['omit_advacedprofile'])) {
+    if (empty(PA::$config->simple['omit_advacedprofile'])) {
     //This is not simple PA. Add the advanced profile types to valid types.
       array_push($this->valid_profile_types, 'export');
     }
@@ -130,10 +131,9 @@ class EditProfileModule extends Module {
     }
 
     if (empty($this->message) && !empty($_FILES['userfile']['name'])) {
-      global $uploaddir;
-      $uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
+      $uploadfile = PA::$upload_path.basename($_FILES['userfile']['name']);
       $myUploadobj = new FileUploader;
-      $file = $myUploadobj->upload_file($uploaddir, 'userfile', true, true, 'image');
+      $file = $myUploadobj->upload_file(PA::$upload_path, 'userfile', true, true, 'image');
       if ($file == false) {
         $this->message = $myUploadobj->error;
         $error = TRUE;

@@ -1,0 +1,1435 @@
+<?xml version="1.0"?>
+<application>
+  <configuration description="Application configuration constants and variables.">
+    <pages description="Defined pages">
+      <value>
+        <PAGE_USER_PRIVATE category="constant" type="int" readonly="true" section="pages" page_name="User Private Page" page_type="user">
+          <value>1</value>
+        </PAGE_USER_PRIVATE>
+        <PAGE_USER_PUBLIC category="constant" type="int" readonly="true" section="pages" page_name="User Public Page" page_type="user|network">
+          <value>2</value>
+        </PAGE_USER_PUBLIC>
+        <PAGE_GROUPS_HOME category="constant" type="int" readonly="true" section="pages" page_name="Groups Home Page" page_type="network">
+          <value>3</value>
+        </PAGE_GROUPS_HOME>
+        <PAGE_GROUPS_CATEGORY category="constant" type="int" readonly="true" section="pages" page_name="Page Groups Category" page_type="">
+          <value>4</value>
+        </PAGE_GROUPS_CATEGORY>
+        <PAGE_HOMEPAGE category="constant" type="int" readonly="true" section="pages" page_name="Homepage" page_type="network">
+          <value>5</value>
+        </PAGE_HOMEPAGE>
+        <PAGE_PEOPLES category="constant" type="int" readonly="true" section="pages" page_name="People Page" page_type="network">
+          <value>6</value>
+        </PAGE_PEOPLES>
+        <PAGE_ADDGROUP category="constant" type="int" readonly="true" section="pages" page_name="Add Group Page" page_type="group">
+          <value>7</value>
+        </PAGE_ADDGROUP>
+        <PAGE_GROUP category="constant" type="int" readonly="true" section="pages" page_name="Group Homepage" page_type="group">
+          <value>8</value>
+        </PAGE_GROUP>
+        <PAGE_CHOOSECONTENT category="constant" type="int" readonly="true" section="pages" page_name="chooseContent" page_type="">
+          <value>9</value>
+        </PAGE_CHOOSECONTENT>
+        <PAGE_CREATECONTENT category="constant" type="int" readonly="true" section="pages" page_name="createContent" page_type="">
+          <value>10</value>
+        </PAGE_CREATECONTENT>
+        <PAGE_PERMALINK category="constant" type="int" readonly="true" section="pages" page_name="Permalink Page" page_type="user|group">
+          <value>12</value>
+        </PAGE_PERMALINK>
+        <PAGE_MANAGECONTENT category="constant" type="int" readonly="true" section="pages" page_name="managecontent" page_type="">
+          <value>13</value>
+        </PAGE_MANAGECONTENT>
+        <PAGE_MEDIA_MANAGEMENT category="constant" type="int" readonly="true" section="pages" page_name="media_management" page_type="network">
+          <value>14</value>
+        </PAGE_MEDIA_MANAGEMENT>
+        <PAGE_MESSAGE category="constant" type="int" readonly="true" section="pages" page_name="My Messages" page_type="user">
+          <value>15</value>
+        </PAGE_MESSAGE>
+        <PAGE_ADDMESSAGE category="constant" type="int" readonly="true" section="pages" page_name="Compose message" page_type="user">
+          <value>16</value>
+        </PAGE_ADDMESSAGE>
+        <PAGE_SEARCH category="constant" type="int" readonly="true" section="pages" page_name="Search Content Page" page_type="network">
+          <value>17</value>
+        </PAGE_SEARCH>
+        <PAGE_SHOWCONTENT category="constant" type="int" readonly="true" section="pages" page_name="Show Content Page" page_type="network">
+          <value>22</value>
+        </PAGE_SHOWCONTENT>
+        <PAGE_MEDIA_GALLERY category="constant" type="int" readonly="true" section="pages" page_name="Media Gallery" page_type="user|network|group">
+          <value>19</value>
+        </PAGE_MEDIA_GALLERY>
+        <PAGE_FORUM_MESSAGES category="constant" type="int" readonly="true" section="pages" page_name="Forum Messages" page_type="group">
+          <value>20</value>
+        </PAGE_FORUM_MESSAGES>
+        <PAGE_REGISTER category="constant" type="int" readonly="true" section="pages" page_name="Registration Page" page_type="network">
+          <value>21</value>
+        </PAGE_REGISTER>
+        <PAGE_INVITATION category="constant" type="int" readonly="true" section="pages" page_name="Invitation Page" page_type="network">
+          <value>23</value>
+        </PAGE_INVITATION>
+        <PAGE_EDIT_PROFILE category="constant" type="int" readonly="true" section="pages" page_name="edit_profile" page_type="network">
+          <value>24</value>
+        </PAGE_EDIT_PROFILE>
+        <PAGE_GROUP_MODERATION category="constant" type="int" readonly="true" section="pages" page_name="Group Moderation" page_type="group">
+          <value>26</value>
+        </PAGE_GROUP_MODERATION>
+        <PAGE_VIEW_ALL_MEMBERS category="constant" type="int" readonly="true" section="pages" page_name="View All Members Page" page_type="group|user|network">
+          <value>27</value>
+        </PAGE_VIEW_ALL_MEMBERS>
+        <PAGE_EDIT_RELATION category="constant" type="int" readonly="true" section="pages" page_name="Edit Relations Page" page_type="network">
+          <value>28</value>
+        </PAGE_EDIT_RELATION>
+        <PAGE_FORGOT_PASSWORD category="constant" type="int" readonly="true" section="pages" page_name="Forgot Password Page" page_type="network">
+          <value>29</value>
+        </PAGE_FORGOT_PASSWORD>
+        <PAGE_LOGIN category="constant" type="int" readonly="true" section="pages" page_name="Login Page" page_type="network">
+          <value>30</value>
+        </PAGE_LOGIN>
+        <PAGE_GROUP_INVITE category="constant" type="int" readonly="true" section="pages" page_name="Group Invitation Page" page_type="network">
+          <value>31</value>
+        </PAGE_GROUP_INVITE>
+        <PAGE_MEDIA_FULL_VIEW category="constant" type="int" readonly="true" section="pages" page_name="media_full_view" page_type="group|user">
+          <value>32</value>
+        </PAGE_MEDIA_FULL_VIEW>
+        <PAGE_POSTCONTENT category="constant" type="int" readonly="true" section="pages" page_name="postContent" page_type="network, group, user">
+          <value>33</value>
+        </PAGE_POSTCONTENT>
+        <PAGE_CREATE_NETWORK category="constant" type="int" readonly="true" section="pages" page_name="Create Network Page" page_type="network">
+          <value>34</value>
+        </PAGE_CREATE_NETWORK>
+        <PAGE_NETWORKS_HOME category="constant" type="int" readonly="true" section="pages" page_name="networks_directory" page_type="network">
+          <value>35</value>
+        </PAGE_NETWORKS_HOME>
+        <PAGE_LINKS_MANAGEMENT category="constant" type="int" readonly="true" section="pages" page_name="Links Management Page" page_type="user">
+          <value>36</value>
+        </PAGE_LINKS_MANAGEMENT>
+        <PAGE_NETWORKS_CATEGORY category="constant" type="int" readonly="true" section="pages" page_name="networs_category" page_type="">
+          <value>37</value>
+        </PAGE_NETWORKS_CATEGORY>
+        <PAGE_NETWORK category="constant" type="int" readonly="true" section="pages" page_name="network" page_type="network|group">
+          <value>38</value>
+        </PAGE_NETWORK>
+        <PAGE_GROUP_MEDIA_GALLERY category="constant" type="int" readonly="true" section="pages" page_name="Group Media Gallery" page_type="group">
+          <value>39</value>
+        </PAGE_GROUP_MEDIA_GALLERY>
+        <PAGE_EDIT_MEDIA category="constant" type="int" readonly="true" section="pages" page_name="edit_media" page_type="network">
+          <value>40</value>
+        </PAGE_EDIT_MEDIA>
+        <PAGE_BADGE_CREATE category="constant" type="int" readonly="true" section="pages" page_name="badge_create" page_type="">
+          <value>41</value>
+        </PAGE_BADGE_CREATE>
+        <PAGE_COMMENT_MANAGEMENT category="constant" type="int" readonly="true" section="pages" page_name="comment_management" page_type="">
+          <value>42</value>
+        </PAGE_COMMENT_MANAGEMENT>
+        <PAGE_NETWORK_STATISTICS category="constant" type="int" readonly="true" section="pages" page_name="network_statistics" page_type="network">
+          <value>43</value>
+        </PAGE_NETWORK_STATISTICS>
+        <PAGE_EMAIL_NOTIFICATION category="constant" type="int" readonly="true" section="pages" page_name="email_notification" page_type="network">
+          <value>44</value>
+        </PAGE_EMAIL_NOTIFICATION>
+        <PAGE_NETWORK_USER_DEFAULTS category="constant" type="int" readonly="true" section="pages" page_name="network_user_defaults" page_type="network">
+          <value>45</value>
+        </PAGE_NETWORK_USER_DEFAULTS>
+        <PAGE_RELATIONSHIP_SETTINGS category="constant" type="int" readonly="true" section="pages" page_name="relationship_settings" page_type="network">
+          <value>47</value>
+        </PAGE_RELATIONSHIP_SETTINGS>
+        <PAGE_NETWORK_MANAGE_USERS category="constant" type="int" readonly="true" section="pages" page_name="manage_user" page_type="network">
+          <value>48</value>
+        </PAGE_NETWORK_MANAGE_USERS>
+        <PAGE_NETWORK_MANAGE_CONTENTS category="constant" type="int" readonly="true" section="pages" page_name="network_manage_content" page_type="network">
+          <value>49</value>
+        </PAGE_NETWORK_MANAGE_CONTENTS>
+        <PAGE_CONFIGURE_NETWORK category="constant" type="int" readonly="true" section="pages" page_name="create_network" page_type="network">
+          <value>50</value>
+        </PAGE_CONFIGURE_NETWORK>
+        <PAGE_NETWORK_BULLETINS category="constant" type="int" readonly="true" section="pages" page_name="network_bulletins" page_type="network">
+          <value>51</value>
+        </PAGE_NETWORK_BULLETINS>
+        <PAGE_NEW_USER_BY_ADMIN category="constant" type="int" readonly="true" section="pages" page_name="new_user_by_admin" page_type="network">
+          <value>52</value>
+        </PAGE_NEW_USER_BY_ADMIN>
+        <PAGE_NETWORK_LINKS category="constant" type="int" readonly="true" section="pages" page_name="network_links" page_type="network">
+          <value>53</value>
+        </PAGE_NETWORK_LINKS>
+        <PAGE_CHANGE_PASSWORD category="constant" type="int" readonly="true" section="pages" page_name="change_password" page_type="user">
+          <value>54</value>
+        </PAGE_CHANGE_PASSWORD>
+        <PAGE_NETWORK_FEATURE category="constant" type="int" readonly="true" section="pages" page_name="network_feature" page_type="network">
+          <value>55</value>
+        </PAGE_NETWORK_FEATURE>
+        <PAGE_MODULE_SELECTOR category="constant" type="int" readonly="true" section="pages" page_name="module_selector" page_type="">
+          <value>56</value>
+        </PAGE_MODULE_SELECTOR>
+        <PAGE_CONFIGURE_SPLASH_PAGE category="constant" type="int" readonly="true" section="pages" page_name="module_selector" page_type="network">
+          <value>58</value>
+        </PAGE_CONFIGURE_SPLASH_PAGE>
+        <PAGE_MANAGE_EMBLEM category="constant" type="int" readonly="true" section="pages" page_name="manage_emblem" page_type="network">
+          <value>59</value>
+        </PAGE_MANAGE_EMBLEM>
+        <PAGE_MANAGE_TAKETOUR category="constant" type="int" readonly="true" section="pages" page_name="manage_taketour" page_type="network">
+          <value>60</value>
+        </PAGE_MANAGE_TAKETOUR>
+        <PAGE_FORUM_HOME category="constant" type="int" readonly="true" section="pages" page_name="Forums Homepage" page_type="group">
+          <value>61</value>
+        </PAGE_FORUM_HOME>
+        <PAGE_CREATE_FORUM_TOPIC category="constant" type="int" readonly="true" section="pages" page_name="Create Forum Page" page_type="group">
+          <value>62</value>
+        </PAGE_CREATE_FORUM_TOPIC>
+        <PAGE_REQUEST category="constant" type="int" readonly="true" section="pages" page_name="request" page_type="">
+          <value>63</value>
+        </PAGE_REQUEST>
+        <PAGE_NETWORK_MODERATE_USERS category="constant" type="int" readonly="true" section="pages" page_name="moderate_users" page_type="">
+          <value>64</value>
+        </PAGE_NETWORK_MODERATE_USERS>
+        <PAGE_MANAGE_GROUP_CONTENT category="constant" type="int" readonly="true" section="pages" page_name="manage_group_content" page_type="group">
+          <value>65</value>
+        </PAGE_MANAGE_GROUP_CONTENT>
+        <PAGE_NETWORK_FORUM_MANAGEMENT category="constant" type="int" readonly="true" section="pages" page_name="moderate_forum" page_type="network">
+          <value>66</value>
+        </PAGE_NETWORK_FORUM_MANAGEMENT>
+        <PAGE_MANAGE_COMMENTS category="constant" type="int" readonly="true" section="pages" page_name="manage_comments" page_type="network">
+          <value>67</value>
+        </PAGE_MANAGE_COMMENTS>
+        <PAGE_GROUP_THEME category="constant" type="int" readonly="true" section="pages" page_name="Group Theme Page" page_type="group">
+          <value>68</value>
+        </PAGE_GROUP_THEME>
+        <PAGE_CALENDAR category="constant" type="int" readonly="true" section="pages" page_name="calendar" page_type="">
+          <value>69</value>
+        </PAGE_CALENDAR>
+        <PAGE_ROLE_MANAGE category="constant" type="int" readonly="true" section="pages" page_name="Users Role Management" page_type="network">
+          <value>70</value>
+        </PAGE_ROLE_MANAGE>
+        <PAGE_MANAGE_AD_CENTER category="constant" type="int" readonly="true" section="pages" page_name="manage_ad_center" page_type="network">
+          <value>71</value>
+        </PAGE_MANAGE_AD_CENTER>
+        <PAGE_TASK_MANAGE category="constant" type="int" readonly="true" section="pages" page_name="manage_task" page_type="network">
+          <value>72</value>
+        </PAGE_TASK_MANAGE>
+        <PAGE_WRITE_TESTIMONIAL category="constant" type="int" readonly="true" section="pages" page_name="Testmonial Page" page_type="user">
+          <value>73</value>
+        </PAGE_WRITE_TESTIMONIAL>
+        <PAGE_MIS_REPORT category="constant" type="int" readonly="true" section="pages" page_name="mis_report" page_type="network">
+          <value>74</value>
+        </PAGE_MIS_REPORT>
+        <PAGE_SITE_RANKING category="constant" type="int" readonly="true" section="pages" page_name="site_ranking" page_type="network">
+          <value>75</value>
+        </PAGE_SITE_RANKING>
+        <PAGE_USER_COMMENT category="constant" type="int" readonly="true" section="pages" page_name="User Comments Page" page_type="user">
+          <value>77</value>
+        </PAGE_USER_COMMENT>
+        <PAGE_TERMS category="constant" type="int" readonly="true" section="pages" page_name="terms" page_type="">
+          <value>78</value>
+        </PAGE_TERMS>
+        <PAGE_NETWORK_MODERATE_CONTENTS category="constant" type="int" readonly="true" section="pages" page_name="network_moderate_content" page_type="network">
+          <value>79</value>
+        </PAGE_NETWORK_MODERATE_CONTENTS>
+        <PAGE_MANAGE_FOOTERLINKS category="constant" type="int" readonly="true" section="pages" page_name="footer_links" page_type="">
+          <value>80</value>
+        </PAGE_MANAGE_FOOTERLINKS>
+        <PAGE_MANAGE_STATICPAGES category="constant" type="int" readonly="true" section="pages" page_name="static_pages" page_type="">
+          <value>81</value>
+        </PAGE_MANAGE_STATICPAGES>
+        <PAGE_STATIC_PAGE_DISPLAY category="constant" type="int" readonly="true" section="pages" page_name="static_page_display" page_type="network">
+          <value>82</value>
+        </PAGE_STATIC_PAGE_DISPLAY>
+        <PAGE_CONFIGURE_EMAIL category="constant" type="int" readonly="true" section="pages" page_name="configure_email" page_type="network">
+          <value>83</value>
+        </PAGE_CONFIGURE_EMAIL>
+        <PAGE_MANAGE_QUESTIONS category="constant" type="int" readonly="true" section="pages" page_name="manage_questions" page_type="">
+          <value>84</value>
+        </PAGE_MANAGE_QUESTIONS>
+        <PAGE_ANSWERS category="constant" type="int" readonly="true" section="pages" page_name="answers" page_type="">
+          <value>85</value>
+        </PAGE_ANSWERS>
+        <PAGE_TAG_SEARCH category="constant" type="int" readonly="true" section="pages" page_name="tag_search" page_type="network">
+          <value>86</value>
+        </PAGE_TAG_SEARCH>
+        <PAGE_NETWORK_THEMES category="constant" type="int" readonly="true" section="pages" page_name="Network Theme Page" page_type="network">
+          <value>87</value>
+        </PAGE_NETWORK_THEMES>
+        <PAGE_NETWORK_MANAGE_GROUPS category="constant" type="int" readonly="true" section="pages" page_name="manage_group" page_type="network">
+          <value>88</value>
+        </PAGE_NETWORK_MANAGE_GROUPS>
+        <PAGE_MANAGE_CATEGORY category="constant" type="int" readonly="true" section="pages" page_name="manage_category" page_type="">
+          <value>89</value>
+        </PAGE_MANAGE_CATEGORY>
+        <PAGE_MANAGE_PROFANITY category="constant" type="int" readonly="true" section="pages" page_name="manage_profanity" page_type="">
+          <value>90</value>
+        </PAGE_MANAGE_PROFANITY>
+        <PAGE_GROUP_AD_CENTER category="constant" type="int" readonly="true" section="pages" page_name="manage_ad_center" page_type="network">
+          <value>91</value>
+        </PAGE_GROUP_AD_CENTER>
+        <PAGE_VIEW_ALL_MEDIA category="constant" type="int" readonly="true" section="pages" page_name="View All Media" page_type="">
+          <value>97</value>
+        </PAGE_VIEW_ALL_MEDIA>
+        <PAGE_MANAGE_TEXTPADS category="constant" type="int" readonly="true" section="pages" page_name="manage_textpads" page_type="network">
+          <value>98</value>
+        </PAGE_MANAGE_TEXTPADS>
+        <PAGE_POLL category="constant" type="int" readonly="true" section="pages" page_name="poll" page_type="network">
+          <value>99</value>
+        </PAGE_POLL>
+        <PAGE_MANAGE_DOMAIN category="constant" type="int" readonly="true" section="pages" page_name="manage_domain" page_type="">
+          <value>100</value>
+        </PAGE_MANAGE_DOMAIN>
+        <PAGE_USER_CALENDAR category="constant" type="int" readonly="true" section="pages" page_name="My Events" page_type="user">
+          <value>101</value>
+        </PAGE_USER_CALENDAR>
+        <PAGE_GROUP_CALENDAR category="constant" type="int" readonly="true" section="pages" page_name="Group Events" page_type="group">
+          <value>102</value>
+        </PAGE_GROUP_CALENDAR>
+        <PAGE_NETWORK_CALENDAR category="constant" type="int" readonly="true" section="pages" page_name="Network Events" page_type="network">
+          <value>103</value>
+        </PAGE_NETWORK_CALENDAR>
+        <PAGE_USER_CUSTOMIZE_UI category="constant" type="int" readonly="true" section="pages" page_name="Customize UI" page_type="user">
+          <value>104</value>
+        </PAGE_USER_CUSTOMIZE_UI>
+        <PAGE_GROUP_MEDIA_POST category="constant" type="int" readonly="true" section="pages" page_name="Group Media Post" page_type="">
+          <value>105</value>
+        </PAGE_GROUP_MEDIA_POST>
+        <PAGE_MEDIA_GALLERY_UPLOAD category="constant" type="int" readonly="true" section="pages" page_name="Upload Media Gallery" page_type="user">
+          <value>106</value>
+        </PAGE_MEDIA_GALLERY_UPLOAD>
+        <PAGE_VIEW_MESSAGE category="constant" type="int" readonly="true" section="pages" page_name="View message" page_type="user">
+          <value>107</value>
+        </PAGE_VIEW_MESSAGE>
+        <PAGE_MANAGE_RANKING_POINTS category="constant" type="int" readonly="true" section="pages" page_name="Manage Ranking Points" page_type="">
+          <value>200</value>
+        </PAGE_MANAGE_RANKING_POINTS>
+        <PAGE_FORUMS category="constant" type="int" readonly="true" section="pages" page_name="Forums" page_type="network|group|user">
+          <value>201</value>
+        </PAGE_FORUMS>
+        <PAGE_LEADER_BOARD category="constant" type="int" readonly="true" section="pages" page_name="Leader Board Page" page_type="">
+          <value>202</value>
+        </PAGE_LEADER_BOARD>
+        <PAGE_SYSTEM_MESSAGE category="constant" type="int" readonly="true" section="pages" page_name="system_message" page_type="network">
+          <value>205</value>
+        </PAGE_SYSTEM_MESSAGE>
+        <PAGE_USER_CONTACTS category="constant" type="int" readonly="true" section="pages" page_name="User Contacts" page_type="network">
+          <value>206</value>
+        </PAGE_USER_CONTACTS>
+        <PAGE_TYPED_DIRECTORY category="constant" type="int" readonly="true" section="pages" page_name="Directory" page_type="network">
+          <value>300</value>
+        </PAGE_TYPED_DIRECTORY>
+        <PAGE_POINTS_DIRECTORY category="constant" type="int" readonly="true" section="pages" page_name="Points Directory" page_type="network">
+          <value>310</value>
+        </PAGE_POINTS_DIRECTORY>
+        <PAGE_FAMILY_DIRECTORY category="constant" type="int" readonly="true" section="pages" page_name="Family Directory" page_type="network">
+          <value>320</value>
+        </PAGE_FAMILY_DIRECTORY>
+        <PAGE_FAMILY category="constant" type="int" readonly="true" section="pages" page_name="Family Page" page_type="network">
+          <value>321</value>
+        </PAGE_FAMILY>
+        <PAGE_FAMILY_EDIT category="constant" type="int" readonly="true" section="pages" page_name="Family Settings" page_type="network">
+          <value>322</value>
+        </PAGE_FAMILY_EDIT>
+        <PAGE_CREATE_DYNAMIC_PAGE category="constant" type="int" readonly="true" section="pages" page_name="Create Dynamic Page" page_type="network">
+          <value>727</value>
+        </PAGE_CREATE_DYNAMIC_PAGE>
+        <PAGE_CONFIG_MANAGER category="constant" type="int" readonly="true" section="pages" page_name="PA Configruation Manager" page_type="network">
+          <value>737</value>
+        </PAGE_CONFIG_MANAGER>
+        <PAGE_CONFIGURE_DEFENDER category="constant" type="int" readonly="true" section="pages" page_name="PADefender Configruation Manager" page_type="network">
+          <value>738</value>
+        </PAGE_CONFIGURE_DEFENDER>
+      </value>
+    </pages>
+    <system_strings description="Various strings and messages">
+      <value>
+        <CUSTOM_INVITATION_MESSAGE category="constant" type="string" readonly="false" section="system_strings">
+          <value>Write here personalized message for invitees. It will be appended to email</value>
+        </CUSTOM_INVITATION_MESSAGE>
+        <OUTPUTTHIS_ERROR_MESSAGE category="constant" type="string" readonly="false" section="system_strings">
+          <value>You haven't specified any external blogs. Log on to &lt;a href='http://outputthis.org' target='_blank'&gt;OutputThis.org&lt;/a&gt; to specify targets" </value>
+        </OUTPUTTHIS_ERROR_MESSAGE>
+        <default_album_titles category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Default PA album names. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>My pictures</item>
+            <item>My audio</item>
+            <item>My videos</item>
+          </value>
+        </default_album_titles>
+        <post_type_message category="global" section="system_strings" type="array" readonly="false" description="Array for displaying messages in Community blog and My page">
+          <value>
+            <all>
+              <message>No content published.</message>
+            </all>
+            <blog>
+              <message>No blog posts published.</message>
+            </blog>
+            <event>
+              <message>No events published.</message>
+              <queryString>sb_mc_category=event/generic</queryString>
+            </event>
+            <review>
+              <message>No reviews published.</message>
+              <queryString>sb_mc_category=review/localservice</queryString>
+            </review>
+            <people_showcase>
+              <message>No People Showcases published.</message>
+              <queryString>sb_mc_category=showcase/person</queryString>
+            </people_showcase>
+            <video>
+              <message>No video published.</message>
+              <queryString>sb_mc_category=media/video</queryString>
+            </video>
+            <audio>
+              <message>No audio published.</message>
+              <queryString>sb_mc_category=media/audio</queryString>
+            </audio>
+            <image>
+              <message>No image published.</message>
+              <queryString>sb_mc_category=media/image</queryString>
+            </image>
+            <group_showcase>
+              <message>No Group Showcase published.</message>
+              <queryString>sb_mc_category=showcase/group</queryString>
+            </group_showcase>
+          </value>
+        </post_type_message>
+        <industries category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Standard set of Industries. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>Agriculture/Mining</item>
+            <item>Association/Magazine</item>
+            <item>Business/Professional Services</item>
+            <item>Computers/Electronics</item>
+            <item>Conglomerates</item>
+            <item>Energy/Utilities</item>
+            <item>Financial Services</item>
+            <item>Food/Beverage</item>
+            <item>Healthcare/Pharmaceuticals</item>
+            <item>Manufacturing</item>
+            <item>Media/Entertainment</item>
+            <item>Real Estate/Construction</item>
+            <item>Retail/Wholesale</item>
+            <item>Software/Internet</item>
+            <item>Telecommunciations</item>
+            <item>Transportation</item>
+            <item>Utilities</item>
+            <item>Other</item>
+          </value>
+        </industries>
+        <ethnicities category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Standard set of Ethnicities. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>african american (black)</item>
+            <item>asian</item>
+            <item>caucasian (white)</item>
+            <item>east indian</item>
+            <item>hispanic/latino</item>
+            <item>middle eastern</item>
+            <item>native american</item>
+            <item>pacific islander</item>
+            <item>multi-ethnic</item>
+            <item>other</item>
+          </value>
+        </ethnicities>
+        <religions category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Standard set of religions. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>Agnostic</item>
+            <item>Atheist</item>
+            <item>Bahai</item>
+            <item>Buddhist</item>
+            <item>Cao Dai</item>
+            <item>Christian/Anglican</item>
+            <item>Christian/Catholic</item>
+            <item>Christian/LDS</item>
+            <item>Christian/Other</item>
+            <item>Christian/Protestant</item>
+            <item>Hindu</item>
+            <item>Jain</item>
+            <item>Jewish</item>
+            <item>Muslim</item>
+            <item>Neo-Paganist</item>
+            <item>Rastafarian</item>
+            <item>Religious humanism</item>
+            <item>Scientologist</item>
+            <item>Shinto</item>
+            <item>Sikh</item>
+            <item>Spiritual but not religious</item>
+            <item>Taoist</item>
+            <item>Tenrikyo</item>
+            <item>Unitarian Universalist</item>
+            <item>Zoroastrian</item>
+            <item>Other</item>
+          </value>
+        </religions>
+        <political_views category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Standard set of Political Views. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>right-conservative</item>
+            <item>very right-conservative</item>
+            <item>centrist</item>
+            <item>left-liberal</item>
+            <item>veryleft-liberal</item>
+            <item>libertarian</item>
+            <item>very libertarian</item>
+            <item>authoritarian</item>
+            <item>very authoritarian</item>
+            <item>depends</item>
+            <item>not political</item>
+          </value>
+        </political_views>
+        <relationships category="dynamic_var" type="array" sub-type="string" readonly="false" section="system_strings" description="Standard set of Relationships. NOTE: Leave first line blank.">
+          <value>
+            <item></item>
+            <item>Single</item>
+            <item>In a Relationship</item>
+            <item>In an Open Relationship</item>
+            <item>Engaged</item>
+            <item>Married</item>
+            <item>It\'s Complicated</item>
+          </value>
+        </relationships>
+      </value>
+    </system_strings>
+    <blogging description="Basic Blog settings">
+      <value>
+        <DESCRIPTION_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>300</value>
+        </DESCRIPTION_LENGTH>
+        <CHUNK_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>26</value>
+        </CHUNK_LENGTH>
+        <LONGER_CHUNK_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>60</value>
+        </LONGER_CHUNK_LENGTH>
+        <TITLE_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>38</value>
+        </TITLE_LENGTH>
+        <COMMENT_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>30</value>
+        </COMMENT_LENGTH>
+        <NAME_LENGTH category="constant" type="int" readonly="false" section="blogging">
+          <value>15</value>
+        </NAME_LENGTH>
+        <comments_disabled category="global" type="bool" section="blogging" readonly="false" description="set '1' to disable comments">
+          <value>0</value>
+        </comments_disabled>
+      </value>
+    </blogging>
+    <basic_group_settings description="Basic Groups settings">
+      <value>
+        <GROUP_TITLE_LENGTH category="constant" type="int" readonly="false" section="basic_group_settings">
+          <value>18</value>
+        </GROUP_TITLE_LENGTH>
+        <GROUP_TITLE_LENGTH_LONG category="constant" type="int" readonly="false" section="basic_group_settings">
+          <value>25</value>
+        </GROUP_TITLE_LENGTH_LONG>
+      </value>
+    </basic_group_settings>
+    <typedgroups description="Settings related to TypedGroups feature.">
+      <value>
+        <useTypedGroups category="dynamic_var" type="bool" readonly="false" section="typedgroups" description="Set TRUE if you want to use this feature.">
+          <value>1</value>
+        </useTypedGroups>
+        <enum_typed_group_types category="dynamic_var" type="array" readonly="true" section="typedgroups" description="Typed group types.">
+          <value>
+            <business>Business</business>
+            <church>Church</church>
+            <school>School</school>
+          </value>
+        </enum_typed_group_types>
+        <enum_typed_group_relations category="dynamic_var" type="array" readonly="false" section="typedgroups" description="Typed group relations types.">
+          <value>
+            <fan>Fan</fan>
+            <supporter>Supporter</supporter>
+            <customer>Customer</customer>
+            <employee>Employee</employee>
+          </value>
+        </enum_typed_group_relations>
+        <typed_group_profilefields category="dynamic_var" type="array" readonly="true" section="typedgroups" description="Typed group profile fields.">
+          <value>
+            <item>
+              <name>address</name>
+              <label>Address</label>
+              <type>textfield</type>
+            </item>
+            <item>
+              <name>city</name>
+              <label>City</label>
+              <type>textfield</type>
+            </item>
+            <item>
+              <name>state</name>
+              <label>State/Province</label>
+              <type>stateselect</type>
+            </item>
+            <item>
+              <name>country</name>
+              <label>Country</label>
+              <type>countryselect</type>
+            </item>
+            <item>
+              <name>zip</name>
+              <label>Postal Code</label>
+              <type>textfield</type>
+            </item>
+            <item>
+              <name>phone</name>
+              <label>Phone Number</label>
+              <type>textfield</type>
+            </item>
+            <item>
+              <name>website</name>
+              <label>Website</label>
+              <type>urltextfield</type>
+            </item>
+          </value>
+        </typed_group_profilefields>
+      </value>
+    </typedgroups>
+    <ad_center description="AD Center module settings">
+      <value>
+        <AD_WIDTH_LR category="constant" type="int" readonly="false" section="ad_center">
+          <value>198</value>
+        </AD_WIDTH_LR>
+        <AD_HEIGHT_LR category="constant" type="int" readonly="false" section="ad_center">
+          <value>180</value>
+        </AD_HEIGHT_LR>
+        <AD_WIDTH_MIDDLE category="constant" type="int" readonly="false" section="ad_center">
+          <value>577</value>
+        </AD_WIDTH_MIDDLE>
+        <AD_HEIGHT_MIDDLE category="constant" type="int" readonly="false" section="ad_center">
+          <value>80</value>
+        </AD_HEIGHT_MIDDLE>
+      </value>
+    </ad_center>
+    <debug description="Various settings for debugging">
+      <value>
+        <debug_for_user category="global" type="bool" section="debug" readonly="false" description="">
+          <value>1</value>
+        </debug_for_user>
+        <debug_annotate_templates category="global" type="bool" section="debug" readonly="false" description="set '1' to get info about each rendered template added into the output HTML">
+          <value>0</value>
+        </debug_annotate_templates>
+        <debug_disable_template_caching category="global" type="bool" section="debug" readonly="false" description="set '1' to turn off template caching (good if you are frequently changing templates)">
+          <value>0</value>
+        </debug_disable_template_caching>
+        <debug_show_svn_version category="global" type="bool" section="debug" readonly="false" description="set '1' to show the Subversion version on the bottom of each page, along with the timing. This requires some XML parsing, so it's best to leave it off on a live site.">
+          <value>0</value>
+        </debug_show_svn_version>
+        <logger_logFile category="global" type="expression" section="debug" readonly="false" description="Path to log file (you may wish to change this to /var/log/somewhere/pa.log).">
+          <value>PA::$project_dir."/log/pa.log"</value>
+        </logger_logFile>
+      </value>
+    </debug>
+    <api_keys description="API keys used in PA">
+      <value>
+        <video_accesskey category="static_var" type="string" readonly="true" section="api_keys" description="TekMedia video access key.">
+          <value>aab3238922bcc25a6f606eb525ffdc56</value>
+        </video_accesskey>
+        <video_secretkey category="static_var" type="string" readonly="true" section="api_keys" description="TekMedia video secret key.">
+          <value>871a67b6d6c4aae206c1b853536d7f4f</value>
+        </video_secretkey>
+        <tekmedia_site_url category="static_var" type="string" readonly="true" section="api_keys" description="TekMedia Site url.">
+          <value>http://www.glued.in</value>
+        </tekmedia_site_url>
+        <tekmedia_server category="static_var" type="string" readonly="true" section="api_keys" description="To get the desired data from Tekmedia, send XML-RPC request to the following URL.">
+          <value>http://www.glued.in/client_webservice.php</value>
+        </tekmedia_server>
+        <tekmedia_iframe_form_path category="static_var" type="expression" readonly="true" section="api_keys" description="The iframe path to upload video on TekMedia side.">
+          <value>PA::$tekmedia_site_url . "/Integration/MyForm.php"</value>
+        </tekmedia_iframe_form_path>
+        <flickr_api_key category="global" type="string" section="api_keys" readonly="false" description="Flickr API key. The following key will work for you, but you should really obtain your own from: http://www.flickr.com/services/api/keys/">
+          <value>bd94393ae4d7d48e30b6030299673877</value>
+        </flickr_api_key>
+        <flickr_api_secret category="global" type="string" section="api_keys" readonly="false" description="">
+          <value>b6345b0bc4cb6ff2</value>
+        </flickr_api_secret>
+        <flickr_auth_type category="global" type="string" section="api_keys" readonly="false" description="">
+          <value>desktop</value>
+        </flickr_auth_type>
+        <aim_presence_key category="global" type="string" section="api_keys" readonly="false" description="AIM Presence and Web AIM keys.The following presence key will work for you, but you need to obtain a site-specific AIM API key to be able to chat on AIM from inside PeopleAggregator. Obtain your own presence key at: http://developer.aim.com/presenceReg.jsp">
+          <value>dl1N5Swe5BsTc98r</value>
+        </aim_presence_key>
+        <aim_api_key category="global" type="string" section="api_keys" readonly="false" description="Obtain your own AIM key at: http://developer.aim.com/wimReg.jsp">
+          <value></value>
+        </aim_api_key>
+        <fortythree_api_key category="global" type="string" section="api_keys" readonly="false" description="43(things|people|places).com API key. The following key will work for you, but you should really obtain your own from: http://www.43things.com/account/webservice_setup.">
+          <value>9519@Pe3U5HYxrY4rc</value>
+        </fortythree_api_key>
+      </value>
+    </api_keys>
+    <database description="Database settings">
+      <value>
+        <db_name category="dynamic_var" type="string" readonly="false" section="database" description="Database name">
+          <value></value>
+        </db_name>
+        <db_user category="dynamic_var" type="string" readonly="false" section="database" description="Database user name">
+          <value></value>
+        </db_user>
+        <db_password category="dynamic_var" type="string" readonly="false" section="database" description="Database password">
+          <value></value>
+        </db_password>
+        <db_host category="dynamic_var" type="string" readonly="false" section="database" description="Database host">
+          <value>localhost</value>
+        </db_host>
+        <peepagg_dsn category="global" type="string" readonly="true" section="database" description="PeopleAggregator database connection string.">
+          <value></value>
+        </peepagg_dsn>
+        <mysql_root_username category="dynamic_var" type="string" readonly="true" section="database" description="MySQL root user name.">
+          <value>root</value>
+        </mysql_root_username>
+        <mysql_root_password category="dynamic_var" type="string" readonly="true" section="database" description="MySQL root user password.">
+          <value></value>
+        </mysql_root_password>
+      </value>
+    </database>
+    <site_related description="WEB Site settings">
+      <value>
+        <PA_VERSION category="constant" type="string" readonly="true" section="site_related" description="The PA version number. Please also update that info in script/version.sh when bumping the version number.">
+          <value>v2.0.0_18-May-2009</value>
+        </PA_VERSION>
+        <SUPER_USER_ID category="constant" readonly="true" type="int" section="site_related" description="Super user has all available privileges to all networks and groups. Do not chnage if you are not PA developer - only user with this ID can access site when 'Site under maintenace' mode is ON!">
+          <value>1</value>
+        </SUPER_USER_ID>
+        <PA_LANGUAGES_DIR category="constant" type="string" readonly="true" section="site_related" description="Relative path to the translation files.">
+          <value>web/languages</value>
+        </PA_LANGUAGES_DIR>
+        <DYNAMIC_PAGES_DIR category="constant" type="string" readonly="true" section="site_related" description="Relative path to the configuration XML files for dynamic pages.">
+          <value>web/config/pages</value>
+        </DYNAMIC_PAGES_DIR>
+        <server_id category="static_var" type="string" readonly="true" section="site_related" description="server ID (used in 'files/file_sync_state' tables, for file replication).">
+          <value>main</value>
+        </server_id>
+        <ping_server category="global" type="string" readonly="true" section="site_related" description="Ping Server URL.">
+          <value>PA::$url . "/Ping/ping.php"</value>
+        </ping_server>
+        <admin_password category="global" type="string" readonly="true" section="site_related" description="Administration password - used on automatic updates page (/update/index.php).">
+          <value>admin</value>
+        </admin_password>
+        <pa_installed category="dynamic_var" type="bool" readonly="true" section="site_related" description="Is PeopleAggregator installed flag">
+          <value>1</value>
+        </pa_installed>
+        <pa_defender_mode category="dynamic_var" type="int" readonly="true" section="site_related" description="PADefender (the web attacks shield) default working mode (1 - off, 2 - permissive, 3 - restrictive).">
+          <value>3</value>
+        </pa_defender_mode>
+        <storage_backend category="dynamic_var" type="string" readonly="true" section="site_related" description="File storage backend.">
+          <value>local</value>
+        </storage_backend>
+        <local_storage_path category="dynamic_var" type="expression" readonly="true" section="site_related" description="LocalStorage config - where the files are stored.">
+          <value>PA::$project_dir . "/web/files"</value>
+        </local_storage_path>
+        <local_storage_rel_url category="dynamic_var" type="string" readonly="true" section="site_related" description="LocalStorage config -  URL to files, relative to /web.">
+          <value>files</value>
+        </local_storage_rel_url>
+        <blockmodule_path category="static_var" type="string" readonly="true" section="site_related" description="Current blockmodule path.">
+          <value>web/BlockModules</value>
+        </blockmodule_path>
+        <theme_rel category="static_var" type="string" readonly="true" section="site_related" description="Current theme relative path.">
+          <value>Themes/Default</value>
+        </theme_rel>
+        <theme_url category="static_var" type="expression" readonly="true" section="site_related" description="Current theme URL.">
+          <value>PA::$url . "/" . PA::$theme_rel</value>
+        </theme_url>
+        <theme_path category="static_var" type="expression" readonly="true" section="site_related" description="Current theme URL.">
+          <value>PA::$theme_path = "web/" . PA::$theme_rel</value>
+        </theme_path>
+        <config_path category="static_var" type="string" readonly="true" section="site_related" description="The PA main configuration folder.">
+          <value>web/config</value>
+        </config_path>
+        <SITE_UNDER_MAINTAINENCE category="constant" type="bool" readonly="false" section="site_related" description="Set '1' to display Site under Maitenance page.">
+          <value>0</value>
+        </SITE_UNDER_MAINTAINENCE>
+        <MIN_PASSWORD_LENGTH category="constant" type="int" readonly="false" section="site_related" description="The minimum allowed length of a password during registration.">
+          <value>5</value>
+        </MIN_PASSWORD_LENGTH>
+        <MAX_PASSWORD_LENGTH category="constant" type="int" readonly="false" section="site_related" description="The maximum allowed length of a password during registration.">
+          <value>15</value>
+        </MAX_PASSWORD_LENGTH>
+        <FANCY_URL category="constant" type="bool" readonly="false" section="site_related" description="Set '1' to use Fancy URL's for blog posts." note="This option is obsolete - PA already using Fancy URL's.">
+          <value>1</value>
+        </FANCY_URL>
+        <FACEWALL_COLUMN_COUNT category="constant" type="int" readonly="false" section="site_related">
+          <value>6</value>
+        </FACEWALL_COLUMN_COUNT>
+        <FACEWALL_ROW_COUNT category="constant" type="int" readonly="false" section="site_related">
+          <value>4</value>
+        </FACEWALL_ROW_COUNT>
+        <site_name category="static_var" type="string" readonly="false" section="site_related" description="Site name">
+          <value>PeopleAggregator</value>
+        </site_name>
+        <language category="static_var" type="string" readonly="false" section="site_related" description="Default site language">
+          <value>english</value>
+        </language>
+        <ssl_security_on category="static_var" type="bool" readonly="false" section="site_related" description="set '1' to allow UrlHelper to generate https URLs">
+          <value>0</value>
+        </ssl_security_on>
+        <ssl_force_https_urls category="static_var" type="bool" readonly="false" section="site_related" description="set '1' to force the https url scheme for whole PA site (all urls and links will be converted)">
+          <value>0</value>
+        </ssl_force_https_urls>
+        <use_css_optimizer category="global" type="bool" readonly="false" section="site_related" description="CSS and JS optimizers settings.">
+          <value>0</value>
+        </use_css_optimizer>
+        <optimizers_use_url_rewrite category="global" type="bool" readonly="false" section="site_related" description="CSS and JS optimizers settings.">
+          <value>0</value>
+        </optimizers_use_url_rewrite>
+        <use_js_optimizer category="global" type="bool" readonly="false" section="site_related" description="CSS and JS optimizers settings.">
+          <value>0</value>
+        </use_js_optimizer>
+        <use_js_packer category="global" type="bool" readonly="false" section="site_related" description="CSS and JS optimizers settings.">
+          <value>0</value>
+        </use_js_packer>
+        <cssjs_tag category="global" type="expression" readonly="true" section="site_related" description="CSS and JS optimizers settings.">
+          <value>md5(PA_VERSION)</value>
+        </cssjs_tag>
+        <default_sender category="static_var" type="expression" readonly="false" section="site_related" description="Default email sender address">
+          <value>"no-reply@" . PA_DOMAIN_SUFFIX</value>
+        </default_sender>
+        <default_relation_id category="global" type="int" readonly="false" section="site_related" description="When a new user registers on the site, they will automatically be marked as a friend of the user with this ID. (The default is 1, so everyone will be a friend of the first user.)">
+          <value>1</value>
+        </default_relation_id>
+        <enable_fancy_url category="dynamic_var" type="bool" readonly="false" section="site_related" description="Enable fancy URLs.">
+          <value>1</value>
+        </enable_fancy_url>
+        <simple category="dynamic_var" type="array" sub-type="bool" readonly="false" section="site_related" description="PA simpe settings switches">
+          <value>
+            <use_actionsmodule>1</use_actionsmodule>
+            <use_simplenav>1</use_simplenav>
+            <omit_advacedprofile>1</omit_advacedprofile>
+            <use_simpleblog>1</use_simpleblog>
+            <use_attachmedia>1</use_attachmedia>
+            <omit_routing>1</omit_routing>
+          </value>
+        </simple>
+        <actionsmodule_placement category="dynamic_var" type="string" readonly="false" section="site_related" description="Where to place the Actions module (if used).">
+          <value>right</value>
+        </actionsmodule_placement>
+        <group_noun category="static_var" type="string" readonly="false" section="site_related" description="How to call the Group in the UI.">
+          <value>Group</value>
+        </group_noun>
+        <group_noun_plural category="static_var" type="string" readonly="false" section="site_related" description="How to call the Group in the UI - plural.">
+          <value>Groups</value>
+        </group_noun_plural>
+        <people_noun category="static_var" type="string" readonly="false" section="site_related" description="How to call People in the UI.">
+          <value>People</value>
+        </people_noun>
+        <mypage_noun category="static_var" type="string" readonly="false" section="site_related" description="How to call MyPage in the UI.">
+          <value>Me</value>
+        </mypage_noun>
+        <upload_path category="static_var" type="expression" readonly="false" section="site_related" description="Default upload dir">
+          <value>PA::$project_dir . "/web/files/"</value>
+        </upload_path>
+        <use_storage category="dynamic_var" type="int" readonly="true" section="site_related" description="Enable new storage system.">
+          <value>0</value>
+        </use_storage>
+        <CHECK_MIME_TYPE category="constant" type="bool" readonly="false" section="site_related" description="Set '1' to turn ON mime-type checking within the file uploader.">
+          <value>1</value>
+        </CHECK_MIME_TYPE>
+        <DEFAULT_USER_PHOTO category="constant" type="expression" readonly="false" section="site_related" description="Default user picture URL.">
+          <value>PA::$theme_url."/images/default.png"</value>
+        </DEFAULT_USER_PHOTO>
+        <DEFAULT_USER_PHOTO_REL category="constant" type="expression" readonly="false" section="site_related" description="Default user picture path.">
+          <value>PA::$theme_rel."/images/default.png"</value>
+        </DEFAULT_USER_PHOTO_REL>
+        <perf_log category="dynamic_var" type="string" readonly="false" section="site_related" description="Set path to performance log file to turn on detailed performance logging - for spam debugging.">
+          <value></value>
+        </perf_log>
+        <trusted_proxies category="dynamic_var" type="array" sub-type="string" readonly="false" section="site_related" description="Hosts from which we can trust X-Forwarded-For headers (load balancers)">
+          <value>
+            <item>127.0.0.1</item>
+            <item>127.0.0.2</item>
+          </value>
+        </trusted_proxies>
+        <file_type_info category="global" section="site_related" type="array" description="Default settings for file upload. Note that php.ini's upload_max_filesize variable takes precedence if lower than any of the max_file_size values.">
+          <value>
+            <audio>
+              <type>audio</type>
+              <ext>ac3|aif|aiff|asf|avi|mov|moov|mpa|mpg|mpeg|mp1|mp2|mp3|mp4|ogg|ram|wav|wma|rm</ext>
+              <max_file_size>10485760</max_file_size>
+            </audio>
+            <video>
+              <type>video</type>
+              <ext>aac|asf|avi|divx|m1v|m2p|m2v|mov|moov|mpg|mpeg|mpv|ogm|omf|swf|vob|wmv|mpe</ext>
+              <max_file_size>10485760</max_file_size>
+            </video>
+            <image>
+              <type>image</type>
+              <ext>gif|jpg|jpeg|png|xpm|bmp</ext>
+              <max_file_size>2097152</max_file_size>
+            </image>
+            <doc>
+              <type>doc</type>
+              <ext>txt|doc|rtf|pdf</ext>
+              <max_file_size>3145728</max_file_size>
+            </doc>
+          </value>
+        </file_type_info>
+        <tags_allowed_in_fields category="global" type="array" sub-type="bool" section="site_related" description="Settings for InputSanitizer">
+          <value>
+            <description>1</description>
+            <groupdesc>1</groupdesc>
+            <network_description>1</network_description>
+            <comment>1</comment>
+            <forum_contents>1</forum_contents>
+            <ad_script>1</ad_script>
+            <page_text>1</page_text>
+            <email_message>1</email_message>
+            <message>1</message>
+            <bulletin_body>1</bulletin_body>
+          </value>
+        </tags_allowed_in_fields>
+      </value>
+    </site_related>
+    <basic_network_settings description="Basic network settings.">
+      <value>
+        <enable_networks category="dynamic_var" type="bool" readonly="false" section="basic_network_settings" description="Set enable_networks to FALSE to completely disable networks - don't allow them to be used at all, and disable spawning and the network directory.">
+          <value>1</value>
+        </enable_networks>
+        <enable_network_spawning category="dynamic_var" type="bool" readonly="false" section="basic_network_settings" description="Set enable_network_spawning to FALSE to disable the creation of new networks, without disabling the network directory or any existing networks.">
+          <value>0</value>
+        </enable_network_spawning>
+        <all_networks_are_private category="dynamic_var" type="bool" readonly="false" section="basic_network_settings" description="Set to TRUE to force all networks to be private, regardless of their settings.  This will mean nobody has access to anything until they have created an account and logged in.">
+          <value>0</value>
+        </all_networks_are_private>
+        <DEFAULT_NETWORK_ICON category="constant" type="string" readonly="false" section="basic_network_settings">
+          <value>images/pa_logo_static_pages.gif</value>
+        </DEFAULT_NETWORK_ICON>
+        <profanity category="dynamic_var" type="array" sub-type="string" readonly="false" section="basic_network_settings" description="People Aggregator profanity words list">
+          <value>
+            <item>ass</item>
+            <item>asses</item>
+            <item>assfuck</item>
+            <item>asshole</item>
+            <item>assholes</item>
+            <item>bastard</item>
+            <item>beaner</item>
+            <item>bestial</item>
+            <item>bestiality</item>
+            <item>bitch</item>
+            <item>bitcher</item>
+            <item>bitchers</item>
+            <item>bitches</item>
+            <item>bitchin</item>
+            <item>bitching</item>
+            <item>blowjob</item>
+            <item>blowjobs</item>
+            <item>bukkake</item>
+            <item>butfuck</item>
+            <item>butfucker</item>
+            <item>buttfarmer</item>
+            <item>buttfuck</item>
+            <item>buttfucker</item>
+            <item>buttsex</item>
+            <item>camel jockey</item>
+            <item>camel-humper</item>
+            <item>camel-jockey</item>
+            <item>chink</item>
+            <item>clit</item>
+            <item>cock</item>
+            <item>cocks</item>
+            <item>cocksuck</item>
+            <item>cocksucked</item>
+            <item>cocksucker</item>
+            <item>cocksucking</item>
+            <item>cocksucks</item>
+            <item>coochie</item>
+            <item>coon</item>
+            <item>coonass</item>
+            <item>cornhole</item>
+            <item>cum</item>
+            <item>cummer</item>
+            <item>cumming</item>
+            <item>cums</item>
+            <item>cumshot</item>
+            <item>cunt</item>
+            <item>cuntlick</item>
+            <item>cuntlicker</item>
+            <item>cuntlicking</item>
+            <item>cunts</item>
+            <item>cyberfuc</item>
+            <item>cyberfuck</item>
+            <item>cyberfucked</item>
+            <item>cyberfucker</item>
+            <item>cyberfuckers</item>
+            <item>cyberfucking</item>
+            <item>damn</item>
+            <item>darky</item>
+            <item>deepthroat</item>
+            <item>dick</item>
+            <item>dickface</item>
+            <item>dickwad</item>
+            <item>dildo</item>
+            <item>dildos</item>
+            <item>dumbass</item>
+            <item>fag</item>
+            <item>fagging</item>
+            <item>faggot</item>
+            <item>faggs</item>
+            <item>fagot</item>
+            <item>fagots</item>
+            <item>fags</item>
+            <item>fcuk</item>
+            <item>fingerfuck</item>
+            <item>fingerfucked</item>
+            <item>fingerfucker</item>
+            <item>fingerfuckers</item>
+            <item>fingerfucking</item>
+            <item>fingerfucks</item>
+            <item>fistfuck</item>
+            <item>fistfucked</item>
+            <item>fistfucker</item>
+            <item>fistfuckers</item>
+            <item>fistfucking</item>
+            <item>fistfuckings</item>
+            <item>fistfucks</item>
+            <item>fuck</item>
+            <item>fucked</item>
+            <item>fucker</item>
+            <item>fuckerage</item>
+            <item>fuckeration</item>
+            <item>fuckerbitch</item>
+            <item>fuckerd</item>
+            <item>fuckerdoodle</item>
+            <item>fuckerdoodles</item>
+            <item>fuckerduck</item>
+            <item>fuckered</item>
+            <item>fuckeree</item>
+            <item>fuckerel</item>
+            <item>fuckerer</item>
+            <item>fuckerfish</item>
+            <item>fuckerfreakerin</item>
+            <item>fuckeries</item>
+            <item>fuckerific</item>
+            <item>fuckering</item>
+            <item>fuckerism</item>
+            <item>fuckerize</item>
+            <item>fuckermagar</item>
+            <item>fuckerman</item>
+            <item>fuckermit</item>
+            <item>fuckermother</item>
+            <item>fuckermuncher</item>
+            <item>fuckernacle</item>
+            <item>fuckernaut</item>
+            <item>fuckernickel</item>
+            <item>fuckernot</item>
+            <item>fuckernutter</item>
+            <item>fuckeroni</item>
+            <item>fuckeroo</item>
+            <item>fuckeroon</item>
+            <item>fuckeroonie</item>
+            <item>fuckerpants</item>
+            <item>fuckers</item>
+            <item>fuckers</item>
+            <item>fuckerton</item>
+            <item>fuckerware</item>
+            <item>fuckery</item>
+            <item>fucket</item>
+            <item>fucketarian</item>
+            <item>fucketh thine self</item>
+            <item>fucketifuck</item>
+            <item>fucketry</item>
+            <item>fuckette</item>
+            <item>fuckety</item>
+            <item>fuckever</item>
+            <item>fuckey</item>
+            <item>fuckeye</item>
+            <item>fuckeyed</item>
+            <item>fuckeyes</item>
+            <item>fuckface</item>
+            <item>fuckfaced</item>
+            <item>fuckfacedcunt</item>
+            <item>fuckfacehead</item>
+            <item>fuckfaceitis</item>
+            <item>fuckfaggot</item>
+            <item>fuckfarm</item>
+            <item>fuckfarm</item>
+            <item>fuckfarts</item>
+            <item>fuckfase</item>
+            <item>fuckfast</item>
+            <item>fuckfest</item>
+            <item>fuckfinger</item>
+            <item>fuckfish</item>
+            <item>fuckfist</item>
+            <item>fuckflap</item>
+            <item>fuckflesh</item>
+            <item>fuckfluff</item>
+            <item>fuckfolly</item>
+            <item>fuckfoot</item>
+            <item>fuckfor</item>
+            <item>fuckfry</item>
+            <item>fuckfuck</item>
+            <item>fuckful</item>
+            <item>fuckfurter</item>
+            <item>fuckhandles</item>
+            <item>fuckhappy</item>
+            <item>fuckhat</item>
+            <item>fuckhead</item>
+            <item>fuckheaded</item>
+            <item>fuckheadedness</item>
+            <item>fuckheadry</item>
+            <item>fuckhelmet</item>
+            <item>fuckher</item>
+            <item>fuckherface</item>
+            <item>fuckhole</item>
+            <item>fuckhole</item>
+            <item>fuckholes</item>
+            <item>fuckholio</item>
+            <item>fuckhoop</item>
+            <item>fuckhorse</item>
+            <item>fuckhuge</item>
+            <item>fuckidoo</item>
+            <item>fuckidy</item>
+            <item>fuckie</item>
+            <item>fuckieda</item>
+            <item>fuckies</item>
+            <item>fuckiest</item>
+            <item>fuckification</item>
+            <item>fuckified</item>
+            <item>fuckify</item>
+            <item>fuckilarious</item>
+            <item>fuckilicious</item>
+            <item>fuckily</item>
+            <item>fuckilydoodah</item>
+            <item>fuckin</item>
+            <item>fucking</item>
+            <item>fuckings</item>
+            <item>fuckme</item>
+            <item>fucks</item>
+            <item>fuckwad</item>
+            <item>fuk</item>
+            <item>fuks</item>
+            <item>gangbang</item>
+            <item>gangbanged</item>
+            <item>gangbanging</item>
+            <item>gangbangs</item>
+            <item>gaysex</item>
+            <item>goddamit</item>
+            <item>goddamn</item>
+            <item>gook</item>
+            <item>handjob</item>
+            <item>ho</item>
+            <item>hoebag</item>
+            <item>honkey</item>
+            <item>horniest</item>
+            <item>horny</item>
+            <item>hotsex</item>
+            <item>jack-off</item>
+            <item>jackoff</item>
+            <item>jerk-off</item>
+            <item>jerkoff</item>
+            <item>jism</item>
+            <item>jiz</item>
+            <item>jizm</item>
+            <item>kike</item>
+            <item>kock</item>
+            <item>kum</item>
+            <item>kummer</item>
+            <item>kumming</item>
+            <item>kums</item>
+            <item>mothafuck</item>
+            <item>mothafucka</item>
+            <item>mothafuckas</item>
+            <item>mothafuckaz</item>
+            <item>mothafucked</item>
+            <item>mothafucker</item>
+            <item>mothafuckers</item>
+            <item>mothafuckin</item>
+            <item>mothafucking</item>
+            <item>mothafuckings</item>
+            <item>mothafucks</item>
+            <item>motherfuck</item>
+            <item>motherfucked</item>
+            <item>motherfucker</item>
+            <item>motherfuckers</item>
+            <item>motherfuckin</item>
+            <item>motherfucking</item>
+            <item>motherfuckings</item>
+            <item>motherfucks</item>
+            <item>nigga</item>
+            <item>niggah</item>
+            <item>niggas</item>
+            <item>nigger</item>
+            <item>niggers</item>
+            <item>niggor</item>
+            <item>niggors</item>
+            <item>nigguh</item>
+            <item>nutsack</item>
+            <item>phonesex</item>
+            <item>phuk</item>
+            <item>phuked</item>
+            <item>phuking</item>
+            <item>phukked</item>
+            <item>phukking</item>
+            <item>phuks</item>
+            <item>phuq</item>
+            <item>poontang</item>
+            <item>prick</item>
+            <item>pricks</item>
+            <item>pussies</item>
+            <item>pussy</item>
+            <item>pussys</item>
+            <item>quim</item>
+            <item>raghead</item>
+            <item>redneck</item>
+            <item>shit</item>
+            <item>shited</item>
+            <item>shitfull</item>
+            <item>shiting</item>
+            <item>shitings</item>
+            <item>shits</item>
+            <item>shitted</item>
+            <item>shitter</item>
+            <item>shitters</item>
+            <item>shitting</item>
+            <item>shittings</item>
+            <item>shitty</item>
+            <item>skank</item>
+            <item>slut</item>
+            <item>sluts</item>
+            <item>smut</item>
+            <item>spic</item>
+            <item>spick</item>
+            <item>spik</item>
+            <item>spunk</item>
+            <item>tit</item>
+            <item>tities</item>
+            <item>tits</item>
+            <item>twat</item>
+            <item>wanker</item>
+            <item>wetback</item>
+            <item>whore</item>
+          </value>
+        </profanity>
+        <invalid_network_address category="global" type="array" sub-type="string" section="basic_network_settings" readonly="false" description="Strings that are not allowed to be used as network addresses (as in: http://network_address.peopleaggregator.net/)">
+          <value>
+            <item>ftp</item>
+            <item>mx</item>
+            <item>mail</item>
+            <item>pop</item>
+            <item>pop3</item>
+            <item>server1</item>
+            <item>server</item>
+            <item>smtp</item>
+            <item>webmail</item>
+            <item>www</item>
+            <item>default</item>
+            <item>blog</item>
+            <item>categories</item>
+            <item>configurable</item>
+            <item>content</item>
+            <item>content_routing</item>
+            <item>contentcollection</item>
+            <item>domains</item>
+            <item>domains_in</item>
+            <item>forgot</item>
+            <item>groups</item>
+            <item>mc</item>
+            <item>mc_db</item>
+            <item>message</item>
+            <item>moderation</item>
+            <item>modules</item>
+            <item>networks</item>
+            <item>page</item>
+            <item>page_default</item>
+            <item>private</item>
+            <item>relation</item>
+            <item>routing</item>
+            <item>routing_destination</item>
+            <item>spam</item>
+            <item>svn</item>
+            <item>tags</item>
+            <item>trackback</item>
+            <item>user</item>
+            <item>user_message</item>
+            <item>user_profile</item>
+            <item>users</item>
+          </value>
+        </invalid_network_address>
+      </value>
+    </basic_network_settings>
+    <network_defaults category="static_var" type="multi_array" readonly="false" description="Default Network Settings.">
+      <value>
+        <basic category="item" type="array" readonly="false" section="network_defaults" description="Basic user setting.">
+          <value>
+            <header_image>
+              <name></name>
+              <option>1</option>
+            </header_image>
+          </value>
+        </basic>
+        <notify_owner category="item" type="array" readonly="false" section="network_defaults" description="Default owner notification settings.">
+          <value>
+            <some_joins_a_network>
+              <caption>some one joins a network</caption>
+              <value>0</value>
+            </some_joins_a_network>
+            <content_posted>
+              <caption>posts or content is created</caption>
+              <value>0</value>
+            </content_posted>
+            <group_created>
+              <caption>a group is created on the network</caption>
+              <value>0</value>
+            </group_created>
+            <group_settings_updated>
+              <caption>group settings data changed</caption>
+              <value>0</value>
+            </group_settings_updated>
+            <media_uploaded>
+              <caption>media is uploaded to a user gallery</caption>
+              <value>0</value>
+            </media_uploaded>
+            <group_media_uploaded>
+              <caption>media is uploaded to a group gallery</caption>
+              <value>0</value>
+            </group_media_uploaded>
+            <relation_added>
+              <caption>a new relation is established</caption>
+              <value>0</value>
+            </relation_added>
+            <reciprocated_relation_estab>
+              <caption>a reciprocated relationship establsihed</caption>
+              <value>0</value>
+            </reciprocated_relation_estab>
+            <content_posted_to_comm_blog>
+              <caption>new content is sent to the home page community blog</caption>
+              <value>0</value>
+            </content_posted_to_comm_blog>
+            <report_abuse_on_content>
+              <caption>report abuse on contents</caption>
+              <value>1</value>
+            </report_abuse_on_content>
+            <report_abuse_on_comment>
+              <caption>report abuse on comments</caption>
+              <value>1</value>
+            </report_abuse_on_comment>
+            <content_modified>
+              <caption>content has been modified</caption>
+              <value>0</value>
+            </content_modified>
+            <new_user_registered>
+              <caption>new user registered on the network</caption>
+              <value>1</value>
+            </new_user_registered>
+          </value>
+        </notify_owner>
+        <notify_members category="item" type="array" readonly="false" section="network_defaults" description="Default member notification settings.">
+          <value>
+            <invitation_accept>
+              <caption>join network invitations have been accepted.</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </invitation_accept>
+            <invite_accept_group>
+              <caption>join group invitations have been accepted.</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </invite_accept_group>
+            <relationship_created_with_other_member>
+              <caption>someone has made them a friend or other kind of relation</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </relationship_created_with_other_member>
+            <someone_join_their_group>
+              <caption>someone has joined a group they created</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </someone_join_their_group>
+            <friend_request_sent>
+              <caption>someone has sent them a friend request</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </friend_request_sent>
+            <friend_request_approved>
+              <caption>someone has approve your friend request</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </friend_request_approved>
+            <friend_request_denial>
+              <caption>someone has denied to be their friend</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </friend_request_denial>
+            <bulletin_sent>
+              <caption>network operator has sent a bulletin</caption>
+              <value>0</value>
+              <user_settable>1</user_settable>
+            </bulletin_sent>
+            <welcome_message>
+              <caption>Welcome message</caption>
+              <value>1</value>
+              <user_settable>0</user_settable>
+            </welcome_message>
+          </value>
+        </notify_members>
+        <user_defaults category="item" type="array" readonly="false" section="network_defaults" description="User defaults.">
+          <value>
+            <user_friends></user_friends>
+            <default_image_gallery></default_image_gallery>
+            <default_audio_gallery></default_audio_gallery>
+            <default_video_gallery></default_video_gallery>
+            <default_links>0</default_links>
+            <default_blog>0</default_blog>
+            <desktop_image>
+              <name></name>
+              <option>1</option>
+            </desktop_image>
+          </value>
+        </user_defaults>
+        <relationship_options category="item" type="array" readonly="false" section="network_defaults" description="Relationship options.">
+          <value>
+            <closest_relation>
+              <caption>closest relation</caption>
+              <value>Best Friend</value>
+            </closest_relation>
+            <close_relation>
+              <caption>close relation</caption>
+              <value>Good friend</value>
+            </close_relation>
+            <relation>
+              <caption>relation</caption>
+              <value>Friend</value>
+            </relation>
+            <distant_relation>
+              <caption>distant relation</caption>
+              <value>Acquaintance</value>
+            </distant_relation>
+            <most_distant_relation>
+              <caption>most distant relation</caption>
+              <value>Haven't Met</value>
+            </most_distant_relation>
+          </value>
+        </relationship_options>
+        <network_group_title category="item" section="network_defaults" readonly="false" type="string">
+          <value>Community Blog</value>
+        </network_group_title>
+        <network_feature category="item" section="network_defaults" readonly="false" type="string">
+          <value></value>
+        </network_feature>
+        <top_navigation_bar category="item" section="network_defaults" readonly="false" type="bool">
+          <value>1</value>
+        </top_navigation_bar>
+        <network_content_moderation category="item" section="network_defaults" readonly="false" type="bool">
+          <value>0</value>
+        </network_content_moderation>
+        <reciprocated_relationship category="item" section="network_defaults" readonly="false" type="bool">
+          <value>1</value>
+        </reciprocated_relationship>
+        <captcha_required category="item" section="network_defaults" readonly="false" type="bool">
+          <value>0</value>
+        </captcha_required>
+        <show_people_with_photo category="item" section="network_defaults" readonly="false" type="bool">
+          <value>0</value>
+        </show_people_with_photo>
+        <msg_waiting_blink category="item" section="network_defaults" readonly="false" type="bool">
+          <value>0</value>
+        </msg_waiting_blink>
+        <email_validation category="item" section="network_defaults" readonly="false" type="bool">
+          <value>1</value>
+        </email_validation>
+        <language_bar_enabled category="item" section="network_defaults" readonly="false" type="bool">
+          <value>1</value>
+        </language_bar_enabled>
+        <default_language category="item" section="network_defaults" readonly="false" type="string">
+          <value>english</value>
+        </default_language>
+        <network_skin category="item" section="network_defaults" readonly="false" type="string">
+          <value>dream_place</value>
+        </network_skin>
+      </value>
+    </network_defaults>
+  </configuration>
+</application>

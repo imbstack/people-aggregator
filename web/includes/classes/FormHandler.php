@@ -5,8 +5,6 @@
   * @author Tekriti Software (http://www.tekritisoftware.com)
   */
 
-  global  $current_blockmodule_path;
-  
   class FormHandler {
    
   /**
@@ -85,13 +83,12 @@
      access type is private
     */
     private function _set_data() {
-      global $current_blockmodule_path;
       // When user don't specify the Action files
       if (!empty($this->action_file)) {
         $action_file = PA::$url .'/'.$this->action_file;
       }
       else {
-        $action_file = $current_blockmodule_path.'/'.$this->block_module_name.'/action.php';
+        $action_file = PA::$blockmodule_path.'/'.$this->block_module_name.'/action.php';
       }
       
       if(file_exists(PA::$project_dir . '/' .$action_file)  ||

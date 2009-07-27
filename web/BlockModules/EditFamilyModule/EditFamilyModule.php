@@ -10,14 +10,14 @@ class EditFamilyModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
 
   function __construct() {
-
+    parent::__construct();
     $this->title = __('Create Family');
     $this->html_block_id = get_class($this);
     $this->id = 0;
   }
 
   function load_data($error_msg='', $request_data=NULL) {
-    global $_PA, $global_form_data;
+    global $global_form_data;
     $array_tmp = array();
     if ($this->id > 0) {
       $this->title = __('Change Family Settings');
@@ -92,7 +92,7 @@ class EditFamilyModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-      global $_PA;
+       
         if (!empty($request_data['gid'])) {
             $this->id = $request_data['gid'];
         }
@@ -121,7 +121,6 @@ class EditFamilyModule extends Module {
   }
 
     public function handlePOST($request_data) {
-        global  $_PA, $uploaddir, $network_info;
         require_once "web/includes/classes/file_uploader.php";
         require_once "api/Activities/Activities.php";
         require_once "api/api_constants.php";
@@ -175,7 +174,7 @@ class EditFamilyModule extends Module {
                 } else {
                     $myUploadobj = new FileUploader; //creating instance of file.
                     $image_type = 'image';
-                    $file = $myUploadobj->upload_file($uploaddir, 'groupphoto', true, true, $image_type);
+                    $file = $myUploadobj->upload_file(PA::$upload_path, 'groupphoto', true, true, $image_type);
                     if ($file == false) {
                         throw new PAException(GROUP_PARAMETER_ERROR, __("File upload error: ").$myUploadobj->error);
                     }

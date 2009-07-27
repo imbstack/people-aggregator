@@ -48,12 +48,12 @@ class Testbench {
 	);
 
     function main() {
-	global $_PA;
+	 
 
-        if (!@$_PA->enable_widgetization_testbench) {
+        if (!@PA::$config->enable_widgetization_testbench) {
 ?>
 
-<p>Widgetization testbench must be enabled specifically by setting <code>$_PA->enable_widgetization_testbench = TRUE</code> in local_config.php.</p>
+<p>Widgetization testbench must be enabled specifically by setting <code>PA::$config->enable_widgetization_testbench = TRUE</code> in local_config.php.</p>
 
 <?php
             exit;

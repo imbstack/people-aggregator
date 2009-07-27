@@ -1,5 +1,5 @@
 <?php
-  global $current_theme_path;
+   
   // global var $_base_url has been removed - please, use PA::$url static variable
 
  
@@ -15,7 +15,7 @@
       $class = (( $counter%2 ) == 0) ? ' class="color"': NULL;
   ?>
     
-    <li<?php echo $class;?>><a href="#" ><img src="<?php echo $current_theme_path;?>/images/minus.gif" alt="ps" id="imagee_<?php echo $counter;?>" name="zz" onclick="javascript:show_hide_network_default_categories('link_id_<?php echo $counter;?>','plus.gif','imagee_<?php echo $counter;?>'); return false;" /></a><a href="#" onclick="javascript:show_hide_network_default_categories('link_id_<?php echo $counter;?>','plus.gif','imagee_<?php echo $counter;?>'); return false;">   
+    <li<?php echo $class;?>><a href="#" ><img src="<?php echo PA::$theme_url;?>/images/minus.gif" alt="ps" id="imagee_<?php echo $counter;?>" name="zz" onclick="javascript:show_hide_network_default_categories('link_id_<?php echo $counter;?>','plus.gif','imagee_<?php echo $counter;?>'); return false;" /></a><a href="#" onclick="javascript:show_hide_network_default_categories('link_id_<?php echo $counter;?>','plus.gif','imagee_<?php echo $counter;?>'); return false;">   
     <?php echo ucfirst(chop_string($links_data_array[$counter]['category_name'], 30)) ?></a>
       
       <ul id="link_id_<?php echo $counter;?>" class="display_true">

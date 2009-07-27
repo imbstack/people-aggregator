@@ -3,7 +3,6 @@ require_once dirname(__FILE__)."/../../config.inc";
 ob_start();
 $login_required = TRUE;
 include_once("web/includes/page.php");
-global $network_info;
 require_once "api/User/User.php";
 
 // PA includes
@@ -63,7 +62,7 @@ else {
 
 function default_page ($error='') 
 {
-    global $script_url, $current_theme_path, $sxip_properties;
+    global $script_url, $sxip_properties;
     if (isset($_POST['dix:/homesite'])) {
         $homesite = $_POST['dix:/homesite'];
     }
@@ -81,13 +80,13 @@ function default_page ($error='')
     <title>PeopleAggregator SXIP Profile Import</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en-us" />
-    <link rel="shortcut icon" href="<? echo $current_theme_path ?>/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="<? echo $current_theme_path ?>/favicon.ico" type="image/x-icon" />
-    <script src="<? echo $current_theme_path ?>/javascript/prototype.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="<? echo $current_theme_path ?>/style.css" type="text/css" />
+    <link rel="shortcut icon" href="<? echo PA::$theme_url ?>/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="<? echo PA::$theme_url ?>/favicon.ico" type="image/x-icon" />
+    <script src="<? echo PA::$theme_url ?>/javascript/prototype.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="<? echo PA::$theme_url ?>/style.css" type="text/css" />
 </head>
 <body style="background-color: white;">
-    <image name="dix:/membersite-logo-url" src="<?php echo $current_theme_path; ?>/images/sxipms-logo.jpg" />
+    <image name="dix:/membersite-logo-url" src="<?php echo PA::$theme_url; ?>/images/sxipms-logo.jpg" />
     <h1>PeopleAggregator SXIP Profile Import</h1>
 <?php if ($error) { ?>
     <div style="margin: 10px;background: #ffe6e6; padding: 5px;">
@@ -101,7 +100,7 @@ function default_page ($error='')
     <input type="hidden" name="dix:/membersite-name" value="PeopleAggregator SXIP Profile Import" />
     <input type="hidden" name="dix:/membersite-explanation" value="Whci profile fields do you want to import into you PeopleAggregator account?" />
     <input type="hidden" name="dix:/membersite-cancel-url" value="<?php echo $script_url; ?>?do=cancel" />
-    <input type="hidden" name="dix:/membersite-logo-url" value="<?php echo $current_theme_path; ?>/images/sxipms-logo.jpg" />
+    <input type="hidden" name="dix:/membersite-logo-url" value="<?php echo PA::$theme_url; ?>/images/sxipms-logo.jpg" />
     <!-- No fields are REQUIRED here!
     <input type="hidden" name="dix:/required" value="email" />
     <input type="hidden" name="dix:/required" value="persona_url" />
@@ -121,7 +120,7 @@ function default_page ($error='')
     ?>
     <label for="homesite">homesite</label><br />
     <input type="text" size="20" name="dix:/homesite" value="<?php echo $homesite; ?>" id="homesite" class="input_box" />
-    <input type="image" alt="sxip in" value="sxip in" src="<?php echo $current_theme_path; ?>/images/sxipin_btn_sq.gif" class="btn_sxip_in" id="sxip in" height="20" width="62" /> 
+    <input type="image" alt="sxip in" value="sxip in" src="<?php echo PA::$theme_url; ?>/images/sxipin_btn_sq.gif" class="btn_sxip_in" id="sxip in" height="20" width="62" /> 
     </form>
     <?php
     // echo htmlspecialchars(show_property_matrix());
@@ -163,7 +162,7 @@ function auto_post_page($action)
 
 function success_page()
 {
-    global $script_url, $current_theme_path, $login_uid;
+    global $script_url, $login_uid;
     ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -172,10 +171,10 @@ function success_page()
     <title>PeopleAggregator SXIP Profile Import</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en-us" />
-    <link rel="shortcut icon" href="<? echo $current_theme_path ?>/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="<? echo $current_theme_path ?>/favicon.ico" type="image/x-icon" />
-    <script src="<? echo $current_theme_path ?>/javascript/prototype.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="<? echo $current_theme_path ?>/style.css" type="text/css" />
+    <link rel="shortcut icon" href="<? echo PA::$theme_url ?>/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="<? echo PA::$theme_url ?>/favicon.ico" type="image/x-icon" />
+    <script src="<? echo PA::$theme_url ?>/javascript/prototype.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="<? echo PA::$theme_url ?>/style.css" type="text/css" />
     <style>
     .profilediff  {
       background-color: black;
@@ -197,7 +196,7 @@ function success_page()
     </style>
 </head>
 <body style="background-color: white;">
-    <image name="dix:/membersite-logo-url" src="<?php echo $current_theme_path; ?>/images/sxipms-logo.jpg" />
+    <image name="dix:/membersite-logo-url" src="<?php echo PA::$theme_url; ?>/images/sxipms-logo.jpg" />
     <h1>PeopleAggregator SXIP Profile Import</h1>
     <h2>The following data was imported into your User Profile</h2>
     <?php

@@ -4,7 +4,7 @@ $login_required = FALSE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require 'api/Rating/Rating.php';
-global $current_theme_path;
+ 
 $Rating = new Rating();
 if (!empty($_POST)) { 
   $Rating->set_rating_type(@$_POST['rating_type']);
@@ -17,11 +17,11 @@ if (!empty($_POST)) {
   $html = NULL;
   $html .= '<div class="as_recommend"><span class="as_bold">'.$rating['overall'].'</span></div><br>';
   if($_POST['rating'] == 1 ) {
-    $return['new'] = __('Your Recommendation: ').'<img src="'.$current_theme_path.'/images/rec_yes1.png" alt="star" />';
+    $return['new'] = __('Your Recommendation: ').'<img src="'.PA::$theme_url . '/images/rec_yes1.png" alt="star" />';
    $html .= '<div class="as_recommendit"><div class="recit_t as_bold">'.$return['new'].'</div></div>';
   }
   else {
-    $return['new'] = __('Your Recommendation: ').'<img src="'.$current_theme_path.'/images/rec_no1.png" alt="star" />';
+    $return['new'] = __('Your Recommendation: ').'<img src="'.PA::$theme_url . '/images/rec_no1.png" alt="star" />';
     $html .= '<div class="as_recommendit"><div class="recit_t as_bold">'.$return['new'].'</div></div>'; 
   }
 }

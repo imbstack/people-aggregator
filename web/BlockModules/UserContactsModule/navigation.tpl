@@ -1,6 +1,6 @@
 <?php
   error_reporting(E_ALL);
-  global $_PA;
+   
 
   function isActiveNav($section, $type) {
     echo ($section == $type) ? ' class="active"' : NULL;
@@ -30,7 +30,7 @@
   </li>
 
   <?php
-    if (empty($_PA->simple['omit_advacedprofile'])) {
+    if (empty(PA::$config->simple['omit_advacedprofile'])) {
   ?>
 
   <li <?php isActiveNav('blogs_rss', $type) ?>>

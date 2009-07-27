@@ -3,7 +3,7 @@ require_once "api/Tasks/Tasks.php";
 require_once "api/Roles/Roles.php";
 require_once "web/includes/classes/EmailMessagesConfig.class.php";
 
-class PaConfiguration {
+class NetworkConfig {
   public $error;
   private $var_names = array(
     'network_id',
@@ -40,7 +40,7 @@ class PaConfiguration {
                      'theme'
                ),
     'email_messages',
-    'roles_tasks'           
+    'roles_tasks'
   );
 
   public function getGeneralNetworkSettings() {
@@ -72,7 +72,7 @@ class PaConfiguration {
                    )
     );
 
-    $this->checkRequiredParams($required);                         
+    $this->checkRequiredParams($required);
     if(!empty($this->error)) {
         throw new Exception("Invalid configuration file. <br />" . $this->error);
     }
@@ -89,7 +89,7 @@ class PaConfiguration {
                                  'user_friends'
                            )
     );
-    $res = $this->getSettingsData($user_defaults, $this->settings['extra']);                     
+    $res = $this->getSettingsData($user_defaults, $this->settings['extra']);
     return $res['user_defaults'];
   }
 
@@ -113,7 +113,7 @@ class PaConfiguration {
     $notify_options = array(
        'msg_waiting_blink',
        'notify_owner' => array_keys(PA::$extra['notify_owner']),
-/*       
+/*
                          array('some_joins_a_network',
                                'content_posted',
                                'group_created',
@@ -124,9 +124,9 @@ class PaConfiguration {
                                'report_abuse_on_content',
                                'content_modified'
                          ),
-*/                         
+*/
         'notify_members' => array_keys(PA::$extra['notify_members'])
-/*        
+/*
                             array('invitation_accept',
                                   'relationship_created_with_other_member',
                                   'someone_join_their_group',
@@ -136,7 +136,7 @@ class PaConfiguration {
                                   'welcome_message',
                                   'msg_waiting_blink'
                             )
-*/                            
+*/
     );
     $this->checkRequiredParams($notify_options);
     $res = $this->getSettingsData($notify_options, $this->settings['extra']);
@@ -150,7 +150,7 @@ class PaConfiguration {
   public function getEmailMessagesSettings() {
     return $this->settings['email_messages'];
   }
-  
+
   private function getSettingsData($var_names, $settings) {
     $settings_data = array();
     foreach($var_names as $key => $var_name) {
@@ -163,12 +163,12 @@ class PaConfiguration {
           if(key_exists($sub_var, @$settings[$key])) {
             $settings_data[$key][$sub_var] = $settings[$key][$sub_var];
           }
-        }  
+        }
       }
     }
     return $settings_data;
   }
-  
+
   private function checkRequiredParams($required_params = array()) {
     foreach($required_params as $key => $var_name) {
       if(is_numeric($key)) {
@@ -180,7 +180,7 @@ class PaConfiguration {
           if(!isset($this->settings[$key][$sub_var])) {
             $this->addError("Parameter \"$sub_var\" is required!");
           }
-        }  
+        }
       }
     }
   }
@@ -188,7 +188,7 @@ class PaConfiguration {
   private function addError($msg) {
     $this->error .= $msg . "<br />";
   }
-  
+
   public function __construct($content = null) {
     $this->error = null;
     $this->loaded = $this->loadSettingsLocal();
@@ -215,50 +215,50 @@ class PaConfiguration {
   }
 
   public function storeSettingsLocal() {
-  
+
     $net_name = (!empty($this->settings['address'])) ? $this->settings['address'] : PA::$network_info->address;
     $file_path = DIRECTORY_SEPARATOR . 'networks' . DIRECTORY_SEPARATOR . $net_name;
-    
+
     if(is_dir(PA::$project_dir . $file_path)) {
       if(!is_writable(PA::$project_dir . $file_path)) {
         if(!chmod(PA::$project_dir . $file_path, 0777)) {
           throw new PAException(NETWORK_DIRECTORY_PERMISSION_ERROR, "Can't change permissions - Directory \"".PA::$project_dir . $file_path."\" should be writtable.");
         }
-      }  
+      }
       $file_name = PA::$project_dir . $file_path . DIRECTORY_SEPARATOR . "$net_name.xml";
     } else if(is_dir(PA::$core_dir . $file_path)) {
         if(!is_writable(PA::$core_dir . $file_path)) {
           if(!chmod(PA::$core_dir . $file_path, 0777)) {
             throw new PAException(NETWORK_DIRECTORY_PERMISSION_ERROR, "Can't change permissions - Directory \"".PA::$core_dir . $file_path."\" should be writtable.");
           }
-        }  
+        }
         $file_name = PA::$core_dir . $file_path . DIRECTORY_SEPARATOR . "$net_name.xml";
     }
     if(file_exists($file_name)) {
       unlink($file_name);
     }
-    foreach($this->settings['email_messages'] as &$message) {  // put message subject and body in CDATA section 
+    foreach($this->settings['email_messages'] as &$message) {  // put message subject and body in CDATA section
       $message['subject'] = "<![CDATA[" . htmlspecialchars_decode($message['subject']) . "]]>";
       $message['message'] = "<![CDATA[" . htmlspecialchars_decode($message['message']) . "]]>";
     }
-    
+
     $store = new XmlConfig($file_name);
     $store->loadFromArray($this->settings, $store->root_node);
     $store->saveToFile();
     $this->settings_file = $file_name;
   }
-  
+
   public function loadSettingsLocal() {
-  
+
     $net_name = PA::$network_info->address;
     $file_path = DIRECTORY_SEPARATOR . 'networks' . DIRECTORY_SEPARATOR . $net_name;
-    
+
     if(is_dir(PA::$project_dir . $file_path)) {
       if(is_readable(PA::$project_dir . $file_path)) {
         $file_name = PA::$project_dir . $file_path . DIRECTORY_SEPARATOR . "$net_name.xml";
       } else {
         throw new PAException(NETWORK_DIRECTORY_PERMISSION_ERROR, "Can't read data - Directory \"".PA::$project_dir . $file_path."\" is not readable.");
-      }  
+      }
     } else if(is_dir(PA::$core_dir . $file_path)) {
         if(is_readable(PA::$core_dir . $file_path)) {
           $file_name = PA::$core_dir . $file_path . DIRECTORY_SEPARATOR . "$net_name.xml";
@@ -283,10 +283,10 @@ class PaConfiguration {
     } else if(is_object($content)) {
        $vars_arr = get_object_vars($content);
        $vars_arr['extra'] = unserialize($vars_arr['extra']);
-       
+
        $vars_arr['email_messages'] = $this->settings['email_messages'];
        $vars_arr['roles_tasks'] = $this->settings['roles_tasks'];
-       
+
        $this->settings = $this->parseSettingsData($vars_arr, $this->var_names);
     } else {
        if(!$this->loaded) {
@@ -295,10 +295,10 @@ class PaConfiguration {
           $vars_arr['email_messages'] = $this->getDefaultMessages(false);
           $vars_arr['roles_tasks'] = $this->importRolesInfo();
           $this->settings = $this->parseSettingsData($vars_arr, $this->var_names);
-       }   
-    }  
+       }
+    }
   }
-  
+
   private function loadSettingsFromXml($xml_string) {
       $store = new XmlConfig();
       $res = @$store->loadXML($xml_string);
@@ -313,17 +313,17 @@ class PaConfiguration {
   public function getDefaultMessages($cdata = false) {
     $EmailMessageFile = PA::resolveRelativePath("web/config/email_messages.xml");
     if(!$EmailMessageFile) {
-      throw new Exception("PaConfiguration::getDefaultMessages() - Message template file: 'web/config/email_messages.xml' missing!");
+      throw new Exception("NetworkConfig::getDefaultMessages() - Message template file: 'web/config/email_messages.xml' missing!");
     }
     $emails = new EmailMessagesConfig($EmailMessageFile);
-    
+
     return ($cdata) ? $emails->asArray() : $emails->messages;
   }
-  
+
   public function importEmailMessagesOld() {
     global $email_messages;
     $e_messages = array();
-    
+
       foreach ($email_messages as $type_id=>$data) {
         $msg_type = $data['type'];
         $description = $data['description'];
@@ -331,12 +331,12 @@ class PaConfiguration {
         $message_file = $data['message'];
         $EmailMessageFile = PA::resolveRelativePath("web/config/email_msg_text/$message_file");
         if(!$EmailMessageFile) {
-          throw new Exception("PaConfiguration::importEmailMessagesOld() - Message template file: " . "'web/config/email_msg_text/$message_file' missing!");
+          throw new Exception("NetworkConfig::importEmailMessagesOld() - Message template file: " . "'web/config/email_msg_text/$message_file' missing!");
         }
 
         $fh = fopen($EmailMessageFile, 'r');
         if(!is_resource($fh)) {
-          throw new Exception("PaConfiguration::importEmailMessagesOld() - Unable to read message template file: '$EmailMessageFile'!");
+          throw new Exception("NetworkConfig::importEmailMessagesOld() - Unable to read message template file: '$EmailMessageFile'!");
         }
         $message_body = null;
         if(filesize($EmailMessageFile)) {

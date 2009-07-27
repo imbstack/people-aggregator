@@ -10,6 +10,7 @@ class MediaFullViewModule extends Module {
   public $outer_template = 'outer_public_center_wide_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->html_block_id = "MediaFullViewModule";
     $this->outer_class_name = get_class_name(PAGE_MEDIA_FULL_VIEW);
   }

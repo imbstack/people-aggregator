@@ -1,4 +1,4 @@
-<?php  global $login_uid, $current_theme_path;
+<?php 
   $other_args = (!empty($_GET['uid'])) ? '&uid='.$_GET['uid'] : NULL;
   $other_args .= (!empty($_GET['keyword'])) ? '&keyword='.$_GET['keyword'].'&name_string='.$_GET['name_string'] : NULL;
   $active = ' class="active"';
@@ -40,7 +40,7 @@
      <?php if (!empty($_GET['uid'])) {?>
       <input type='hidden' name="uid" value="<?php echo $_GET['uid']?>">  
     <? } ?>
-    <input type = "image" style="position:relative; top:6px" src="<?echo $current_theme_path;?>/images/go-btn.gif" />
+    <input type = "image" style="position:relative; top:6px" src="<?echo PA::$theme_url;?>/images/go-btn.gif" />
 
     </div>
 

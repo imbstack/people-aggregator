@@ -1,7 +1,4 @@
 <?php
-// global var $_base_url has been removed - please, use PA::$url static variable
-
-global $current_theme_path;
 $local_image_variable = FALSE;
 /*
 if ($type !='forum') {
@@ -55,27 +52,27 @@ $back_url = '&back_page=' . urlencode($back_page . ((isset($_GET['gid'])) ? '?gi
    ?>
   <tr>
    <td>
-     <a href="<?php echo $links[$i]->edit_link; ?>"><img src="<?php echo $current_theme_path;?>/images/16_edit.gif" alt="edit" title="<?= __("Edit") ?>" height="16" width="16" border="0" /></a>
-     <a href="<?php echo $links[$i]->delete_link . $back_url; ?>"><img src="<?php echo $current_theme_path;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
+     <a href="<?php echo $links[$i]->edit_link; ?>"><img src="<?php echo PA::$theme_url;?>/images/16_edit.gif" alt="edit" title="<?= __("Edit") ?>" height="16" width="16" border="0" /></a>
+     <a href="<?php echo $links[$i]->delete_link . $back_url; ?>"><img src="<?php echo PA::$theme_url;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0" title="Delete" /></a>
    </td>
    <td><a href="<?php echo $links[$i]->hyper_link; ?>">
      <?=chop_string($links[$i]->title);?> </a>
    </td>
      <?php if (empty($type_image) || !empty($local_image_variable)) {
                   if ($links[$i]->content_type == 'BlogPost') {
-                    $type_image = $current_theme_path."/images/type-blog.gif";
+                    $type_image = PA::$theme_url."/images/type-blog.gif";
                     $local_image_variable=TRUE;
                   }
                   if ($links[$i]->content_type == 'Image') {
-                    $type_image = $current_theme_path."/images/type-image.gif";
+                    $type_image = PA::$theme_url."/images/type-image.gif";
                     $local_image_variable=TRUE;
                   }
                   if ($links[$i]->content_type == 'Audio') {
-                    $type_image = $current_theme_path."/images/type-audio.gif";
+                    $type_image = PA::$theme_url."/images/type-audio.gif";
                     $local_image_variable=TRUE;
                   }
                   if ($links[$i]->content_type == 'Video') {
-                    $type_image = $current_theme_path."/images/type-video.gif";
+                    $type_image = PA::$theme_url."/images/type-video.gif";
                     $local_image_variable=TRUE;
                   }
             }

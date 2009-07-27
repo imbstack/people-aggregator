@@ -25,7 +25,7 @@ if($_GET['status'] == 'TRUE') {
     $new_im_al = new Album($alb_type);
     $new_im_al->author_id = $uid;
     $new_im_al->type = 2;
-    $album_title = !empty($_GET['new_album_video']) ? $_GET['new_album_video']: $_PA->default_album_titles[$alb_type];
+    $album_title = !empty($_GET['new_album_video']) ? $_GET['new_album_video']: PA::$config->default_album_titles[$alb_type];
     $new_im_al->title = $album_title;
     $new_im_al->name = $album_title;
     $new_im_al->description = $album_title;

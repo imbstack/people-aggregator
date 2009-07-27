@@ -395,7 +395,7 @@ ENS;
             }
       
 		    } else {
-			$img = uihelper_resize_mk_img_static("$current_theme_rel_path/$icon_file", 75, 75, NULL, "", RESIZE_FIT_NO_EXPAND);
+			$img = uihelper_resize_mk_img_static(PA::$theme_rel . "/$icon_file", 75, 75, NULL, "", RESIZE_FIT_NO_EXPAND);
 		    }
 		    $url_enc = htmlspecialchars(PA::$url . "/media_full_view.php?cid=".$obj['content_id']."&type=".$mfv_type);
 		    $title_enc = htmlspecialchars($obj['title']);

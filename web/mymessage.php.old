@@ -46,11 +46,11 @@ if ($uid != $login_uid) {
 
 $page = new PageRenderer("setup_module", PAGE_MESSAGE, sprintf(__("%s - Private Messages - %s"), $login_user->get_name(), $network_info->name), "container_one_column.tpl",'header_user.tpl', PRI, HOMEPAGE, $network_info);
 
-/*$css_path = $current_theme_path.'/layout.css';
+/*$css_path = PA::$theme_url . '/layout.css';
 $page->add_header_css($css_path);
-$css_path = $current_theme_path.'/network_skin.css';
+$css_path = PA::$theme_url . '/network_skin.css';
 $page->add_header_css($css_path);
-$css_path = $current_theme_path.'/edit_skin.css';
+$css_path = PA::$theme_url . '/edit_skin.css';
 $page->add_header_css($css_path);*/
 
 // Currently using the CSS from the live site, due to some problem in merging local and server CSS.
@@ -78,7 +78,7 @@ if (!empty($user_data_ui['newcss'])) {
   $page->add_header_html($usercss);
 }
 
-$page->add_header_html('<script type="text/javascript" language="javascript" src="'.$current_theme_path.'/javascript/messages.js"></script>');
+$page->add_header_html('<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/messages.js"></script>');
 
 // Get rid of the ", FALSE" below once the UI on this page is made
 // compatible with themes.  Right now if you make this themeable, the

@@ -6,6 +6,7 @@ Class NetworkFeatureModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->title = __('Featured Network');
     $this->main_block_id = 'mod_network_feature';
     $this->html_block_id = "NetworkFeatureModule";

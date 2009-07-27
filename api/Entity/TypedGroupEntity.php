@@ -73,16 +73,16 @@ class TypedGroupEntity extends Entity {
 	}
 	
 	public static function get_avail_types() {
-		global $_PA;
-		return $_PA->enum_typed_group_types;
+		 
+		return PA::$config->enum_typed_group_types;
 	}
 	public function get_avail_relations() {
-		global $_PA;
-		return $_PA->enum_typed_group_relations;
+		 
+		return PA::$config->enum_typed_group_relations;
 	}
 	public function get_profile_fields() {
-		global $_PA;
-		return $_PA->typed_group_profilefields;
+		 
+		return PA::$config->typed_group_profilefields;
 	}
 
 	public static function sync($data) {

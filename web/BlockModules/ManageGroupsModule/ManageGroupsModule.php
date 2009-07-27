@@ -47,6 +47,7 @@ class ManageGroupsModule extends Module {
   }
 
   function __construct() {
+    parent::__construct();
     $this->main_block_id = "ManageGroupsModule";
     $this->title = __('Manage Groups');
     $this->sort_dir = 'DESC';

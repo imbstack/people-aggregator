@@ -15,6 +15,7 @@ class PollModule extends Module {
   public $per_option;
   
   function __construct() {
+    parent::__construct();
     $this->title = __('Poll');
   }
   function render() {

@@ -2018,14 +2018,13 @@ class User {
   * @return count of online users
   */
   public static function count_online_users($timestamp) {
-    global $network_info;
     // delete user's entry that are older than $timestamp
     $sql = 'DELETE FROM {users_online}  WHERE timestamp < ?';
     $data = array($timestamp);
     $res = Dal::query($sql, $data);
     // Now get count of online registered user in a network
     $sql = 'SELECT count(*) AS cnt FROM {users_online} AS UO JOIN {networks_users} AS NU ON UO.user_id = NU.user_id WHERE NU.network_id = ? AND UO.timestamp between ? AND ?';
-    $data = array($network_info->network_id, $timestamp, time());
+    $data = array(PA::$network_info->network_id, $timestamp, time());
     $res = Dal::query($sql, $data);
     if ($res->numRows()) {
       $row = $res->fetchRow(DB_FETCHMODE_OBJECT);

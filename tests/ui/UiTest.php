@@ -6,12 +6,12 @@ require_once dirname(__FILE__).'/../../config.inc';
 class UiTest extends PHPUnit_Extensions_SeleniumTestCase
 {
     protected function setUp() {
-	global $_PA;
-	if (empty($_PA->selenium_host)) {
-	    echo ($msg = "Please set \$_PA->selenium_host in your local_config.php file to use Selenium UI automation tests")."\n";
+	 
+	if (empty(PA::$config->selenium_host)) {
+	    echo ($msg = "Please set \PA::$config->selenium_host in your local_config.php file to use Selenium UI automation tests")."\n";
 	    $this->markTestIncomplete($msg);
 	}
-	$this->setHost($_PA->selenium_host);
+	$this->setHost(PA::$config->selenium_host);
 	$this->setBrowser('*firefox');
 	$this->setBrowserUrl(PA::$url.'/');
 	$this->verificationErrors = array();

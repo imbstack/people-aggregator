@@ -1,5 +1,6 @@
-<?php global  $current_theme_path; ?>
-<h2 class="center_module"><span style="padding-right:5px;"><img alt="collapse" src="<?=$current_theme_path?>/images/arrow_dn.gif" id="BlockSettingModule" border="0" height="11" width="11"/></span><?=__("Blog Settings")?></h2>
+<?php 
+?>
+<h2 class="center_module"><span style="padding-right:5px;"><img alt="collapse" src="<?=PA::$theme_url?>/images/arrow_dn.gif" id="BlockSettingModule" border="0" height="11" width="11"/></span><?=__("Blog Settings")?></h2>
 <div class="blog" >
   <?= __("You have 3 blog options:") ?>
   <ul>

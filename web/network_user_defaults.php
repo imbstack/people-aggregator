@@ -2,7 +2,7 @@
 
   //anonymous user can not view this page;
 $login_required = TRUE;
-$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.  
+$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 //including necessary files
 include_once("web/includes/page.php");
 include_once "api/ModuleSetting/ModuleSetting.php";
@@ -10,10 +10,9 @@ include_once "api/Theme/Template.php";
 
 require_once "web/includes/network.inc.php";
 require_once "web/includes/classes/file_uploader.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 
-global $current_theme_path;
-global $uploaddir;
+
 $parameter = js_includes("all");
 $error = FALSE;
 
@@ -45,22 +44,22 @@ if(!empty($_REQUEST['config_action'])) {
           //  echo "<pre>".print_r($_REQUEST,1)."</pre>";
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $imported_defaults = $imported_config->getUserDefaults();
             $msg = __("File ") . $_FILES['local_file']['name'] . __(" loaded successfully.") . "<br />"
                        . __("Click \"Save\" button to save new settings.");
           } catch (Exception $e) {
             $error = TRUE;
             $error_msg = $e->getMessage();
-          }  
-        } 
+          }
+        }
       } else {
           $msg = __('Please, select a valid XML configuration file.');
       }
     break;
     case 'restore_defaults':
       try {
-        $imported_config = new PaConfiguration();
+        $imported_config = new NetworkConfig();
         $imported_defaults = $imported_config->getUserDefaults();
         $msg = __('Default settings sucessfully restored.') . "<br />"
                      . __("Click \"Save\" button to save new settings.");
@@ -78,7 +77,7 @@ if ( PA::$network_info ) {
   $form_data['extra'] = $db_extra;
   if(!empty($imported_defaults)) {
     $form_data['extra']['user_defaults'] = $imported_defaults;
-  }  
+  }
 }
 
 $action = (isset($_POST['config_action'])) ? $_POST['config_action'] : null;
@@ -107,13 +106,13 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
               $found_name[] = $n;
             } else {
                $not_found[] = $n;
-            } 
+            }
           }catch(PAException $e) {
             $not_found[] = $n;
-          }  
+          }
         }
       }
-    } 
+    }
     if (sizeof($found)) {
       $related = implode(",", $found_name);
     }
@@ -140,7 +139,7 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
   //user's default desktop image start
   if (!empty($_FILES['desktop_image']['name'])) {
     $myUploadobj = new FileUploader; //creating instance of file.
-    $file = $myUploadobj->upload_file($uploaddir,'desktop_image',true,true,'image'); 
+    $file = $myUploadobj->upload_file(PA::$upload_path,'desktop_image',true,true,'image');
     if (!$file) {
       $error_msg = $myUploadobj->error;
       $error = TRUE;
@@ -161,7 +160,7 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
   }
   else {
     $form_data['extra']['user_defaults']['default_image_gallery'] = '';
-  }  
+  }
 //audio album
   if(isset($_POST['multiple_audios'])) {
     $audio_albums[] = $_POST['multiple_audios'];
@@ -169,10 +168,10 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
       $comma_separated_audio = implode(',', $audio);
     }
     $form_data['extra']['user_defaults']['default_audio_gallery'] = $comma_separated_audio;
-  } 
+  }
   else {
     $form_data['extra']['user_defaults']['default_audio_gallery'] = '';
-  }  
+  }
   //video album
   if(isset($_POST['multiple_videos'])) {
     $video_albums[] = $_POST['multiple_videos'];
@@ -180,16 +179,16 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
       $comma_separated_video = implode(',', $video);
     }
     $form_data['extra']['user_defaults']['default_video_gallery'] = $comma_separated_video;
-  } 
+  }
   else {
     $form_data['extra']['user_defaults']['default_video_gallery'] = '';
-  } 
+  }
   // if default blog is set
     if(isset($_POST['default_blog'])) {
-      $form_data['extra']['user_defaults']['default_blog'] 
+      $form_data['extra']['user_defaults']['default_blog']
       = (int)$_POST['default_blog'];
-    } 
-  // end if default blog 
+    }
+  // end if default blog
   //now save
   $network = PA::$network_info;
   $extra = $form_data['extra'];
@@ -207,22 +206,22 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
         'changed'=>time()
       );
   $network->set_params($data);
-*/  
+*/
   $msg = "";
   try{
     $nid = $network->save();
     if( sizeof( $nid ) ) {
       $msg = __("Default settings for the network has been saved");
       if(!empty($_REQUEST['config_action']) && ($_REQUEST['config_action'] == 'store_as_defaults')) {
-        $export_config = new PaConfiguration();
+        $export_config = new NetworkConfig();
         $export_config->buildNetworkSettings($network);
         $export_config->storeSettingsLocal();
         $msg = 'Network default configuration file "' . $export_config->settings_file . '" successfully updated.';
       }
-      
+
       if(!empty($file)) {
         Storage::link($file, array("role" => "header")); // network header
-      }  
+      }
     }
   } catch (PAException $e) {
     $error = TRUE;
@@ -233,7 +232,7 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
 function setup_module($column, $module, $obj) {
   global $form_data,$ack_message,$configure_permission;
   if(!$configure_permission) return 'skip';
-  $obj->tpl_to_load = "user_defaults"; 
+  $obj->tpl_to_load = "user_defaults";
   $obj->form_data = $form_data;
   $obj->ack_message = $ack_message;
 }
@@ -255,7 +254,7 @@ $page->html_body_attributes ='class="no_second_tier network_config"';
       $page->add_header_css($value);
     }
   }
-  
+
   $css_data = inline_css_style();
   if (!empty($css_data['newcss']['value'])) {
     $css_data = '<style type="text/css">'.$css_data['newcss']['value'].'</style>';
@@ -263,5 +262,5 @@ $page->html_body_attributes ='class="no_second_tier network_config"';
   }
 
 echo $page->render();
-  
+
 ?>

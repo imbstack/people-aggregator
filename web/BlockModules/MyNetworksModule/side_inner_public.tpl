@@ -1,4 +1,5 @@
-<?php global $current_theme_rel_path;?>
+<?php 
+?>
 <div class="module_icon_list">
 		<ul class="members">
     <?php 

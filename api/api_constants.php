@@ -12,9 +12,9 @@ define_once('INACTIVE', -1);
 define_once('MARK_DELETED_USER', '#');
 define_once('UNVERIFIED', -2);
 // is_active will be 2 for content subjected to moderation.
-define_once('MODERATION_WAITING', 2); 
+define_once('MODERATION_WAITING', 2);
 
-//-------------------------------------- defined for edit profile page 
+//-------------------------------------- defined for edit profile page
 //---------------------------------------when user uploads his desktop image
 //-------------------following actions in form of radio buttons are given
 define_once('DESKTOP_IMAGE_ACTION_STRETCH',1);
@@ -131,9 +131,11 @@ define_once("LESS_THAN_EQUAL_TO", '<=');
 define_once("NOT_EQUAL_TO", '<>');
 
 
-// constants for the MessageBoard api These constant are defined in config.inc
-//define_once("PARENT_TYPE_MESSAGE", 'message');
-//define_once("PARENT_TYPE_COLLECTION", 'collection');
+// constants for the MessageBoard api
+define_once('PARENT_TYPE_CATEGORY','category');
+define_once('PARENT_TYPE_COLLECTION','collection');
+define_once('PARENT_TYPE_NEWS','news');
+define_once('PARENT_TYPE_MESSAGE','message');
 
 // constants for the Group api
 define_once("MEMBER", 'member');
@@ -143,7 +145,7 @@ define_once("NOT_A_MEMBER", 'not_a_member');
 
 // constants for recent media display
 define_once("RECENT_MEDIA_LIMIT",6);
-  
+
 define_once('ALLOW_ANONYMOUS',1);
 define_once('ANONYMOUS_USER_ID',-1);
 
@@ -161,6 +163,11 @@ define_once('USER_CONTRIBUTED', 0);
 define_once('ADMIN_CONTRIBUTED', 1);
 define_once('ITEM_MESSAGE', 1);
 define_once('ITEM_REVIEW', 2);
+
+/**
+ *  NOTE: CELEBRITY CODE REMOVED FROM CORE_V2
+ */
+/*
 define_once('CELEBRITIY_TYPE', 1);
 // contant for celeberities
 define_once('FEATURE_FIELD_NAME', 'feature');
@@ -169,7 +176,41 @@ define_once('CELEBRITY_REVIEW', 2);
 define_once('CELEBRITY_HEADLINE', 3);
 define_once('CELEBRITY_SONG', 4);
 define_once('CELEBRITY_ALBUM', 5);
+*/
+
 // constant for Rivers of people
 define_once("POPULARITY",1);
-define_once("TIME_INTERVAL", 2*24*60*60);//its number of seconds in two days 
+define_once("TIME_INTERVAL", 2*24*60*60);//its number of seconds in two days
+
+/** ---------------------------------------------------------------------------------------
+*
+*   Constant for profile information type.
+*
+**/
+define_once("BASIC", 4);
+define_once("GENERAL", 1);
+define_once("PERSONAL", 2);
+define_once("PROFESSIONAL", 3);
+
+/** ---------------------------------------------------------------------------------------
+*
+*   System Roles
+*
+**/
+define_once("ADMINISTRATOR_ROLE", 1);    // Network Admin Role
+define_once("LOGINUSER_ROLE", 2);        // Default Login User Role
+define_once("ANONYMOUS_ROLE", 3);        // Anonymous User Role
+define_once("GROUP_ADMIN_ROLE", 4);      // Group Administrator Role
+define_once("GROUP_MODERATOR_ROLE", 5);  // Group Moderator Role
+define_once("GROUP_MEMBER_ROLE", 6);     // Group Member Role
+
+/** ---------------------------------------------------------------------------------------
+*
+*   Tags
+*
+**/
+define_once('TAG_TYPE_COLLECTION',1);
+define_once('TAG_TYPE_CONTENT',2);
+define_once('DEFAULT_TAG_SOUP_SIZE',1);
+
 ?>

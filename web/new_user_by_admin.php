@@ -106,7 +106,7 @@
       if (!empty($_FILES['userfile']['name'])) {
         $myUploadobj = new FileUploader; //creating instance of file.
         $image_type = 'image';
-        $file = $myUploadobj->upload_file($uploaddir,'userfile',true,true,$image_type);
+        $file = $myUploadobj->upload_file(PA::$upload_path,'userfile',true,true,$image_type);
         if( $file == false) {
           $msg = $myUploadobj->error;
           $error = TRUE;

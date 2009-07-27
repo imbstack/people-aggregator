@@ -15,9 +15,9 @@ class WidgetServer {
     function handle_request() {
 	$json = new Services_JSON();
 	try {
-	    global $_PA, $HTTP_RAW_POST_DATA, $network_info;
-	    if (!@$_PA->enable_widgetization_server)
-		$this->fail("Widget server is not enabled; you must set \$_PA->enable_widgetization_server = TRUE in local_config.php.");
+	    global $HTTP_RAW_POST_DATA;
+	    if (!@PA::$config->enable_widgetization_server)
+		$this->fail("Widget server is not enabled; you must set \PA::$config->enable_widgetization_server = TRUE in local_config.php.");
 	    if ($_SERVER['REQUEST_METHOD'] != 'POST')
 		$this->fail("This URL handles POST requests only");
 	    if ($_SERVER['CONTENT_TYPE'] != 'application/x-javascript')
@@ -35,7 +35,7 @@ class WidgetServer {
 		// see if we can load it already
 		if (! PA::$login_user->load($this->global->user->user_id)) {
 		  // wasn't here before, so we create a shadow account
-		  PA::$login_user = ShadowUser::create($this->global->namespace, $this->global->user, $network_info);
+		  PA::$login_user = ShadowUser::create($this->global->namespace, $this->global->user, PA::$network_info);
 		}
 		
 		PA::$login_uid = PA::$login_user->user_id;

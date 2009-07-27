@@ -1,0 +1,39 @@
+body code {
+  color: blue;
+}
+body table {
+ width: 100%;
+ font-family: Arial, Verdana;
+ font-size:12px;
+ border: none;
+}
+
+table tr {
+  background-color: #eee;
+}
+
+#inst_msg {
+  width: auto;
+  padding: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: Arial, Verdana;
+  border: 1px solid silver;
+}
+
+.msg_ok {
+  background-color: #b7edae;
+  color: #000;
+}
+
+.msg_err {
+  background-color: #ffd0d0;
+  color: #ff0000;
+}
+
+.msg_warn {
+  background-color: #fec849;
+  color: #000;
+}

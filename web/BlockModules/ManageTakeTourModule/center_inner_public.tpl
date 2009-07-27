@@ -1,5 +1,5 @@
 <?php
- global $current_theme_path;
+  
  $has_links = !empty($links);
 ?>
 

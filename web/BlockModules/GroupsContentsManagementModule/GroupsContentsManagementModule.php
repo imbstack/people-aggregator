@@ -9,6 +9,7 @@ class GroupsContentsManagementModule extends Module {
   public $keyword, $month;
   
   function __construct() {
+    parent::__construct();
     $this->main_block_id = "mod_network_content_result";
     $this->title = sprintf(__('Manage %s Contents'), PA::$group_noun);
   }

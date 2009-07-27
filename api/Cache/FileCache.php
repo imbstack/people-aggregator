@@ -13,7 +13,7 @@ class FileCache {
      *
      * @param $cache_id string unique cache identifier
      * @param $content content of any PHP content type
-     * @param $expire int number of seconds the cache will live
+     * @param $expire  cache lifetime
      */
     public static function store($cache_id, $content, $expire = 120) {
         self::fetch($cache_id, $content, $expire);

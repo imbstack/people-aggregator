@@ -16,7 +16,7 @@ if (!empty($_REQUEST['return'])) {
 PA_Login::log_out();
 
 // invalidate the cache for user profile
-$file = "$current_theme_path/user_profile.tpl?uid=".PA::$login_uid;
+$file = PA::$theme_url . "/user_profile.tpl?uid=".PA::$login_uid;
 CachedTemplate::invalidate_cache($file);
 
 // kill the session

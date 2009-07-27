@@ -1,7 +1,7 @@
 <?php
-  global $_PA;
-  global  $current_theme_path;
-  require_once "web/includes/classes/xhtmlTagHelper.class.php";
+   
+   
+  require_once "web/includes/classes/xHtml.class.php";
   
   $req = '';
   if (isset($_REQUEST['GInvID'])) {
@@ -55,9 +55,9 @@
           <div class="field_medium">
             <h4><label><span class="required"> &nbsp; </span><?= __("Date of birth") ?>:</label></h4>
             <?php $days = array(); for($i = 1; $i < 32; $i++) $days[$i] = $i; ?>
-            <?= TagHelper::selectTag($days, array('name' => 'dob_day', 'id' => 'dob_day'), htmlspecialchars(@$_POST['dob_day'])) ?>
-            <?= TagHelper::selectTag(array_flip($_PA->months), array('name' => 'dob_month', 'id' => 'dob_month'), (!empty($_POST['dob_month'])) ? htmlspecialchars($_POST['dob_month']) : "1") ?>
-            <?= TagHelper::selectTag(array_flip($_PA->years), array('name' => 'dob_year', 'id' => 'dob_year'), htmlspecialchars(@$_POST['dob_year'])) ?>
+            <?= xHtml::selectTag($days, array('name' => 'dob_day', 'id' => 'dob_day'), htmlspecialchars(@$_POST['dob_day'])) ?>
+            <?= xHtml::selectTag(array_flip(PA::getMonthsList()), array('name' => 'dob_month', 'id' => 'dob_month'), (!empty($_POST['dob_month'])) ? htmlspecialchars($_POST['dob_month']) : "1") ?>
+            <?= xHtml::selectTag(array_flip(PA::getYearsList()), array('name' => 'dob_year', 'id' => 'dob_year'), htmlspecialchars(@$_POST['dob_year'])) ?>
           </div>
 
           <div class="field_medium">
@@ -77,13 +77,13 @@
 
           <div class="field_medium">
             <h4><label><span class="required"> &nbsp; </span><?= __("State/Province") ?>:</label></h4>
-            <?= TagHelper::selectTag(array_flip($states), array('name' => 'state', 'id' => 'state_1'), (isset($_POST['state'])) ? htmlspecialchars(@$_POST['state']) : -2) ?>
+            <?= xHtml::selectTag(array_flip($states), array('name' => 'state', 'id' => 'state_1'), (isset($_POST['state'])) ? htmlspecialchars(@$_POST['state']) : -2) ?>
             <input type="text" name="stateOther" id="stateOther" value="<?= htmlspecialchars(@$_POST['stateOther']) ?>" class="text display_false" />
           </div>
 
           <div class="field_medium">
             <h4><label><span class="required"> &nbsp; </span><?= __("Country") ?>:</label></h4>
-            <?= TagHelper::selectTag(array_flip($countries), array('name' => 'country', 'id' => 'country'), (isset($_POST['country'])) ? htmlspecialchars(@$_POST['country']) : -1) ?>
+            <?= xHtml::selectTag(array_flip($countries), array('name' => 'country', 'id' => 'country'), (isset($_POST['country'])) ? htmlspecialchars(@$_POST['country']) : -1) ?>
           </div>
 
           <div class="field_medium">
@@ -151,7 +151,7 @@
           </div>
           <? } ?>
           <input type = "hidden" name = "op" value = "register" />
-           <div class="button_position"> <input type="image" name="submit" id="joinbutton" value="<?= __("Join now") ?>" src="<?=$current_theme_path;?>/images/join-now.gif" alt="Join now"/></div>
+           <div class="button_position"> <input type="image" name="submit" id="joinbutton" value="<?= __("Join now") ?>" src="<?=PA::$theme_url;?>/images/join-now.gif" alt="Join now"/></div>
 
 <!--        </body> -->
        </fieldset>

@@ -15,7 +15,7 @@ class GroupModerateUserModule extends Module {
   public $page_links, $page_prev, $page_next, $page_count;
 
   function __construct() {
-
+    parent::__construct();
     $this->html_block_id = 'GroupModerateUserModule';
     $this->block_type = 'GroupModerateUser';
     $this->id = 0;
@@ -173,10 +173,9 @@ class GroupModerateUserModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_blockmodule_path;
     switch ( $this->mode ) {
      default:
-        $tmp_file = "$current_blockmodule_path/GroupModerateUserModule/center_inner_public.tpl";
+        $tmp_file = PA::$blockmodule_path . "/GroupModerateUserModule/center_inner_public.tpl";
     }
 
     $inner_html_gen = & new Template($tmp_file);

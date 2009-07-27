@@ -22,11 +22,10 @@ require_once "api/PageRenderer/PageRenderer.php";//FIX ME
 function js_includes($file, $optimize = true) {
     global $js_includes;
     global $js_includes_dont_optimize;
-    global $current_theme_path;
     if (!isset($js_includes)) {
         $js_includes = array();
     }
-    $path = $current_theme_path.DIRECTORY_SEPARATOR.'javascript'.DIRECTORY_SEPARATOR;
+    $path = PA::$theme_url.DIRECTORY_SEPARATOR.'javascript'.DIRECTORY_SEPARATOR;
     $file = trim($file);
     $sanity_check = explode(DIRECTORY_SEPARATOR, $file);
     if (1 < count($sanity_check)) {
@@ -55,7 +54,7 @@ This function prints html header with a link to style.css of a theme
 function html_header($title='', $optional_arguements='', $style_css='') {
   // global var $_base_url has been removed - please, use PA::$url static variable
 
-  global $current_theme_path, $use_theme;
+  global $use_theme;
 
   echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
 <html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:fb=\"http://www.facebook.com/2008/fbml\">\n";
@@ -68,7 +67,7 @@ function html_header($title='', $optional_arguements='', $style_css='') {
   }
   else {
     if( empty($use_theme) ) {    // TODO: Remove this when new UI is completely independent
-      echo "    <link rel=\"stylesheet\" href=\"$current_theme_path/style.css\" type=\"text/css\" />\n";
+      echo "    <link rel=\"stylesheet\" href=\"" . PA::$theme_url . "/style.css\" type=\"text/css\" />\n";
     }
   }
 
@@ -80,7 +79,6 @@ function html_header($title='', $optional_arguements='', $style_css='') {
 function html_body($optional_parameters='') {
   // global var $_base_url has been removed - please, use PA::$url static variable
 
-  global $current_theme_path;
   //$bgcolor="#ccccca";
   //$bgcolor="#333333";
   echo "<body $optional_parameters>\n";
@@ -96,7 +94,6 @@ function html_footer() {
 }
 
 function exception_handler($exception) {
-  global $current_theme_path;
 
   // clean out any buffering so we can write straight to the client
   while (@ob_end_clean());
@@ -158,20 +155,25 @@ mysql> <b>source <?php echo PA::$path ?>/db/PeepAgg.mysql</b></pre>
     // render an error message
     $code_esc = intval($exception->getCode());
     $msg_esc = htmlspecialchars($exception->getMessage());
-
+    $template_file = getShadowedPath(PA::$theme_path . '/exception.tpl');
+    $template = & new Template($template_file);
+    $template->set('code_esc', $code_esc);
+    $template->set('msg_esc', $msg_esc);
+    echo $template->fetch();
+/*
     $page = new PageRenderer(NULL, NULL, "Error $code_esc: $msg_esc", "container_one_column.tpl");
     $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/error_middle.tpl");
     $msg_tpl->set('code', $code_esc);
     $msg_tpl->set('msg', $msg_esc);
     $page->add_module("middle", "top", $msg_tpl->fetch());
 
-    $css_path = $current_theme_path.'/layout.css';
+    $css_path = PA::$theme_url . '/layout.css';
     $page->add_header_css($css_path);
-    $css_path = $current_theme_path.'/network_skin.css';
+    $css_path = PA::$theme_url . '/network_skin.css';
     $page->add_header_css($css_path);
     $page->header->set('navigation_links', null);//setting the links to null
     echo $page->render();
-
+*/
     // write a copy into the log
     Logger::log("An exception occurred: code ".$exception->getCode().", message ".$exception->getMessage()."\nLast error: ".var_export(error_get_last(), TRUE)."\n".$exception->getTraceAsString(), LOGGER_ERROR);
 
@@ -199,7 +201,7 @@ function default_exception() {
 
 // common file for edit profile- access perm pages
 function uihelper_get_user_access_list($name, $selected, $other_params=NULL) {
-	global $_PA;
+
   require_once "api/User/User.php";
   $output = "<select name=\"$name\" id=\"$name\"  class=\"select_access\" $other_params>";
   if ($selected == NONE) {
@@ -219,7 +221,7 @@ function uihelper_get_user_access_list($name, $selected, $other_params=NULL) {
   } else {
     $output .= '<option value="'.WITH_IN_DEGREE_1.'">'.__("Friends Only").'</option>';
   }
-	if (empty($_PA->no_family)) {
+	if (empty(PA::$config->no_family)) {
 		if ($selected == IN_FAMILY) {
 			$output .= '<option value="'.IN_FAMILY.'" selected="selected">'.__("In Family").'</option>';
 		} else {
@@ -245,7 +247,7 @@ function getimagehtml($image, $width, $height, $attributes="", $image_url="") {
  if (preg_match('/^http/', $image)) {
  	return '<img src="'.$image.'" class="sb-image" alt="" />';
  }
- 
+
  $img = getimagesize($image);  // returns actual image attributes
  if ($img[1]) {
    $w = $img[0]; // actual image width
@@ -333,11 +335,10 @@ function get_user_permalink($uid) {
 }
 
 function mothership_info() {
-  global $current_theme_path, $current_theme_rel_path;
   $m['url'] = BASE_URL_PA . PA_ROUTE_HOME_PAGE;
   //currently the homepage logo is this.. need to change this function if image name changes
-  $m['image'] = $current_theme_path.'/images/pa-logo.gif';
-  $m['rel_image'] = "$current_theme_rel_path/images/pa-logo.gif";
+  $m['image'] = PA::$theme_url . '/images/pa-logo.gif';
+  $m['rel_image'] = PA::$theme_path . "/images/pa-logo.gif";
   $m['name'] = 'PeopleAggregator';
   $m['members'] = User::get_member_count();
   $m['extra'] = array(
@@ -389,28 +390,28 @@ function get_age_options($field_name, $selected=null) {
 * Function to get the drop down for ad center - used on manage_ad_center.php
 */
 function get_ad_options($type, $selected = '') {
-  $x_options = array(0 => array('caption' => __('Select horizontal position'), 'value' => 0), 
+  $x_options = array(0 => array('caption' => __('Select horizontal position'), 'value' => 0),
                      1 => array('caption' => '1 - '.__('left').'', 'value' => 1),
-                     2 => array('caption' => '2 - '.__('center').'', 'value' => 2), 
-                     3 => array('caption' => '3 - '.__('right').'', 'value' => 3) 
+                     2 => array('caption' => '2 - '.__('center').'', 'value' => 2),
+                     3 => array('caption' => '3 - '.__('right').'', 'value' => 3)
                     );
-  $y_options = array(0 => array('caption' => __('Select vertical position'), 'value' => 0), 
+  $y_options = array(0 => array('caption' => __('Select vertical position'), 'value' => 0),
                      1 => array('caption' => '1 - '.__('top').'', 'value' => 1),
-                     2 => array('caption' => '2', 'value' => 2), 
+                     2 => array('caption' => '2', 'value' => 2),
                      3 => array('caption' => '3', 'value' => 3),
-                     4 => array('caption' => '4', 'value' => 4), 
+                     4 => array('caption' => '4', 'value' => 4),
                      5 => array('caption' => '5', 'value' => 5),
-                     6 => array('caption' => '6', 'value' => 6), 
+                     6 => array('caption' => '6', 'value' => 6),
                      7 => array('caption' => '7', 'value' => 7),
-                     8 => array('caption' => '8', 'value' => 8), 
-                     9 => array('caption' => '9', 'value' => 9)   
+                     8 => array('caption' => '8', 'value' => 8),
+                     9 => array('caption' => '9', 'value' => 9)
                     );
   $options = '';
   if ('horizontal' == $type) {
     foreach ($x_options as $k => $v) {
       $s = '';
       if (!empty($selected) && ($selected == $v["value"])) {
-        $s = ' selected="selected"';  
+        $s = ' selected="selected"';
       }
       $options .= '<option value="'.$v["value"].'" '.$s.'>'.$v["caption"].'</option>'.chr(10);
     }
@@ -419,17 +420,17 @@ function get_ad_options($type, $selected = '') {
     foreach ($y_options as $k => $v) {
       $s = '';
       if (!empty($selected) && ($selected == $v["value"])) {
-        $s = ' selected="selected"';  
+        $s = ' selected="selected"';
       }
       $options .= '<option value="'.$v["value"].'" '.$s.'>'.$v["caption"].'</option>'.chr(10);
     }
   }
-  return $options; 
+  return $options;
 }
 
-// Adding option for tag based search 
-function get_tag_search_option() {  
-  $search_options[] = array('caption'=>'Group Tag', 'value'=>'group_tag'); 
+// Adding option for tag based search
+function get_tag_search_option() {
+  $search_options[] = array('caption'=>'Group Tag', 'value'=>'group_tag');
 //   $search_options[] = array('caption'=>'Network Tag', 'value'=>'network_tag');
   $search_options[] = array('caption'=>'Member Tag', 'value'=>'user_tag');
   $search_options[] = array('caption'=>'Content', 'value'=>'content_tag');
@@ -440,7 +441,7 @@ function uihelper_generate_select_list($options = NULL, $attr = NULL, $selected 
   if ($attr !=NULL && is_array($attr)) {
     foreach($attr as $at=>$val) {
       $str .= "$at=\"$val\"";
-    } 
+    }
   }
   $str .=">";
   if ($options !=NULL && is_array($options)) {
@@ -453,7 +454,7 @@ function uihelper_generate_select_list($options = NULL, $attr = NULL, $selected 
       } else {
       $str .= "<option value=\"$val\" >$text</option>";
       }
-    } 
+    }
   }
   $str .= "</select>";
   return $str;

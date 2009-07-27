@@ -4,7 +4,7 @@ include_once("web/includes/page.php");
 global $network_info;
 // global var $path_prefix has been removed - please, use PA::$path static variable
 
-global $current_theme_path;
+ 
 
 require_once "BlockModules/ImagesModule/ImagesModule.php";
 require_once "BlockModules/FacewallModule/FacewallModule.php";
@@ -42,7 +42,7 @@ html_body($optional_parameters);
 
 // header
 $header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
-$header->set('current_theme_path', $current_theme_path);
+$header->set('current_theme_path', PA::$theme_url);
 if ($network_info) {
   $header->set_object('network_info', $network_info);
 }
@@ -60,7 +60,7 @@ print $content->fetch();
 
 // footer
 $footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
-$footer->set('current_theme_path', $current_theme_path);
+$footer->set('current_theme_path', PA::$theme_url);
 print $footer->fetch();
 
 print '</div>';

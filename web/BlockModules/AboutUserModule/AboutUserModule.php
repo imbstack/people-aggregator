@@ -12,6 +12,7 @@ class AboutUserModule extends Module {
   public $general_info, $personal_info, $professional_info;
  
   function __construct() {
+    parent::__construct();
     $this->block_type = 'AboutUser';
     $this->html_block_id = 'AboutUserModule';
     $this->uid = 0;

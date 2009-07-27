@@ -6,6 +6,7 @@ class PersonalAnnouncementModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Shout-out');
     $this->html_block_id = 'PersonalAnnouncementModule';
   }
@@ -98,7 +99,7 @@ class PersonalAnnouncementModule extends Module {
   }
 
   function generate_inner_html () {
-    global $_PA;
+     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl.php';
 
     $inner_html_gen = & new Template($tmp_file, $this);

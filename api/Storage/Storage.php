@@ -452,8 +452,8 @@ class Storage {
   // want to just call Storage::connect() to get the configured
   // backend.
   public static function connect($backend_type=NULL) {
-    global $_PA;
-    if (empty($backend_type)) $backend_type = $_PA->storage_backend;
+     
+    if (empty($backend_type)) $backend_type = PA::$config->storage_backend;
     if (!empty(Storage::$backends[$backend_type])) {
       // Cached
       return Storage::$backends[$backend_type];

@@ -1,4 +1,4 @@
-<?php global  $current_theme_path;
+<?php  
 
 require_once "web/includes/tinymce.php";
 //install_tinymce('minimal');

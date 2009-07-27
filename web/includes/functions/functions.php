@@ -8,7 +8,12 @@ require_once "api/Login/PA_Login.class.php";
 
 //return information about the current network
 function get_network_info() {
-  return Network::get_network_by_address(CURRENT_NETWORK_URL_PREFIX);
+  if(defined('CURRENT_NETWORK_URL_PREFIX'))  {
+    return Network::get_network_by_address(CURRENT_NETWORK_URL_PREFIX);
+  } else {
+    return Network::get_network_by_address('default');  // if CURRENT_NETWORK_URL_PREFIX not defined
+                                                        //  return mother network info
+  }
 }
 
 function get_path_to_root()

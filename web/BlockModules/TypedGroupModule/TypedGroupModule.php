@@ -10,6 +10,7 @@ class TypedGroupModule extends Module {
 
 
   function __construct() { 
+    parent::__construct();
     $this->outer_template = 'outer_public_center_module.tpl';
 	  $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/typedgroup.tpl.php";
     $this->title = __('Typed Group Settings');
@@ -40,12 +41,12 @@ class TypedGroupModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-  	global $_PA;
+  	 
     if (empty($this->shared_data['group_info'])) {
     	return 'skip';
     }
   	$this->gid = $this->shared_data['group_info']->collection_id;
-    if (empty($_PA->useTypedGroups)) {
+    if (empty(PA::$config->useTypedGroups)) {
   		return 'skip';
   	}
   	$this->shared_data['member_type'] = $member_type = Group::get_user_type(PA::$login_uid, (int)$this->gid);

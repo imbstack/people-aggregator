@@ -2,7 +2,7 @@
 require_once "web/includes/classes/Pagination.php";
 require_once "api/User/User.php";
 require_once "api/Network/Network.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 
 class RoleManageModule extends Module {
 
@@ -11,6 +11,7 @@ class RoleManageModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->main_block_id = "mod_network_user_result";
     $this->title = __('Manage Roles');
     $this->display = false;
@@ -65,7 +66,7 @@ class RoleManageModule extends Module {
         } else {
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $restore_roles = $imported_config->getRolesSettings();
             $_msg = __("Roles settings successfully loaded from ") . $_FILES['local_file']['name'] . __(" file.");
             $error_msg = $this->restoreRoleSettings($restore_roles, $_msg);
@@ -82,7 +83,7 @@ class RoleManageModule extends Module {
   private function handlePOST_storeRolesAsDefaults($request_data) {
     global $error_msg;
     $network = $this->shared_data['network_info'];
-    $export_config = new PaConfiguration();
+    $export_config = new NetworkConfig();
     $export_config->buildNetworkSettings($network);
     $export_config->storeSettingsLocal();
     $error_msg = 'Network default configuration file "' . $export_config->settings_file . '" successfully updated.';
@@ -90,7 +91,7 @@ class RoleManageModule extends Module {
 
   private function handlePOST_restoreRoleToDefaults($request_data) {
     global $error_msg;
-      $imported_config = new PaConfiguration();
+      $imported_config = new NetworkConfig();
       $restore_roles = $imported_config->importRolesInfo();
       $error_msg = $this->restoreRoleSettings($restore_roles);
   }

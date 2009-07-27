@@ -9,6 +9,7 @@ class QuestionsModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
  
   function __construct() {
+    parent::__construct();
     ////No need to specify the html_block_id if it is same as the name of the Module name.
     //$this->html_block_id = "QuestionsModule";    
   }

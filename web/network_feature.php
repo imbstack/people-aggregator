@@ -23,13 +23,9 @@
   require_once "web/includes/network.inc.php";
   $authorization_required = TRUE;
 
-
-global $network_info;
-
-  
   $msg = '';
   if( !$_POST ) {
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
 //     $featured_network = NULL;
     if ( ( int )$extra['network_feature'] != '' ) {
       $network = New Network();
@@ -43,12 +39,11 @@ global $network_info;
     if ( @$_POST['feature_network'] == 0 ) { // 0 for no selection
       $msg = 'Please select a network';
     } else {
-      global $network_info;
-      $network_basic_controls = $network_controls;
+      $network_basic_controls = PA::$network_defaults;
       $network_basic_controls['network_feature'] = $_POST['feature_network'];
       $data = array(
         'extra'=>serialize($network_basic_controls),
-        'network_id'=>$network_info->network_id,
+        'network_id'=>PA::$network_info->network_id,
         'changed'=>time()
       );
       $network = new Network;
@@ -68,7 +63,7 @@ global $network_info;
   }  
   
   
-  $page = new PageRenderer("setup_module", PAGE_NETWORK_FEATURE, __("Featured Network"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+  $page = new PageRenderer("setup_module", PAGE_NETWORK_FEATURE, __("Featured Network"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
   
 if ( !empty($msg) ) {
   $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");

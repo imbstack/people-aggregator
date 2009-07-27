@@ -34,6 +34,7 @@ class ForumModule extends Module {
 
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Forums');
     $this->forums_url = PA::$url . "/forums";
     $this->outer_template =  "outer_public_forums_center_module.tpl"; //'outer_public_center_module.tpl';
@@ -1552,7 +1553,6 @@ class ForumModule extends Module {
 
 
   function set_inner_template($template_fname) {
-    global $current_blockmodule_path;
     $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
   }
 

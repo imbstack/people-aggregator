@@ -11,7 +11,7 @@
 
 require_once dirname(__FILE__).'/../../config.inc';
 require_once "web/includes/classes/SimpleMSLiveClient.class.php";
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
 
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) and ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 
@@ -44,7 +44,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) and ($_SERVER['HTTP_X_REQUESTED_WITH
     break;
     default:
   }
-  $tags        = new xhtmlTagHelper();
+  $tags        = new xHtml();
   $js_submit = '
                    modal_hide();
                    document.forms[\'wlive_invite_form\'].submit();
@@ -130,7 +130,7 @@ EOT;
          <input type="button" name="reset_all_contacts" id="cont_reset_all" onclick="javascript: reset_all_chkbx();" value="Unselect All"/>
          <input type="submit" name="submit_contacts_wlive" id="submit_contacts_wlive" onclick="javascript:<?= $js_submit ?>" value="Submit"/>
 <!--
-         <img src="<?=$current_theme_path;?>/images/bt_submit.gif" class="input_image" name="submit_contacts_wlive" id="submit_contacts_wlive" style="cursor: pointer" alt="Login" titile="Login" onclick="javascript:<?= $js_submit ?>"/>
+         <img src="<?=PA::$theme_url;?>/images/bt_submit.gif" class="input_image" name="submit_contacts_wlive" id="submit_contacts_wlive" style="cursor: pointer" alt="Login" titile="Login" onclick="javascript:<?= $js_submit ?>"/>
 -->
       </div>
     </form>

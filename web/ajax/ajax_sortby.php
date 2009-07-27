@@ -15,7 +15,7 @@
 $login_required = FALSE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
-require_once "$current_blockmodule_path/MembersFacewallModule/MembersFacewallModule.php";
+require_once PA::$blockmodule_path . "/MembersFacewallModule/MembersFacewallModule.php";
 
 $shared_data = array();
 $uid = $app->getRequestParam('uid');

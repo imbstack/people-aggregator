@@ -1,7 +1,7 @@
 <div class="month-calendar">
 
 <?php
-global  $current_theme_path;
+ 
 // the containing page has passed
 // $may_edit, $assoc_id and $assoc_type
 

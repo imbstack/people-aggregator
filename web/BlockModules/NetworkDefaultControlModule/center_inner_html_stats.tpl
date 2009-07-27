@@ -1,6 +1,6 @@
-<?php global $current_theme_rel_path;
+<?php 
 
-$image_info =  uihelper_resize_img(@$form_data['inner_logo_image'], 70, 60, "$current_theme_rel_path/images/default-network-image.gif");
+$image_info =  uihelper_resize_img(@$form_data['inner_logo_image'], 70, 60, PA::$theme_rel . "/images/default-network-image.gif");
     
 $mother_network_info = Network::get_mothership_info();
 $extra = unserialize($mother_network_info->extra);
@@ -185,7 +185,7 @@ $extra = unserialize($mother_network_info->extra);
   <? } ?>
    <div class="button_position">
      <input type="hidden" name="action" id="action_1" value="<? echo @$form_data['action'];?>" />
-     <input type="hidden" name="nid" value="<? echo @$form_data['nid'];?>" />
+     <input type="hidden" name="nid" value="<? echo PA::$network_info->network_id; ?>" />
      <input type="hidden" name="config_action" id="config_action_1" value="" />
      <input name="submit" type="submit" value="<?= __("Save") ?>" />
     <?php if($page_id == PAGE_NETWORK_STATISTICS) : ?>
@@ -264,7 +264,7 @@ $extra = unserialize($mother_network_info->extra);
       </div>
       <div class="button_position">
         <input type="submit" name="submit" value="Delete Network" />
-        <input type="hidden" name="nid" value="<? echo $form_data['nid'];?>" />
+        <input type="hidden" name="nid" value="<? echo PA::$network_info->network_id; ?>" />
         <input type="hidden" name="action" value="delete" />
       </div>
     </fieldset>

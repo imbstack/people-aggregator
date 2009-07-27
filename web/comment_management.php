@@ -327,7 +327,7 @@ $user->load($login_uid);
 
 $page = new PageRenderer(NULL, PAGE_COMMENT_MANAGEMENT, "Manage comments", "container_one_column.tpl", "header.tpl");
 $page->add_header_js("fat.js");
-$page->add_header_css("$current_theme_path/comment_management.css");
+$page->add_header_css(PA::$theme_url . "/comment_management.css");
 
 $page->add_module("middle", "top", render_main_page_area($user));
 

@@ -1,8 +1,7 @@
 <div class="module_actions">
   <ul>
 <?php
-  global $current_theme_path, $_PA;
-	$c=0;
+  $c=0;
   foreach($actions as $k=>$action) {
   	if ($k=='highlight') continue;
   	$c++ ;

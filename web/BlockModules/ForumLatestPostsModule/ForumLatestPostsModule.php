@@ -16,6 +16,7 @@ class ForumLatestPostsModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
  
   function __construct() { 
+    parent::__construct();
     $this->title = __('Latest Forum Posts');
     $this->html_block_id = 'ForumLatestPostsModule';
     $this->forums_url = PA::$url . "/forums";
@@ -133,7 +134,6 @@ class ForumLatestPostsModule extends Module {
   }
 
   function set_inner_template($template_fname) {
-    global $current_blockmodule_path;
     $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
   }
 

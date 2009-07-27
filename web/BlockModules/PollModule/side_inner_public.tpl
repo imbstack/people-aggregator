@@ -1,4 +1,4 @@
-<div> <?php global $current_theme_path;?> <form method="post" action="<?php echo PA::$url?>/save_vote.php">
+<div> <?php  ?> <form method="post" action="<?php echo PA::$url?>/save_vote.php">
     <div id="poll_module">
       <h5><?php echo $topic[0]->title?></h5>
       <?php $cnt = count($options);

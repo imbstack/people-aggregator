@@ -76,14 +76,14 @@ class Message {
     	return false; // message does not exist
     }
   }
-  
+
   static function get_conversations($user_id) {
     $sql = 'SELECT uid, message_id, sender_id, all_recipients, subject, body, sent_time, in_reply_to, conversation_id
-    FROM message_folder AS MF, 
-    user_message_folder AS UMF, 
-    private_messages AS PM 
-    WHERE MF.fid = UMF.fid 
-    AND UMF.mid = PM.message_id 
+    FROM message_folder AS MF,
+    user_message_folder AS UMF,
+    private_messages AS PM
+    WHERE MF.fid = UMF.fid
+    AND UMF.mid = PM.message_id
     AND MF.uid = ?
     ORDER BY PM.conversation_id DESC, PM.sent_time ASC
     ';
@@ -101,20 +101,20 @@ class Message {
 	      $u = new User();
   	    try {
 					$u->load((int)$row->sender_id);
-					$sender_name = $sende_names[(int)$row->sender_id] = 
+					$sender_name = $sende_names[(int)$row->sender_id] =
 						$u->login_name;
   	    } catch (PAException $e) {
 		    	$sender_exists = FALSE;
   	    }
       }
-      if ($sender_exists) { // only add this message to display if the sender exists 
+      if ($sender_exists) { // only add this message to display if the sender exists
 	      $messages[$mid] = $row;
   	    $messages[$mid]->sender_name = $sender_name;
-      } 
+      }
     }
     return $messages;
   }
-  
+
   /**
   * Adds the given message for the given user id.
   *
@@ -145,7 +145,7 @@ class Message {
       }
     }
     $message_id = Dal::next_id('Message');
-    
+
     // see if we are part of a conversation
     if ($in_reply_to > 0) {
     	$conversation_id = Message::get_conversation_id($in_reply_to);
@@ -409,7 +409,7 @@ class Message {
   * @param int new id of the folder.
   */
   static function move_message_to_folder($index_ids, $new_folder_id, $message_id = null) {
-    
+
    Logger::log("Enter: function Message::move_message_to_folder()");
    $temp_arr =Array();
    $sql = "UPDATE {user_message_folder} SET fid = ? WHERE index_id = $index_ids[0]";
@@ -417,9 +417,9 @@ class Message {
    foreach($message_id as $message_ids){
      $message_value =explode("~" , $message_ids);
       if ($index_ids[0] == $message_value[1]){
-        $sql_mess .= "message_id  =  ".$message_value[0]; 
-         $temp_arr[] =  $message_value[0];       
-      }   
+        $sql_mess .= "message_id  =  ".$message_value[0];
+         $temp_arr[] =  $message_value[0];
+      }
    }
     for ($i = 1;$i < count($index_ids);$i++) {
           $sql .= " OR index_id = $index_ids[$i]";
@@ -429,13 +429,13 @@ class Message {
              continue;
             }
             if ($index_ids[$i] == $message_value[1]){
-              $temp_arr[] = $message_value[0]; 
-              $sql_mess .= " OR message_id  =  ".$message_value[0];         
-            }   
+              $temp_arr[] = $message_value[0];
+              $sql_mess .= " OR message_id  =  ".$message_value[0];
+            }
           }
    }
-         
-    
+
+
    $data = array(time());
    $res = Dal::query($sql_mess, $data);
    $data = array($new_folder_id);
@@ -510,18 +510,18 @@ class Message {
     	$u = new User();
     	$u->load((int)$row->user_id);
       $selected[] = array(
-      	'sender_name' => stripslashes($u->display_name), 
-      	'all_recipients' => stripslashes($row->all_recipients), 
-      	'sent_time' => $row->sent_time, 
-      	'subject' => stripslashes($row->subject), 
-      	'body' => stripslashes($row->body), 
-      	'message_id' => $row->message_id, 
-      	'sender_id' => $row->sender_id, 
-      	'fid' => $row->fid, 
-      	'size' => $row->size, 
-      	'index_id' => $row->index_id, 
-      	'reply' => $row->reply, 
-      	'forward' => $row->forward, 
+      	'sender_name' => stripslashes($u->display_name),
+      	'all_recipients' => stripslashes($row->all_recipients),
+      	'sent_time' => $row->sent_time,
+      	'subject' => stripslashes($row->subject),
+      	'body' => stripslashes($row->body),
+      	'message_id' => $row->message_id,
+      	'sender_id' => $row->sender_id,
+      	'fid' => $row->fid,
+      	'size' => $row->size,
+      	'index_id' => $row->index_id,
+      	'reply' => $row->reply,
+      	'forward' => $row->forward,
       	'total' => $total);
       $i++;
     }
@@ -733,7 +733,7 @@ class Message {
               $messages[$counter]['sender_name'] = $User->display_name;
               $counter++;
             } catch (PAException $e) {
-             // Caution :When user is deleted 
+             // Caution :When user is deleted
             }
           }
         }
@@ -750,7 +750,7 @@ class Message {
   // false, returns "NULL", which should hopefully result in an
   // unsorted result.
   private static function validate_sortby($sortby) {
-  
+
     switch ($sortby) {
     case 'sent_time':
       // Add more valid sort columns here.

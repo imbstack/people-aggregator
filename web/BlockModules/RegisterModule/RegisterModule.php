@@ -10,6 +10,7 @@ class RegisterModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->title = "Join ".PA::$site_name;
     $this->html_block_id = "RegisterModule";
     $this->states    = array("-2" => '-Select-', "-1" => 'Other');
@@ -40,7 +41,7 @@ class RegisterModule extends Module {
   }
   
   function generate_inner_html () {
-    global $current_theme_path;
+     
     
     $inner_template = NULL;
     switch ( $this->mode ) {
@@ -51,7 +52,7 @@ class RegisterModule extends Module {
     
     $obj_inner_template = & new Template($inner_template, $this);
     $obj_inner_template->set('array_of_errors', @$this->array_of_errors);    
-    $obj_inner_template->set('current_theme_path', $current_theme_path);
+    $obj_inner_template->set('current_theme_path', PA::$theme_url);
     $obj_inner_template->set('states', $this->states);
     $obj_inner_template->set('countries', $this->countries);
     $inner_html = $obj_inner_template->fetch();

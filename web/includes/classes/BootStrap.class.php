@@ -1,74 +1,7 @@
 <?php
-
-define("PA_LANGUAGES_DIR", "web/languages");
-
-/**
- * @class BootStrapException
- *
- * The BootStrapException class implements the basics methods for bootstrap and
- * installation exceptions.
- *
- *
- * @author     Zoran Hron <zhron@broadbandmechanics.com>
- * @version    0.0.1
- *
- *
- */
-class BootStrapException extends Exception
-{
-    const CONFIGURATION_EXCEPTION      = 1;
-    const UNRECOVERABLE_BOOT_EXCEPTION = 2;
-
-    public function __construct($message, $code = 0) {
-      switch($code) {
-        case self::CONFIGURATION_EXCEPTION:
-          $message = $this->formatConfigMessage($message);
-          echo $message;
-          exit;
-        break;
-        case self::UNRECOVERABLE_BOOT_EXCEPTION:
-          $msg = "<div style=\"border: 1px solid red; padding: 24px\">
-          <h1 style=\"color: red\">BootStrapException</h1>\r\n
-          <font style=\"color: red\">$message</font> \r\n
-          </div>\r\n";
-          echo $msg;
-          exit;
-        break;
-        default:
-          parent::__construct($message, $code);
-      }
-    }
-
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
-    }
-
-    private function formatConfigMessage($message) {
-      $msg = "<div style=\"border: 1px solid red; padding: 24px\">
-      <h1 style=\"color: red\">Configuration error</h1>\r\n
-      <font style=\"color: red\">$message</font> \r\n
-      <p>Here is a sample <code>local_config.php</code> file:</p>\r\n" .
-      $this->get_sample_local_config() . "</div>\r\n";
-      return $msg;
-    }
-
-    private function get_sample_local_config() {
-
-      $sample_base_url = "http://%network_name%." . PA_DOMAIN_SUFFIX . rtrim(PA_SCRIPT_PATH, "/");
-      return "<pre>&lt;?php\r\r\n".
-             "// database connection string\r\n".
-             "\$peepagg_dsn = \"mysql://user:password@server/databasename\";\r\r\n".
-             "// where to log messages and errors.  note that this file must be writeable by the web server.\r\n".
-             "\$logger_logFile = PA::\$path . \"/log/pa.log\";\r\r\n".
-             "// url of the \"web\" directory\r\n".
-             "\$base_url = \"$sample_base_url\";\r\r\n".
-             "// the constant part of the domain (such that if we chop this off the server name, we should get the network name).\r\n".
-             "\$domain_suffix = \"".PA_DOMAIN_SUFFIX."\";\r\r\n".
-             "?&gt;</pre>\r\n".
-             "<p>(except with your own database details).</p>";
-    }
-
-}
+require_once "api/Logger/Logger.php";
+require_once "web/includes/classes/XmlConfig.class.php";
+require_once "web/includes/classes/PADefender.class.php";
 
 /**
  * @class BootStrap
@@ -79,13 +12,12 @@ class BootStrapException extends Exception
  * registering global variables.
  *
  * @author     Zoran Hron <zhron@broadbandmechanics.com>
- * @version    0.0.1
+ * @version    0.1.2
  *
  *
  */
 class BootStrap {
 
- public  $pa_installed = false;
  public  $install_dir;
  public  $document_root;
  public  $script_dir;
@@ -104,53 +36,29 @@ class BootStrap {
  private $request_data;
  public  $installed_languages = array();
  public  $current_lang = null;
- private $rfc_ip_private_list = array(
-                                       "10.0.0.0/8",
-                                       "172.16.0.0/12",
-                                       "192.168.0.0/16"
-                                     );
+ private $pa_static_vars;
+ public  $configObj;
+ public  $configData;
+ public  $upload_max_filesize;
 
-   public function __construct($install_dir) {
-    global $current_route, $route_query_str;
+ private $defend_rules;
+
+   public function __construct($install_dir, $current_route, $route_query_str) {
 
     $this->current_route = $current_route;
     $this->current_query = $route_query_str;
     $this->debug = false;
     $this->install_dir = $install_dir;
     $this->killSlashes();
+    $defendObj = new XmlConfig(getShadowedPath('web/config/defend_rules.xml'), 'rules');
+    $this->defend_rules = $defendObj->asArray();
     $this->collectSystemData();
-    $this->pa_installed = $this->is_PA_installed();
     if($this->debug) {
-      echo "DOCUMENT_ROOT - "  . $this->document_root  . "<br />";
-      echo "SCRIPT_DIR - "     . $this->script_dir     . "<br />";
-      echo "SCRIPT_PATH - "    . $this->script_path    . "<br />";
-      echo "REQUEST_METHOD - " . $this->request_method . "<br />";
-      echo "CURRENT_SCHEME - " . $this->current_scheme . "<br />";
-      echo "HTTP_HOST - "      . $this->http_host      . "<br />";
-      echo "SERVER_NAME - "    . $this->server_name    . "<br />";
-      echo "DOMAIN_SUFFIX - "  . $this->domain_suffix  . "<br />";
-      echo "REMOTE_ADDR - "    . $this->remote_addr    . "<br />";
-      echo "REQUEST_URI - "    . $this->request_uri    . "<br />";
-      echo "BASE_URL - "       . $this->base_url       . "<br />";
-      echo "INSTALL_DIR - "    . $this->install_dir    . "<br />";
-      echo "USER_AGENT - "     . $this->user_agent     . "<br />";
+      echo "<pre>" . print_r($this,1) . "</pre>";
     }
    }
 
-   public function collectSystemData() {
-      //
-      // collect OS depended data
-      //
-      $path_separator = ":";
-      $dir_separator  = "/";
-      if(substr(PHP_OS, 0, 3) == "WIN") {
-         $path_separator = ";";
-         $dir_separator  = "\\";
-      }
-      if(!defined('PATH_SEPARATOR') || !defined('DIRECTORY_SEPARATOR')) {
-         define('PATH_SEPARATOR', $path_separator);
-         define('DIRECTORY_SEPARATOR', $dir_separator);
-      }
+   private function collectSystemData() {
 
       //
       // collect server data
@@ -195,7 +103,7 @@ class BootStrap {
 
 
       $domain_parts = explode(".", PA_SERVER_NAME);
-      if (count($domain_parts) > 1) {
+      if (count($domain_parts) > 2) {
         array_shift($domain_parts);
       }
       if (!preg_match("|^\d+\.\d+\.\d+\.\d+|", PA_SERVER_NAME)) {
@@ -220,6 +128,10 @@ class BootStrap {
       $this->user_agent = PA_USER_AGENT;
 
       $this->request_data = $_REQUEST;
+
+      $this->upload_max_filesize = parse_file_size_string(ini_get("upload_max_filesize"));
+
+
    }
 
    private function _normalize_URI($uri_str) {
@@ -264,10 +176,11 @@ class BootStrap {
 
    public function getIp()  {
      $ip = "unknown";
+     $rfc_ip_private_list = array("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16");
      $ip_array = $this->get_ip_array();
 
      foreach ( $ip_array as $ip_s ) {
-       if(($ip_s != "") and (!$this->is_ip_innets($ip_s, $this->rfc_ip_private_list))) {
+       if(($ip_s != "") and (!$this->is_ip_innets($ip_s, $rfc_ip_private_list))) {
          $ip = $ip_s;
          break;
        }
@@ -310,72 +223,309 @@ class BootStrap {
      return $tmp;
    }
 
-  /**
-   * Check is PA installed - look for "/web/config/install.log"
-   *
-   *
-   */
-  private function is_PA_installed() {
-    return file_exists(PA::$project_dir . "/web/config/local_config.php");
-  }
-
 
   /**
    * Load all configuration files in config scheme
    *
    *
    */
-  public function loadConfiguration($config_scheme) {
+  public function autoLoadFiles($config_scheme) {
     ob_start();
-      global $_PA, $base_url, $login_uid, $logger_logFile, $uploaddir;
-      global $peepagg_dsn, $domain_suffix, $query_count_on_page, $network_info, $network_prefix;
-      global $default_simplePA_settings, $current_theme_path, $current_theme_rel_path, $current_blockmodule_path;
-      global $global_form_data, $global_form_error, $error, $error_msg, $js_includes, $js_includes_dont_optimize;
-      global $pa_page_render_start, $debug_show_svn_version, $TRANSLATED_STRINGS;
-      global $flickr_api_key, $flickr_api_secret, $flickr_auth_type;
-      global $facebook_api_key, $facebook_api_secret, $facebook_auth_type;
-      global $aim_presence_key, $aim_api_key, $debug_annotate_templates, $network_controls, $invalid_network_address;
-      global $fortythree_api_key, $_form, $comments_disabled, $tags_allowed_in_fields;
-      global $default_sender, $default_links_array, $debug_for_user, $debug_disable_template_caching;
-      global $default_image_file_name, $default_image_title, $default_image_album_name;
-      global $default_audio_file_name, $default_audio_title, $default_audio_album_name;
-      global $default_video_file_name, $default_video_title, $default_video_album_name;
-      global $default_link_categories, $outputthis_error_message, $post_type_message;
-      global $allow_html_in_fields, $ping_server, $sb_dir_name, $sb_upload_dir, $sb_upload_url, $sb_mc_location;
-      global $optimizers_use_url_rewrite, $use_css_optimizer, $use_js_optimizer, $use_js_packer, $cssjs_tag;
-      global $query_count_on_page, $query_count_array;
 
-      $global_form_data = array();
-      $global_form_error = array();
+      foreach($GLOBALS as $key => $val) {
+        global $$key;
+      }
 
-      foreach($config_scheme as $config_file) {
+      foreach($config_scheme as $file_info) {
         try {
-           include($config_file);
+           $before_eval_vars = get_defined_vars();
+           $function_variable_names = array("function_variable_names" => 0, "before_eval_vars" => 0, "created" => 0);
+           eval("?>".require_once($file_info['file']));
+           $created = array_diff_key(get_defined_vars(), $GLOBALS, $function_variable_names, $before_eval_vars);
+           foreach($created as $created_name => $created_value) {
+              global $$created_name;
+           }
+           extract($created);
         } catch (Exception $e) {
            throw new BootStrapException($e->message ,1);
         }
       }
-    return ob_get_clean();
+      return ob_get_clean();
   }
 
+  public function loadConfigFile($fname) {
+    $this->pa_static_vars = array_keys(get_class_vars('PA'));
 
-  public function checkConfigVars() {
+    if(file_exists(PA::$core_dir . $fname)) {               // check for config data in core path
+      $core_conf = new XmlConfig(PA::$core_dir . $fname, 'application');
+      $core_conf = $core_conf->asArray();
+    } elseif(file_exists(PA::$core_dir . "{$fname}.distr")) { // or try to load default config file
+      $core_conf = new XmlConfig(PA::$core_dir . "{$fname}.distr", 'application');
+      $core_conf = $core_conf->asArray();
+      $export_config = new XmlConfig(PA::$core_dir . $fname, 'application');  // and create AppConfig.xml
+      $export_config->loadFromArray($core_conf, $export_config->root_node);
+      $export_config->saveToFile();
+    } else {
+        throw new BootStrapException( "BootStrap::loadConfigFile() - Unable to load \"$fname\"config. file!", 1 );
+    }
 
-    // Make sure that all the vars are set
-    foreach (array('peepagg_dsn', 'logger_logFile', 'base_url', 'domain_suffix', 'current_theme_rel_path') as $varname)
-    {
-      if (!isset($GLOBALS[$varname]))
-      {
-        if (defined("PEEPAGG_CONFIGURATION")) throw new BootStrapException("Error - \$$varname should be defined by the config process", 1);
+    if(file_exists(PA::$project_dir . $fname)) { // check for config data in paproject path
+      $core_keys = array_keys($core_conf['configuration']);
+      $proj_conf = new XmlConfig(PA::$project_dir . $fname, 'application');
+      $proj_conf = $proj_conf->asArray();
+      foreach($proj_conf['configuration'] as $pr_key => $pr_value) {
+         if(in_array($pr_key, $core_keys)) {
+           unset($core_conf['configuration'][$pr_key]);  // config section overwritten by project data
+         }
+         $core_conf['configuration'][$pr_key] = $pr_value;
+      }
+    }
+    $this->configData = $core_conf;
+    $this->configObj  = new XmlConfig(null, 'application');
+    $this->configObj->loadFromArray($this->configData, $this->configObj->root_node);
+    $this->parseConfigFile('configuration', $core_conf['configuration']);
+    $this->afterParse();
+  }
+
+  /**
+  *  BOOT main network, detect local networks
+  *
+  * detect network name and work out $base_url
+  *
+  **/
+  public function detectNetwork() {
+
+    $host = PA_SERVER_NAME;
+    // URL to the root of the server.
+    $base_url = "http://%network_name%.{$this->domain_suffix}";
+
+    if( PA::$ssl_force_https_urls == true ) {
+      $base_url = str_replace( 'http', 'https', $base_url );
+    }
+
+    if( !PA::$config->enable_networks || !$this->domain_suffix ) {              // spawning disabled
+      define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+      define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
+      PA::$config->enable_network_spawning = FALSE;
+      PA::$domain_suffix = $this->domain_suffix;
+    } else {
+      // network operation is enabled - figure out which network we're on
+      PA::$network_capable = TRUE;
+      PA::$domain_suffix = $this->domain_suffix;             // Check that $base_url includes %network_name
+      // Make sure $domain_suffix is formatted correctly
+      if( preg_match( '/^\./', $this->domain_suffix ) ) {
+        throw new BootStrapException( "Invalid domain sufix detected. Value: " . $this->domain_suffix, 1 );
+      }
+
+      // Allow sessions to persist across entire domain
+      ini_set( 'session.cookie_domain', $this->domain_suffix );
+
+      // Now see if this request is for a sub-network, and load its settings if so
+      if(strrpos($host, $this->domain_suffix) != strlen($host) - strlen($this->domain_suffix)) {
+         // Something is wrong with $domain_suffix - it's not showing up at the end of $host.
+         // (e.g. $host == "www.pa.example.com" and $this->domain_suffix == "pa.someotherexample.com").
+         // Just assume the default network.
+         define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+         $network_prefix = 'default';   // mother network
+      } else {
+         $network_prefix = substr( $host, 0, strlen( $host ) - strlen( $this->domain_suffix ) );
+         $network_prefix = preg_replace( '/\.*$/', '', $network_prefix );
+
+         if( !$network_prefix || $network_prefix == 'www' )  {
+           // special case - default network
+           define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+           $network_prefix = 'default';
+         }
+
+         $network_folder = null;
+         $core_network_folder = PA::$core_dir . "/networks/$network_prefix";     // network exists in CORE ?
+         $proj_network_folder = PA::$project_dir . "/networks/$network_prefix";  // network exists in PROJECT ?
+
+         if(is_dir($core_network_folder))  {
+            $network_folder = $core_network_folder;
+         } elseif(is_dir($proj_network_folder)) {
+            $network_folder = $proj_network_folder;
+         }
+
+         if($network_folder)  { // network exists
+            if(!defined('CURRENT_NETWORK_URL_PREFIX')) {
+              define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+            }
+            define( 'CURRENT_NETWORK_FSPATH', $network_folder );
+            if(file_exists(CURRENT_NETWORK_FSPATH . '/local_config.php')) {
+              // and it has its own config file
+              include( CURRENT_NETWORK_FSPATH . '/local_config.php' );
+            }
+         } else {
+            throw new BootStrapException( "Unable to locate network: " . htmlspecialchars($network_prefix) . "." . $this->domain_suffix, 1 );
+         }
       }
     }
 
-    // Check for deprecated features
-    foreach (array('config_site_name' => 'PA::$site_name', 'peepagg_lang' => 'PA::$language', ) as $oldvar => $newvar) {
-      if (isset($GLOBALS[$oldvar])) {
-        echo "<p>Your local_config.php or project_config.php contains a definition for \$$oldvar (setting it to '".htmlspecialchars($$oldvar)."').  This is deprecated and should be replaced by $newvar.</p><p>e.g. <code>$newvar = '".htmlspecialchars(str_replace("'", "\'", $$oldvar))."';</p>";
-        exit;
+    // at this point, network is detected and we can start to work with the variables they define.
+    // put network prefix in $base_url
+    $base_url_pa = str_replace( '%network_name%', 'www', $base_url );// LOCAL
+    $base_url = PA::$url = str_replace( '%network_name%', CURRENT_NETWORK_URL_PREFIX, $base_url );
+
+    // now we are done with $base_url - it gets define()d and we work out
+    // the relative version (for ajax)
+    define( 'BASE_URL_PA', $base_url_pa );
+    define( 'BASE_URL', $base_url );
+
+    $base_url_parts = parse_url( $base_url );
+    PA::$local_url = preg_replace( '|/$|', '', @$base_url_parts[ 'path' ] ? $base_url_parts[ 'path' ] : '' );
+    define( 'BASE_URL_REL', PA::$local_url );
+
+    // work out theme path and check that it exists
+    define( 'CURRENT_THEME_REL_URL', PA::$local_url . '/' . PA::$theme_rel );
+    define( 'CURRENT_THEME_FSPATH', PA::$theme_path );
+    define( 'CURRENT_THEME_FS_CACHE_PATH', PA::$project_dir . '/web/cache' );
+
+    // Finally - Load network!
+    PA::$network_info = get_network_info(); // NOTE this should be retrieved from network XML config file
+    PA::$extra = unserialize(PA::$network_info->extra);
+  }
+
+  public function detectDBSettings() {
+    global $peepagg_dsn;
+    // figure out CURRENT_DB.
+    $peepagg_dsn = "mysql://". PA::$config->db_user .
+                          ":". PA::$config->db_password .
+                          "@". PA::$config->db_host .
+                          "/". PA::$config->db_name;
+
+    if(empty(PA::$config->db_user) || empty(PA::$config->db_password) || empty(PA::$config->db_host) || empty(PA::$config->db_name)) {
+      throw new BootStrapException("Invalid DB connection string. Value: " . $peepagg_dsn, 1);
+    }
+
+    if(defined( 'CURRENT_DB' ))
+    {
+      throw new BootStrapException("CURRENT_DB already defined but CURRENT_DB should not be defined outside BootStrap class!", 1);
+    }
+    define('CURRENT_DB', PA::$config->db_name);
+  }
+
+
+  private function parseConfigFile($name, $values) {
+    $type = null;
+    $category = null;
+    $section = null;
+    foreach($values as $_name => $_value) {
+      if($_name == '@attributes') {
+        $category = (!empty($_value['category'])) ? $_value['category'] : null;
+        $section = (!empty($_value['section'])) ? $_value['section'] : null;
+        $type = (!empty($_value['type'])) ? $_value['type'] : null;
+        continue;
       }
+        if((($type <> 'array') && ($type <> 'multi_array')) && is_array($_value)) {
+         $this->parseConfigFile($_name, $_value);
+        } else {
+          if($category == 'constant') {
+            if($type == 'expression') {
+              $exp = "\$var_value = $_value; return true;";
+              if(!eval($exp)) {
+                 throw new BootStrapException("Error - invalid config variable \"$name\", category: \"$category\", type: \"$type\"", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+              }
+              define($name, $var_value);
+            } else {
+              define($name, $_value);
+            }
+          } else if($category == 'global') {
+            if($type == 'expression') {
+              $exp = "\$var_value = $_value; return true;";
+              if(!eval($exp)) {
+                 throw new BootStrapException("Error - invalid config variable \"$name\", category: \"$category\", type: \"$type\"", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+              }
+              $GLOBALS[$name] = $var_value;
+            } else {
+              $GLOBALS[$name] = $_value;
+            }
+          } else if(($category == 'dynamic_var') || ($category == 'static_var') || ($category == 'item')) {
+             $var_value = null;
+             switch($type ) {
+                case 'bool':
+                case 'int':        $exp = "\$var_value = (int)$_value; return true;";  break;
+                case 'array':      $exp = "\$var_value = \$_value; return true;";      break;
+                case 'string':     $exp = "\$var_value = \"$_value\"; return true;";   break;
+                case 'expression': $exp = "\$var_value = $_value; return true;";       break;
+                case 'multi_array':
+                        $exp =  "foreach(\$_value as \$m_key => &\$m_val) {
+                                   if(is_array(\$m_val)) {
+                                      \$m_val = \$this->parseConfigFile(\$m_key, \$m_val);
+                                      \$var_value = \$_value;
+                                    } else {
+                                      \$var_value = \$_value;
+                                    }
+                                 }
+                                 return true;";
+                    break;
+                default:
+                    $exp = "\$var_value = $_value;";
+             }
+             if(!eval($exp)) {
+               throw new BootStrapException("Error - invalid config variable \"$name\", category: \"$category\", type: \"$type\"", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+             }
+             switch($category) {
+                case 'dynamic_var' :
+                  PA::$config->{$name} = $var_value;
+                break;
+                case 'static_var' :
+                  if(in_array($name, $this->pa_static_vars)) {
+                    PA::$$name = $var_value;
+                  } else {
+                    throw new BootStrapException("Error - Static variable \"$name\" must be defined within PA class as static property.", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+                  }
+                break;
+                case 'item' :
+                    return $var_value;
+                break;
+                default:
+                  throw new BootStrapException("Error - unknown config variable type! Var name: \"$name\", category: \"$category\", type: \"$type\"", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+             }
+          }
+        }
+    }
+
+  }
+
+  /**
+  *
+  * NOTE: here should be placed code that should be executed after parsing the config data
+  **/
+  private function afterParse() {
+    require_once "web/includes/functions/functions.php";
+      if(PA::$profiler) PA::$profiler->startTimer('PADefender');
+//      filter_all_post($_GET);
+//      filter_all_post($_POST);
+//      filter_all_post($_REQUEST);
+      PADefender::testArrayRecursive($_GET, $this->defend_rules);
+      PADefender::testArrayRecursive($_POST, $this->defend_rules);
+      PADefender::testArrayRecursive($_REQUEST, $this->defend_rules);
+
+      if(PA::$profiler) PA::$profiler->stopTimer('PADefender');
+
+    // Path to performance log file for detailed performance logging - for spam debugging.
+    if(isset(PA::$config->perf_log) && (!empty(PA::$config->perf_log))) {
+       register_shutdown_function("pa_log_script_execution_time");
+//       pa_log_script_execution_time(TRUE);
+    }
+
+    // populate GLOBAL var $file_type_info with max. upload file size value
+    foreach ($GLOBALS['file_type_info'] as &$fti) {
+      if($fti['max_file_size'] > $this->upload_max_filesize) {
+        $fti['max_file_size'] = $this->upload_max_filesize;
+      }
+    }
+
+    // enable new-style storage system
+    if (PA::$config->use_storage) define("NEW_STORAGE", TRUE);
+
+    // load profanity words list from file - merge with list from XML
+    $profanity_file = getShadowedPath(PA::$config_path .'/profanity_words.txt');
+    if($profanity_file) {
+      $prof_arr = explode("\r\n", file_get_contents(PA::$project_dir . "/web/config/profanity_words.txt"));
+      $prof_arr = array_merge((array)PA::$config->profanity, (array)$prof_arr);
+      PA::$config->profanity = array_unique($prof_arr);
     }
   }
 
@@ -405,8 +555,14 @@ class BootStrap {
    *
    *
    */
-  public function loadInternationalization() {
-
+  public function loadLanguageFiles() {
+    $culture_file = getShadowedPath(PA::$config_path .'/i18n.xml');
+    $culture_data = new XmlConfig($culture_file);
+    if($culture_data->docLoaded) {
+      PA::$culture_data = $culture_data->asArray();
+    } else {
+      throw new BootStrapException("Error - Can't load \"$culture_file\" culture file.", BootStrapException::UNRECOVERABLE_BOOT_EXCEPTION);
+    }
     $this->installed_languages = $this->getLanguagesList();
     session_start();
     if(!empty($this->request_data['lang'])) {
@@ -417,9 +573,11 @@ class BootStrap {
     } else if(isset($_SESSION['user_lang'])) {
       $this->current_lang = $_SESSION['user_lang'];
     } else {
-      $net_info = get_network_info();
-      $net_settings = unserialize($net_info->extra);
-      $this->current_lang = (isset($net_settings['default_language'])) ? $net_settings['default_language'] : 'english';
+      if(PA::$config->pa_installed)  {
+        $net_info = get_network_info();
+        $net_settings = unserialize($net_info->extra);
+        $this->current_lang = (isset($net_settings['default_language'])) ? $net_settings['default_language'] : 'english';
+      }
     }
     session_commit();
 
@@ -429,24 +587,29 @@ class BootStrap {
 
     ob_start();
     global $TRANSLATED_STRINGS;
-      $strings_file = "web/languages/".PA::$language."/strings.php";
-      if(PA::$language != 'english') {
-         try {
-           require_once($strings_file);
+      $strings_file = getShadowedPath("web/languages/".PA::$language."/strings.php");
+      try {
+            if(file_exists($strings_file)) {
+               eval('?>' . require_once($strings_file));
+            }
+            $msg_handler = getShadowedPath("web/languages/".PA::$language."/MessagesHandler.php");
+            if(file_exists($msg_handler)) {
+               eval('?>' . require_once($msg_handler));
+            } else {
+               eval('?>' . require_once getShadowedPath("web/languages/english/MessagesHandler.php"));
+            }
         } catch (Exception $e) {
            // Either an invalid language was selected, or one (e.g. English) without a strings.php file.
            $TRANSLATED_STRINGS = array();
            throw new BootStrapException($e->message ,1);
         }
-      }
       return ob_get_clean();
   }
 
 
   // figure out the remote IP address and check against the ban list
   public function check_ip_ban() {
-    global $_PA;
-    if (in_array(PA::$remote_ip, $_PA->trusted_proxies))
+    if (in_array(PA::$remote_ip, PA::$config->trusted_proxies))
       return;
     $ban_path = "ban/".str_replace(".", "/", PA::$remote_ip);
     if (file_exists($ban_path)) {
@@ -460,7 +623,7 @@ class BootStrap {
     global $page_uid, $page_user, $login_uid, $login_name, $login_user;
     require_once "api/User/User.php";
 
-    session_start();
+      session_start();
       PA::$login_uid = NULL;
       PA::$login_user =  NULL;
       $login_uid = NULL;
@@ -522,7 +685,7 @@ class BootStrap {
         $user = PA::$user = PA::$login_user;
       }
       session_commit();
-  }
+ }
 
   private function getUserAgent($ua) {
 
@@ -607,6 +770,57 @@ class BootStrap {
     $value = is_array($value) ? array_map(array($this,'stripslashes_deep'), $value) : stripslashes($value);
     return $value;
   }
-
 }
+
+/**
+ * @class BootStrapException
+ *
+ * The BootStrapException class implements the basics methods for bootstrap and
+ * installation exceptions.
+ *
+ *
+ * @author     Zoran Hron <zhron@broadbandmechanics.com>
+ * @version    0.1.2
+ *
+ *
+ */
+class BootStrapException extends Exception
+{
+    const CONFIGURATION_EXCEPTION      = 1;
+    const UNRECOVERABLE_BOOT_EXCEPTION = 2;
+
+    public function __construct($message, $code = 0) {
+      switch($code) {
+        case self::CONFIGURATION_EXCEPTION:
+          $message = $this->formatErrMessage($message);
+          echo $message;
+          exit;
+        break;
+        case self::UNRECOVERABLE_BOOT_EXCEPTION:
+          $msg = "<div style=\"border: 1px solid red; padding: 24px\">
+                    <h1 style=\"color: red\">BootStrapException</h1>\r\n
+                    <p style=\"color: red\">$message</p> \r\n
+                  </div>\r\n";
+          echo $msg;
+          exit;
+        break;
+        default:
+          parent::__construct($message, $code);
+      }
+      Logger::log("BootStrapException: $message", LOGGER_ERROR, LOGGER_FILE);
+    }
+
+    public function __toString() {
+        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    }
+
+    private function formatErrMessage($message) {
+      $msg = "<div style=\"border: 1px solid red; padding: 24px\">
+                <h1 style=\"color: red\">Configuration error</h1>\r\n
+                <p style=\"color: red\">$message</p>\r\n
+              </div>\r\n";
+      return $msg;
+    }
+}
+
 ?>

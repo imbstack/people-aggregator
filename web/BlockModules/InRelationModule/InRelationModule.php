@@ -8,6 +8,7 @@ class InRelationModule extends Module {
   public $uid, $user_name;
   
   function __construct() {
+    parent::__construct();
     $this->title = __("Added as a friend by");
     $this->html_block_id = "InRelationModule";    
   }

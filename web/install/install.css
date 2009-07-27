@@ -1,0 +1,219 @@
+
+body{
+  color: #000;
+  background-color: #ff9900;
+  font-family: Arial, Verdana;
+  font-size:12px;
+}
+
+body code {
+  color: blue;
+  background-color: #fed7d7;
+}
+
+body table {
+ width: 100%;
+ border: none;
+}
+
+table tr {
+  background-color: #eee;
+}
+
+body iframe {
+/*  border: 1px solid #aaa; */
+}
+
+p {
+ padding: 12px;
+}
+
+fieldset {
+  padding: 24px;
+  margin: 24px;
+  border: 1px solid #005ebd;
+  background-color: #eee;
+}
+
+fieldset legend {
+  font-weight: bold;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: #ff9900;
+}
+
+fieldset input {
+  border: 1px solid #aaa;
+  padding: 1px;
+  margin-bottom: 2px;
+}
+
+fieldset label {
+  float: left;
+  display: block;
+  width: 40%;
+}
+
+label.title {
+  width: 100%;
+  font-family: Times New Roman, Verdana;
+  font-weight: bold;
+  font-size: 22px;
+  color: #fff;
+  float: left;
+  text-align: center;
+  padding-top: 4px;
+/*  border: 1px solid green; */
+}
+
+h3 {
+  display: inline;
+}
+
+.inst_info {
+  color: #005ebd;
+  padding: 0px;
+}
+
+#inst_top {
+  width: 794px;
+  height: 34px;
+  background-color: #fff;
+  background-image: url(/install/bg_top.jpg);
+  background-repeat: no-repeat;
+}
+
+#inst_bottom {
+  width: 794px;
+  height: 34px;
+  background-color: #fff;
+  background-image: url(/install/bg_bottom.jpg);
+  background-repeat: no-repeat;
+}
+
+#inst_main {
+  background-color: #fff;
+  background-image: url(/install/bg_middle.jpg);
+  background-repeat: repeat-y;
+/*  border: 2px solid #666;
+
+  padding: 12px;
+  width: 70%;
+*/
+  width: 794px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#inst_logo {
+ width: 754px;
+ margin-left: 12px;
+ height: 56px;
+ background-image: url(/images/pa_logo_static_pages.gif);
+ background-repeat: no-repeat;
+}
+
+.bt {
+ display: block;
+ width: 61px;
+ height: 30px;
+ float: left;
+}
+
+.back {
+ background-image: url(/install/back-button.gif);
+ background-repeat: no-repeat;
+}
+
+.next {
+ background-image: url(/install/next-button.gif);
+ background-repeat: no-repeat;
+ float:right;
+}
+
+.submit {
+ background-image: url(/install/submit-button.gif);
+ background-repeat: no-repeat;
+ float: right;
+}
+
+
+#inst_header {
+  width: 754px;
+  margin-left: 12px;
+  height: 38px;
+/*  border: 1px solid #666;  */
+  padding: 0px;
+  background-image: url(top_bg.jpg);
+  background-repeat: repeat-x;
+}
+
+#inst_logo img {
+  float:right;
+}
+
+#inst_center {
+  width: 752px;
+  margin-left: 12px;
+  padding-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #000;
+  border: 1px solid silver;
+}
+
+#inst_form_data {
+/*
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  border: 1px solid silver;
+*/
+}
+
+#inst_msg {
+  width: 744px;
+  margin-left: 12px;
+  padding: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  border: 1px solid silver;
+}
+
+.msg_ok {
+  background-color: #b7edae;
+  color: #000;
+}
+
+.msg_err {
+  background-color: #ffd0d0;
+  color: #ff0000;
+}
+
+.msg_info {
+  background-color: #fff;
+  color: #3a2580;
+  font-weight: normal;
+}
+
+.msg_warn p {
+  background-color: #fec849;
+  color: #000;
+}
+
+#inst_navig {
+  padding-left: 124px;
+  padding-right: 124px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.clear {
+  clear: both
+}

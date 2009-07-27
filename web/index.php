@@ -49,7 +49,7 @@ $mothership_info = mothership_info();
     <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
     <meta name="generator" content="Adobe GoLive">
     <title>Welcome to PeopleAggregator</title>
-    <link href="<?php echo $current_theme_path;?>/style_index.css" rel="stylesheet" type="text/css" media="all">
+    <link href="<?php echo PA::$theme_url;?>/style_index.css" rel="stylesheet" type="text/css" media="all">
     <?
     echo $parameter;
     ?>

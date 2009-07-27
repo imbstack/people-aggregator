@@ -1,14 +1,13 @@
 <? 
 $login_required = FALSE;
 include_once("web/includes/page.php");
-global $current_theme_path, $current_theme_rel_path;
 ?>
 
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
 xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
 xmlns="http://www.w3.org/TR/REC-html40">
-<link href="<?php echo $current_theme_path;?>/pa_utility_template.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo PA::$theme_url;?>/pa_utility_template.css" rel="stylesheet" type="text/css" />
 <head>
 </head>
 <body>

@@ -194,19 +194,32 @@ class ModuleSetting {
   * Function will take the field_name and value in the form of key => value pair
   */
   public static function get_pages_default_setting($page_type, $only_configurable = true, $from_XML = false) {
+    global $app;
+
     Logger::log('Enter: function ModuleSetting::get_pages_default_setting');
     if(FileCache::is_cached($page_type .'_module_default_setting')) {
       $settings = FileCache::fetch($page_type .'_module_default_setting');
       return $settings;
     } else {
       $return = array();
-      $pages = array_flip(getConstantsByPrefix('PAGE_'));  // function defined in helper_functions.php
-      foreach($pages as $key => $const_name) {
+
+      $results = $app->configObj->query("//*[@section='pages']");
+//echo "Results:<pre>" . print_r($results, 1). "</pre>"; die();
+
+//      $pages = array_flip(getConstantsByPrefix('PAGE_'));  // function defined in helper_functions.php
+//      foreach($pages as $key => $const_name) {
+      foreach($results as $const_name => $key) {
         if(is_numeric($key)) {
           $page_settings = self::load_setting($key, PA::$network_info->network_id, $page_type, null, $only_configurable);
           if($page_settings) {
-            $dynamic_page = new DynamicPage($key);
-           if(!is_object($dynamic_page) or !$dynamic_page->docLoaded) {
+            $cache_id = "dyn_page_$key";
+            if(FileCache::is_cached($cache_id)) {
+              $dynamic_page = FileCache::fetch($cache_id);
+            } else {
+              $dynamic_page = new DynamicPage($key);
+              FileCache::store($cache_id, $dynamic_page, 1200);
+            }
+            if(!is_object($dynamic_page) or !$dynamic_page->docLoaded) {
               throw new Exception("Page XML config file for page ID: $page_id - not found!");
             }
             $dynamic_page->initialize();
@@ -221,7 +234,7 @@ class ModuleSetting {
           }
         }
       }
-      FileCache::store($page_type .'_module_default_setting', $return);
+      FileCache::store($page_type .'_module_default_setting', $return, 1200);
     }
     Logger::log('Exit: function ModuleSetting::get_pages_default_setting');
     return $return;

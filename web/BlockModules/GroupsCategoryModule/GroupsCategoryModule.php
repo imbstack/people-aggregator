@@ -13,6 +13,7 @@ class GroupsCategoryModule extends Module {
   public $sub_cid, $total_groups;
 
   function __construct() {
+    parent::__construct();
   }
   
   public function initializeModule($request_method, $request_data) {

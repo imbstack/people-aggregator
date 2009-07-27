@@ -10,6 +10,7 @@ class PointsDirectoryModule extends Module {
   public $module_placement = 'middle';
 
   function __construct() {
+    parent::__construct();
     $this->title = null;
     $this->user_id = null;
     $this->class_name = get_class($this);

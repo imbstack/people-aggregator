@@ -13,6 +13,7 @@ class PermalinkModule extends Module {
 
   function __construct() {
     //$this->title = __("Post Permalink");
+    parent::__construct();
     $this->main_block_id = "mod_permalink";
     $this->html_block_id = "PermalinkModule";
   }
@@ -300,7 +301,7 @@ class PermalinkModule extends Module {
     return $content;
   }
   function generate_inner_html () {
-    global $current_theme_path;
+     
     return uihelper_generate_center_content($this->content_id, 1);
   }
 }

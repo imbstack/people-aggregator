@@ -10,6 +10,7 @@ class RankingModule extends Module {
   public $error = "";
   
   function __construct() {
+    parent::__construct();
     $this->title = __("Site Ranking");
   }
   

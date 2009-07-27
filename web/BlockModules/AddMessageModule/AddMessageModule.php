@@ -27,6 +27,7 @@ class AddMessageModule extends Module {
   public $title;
 
   public function __construct() {
+    parent::__construct();
     $this->title = __('Compose');
   }
 
@@ -178,14 +179,13 @@ class AddMessageModule extends Module {
   }
   
   public function generate_inner_html () {
-    global $current_theme_path;
     
     switch ($this->mode) {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
     $inner_html_gen = & new Template($tmp_file, $this);
-    $inner_html_gen->set('current_theme_path', $current_theme_path);
+    $inner_html_gen->set('current_theme_path', PA::$theme_url);
     
     if (!empty($this->mid)) {
       $message = Message::load_message(null, $this->mid);

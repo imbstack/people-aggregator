@@ -21,6 +21,7 @@ class UploadMediaModule extends Module {
   public $outer_template = 'outer_public_center_media_gallery_module.tpl';
 
   function __construct() {
+     parent::__construct();
      $this->html_block_id = 'UploadMediaModule';
   }
 
@@ -31,7 +32,7 @@ class UploadMediaModule extends Module {
   }
 
   function generate_inner_html() {
-    global $_PA;
+     
     $user_id = PA::$login_uid;
     if (!empty($this->mode)) {
       $this->type = $this->mode;
@@ -58,7 +59,7 @@ class UploadMediaModule extends Module {
       break;
     }
     $all_albums = Album::load_all($user_id, $alb_type);
-    $default_name = $_PA->default_album_titles[$alb_type];
+    $default_name = PA::$config->default_album_titles[$alb_type];
 
     /* setting all the album for this page */
     /* Retrive the All album of user */

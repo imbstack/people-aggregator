@@ -1,32 +1,7 @@
 <?php
 
-/***************************************************************************
- *   Copyright (C) 2007 by Zoran Hron                                      *
- *   zhron@net.hr                                                          *
- *                                                                         *
- *                                                                         *
- *  changes v0.1.1                                                         *
- *                                                                         *
- *    - added ulist_tag helper                                             *
- *                                                                         *
- *  changes v0.1.2                                                         *
- *                                                                         *
- *    - added static methods                                               *
- *                                                                         *
- *  changes v0.1.3                                                         *
- *                                                                         *
- *    - added TagHelper class                                              *
- *                                                                         *
- ***************************************************************************/
-
-
-class TagHelper extends xhtmlTagHelper {
-
-}
-
-
 /**
- * @class xhtmlTagHelper
+ * @class xHtml
  *
  * Provides a set of helpers for creating (X)HTML tags.
  * This means that you can create HTML tags in PHP programming style.
@@ -37,7 +12,7 @@ class TagHelper extends xhtmlTagHelper {
  */
 
 
-class xhtmlTagHelper {
+class xHtml {
 
   private $encoding = "UTF-8";
 
@@ -51,7 +26,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $tags->setEncoding("UTF-8");
    *   @endcode
    */
@@ -73,7 +48,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $tag_attr = array("style" => "font-size: 10pt");
    *      $tags->html_tag("h1", $tag_attr, true);
    *   @endcode
@@ -86,7 +61,7 @@ class xhtmlTagHelper {
 
       return '<' . strtolower($tag_name)
                  . ((count($tag_attr) > 0) ? $this->attrsToString($tag_attr) : '')
-                 . ">";
+                 . ">\n";
     } else {
       return "</" . strtolower($tag_name) . ">\n";
     }
@@ -110,7 +85,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $tag_attr = array("style" => "font-size: 10pt");
    *      $tags->xhtml_tag("h1", $tag_attr, true);
    *   @endcode
@@ -121,7 +96,7 @@ class xhtmlTagHelper {
 
     return '<' . strtolower($tag_name)
                . ((count($tag_attr) > 0) ? $this->attrsToString($tag_attr) : '')
-               . (($is_open) ? '>' : "/>\n");
+               . (($is_open) ? ">\n" : "/>\n");
   }
 
   public static function xhtmlTag($tag_name, $tag_attr = array(), $is_open = true)
@@ -130,6 +105,38 @@ class xhtmlTagHelper {
     return $instance->xhtml_tag($tag_name, $tag_attr, $is_open);
   }
 
+  public function checkbox_tag($name, $tag_attr = array(), $is_checked = false)
+  {
+    if (!isset($name) || empty($name))  return '';
+
+    return "<input type=\"checkbox\" name=\"$name\" value=\"$is_checked\" "
+               . ((count($tag_attr) > 0) ? $this->attrsToString($tag_attr) : '')
+               . (($is_checked) ? " checked" : " ")
+               . "/>\n";
+  }
+
+  public static function checkboxTag($name, $tag_attr = array(), $is_checked = false)
+  {
+    $instance = new self();
+    return $instance->checkbox_tag($name, $tag_attr, $is_checked);
+  }
+
+
+  public function radio_butt_tag($name, $tag_attr = array(), $is_checked = false)
+  {
+    if (!isset($name) || empty($name))  return '';
+
+    return "<input type=\"radio\" name=\"$name\" value=\"$is_checked\" "
+               . ((count($tag_attr) > 0) ? $this->attrsToString($tag_attr) : '')
+               . (($is_checked) ? " checked" : " ")
+               . "/>\n";
+  }
+
+  public static function radioButtTag($name, $tag_attr = array(), $is_checked = false)
+  {
+    $instance = new self();
+    return $instance->radio_butt_tag($name, $tag_attr, $is_checked);
+  }
   /**
    * This function returns string of a closed HTML tag with attributes and content inside
    *
@@ -143,7 +150,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $content = "This is a test";
    *      $is_escape  = true;
    *      echo $tags->content_tag("div",
@@ -165,7 +172,7 @@ class xhtmlTagHelper {
   {
     $instance = new self();
     $instance->setEncoding("UTF-8");
-    return $instance->content_tag($tag_name, $content, $tag_att, $escape);
+    return $instance->content_tag($tag_name, $content, $tag_attr, $escape);
   }
 
 
@@ -179,7 +186,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      echo $tags->javascript_tag("alert('Hello');");
    *
    *   @endcode
@@ -211,7 +218,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $options = array("Zagreb"    => "value1",
    *                       "Dubrovnik" => "value2",
    *                       "Rijeka"    => "value3" );
@@ -263,7 +270,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      $li_contents = array("Zagreb", "Dubrovnik", "Rijeka" );
    *
    *      $ul_attr = array("class" => "my_list" );
@@ -304,7 +311,7 @@ class xhtmlTagHelper {
    *
    * \b Example:
    *   @code
-   *      $tags = new xhtmlTagHelper();
+   *      $tags = new xHtml();
    *      echo $tags->cdata_section("<sender>John Smith</sender>");
    *
    *   @endcode

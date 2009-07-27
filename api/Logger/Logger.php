@@ -9,7 +9,6 @@ class Logger {
       return ;
     }
     global $logger_logTo, $logger_logFile, $logger_severity;
-
     if (!is_numeric($severityType)) throw new PAException(INVALID_ID, "Bad logger severity type: $severityType");
     if ($severityType >= $logger_severity) {
       if($to == LOGGER_FILE){

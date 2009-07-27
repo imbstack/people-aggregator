@@ -1,4 +1,5 @@
-<?php global $current_theme_path?>
+<?php 
+?>
 <div id="image_gallery_upload">
 <form enctype="multipart/form-data" action="<?= PA::$url?>/groupmedia_post.php?type=Images&amp;gid=<?=$_GET['gid']?>" method="POST">
 <fieldset>
@@ -28,7 +29,7 @@
       </div>
     </div>
         
-    <div class="field_choose" id="addmore_button"><?= __("Add More") ?><img src="<?php echo $current_theme_path;?>/images/plus.gif" alt="<?= __("Add More") ?>" onclick="javascript:addmedia('block','group_gallery')"  />
+    <div class="field_choose" id="addmore_button"><?= __("Add More") ?><img src="<?php echo PA::$theme_url;?>/images/plus.gif" alt="<?= __("Add More") ?>" onclick="javascript:addmedia('block','group_gallery')"  />
           
     <div><?= __("Or finish below") ?>.</div>
   </div> 

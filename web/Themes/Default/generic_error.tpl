@@ -48,5 +48,5 @@
         </div>
 
         <div class="right-body">
-            <img src="<?= $current_theme_path?>/images/right-piller.gif" alt="PA" /></div>
+            <img src="<?= PA::$theme_url?>/images/right-piller.gif" alt="PA" /></div>
     </div>

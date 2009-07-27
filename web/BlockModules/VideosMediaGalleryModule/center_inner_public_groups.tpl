@@ -1,4 +1,4 @@
-<?php global $app, $current_theme_path;
+<?php global $app;
   $current_url = PA::$url . $app->current_route . "/view=groups_media";
   $gid = $_GET['gid'];
 ?>

@@ -45,7 +45,7 @@ class User_Registration {
   *  $this->array_of_errors = A bunch of flags to say which error occurred (used by web/register.php).
   */
   function register($params, $network_info=NULL) {
-    global $_PA;
+     
 
     $this->newuser = new User();
     // filter input parameters (this is the same as filter_all_post())
@@ -72,10 +72,10 @@ class User_Registration {
       $password = trim($params['password']);
       $confirm_password = trim($params['confirm_password']);
       $date_created = (!empty($params['date_created'])) ? $params['date_created'] : null;
-
+      $_years = PA::getYearsList();
       $dob_day   = (!empty($params['dob_day']))   ? trim($params['dob_day']) : null;                         // General data (why? should be personal)
       $dob_month = (!empty($params['dob_month'])) ? trim($params['dob_month']) : null;                       // General data (why? should be personal)
-      $dob_year  = (!empty($params['dob_year']))  ? $_PA->years[((int)trim($params['dob_year']))] : null;    // General data (why? should be personal)
+      $dob_year  = (!empty($params['dob_year']))  ? $_years[((int)trim($params['dob_year']))] : null;        // General data (why? should be personal)
 
       $homeAddress1 = (!empty($params['homeAddress1']))  ? trim($params['homeAddress1']) : null;             // General data
       $homeAddress2 = (!empty($params['homeAddress2']))  ? trim($params['homeAddress2']) : null;             // General data

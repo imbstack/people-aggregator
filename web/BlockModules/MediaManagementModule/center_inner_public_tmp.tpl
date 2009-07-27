@@ -1,6 +1,5 @@
 <?php
-global $current_theme_path;
-      $local_image_variable = FALSE;
+    $local_image_variable = FALSE;
 ?>  
 
 <ul id="filters">
@@ -38,14 +37,14 @@ global $current_theme_path;
      <input type="checkbox" name="delete_content[]" value="<?=$links[$i]['content_id'];?>"/>
    </td>
    <td><a href="<?php echo $linkForEditing; ?>">
-     <img src="<?=$current_theme_path;?>/images/edit.png" alt="PA" border="0"/></a>
+     <img src="<?=PA::$theme_url;?>/images/edit.png" alt="PA" border="0"/></a>
    </td>
    <td><a href="<?= PA::$url . PA_ROUTE_CONTENT . '/cid=' . $links[$i]['content_id'] ?>">
      <?=chop_string($links[$i]['title']);?> </a>
    </td>
      <?php if (!$type_image || $local_image_variable) {
                   if ($links[$i]['type_name'] == 'BlogPost') {
-                    $type_image = $current_theme_path."/images/type-blog.gif";
+                    $type_image = PA::$theme_url."/images/type-blog.gif";
                     $local_image_variable=TRUE;
                   }
 

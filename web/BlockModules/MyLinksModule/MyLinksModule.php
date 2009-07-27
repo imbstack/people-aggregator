@@ -9,9 +9,9 @@ class MyLinksModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
   
   public  $uid, $links_data_array;
-  function __construct() {
 
-  parent::__construct();
+  function __construct() {
+    parent::__construct();
     $this->title = __("My Links");
     $this->html_block_id = 'MyLinksModule';
   }

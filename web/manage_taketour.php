@@ -4,10 +4,10 @@
  * File:        manage_taketour.php, web file to  Manage the take a tour block module
  * @author:     Tekriti Software (http://www.tekritisoftware.com)
  * Version:     1.1
- * Description: This file manages take a tour block module. 
+ * Description: This file manages take a tour block module.
  * The lastest version of PeopleAggregator can be obtained from:
  * http://peopleaggregator.org
- * For questions, help, comments, discussion, etc. please visit 
+ * For questions, help, comments, discussion, etc. please visit
  * http://wiki.peopleaggregator.org/index.php
  *
  */
@@ -34,10 +34,12 @@ if ( @$_GET['msg_id'] ) {
   $error_msg =  MessagesHandler::get_message($_GET['msg_id']);
 }
 
+$file = null;
+
 if (@$_POST['submit']=='Submit') {
   if (!empty($_FILES['userfile_0']['name'])) {
     $myUploadobj = new FileUploader; //creating instance of file.
-    $file = $myUploadobj->upload_file($uploaddir,'userfile_0',TRUE);
+    $file = $myUploadobj->upload_file(PA::$upload_path,'userfile_0',TRUE);
     if (!$file) {
       $msg = $myUploadobj->error;
       $error = TRUE;
@@ -49,7 +51,7 @@ if (@$_POST['submit']=='Submit') {
   $data=array();
   if ($_POST["userfile_url_0"]){
     $data[0]['url'] = $_POST["userfile_url_0"];
-  }    
+  }
   if ($_POST['caption'][0]) {
     $data[0]['title'] = $_POST['caption'][0];
   }
@@ -82,7 +84,7 @@ $page->html_body_attributes ='class="no_second_tier network_config"';
       $page->add_header_css($value);
     }
   }
-  
+
   $css_data = inline_css_style();
   if (!empty($css_data['newcss']['value'])) {
     $css_data = '<style type="text/css">'.$css_data['newcss']['value'].'</style>';

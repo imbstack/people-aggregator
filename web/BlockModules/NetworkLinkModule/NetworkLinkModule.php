@@ -9,6 +9,7 @@ class NetworkLinkModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->title = __("Manage Network Links");
     $this->html_block_id = "NetworkLinkModule";
     $this->main_block_id = "mod_link";
@@ -28,7 +29,7 @@ class NetworkLinkModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_theme_path;
+     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/public_center_inner_html.tpl';
     $inner_html_gen = & new Template($tmp_file);
     $inner_html_gen->set('link_categories_array', $this->get_link_categories());

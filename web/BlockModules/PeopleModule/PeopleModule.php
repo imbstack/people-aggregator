@@ -67,6 +67,7 @@ class PeopleModule extends Module {
   * The default constructor for FacewallModule class.
   */
   function __construct() {
+    parent::__construct();
     $this->sort_by = 'created';
     $this->viewer_uid = 0;//for anonymous user.
     $this->show_advance_search_options = false;
@@ -243,7 +244,6 @@ class PeopleModule extends Module {
   }
 
   function get_links() {
-    global $network_info, $current_theme_path;
      // Loading the Searching data
     if ($this->sort_by == 'alphabetic')  {
       $this->sort_by = 'login_name';
@@ -267,23 +267,23 @@ class PeopleModule extends Module {
     if ($this->search_data) {
     // load users on the basis of the search parameters.
        if($this->only_with_photo) {
-         $users_count = User::user_search($this->search_data, $this->viewer_uid, $network_info->network_id, TRUE, 'ALL', 0, 'U.'.$this->sort_by, 'DESC', $extra_condition);
+         $users_count = User::user_search($this->search_data, $this->viewer_uid, PA::$network_info->network_id, TRUE, 'ALL', 0, 'U.'.$this->sort_by, 'DESC', $extra_condition);
          $this->Paging["count"] = $users_count['total_users'];
-         $users = User::user_search($this->search_data, $this->viewer_uid, $network_info->network_id, FALSE, $this->Paging["show"], $this->Paging["page"], 'U.'.$this->sort_by, $sorting_direction, $extra_condition);
+         $users = User::user_search($this->search_data, $this->viewer_uid, PA::$network_info->network_id, FALSE, $this->Paging["show"], $this->Paging["page"], 'U.'.$this->sort_by, $sorting_direction, $extra_condition);
        } else {
-         $users_count = User::user_search($this->search_data, $this->viewer_uid, $network_info->network_id, FALSE);
+         $users_count = User::user_search($this->search_data, $this->viewer_uid, PA::$network_info->network_id, FALSE);
          $this->Paging["count"] = $users_count['total_users'];
-         $users = User::user_search($this->search_data, $this->viewer_uid, $network_info->network_id, FALSE, $this->Paging["show"], $this->Paging["page"], 'U.'.$this->sort_by, $sorting_direction);
+         $users = User::user_search($this->search_data, $this->viewer_uid, PA::$network_info->network_id, FALSE, $this->Paging["show"], $this->Paging["page"], 'U.'.$this->sort_by, $sorting_direction);
        }
     } else {
        if($this->only_with_photo) {
-         $this->Paging["count"] = Network::get_network_members($network_info->network_id, array('cnt'=>TRUE, 'extra_condition'=>$extra_condition));
+         $this->Paging["count"] = Network::get_network_members(PA::$network_info->network_id, array('cnt'=>TRUE, 'extra_condition'=>$extra_condition));
          $params = array('page'=>$this->Paging["page"],'show'=>$this->Paging["show"], 'sort_by'=> $this->sort_by, 'direction'=>$sorting_direction, 'extra_condition'=>$extra_condition);
-         $users = Network::get_network_members($network_info->network_id, $params);
+         $users = Network::get_network_members(PA::$network_info->network_id, $params);
        } else {
-         $this->Paging["count"] = Network::get_network_members($network_info->network_id, array('cnt'=>TRUE));
+         $this->Paging["count"] = Network::get_network_members(PA::$network_info->network_id, array('cnt'=>TRUE));
          $params = array('page'=>$this->Paging["page"],'show'=>$this->Paging["show"], 'sort_by'=> $this->sort_by, 'direction'=>$sorting_direction);
-         $users = Network::get_network_members($network_info->network_id, $params);
+         $users = Network::get_network_members(PA::$network_info->network_id, $params);
        }
     }
     $users_count = count(@$users['users_data']);
@@ -307,28 +307,14 @@ class PeopleModule extends Module {
     }
   }
 
-  function get_users_with_photo($users) {
-      $users_with_img = array();
-      foreach($users['users_data'] as $idx => $user) {
-        if(is_valid_web_image_name($user['picture']) && !empty($user['picture'])) {   // fix invalid image names
-          $users_with_img['users_data'][] = $user;
-        }
-      }
-      $users_with_img['total_users'] = count(@$users_with_img['users_data']);
-      return $users_with_img;
-  }
-
-
-
   function get_profile_data($users_data) {
-  global $login_uid;
 
     $facewall_trunkwords = 7;
     $facewall_maxlength = 8;
     $out_data = array();
     $viewer_uid = 0;
-    if (!empty($login_uid)) {
-      $viewer_uid = $login_uid;
+    if (!empty(PA::$login_uid)) {
+      $viewer_uid = PA::$login_uid;
     }
 
     $i = 0;
@@ -363,11 +349,9 @@ class PeopleModule extends Module {
 
 
   function generate_inner_html() {
-    global $current_blockmodule_path;
     global $number_user;
-    global $network_info;
 
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     $this->rel_term = __('Friend'); // default title
     if(isset($extra['relationship_show_mode']['term'])) {
       $this->rel_term = $extra['relationship_show_mode']['term'];

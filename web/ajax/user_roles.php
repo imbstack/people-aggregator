@@ -4,7 +4,7 @@
  require_once "api/Roles/Roles.php";
  require_once "ext/Group/Group.php";
 
- global $current_theme_path;
+  
 //  echo "<pre>".print_r($_REQUEST,1)."</pre>";
 
     $selected_role = null;
@@ -81,8 +81,8 @@
       </div>
 
       <div style="position: relative; float: left;margin: 64px 0 8px 8px;">
-        <input type="image" name="commit" src="<?=$current_theme_path ?>/images/arrow_right.gif" style="border: 0" onclick="javascript: roles.double_list_move('<?= $user_id ?>', 'unassociated_roles', 'associated_roles', '<?= ($group_id) ? $group_id : "-1" ?>'); return false;" /><br />
-        <input type="image" name="commit" src="<?=$current_theme_path ?>/images/arrow_left.gif" style="border: 0" onclick="javascript: roles.double_list_move('<?= $user_id ?>', 'associated_roles', 'unassociated_roles', '<?= ($group_id) ? $group_id : "-1" ?>'); return false;" />
+        <input type="image" name="commit" src="<?=PA::$theme_url ?>/images/arrow_right.gif" style="border: 0" onclick="javascript: roles.double_list_move('<?= $user_id ?>', 'unassociated_roles', 'associated_roles', '<?= ($group_id) ? $group_id : "-1" ?>'); return false;" /><br />
+        <input type="image" name="commit" src="<?=PA::$theme_url ?>/images/arrow_left.gif" style="border: 0" onclick="javascript: roles.double_list_move('<?= $user_id ?>', 'associated_roles', 'unassociated_roles', '<?= ($group_id) ? $group_id : "-1" ?>'); return false;" />
       </div>
 
       <div id="associated_roles_selectbox" style="position: relative; float: left; margin: 4px;">

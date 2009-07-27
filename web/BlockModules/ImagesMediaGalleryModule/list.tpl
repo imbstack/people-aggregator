@@ -33,7 +33,7 @@
           } else if ( strstr( $links[$i]['image_file'], "http://")) {
               $image_path = $links[$i]['image_file'];
                  //Verify image path as well as Image type
-              $image_path = (verify_image_url($image_path)) ? $links[$i]['image_file'] : $current_theme_path.'/images/no_img_found.gif';
+              $image_path = (verify_image_url($image_path)) ? $links[$i]['image_file'] : PA::$theme_url . '/images/no_img_found.gif';
               $img_tag = '<img src="'.$image_path.'" width="35px" height="30px" border="0" class="img_list" />';
               $image_hyperlink = PA::$url . "/media_full_view.php?cid=".$links[$i]['content_id'].$gid;
           } else {
@@ -55,8 +55,8 @@
     <td>
     <?php if($uid == PA::$login_uid && empty($_GET['gid'])) { ?>
 
-      <a href="<?php echo $link_for_editing;?>"><img src="<?php echo $current_theme_path;?>/images/16_edit.gif" alt="edit" height="16" width="16" border="0" title="Edit" /></a>
-      <a href="#"><img src="<?php echo $current_theme_path;?>/images/16_delete.gif" alt="delete" title="Delete" height="16" width="16" border="0"  onclick="edit_delete_media('<?=$links[$i]['content_id']?>','delete','image_upload');" /></a>
+      <a href="<?php echo $link_for_editing;?>"><img src="<?php echo PA::$theme_url;?>/images/16_edit.gif" alt="edit" height="16" width="16" border="0" title="Edit" /></a>
+      <a href="#"><img src="<?php echo PA::$theme_url;?>/images/16_delete.gif" alt="delete" title="Delete" height="16" width="16" border="0"  onclick="edit_delete_media('<?=$links[$i]['content_id']?>','delete','image_upload');" /></a>
 
     <? } if (isset($_GET['gid']) && !empty ($_GET['gid']) && ($links[$i]['author_id'] == PA::$login_uid )) {
 
@@ -67,8 +67,8 @@
        }
     ?>
 
-      <a href="<?php echo $link_for_editing;?>"><img src="<?php echo $current_theme_path;?>/images/16_edit.gif" alt="edit" height="16" width="16" border="0" /></a>
-      <a href="#"><img src="<?php echo $current_theme_path;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0"  onclick="edit_delete_media('<?=$links[$i]['content_id']?>','delete','image_upload');" /></a>
+      <a href="<?php echo $link_for_editing;?>"><img src="<?php echo PA::$theme_url;?>/images/16_edit.gif" alt="edit" height="16" width="16" border="0" /></a>
+      <a href="#"><img src="<?php echo PA::$theme_url;?>/images/16_delete.gif" alt="delete" height="16" width="16" border="0"  onclick="edit_delete_media('<?=$links[$i]['content_id']?>','delete','image_upload');" /></a>
 
     <?}?>
      </td>

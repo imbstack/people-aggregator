@@ -15,7 +15,7 @@ class ProfanityFilterTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(ProfanityFilter::filterHTML("what the fuck?"), "what the #&@!*?");
         $this->assertEquals(ProfanityFilter::filterHTML("---cusstest1---"), "---cusstest1-filtered---");
         */
-        global $_PA;
+         
         
         $profaneHTML = "<div>what <a href='foobar'>the</a> fuck?</div> brainfuck should be safe... what about assingement? Will it be filtered as ass?
         Let's see about FUcK or Ass";
@@ -23,7 +23,7 @@ class ProfanityFilterTest extends PHPUnit_Framework_TestCase {
         // count profanity in original and filtered
         $cnt_prof = 0;
         $cnt_filt = 0;
-        foreach ($_PA->profanity as $i=>$w) {
+        foreach (PA::$config->profanity as $i=>$w) {
           $regexp = "/\b" . $w . "\b/i";
           $cnt_prof += preg_match_all($regexp, $profaneHTML, $m);
           $cnt_filt += preg_match_all($regexp, $filtered, $m);

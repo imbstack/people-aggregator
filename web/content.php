@@ -9,8 +9,8 @@ if(isset($_REQUEST['login_required']) && ($_REQUEST['login_required'] == 'true')
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 if (!empty($_POST['addcomment'])) {
-  if (!empty($_PA->spam_log)) {
-    $f = fopen($_PA->spam_log, "at");
+  if (!empty(PA::$config->spam_log)) {
+    $f = fopen(PA::$config->spam_log, "at");
     fwrite($f, date("c")." ".PA::$remote_ip." COMMENT\n"); // . var_export($_SERVER, TRUE) . var_export($_POST, TRUE));
     fclose($f);
   }
@@ -27,7 +27,6 @@ require_once "ext/Group/Group.php";
 require_once "api/Category/Category.php";
 require_once "api/Network/Network.php";
 require_once "web/includes/functions/user_page_functions.php";
-global $current_theme_path, $network_info, $login_uid;
 
 $header = 'header_user.tpl';// by default we are setting header as user's header
 $media_gallery = 'homepage';
@@ -50,9 +49,9 @@ $is_group_content = FALSE;
 $gid = @$_REQUEST['ccid'];
 $content_id = @$_REQUEST['cid'];
 $error_message  = '';
-$authorized_users = array($content->author_id, $network_info->owner_id);
-$extra = unserialize($network_info->extra);
-if (@$extra['network_content_moderation'] == NET_YES && Network::item_exists_in_moderation($content_id, $content->parent_collection_id, 'content') && !in_array($login_uid, $authorized_users)) {
+$authorized_users = array($content->author_id, PA::$network_info->owner_id);
+$extra = unserialize(PA::$network_info->extra);
+if (@$extra['network_content_moderation'] == NET_YES && Network::item_exists_in_moderation($content_id, $content->parent_collection_id, 'content') && !in_array(PA::$login_uid, $authorized_users)) {
   $error_message = 1001;
 }
 if ($content->parent_collection_id!= -1 ) {
@@ -219,7 +218,7 @@ function setup_module($column, $moduleName, $obj) {
     break;
   }
 }
-$page = new PageRenderer("setup_module", PAGE_PERMALINK, sprintf("%s - %s - %s", strip_tags($content->title), $author->get_name(), $network_info->name), "container_three_column.tpl", $header, PUB, HOMEPAGE, $network_info,'',$setting_data);
+$page = new PageRenderer("setup_module", PAGE_PERMALINK, sprintf("%s - %s - %s", strip_tags($content->title), $author->get_name(), PA::$network_info->name), "container_three_column.tpl", $header, PUB, HOMEPAGE, PA::$network_info,'',$setting_data);
 
 uihelper_error_msg($error_message);
 
@@ -239,7 +238,7 @@ $append_css = "<style>".$inline_style."</style>";
 $page->add_header_html($append_css);
 $page->add_header_html(js_includes('rating.js'));
 // for calendar sidebar Module
-$css_path = $current_theme_path.'/calendar.css';
+$css_path = PA::$theme_url . '/calendar.css';
 $page->add_header_css($css_path);
 $page->add_header_html(js_includes('calendar.js'));
 

@@ -1,4 +1,4 @@
-<?php global $current_theme_path;//p($links);?>
+<?php  //p($links);?>
 <div class="module_tagcloud">
   <ul>
   <?php if (count($links) == 0) { ?> 

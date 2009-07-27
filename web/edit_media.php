@@ -14,7 +14,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
 global $query_count_on_page;
 $query_count_on_page = 0;
 
-global $current_theme_path;
+ 
 $parameter = js_includes("all");
 html_header("Media Gallery - $network_info->name", $parameter);
 

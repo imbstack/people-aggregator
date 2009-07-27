@@ -1,9 +1,18 @@
-<?php global  $network_info;
+<?php
 ?>
-<div id="configure_network"><h4><?= __('Configure') ?> <?php echo chop_string($network_info->name, 12);?></h4></div>
+<div id="configure_network"><h4><?= __('Configure') ?> <?php echo chop_string(PA::$network_info->name, 12);?></h4></div>
 <ul>
-<?php if ($task_perms['manage_settings'] == TRUE) { ?>
-  <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_NETWORK;?>"><?= __('Settings') ?></a>
+  <?php if ($task_perms['manage_settings'] == TRUE) { ?>
+  <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('System Settings') ?></a>
+    <ul>
+      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('Configuration manager') ?></a></li>
+      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_DEFENDER;?>"><?= __('PA Defender') ?></a></li>
+     </ul>
+  </li>
+  <?}?>
+
+  <?php if ($task_perms['manage_settings'] == TRUE) { ?>
+  <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_NETWORK;?>"><?= __('Network Settings') ?></a>
     <ul>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_NETWORK;?>"><?= __('Network settings') ?></a></li>
      </ul>
@@ -45,39 +54,39 @@
       <li><a href="<?php echo PA::$url;?>/manage_taketour.php"><?= __('Take a Tour Video') ?></a></li>
       <li><a><?= __('MIS Reports') ?></a>
         <ul id="splash_page_options">
-          <li><a href="http://www.<?php echo PA::$domain_suffix;?>/awstats/awstats.pl?config=www.<?php echo PA::$domain_suffix;?>" target="_blank"><?= __('Usage') ?></a></li>          
+          <li><a href="http://www.<?php echo PA::$domain_suffix;?>/awstats/awstats.pl?config=www.<?php echo PA::$domain_suffix;?>" target="_blank"><?= __('Usage') ?></a></li>
           <li><a href="<?php echo PA::$url;?>/misreports.php"><?= __('Counts') ?></a></li>
           <li><a href="<?php echo PA::$url;?>/misreports.php?mis_type=mkt_rpt"><?= __('Marketing reports') ?></a></li>
         </ul>
       </li>
     </ul>
   </li>
-<?php } ?> 
+<?php } ?>
 <?php if ($task_perms['manage_themes'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/theme";?>"><?= __('Themes') ?></a>
-    <ul>                
+    <ul>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/theme";?>"><?= __('Theme selector') ?></a></li>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/module" ?>"><?= __('Module selector') ?></a></li>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/bg_image"?>"><?= __('Background image') ?></a></li>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/desktop_image"?>"><?= __('Header image') ?></a></li>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CUSTOMIZE_NETWORK_GUI . "/style"?>"><?= __('Customize theme') ?></a></li>
     </ul>
-  </li>  
-  <?}?>    
-    <?php if ($task_perms['user_defaults'] == TRUE) { ?>    
-  <li><a href="<?php echo PA::$url;?>/network_user_defaults.php"><?= __('User defaults') ?></a>      
+  </li>
+  <?}?>
+    <?php if ($task_perms['user_defaults'] == TRUE) { ?>
+  <li><a href="<?php echo PA::$url;?>/network_user_defaults.php"><?= __('User defaults') ?></a>
     <ul>
       <li><a href="<?php echo PA::$url;?>/network_user_defaults.php"><?= __('Default settings') ?></a></li>
       <li><a href="<?php echo PA::$url;?>/relationship_settings.php"><?= __('Relationship settings') ?></a></li>
     </ul>
-  </li>  
-          
+  </li>
+
   <li><a href="<?php echo PA::$url;?>/manage_user.php"><?= __('Users Settings') ?></a>
     <ul>
       <li><a href="<?php echo PA::$url;?>/new_user_by_admin.php"><?= __('Create users') ?></a></li>
       <li><a href="<?php echo PA::$url;?>/manage_user.php"><?= __('Manage users') ?></a></li>
       <?php
-        if ($network_info->type == PRIVATE_NETWORK_TYPE) {
+        if (PA::$network_info->type == PRIVATE_NETWORK_TYPE) {
       ?>
       <li><a href="<?php echo PA::$url;?>/moderate_users.php"><?= __('Moderate users') ?></li>
       <?php
@@ -87,7 +96,7 @@
   </li>
 
   <?}?>
-  <?php if ($task_perms['manage_content'] == TRUE) { ?>   
+  <?php if ($task_perms['manage_content'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?>/network_manage_content.php"><?= __('Content') ?></a>
     <ul>
       <?php echo '';// if ($network_content_moderation) : // this condition removed on Vishal's request ?>
@@ -98,8 +107,8 @@
     </ul>
   </li>
   <?}?>
-  
-   <?php if ($task_perms['manage_links'] == TRUE) { ?> 
+
+   <?php if ($task_perms['manage_links'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?>/network_links.php"><?= __('Manage links') ?></a>
      <ul>
       <li><a href="<?php echo PA::$url;?>/network_links.php"><?= __('Network links') ?></a></li>
@@ -125,23 +134,23 @@
       <li><a href="<?php echo PA::$url;?>/manage_questions.php"><?= __('Manage Questions') ?></a></li>
      </ul>
    </li>
-   <?}?> 
-   
-     <?php if ($task_perms['user_defaults'] == TRUE) { ?> 
+   <?}?>
+
+     <?php if ($task_perms['user_defaults'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?>/manage_groups.php"><?= __('Manage Groups') ?></a>
      <ul>
       <li><a href="<?php echo PA::$url;?>/manage_groups.php"><?= __('Manage Groups') ?></a></li>
      </ul>
    </li>
    <?}?>
-       <?php if ($task_perms['user_defaults'] == TRUE) { ?> 
+       <?php if ($task_perms['user_defaults'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?>/manage_category.php"><?= __('Manage Category') ?></a>
      <ul>
       <li><a href="<?php echo PA::$url;?>/manage_category.php"><?= __('Manage Category') ?></a></li>
      </ul>
    </li>
    <?}?>
-    <?php if ($task_perms['notifications'] == TRUE) { ?>       
+    <?php if ($task_perms['notifications'] == TRUE) { ?>
    <li><a href="<?php echo PA::$url;?>/email_notification.php"><?= __('Notifications') ?></a>
      <ul>
        <li><a href="<?php echo PA::$url;?>/network_bulletins.php"><?= __('Bulletins') ?></a></li>
@@ -175,8 +184,8 @@
      </ul>
   </li>
   <?}?>
-  
-   
+
+
    <?php if ($task_perms['manage_links'] == TRUE) { ?>
    <li><a href="<?php echo PA::$url;?>/manage_footer_links.php"><?= __('Static Pages') ?></a>
      <ul>
@@ -184,6 +193,6 @@
        <li><a href="<?php echo PA::$url;?>/manage_static_pages.php"><?= __('Manage Static Pages') ?></a></li>
      </ul>
    </li>
-  
+
    <?php } ?>
 </ul>

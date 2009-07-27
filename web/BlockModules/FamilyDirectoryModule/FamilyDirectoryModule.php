@@ -7,6 +7,7 @@ class FamilyDirectoryModule extends Module {
 
 
   function __construct() { 
+    parent::__construct();
     $this->outer_template = 'outer_public_center_module.tpl';
 		$this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/family_directory.tpl.php";
 	  $this->title = __('Family Directory');
@@ -20,7 +21,7 @@ class FamilyDirectoryModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-  	global $_PA;
+  	 
     $this->groupCount = array();
 		$classname = ucfirst($this->directoryType)."TypedGroupEntity";
 		$instance = new $classname();

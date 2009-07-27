@@ -18,6 +18,7 @@ class ShowMessageModule extends Module {
   private $msg_types = array('info', 'error', 'confirm', 'warning');
 
   function __construct() {
+    parent::__construct();
     $this->title = __('An Error Has Occurred');
     $this->type = 'error';
     $this->window_title = __('Error details');

@@ -57,7 +57,7 @@ uihelper_error_msg(@$msg);
 if ($type == 'Images') { 
   $parameter = js_includes('jtip.js');
   $page->add_header_html($parameter);
-  $css = $current_theme_path.'/jtip.css';
+  $css = PA::$theme_url . '/jtip.css';
   $page->add_header_css($css);
 }
 // if user is not log in as well as not viewing any user page 

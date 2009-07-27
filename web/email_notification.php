@@ -12,7 +12,7 @@ require_once "web/includes/classes/file_uploader.php";
 require_once "api/Validation/Validation.php";
 require_once "api/Tag/Tag.php";
 require_once "web/includes/network.inc.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 $error = FALSE;
 
 $curr_user = (isset(PA::$login_uid)) ? PA::$login_uid : 0;
@@ -43,7 +43,7 @@ if(!empty($_REQUEST['config_action'])) {
           //  echo "<pre>".print_r($_REQUEST,1)."</pre>";
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $imported_defaults = $imported_config->getNotificationsSettings();
 //            echo "<pre>".print_r($imported_defaults,1)."</pre>";
             $msg = __("File ") . $_FILES['local_file']['name'] . __(" loaded successfully.") . "<br />"
@@ -59,7 +59,7 @@ if(!empty($_REQUEST['config_action'])) {
     break;
     case 'restore_defaults':
       try {
-        $imported_config = new PaConfiguration();
+        $imported_config = new NetworkConfig();
         $imported_defaults = $imported_config->getNotificationsSettings();
         $msg = __('Default settings sucessfully restored.') . "<br />"
              . __("Click \"Save\" button to save new settings.");
@@ -75,10 +75,10 @@ if (PA::$network_info) {
   $form_data['extra'] = unserialize(PA::$network_info->extra);
   // initialize settings for new notification options
   if(!isset($form_data['extra']['notify_owner']['group_settings_updated'])) {
-    $form_data['extra']['notify_owner']['group_settings_updated'] = $network_controls['notify_owner']['group_settings_updated'];
+    $form_data['extra']['notify_owner']['group_settings_updated'] = PA::$network_defaults['notify_owner']['group_settings_updated'];
   }
   if(!isset($form_data['extra']['notify_owner']['content_modified'])) {
-    $form_data['extra']['notify_owner']['content_modified'] = $network_controls['notify_owner']['content_modified'];
+    $form_data['extra']['notify_owner']['content_modified'] = PA::$network_defaults['notify_owner']['content_modified'];
   }
 
   if(!empty($imported_defaults)) {
@@ -91,13 +91,8 @@ if (PA::$network_info) {
 
 $action = (isset($_POST['config_action'])) ? $_POST['config_action'] : null;
 if (($action == 'save' || $action == 'store_as_defaults' || $action == 'update_user_defaults') && !$error && !$imported_defaults) {//if data is posted
- /**
- * NOTE:
- *   $network_controls defined in network.inc.php and should be replaced with data
- *   stored in XML network settings file
- **/
-  $notify_owner = $network_controls['notify_owner'];
-  $notify_members = $network_controls['notify_members'];
+  $notify_owner = PA::$network_defaults['notify_owner'];
+  $notify_members = PA::$network_defaults['notify_members'];
   foreach ($notify_owner as $k => $v) {
     $emailVal = (empty($_POST[$k.'_email']))?0:1;
     $msgVal = (empty($_POST[$k.'_msg']))?0:1;
@@ -132,7 +127,7 @@ if (($action == 'save' || $action == 'store_as_defaults' || $action == 'update_u
     $nid = $network->save();
     $error_msg = 7011;
     if(!empty($_REQUEST['config_action']) && ($_REQUEST['config_action'] == 'store_as_defaults')) {
-      $export_config = new PaConfiguration();
+      $export_config = new NetworkConfig();
       $export_config->buildNetworkSettings($network);
       $export_config->storeSettingsLocal();
       $error_msg = 'Network default configuration file "' . $export_config->settings_file . '" successfully updated.';

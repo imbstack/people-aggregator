@@ -6,7 +6,7 @@
    Author: martin (re written phil's prototype)
    Copyright (C) 2007 Broadband Mechanics, Inc.
    
-   This class relies on the presence of $_PA->profanity array
+   This class relies on the presence of PA::$config->profanity array
    which should be defined in one of the *_config.php files
    (default_config.php)
 
@@ -30,11 +30,11 @@ class ProfanityFilter {
   }
   
   public static function filterHTML($html) {
-    global $_PA;
+     
     // a simple preg_replace will do for now to see it actually works
-    // turn the $_PA->profanity array into an array of regexp
+    // turn the PA::$config->profanity array into an array of regexp
     $profanity = array();
-    foreach ($_PA->profanity as $i=>$w) {
+    foreach (PA::$config->profanity as $i=>$w) {
       $profanity[] = "!\b(" . $w . ")\b!ie"; 
       // the \b ensures that we are dealing with szand alone 
       // occurences of the word or phrase

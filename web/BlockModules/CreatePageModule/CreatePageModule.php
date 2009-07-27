@@ -1,6 +1,6 @@
 <?php
 require_once "api/Tasks/Tasks.php";
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
 require_once "tools/modules/ModulesInfo.class.php";
 
 class CreatePageModule extends Module {
@@ -10,6 +10,7 @@ class CreatePageModule extends Module {
   private $page = null;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Edit/Create Dynamic Page');
     $this->page = new DynamicPage();
     $this->page->initialize();
@@ -51,7 +52,7 @@ class CreatePageModule extends Module {
     asort($mod_select_options);
     $mod_tag_attrs = array('name' => "form_data[module]",
                            'onchange' => "javascript: document.location='".PA_ROUTE_CREATE_DYN_PAGE ."?action=edit&id=$this->id&module='+this.value");
-    $mod_select_tag = xhtmlTagHelper::selectTag($mod_select_options, $mod_tag_attrs, $mod_selected);
+    $mod_select_tag = xHtml::selectTag($mod_select_options, $mod_tag_attrs, $mod_selected);
 
     $pages_default_setting = ModuleSetting::get_pages_default_setting( 'network' );
     $selected = null;
@@ -69,7 +70,7 @@ class CreatePageModule extends Module {
 
     $tag_attrs = array('name' => "form_data[page_id]",
                        'onchange' => "javascript: document.location='".PA_ROUTE_CREATE_DYN_PAGE ."?action=edit&module=$this->module&id='+this.value");
-    $select_tag = xhtmlTagHelper::selectTag($select_options, $tag_attrs, $selected);
+    $select_tag = xHtml::selectTag($select_options, $tag_attrs, $selected);
 
 
     $this->outer_template = 'outer_public_center_module.tpl';
@@ -176,7 +177,6 @@ class CreatePageModule extends Module {
   }
 
   function set_inner_template($template_fname) {
-    global $current_blockmodule_path;
     $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
   }
 

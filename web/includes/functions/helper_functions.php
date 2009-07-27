@@ -16,10 +16,6 @@ if (!function_exists('property_exists')) {
 }
 
 
-
-
-$pa_page_render_start = microtime(TRUE);      /* timing */
-
 function pa_end_of_page_ob_filter($html) {
   // if headers not sent yet, and we don't have a content type specified, send text/html; charset=UTF-8
   if (!headers_sent()) {
@@ -80,15 +76,16 @@ function pa_end_of_page_ob_filter($html) {
 
   $eop_text .= " ".PA::$remote_ip;
   // now drop timing and anything else we want to show at the bottom of the page
+
   return str_replace("<!--**timing**-->", $eop_text, $html);
 }
 
 
-// set $_PA->perf_log = "path to performance log" in local_config.inc to turn on
+// set PA::$config->perf_log = "path to performance log" in local_config.inc to turn on
 // detailed performance logging - for spam debugging
 function pa_log_script_execution_time($at_start=FALSE) {
-  global $_PA, $pa_page_render_start;
-  if (!isset($_PA->perf_log)) return;
+  global $pa_page_render_start;
+  if (!isset(PA::$config->perf_log)) return;
 
   $post = array();
   foreach ($_POST as $k => $v) $post[] = urlencode($k)."=".urlencode($v);
@@ -120,9 +117,15 @@ function pa_log_script_execution_time($at_start=FALSE) {
        microtime(TRUE) - $pa_page_render_start
        );
   }
-  error_log($msg, 3, $_PA->perf_log);
+  error_log($msg, 3, PA::$config->perf_log);
 }
 
+function show_profiler_statistic() {
+  if(PA::$profiler) {
+    PA::$profiler->done();
+    echo PA::$profiler->html;
+  }
+}
 
 
 // translate string $s into the current language (specified by PA::$language, which can be changed in local_config.inc).
@@ -261,12 +264,12 @@ function wrap_text($text, $chunks_len, $max_len, $brek_str = " ") {
       $newtext = substr($newtext, 0, $cnt);
       $newtext = str_replace("|", $brek_str, $newtext);
       return $newtext;
-    }    
+    }
   }
   return $text;
 }
 
- 
+
 function abbreviate_text($text, $max_len, $abbr_pos = null, $abbr_str = '..') {
   if(strlen($text) <= $max_len) {
     return $text;
@@ -277,14 +280,14 @@ function abbreviate_text($text, $max_len, $abbr_pos = null, $abbr_str = '..') {
   $fp_len = strlen($first_part);
   $second_part = substr($text, $fp_len - $max_len, $max_len - $fp_len);
   return $first_part . $second_part;
-  
+
 }
 
 /**
   * @author   Zoran Hron
   * @name     type_cast
   * @brief    This function convert Object or Array to given object type
-  * @return   Object of requested type 
+  * @return   Object of requested type
   *
   * @example  type_cast($net_info, 'Network');
   */
@@ -299,7 +302,7 @@ function type_cast($object_or_array, $new_classname) {
   }
   else {
     throw new Exception("[helper_functions.php]::type_cast(): Can't typecast, class with name '$new_classname' is undefined.");
-  } 
+  }
 }
 
 ?>

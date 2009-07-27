@@ -9,6 +9,7 @@
     public $outer_template = 'outer_public_center_module.tpl';
 
     function __construct() {
+      parent::__construct();
     }
 
     function render(){

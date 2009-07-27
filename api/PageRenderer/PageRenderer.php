@@ -77,10 +77,12 @@ class PageRenderer {
   // __construct($cb, $page_type, $title, $page_template="homepage_pa.tpl", $header_template="header.tpl", $default_mode=PRI, $default_block_type=HOMEPAGE, PA::$network_info_ = NULL, $onload = NULL, $setting_data = NULL)
   function __construct($cb, $page_id, $title, $page_template="homepage_pa.tpl", $header_template="header.tpl", $default_mode=PRI, $default_block_type=HOMEPAGE, $network_info_ = NULL, $onload = NULL, $setting_data = NULL) {
 
-    global $app, $_PA, $page;
+    global $app, $page;
+
+    if(PA::$profiler) PA::$profiler->startTimer('PageRenderer_init');
 
     // we may want to know the page_tpe elsewhere too
-    $_PA->page_type = $page_id;     // NOTE: $_PA->page_type var = $page_id and should be removed!
+    PA::$config->page_type = $page_id;     // NOTE: PA::$config->page_type var = $page_id and should be removed!
 
     $this->page_id = $page_id;
     $this->debugging = isset($_GET['debug']);
@@ -158,31 +160,16 @@ class PageRenderer {
         }
     }
 
-
-
-// NOTE: This is temporrary - shold be removed when all pages will be refactored !
-//      if($setting_data) {
-//        $this->setting_data = $setting_data;
-//      }
-// --------------------------------------------------------------------------------
     $this->page = & new Template(CURRENT_THEME_FSPATH."/".$this->page_template);
     $this->page->set('current_theme_path', PA::$theme_url);
     $this->page->set('current_theme_rel_path', PA::$theme_rel);
 
     // Loading the templates variables for the Outer templates files
-    $this->page->set('outer_class', get_class_name($_PA->page_type));
+    $this->page->set('outer_class', get_class_name(PA::$config->page_type));
     $this->top_navigation_bar = & new Template(CURRENT_THEME_FSPATH."/".$this->top_navigation_template);
     $this->top_navigation_bar->set('current_theme_path', PA::$theme_url);
     $this->top_navigation_bar->set('current_theme_rel_path', PA::$theme_rel);
     $this->top_navigation_bar->set('navigation_links', $this->navigation_links);
-/*
-    $this->header = & new Template(CURRENT_THEME_FSPATH."/".$this->header_template);
-    $this->header->set('current_theme_path', PA::$theme_url);
-    $this->header->set('current_theme_rel_path', PA::$theme_rel);
-    $this->header->set_object('network_info', $this->network_info);
-    $this->header->set('message_count', $this->message_count['unread_msg']);
-    $this->header->set('navigation_links', $this->navigation_links);
-*/
     $this->setHeader($this->header_template);
     $this->footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
     $this->footer->set('current_theme_path', PA::$theme_url);
@@ -190,7 +177,6 @@ class PageRenderer {
 
     $page = $this;
     $this->preInitialize($this->setting_data);
-//  $this->initOld($cb, $default_mode, $default_block_type, $setting_data);
     $this->initNew($cb, $default_mode, $default_block_type, $this->setting_data);
 
     if (!$access_permission) {
@@ -206,6 +192,7 @@ class PageRenderer {
       $er_msg = urlencode("Sorry! you are not authorized to to access this page.");
       $this->showDialog($er_msg, $type = 'error', $redir_url, 10);
     }
+    if(PA::$profiler) PA::$profiler->stopTimer('PageRenderer_init');
   }//end of constructor
 
   public function setHeader($header_tpl) {
@@ -220,13 +207,15 @@ class PageRenderer {
 
   private function preInitialize($setting_data) {
     global $app, $dynamic_page;
-    global $_PA,  $page_uid, $uid;
+    global $page_uid, $uid;
 
-    if (!empty($_PA->simple['use_actionsmodule'])) {
-    	switch (@$_PA->simple['actionsmodule_placement']) {
+    if (!empty(PA::$config->simple['use_actionsmodule'])) {
+    	switch (PA::$config->actionsmodule_placement) {
     		case 'right':
+                $side = PA::$config->actionsmodule_placement;
+            break;
     		case 'left':
-    			$side = $_PA->simple['actionsmodule_placement'];
+    			$side = PA::$config->actionsmodule_placement;
     		break;
     		default:
 		    	$side = 'right';
@@ -248,7 +237,7 @@ class PageRenderer {
 
     $this->modules_array = array();
     foreach (array("middle", "left", "right") as $module_column) {
-      $column_modules = (!$_PA->page_type) ? array() : @$this->setting_data[$module_column];
+      $column_modules = (!PA::$config->page_type) ? array() : @$this->setting_data[$module_column];
 			if (count($column_modules) > 0) {
 				foreach ($column_modules as $moduleName) {
 
@@ -280,7 +269,7 @@ class PageRenderer {
 					$obj->login_uid = (int)PA::$login_uid; // uid of logged in user
 					$obj->page_uid  = (int)$page_uid;      // uid specified in URL
 					$obj->column    = $module_column;
-					$obj->page_id   = (!empty($setting_data['page_id'])) ? $setting_data['page_id'] : $_PA->page_type;
+					$obj->page_id   = (!empty($setting_data['page_id'])) ? $setting_data['page_id'] : PA::$config->page_type;
 					$obj->renderer     = &$this;                     // dispatch page renderer object to all modules
 					$obj->controller   = &$app;                      // dispatch front controller object to all modules
 					$obj->dynamic_page = &$dynamic_page;             // dispatch DynamicPage object to all modules
@@ -307,137 +296,9 @@ class PageRenderer {
     }
   }
 
-// NOTE: this is old initialization function and should be removed after testing will be done !
-// ----------------------------------------------------------------------------------------------
-  private function initOld($cb, $default_mode, $default_block_type, $setting_data) {
-    global $_PA, $page_uid, $uid;
-    // render all modules
-    $this->module_arrays = array();
-
-    foreach (array("middle", "left", "right") as $module_column) {
-      $modulesFromDB = (!$_PA->page_type) ? NULL : @$this->setting_data[$module_column];
-      $array_modules = array();
-
-      // render all modules
-      if ($modulesFromDB) foreach ($modulesFromDB as $moduleName) {
-        if (!$moduleName) continue;
-        $file = PA::$blockmodule_path . "/$moduleName/$moduleName.php";
-
-        try {
-            require_once $file;
-        } catch (Exception $e) {
-            echo "<p>Failed to require_once $file.</p>";
-            throw $e;
-        }
-        $obj = new $moduleName;
-        $obj->login_uid = (int)PA::$login_uid; // uid of logged in user
-        $obj->page_uid = (int)$page_uid; // uid specified in URL
-
-        // standard column-specific initialization
-        switch ($module_column) {
-        case 'left':
-        case 'right':
-          if ($default_mode) $obj->mode = $default_mode;
-          // some modules don't like to be set as PRI/HOMEPAGE
-          switch ($moduleName) {
-          case 'LogoModule':
-          case 'AdsByGoogleModule':
-          case 'GroupAccessModule':
-          case 'GroupStatsModule':
-              break;
-          default:
-              if ($default_block_type) $obj->block_type = $default_block_type;
-          }
-          break;
-        case 'middle':
-          break;
-        }
-
-        // now call the page callback and see if we need to skip
-        // displaying this module
-        $skipped = FALSE;
-        if ($cb) {
-            switch ($cb($module_column, $moduleName, $obj, $this)) {
-            case 'skip':
-                $skipped = TRUE;
-                break;
-             }
-        }
-
-        // now render for display
-        $render_time = NULL;
-        if (!$skipped) {
-            $start_time = microtime(TRUE);
-            $html = $obj->render();
-            if (!$obj->do_skip) {//add the module to list if it is not being skipped from within the module.
-              $render_time = microtime(TRUE) - $start_time;
-              $array_modules[] = $html;
-            }
-        }
-
-        if ($this->debugging) {
-            $dhtml = "&larr; $moduleName ($obj->block_type; $obj->mode; ".sprintf("%.3f s", $render_time).")";
-            if ($skipped) $dhtml .= " SKIPPED";
-            $dhtml .= "<br>";
-            $array_modules[] = $dhtml;
-        }
-      }
-      $this->module_arrays[$module_column] = $array_modules;
-    }
-
-    /*
-    $pages = Advertisement::get_pages(); // get pages where ads is to be displayed
-    $display_ad = FALSE;
-    foreach ($pages as $page) {
-      if ($_PA->page_type == $page['value']) {
-        $display_ad = TRUE;
-        break;
-      }
-    }
-    */
-
-    // the following code does exactly the same as 
-    // the above commented, only much more efficient
-    // because it'snot loading ALL pages
-    $display_ad = false;
-    if (preg_match("/(network|group)/", $this->setting_data['page_type'])) {
-    	$display_ad = true;
-    }
-    
-
-    if ($display_ad) {
-      // get all ads
-      $all_ads = Advertisement::get(array('direction'=>'ASC', 'sort_by'=>'orientation'), array('page_id' => $_PA->page_type, 'is_active' => ACTIVE));
-      if (!empty($all_ads)) {
-        foreach($all_ads as $ad) {
-          $pos = $ad->orientation;
-          $pos = explode(',', $ad->orientation);
-          $x_loc = $pos[0];
-          //y_loc was not originally designed so for already created ads
-          //FIX for already created ads
-          if (array_key_exists(1, $pos)) {
-            $y_loc = $pos[1];
-          } else {
-            $y_loc = 1;//Ads created before this logic implementation should come on top
-          }
-
-          //horizontal and vertical position should not be empty
-          if (!empty($x_loc) && !empty($y_loc)) {
-            $array_of_data = array('links' => $ad);
-            $inner_html =  $this->add_block_module('AdvertisementModule', $array_of_data);
-
-            $this->add_module_xy($x_loc, $y_loc, $inner_html);
-          }
-        }
-      }//end of if all_ads
-    }//end of display_ad
-
-  }
-// ----------------------------------------------------------------------------------------------
-
 
   private function initNew($cb, $default_mode, $default_block_type, $setting_data) {
-    global $_PA, $page_uid, $uid;
+    global $page_uid, $uid;
 
     // render all modules
     foreach ($this->modules_array as $module) {
@@ -491,25 +352,25 @@ class PageRenderer {
         }
       }
 
-    /*
+/*
     $pages = Advertisement::get_pages(); // get pages where ads is to be displayed
     $display_ad = FALSE;
     foreach ($pages as $page) {
-      if ($_PA->page_type == $page['value']) {
+      if (PA::$config->page_type == $page['value']) {
         $display_ad = TRUE;
         break;
       }
     }
-    */
+*/
 
-    // the following code does exactly the same as 
+    // the following code does exactly the same as
     // the above commented, only much more efficient
     // because it'snot loading ALL pages
     $display_ad = false;
     if (preg_match("/(network|group)/", $this->setting_data['page_type'])) {
     	$display_ad = true;
     }
-    
+
 
     if ($display_ad) {
       // get all ads
@@ -519,7 +380,7 @@ class PageRenderer {
 					'direction'=>'ASC',
 					'sort_by'=>'orientation'),
 					array(
-						'page_id' => $_PA->page_type,
+						'page_id' => PA::$config->page_type,
 						'is_active' => ACTIVE,
 						'group_id' => NULL));
       } catch (PAException $e) {
@@ -533,7 +394,7 @@ class PageRenderer {
 					'direction'=>'ASC',
 					'sort_by'=>'orientation'),
 					array(
-						'page_id' => $_PA->page_type,
+						'page_id' => PA::$config->page_type,
 						'is_active' => ACTIVE,
 						'group_id' => (int)$_REQUEST['gid']));
 				} catch (PAException $e) {
@@ -952,6 +813,7 @@ class PageRenderer {
   // call $page->render() to get the html to display.
   function render() {
 
+    if(PA::$profiler) PA::$profiler->startTimer('PageRenderer_render');
     // Get HTML of HEADer section
     $extra_head_html = $this->get_extra_head_html();
     html_header($this->page_title, $extra_head_html);
@@ -977,7 +839,9 @@ class PageRenderer {
     $this->page->set('footer', $this->footer);
     $this->page->set('current_theme_path', PA::$theme_url);
 
-    return $this->page->fetch();
+    $res = $this->page->fetch();
+    if(PA::$profiler) PA::$profiler->stopTimer('PageRenderer_render');
+    return $res;
   }
 
 }

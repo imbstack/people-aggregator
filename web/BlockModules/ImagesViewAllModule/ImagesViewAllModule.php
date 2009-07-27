@@ -10,6 +10,7 @@ class ImagesViewAllModule extends Module {
   public $item_id;
 
   function __construct() {
+    parent::__construct();
     $this->main_block_id = "ImagesViewAllModule";
   }
    //render the contents of the page

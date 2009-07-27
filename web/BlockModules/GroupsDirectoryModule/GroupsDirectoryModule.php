@@ -14,6 +14,7 @@ class GroupsDirectoryModule extends Module {
   public $keyword, $sort_by, $total_groups;
 
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'GroupsDirectoryModule';
   }
   
@@ -171,7 +172,6 @@ class GroupsDirectoryModule extends Module {
   }
   
   function generate_inner_html () {
-    global $current_theme_path, $current_blockmodule_path;
     $Pagination = new Pagination;
     $group = new group();
     $user_group_ids = array();
@@ -197,7 +197,7 @@ class GroupsDirectoryModule extends Module {
     $inner_html_gen->set('total', $this->total);
     $inner_html_gen->set('search_str', get_groups_search_options());
     $inner_html_gen->set('user_group_ids', $user_group_ids);
-		$inner_html_gen->set('current_theme_path', $current_theme_path);
+		$inner_html_gen->set('current_theme_path', PA::$theme_url);
     $inner_html_gen->set('page_first', $this->page_first);
     $inner_html_gen->set('page_last', $this->page_last);
     $inner_html_gen->set('page_links', $this->page_links);

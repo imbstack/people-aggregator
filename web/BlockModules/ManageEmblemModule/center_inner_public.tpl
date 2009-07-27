@@ -1,8 +1,8 @@
- 
-<?php global $current_theme_path; ?>
+<?php 
+?>
  <script>
-          var last_blog = 1;
-          </script>
+    var last_blog = 1;
+ </script>
 <h1>Manage Emblem </h1>
 <form enctype="multipart/form-data" action="manage_emblem.php?uid=<?=$_SESSION['user']['id']?>" method="post" onsubmit="return isValidManageEmbleum('manage_emblem');" name="manage_emblem" >
  <fieldset class="center_box">
@@ -42,9 +42,9 @@
     <input type="hidden" name="total" id="total" value=<?php echo $total ?> />
     </div>
      </fieldset>  
-    <div class="field_choose" id="addmore_button">Add More<img src="<?php echo $current_theme_path;?>/images/plus.gif" alt="Add More" onclick="javascript:addfile('block','image_gallery')"  />
+    <div class="field_choose" id="addmore_button">Add More<img src="<?php echo PA::$theme_url;?>/images/plus.gif" alt="Add More" onclick="javascript:addfile('block','image_gallery')"  />
     </div>
-  <div class="field_choose" id="addmore_button">Remove<img src="<?php echo $current_theme_path;?>/images/minus.gif" alt="Add More" onclick="javascript:removefile();"  />
+  <div class="field_choose" id="addmore_button">Remove<img src="<?php echo PA::$theme_url;?>/images/minus.gif" alt="Add More" onclick="javascript:removefile();"  />
   </div>
  <div class="button_position"><input type="submit" name="submit" value="<?= __("Submit") ?>" /> </div>
 <?php echo $config_navigation_url; ?>

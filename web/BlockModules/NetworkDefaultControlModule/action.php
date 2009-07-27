@@ -1,7 +1,6 @@
 <?php
 //echo "fyi - NetworkDefaultControlModule/action.php not used yet"; exit;
 
-global  $uploaddir, $network_info;
 require_once "web/includes/classes/file_uploader.php";
 require_once "api/Roles/Roles.php";
 
@@ -21,7 +20,7 @@ set_web_variables($msg_array, $redirect_url, $query_str);
 // Here we made a function for creating the network  ;)
 
 function create_new_network($_form) {
-global $login_uid, $uploaddir, $network_controls;
+
 // function checks initial settings for network creation
 $can_network_be_created = Network::can_network_be_created();
 
@@ -29,7 +28,7 @@ if ( $can_network_be_created['error'] == TRUE ) {
   $config_error = TRUE;
   $error = TRUE;
   $error_msg = $can_network_be_created['error_msg'];
-} else if(!$login_uid) {
+} else if(!PA::$login_uid) {
   $config_error = TRUE;
 }
 
@@ -73,10 +72,10 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
           }
           //code to upload the icon image
           if (!empty($_FILES['inner_logo_image']['name'])) {
-            $uploadfile = $uploaddir . basename($_FILES['inner_logo_image']['name']);
+            $uploadfile = PA::$upload_path . basename($_FILES['inner_logo_image']['name']);
             $myUploadobj = new FileUploader; //creating instance of file.
             $image_type = 'image';
-            $file = $myUploadobj->upload_file($uploaddir, 'inner_logo_image', true, true, $image_type);
+            $file = $myUploadobj->upload_file(PA::$upload_path, 'inner_logo_image', true, true, $image_type);
             if ($file == false) {
               $error = TRUE;
               $error_msg = $file_upload_result['error_msg'];
@@ -89,7 +88,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
             unset($data_icon_image);
           }
           //...code to upload the icon image
-              $network_basic_controls = $network_controls;
+              $network_basic_controls = PA::$network_defaults;
               $network_basic_controls['basic']['header_image']['name'] = $header_image;
               $network_basic_controls['basic']['header_image']['option'] = ($_form['header_image_option'])?($_form['header_image_option']):DESKTOP_IMAGE_ACTION_STRETCH;
               // for title of network group

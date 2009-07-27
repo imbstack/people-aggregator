@@ -18,6 +18,7 @@ class GroupInvitationModule extends Module {
   public $group_title;
   
   public function __construct() {
+    parent::__construct();
     $this->title = __('Invite Into Groups');
   }
   
@@ -253,7 +254,6 @@ class GroupInvitationModule extends Module {
   }
 
   public function generate_inner_html () {
-    global $current_blockmodule_path;
     switch ($this->mode) {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';

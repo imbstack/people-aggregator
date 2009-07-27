@@ -18,6 +18,7 @@ class MembersFacewallModule extends FacewallModule {
   public $view_all_url;
 
   function __construct($sort_by = null, $gid = null) {
+    parent::__construct();
     $this->sort_by = $sort_by;
     $this->title = sprintf(__("%s Members"), PA::$group_noun);
     $this->html_block_id = "members";

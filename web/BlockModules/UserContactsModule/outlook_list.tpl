@@ -1,8 +1,8 @@
 <?php
 
-require_once "web/includes/classes/xhtmlTagHelper.class.php";
+require_once "web/includes/classes/xHtml.class.php";
 
-  $tags        = new xhtmlTagHelper();
+  $tags        = new xHtml();
   $js_submit = '
                    modal_hide();
                    document.forms[\'outlook_invite_form\'].submit();

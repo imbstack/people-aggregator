@@ -7,6 +7,7 @@ class VideoTourModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
   
   function __construct() {
+    parent::__construct();
     $this->html_block_id = 'mod_video_tour';
   }
   

@@ -7,6 +7,7 @@ class LeaderBoardModule extends Module {
   public $module_placement = 'left|right|middle';
 
   function __construct() { 
+    parent::__construct();
     $this->html_block_id = 'LeaderBoardModule';
   }
 

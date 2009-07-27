@@ -10,7 +10,7 @@ class GroupModule extends Module {
   public $sorting_options,$selected_option;
 
   function __construct() {
-     
+    parent::__construct();
   }
 
   function render() {
@@ -25,7 +25,6 @@ class GroupModule extends Module {
   }
 
   function generate_inner_html ($links) {
-    global $current_theme_path, $current_blockmodule_path;
     
     if(empty($links)) {
       $this->sort_by=FALSE;
@@ -47,7 +46,7 @@ class GroupModule extends Module {
       $obj_inner_template->set('sorting_options', $this->sorting_options);
       $obj_inner_template->set('selected_option', $this->selected_option);
     }
-    $obj_inner_template->set('current_theme_path', $current_theme_path);
+    $obj_inner_template->set('current_theme_path', PA::$theme_url);
     $inner_html = $obj_inner_template->fetch();
     return $inner_html;
   }

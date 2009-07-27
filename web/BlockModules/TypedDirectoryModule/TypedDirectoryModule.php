@@ -7,6 +7,7 @@ class TypedDirectoryModule extends Module {
 
 
   function __construct() { 
+    parent::__construct();
     $this->outer_template = 'outer_public_center_module.tpl';
 	  $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/master_directory.tpl.php";
     $this->title = __('Master Directory');
@@ -19,8 +20,8 @@ class TypedDirectoryModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-  	global $_PA;
-    if (empty($_PA->useTypedGroups)) {
+  	 
+    if (empty(PA::$config->useTypedGroups)) {
   		return 'skip';
   	}
   	

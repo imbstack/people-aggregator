@@ -26,7 +26,7 @@ if(!empty($_POST)) {
     //'Profanity word list has been successfully updated.'
     $error = false;
     $msg = 5043;                                                  
-//  $_PA->profanity = explode("\r\n", $_POST['file_text']);
+//  PA::$config->profanity = explode("\r\n", $_POST['file_text']);
   }
   fclose($handle);
 }

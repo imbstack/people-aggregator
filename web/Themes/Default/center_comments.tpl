@@ -1,6 +1,5 @@
 <?php
 require_once "api/Permissions/PermissionsHandler.class.php";
-  global $current_theme_path, $network_info, $login_uid;
   $param_array = array('permissions' => 'view_abuse_report_form');
   $total_comments = count( $comments );
   if( $total_comments ) {
@@ -32,7 +31,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
       <?php
         $params = array('comment_info'=>array('user_id'=>$comment['user_id'], 'content_id'=>$comment['content_id']), 'permissions'=>'delete_comment');
         echo '</div>';
-        if (!empty($login_uid)) {
+        if (!empty(PA::$login_uid)) {
           echo '<div id="buttonbar"><ul>';
           if(PermissionsHandler::can_user(PA::$login_uid, $params)) {
             echo '<li><a href="'.PA::$url .'/deletecomment.php?comment_id='.$comment['comment_id'].'" onclick="return confirm_delete(\'Are you sure you want to delete this comment ? \');">Delete</a></li>';

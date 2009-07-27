@@ -11,6 +11,7 @@ class RecentPostModule extends Module {
   public $type;
 
   public function __construct() {
+    parent::__construct();
     $this->title = __("Recent Posts");
     $this->limit = 10;
     $this->view_all_url = PA::$url . PA_ROUTE_HOME_PAGE; // default url

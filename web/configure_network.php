@@ -20,9 +20,9 @@ require_once "web/includes/network.inc.php";
 $page = new PageRenderer("setup_module", PAGE_CONFIGURE_NETWORK, "Network Statistics", 'container_one_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
 
 
-$css_path = $current_theme_path.'/layout.css';
+$css_path = PA::$theme_url . '/layout.css';
 $page->add_header_css($css_path);
-$css_path = $current_theme_path.'/network_skin.css';
+$css_path = PA::$theme_url . '/network_skin.css';
 $page->add_header_css($css_path);
 
 if ( $error ) {  

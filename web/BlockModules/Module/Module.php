@@ -9,11 +9,11 @@
  *              consists of outer template and inner html
  * The lastest version of PeopleAggregator can be obtained from:
  * http://peopleaggregator.org
- * For questions, help, comments, discussion, etc. please visit 
+ * For questions, help, comments, discussion, etc. please visit
  * http://wiki.peopleaggregator.org/index.php
  *
  */
- 
+
 
 
 // global var $path_prefix has been removed - please, use PA::$path static variable
@@ -46,61 +46,61 @@ define ('HOMEPAGE_SORTBY', 'Homepage_sortby');
  * @package BlockModules
  * @subpackage Module
  */
- 
+
 class Module {
 
   public $module_type = 'base_class';
   public $module_placement = '';
-  
+
   /**
    * $is_private - flag to show that it is private or public view of the module
    * @var boolean
    */
   public $is_private;
-  
+
   /**
    * $inner_HTML - inner html produced by the inherited module
    * @var string
    */
   public $inner_HTML;
-  
+
   /**
    * $config_HTML - some modules have configure box with them
    * this var is used to hold that configure html
    * @var string
    */
   public $config_HTML;
-  
+
   /**
    * $view_all_url - link to a page that contains full records
    * @var string
    */
   public $view_all_url;
-  
+
   /**
    * $ajax_url - ajax page it is referring to internally
    * @var string
    */
   public $ajax_url;
-  
+
   /**
    * $title - title of the header of module
    * @var string
    */
   public $title;
-  
+
   /**
    * $height - height of module
    * @var int
    */
   public $height;
-  
+
   /**
    * $mode - used in exceptional cases where we have to select the internal tpl files
    * @var string
    */
   public $mode;
-  
+
   /**
    * $html_block_id - used to defile the ID property of html
    * this is used for various javascript and ajax applications
@@ -109,13 +109,13 @@ class Module {
    * @var string
    */
   public $html_block_id;
-  
+
   /**
    * $manage_links_url - a link to manage the module section (contents of module)
    * @var string
    */
   public $manage_links_url;
-  
+
   /**
    * $edit_url - a link to edit the module (contents of the module)
    * @var string
@@ -139,7 +139,7 @@ class Module {
    * $param_prefix - prefix to add to HTML inputs.  Usually left
    * blank, but during widgetization this will be assigned by the
    * client.
-   */ 
+   */
   public $param_prefix = NULL;
 
   /**
@@ -153,45 +153,45 @@ class Module {
    * @var string
    */
   public $rss_link;
-  
+
   /**
    * $orientation - show the location of module
    * used in earlier versions to show the left right orientation of module
    * @var string
    */
   public $orientation;
-  
+
   /**
    * $caption_image - show image for caption in module if there is any
    * used in earlier versions to show desktop image for user
    * @var string
    */
   public $caption_image;
-  
+
   /**
    * $show_filters - show the filter options in module
    * @var boolean
    */
   public $show_filters;
-  
+
   /**
    * $block_heading - heading of center block - used for community block etc
    * @var string
    */
   public $block_heading;
-  
+
   /**
    * $do_pagination - used for pagination
    * @var string
    */
   public $do_pagination;
-  
+
   /**
    * $page_prev - links for previous page in pagination
    * @var string
    */
   public $page_prev;
-  
+
   /**
    * $page_next - links for next page in pagination
    * @var string
@@ -222,13 +222,13 @@ class Module {
    * @var int
    */
   public $block_type;
-  
+
   /**
    * $outer class - for the outer class of the outer templetes , this variable is used to reduce the number of OUTER TEMPLETES FILES in Modules
    * @var string
-   */ 
+   */
   public $outer_class_name;
-   
+
   /**
   * $group_owner - It is set to true, if current user is group moderator
   */
@@ -237,52 +237,55 @@ class Module {
   * $group_member - It is set to true, if current user is group's member
   */
   public $group_member;
-  
+
   /**
   * $do_skip: If this variable is set to true then the render function will return 'skip' to the PageRenderer
   */
   public $do_skip;
-  
+
    /**
   * $page_id: Current Page ID where from module rendered; added by: Z.Hron
   */
   public $page_id;
-   
+
    /**
   * $column: module layout info; added by: Z.Hron
   */
   public $column;
-   
+
    /**
   * $shared_data: data shared between all modlules on a page; added by: Z.Hron
   */
   public $shared_data;
-  
+
   /**
   * Will contain the message, either failure of success which are to be displayed on the web page
   */
   public $message = NULL;
-  
+
   /**
-  * This attribute will mark whether the message is a error message or success message. 
-  * If TRUE = error or failure message, 
+  * This attribute will mark whether the message is a error message or success message.
+  * If TRUE = error or failure message,
   * FALSE = success
   */
   public $isError = FALSE;
-  
+
   /**
   * These two parameters are used to set the message from with in the module into web page file.
   * These variables are used by set_web_variables function defined in functions.php
   */
   public $redirect2 = NULL;
   public $queryString = NULL;
- 
+
   /**
   * The default constructor for MembersFacewallModule class.
   * It initializes the default values of vars
   */
   function __construct() {
     $this->do_skip = FALSE;
+    if(PA::$profiler) PA::$profiler->startTimer(get_class($this));
+
+//    echo "MODULE CONSTRUCTOR CALLED by " . get_class($this) . "<br/>";
   }
 
 
@@ -291,11 +294,11 @@ class Module {
   *  Purpose  : produce html code of module. It generally uses two tpl files
   *             one for outer template and one for inner template
   *             inner template is produced by inherited module
-  *  @return   type string 
-  *            returns rendered html code 
+  *  @return   type string
+  *            returns rendered html code
   */
   function render() {
-    global $current_theme_path;
+
     if ($this->do_skip) return 'skip';//Module will be skipped if do_skip is true.
     $title = $this->title;
     $inner_HTML = $this->inner_HTML;
@@ -307,15 +310,15 @@ class Module {
     $orientation = $this->orientation;
     $block_type = $this->block_type;
     $this->html_block_id = (empty($this->html_block_id)) ?get_class($this): $this->html_block_id;
-      
+
     if (trim($this->config_HTML) == '') {
       $is_configurable = 0;
     }
     else {
       $is_configurable = 1;
     }
-    
-    
+
+
     $id_prefix = $this->html_block_id;
 
 //     $main_block_id = 'mod_'.$this->html_block_id;
@@ -323,15 +326,15 @@ class Module {
     $inner_block_data_id = $id_prefix.'_block_data';
     $configure_block_id = $id_prefix.'_block_configure';
 #This block of code is temporary and will be removed when outer_template is defined in all the block
-#modules    
-    
+#modules
+
     if (empty($this->outer_template)) throw new PAException(GENERAL_SOME_ERROR, 'Error in module; derived class must have $outer_template instance var');
     $template_file = CURRENT_THEME_FSPATH."/".$this->outer_template;
-   
+
     //if ($this->title == 'Contents') { print "$template_file"; print "HHH::$this->height"." MMM::$this->max_height"; }
-    
+
     $block = & new Template($template_file);
-    $block->set('current_theme_path', $current_theme_path);
+    $block->set('current_theme_path', PA::$theme_url);
     $block->set('title', $title);
     $block->set('is_configurable', $is_configurable);
     $block->set('inner_HTML', $inner_HTML);
@@ -368,6 +371,7 @@ class Module {
     $block->set('group_member', $this->group_member);
     $contents = $block->fetch();
 
+    if(PA::$profiler) PA::$profiler->stopTimer(get_class($this));
     return $contents;              // Return the contents
   }
 
@@ -400,7 +404,7 @@ class Module {
   function submit_tag($value) {
     return '<input type="submit" value="'.htmlspecialchars($value).'" />';
   }
-  
+
   /**
   * Method will be used for setting the message in the web pages.
   */

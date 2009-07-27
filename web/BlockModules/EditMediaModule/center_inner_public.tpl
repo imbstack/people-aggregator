@@ -1,5 +1,4 @@
 <?php
-  global  $current_theme_path, $current_theme_rel_path;
   
   switch(ucfirst($media_type)) {
     case 'Image': $ret_url = PA::$url . PA_ROUTE_MEDIA_GALLEY_IMAGES . "/uid=" . $media_data->author_id;  break;
@@ -14,7 +13,7 @@
    <form action="" method="post">
       <fieldset class="center_box">
         <div class="field_bigger">
-        <?= uihelper_resize_mk_img($image_path, 70, 50, "$current_theme_rel_path/images/header_image.jpg",'alt="image."') ?>
+        <?= uihelper_resize_mk_img($image_path, 70, 50, PA::$theme_rel . "/images/header_image.jpg",'alt="image."') ?>
            <a href="<?php echo PA::$url;?>/media_full_view.php?cid=<?php echo $_GET['cid'];?>">Full view</a>
           
         </div>

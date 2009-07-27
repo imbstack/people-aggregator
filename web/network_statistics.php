@@ -9,10 +9,11 @@ include_once("web/includes/page.php");
 require_once "web/includes/classes/file_uploader.php";
 require_once "api/Validation/Validation.php";
 require_once "web/includes/network.inc.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 
 $authorization_required = TRUE;
 $error = FALSE;
+$error_msg = null;
 
 if (!empty($_GET['msg_id'])) {
   $error_msg =  $_GET['msg_id'];
@@ -28,7 +29,7 @@ if(!empty($_REQUEST['config_action'])) {
         } else {
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $restore_settings = $imported_config->getGeneralNetworkSettings();
             $restore_settings['extra'] = serialize($restore_settings['extra']);
             $error_msg = __("File ") . $_FILES['local_file']['name'] . __(" loaded successfully.") . "<br />"
@@ -44,7 +45,7 @@ if(!empty($_REQUEST['config_action'])) {
     break;
     case 'restore_defaults':
       try {
-        $imported_config = new PaConfiguration();
+        $imported_config = new NetworkConfig();
         $restore_settings = $imported_config->getGeneralNetworkSettings();
         $restore_settings['extra'] = serialize($restore_settings['extra']);
         $error_msg = __('Default settings sucessfully restored.') . "<br />"
@@ -55,7 +56,7 @@ if(!empty($_REQUEST['config_action'])) {
       }
     break;
     case 'download_settings_file':
-        $imported_config = new PaConfiguration();
+        $imported_config = new NetworkConfig();
         if(!empty($imported_config->settings_file)) {
           download($imported_config->settings_file, 'xml');
           exit;
@@ -68,7 +69,7 @@ if(!empty($_REQUEST['config_action'])) {
         } else {
           try {
             $content = file_get_contents($_FILES['config_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $imported_config->storeSettingsLocal();
             //      echo "<pre>".print_r($restore_settings,1)."</pre>";
             $error_msg = __("File ") . $_FILES['config_file']['name'] . __(" uploaded successfully.");
@@ -126,7 +127,7 @@ if ( @$_POST['action']=='delete' && !$error ) {
       //delete network and redirect to mother network homepage
       // FIX ME where we want to send after deletion
       $m = mothership_info();
-      Network::delete($network_info->network_id);
+      Network::delete(PA::$network_info->network_id);
 		  header('location:'.$m['url']."?msg=7029");exit;
     } else {
       throw new PAException(OPERATION_NOT_PERMITTED,'You are not authorised to delete the network.');
@@ -153,7 +154,7 @@ if ( @$_POST['action'] == 'edit' && !$error) {
 
   }
   // No need to verify category of MotherNetwork
-  if ($network_info->type == MOTHER_NETWORK_TYPE) {
+  if (PA::$network_info->type == MOTHER_NETWORK_TYPE) {
     $skip_check = array('address', 'category');
   }
   else {
@@ -169,10 +170,10 @@ if ( @$_POST['action'] == 'edit' && !$error) {
   if ( !$error_post ) {
     //code to upload the icon image
     if (!empty($_FILES['inner_logo_image']['name'])) {
-      $uploadfile = $uploaddir . basename($_FILES['inner_logo_image']['name']);
+      $uploadfile = PA::$upload_path . basename($_FILES['inner_logo_image']['name']);
       $myUploadobj = new FileUploader; //creating instance of file.
       $image_type = 'image';
-      $file = $new_inner_logo_image = $myUploadobj->upload_file($uploaddir, 'inner_logo_image', true, true, $image_type);
+      $file = $new_inner_logo_image = $myUploadobj->upload_file(PA::$upload_path, 'inner_logo_image', true, true, $image_type);
       if ($file == false) {
         $error = TRUE;
         $error_msg = $file_upload_result['error_msg'];
@@ -231,7 +232,7 @@ if ( @$_POST['action'] == 'edit' && !$error) {
       'description' => $form_data['desc'],
       'type' => $form_data['type'],
       'extra'=>serialize($network_basic_controls),
-      'network_id'=>$network_info->network_id,
+      'network_id'=>PA::$network_info->network_id,
       'changed'=>time()
       );
       //add icon image
@@ -245,11 +246,11 @@ if ( @$_POST['action'] == 'edit' && !$error) {
     $network->set_params($data);
     try{
       $nid = $network->save();
-      $network_info = get_network_info();//refreshing the network_info after saving it.
+      PA::$network_info = get_network_info();//refreshing the network_info after saving it.
       $error_msg = 'Network Information Successfully Updated';
 
       if(!empty($_REQUEST['config_action']) && ($_REQUEST['config_action'] == 'store_as_defaults')) {
-        $export_config = new PaConfiguration();
+        $export_config = new NetworkConfig();
         $export_config->buildNetworkSettings($network);
         $export_config->storeSettingsLocal();
         $error_msg = 'Network default configuration file "' . $export_config->settings_file . '" successfully updated.';
@@ -274,13 +275,13 @@ if ( @$_POST['action'] == 'edit' && !$error) {
 
 }//...$_POST if ends
 //render the page
-$page = new PageRenderer("setup_module", PAGE_NETWORK_STATISTICS, sprintf(__("Network Statistics - %s"), $network_info->name), 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_NETWORK_STATISTICS, sprintf(__("Network Statistics - %s"), $network_info->name), 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,PA::$network_info);
 
 uihelper_error_msg($error_msg);
 uihelper_get_network_style();
 $page->html_body_attributes ='class="no_second_tier network_config"';
 
-$css_path = $current_theme_path.'/admin2.css';
+$css_path = PA::$theme_url . '/admin2.css';
 $page->add_header_css($css_path);
 
 //..end render the page
@@ -288,7 +289,7 @@ $page->add_header_css($css_path);
 /*  ---------- FUNCTION DEFINITION ------------------*/
 //call back function
 function setup_module($column, $module, $obj) {
-  global $form_data, $error, $error_msg,$network_info;
+  global $form_data, $error, $error_msg;
 
   $can_mange_settings = false;
   if(PA::$login_uid) {
@@ -308,12 +309,12 @@ function setup_module($column, $module, $obj) {
   $obj->error = $error;
   $obj->error_msg = $error_msg;
   $obj->is_edit = TRUE;
-  $param['network_id'] = $network_info->network_id;
+  $param['network_id'] = PA::$network_info->network_id;
   $obj->network_stats = Network::get_network_statistics($param);
   // check for meta network control access
   $obj->meta_network_reci_relation = FALSE;
   if (PA::$login_uid == SUPER_USER_ID &&
-      $network_info->type == MOTHER_NETWORK_TYPE
+      PA::$network_info->type == MOTHER_NETWORK_TYPE
      ) {
     $obj->meta_network_reci_relation = TRUE;
   }

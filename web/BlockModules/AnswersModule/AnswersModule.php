@@ -25,7 +25,7 @@ class AnswersModule extends Module {
   public $Paging, $question_id, $page_first, $page_last, $page_links;
  
   function __construct() {
-    
+    parent::__construct();
   }
   
   public function initializeModule($request_method, $request_data) {

@@ -29,6 +29,7 @@ class PopularTagsModule extends Module {
   public $links;
 
   function __construct() {
+    parent::__construct();
     $this->title = __("Most Popular Tags");
     $this->html_block_id = "tagcloud";
   }
@@ -46,7 +47,6 @@ class PopularTagsModule extends Module {
   }
   
   function generate_inner_html ($links) {
-    global $current_theme_path, $current_blockmodule_path;
     
     $inner_template = NULL;
     switch ( $this->mode ) {
@@ -56,7 +56,7 @@ class PopularTagsModule extends Module {
     
     $obj_inner_template = & new Template($inner_template);
     $obj_inner_template->set('links', $links);
-    $obj_inner_template->set('current_theme_path', $current_theme_path);
+    $obj_inner_template->set('current_theme_path', PA::$theme_url);
     $inner_html = $obj_inner_template->fetch();
     return $inner_html;
   }

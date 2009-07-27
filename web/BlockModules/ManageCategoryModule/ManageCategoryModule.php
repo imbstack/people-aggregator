@@ -12,7 +12,9 @@ class ManageCategoryModule extends Module {
   public $cat_id;
   public $parent_id;
   public $parent_name;
+
   function __construct() {
+    parent::__construct();
     $this->title = __('Manage Category');
     $this->html_block_id = 'ManageCategoryModule';
     $this->main_block_id = NULL;

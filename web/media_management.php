@@ -15,7 +15,7 @@ require_once '../ext/Image/Image.php';
 require_once '../ext/Audio/Audio.php';
 require_once '../ext/Video/Video.php';
 
-global $current_theme_path;
+ 
 
 $parameter = js_includes("all");
 html_header("Content Management", $parameter);

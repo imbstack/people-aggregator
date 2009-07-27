@@ -53,6 +53,9 @@ class MediaGalleryModule extends Module {
    */
   public $group_ids;
 
+  function __construct() {
+    parent::__construct();
+  }
 
   function handleRequest($request_method, $request_data) {
 

@@ -8,7 +8,7 @@ require_once "api/ContentCollection/ContentCollection.php";
 require_once "api/Comment/Comment.php";
 require_once "ext/Group/Group.php";
 require_once "api/Category/Category.php";
-global $current_theme_path;
+ 
 
 $request_info = load_info();
 $parent_id = $request_info['parent_id'];

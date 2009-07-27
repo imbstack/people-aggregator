@@ -151,9 +151,9 @@
     $page->add_module("middle", "top", $m);
   }
   
-  $css_path = $current_theme_path.'/layout.css';
+  $css_path = PA::$theme_url . '/layout.css';
   $page->add_header_css($css_path);
-  $css_path = $current_theme_path.'/network_skin.css';
+  $css_path = PA::$theme_url . '/network_skin.css';
   $page->add_header_css($css_path);
   
   echo $page->render();

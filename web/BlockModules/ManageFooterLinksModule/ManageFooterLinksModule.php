@@ -23,6 +23,7 @@ class ManageFooterLinksModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->block_type = 'ManageFooterLinksModule';
     $this->html_block_id = 'ManageFooterLinksModule';
     $this->title = __('Manage Footer Links');

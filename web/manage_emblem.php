@@ -41,7 +41,7 @@ if (@$_POST['submit']=='Submit') {
     if (!empty($_FILES['userfile_'.$i]['name'])) {
       $file_name = $_FILES['userfile_'.$i]['name']; 
       $myUploadobj = new FileUploader; //creating instance of file.
-      $file = $myUploadobj->upload_file($uploaddir,'userfile_'.$i,TRUE);
+      $file = $myUploadobj->upload_file(PA::$upload_path,'userfile_'.$i,TRUE);
       if ($file == false) {
         $msg = $myUploadobj->error;
         $error = TRUE;

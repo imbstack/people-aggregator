@@ -24,6 +24,6 @@ if ($links === NULL) {
 }
 
 // we have links: now render!
-include "web/$current_theme_rel_path/delicious_links.tpl";
+include "web/".PA::$theme_rel."/delicious_links.tpl";
 
 ?>

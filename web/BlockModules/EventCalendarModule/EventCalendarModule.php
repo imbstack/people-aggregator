@@ -5,7 +5,9 @@ class EventCalendarModule extends Module {
   public $module_type = 'user|group';
   public $module_placement = 'middle';
   public $outer_template = 'outer_public_center_edit_profile_module.tpl';
+
   function __construct() {
+    parent::__construct();
     $this->html_block_id = "EventCalendarModule";
     $this->block_type = 'EventCalendar';
   }

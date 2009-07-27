@@ -1,7 +1,6 @@
 <?php 
 require_once "api/Permissions/PermissionsHandler.class.php";
 
-global $_PA, $base_url;
 	$permission_to_post = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'post_to_community'));
 	
   $form_action = PA::$url ."/post_content.php";
@@ -11,7 +10,7 @@ global $_PA, $base_url;
 		if (($group_access == ACCESS_PRIVATE) || ($group_reg == REG_INVITE)) {
 			// content published in a private Group!
 			// turn off full routing for private groups
-			$_PA->simple['omit_routing'] = true;
+			PA::$config->simple['omit_routing'] = true;
 			// no routing to homepage either!
 			$permission_to_post = false;
 		}
@@ -40,7 +39,7 @@ global $_PA, $base_url;
 <?php if(!$is_edit) { 
 	// turn off full routing for private groups
 	
-	if (!empty($_PA->simple['omit_routing'])) { 
+	if (!empty(PA::$config->simple['omit_routing'])) { 
 		// give user a very simmple routing option here
 		?>
     <ul id="routing">
@@ -125,7 +124,7 @@ global $_PA, $base_url;
               </div>
             <?php } ?>
             <?php
-            if (empty($_PA->simple['omit_advacedprofile'])) {
+            if (empty(PA::$config->simple['omit_advacedprofile'])) {
             ?>
                 <h4><label for="route_targets_groups"><?= __("Send to selected external blogs") ?> *</label></h4>
                 <?php if($show_external_blogs) {

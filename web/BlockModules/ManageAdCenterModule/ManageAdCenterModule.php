@@ -11,6 +11,7 @@ class ManageAdCenterModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {
+    parent::__construct();
     $this->title = __("Manage Ad Center");
     $this->html_block_id = 'ManageAdCenterModule';
     $this->main_block_id = NULL;
@@ -110,11 +111,10 @@ class ManageAdCenterModule extends Module {
 				$advertisement->created = time();
 			}
 			if (!empty($_FILES['ad_image']['name'])) {
-				global $uploaddir;
 				$filename = $_FILES['ad_image']['name'];
-				$uploadfile = $uploaddir.basename($filename);
+				$uploadfile = PA::$upload_path.basename($filename);
 				$myUploadobj = new FileUploader;
-				$file = $myUploadobj->upload_file($uploaddir, 'ad_image', TRUE, TRUE, 'image');
+				$file = $myUploadobj->upload_file(PA::$upload_path, 'ad_image', TRUE, TRUE, 'image');
 				$advertisement->ad_image = $form_data['ad_image'] = $file;
 				if ($file == FALSE) {
 					$error = TRUE;

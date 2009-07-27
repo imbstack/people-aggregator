@@ -1,7 +1,7 @@
 <?php
 // require_once "web/config/default_email_messages.php";
 
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 
@@ -139,7 +139,7 @@ class EmailMessages {
   * The default constructor for EmailMessagess class.
   */
   public function __construct() {
-    $this->config_obj = new PaConfiguration();
+    $this->config_obj = new NetworkConfig();
   }
  /**
  * This function updates subject and message
@@ -186,7 +186,7 @@ class EmailMessages {
   public static function get($type, $array_of_data = NULL) {
     Logger::log("Enter: function EmailMessages::get");
     $return = null;
-    $config_obj = new PaConfiguration();
+    $config_obj = new NetworkConfig();
     $e_message = (!empty($config_obj->settings['email_messages'][$type])) ? $config_obj->settings['email_messages'][$type] : null;
     if (!empty($e_message)) {
       $subject = $e_message['subject'];
@@ -222,7 +222,7 @@ class EmailMessages {
     $email_msgs = array();
     $result = array();
     Logger::log("Enter: function EmailMessages::get_all_messages");
-    $config_obj = new PaConfiguration();
+    $config_obj = new NetworkConfig();
     if(!empty($config_obj->settings['email_messages'])) {
       foreach($config_obj->settings['email_messages'] as $type => $data ) {
         if($list_only) {

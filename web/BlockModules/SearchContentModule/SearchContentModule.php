@@ -9,6 +9,7 @@ class SearchContentModule extends Module {
   public $uid;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Search Content');
     $this->html_block_id = 'SearchContentModule';
     $this->id = 0;
@@ -25,7 +26,7 @@ class SearchContentModule extends Module {
   }
 
   function generate_inner_html () {
-    global $current_theme_path;
+     
     
     switch ( $this->mode ) {
       default:
@@ -33,7 +34,7 @@ class SearchContentModule extends Module {
     }
     
     $inner_html_gen = & new Template($inner_template);
-    $inner_html_gen->set('current_theme_path', $current_theme_path);
+    $inner_html_gen->set('current_theme_path', PA::$theme_url);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;
   }

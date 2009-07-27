@@ -1,12 +1,11 @@
 <?php  
-  global $current_theme_path,$uploaddir,$network_info;
   $level_1 = $navigation_links['level_1'];
   unset($level_1['highlight']);
-  if ($network_info->type == MOTHER_NETWORK_TYPE) {
+  if (PA::$network_info->type == MOTHER_NETWORK_TYPE) {
     $caption = sprintf(__("%s Networks"), PA::$site_name);
   }
   else {
-    $caption = ucfirst($network_info->name).' Network';
+    $caption = ucfirst(PA::$network_info->name).' Network';
   }
 ?>
 <?php

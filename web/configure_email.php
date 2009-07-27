@@ -1,11 +1,11 @@
 <?php
-global  $current_theme_path;
+
 $login_required = TRUE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 
 include_once("web/includes/page.php");
 require_once "ext/EmailMessages/EmailMessages.php";
-require_once "web/includes/classes/PaConfiguration.class.php";
+require_once "web/includes/classes/NetworkConfig.class.php";
 require_once "web/includes/classes/EmailMessagesConfig.class.php";
 // require_once "web/config/default_email_messages.php";
 
@@ -68,7 +68,7 @@ if(!empty($_REQUEST['config_action'])) {
         } else {
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
-            $imported_config = new PaConfiguration($content);
+            $imported_config = new NetworkConfig($content);
             $restore_settings = $imported_config->getEmailMessagesSettings();
             if(!empty($restore_settings)) {
               foreach($restore_settings as $type=>$message) {
@@ -96,7 +96,7 @@ if(!empty($_REQUEST['config_action'])) {
     case 'restore_defaults':
       if($email_type) {
         try {
-          $imported_config = new PaConfiguration();
+          $imported_config = new NetworkConfig();
           $restore_settings = $imported_config->getDefaultMessages(false);
           if(!empty($restore_settings[$email_type]) && is_array($restore_settings[$email_type])) {
             $email_data = $restore_settings[$email_type];
@@ -127,7 +127,7 @@ if(!empty($_REQUEST['config_action'])) {
     break;
     case 'revert_all_messages':
         try {
-          $current_config = new PaConfiguration();
+          $current_config = new NetworkConfig();
           $restored_messages = $current_config->getDefaultMessages(false);
           $current_config->settings['email_messages'] = $restored_messages;
           $current_config->storeSettingsLocal();

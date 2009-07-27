@@ -5,7 +5,6 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require_once "ext/Image/Image.php";
 
-global $login_uid, $current_theme_path;
 // Now we are trying to get the data from the given id
 if ( !empty($_GET['img_id']) ) {
   $data_array = explode('_', $_GET['img_id']);

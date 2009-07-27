@@ -240,16 +240,32 @@ class Advertisement {
   // This function defines an array of pages where ads are to be displayed
 
   public static function get_pages($for='network') {
-		$pages_settings = ModuleSetting::get_pages_default_setting($for, true, true);
+    global $app;
+
+    list($info,$pages) = $app->configObj->getConfigSection("pages");
+
+    foreach($pages as $const_name => $page_info) {
+      if(preg_match("/($for)/", $page_info['attributes']['page_type'])) {
+        $ads_pages[] = array(
+            'caption' => __($page_info['attributes']['page_name']),
+            'value'   => $page_info['value'],
+            'api_id'  => strtolower(preg_replace("/^PAGE_/", '', $const_name))
+        );
+      }
+    }
+
+/*
+		$pages_settings = ModuleSetting::get_pages_default_setting($for, true);
 		$ads_pages = array();
-		
+
 		foreach ($pages_settings as $i=>$page) {
 			$ads_pages[] = array(
-				'caption' => __($page->page_name), 
-				'value' => $page->page_id, 
+				'caption' => __($page->page_name),
+				'value' => $page->page_id,
 				'api_id' => $page->api_id);
-		
+
 		}
+*/
     return $ads_pages;
   }
 

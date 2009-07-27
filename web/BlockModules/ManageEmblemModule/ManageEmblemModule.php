@@ -9,8 +9,7 @@ class ManageEmblemModule extends Module {
   public $outer_template = 'outer_public_center_module.tpl';
 
   function __construct() {
-    // global var $_base_url has been removed - please, use PA::$url static variable
-
+    parent::__construct();
     $this->html_block_id = 'ManageEmblemModule';
     $this->main_block_id = NULL;
   }

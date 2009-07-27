@@ -1,14 +1,14 @@
 <?php
 
 function install_tinymce($mode = 'full') {
-  global $current_theme_path, $tinymce_installed;
+  global $tinymce_installed;
   if (!isset($tinymce_installed)) {
     // never include more than once -- this means you can call
     // install_tinymce() many times if you want in a page and don't
     // need to worry about extra inclusion.
     $tinymce_installed = TRUE;
 ?>
-<script language="javascript" type="text/javascript" src="<?=$current_theme_path?>/javascript/tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript" src="<?=PA::$theme_url?>/javascript/tiny_mce/tiny_mce.js"></script>
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
     theme: "advanced",

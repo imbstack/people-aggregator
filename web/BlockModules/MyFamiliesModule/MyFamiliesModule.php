@@ -10,6 +10,7 @@ class MyFamiliesModule extends Module {
   public $outer_template = 'outer_public_side_module.tpl';
 
   public function __construct() {
+    parent::__construct();
   }
     
   //code for module initialization

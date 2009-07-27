@@ -1,5 +1,4 @@
 <?php
-  global  $_PA;
   if (!empty($gid)) {
     $description = sprintf(__('There are %d members in this %s.'), $total, strtolower(PA::$group_noun));
   } else if ( !isset($_GET['uid']) ) {
@@ -34,7 +33,7 @@
       <div class="description" style="text-align: center">
       <h2><?php echo chop_string($link['display_name'], 18);?></h2>
       <?php
-      if (!empty($_PA->useTypedGroups) && !empty($link['membertype'])) {
+      if (!empty(PA::$config->useTypedGroups) && !empty($link['membertype'])) {
       ?>
       <b><?=$link['membertype']?></b>
       <?php

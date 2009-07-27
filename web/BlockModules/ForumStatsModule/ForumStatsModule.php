@@ -6,6 +6,7 @@ class ForumStatsModule extends Module {
   public $module_placement = 'left|right';
 
   function __construct() { 
+    parent::__construct();
     $this->title = __('Forum Statistics');
     $this->html_block_id = 'ForumStatsModule';
   }
@@ -26,7 +27,6 @@ class ForumStatsModule extends Module {
   }
 
   function set_inner_template($template_fname) {
-    global $current_blockmodule_path;
     $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
   }
 

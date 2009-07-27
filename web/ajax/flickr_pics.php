@@ -69,6 +69,6 @@ if ($pics === NULL) {
 }
 
 // we (might) have pics: now render!
-include "web/$current_theme_rel_path/flickr_pics.tpl";
+include "web/".PA::$theme_rel."/flickr_pics.tpl";
 
 ?>

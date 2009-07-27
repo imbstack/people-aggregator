@@ -32,6 +32,7 @@ class MessageModule extends Module {
   public $page_links, $page_prev, $page_next, $page_count, $Paging;
 
   function __construct() {
+    parent::__construct();
     $this->title = __('Mailbox');
     $this->page = 1;//by default first page will be displayed.  
   }
@@ -284,7 +285,7 @@ class MessageModule extends Module {
   }
 
   function generate_inner_html() {
-    global $current_theme_path;
+     
     
     switch ($this->mode) {
       case 'view_mesage':
@@ -298,7 +299,7 @@ class MessageModule extends Module {
     }
     $folders = Message::get_user_folders($this->uid);
     $inner_html_gen = & new Template($tmp_file);
-    $inner_html_gen->set('current_theme_path', $current_theme_path);
+    $inner_html_gen->set('current_theme_path', PA::$theme_url);
     $inner_html_gen->set('folders', $folders);
     
     if ($this->mode == 'view_mesage') {

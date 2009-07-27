@@ -7,20 +7,20 @@
 class DynamicFormFields {
 	// the css class to use for wrapping divs
 	public $field_class = "field";
-	
+
   public function __construct($data=NULL) {
   	$this->myFields = $data;
   }
-  
+
   // process the incomming request data
   public function processRequest($request) {
     $fields = array();
     foreach ($request as $k=>$v) {
     	$fields[$k] = $v;
     }
-    $this->myFields = $fields; 
+    $this->myFields = $fields;
   }
-  
+
   public function getVal($fieldname) {
   	if(!isset($this->myFields[$fieldname])) return NULL;
   	$data = $this->myFields[$fieldname];
@@ -29,7 +29,7 @@ class DynamicFormFields {
 		  	// compound value?
 				$v = $data['value'];
 				return $v;
-			} 
+			}
   	}
 		$v = $this->myFields[$fieldname];
 		return $v;
@@ -38,26 +38,26 @@ class DynamicFormFields {
 	public function hidden($fieldname) {
     $v = $this->getVal($fieldname);
   ?>
-        <input type="hidden" 
-          name="<?= $fieldname ?>" 
-          id="<?= $fieldname ?>" 
+        <input type="hidden"
+          name="<?= $fieldname ?>"
+          id="<?= $fieldname ?>"
           value="<?= $v ?>" />
   <?php
 	}
 
-	
+
   public function image($label, $fieldname) {
     $v = $this->getVal($fieldname);
     if (!empty($v)) {
 ?>
   <div class="field_bigger">
     <h4><label><?= sprintf(__("Current %s"), $label)?></label></h4>
-    <? 
+    <?
     $img_info = uihelper_resize_img($v, 200, 90, PA::$theme_rel."/skins/defaults/images/header_net.gif", NULL, RESIZE_FIT);
 		?>
     <img src="<?= $img_info['url'];?>" alt="<?= __("Current Logo") ?>" <?= $img_info['size_attr']?> />
 	</div>
-  <br style="clear:both" />  
+  <br style="clear:both" />
 <?php } ?>
   <div class="field">
     <h4><label><?= sprintf(__("Upload %s"), $label) ?></label></h4>
@@ -73,9 +73,9 @@ class DynamicFormFields {
       <div class="<?=$this->field_class?>">
         <h4><label for="<?=$fieldname?>"><?=$label?></label></h4>
         <div class="center">
-        <input type="text" 
-          name="<?= $fieldname ?>" 
-          id="<?= $fieldname ?>" 
+        <input type="text"
+          name="<?= $fieldname ?>"
+          id="<?= $fieldname ?>"
           value="<?= $v ?>" />
         </div>
         <?php
@@ -100,9 +100,9 @@ class DynamicFormFields {
         <div class="textbixdisplay">
         <?= $v ?>
         </div>
-        <input type="hidden" 
-          name="<?= $fieldname ?>" 
-          id="<?= $fieldname ?>" 
+        <input type="hidden"
+          name="<?= $fieldname ?>"
+          id="<?= $fieldname ?>"
           value="<?= $v ?>" />
         </div>
         <?php
@@ -115,7 +115,7 @@ class DynamicFormFields {
       </div>
 		<br style="clear:both" />
   <?
-  }  
+  }
   public function passwordfield($label, $fieldname, $seq=NULL) {
     $v = $this->getVal($fieldname);
     if ($seq) {
@@ -126,14 +126,14 @@ class DynamicFormFields {
       <div class="<?=$this->field_class?>">
         <h4><label for="<?=$fieldname?>"><?=$label?></label></h4>
         <div class="center">
-        <input type="password" 
-          name="<?= $fieldname ?>" 
-          id="<?= $fieldname ?>" 
+        <input type="password"
+          name="<?= $fieldname ?>"
+          id="<?= $fieldname ?>"
           value="<?= $v ?>" />
         </div>
       </div>
   <?
-  }  
+  }
 
   public function textarea($label, $fieldname, $description='') {
     $v = $this->getVal($fieldname);
@@ -141,8 +141,8 @@ class DynamicFormFields {
       <div class="<?=$this->field_class?>">
         <h4><label for="<?=$fieldname?>"><?=$label?></label></h4>
         <div class="center">
-        <textarea rows="3" cols="20" 
-          name="<?= $fieldname ?>" 
+        <textarea rows="3" cols="20"
+          name="<?= $fieldname ?>"
           id="<?= $fieldname ?>"><?= $v ?></textarea>
         </div>
         <?php
@@ -155,11 +155,11 @@ class DynamicFormFields {
       </div>
   <?
   }
-  
+
   public function radiobutton($label, $fieldname, $fieldvalue) {
     $v = $this->getVal($fieldname);
   ?>
-        <?php 
+        <?php
           $checked = "";
           if ($v == $fieldvalue) {
             $checked = "checked=\"checked\"";
@@ -176,7 +176,7 @@ class DynamicFormFields {
       <div class="<?=$this->field_class?>">
         <h4><label for="<?=$fieldname?>"><?=$label?></label></h4>
         <div class="center">
-        <?php 
+        <?php
         for($i=0;$i<count($fields);$i++) {
           $field = $fields[$i];
           $checked = "";
@@ -198,8 +198,8 @@ class DynamicFormFields {
       </div>
 <br style="clear:both" />
   <?
-  }  
-  
+  }
+
     public function select($label, $fieldname, $values) {
     $v = $this->getVal($fieldname);
   ?>
@@ -208,7 +208,7 @@ class DynamicFormFields {
         <div class="center">
           <select name="<?=$fieldname?>" id="<?=$fieldname?>" class="select-txt">
             <option value=""> - Select -</option>
-          <?php 
+          <?php
           foreach ($values as $i=>$label) {
               // have we been passed value/label or just a list
               if (is_array($values[$i])) {
@@ -236,15 +236,17 @@ class DynamicFormFields {
       </div>
   <?
   }
-  
+
   public function dateselect($label, $fieldname) {
-    global $_PA;
-    $monthnames = $_PA->months;
-    $years = $_PA->years;
-    
+     
+    $_months = array_values(PA::getMonthsList());
+    array_unshift($_months, " ");
+    $monthnames = $_months;
+    $years = PA::getYearsList();
+
     $v = $this->getVal($fieldname);
     $vyear = $vmonth = $vday = 0;
-    if ($v) { 
+    if ($v) {
       list($vyear, $vmonth, $vday) = explode('-', $v);
     } else if ($this->getVal($fieldname.'_day')) {
     	$vday = $this->getVal($fieldname.'_day');
@@ -257,7 +259,7 @@ class DynamicFormFields {
         <div class="center">
           <select name="<?=$fieldname.'_day'?>" id="<?=$fieldname.'_day'?>" class="select-txt">
             <option value=""></option>
-          <?php 
+          <?php
           for ($i=1; $i<=31; $i++) {
               if($i == (int)$vday) {
                 $selected = " selected=\"selected\" ";
@@ -269,7 +271,7 @@ class DynamicFormFields {
           <?php } ?>
         </select>
         <select name="<?=$fieldname.'_month'?>" id="<?=$fieldname.'_month'?>" class="select-txt">
-          <?php 
+          <?php
           for ($i=1; $i<=12; $i++) {
               if($i == (int)$vmonth) {
                 $selected = " selected=\"selected\" ";
@@ -282,7 +284,7 @@ class DynamicFormFields {
         </select>
         <select name="<?=$fieldname.'_year'?>" id="<?=$fieldname.'_year'?>" class="select-txt">
             <option value=""></option>
-          <?php 
+          <?php
           foreach ($years as $k=>$year) {
               if($year == (int)$vyear) {
                 $selected = " selected=\"selected\" ";
