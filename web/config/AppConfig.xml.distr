@@ -701,7 +701,7 @@
           <value>admin</value>
         </admin_password>
         <pa_installed category="dynamic_var" type="bool" readonly="true" section="site_related" description="Is PeopleAggregator installed flag">
-          <value>1</value>
+          <value>0</value>
         </pa_installed>
         <pa_defender_mode category="dynamic_var" type="int" readonly="true" section="site_related" description="PADefender (the web attacks shield) default working mode (1 - off, 2 - permissive, 3 - restrictive).">
           <value>3</value>
