@@ -617,6 +617,12 @@
     </debug>
     <api_keys description="API keys used in PA">
       <value>
+        <facebook_api_key category="global" type="string" section="api_keys" readonly="false" description="Facebook API Key">
+          <value></value>
+        </facebook_api_key>
+        <facebook_api_secret category="global" type="string" section="api_keys" readonly="false" description="To obtain Facebook keys to work at your site, visit http://developers.facebook.com/account.php">
+          <value></value>
+        </facebook_api_secret>
         <video_accesskey category="static_var" type="string" readonly="true" section="api_keys" description="TekMedia video access key.">
           <value>aab3238922bcc25a6f606eb525ffdc56</value>
         </video_accesskey>

@@ -3,12 +3,12 @@
   <item>
     <expression>(?:"+.*[^-]?&gt;)|(?:[^\w\s]\s*\/&gt;)|(?:&gt;")</expression>
     <description>html breaking injections and whitespace attack</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:"+.*[&lt;=]\s*"[^"]+")|(?:"\w+\s*=)|(?:&gt;\w=\/)|(?:#.+\)["\s]*&gt;)|(?:"\s*(?:src|style|on\w+)\s*=\s*")</expression>
     <description>attribute breaking injections and whitespace attack</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:[\s\/"]+(?:on\w+|style)=["\w])</expression>
@@ -168,7 +168,7 @@
   <item>
     <expression>(?:\&lt;\w*:?\s(?:[^\&gt;]*)t(?!rong))|(?:\&lt;scri)|(&lt;\w+:\w+)</expression>
     <description>obfuscated script tags and XML wrapped HTML injection attempt</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:\&lt;\/\w+\s\w+)|(?:@(?:cc_on|set)[\s@,"=])</expression>
@@ -193,7 +193,7 @@
   <item>
     <expression>(?:\&lt;[\/]?(?:[i]?frame|applet|isindex|marquee|keygen|script|audio|video|input|button|textarea|style|base|body|meta|link|object|embed|param|plaintext|xm\w+|image|im(?:g|port)))</expression>
     <description>malicious html elements or attributes</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:\\x[01FE]\w)|(?:%[01FE]\w)|(?:&amp;#[01FE]\w)|(?:\\[01FE][0-9a-f])|(?:&amp;#x[01FE]\w)</expression>
@@ -338,6 +338,6 @@
   <item>
     <expression>(?:[\s\/"]+[-\w\/\\\*]+\s*=.+(?:\/\s*&gt;))</expression>
     <description>attribute breaking injection attempt</description>
-    <active>1</active>
+    <active>0</active>
   </item>
 </rules>
