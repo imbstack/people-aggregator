@@ -72,7 +72,7 @@
        if((PADefender::getMode() == PADefender::permisive)) {
           $this->showMessage($this->message);
        } else {
-         throw new PADefenderException($this->message /* . "<pre>" . print_r($this->matches,1) . "</pre>" */);
+         throw new PADefenderException($this->message, "<pre>" . print_r($this->matches,1) . "</pre>");
        }
      }
    }
@@ -84,7 +84,7 @@
        if((PADefender::getMode() == PADefender::permisive)) {
           $this->showMessage($defender->message);
        } else {
-          throw new PADefenderException($defender->message /* . "<pre>" . print_r($defender->matches,1) . "</pre>" */);
+          throw new PADefenderException($defender->message, "<pre>" . print_r($defender->matches,1) . "</pre>");
        }
      }
    }
@@ -122,16 +122,16 @@
 
  class PADefenderException extends Exception {
 
-    public function __construct($msg) {
+    public function __construct($msg, $details = null) {
        parent::__construct($msg);
-       $this->handleException($msg);
+       $this->handleException($msg, $details);
     }
 
-    private function handleException($msg_details = null) {
+    private function handleException($msg, $details) {
      global $app;
       require_once "api/Theme/Template.php";
       require_once "api/Logger/Logger.php";
-      Logger::log("PADefenderException, type: '$msg_details', user_ip: [{$app->remote_addr}]", LOGGER_ERROR, LOGGER_FILE, PA_PROJECT_PROJECT_DIR ."/log/defender.log");
+      Logger::log("user_ip: [{$app->remote_addr}], rule: [$msg], \ndata matched: \n$details\n", LOGGER_ERROR, LOGGER_FILE, PA_PROJECT_PROJECT_DIR ."/log/defender.log");
 
       $message = __("Malicious or unauthorized activities detected. If you think this is an error, ".
                     "please notify the system administrator. Your data will be stored in our ".
@@ -140,7 +140,7 @@
       $template_file = getShadowedPath('web/Themes/Default/defender.tpl');
       $template = & new Template($template_file);
       $template->set('message', $message);
-      $template->set('details', $msg_details /* . "<pre>" . print_r($_POST,1) . "</pre>" */);
+      $template->set('details', $msg /* . "<pre>" . print_r($_POST,1) . "</pre>" */);
       echo $template->fetch();
       exit;
     }
