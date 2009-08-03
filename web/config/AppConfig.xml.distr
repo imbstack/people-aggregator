@@ -881,6 +881,9 @@
     </site_related>
     <basic_network_settings description="Basic network settings.">
       <value>
+        <domain_prefix category="dynamic_var" type="string" readonly="false" section="basic_network_settings" description="Default domain prefix ('www' for sites hosted on the server root, 'subdomain' for sites hosted on sub domains.">
+          <value>www</value>
+        </domain_prefix>
         <enable_networks category="dynamic_var" type="bool" readonly="false" section="basic_network_settings" description="Set enable_networks to FALSE to completely disable networks - don't allow them to be used at all, and disable spawning and the network directory.">
           <value>1</value>
         </enable_networks>

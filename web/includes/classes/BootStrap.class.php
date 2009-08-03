@@ -312,7 +312,7 @@ class BootStrap {
 
     $network_prefix = 'default'; // set to default prefix at beginning
     if( !PA::$config->enable_networks || !$this->domain_suffix ) {              // spawning disabled
-      define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
+      define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
       PA::$domain_suffix = $this->domain_suffix;
@@ -348,7 +348,7 @@ class BootStrap {
 
     // at this point, network is detected and we can start to work with the variables they define.
     // put network prefix in $base_url
-    $base_url_pa = str_replace( '%network_name%.', (!empty($this->domain_prefix) ? "{$this->domain_prefix}." : ""), $base_url );// LOCAL
+    $base_url_pa = str_replace( '%network_name%', PA::$config->domain_prefix, $base_url );// LOCAL
     $base_url = PA::$url = str_replace( '%network_name%', CURRENT_NETWORK_URL_PREFIX, $base_url );
 
     // now we are done with $base_url - it gets define()d and we work out
@@ -367,7 +367,7 @@ class BootStrap {
 echo "\$network_prefix = $network_prefix, \$network_folder = $network_folder" .
      "\$this->domain_prefix = $this->domain_prefix, \$this->domain_suffix = $this->domain_suffix" .
      "\$base_url_pa = $base_url_pa, \$base_url = $base_url";
-die();
+//die();
     // Finally - Load network!
     PA::$network_info = get_network_info(); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
