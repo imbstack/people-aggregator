@@ -206,7 +206,7 @@ class Network {
   }
 
   public function is_private() {
-     
+
     if (PA::$config->all_networks_are_private) return TRUE;
     if ($this->type == PRIVATE_NETWORK_TYPE) return TRUE;
     return FALSE;
@@ -358,6 +358,7 @@ class Network {
 
   // populate new Network object from DB row $info
   private function from_array($info) {
+echo "from_array <pre>" . print_r($info, 1) . "</pre>";
     $net = new Network();
     foreach ($info as $k => $v) {
       $net->$k = $v;
