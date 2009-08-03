@@ -27,6 +27,7 @@ class BootStrap {
  public  $server_name;
  public  $http_host;
  public  $domain_suffix;
+ public  $domain_prefix;
  public  $remote_addr;
  public  $request_uri;
  public  $base_url;
@@ -103,16 +104,22 @@ class BootStrap {
 
 
       $domain_parts = explode(".", PA_SERVER_NAME);
-      if (count($domain_parts) > 2) {
-        array_shift($domain_parts);
-      }
-      if (!preg_match("|^\d+\.\d+\.\d+\.\d+|", PA_SERVER_NAME)) {
-        $domain_suffix = implode(".", $domain_parts);
+      if ((count($domain_parts)) > 2 && (!preg_match("|^\d+\.\d+\.\d+\.\d+|", PA_SERVER_NAME))) {
+        $domain_match = array();
+        if(preg_match("/([^\.\/]+).([^\.\/]+)$/", PA_SERVER_NAME, $domain_match)) {
+          $domain_suffix = $domain_match[0];
+          $domain_prefix = substr(PA_SERVER_NAME, 0, (strlen(PA_SERVER_NAME) - strlen($domain_suffix) -1));
+        } else {
+           throw new BootStrapException( "BootStrap::collectSystemData() - Unable to detect load domain suffix!", 1 );
+        }
       } else {
         $domain_suffix = false;
+        $domain_prefix = false;
       }
       define('PA_DOMAIN_SUFFIX', $domain_suffix);
+      define('PA_DOMAIN_PREFIX', $domain_prefix);
       $this->domain_suffix = PA_DOMAIN_SUFFIX;
+      $this->domain_prefix = PA_DOMAIN_PREFIX;
 
       $this->remote_addr = $this->getIP();
 
@@ -304,7 +311,7 @@ class BootStrap {
     }
 
     if( !PA::$config->enable_networks || !$this->domain_suffix ) {              // spawning disabled
-      define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+      define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
       PA::$domain_suffix = $this->domain_suffix;
@@ -325,7 +332,7 @@ class BootStrap {
          // Something is wrong with $domain_suffix - it's not showing up at the end of $host.
          // (e.g. $host == "www.pa.example.com" and $this->domain_suffix == "pa.someotherexample.com").
          // Just assume the default network.
-         define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+         define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
          $network_prefix = 'default';   // mother network
       } else {
          $network_prefix = substr( $host, 0, strlen( $host ) - strlen( $this->domain_suffix ) );
@@ -333,10 +340,9 @@ class BootStrap {
 
          if( !$network_prefix || $network_prefix == 'www' )  {
            // special case - default network
-           define( 'CURRENT_NETWORK_URL_PREFIX', 'www' );
+           define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
            $network_prefix = 'default';
          }
-
          $network_folder = null;
          $core_network_folder = PA::$core_dir . "/networks/$network_prefix";     // network exists in CORE ?
          $proj_network_folder = PA::$project_dir . "/networks/$network_prefix";  // network exists in PROJECT ?
