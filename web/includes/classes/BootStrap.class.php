@@ -367,7 +367,7 @@ class BootStrap {
 echo "\$network_prefix = $network_prefix, \$network_folder = $network_folder" .
      "\$this->domain_prefix = $this->domain_prefix, \$this->domain_suffix = $this->domain_suffix" .
      "\$base_url_pa = $base_url_pa, \$base_url = $base_url";
-//die();
+die();
     // Finally - Load network!
     PA::$network_info = get_network_info(); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
