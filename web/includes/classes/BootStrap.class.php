@@ -113,7 +113,7 @@ class BootStrap {
            throw new BootStrapException( "BootStrap::collectSystemData() - Unable to detect load domain suffix!", 1 );
         }
       } else {
-        $domain_suffix = false;
+        $domain_suffix = implode(".", $domain_parts);
         $domain_prefix = false;
       }
       define('PA_DOMAIN_SUFFIX', $domain_suffix);
@@ -324,7 +324,7 @@ class BootStrap {
       if( preg_match( '/^\./', $this->domain_suffix ) ) {
         throw new BootStrapException( "Invalid domain sufix detected. Value: " . $this->domain_suffix, 1 );
       }
-      if($this->domain_prefix != 'www') {
+      if(!empty($this->domain_prefix) && $this->domain_prefix != 'www') {
         $network_prefix = $this->domain_prefix;
       }
     }
@@ -348,7 +348,7 @@ class BootStrap {
 
     // at this point, network is detected and we can start to work with the variables they define.
     // put network prefix in $base_url
-    $base_url_pa = str_replace( '%network_name%', 'www', $base_url );// LOCAL
+    $base_url_pa = str_replace( '%network_name%.', (!empty($this->domain_prefix) ? "{$this->domain_prefix}." : ""), $base_url );// LOCAL
     $base_url = PA::$url = str_replace( '%network_name%', CURRENT_NETWORK_URL_PREFIX, $base_url );
 
     // now we are done with $base_url - it gets define()d and we work out
@@ -364,7 +364,10 @@ class BootStrap {
     define( 'CURRENT_THEME_REL_URL', PA::$local_url . '/' . PA::$theme_rel );
     define( 'CURRENT_THEME_FSPATH', PA::$theme_path );
     define( 'CURRENT_THEME_FS_CACHE_PATH', PA::$project_dir . '/web/cache' );
-
+echo "\$network_prefix = $network_prefix, \$network_folder = $network_folder" .
+     "\$this->domain_prefix = $this->domain_prefix, \$this->domain_suffix = $this->domain_suffix" .
+     "\$base_url_pa = $base_url_pa, \$base_url = $base_url";
+//die();
     // Finally - Load network!
     PA::$network_info = get_network_info(); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
