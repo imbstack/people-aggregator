@@ -310,6 +310,7 @@ class BootStrap {
       $base_url = str_replace( 'http', 'https', $base_url );
     }
 
+    $network_prefix = 'default'; // set to default prefix at beginning
     if( !PA::$config->enable_networks || !$this->domain_suffix ) {              // spawning disabled
       define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
@@ -323,49 +324,26 @@ class BootStrap {
       if( preg_match( '/^\./', $this->domain_suffix ) ) {
         throw new BootStrapException( "Invalid domain sufix detected. Value: " . $this->domain_suffix, 1 );
       }
-
-      // Allow sessions to persist across entire domain
-      ini_set( 'session.cookie_domain', $this->domain_suffix );
-
-      // Now see if this request is for a sub-network, and load its settings if so
-      if(strrpos($host, $this->domain_suffix) != strlen($host) - strlen($this->domain_suffix)) {
-         // Something is wrong with $domain_suffix - it's not showing up at the end of $host.
-         // (e.g. $host == "www.pa.example.com" and $this->domain_suffix == "pa.someotherexample.com").
-         // Just assume the default network.
-         define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
-         $network_prefix = 'default';   // mother network
-      } else {
-         $network_prefix = substr( $host, 0, strlen( $host ) - strlen( $this->domain_suffix ) );
-         $network_prefix = preg_replace( '/\.*$/', '', $network_prefix );
-
-         if( !$network_prefix || $network_prefix == 'www' )  {
-           // special case - default network
-           define( 'CURRENT_NETWORK_URL_PREFIX', $this->domain_prefix );
-           $network_prefix = 'default';
-         }
-         $network_folder = null;
-         $core_network_folder = PA::$core_dir . "/networks/$network_prefix";     // network exists in CORE ?
-         $proj_network_folder = PA::$project_dir . "/networks/$network_prefix";  // network exists in PROJECT ?
-
-         if(is_dir($core_network_folder))  {
-            $network_folder = $core_network_folder;
-         } elseif(is_dir($proj_network_folder)) {
-            $network_folder = $proj_network_folder;
-         }
-
-         if($network_folder)  { // network exists
-            if(!defined('CURRENT_NETWORK_URL_PREFIX')) {
-              define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
-            }
-            define( 'CURRENT_NETWORK_FSPATH', $network_folder );
-            if(file_exists(CURRENT_NETWORK_FSPATH . '/local_config.php')) {
-              // and it has its own config file
-              include( CURRENT_NETWORK_FSPATH . '/local_config.php' );
-            }
-         } else {
-            throw new BootStrapException( "Unable to locate network: " . htmlspecialchars($network_prefix) . "." . $this->domain_suffix, 1 );
-         }
+      if($this->domain_prefix != 'www') {
+        $network_prefix = $this->domain_prefix;
       }
+    }
+    // Allow sessions to persist across entire domain
+    ini_set( 'session.cookie_domain', $this->domain_suffix );
+    $network_folder = getShadowedPath("networks/$network_prefix");
+    if($network_folder)  { // network exists
+      if(!defined('CURRENT_NETWORK_URL_PREFIX')) {
+         define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+      }
+      if(!defined('CURRENT_NETWORK_FSPATH')) {
+         define( 'CURRENT_NETWORK_FSPATH', $network_folder );
+      }
+      if(file_exists(CURRENT_NETWORK_FSPATH . '/local_config.php')) {
+        // and it has its own config file
+        include( CURRENT_NETWORK_FSPATH . '/local_config.php' );
+      }
+    } elseif($this->domain_prefix != 'www') {
+        throw new BootStrapException( "Unable to locate network: " . htmlspecialchars($network_prefix) . "." . $this->domain_suffix, 1 );
     }
 
     // at this point, network is detected and we can start to work with the variables they define.
