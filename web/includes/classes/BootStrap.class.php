@@ -310,22 +310,30 @@ class BootStrap {
       $base_url = str_replace( 'http', 'https', $base_url );
     }
 
-    $network_prefix = 'default'; // set to default prefix at beginning
-    if( !PA::$config->enable_networks || !$this->domain_suffix ) {              // spawning disabled
-      define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
+    if( preg_match( '/^\./', $this->domain_suffix ) ) {
+      throw new BootStrapException( "Invalid domain sufix detected. Value: " . $this->domain_suffix, 1 );
+    }
+    PA::$domain_suffix = $this->domain_suffix;
+
+    if( !PA::$config->enable_networks ) {              // spawning disabled
+      $network_prefix = 'default';
+/*
+      define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
+*/
       PA::$config->enable_network_spawning = FALSE;
-      PA::$domain_suffix = $this->domain_suffix;
     } else {
       // network operation is enabled - figure out which network we're on
       PA::$network_capable = TRUE;
-      PA::$domain_suffix = $this->domain_suffix;             // Check that $base_url includes %network_name
       // Make sure $domain_suffix is formatted correctly
-      if( preg_match( '/^\./', $this->domain_suffix ) ) {
-        throw new BootStrapException( "Invalid domain sufix detected. Value: " . $this->domain_suffix, 1 );
-      }
-      if(!empty($this->domain_prefix) && $this->domain_prefix != 'www') {
+      if(!empty($this->domain_prefix) && $this->domain_prefix != PA::$config->domain_prefix) {
         $network_prefix = $this->domain_prefix;
+      } else { // domain prefix points to home network
+        $network_prefix = 'default';
+/*
+        define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+        define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' );
+*/
       }
     }
     // Allow sessions to persist across entire domain
@@ -342,7 +350,7 @@ class BootStrap {
         // and it has its own config file
         include( CURRENT_NETWORK_FSPATH . '/local_config.php' );
       }
-    } elseif($this->domain_prefix != 'www') {
+    } elseif($this->domain_prefix != PA::$config->domain_prefix) {
         throw new BootStrapException( "Unable to locate network: " . htmlspecialchars($network_prefix) . "." . $this->domain_suffix, 1 );
     }
 
