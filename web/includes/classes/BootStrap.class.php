@@ -317,10 +317,8 @@ class BootStrap {
 
     if( !PA::$config->enable_networks ) {              // spawning disabled
       $network_prefix = 'default';
-/*
-      define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+      define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
-*/
       PA::$config->enable_network_spawning = FALSE;
     } else {
       // network operation is enabled - figure out which network we're on
