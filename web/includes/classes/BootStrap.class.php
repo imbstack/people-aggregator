@@ -320,6 +320,7 @@ class BootStrap {
       define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
+echo "networks not enabled, PA::\$config->domain_prefix: " . PA::$config->domain_prefix . "</br>";
     } else {
       // network operation is enabled - figure out which network we're on
       PA::$network_capable = TRUE;
@@ -333,6 +334,7 @@ class BootStrap {
         define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' );
 */
       }
+echo "networks enabled, \$network_prefix: " . $network_prefix . "</br>";
     }
     // Allow sessions to persist across entire domain
     ini_set( 'session.cookie_domain', $this->domain_suffix );
@@ -357,6 +359,11 @@ class BootStrap {
     $base_url_pa = str_replace( '%network_name%', PA::$config->domain_prefix, $base_url );// LOCAL
     $base_url = PA::$url = str_replace( '%network_name%', CURRENT_NETWORK_URL_PREFIX, $base_url );
 
+echo "\$network_folder: " . $network_folder . "</br>";
+echo "\$base_url_pa: " . $base_url_pa . "</br>";
+echo "\$base_url: " . $base_url . "</br>";
+
+
     // now we are done with $base_url - it gets define()d and we work out
     // the relative version (for ajax)
     define( 'BASE_URL_PA', $base_url_pa );
@@ -364,7 +371,9 @@ class BootStrap {
 
     $base_url_parts = parse_url( $base_url );
     PA::$local_url = preg_replace( '|/$|', '', @$base_url_parts[ 'path' ] ? $base_url_parts[ 'path' ] : '' );
+
     define( 'BASE_URL_REL', PA::$local_url );
+echo "PA::\$local_url: " . PA::$local_url . "</br>";
 
     // work out theme path and check that it exists
     define( 'CURRENT_THEME_REL_URL', PA::$local_url . '/' . PA::$theme_rel );
