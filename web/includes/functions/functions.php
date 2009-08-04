@@ -9,11 +9,7 @@ require_once "api/Login/PA_Login.class.php";
 
 //return information about the current network
 function get_network_info() {
-  global $app;
-
-  if(!empty($app->domain_prefix)) {
-    return Network::get_network_by_address($app->domain_prefix);
-  } else if(defined('CURRENT_NETWORK_URL_PREFIX'))  {
+  if(defined('CURRENT_NETWORK_URL_PREFIX'))  {
     return Network::get_network_by_address(CURRENT_NETWORK_URL_PREFIX);
   } else {
     return Network::get_network_by_address('default');  // if CURRENT_NETWORK_URL_PREFIX not defined

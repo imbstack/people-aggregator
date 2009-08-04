@@ -317,7 +317,7 @@ class BootStrap {
 
     if( !PA::$config->enable_networks ) {              // spawning disabled
       $network_prefix = 'default';
-      define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
+      define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix /*PA::$config->domain_prefix*/ );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
     } else {
@@ -370,12 +370,12 @@ class BootStrap {
     define( 'CURRENT_THEME_REL_URL', PA::$local_url . '/' . PA::$theme_rel );
     define( 'CURRENT_THEME_FSPATH', PA::$theme_path );
     define( 'CURRENT_THEME_FS_CACHE_PATH', PA::$project_dir . '/web/cache' );
-
+/*
 echo "\$network_prefix = $network_prefix, \$network_folder = $network_folder" .
      "\$this->domain_prefix = $this->domain_prefix, \$this->domain_suffix = $this->domain_suffix" .
      "\$base_url_pa = $base_url_pa, \$base_url = $base_url";
 die();
-
+*/
     // Finally - Load network!
     PA::$network_info = get_network_info(); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
