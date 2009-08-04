@@ -390,7 +390,7 @@ die();
     PA::$extra = unserialize(PA::$network_info->extra);
 echo "<pre>" . print_r(PA::$network_info,1) . "</pre>";
 echo "<pre>" . print_r(PA::$extra,1) . "</pre>";
-die();
+//die();
   }
 
   public function detectDBSettings() {
