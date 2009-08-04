@@ -320,7 +320,6 @@ class BootStrap {
       define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
-echo "networks not enabled, PA::\$config->domain_prefix: " . PA::$config->domain_prefix . "</br>";
     } else {
       // network operation is enabled - figure out which network we're on
       PA::$network_capable = TRUE;
@@ -334,7 +333,6 @@ echo "networks not enabled, PA::\$config->domain_prefix: " . PA::$config->domain
         define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' );
 */
       }
-echo "networks enabled, \$network_prefix: " . $network_prefix . "</br>";
     }
     // Allow sessions to persist across entire domain
     ini_set( 'session.cookie_domain', $this->domain_suffix );
@@ -359,11 +357,6 @@ echo "networks enabled, \$network_prefix: " . $network_prefix . "</br>";
     $base_url_pa = str_replace( '%network_name%', PA::$config->domain_prefix, $base_url );// LOCAL
     $base_url = PA::$url = str_replace( '%network_name%', CURRENT_NETWORK_URL_PREFIX, $base_url );
 
-echo "\$network_folder: " . $network_folder . "</br>";
-echo "\$base_url_pa: " . $base_url_pa . "</br>";
-echo "\$base_url: " . $base_url . "</br>";
-
-
     // now we are done with $base_url - it gets define()d and we work out
     // the relative version (for ajax)
     define( 'BASE_URL_PA', $base_url_pa );
@@ -373,24 +366,14 @@ echo "\$base_url: " . $base_url . "</br>";
     PA::$local_url = preg_replace( '|/$|', '', @$base_url_parts[ 'path' ] ? $base_url_parts[ 'path' ] : '' );
 
     define( 'BASE_URL_REL', PA::$local_url );
-echo "PA::\$local_url: " . PA::$local_url . "</br>";
 
     // work out theme path and check that it exists
     define( 'CURRENT_THEME_REL_URL', PA::$local_url . '/' . PA::$theme_rel );
     define( 'CURRENT_THEME_FSPATH', PA::$theme_path );
     define( 'CURRENT_THEME_FS_CACHE_PATH', PA::$project_dir . '/web/cache' );
-/*
-echo "\$network_prefix = $network_prefix, \$network_folder = $network_folder" .
-     "\$this->domain_prefix = $this->domain_prefix, \$this->domain_suffix = $this->domain_suffix" .
-     "\$base_url_pa = $base_url_pa, \$base_url = $base_url";
-die();
-*/
     // Finally - Load network!
     PA::$network_info = get_network_info($network_prefix); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
-echo "<pre>" . print_r(PA::$network_info,1) . "</pre>";
-echo "<pre>" . print_r(PA::$extra,1) . "</pre>";
-//die();
   }
 
   public function detectDBSettings() {

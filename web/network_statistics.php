@@ -275,7 +275,7 @@ if ( @$_POST['action'] == 'edit' && !$error) {
 
 }//...$_POST if ends
 //render the page
-$page = new PageRenderer("setup_module", PAGE_NETWORK_STATISTICS, sprintf(__("Network Statistics - %s"), $network_info->name), 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,PA::$network_info);
+$page = new PageRenderer("setup_module", PAGE_NETWORK_STATISTICS, sprintf(__("Network Statistics - %s"), PA::$network_info->name), 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
 
 uihelper_error_msg($error_msg);
 uihelper_get_network_style();
