@@ -45,12 +45,12 @@ if (!isset($login_required))
 }
 
 // Load network
-PA::$network_info = $network_info = get_network_info();
+//PA::$network_info = $network_info = get_network_info();
 
 // Force login if we're on a private network, unless we're on login.php, register.php or dologin.php.
-PA::$extra = unserialize(PA::$network_info->extra);
+//PA::$extra = unserialize(PA::$network_info->extra);
 
-if (!$login_required && $network_info->is_private() && !@$login_never_required)
+if (!$login_required && PA::$network_info->is_private() && !@$login_never_required)
 {
     $login_required = TRUE;
 }
