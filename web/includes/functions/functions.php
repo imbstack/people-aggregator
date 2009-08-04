@@ -8,10 +8,14 @@ require_once "web/includes/classes/FormHandler.php";
 require_once "api/Login/PA_Login.class.php";
 
 //return information about the current network
-function get_network_info() {
-  if(defined('CURRENT_NETWORK_URL_PREFIX'))  {
+function get_network_info($network_name = null) {
+  if($network_name) {
+    return Network::get_network_by_address($network_name);
+  }
+  else if(defined('CURRENT_NETWORK_URL_PREFIX'))  {
     return Network::get_network_by_address(CURRENT_NETWORK_URL_PREFIX);
-  } else {
+  }
+  else {
     return Network::get_network_by_address('default');  // if CURRENT_NETWORK_URL_PREFIX not defined
                                                         //  return mother network info
   }
