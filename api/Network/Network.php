@@ -358,6 +358,9 @@ class Network {
 
   // populate new Network object from DB row $info
   private function from_array($info) {
+    if(!isset($info) || empty($info)) {
+      debug_print_backtrace();
+    }
     $net = new Network();
     foreach ($info as $k => $v) {
       $net->$k = $v;
