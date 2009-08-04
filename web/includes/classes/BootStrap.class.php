@@ -379,6 +379,8 @@ die();
     // Finally - Load network!
     PA::$network_info = get_network_info($network_prefix); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
+echo "<pre>" . print_r(PA::$network_info,1) . "</pre>";
+echo "<pre>" . print_r(PA::$extra,1) . "</pre>";
   }
 
   public function detectDBSettings() {
