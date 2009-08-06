@@ -37,7 +37,7 @@ $query_count_on_page = 0;
 function setup_module($column, $moduleName, $obj) {
 }   
 
-$page = new PageRenderer("setup_module", PAGE_USER_COMMENT, 'Write comment', "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_USER_COMMENT, 'Write comment', "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 if(isset($error_message)) {
   uihelper_error_msg($error_message);

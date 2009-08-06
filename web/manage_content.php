@@ -46,8 +46,8 @@ $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
 
 $header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
-if ($network_info) {
-  $header->set_object('network_info', $network_info);
+if (PA::$network_info) {
+  $header->set_object('network_info', PA::$network_info);
 }
 $header->set('current_theme_path', PA::$theme_url);
 $header->set('onload', $onload);

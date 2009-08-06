@@ -83,8 +83,8 @@ if (!empty($_POST['addcomment']) && !empty(PA::$login_uid)) {
 	    //** when uncommenting the above line, don't forget to uncomment the include of auto_email_notify.php at the top of this file too!
 	    unset($_POST);
 	    //invalidate cache of content block as it is modified now
-	    if($network_info) {
-	      $nid = '_network_'.$network_info->network_id;
+	    if(PA::$network_info) {
+	      $nid = '_network_'.PA::$network_info->network_id;
 	    } else {
 	      $nid='';
 	    }
@@ -145,8 +145,8 @@ if (!empty($_POST['submit'])) {
         //** when uncommenting the above line, don't forget to uncomment the include of auto_email_notify.php at the top of this file too!
         unset($_POST);
         //invalidate cache of content block as it is modified now
-        if($network_info) {
-          $nid = '_network_'.$network_info->network_id;
+        if(PA::$network_info) {
+          $nid = '_network_'.PA::$network_info->network_id;
         } else {
           $nid='';
         }

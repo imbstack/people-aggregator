@@ -17,7 +17,7 @@
     } 
   } // end function
   
-  $page = new PageRenderer("setup_module", PAGE_MANAGE_COMMENTS, "Manage Comments", 'container_two_column.tpl','header.tpl',PRI, HOMEPAGE,$network_info);
+  $page = new PageRenderer("setup_module", PAGE_MANAGE_COMMENTS, "Manage Comments", 'container_two_column.tpl','header.tpl',PRI, HOMEPAGE,PA::$network_info);
   
   uihelper_error_msg($error_msg);
   

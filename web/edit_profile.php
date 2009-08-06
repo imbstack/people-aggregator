@@ -87,7 +87,7 @@ function setup_module($column, $moduleName, $obj) {
     }
 }
 
-$page = new PageRenderer("setup_module", PAGE_EDIT_PROFILE, sprintf(__("%s - Edit your profile - %s"), $login_user->get_name(), $network_info->name), "container_one_column.tpl", "header_user.tpl", NULL, PRI ,$network_info);
+$page = new PageRenderer("setup_module", PAGE_EDIT_PROFILE, sprintf(__("%s - Edit your profile - %s"), $login_user->get_name(), PA::$network_info->name), "container_one_column.tpl", "header_user.tpl", NULL, PRI, PA::$network_info);
 
 
 $page->add_header_html(js_includes('edit_profile.js'));

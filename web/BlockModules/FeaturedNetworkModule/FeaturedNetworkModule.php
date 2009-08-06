@@ -6,15 +6,14 @@ class FeaturedNetworkModule extends Module {
   public $module_placement = 'left|right';
   public $outer_template = 'outer_public_side_module.tpl';
   
-  function __construct () {
+  function __construct() {
     parent::__construct();
     $this->html_block_id = 'mod_featured_network';
   }
   
-  function render () {
-    global $network_info;
+  function render() {
     $network = new Network();
-    $extra = unserialize( $network_info->extra );
+    $extra = unserialize( PA::$network_info->extra );
     $this->network_data ='';
     if (!empty($extra['network_feature'])) {
       $network->network_id = $extra['network_feature'];
@@ -25,7 +24,7 @@ class FeaturedNetworkModule extends Module {
     return $content;
   }
 
-  function generate_inner_html () {
+  function generate_inner_html() {
         
     switch ( $this->mode ) {
      default:

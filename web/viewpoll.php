@@ -7,7 +7,7 @@ global $login_uid;
 error_reporting(0);
 $parameter .= js_includes('common.js');
 // for memeber facewall module.
-$users = Network::get_members(array('page'=>1, 'show'=>5, 'network_id'=>$network_info->network_id));
+$users = Network::get_members(array('page'=>1, 'show'=>5, 'network_id'=>PA::$network_info->network_id));
 
 function setup_module($column, $moduleName, $obj) { 
  global $users,$view_previous ;
@@ -23,7 +23,7 @@ function setup_module($column, $moduleName, $obj) {
       
 }
 
-$page = new PageRenderer("setup_module", PAGE_VIEWPOLL, "viewpoll", "container_three_column.tpl", "header.tpl", PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_VIEWPOLL, "viewpoll", "container_three_column.tpl", "header.tpl", PRI, HOMEPAGE, PA::$network_info);
 $page->add_header_html($parameter);
 $page->html_body_attributes = 'class="no_second_tier" id="pg_homepage"';
 $css_array = get_network_css();

@@ -75,7 +75,7 @@ if (@$_POST['btn_approve']) {
 
 
 function setup_module($column, $moduleName, $obj) {
-    global $network_info, $uid, $paging, $user, $view_type;
+    global $uid, $paging, $user, $view_type;
     switch ($column) {
     case 'left':
       $obj->mode = PUB;
@@ -88,7 +88,7 @@ function setup_module($column, $moduleName, $obj) {
 
     case 'middle':
         $obj->mode = $view_type;
-        $obj->network_info = $network_info;
+        $obj->network_info = PA::$network_info;
         $obj->content_id = @$_REQUEST['cid'];
         $obj->gid = @$_REQUEST['gid'];
         $obj->uid = $uid;
@@ -118,7 +118,7 @@ function setup_module($column, $moduleName, $obj) {
     }
 }
 
-$page = new PageRenderer("setup_module", PAGE_VIEW_ALL_MEMBERS, $page_name, "container_three_column.tpl", $header_tpl, PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_VIEW_ALL_MEMBERS, $page_name, "container_three_column.tpl", $header_tpl, PUB, HOMEPAGE, PA::$network_info);
 
 $page->add_header_html(js_includes('common.js'));
 

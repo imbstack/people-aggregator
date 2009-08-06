@@ -41,7 +41,7 @@ if(!empty($_POST)) {
   }
 
   
-$page = new PageRenderer("setup_module", PAGE_MANAGE_PROFANITY, "Manage Profanity", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_PROFANITY, "Manage Profanity", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 if (!empty($msg)) uihelper_error_msg($msg);
 

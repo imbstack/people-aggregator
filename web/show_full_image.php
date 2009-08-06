@@ -1,10 +1,6 @@
 <?php
 $login_required = FALSE;
 include_once("web/includes/page.php");
-global $network_info;
-// global var $path_prefix has been removed - please, use PA::$path static variable
-
- 
 
 require_once "BlockModules/ImagesModule/ImagesModule.php";
 require_once "BlockModules/FacewallModule/FacewallModule.php";
@@ -43,8 +39,8 @@ html_body($optional_parameters);
 // header
 $header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('current_theme_path', PA::$theme_url);
-if ($network_info) {
-  $header->set_object('network_info', $network_info);
+if (PA::$network_info) {
+  $header->set_object('network_info', PA::$network_info);
 }
 
 print '<div class="body"><div class="left-body">';

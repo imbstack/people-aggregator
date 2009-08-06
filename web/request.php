@@ -39,7 +39,7 @@ if (!empty($_POST['request'])) {
   $error = FALSE;
   $success = FALSE;
   try {
-    $request_sent = Network::join($network_info->network_id, $_SESSION['user']['id']);
+    $request_sent = Network::join(PA::$network_info->network_id, $_SESSION['user']['id']);
     if ($request_sent) {
       $success = TRUE;
     }
@@ -98,7 +98,7 @@ function setup_module($column, $module, $obj) {
     }
 }
 
-$page = new PageRenderer("setup_module", PAGE_REQUEST, "Groups - PeopleAggregator", 'container_three_column.tpl', $header, PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_REQUEST, "Groups - PeopleAggregator", 'container_three_column.tpl', $header, PRI, HOMEPAGE, PA::$network_info);
 
 if (isset($show_options) && $show_options) {
   $page->header->show_options = TRUE;

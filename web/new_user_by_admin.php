@@ -1,6 +1,5 @@
 <?php
   //anonymous user can not view this page;
-  global $network_info;
   $login_required = TRUE;
   $use_theme = 'Beta';
   //including necessary files
@@ -136,7 +135,7 @@
 
           $array_of_data = array(
             'first_name'=>$newuser->first_name ,
-            'network_name'=>$network_info->name,
+            'network_name'=>PA::$network_info->name,
             'user_name'=> $newuser->login_name,
             'recipient_username' => $newuser->login_name, 
             'recipient_firstname' => $newuser->first_name, 
@@ -157,12 +156,12 @@
 
             // adding default relation
             if ( $newuser->user_id != SUPER_USER_ID ) {
-              User_Registration::add_default_relation($newuser->user_id, $network_info);
+              User_Registration::add_default_relation($newuser->user_id, PA::$network_info);
             }
             // adding default media as well as album
-            User_Registration::add_default_media($newuser->user_id, '', $network_info);
-            User_Registration::add_default_media($newuser->user_id, '_audio', $network_info);
-            User_Registration::add_default_media($newuser->user_id, '_video', $network_info);
+            User_Registration::add_default_media($newuser->user_id, '', PA::$network_info);
+            User_Registration::add_default_media($newuser->user_id, '_audio', PA::$network_info);
+            User_Registration::add_default_media($newuser->user_id, '_video', PA::$network_info);
             User_Registration::add_default_blog($newuser->user_id);
             //adding default link categories & links
             User_Registration::add_default_links ($newuser->user_id);
@@ -185,9 +184,9 @@
           //sending mail to the newly created user
           $msg = "User has been Added successfully";
           //if new user is created in a network then he must set as a joined user
-          if(!empty($network_info)) {
+          if(!empty(PA::$network_info)) {
             $by_admin = true;
-            Network::join($network_info->network_id, $newuser->user_id, NETWORK_MEMBER, $by_admin);
+            Network::join(PA::$network_info->network_id, $newuser->user_id, NETWORK_MEMBER, $by_admin);
             // $by_admin = true overrides the 
             // user_waiting status if it would get set
             // this is an admin action, so we want it to happen in any case
@@ -212,7 +211,7 @@
       }
     
   }
-  $page = new PageRenderer( "setup_module", PAGE_NEW_USER_BY_ADMIN, "Create New User", 'container_two_column.tpl','header.tpl',PRI, HOMEPAGE,$network_info );
+  $page = new PageRenderer( "setup_module", PAGE_NEW_USER_BY_ADMIN, "Create New User", 'container_two_column.tpl','header.tpl',PRI, HOMEPAGE,PA::$network_info );
 
   $page->html_body_attributes ='class="no_second_tier network_config"';
 

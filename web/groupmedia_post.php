@@ -25,8 +25,7 @@ require_once "api/Activities/Activities.php";
 require "api/api_constants.php";
 
 
-global $network_info;
-$extra = unserialize($network_info->extra);
+$extra = unserialize(PA::$network_info->extra);
   filter_all_post($_POST);
   $content_type = 'media';
   $media_type = @$_POST['media_type'];
@@ -81,7 +80,7 @@ if (!empty($_POST) && empty($error_msg)) {
   for ($k = 0; $k < $cnt; $k++) {
     $upload = uihelper_upload_gallery_for_group ($login_uid, $_POST, $_FILES, $extention, $k);
     if ($upload[3] == TRUE) {
-      if ($extra['network_content_moderation'] == NET_YES && $network_info->owner_id != $login_uid) {
+      if ($extra['network_content_moderation'] == NET_YES && PA::$network_info->owner_id != $login_uid) {
         Network::moderate_network_content((int)$upload['collection_id'], $upload['content_id']);
         $msg_id = 1004;
       }
@@ -179,7 +178,7 @@ function setup_module($column, $moduleName, $obj) {
 // at present we are setting the value of setting data 
 $page = new PageRenderer("setup_module", PAGE_GROUP_MEDIA_POST, "Group Media
 Gallery", "container_one_column_media_gallery.tpl", "header.tpl", PUB, NULL,
-$network_info, NULL, $setting_data);
+PA::$network_info, NULL, $setting_data);
 
 uihelper_error_msg($error_msg);
 /* This function set the network theme in this page */

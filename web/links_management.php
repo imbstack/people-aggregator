@@ -167,7 +167,7 @@ function setup_module($column, $moduleName, $obj) {
     $obj->mode = PUB;
 }
 
-$page = new PageRenderer("setup_module", PAGE_LINKS_MANAGEMENT, sprintf(__("%s - My Links - %s"), $login_user->get_name(), $network_info->name), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_LINKS_MANAGEMENT, sprintf(__("%s - My Links - %s"), $login_user->get_name(), PA::$network_info->name), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 $page->add_header_html('<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/links.js"></script>');
 $updated_category_id = null;

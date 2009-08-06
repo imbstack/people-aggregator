@@ -130,7 +130,7 @@ class MediaGalleryModule extends Module {
   }
 
   function set_vars() {
-    global $login_uid, $network_info;
+    global $login_uid;
     /* For handling the Album according to thier type */
     switch ($this->type) {
       case 'Images' :
@@ -168,7 +168,7 @@ class MediaGalleryModule extends Module {
       $relations_ids = Relation::get_all_relations((int)$login_uid);
       $users = array();
       $users_ids = array();
-      $users = Network::get_members(array('network_id'=>$network_info->network_id));
+      $users = Network::get_members(array('network_id'=>PA::$network_info->network_id));
 
       if ( $users['total_users'] ) {
         for( $i = 0; $i < $users['total_users']; $i++) {

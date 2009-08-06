@@ -27,7 +27,7 @@ if (isset($_POST['submit_ranking'])) {
   }
 }
 
-$page = new PageRenderer("setup_module",PAGE_SITE_RANKING, "Site Ranking", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module",PAGE_SITE_RANKING, "Site Ranking", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 $page->html_body_attributes ='class="no_second_tier network_config"';
 

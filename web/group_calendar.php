@@ -39,7 +39,7 @@ function setup_module($column, $module, $obj) {
   $obj->mode = PUB;
 }
 
-$page = new PageRenderer("setup_module", PAGE_GROUP_CALENDAR, "Calendar - PeopleAggregator", "container_one_column.tpl", "header_group.tpl", PRI, NULL, $network_info);
+$page = new PageRenderer("setup_module", PAGE_GROUP_CALENDAR, "Calendar - PeopleAggregator", "container_one_column.tpl", "header_group.tpl", PRI, NULL, PA::$network_info);
 
 $css_path = PA::$theme_url . '/calendar.css';
 $page->add_header_css($css_path);

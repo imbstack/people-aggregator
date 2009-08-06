@@ -142,7 +142,7 @@ if(!empty($_POST['delete_type'])) {
   $onload = "show_content ('".$_POST['delete_type']."-content', '');";
 }
 
-$page = new PageRenderer("setup_module", PAGE_MEDIA_MANAGEMENT, "Media Management", "container_one_column_media_gallery.tpl", "header.tpl", PUB, HOMEPAGE, $network_info, $onload);
+$page = new PageRenderer("setup_module", PAGE_MEDIA_MANAGEMENT, "Media Management", "container_one_column_media_gallery.tpl", "header.tpl", PUB, HOMEPAGE,  PA::$network_info, $onload);
 uihelper_error_msg(@$_GET['msg_id']);
 uihelper_get_network_style();
 if (!empty($msg)) uihelper_error_msg($msg);

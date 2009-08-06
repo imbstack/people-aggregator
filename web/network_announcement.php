@@ -143,7 +143,7 @@
   }
   
   
-  $page = new PageRenderer("setup_module", PAGE_NETWORK_ANNOUNCEMENT, "Network Announcement", 'container_one_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+  $page = new PageRenderer("setup_module", PAGE_NETWORK_ANNOUNCEMENT, "Network Announcement", 'container_one_column.tpl','header.tpl',PRI,HOMEPAGE,PA::$network_info);
   if (!empty($error_msg)) {  
     $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
     $msg_tpl->set('message', $error_msg);

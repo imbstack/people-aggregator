@@ -16,7 +16,7 @@ include_once("web/includes/page.php");
 require_once "web/includes/network.inc.php";
 require_once "api/Roles/Roles.php";
 require_once "api/Permissions/PermissionsHandler.class.php";
-global $network_info;
+
 
  $res = PermissionsHandler::can_network_user(PA::$login_uid, 
                                              PA::$network_info->network_id,
@@ -59,7 +59,7 @@ header("Location:assign_tasks.php?msg=9015");
 exit;
 }
 
-$page = new PageRenderer("setup_module", PAGE_TASK_MANAGE, "Manage Task Relations", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_TASK_MANAGE, "Manage Task Relations", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 $page->html_body_attributes = 'class="no_second_tier network_config"';
 

@@ -32,7 +32,7 @@ function setup_module($column, $module, $obj) {
       
 }
 
-$page = new PageRenderer("setup_module", PAGE_TAG_SEARCH, 'Search By Tag',  'container_three_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_TAG_SEARCH, 'Search By Tag',  'container_three_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 uihelper_get_network_style();
 echo $page->render();

@@ -18,11 +18,10 @@
   
   if(!empty($_GET['category_id'])) {      
       $condition = array('category_id'=> $_GET['category_id'], 'is_active'=> 1);
-      global $network_info;
-      if( Network::is_mother_network($network_info->network_id) ){
+      if( Network::is_mother_network(PA::$network_info->network_id) ){
         $uid = SUPER_USER_ID;
       } else {
-        $uid = Network::get_network_owner($network_info->network_id);
+        $uid = Network::get_network_owner(PA::$network_info->network_id);
       }
       $params_array = array('user_id'=> $uid);
       $Links = new NetworkLinks();      

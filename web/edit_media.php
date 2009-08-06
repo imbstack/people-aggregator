@@ -16,7 +16,7 @@ $query_count_on_page = 0;
 
  
 $parameter = js_includes("all");
-html_header("Media Gallery - $network_info->name", $parameter);
+html_header("Media Gallery - PA::$network_info->name", $parameter);
 
 $uid = PA::$login_uid;
 /*  Check for the content author id */
@@ -62,8 +62,7 @@ if(!empty($_GET['cid'])) {
   }
 }
 if ($uid == $_SESSION['user']['id']) {
-  global $network_info;
-  $extra = unserialize($network_info->extra);
+  $extra = unserialize(PA::$network_info->extra);
   // for edit - group media
   if (isset($_POST['submit_group']) && ($_POST['group_id'])) {
     if ($_POST['media_type'] == 'image') {
@@ -262,7 +261,7 @@ function setup_module($column, $moduleName, $obj) {
     }
 }
 
-$page = new PageRenderer("setup_module", PAGE_EDIT_MEDIA, "Edit Media", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_EDIT_MEDIA, "Edit Media", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 if (!empty($error)) {
   $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");

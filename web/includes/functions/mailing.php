@@ -10,10 +10,6 @@ define("DEFAULT_SENDER", $default_sender);
 $mail_testing_callback = NULL; // see pa_mail() for usage
 
   function pa_mail($to, $type, $array_of_data, $from = DEFAULT_SENDER) {
-    // global var $path_prefix has been removed - please, use PA::$path static variable
-    global $network_info;
-    // global var $_base_url has been removed - please, use PA::$url static variable
-
     global $default_sender;
     $container_html = 'default_email_container.tpl';
     if (empty($from)) {

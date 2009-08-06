@@ -251,7 +251,7 @@ if (!function_exists('mime_content_type'))
 */
 /*
 function user_can( $params ) {
-  global $network_info, $login_uid;
+  global $login_uid;
   $action = $params['action'];
 
 
@@ -266,7 +266,7 @@ function user_can( $params ) {
         }
 
         // network owner can edit / delete any content in a network
-        if( Network::is_admin( $network_info->network_id, $params['uid'] ) ) {
+        if( Network::is_admin( PA::$network_info->network_id, $params['uid'] ) ) {
           return true;
         }
 
@@ -297,7 +297,7 @@ function user_can( $params ) {
 
       if ($login_uid == SUPER_USER_ID) { //Super user can delete any comment
         return true;
-      } else if ($network_info->owner_id == $login_uid) {                              //Network owner can delete the comment
+      } else if (PA::$network_info->owner_id == $login_uid) {                              //Network owner can delete the comment
         return true;
       } else if (isset($comment['user_id']) and ($comment['user_id'] == $login_uid)) { //Author of comment can delete the comment
         return true;
@@ -318,18 +318,18 @@ function user_can( $params ) {
       return false;// return false in all the other cases
       break;
     case 'edit_forum': // Edit Forum - used in old Forums
-      $perm_array = array($network_info->owner_id, SUPER_USER_ID, $params['group_owner'], $params['forum_owner']);
+      $perm_array = array(PA::$network_info->owner_id, SUPER_USER_ID, $params['group_owner'], $params['forum_owner']);
       return in_array($login_uid, $perm_array);
       break;
 
     case 'delete_rep': // Delete the Replies of forum - used in old Forums
-    $perm_array = array($network_info->owner_id, SUPER_USER_ID, $params['group_owner'], $params['forum_owner'], $params['rep_owner']);
+    $perm_array = array(PA::$network_info->owner_id, SUPER_USER_ID, $params['group_owner'], $params['forum_owner'], $params['rep_owner']);
     return in_array($login_uid, $perm_array);
     break;
 
     case 'view_group_content': // not used!
       if ($params['allow_anonymous']) return true;
-      $perm_array = array ($network_info->owner_id, SUPER_USER_ID, $params['group_owner']);
+      $perm_array = array (PA::$network_info->owner_id, SUPER_USER_ID, $params['group_owner']);
       $member_type = array (MEMBER, MODERATOR, OWNER);
       if (in_array($login_uid, $perm_array) || in_array($params['member_type'], $member_type))
       return true;
@@ -337,14 +337,14 @@ function user_can( $params ) {
 
     case 'view_abuse_report_form':
       if(empty($login_uid)) return false;
-      $extra = unserialize($network_info->extra);
+      $extra = unserialize(PA::$network_info->extra);
       $pram = $extra['notify_owner']['report_abuse_on_content']['value'];
       if (isset($pram) && ($pram > 0) ) return true;
       return false;
       break;
 
     case 'delete_comment_authorization':
-      $perm_array = array($network_info->owner_id, SUPER_USER_ID,
+      $perm_array = array(PA::$network_info->owner_id, SUPER_USER_ID,
       @$params['group_owner'], $params['content_owner'], $params['comment_owner']);
       return in_array($login_uid, $perm_array);
       break;
@@ -357,7 +357,7 @@ function user_can( $params ) {
           return true;
         }
         // network owner can edit / delete any content in a network
-        if(Network::is_admin($network_info->network_id, $params['uid'])) {
+        if(Network::is_admin(PA::$network_info->network_id, $params['uid'])) {
           return true;
         }
         $celebrity = new Celebrity();
@@ -610,15 +610,12 @@ function fnmatch_array($needle, $haystack) {
   *
   */
 function delete_users($params, $true_delete = FALSE) {
-
-  global $network_info;
-
   $message_array = array();
   $user_id_array = $params['user_id_array'];
 
   foreach($user_id_array as $user_id) {
-    if( $network_info->type == MOTHER_NETWORK_TYPE ) {
-      if(!Network::member_exists($network_info->network_id, (int)$user_id)) {
+    if( PA::$network_info->type == MOTHER_NETWORK_TYPE ) {
+      if(!Network::member_exists(PA::$network_info->network_id, (int)$user_id)) {
         $message_array[] = "UserID $user_id does not exists.";
         continue;
       }
@@ -665,15 +662,15 @@ function delete_users($params, $true_delete = FALSE) {
     }
     else {
       //user delete for network owner
-      if(!Network::member_exists($network_info->network_id, (int)$user_id)) {
+      if(!Network::member_exists(PA::$network_info->network_id, (int)$user_id)) {
         $message_array[] = "UserID $user_id does not exists.";
         continue;
       }
-      $network_prefix = $network_info->address;
+      $network_prefix = PA::$network_info->address;
       try {
         User::delete_user($user_id);
         Activities::delete_for_user( $user_id );
-        Network::leave( $network_info->network_id, $user_id );//network leave
+        Network::leave( PA::$network_info->network_id, $user_id );//network leave
       }
       catch ( PAException $e ) {
         $message_array[] = $e->message;

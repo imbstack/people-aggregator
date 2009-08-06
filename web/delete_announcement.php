@@ -14,9 +14,9 @@ if($_GET['aid'] ) {
   }
 }
 
-if($network_info) {
+if(PA::$network_info) {
 
-  $nid = $network_info->network_id;
+  $nid = PA::$network_info->network_id;
   } else {
   $nid='';
 }

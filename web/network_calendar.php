@@ -15,14 +15,14 @@ $authorization_required = TRUE;
 
 
 function setup_module($column, $module, $obj) {
-  global $network_info, $login_uid;
+  global $login_uid;
   switch ($module) {
     case 'EventCalendarModule':
       $obj->title = 'Network Events';
       $obj->assoc_type = 'network';
-      $obj->assoc_id = $network_info->network_id;
-      $obj->assoc_title = $network_info->name;
-      $is_admin = Network::is_admin($network_info->network_id, $login_uid);
+      $obj->assoc_id = PA::$network_info->network_id;
+      $obj->assoc_title = PA::$network_info->name;
+      $is_admin = Network::is_admin(PA::$network_info->network_id, $login_uid);
       if ($is_admin) {
         $obj->may_edit = true;
       } else {
@@ -33,7 +33,7 @@ function setup_module($column, $module, $obj) {
   $obj->mode = PUB;
 }
 
-$page = new PageRenderer("setup_module", PAGE_NETWORK_CALENDAR, __("Network Events"), "container_one_column.tpl", "header.tpl", PRI, NULL, $network_info);
+$page = new PageRenderer("setup_module", PAGE_NETWORK_CALENDAR, __("Network Events"), "container_one_column.tpl", "header.tpl", PRI, NULL, PA::$network_info);
 
 $page->html_body_attributes ='class="no_second_tier network_config"';
 $css_path = PA::$theme_url . '/calendar.css';

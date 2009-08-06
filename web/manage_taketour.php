@@ -65,7 +65,7 @@ if (@$_POST['submit']=='Submit') {
 }
 
 //render the page
-$page = new PageRenderer("setup_module", PAGE_MANAGE_TAKETOUR, "Manage Take A Tour", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_TAKETOUR, "Manage Take A Tour", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,PA::$network_info);
 
 if (!empty($msg)) {
   $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
@@ -97,7 +97,7 @@ $page->html_body_attributes ='class="no_second_tier network_config"';
 /*  ---------- FUNCTION DEFINITION ------------------*/
 //call back function
 function setup_module($column, $module, $obj) {
-  global $form_data, $error, $error_msg,$network_info,$perm;
+  global $form_data, $error, $error_msg,$perm;
   $obj->perm = $perm;
 }
 echo $page->render();

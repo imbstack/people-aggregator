@@ -27,8 +27,7 @@ class MISReportModule extends Module {
   }
 
   function render() {
-    global $network_info;
-    $param['network_id'] = $network_info->network_id; 
+    $param['network_id'] = PA::$network_info->network_id; 
     $res = Network::get_members($param);
     $links['registered_users'] = count($res['users_data']);
     $this->email_domain_array = $this->get_email_by_domain($res['users_data']);
@@ -56,13 +55,13 @@ class MISReportModule extends Module {
   }
   
   function generate_inner_html ($links) {    
-    global $network_info;
+    global PA::$network_info;
     if ($this->market_report == TRUE) { // if marketting report is to be viewed
       $params = NULL;
       $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_market_report.tpl';
       $next_prev_navigation = 'marketing_report';
       if ($this->email_sorting == NULL || $this->email_sorting == 'all' ) {        
-      $params = array('network_id' => $network_info->network_id,
+      $params = array('network_id' => PA::$network_info->network_id,
                      'neglect_owner' => FALSE,
                      'cnt' => TRUE);      
       // setting variables for pagination

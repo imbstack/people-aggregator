@@ -81,7 +81,7 @@ class MediaFullViewModule extends Module {
   }
   
   function handle_field_param($data) {
-    global $login_uid, $page_uid, $network_info;
+    global $login_uid, $page_uid;
     if(isset($login_uid)) {
       $Image_owner = ($login_uid==$data->author_id) ? TRUE: FALSE;
       $relations_ids = Relation::get_all_relations((int)$data->author_id);
@@ -94,7 +94,7 @@ class MediaFullViewModule extends Module {
     }
     // No one can view the media
     $param = FALSE;
-    $network_owner = $network_info->owner_id;
+    $network_owner = PA::$network_info->owner_id;
     switch ($data->file_perm) {
       case NONE:
         if ((isset($login_uid) && ($Image_owner)) || ($login_uid == SUPER_USER_ID) || ($login_uid == $network_owner)) {

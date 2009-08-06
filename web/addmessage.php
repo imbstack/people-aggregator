@@ -143,7 +143,7 @@ function setup_module($column, $moduleName, $obj) {
   $obj->mode = PUB;  
 }
 //renders the modules on the page
-$page = new PageRenderer("setup_module", PAGE_ADDMESSAGE, "Compose", "container_one_column.tpl", 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_ADDMESSAGE, "Compose", "container_one_column.tpl", 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 uihelper_set_user_heading($page);
 if (!empty($message)){

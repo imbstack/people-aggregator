@@ -9,24 +9,24 @@
   $error = FALSE;
   
   $super_user_and_mothership = FALSE; //this flag will be set when logged in user is SU and is in Mothership
-  if( ( SUPER_USER_ID == $_SESSION['user']['id'] )  && $network_info->type == MOTHER_NETWORK_TYPE ) {
+  if( ( SUPER_USER_ID == $_SESSION['user']['id'] )  && PA::$network_info->type == MOTHER_NETWORK_TYPE ) {
     $super_user_and_mothership = TRUE;
   }
   
   if( !$error && isset($_REQUEST['action']) ) {
     //there can be 4 possible actions
     if ($_REQUEST['action'] == 'approve') {
-      Network::approve($network_info->network_id, $_REQUEST['uid']);
+      Network::approve(PA::$network_info->network_id, $_REQUEST['uid']);
       $message = 7022;
     }
     if ($_REQUEST['action'] == 'deny') {
-      Network::deny($network_info->network_id, $_REQUEST['uid']);
+      Network::deny(PA::$network_info->network_id, $_REQUEST['uid']);
       $message = 7023;
     }
     if ($_REQUEST['action'] == 'multiple_approve') {
       if (is_array($_REQUEST['uid'])) {
         foreach ($_REQUEST['uid'] as $uid) {
-          Network::approve($network_info->network_id, $uid);  
+          Network::approve(PA::$network_info->network_id, $uid);  
         }
         $message = 7022;
       }
@@ -34,7 +34,7 @@
     if ($_REQUEST['action'] == 'multiple_deny') {
       if (is_array($_REQUEST['uid'])) {
         foreach ($_REQUEST['uid'] as $uid) {
-          Network::deny($network_info->network_id, $uid);  
+          Network::deny(PA::$network_info->network_id, $uid);  
         }
         $message = 7023;
       }
@@ -63,7 +63,7 @@
       break;
     }
   }
-  $page = new PageRenderer("setup_module", PAGE_NETWORK_MODERATE_USERS, "Moderate Registered Users", 'container_two_column.tpl','header.tpl',PUB, HOMEPAGE, $network_info);
+  $page = new PageRenderer("setup_module", PAGE_NETWORK_MODERATE_USERS, "Moderate Registered Users", 'container_two_column.tpl','header.tpl',PUB, HOMEPAGE, PA::$network_info);
   
   if (!empty($_GET['msg'])) {
     $message = $_GET['msg'];

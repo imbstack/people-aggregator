@@ -729,7 +729,7 @@ function render_debug_sidebar() {
 }
 
 // ---
-$page = new PageRenderer(NULL, PAGE_BADGE_CREATE, sprintf(__("%s - My Widgets - %s"), $login_user->get_name(), $network_info->name), "container_three_column.tpl", 'header_user.tpl');
+$page = new PageRenderer(NULL, PAGE_BADGE_CREATE, sprintf(__("%s - My Widgets - %s"), $login_user->get_name(), PA::$network_info->name), "container_three_column.tpl", 'header_user.tpl');
 $page->onload = "badge.update();";
 $page->add_header_css(PA::$theme_url . "/badge_create.css");
 

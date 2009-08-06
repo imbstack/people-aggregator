@@ -78,7 +78,7 @@ function setup_module($column, $module, $obj) {
 
 $page = new PageRenderer("setup_module", PAGE_MANAGE_QUESTIONS, "Manage
 Questions", 'container_two_column.tpl', 'header.tpl',
-PRI, HOMEPAGE, $network_info
+PRI, HOMEPAGE, PA::$network_info
 );
 
 uihelper_error_msg(@$message);

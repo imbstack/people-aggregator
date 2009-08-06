@@ -1,6 +1,5 @@
 <?php
 
-global $network_info;
 
 require_once "api/Network/Network.php";
 require_once "api/User/User.php";
@@ -10,7 +9,7 @@ require_once "api/Message/Message.php";
 // Now adding the report abuse for network owner message box
 
 filter_all_post($_POST);
-$extra = unserialize($network_info->extra);
+$extra = unserialize(PA::$network_info->extra);
 
 if(!empty($_POST['type']) && $_POST['type'] == 'comment') {
 
@@ -39,11 +38,11 @@ if(!empty($_POST['type']) && $_POST['type'] == 'comment') {
 /*  - Replaced with new PANotify code   
 
       // here we find the Id of network owner
-      if($network_info->type == MOTHER_NETWORK_TYPE) {
+      if(PA::$network_info->type == MOTHER_NETWORK_TYPE) {
         $user_id = SUPER_USER_ID;
       }
       else {
-        $user_id = Network::get_network_owner($network_info->network_id);
+        $user_id = Network::get_network_owner(PA::$network_info->network_id);
       }
       // Sender name
       $visitor_name = $_SESSION['user']['name'];
@@ -52,7 +51,7 @@ if(!empty($_POST['type']) && $_POST['type'] == 'comment') {
 
       // Loading the network owner
       $to_network_owner = $user->email;
-      $network_name = $network_info->name;
+      $network_name = PA::$network_info->name;
       $cid = $_GET['cid'];
       $mail_type = 'report_abuse_for_comment';
       $_content_url = PA::$url . PA_ROUTE_CONTENT . '/cid='.$cid;
@@ -170,16 +169,16 @@ if (!empty($_POST['rptabuse']) && !empty(PA::$login_uid) && !isset($_POST['type'
         $visitor_name = 'some one';
       }
     }
-    if ($network_info->type == MOTHER_NETWORK_TYPE) {
+    if (PA::$network_info->type == MOTHER_NETWORK_TYPE) {
       $user_id = SUPER_USER_ID;
     }
     else {
-      $user_id = Network::get_network_owner($network_info->network_id);
+      $user_id = Network::get_network_owner(PA::$network_info->network_id);
     }
     $user = new User();
     $user->load((int)$user_id);
     $to_network_owner = $user->email;
-    $network_name = $network_info->name;
+    $network_name = PA::$network_info->name;
     $cid = $_GET['cid'];
     $mail_type = 'report_abuse';
 
@@ -278,9 +277,9 @@ if(!empty($error_message)) {
 
 function send_message_to_user($user_name, $suject=null, $mail_sub_msg_array) {
   // Adding the message for newtork owner
-  global $network_info, $login_uid;
+  global PA::$network_info, $login_uid;
 
-  $network_name = $network_info->name;
+  $network_name = PA::$network_info->name;
   $report_name = $_SESSION['user']['name'];
   $site_name = PA::$site_name;
   $message = $mail_sub_msg_array['message'];

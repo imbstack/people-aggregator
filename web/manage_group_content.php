@@ -27,7 +27,7 @@ function setup_module($column, $moduleName, $obj) {
     }
 }
 
-$page = new PageRenderer("setup_module", PAGE_MANAGE_GROUP_CONTENT, "Group Content Management", "container_one_column_media_gallery.tpl", "header_group.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_GROUP_CONTENT, "Group Content Management", "container_one_column_media_gallery.tpl", "header_group.tpl", PUB, HOMEPAGE, PA::$network_info);
 $error_message = @$_GET['msg_id'];
 uihelper_error_msg($error_message);
 uihelper_get_group_style($_GET['gid']);

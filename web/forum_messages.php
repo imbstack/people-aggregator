@@ -164,7 +164,7 @@ function setup_module($column, $moduleName, $obj) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_FORUM_MESSAGES, "Message forum", "container_three_column.tpl", "header_group.tpl", PUB, HOMEPAGE, $network_info,'',$setting_data);
+$page = new PageRenderer("setup_module", PAGE_FORUM_MESSAGES, "Message forum", "container_three_column.tpl", "header_group.tpl", PUB, HOMEPAGE, PA::$network_info, '', $setting_data);
 
 uihelper_error_msg($msg);
 uihelper_get_group_style($_REQUEST['ccid']);

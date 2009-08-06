@@ -7,7 +7,7 @@ $msg_esc = htmlspecialchars(@$_REQUEST['msg']);
 
 // ---
 
-$page = new PageRenderer(NULL, NULL, "Error $code_esc: $msg_esc", "generic_error.tpl",'header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer(NULL, NULL, "Error $code_esc: $msg_esc", "generic_error.tpl",'header.tpl',PRI,HOMEPAGE,PA::$network_info);
 $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/error_middle.tpl");
 $msg_tpl->set('code', $code_esc);
 $msg_tpl->set('msg', $msg_esc);

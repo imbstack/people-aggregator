@@ -43,7 +43,7 @@ if ( $uid != $login_uid ) {
   throw new PAException(OPERATION_NOT_PERMITTED, "You cant access other user's messages.");
 }
 
-$page = new PageRenderer("setup_module", PAGE_VIEW_MESSAGE, "Private Messages - $network_info->name","container_one_column.tpl",'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_VIEW_MESSAGE, "Private Messages - PA::$network_info->name","container_one_column.tpl",'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 uihelper_set_user_heading($page);
 if (@$message) uihelper_error_msg($message);

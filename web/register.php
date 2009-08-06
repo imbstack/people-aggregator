@@ -5,7 +5,6 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 include "web/includes/classes/RegistrationPage.php";
 
-global $network_info;
 
 if (isset($_SESSION['user']['id'])) {
   header("Location: " . PA::$url . PA_ROUTE_USER_PUBLIC . '/' . ($_SESSION['user']['id']));
@@ -57,7 +56,7 @@ try {
   $msg = $e->getMessage();
 }
 
-$page = new PageRenderer("setup_module", PAGE_REGISTER, "Registration Page", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_REGISTER, "Registration Page", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 // added by Zoran Hron: JQuery validation & AJAX file upload --
 $page->add_header_html(js_includes('jquery.validate.js'));

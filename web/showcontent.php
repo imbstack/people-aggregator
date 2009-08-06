@@ -263,7 +263,7 @@ function setup_module($column, $moduleName, $obj) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_SHOWCONTENT, __("Content"), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info,'',$setting_data);
+$page = new PageRenderer("setup_module", PAGE_SHOWCONTENT, __("Content"), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info,'',$setting_data);
 
 $page->html_body_attributes .= ' class="no_second_tier" id="pg_showcontent"';
 uihelper_error_msg($error_message);

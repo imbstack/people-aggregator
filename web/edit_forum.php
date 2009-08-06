@@ -75,7 +75,7 @@ global $query_count_on_page, $login_uid;
       break;
     }
   }
-  $page = new PageRenderer("setup_module", PAGE_CREATE_FORUM_TOPIC, "Edit forum", 'container_three_column.tpl','header_group.tpl',PRI,HOMEPAGE,$network_info);
+  $page = new PageRenderer("setup_module", PAGE_CREATE_FORUM_TOPIC, __("Edit Forum"), 'container_three_column.tpl', 'header_group.tpl', PRI, HOMEPAGE, PA::$network_info);
   
   uihelper_error_msg($msg);
   uihelper_get_group_style($gid);

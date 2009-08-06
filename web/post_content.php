@@ -58,12 +58,12 @@ return type : true
 */
 
 function route2groups() {
-  global $user, $network_info, $is_edit;
-  $extra = unserialize($network_info->extra);
+  global $user, PA::$network_info, $is_edit;
+  $extra = unserialize(PA::$network_info->extra);
   $tags = preg_split('/\s*,\s*/' , strtolower($_POST['tags']));
   $tags = array_unique($tags);
   $net_owner = new User();
-  $net_owner->load((int)$network_info->owner_id);
+  $net_owner->load((int)PA::$network_info->owner_id);
 
   //find tag entry
   $terms = array();
@@ -101,7 +101,7 @@ function route2groups() {
         $params['user_id'] = $user->user_id;
         $params['user_image'] = $content_author_image;
         $params['content_title'] = $_POST["blog_title"];
-        $params['network_name'] = $network_info->name;
+        $params['network_name'] = PA::$network_info->name;
         $params['network_owner_name'] = $net_owner->first_name;
         $params['content_url'] = '<a href="' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid . $login_required_str.'">' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid .'</a>';
         $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT .'</a>';
@@ -131,7 +131,7 @@ function route2groups() {
         $group = ContentCollection::load_collection((int)$gid, PA::$login_uid);
         if($group->reg_type == REG_MODERATED) {
           Network::moderate_network_content((int)$gid, $permalink_cid);
-        } else if ($extra['network_content_moderation'] == NET_YES && $is_edit == 0 && $network_info->owner_id != $user->user_id) {
+        } else if ($extra['network_content_moderation'] == NET_YES && $is_edit == 0 && PA::$network_info->owner_id != $user->user_id) {
           Network::moderate_network_content($gid, $permalink_cid);
         }
         if(!PA::is_moderated_content() && ($group->reg_type != REG_MODERATED)) { //Write to activity log only when moderation is off
@@ -157,7 +157,7 @@ function route2groups() {
         $params['user_id'] = $user->user_id;
         $params['user_image'] = $content_author_image;
         $params['content_title'] = $_POST["blog_title"];
-        $params['network_name'] = $network_info->name;
+        $params['network_name'] = PA::$network_info->name;
         $params['network_owner_name'] = $net_owner->first_name;
         $params['content_url'] = '<a href="' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid .$login_required_str.'">' . PA::$url . PA_ROUTE_CONTENT . '/cid='.$permalink_cid .'</a>';
         $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT .'</a>';
@@ -185,7 +185,7 @@ function route2groups() {
         $group = ContentCollection::load_collection((int)$gid, PA::$login_uid);
         if($group->reg_type == REG_MODERATED) {
           Network::moderate_network_content((int)$gid, $permalink_cid);
-        } else if ($extra['network_content_moderation'] == NET_YES && $is_edit == 0 && $network_info->owner_id != $user->user_id) {
+        } else if ($extra['network_content_moderation'] == NET_YES && $is_edit == 0 && PA::$network_info->owner_id != $user->user_id) {
           Network::moderate_network_content($gid, $permalink_cid);
         }
         if(!PA::is_moderated_content() && ($group->reg_type != REG_MODERATED)) { //Write to activity log only when moderation is off
@@ -425,7 +425,7 @@ function setup_module($column, $moduleName, $obj) {
 }
 
 
-$page = new PageRenderer("setup_module", PAGE_POSTCONTENT, "Create content", "container_one_column_postcontent.tpl", "header.tpl", PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_POSTCONTENT, "Create content", "container_one_column_postcontent.tpl", "header.tpl", PRI, HOMEPAGE, PA::$network_info);
 
 // load JQzery forms Plugin
 $page->add_header_html(js_includes('forms.js'));

@@ -108,8 +108,6 @@ class GroupModerateUserModule extends Module {
   }
 
  private function send_approval_message_to_user($uid, $gid, $approved) {
- global $network_info;
-
     $site_name = PA::$site_name;
     $user = new User();
     $user->load((int)$uid);
@@ -119,7 +117,7 @@ class GroupModerateUserModule extends Module {
     $group_owner->load((int)$group_owner_id['user_id']);
 
     $group_name = $group->title;
-    $network_name = $network_info->name;
+    $network_name = PA::$network_info->name;
     $group_member_count = Group::get_member_count((int)$gid);
     $group_owner_name = $group_owner->login_name;
     $group_joinee = $user->login_name;

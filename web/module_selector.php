@@ -98,7 +98,7 @@
   
   $page = new PageRenderer("setup_module", PAGE_MODULE_SELECTOR, "Module Selector",
                             'container_two_column.tpl','header.tpl', PRI, HOMEPAGE,
-                            $network_info);
+                            PA::$network_info);
    
    function setup_module($column, $module, $obj) {
      global $module_settings, $page_id;

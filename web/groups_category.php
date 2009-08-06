@@ -46,8 +46,8 @@ $header->set('onload', $onload);
 $header->tier_one_tab = $main_tier;
 $header->tier_two_tab = $second_tier;
 $header->tier_three_tab = $third_tier;
-if ($network_info) {
-  $header->set_object('network_info', $network_info);
+if (PA::$network_info) {
+  $header->set_object('network_info', PA::$network_info);
 }
 
 // This block of code has to be removed when this page will be rendered using PageRenderer.

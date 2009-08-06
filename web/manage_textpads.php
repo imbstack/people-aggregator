@@ -123,7 +123,7 @@ if (!$error && !empty($_POST) && $_POST['btn_apply_name']) { // if page is submi
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_MANAGE_TEXTPADS, __("Manage Textpads"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, @@$network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_TEXTPADS, __("Manage Textpads"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 // removed $onload param as it is not set anywhere
 
 if (!empty($msg)) {

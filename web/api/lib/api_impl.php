@@ -1176,8 +1176,6 @@ function metaWeblog_newPost($args) {
 }
 
 function metaWeblog_editPost($args) {
-    global $network_info;
-
     $postid = $args['postid'];
     $login = $args['login'];
     $password = $args['password'];
@@ -1200,7 +1198,7 @@ function metaWeblog_editPost($args) {
 
     // invalidate caches
     $cache_id = 'content_'.$cid;
-    if ($network_info) $cache_id .= '_network_'.$network_info->network_id;
+    if (PA::$network_info) $cache_id .= '_network_'.PA::$network_info->network_id;
     CachedTemplate::invalidate_cache($cache_id);
     Logger::log("invalidating cache for $cache_id");
 

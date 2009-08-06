@@ -69,11 +69,11 @@ if (!empty($_GET['cid'])) {
 }
 
 function setup_module($column, $moduleName, $obj) {
-    global $content_type, $show_media,$uid, $group_ids, $paging, $error_msg, $network_info, $login_uid;
-    $extra = unserialize($network_info->extra);
+    global $content_type, $show_media,$uid, $group_ids, $paging, $error_msg, $login_uid;
+    $extra = unserialize(PA::$network_info->extra);
     $authorized_users = array();
     if(!empty($show_media)) {
-      $authorized_users = array($show_media->author_id, $network_info->owner_id);
+      $authorized_users = array($show_media->author_id, PA::$network_info->owner_id);
       if ($extra['network_content_moderation'] == NET_YES && Network::item_exists_in_moderation($show_media->content_id, $show_media->parent_collection_id, 'content') && !in_array($login_uid, $authorized_users)) {
         $error_msg = 1001;
         return 'skip';
@@ -101,7 +101,7 @@ if(!empty($info) && $info['type'] == GROUP_COLLECTION_TYPE) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_MEDIA_FULL_VIEW, "Media Full View", "container_one_column_media_gallery.tpl", $header_tpl, PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_MEDIA_FULL_VIEW, "Media Full View", "container_one_column_media_gallery.tpl", $header_tpl, PUB, HOMEPAGE, PA::$network_info);
 
 if (!empty($_GET['msg_id'])) {
   $error_msg = $_GET['msg_id'];

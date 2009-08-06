@@ -10,8 +10,8 @@ include_once "api/Theme/Template.php";
 include_once "ext/NetworkLinks/NetworkLinks.php";
 include_once "api/Validation/Validation.php";
 include_once "web/includes/network.inc.php";
-if ( $network_info ) {
-  $db_extra = unserialize($network_info->extra);
+if ( PA::$network_info ) {
+  $db_extra = unserialize(PA::$network_info->extra);
   $form_data['extra'] = $db_extra;  
 }
 $authorization_required = TRUE;
@@ -177,7 +177,7 @@ function setup_module($column, $moduleName, $obj) {
     $obj->mode = PUB;
 }
 
-$page = new PageRenderer("setup_module", PAGE_NETWORK_LINKS, "Network links", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_NETWORK_LINKS, "Network links", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 $page->html_body_attributes ='class="no_second_tier network_config"';
 $message = NULL;

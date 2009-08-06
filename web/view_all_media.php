@@ -48,7 +48,7 @@ function setup_module($column, $moduleName, $obj) {
 
 // fetching the data from the Constants.php and Rendering the data of the page 
 // at present we are setting the value of setting data 
-$page = new PageRenderer("setup_module", PAGE_VIEW_ALL_MEDIA, 'View All', "container_one_column_media_gallery.tpl", "header_user.tpl", PUB, NULL, $network_info, null, $setting_data);
+$page = new PageRenderer("setup_module", PAGE_VIEW_ALL_MEDIA, 'View All', "container_one_column_media_gallery.tpl", "header_user.tpl", PUB, NULL, PA::$network_info, null, $setting_data);
 
 $msg = (!empty($_GET['msg']))? $_GET['msg'] : $msg;
 $msg = (!empty($_GET['msg_id']))? $_GET['msg_id'] : $msg;

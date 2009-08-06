@@ -26,7 +26,7 @@ require_once "ext/Image/Image.php";
 require_once "ext/Video/Video.php";
 require_once "ext/Audio/Audio.php";
 require_once "web/includes/functions/auto_email_notify.php";
-global $network_info, $uid;
+global $uid;
 
 $msg = (isset($_GET['msg_id'])) ? $_GET['msg_id'] : '';
  
@@ -72,7 +72,7 @@ function setup_module($column, $module, $obj) {
 // fetching the data from the Constants.php and Rendering the data of the page 
 // at present we are setting the value of setting data 
 
-$page = new PageRenderer("setup_module", PAGE_GROUP_MEDIA_GALLERY, "Group Media Gallery", "container_one_column_media_gallery.tpl", "header_group.tpl", PUB, NULL, $network_info, NULL, $setting_data);
+$page = new PageRenderer("setup_module", PAGE_GROUP_MEDIA_GALLERY, "Group Media Gallery", "container_one_column_media_gallery.tpl", "header_group.tpl", PUB, NULL, PA::$network_info, NULL, $setting_data);
 
   if ($type == 'Images') { 
     $parameter = js_includes('jtip.js');

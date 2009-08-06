@@ -69,7 +69,7 @@ if ($type != 'select') {
   $onload = 'javascript: ajax_method_poll_options();';
 }
 
-$page = new PageRenderer("setup_module",PAGE_POLL, "Poll", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info, $onload);
+$page = new PageRenderer("setup_module",PAGE_POLL, "Poll", "container_two_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info, $onload);
 
 uihelper_error_msg(@$message);
 $page->html_body_attributes = 'class="no_second_tier" ';

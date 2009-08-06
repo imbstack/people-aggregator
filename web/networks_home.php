@@ -79,7 +79,7 @@ function setup_module($column, $moduleName, $obj) {
     break;
     }
 }
-$page = new PageRenderer("setup_module", PAGE_NETWORKS_HOME, __("Network Directory"), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info,'',$setting_data);
+$page = new PageRenderer("setup_module", PAGE_NETWORKS_HOME, __("Network Directory"), "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info,'',$setting_data);
 
 $page->add_header_html($parameter);
 

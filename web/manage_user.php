@@ -12,7 +12,7 @@
   $authorization_required = TRUE;
 
   $super_user_and_mothership = FALSE; //this flag will be set when logged in user is SU and is in Mothership
-  if( ( SUPER_USER_ID == $_SESSION['user']['id'] )  && $network_info->type == MOTHER_NETWORK_TYPE ) {
+  if( ( SUPER_USER_ID == $_SESSION['user']['id'] )  && PA::$network_info->type == MOTHER_NETWORK_TYPE ) {
     $super_user_and_mothership = TRUE;
   }
 
@@ -33,7 +33,7 @@
       }
 
       $params['user_id_array'] = $user_id_array;
-      $params['network_id'] = $network_info->network_id;
+      $params['network_id'] = PA::$network_info->network_id;
 
       switch( $_REQUEST['action'] ) {
         case 'disable':
@@ -118,7 +118,7 @@
 
 
   function setup_module($column, $module, $obj) {
-    global $network_info, $paging, $super_user_and_mothership;
+    global $paging, $super_user_and_mothership;
     switch($module){
 
       case 'NetworkResultUserModule':
@@ -138,12 +138,12 @@
 
       $obj->Paging["page"] = $paging["page"];
       $obj->Paging["show"] = 10;
-      $obj->network_info = $network_info;
+      $obj->network_info = PA::$network_info;
       $obj->super_user_and_mothership = $super_user_and_mothership;
       break;
     }
   }
-  $page = new PageRenderer("setup_module", PAGE_NETWORK_MANAGE_USERS, "Manage Registered User", 'container_two_column.tpl','header.tpl',PUB, HOMEPAGE, $network_info);
+  $page = new PageRenderer("setup_module", PAGE_NETWORK_MANAGE_USERS, "Manage Registered User", 'container_two_column.tpl','header.tpl',PUB, HOMEPAGE, PA::$network_info);
 
   if( @$_GET['msg'] ) {
     require_once 'web/languages/english/MessagesHandler.php';

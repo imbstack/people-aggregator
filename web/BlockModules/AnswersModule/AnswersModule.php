@@ -36,7 +36,6 @@ class AnswersModule extends Module {
   public function handleSaveAnswer($request_method, $request_data) {
     $msg = NULL;
     $error = FALSE;
-    $network_info = PA::$network_info;
     switch ($request_method) {
       case 'POST':
           filter_all_post($request_data);
@@ -68,8 +67,8 @@ class AnswersModule extends Module {
                 } else {
                   unset($request_data);
                   //invalidate cache of content block as it is modified now
-                  if($network_info) {
-                     $nid = '_network_'.$network_info->network_id;
+                  if(PA::$network_info) {
+                     $nid = '_network_'.PA::$network_info->network_id;
                   } else {
                     $nid='';
                   }

@@ -31,8 +31,8 @@ if ($_form && empty($error)) {
     }
     else {
       unset($_form);
-      if ($network_info) {
-        $nid = '_network_'.$network_info->network_id;
+      if (PA::$network_info) {
+        $nid = '_network_'.PA::$network_info->network_id;
       }
       else {
         $nid='';

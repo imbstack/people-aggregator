@@ -31,7 +31,7 @@ function setup_module($column, $module, $obj) {
   $obj->mode = PUB;
 }
 global $msg;
-$page = new PageRenderer("setup_module", PAGE_USER_CALENDAR, __("My Events"), "container_one_column.tpl", "header_user.tpl", PRI, NULL, $network_info);
+$page = new PageRenderer("setup_module", PAGE_USER_CALENDAR, __("My Events"), "container_one_column.tpl", "header_user.tpl", PRI, NULL, PA::$network_info);
 
 $css_path = PA::$theme_url . '/calendar.css';
 $page->add_header_css($css_path);

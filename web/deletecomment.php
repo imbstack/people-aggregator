@@ -32,8 +32,8 @@ if ($_GET['comment_id']) {
 
   $msg = 7025;
   //invalidate cache of this content
-  if ($network_info) {
-    $nid = '_network_'.$network_info->network_id;
+  if (PA::$network_info) {
+    $nid = '_network_'.PA::$network_info->network_id;
   } else {
     $nid='';
   }

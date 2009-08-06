@@ -71,7 +71,6 @@ class AddMessageModule extends Module {
   }
   
   public function handlePOSTPageSubmit($request_data) { 
-    global $network_info;
     $error = false;
     if (!empty($request_data)) {
 
@@ -142,7 +141,7 @@ class AddMessageModule extends Module {
                   'recipient_id' =>  $valid_recipients['id'][$counter], 
 		  'config_site_name' => PA::$site_name,
 		  'site_name' => PA::$site_name,
-		  'network_name' => $network_info->name,
+		  'network_name' => PA::$network_info->name,
 
                   'recipient_email' => $valid_recipients['email'][$counter],
                   'sender_url' => $sender_url,

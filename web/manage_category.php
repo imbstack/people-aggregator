@@ -60,7 +60,7 @@ function setup_module($column, $module, $obj) {
   switch ($module) {
    }  
 }
-$page = new PageRenderer("setup_module", PAGE_MANAGE_CATEGORY, "Manage Category", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_CATEGORY, "Manage Category", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE,PA::$network_info);
 
 if (!empty($msg)) {
   for ($counter = 0; $counter < count($msg); $counter++) {

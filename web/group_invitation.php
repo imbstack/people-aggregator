@@ -39,7 +39,7 @@ function setup_module($column, $module, $obj) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_GROUP_INVITE, "Invite people into a group", "container_three_column.tpl",'header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_GROUP_INVITE, "Invite people into a group", "container_three_column.tpl",'header.tpl',PRI,HOMEPAGE,PA::$network_info);
 
 uihelper_error_msg(@$_GET['msg_id']);
 uihelper_get_network_style();

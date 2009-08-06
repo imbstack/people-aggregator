@@ -80,7 +80,7 @@ function setup_module ($column, $moduleName, $obj) {
  *  @return   type string - returns skip means skip the block module
  *            returns rendered html code of block module
  */
-$page = new PageRenderer("setup_module", PAGE_CHANGE_PASSWORD, "Change Password page", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_CHANGE_PASSWORD, "Change Password page", "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE,  PA::$network_info);
 $msg = $msg1 = NULL;
 if (!empty($error)) {
   

@@ -3,7 +3,6 @@ $login_required = FALSE;
 
 //including necessary files
 include_once("web/includes/page.php");
-global $network_info;
 require_once "api/Message/Message.php";
 require_once "api/Invitation/Invitation.php";
 require_once "api/Messaging/MessageDispatcher.class.php";
@@ -25,25 +24,25 @@ if($newuser) {//if token is valid
     
     // adding default relation
     if ( $newuser->user_id != SUPER_USER_ID ) {
-      User_Registration::add_default_relation($newuser->user_id, $network_info);
+      User_Registration::add_default_relation($newuser->user_id, PA::$network_info);
     }
     
     // adding default media as well as album
-    User_Registration::add_default_media($newuser->user_id, '', $network_info);
-    User_Registration::add_default_media($newuser->user_id, '_audio', $network_info);
-    User_Registration::add_default_media($newuser->user_id, '_video', $network_info);
+    User_Registration::add_default_media($newuser->user_id, '', PA::$network_info);
+    User_Registration::add_default_media($newuser->user_id, '_audio', PA::$network_info);
+    User_Registration::add_default_media($newuser->user_id, '_video', PA::$network_info);
     User_Registration::add_default_blog($newuser->user_id);
     
     //adding default link categories & links
     User_Registration::add_default_links ($newuser->user_id);
 
     // Making user member of a network if he is registering to PA from a network
-    if (!empty($network_info)) {
+    if (!empty(PA::$network_info)) {
 
-      if(!Network::member_exists($network_info->network_id, $newuser->user_id)) {  // check is waiting member
-        Network::join($network_info->network_id, $newuser->user_id);              // no - join to network
+      if(!Network::member_exists(PA::$network_info->network_id, $newuser->user_id)) {  // check is waiting member
+        Network::join(PA::$network_info->network_id, $newuser->user_id);              // no - join to network
       } else {
-        Network::approve($network_info->network_id, $newuser->user_id);           // yes - approve membership  
+        Network::approve(PA::$network_info->network_id, $newuser->user_id);           // yes - approve membership  
       }  
 
     }

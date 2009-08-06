@@ -79,7 +79,7 @@ function setup_module($column, $module, $obj) {
   }  
 }
 
-$page = new PageRenderer("setup_module", PAGE_MANAGE_STATICPAGES, "Manage Static Pages", "container_two_column.tpl", "header.tpl", NULL, PRI ,$network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_STATICPAGES, "Manage Static Pages", "container_two_column.tpl", "header.tpl", NULL, PRI , PA::$network_info);
 
 $message = '';
 if (!empty($msg)) {

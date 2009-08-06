@@ -40,7 +40,7 @@ function setup_module($column, $module, $obj) {
 
 $setting_data = ModuleSetting::load_setting(PAGE_ADDGROUP, PA::$login_uid);
 
-$page = new PageRenderer("setup_module", PAGE_ADDGROUP, "$title - $network_info->name", 'container_three_column.tpl', $header, PRI, HOMEPAGE, $network_info, NULL, $setting_data);
+$page = new PageRenderer("setup_module", PAGE_ADDGROUP, "$title - PA::$network_info->name", 'container_three_column.tpl', $header, PRI, HOMEPAGE, PA::$network_info, NULL, $setting_data);
 
 $page->add_header_js('addgroup.js');
 

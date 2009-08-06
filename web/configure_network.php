@@ -17,7 +17,7 @@ require_once "web/includes/network.inc.php";
 
 
 //render the page
-$page = new PageRenderer("setup_module", PAGE_CONFIGURE_NETWORK, "Network Statistics", 'container_one_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_CONFIGURE_NETWORK, "Network Statistics", 'container_one_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
 
 
 $css_path = PA::$theme_url . '/layout.css';

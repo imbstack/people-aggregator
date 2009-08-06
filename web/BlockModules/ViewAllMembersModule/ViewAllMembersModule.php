@@ -8,7 +8,7 @@ class ViewAllMembersModule extends Module {
   public $outer_template = 'outer_public_group_center_module.tpl';
 
   public  $Paging;
-  public $page_links, $page_prev, $page_next, $page_count,$network_info;
+  public $page_links, $page_prev, $page_next, $page_count;
 
   function __construct() {
     parent::__construct();
@@ -124,10 +124,9 @@ class ViewAllMembersModule extends Module {
   }
 
   function get_networks_users_id() {
-    global $network_info;
     $users = array();
     $users_ids = array();
-    $users = Network::get_members(array('network_id'=>$network_info->network_id));
+    $users = Network::get_members(array('network_id'=>PA::$network_info->network_id));
 
     if ( $users['total_users'] ) {
        for( $i = 0; $i < $users['total_users']; $i++) {

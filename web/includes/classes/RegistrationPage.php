@@ -38,15 +38,13 @@ class RegistrationPage {
   }
 
   function handle_join() {
-    global $app, $network_info;
-
     $error_inv = false;
     $invitation_id = (isset($_REQUEST['InvID'])) ? $_REQUEST['InvID'] : null;
     $group_invitation_id = (isset($_REQUEST['GInvID'])) ? $_REQUEST['GInvID'] : null;
 
     $mother_network_info = Network::get_mothership_info();
     $extra = unserialize($mother_network_info->extra);
-    if (!$this->reg_user->register($_POST, $network_info)) {
+    if (!$this->reg_user->register($_POST, PA::$network_info)) {
       // registration failed
       return;
     }
@@ -78,12 +76,12 @@ class RegistrationPage {
 	    $user_obj = new User();
 	    $user_obj->load((int)$inv_obj->user_id);
 	    //if invitation is for private network
-	    if ($network_info->type == PRIVATE_NETWORK_TYPE) {
+	    if (PA::$network_info->type == PRIVATE_NETWORK_TYPE) {
 	      $user_type = NULL;
-	      if ($network_info->owner_id == $inv_obj->user_id) {
+	      if (PA::$network_info->owner_id == $inv_obj->user_id) {
 		    $user_type = NETWORK_MEMBER;
 	      }
-	      Network::join($network_info->network_id, $this->reg_user->newuser->user_id, $user_type);
+	      Network::join(PA::$network_info->network_id, $this->reg_user->newuser->user_id, $user_type);
 	    }
 	    $msg = 7016;
         $relation_type = null;
@@ -168,7 +166,7 @@ class RegistrationPage {
 	$invitation = NULL;
       }
       $user_type = NETWORK_WAITING_MEMBER;
-      Network::join($network_info->network_id, $this->reg_user->newuser->user_id, $user_type);
+      Network::join(PA::$network_info->network_id, $this->reg_user->newuser->user_id, $user_type);
       $activation_url = PA::$url.'/mail_action.php?action=activate&token='.$token.$invitation;
       PAMail::send("activate_account", $this->reg_user->newuser, PA::$network_info, array('account.activation_url' => $activation_url));
 

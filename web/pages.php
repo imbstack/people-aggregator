@@ -25,7 +25,7 @@ function setup_module($column, $module, $obj) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_STATIC_PAGE_DISPLAY, $static_page[0]->caption." - ".$network_info->name, "container_two_column.tpl", "header.tpl", NULL, PRI, $network_info);
+$page = new PageRenderer("setup_module", PAGE_STATIC_PAGE_DISPLAY, $static_page[0]->caption." - ".PA::$network_info->name, "container_two_column.tpl", "header.tpl", NULL, PRI, PA::$network_info);
 if (!empty($msg)) {
   for ($counter = 0; $counter < count($msg); $counter++) {
     $message .= $msg[$counter]."<br>";

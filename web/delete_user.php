@@ -10,7 +10,7 @@ require_once "api/Activities/Activities.php";
 
 $location = PA::$url .'/manage_user.php';
 $permission = FALSE;
-if( Network::is_admin($network_info->network_id, $_SESSION['user']['id']) ) {
+if( Network::is_admin(PA::$network_info->network_id, $_SESSION['user']['id']) ) {
   $permission = TRUE;
 }
 if (!empty($_GET['msg']) && $_GET['msg'] == 'own_delete') {
@@ -25,7 +25,7 @@ if (!empty($_GET['msg']) && $_GET['msg'] == 'own_delete') {
 if( $user_id && $permission ) {
   $message_array = array();
   
-  if( $network_info->type == MOTHER_NETWORK_TYPE ) {//user delete for SU
+  if(PA::$network_info->type == MOTHER_NETWORK_TYPE ) {//user delete for SU
   
   //deleting user data from mothership
   try {
@@ -73,11 +73,11 @@ if( $user_id && $permission ) {
   }
   else {//user delete for network owner
     
-    $network_prefix = $network_info->address;
+    $network_prefix =PA::$network_info->address;
     try {      
       User::delete_user( $user_id );
       Activities::delete_for_user( $user_id );
-      Network::leave( $network_info->network_id, $user_id );//network leave
+      Network::leave(PA::$network_info->network_id, $user_id );//network leave
     }
     catch ( PAException $e ) {
       $message_array[] = $e->message;

@@ -15,7 +15,7 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require_once "web/includes/network.inc.php";
 
-global $network_info;
+
 $msg = @$_REQUEST['msg'];
 
 function setup_module($column, $module, $obj) {
@@ -34,7 +34,7 @@ function setup_module($column, $module, $obj) {
   }
 }
 
-$page = new PageRenderer("setup_module", PAGE_MIS_REPORT, __("MIS Reports"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_MIS_REPORT, __("MIS Reports"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 $page->html_body_attributes = 'class="no_second_tier network_config"';
 
 uihelper_error_msg($msg);;

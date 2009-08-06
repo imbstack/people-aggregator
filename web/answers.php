@@ -18,7 +18,7 @@ include_once("web/includes/page.php");
 $parameter = '';
 
 $parameter .= js_includes('common.js');
-global $query_count_on_page, $page_uid, $network_info;
+global $query_count_on_page, $page_uid;
 $query_count_on_page = 0;
 
 $error_message = NULL;
@@ -57,8 +57,8 @@ if($_POST) {
       else {
         unset($_POST);
         //invalidate cache of content block as it is modified now
-        if($network_info) {
-          $nid = '_network_'.$network_info->network_id;
+        if(PA::$network_info) {
+          $nid = '_network_'.PA::$network_info->network_id;
         } else {
           $nid='';
         }
@@ -92,7 +92,7 @@ function setup_module($column, $moduleName, $obj) {
 }   
 
 $page = new PageRenderer("setup_module", PAGE_ANSWERS, 'Write answers',
-"container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, $network_info);
+"container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 
 uihelper_error_msg($error_message);

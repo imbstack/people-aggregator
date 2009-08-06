@@ -58,7 +58,7 @@ if(!empty($_POST)) {
   }
 
   
-$page = new PageRenderer("setup_module", PAGE_MANAGE_DOMAIN, "Manage Allowed Domains", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, $network_info);
+$page = new PageRenderer("setup_module", PAGE_MANAGE_DOMAIN, "Manage Allowed Domains", 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 
 if(isset($msg)) uihelper_error_msg($msg);
 

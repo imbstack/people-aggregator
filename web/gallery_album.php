@@ -144,8 +144,8 @@ $content->set('uid', $uid);
 $content->set('users', $users);
 
 $header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
-if ($network_info) {
-  $header->set_object('network_info', $network_info);
+if (PA::$network_info) {
+  $header->set_object('network_info', PA::$network_info);
 }
 $header->set('user_name', $_SESSION['user']['first_name'].' '.$_SESSION['user']['last_name']);
 $content->set('header', $header);

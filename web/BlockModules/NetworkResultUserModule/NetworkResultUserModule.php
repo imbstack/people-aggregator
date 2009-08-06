@@ -18,9 +18,8 @@ class NetworkResultUserModule extends Module {
 
    //get list of users
   private function get_links() {
-    global $network_info;
     //get total count
-    $param = array( 'network_id'=>$network_info->network_id, 'cnt'=>TRUE,'neglect_owner' =>TRUE );
+    $param = array( 'network_id'=>PA::$network_info->network_id, 'cnt'=>TRUE,'neglect_owner' =>TRUE );
     //search by login name
     if ( !empty($this->keyword) ) {
     	$param['search_keyword'] = $this->keyword;

@@ -55,7 +55,7 @@ function setup_module($column, $module, $obj) {
 if (!PA::$network_capable) die(__("Networks are disabled."));
 if (!PA::$config->enable_network_spawning) die(__("Network spawning disabled."));
 
-$page = new PageRenderer("setup_module", PAGE_CREATE_NETWORK, sprintf(__("Create Network - %s"), $network_info->name), 'container_three_column.tpl','header.tpl',PRI,HOMEPAGE,$network_info);
+$page = new PageRenderer("setup_module", PAGE_CREATE_NETWORK, sprintf(__("Create Network - %s"),  PA::$network_info->name), 'container_three_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
 
 
 $page->html_body_attributes = 'class="no_second_tier"';
