@@ -57,7 +57,7 @@ class net_extra {
     $this->add_all_users_to_mother_network();
 
     // run project specific updates and init settings
-     
+
     if(! empty(PA::$config->project_safe_updates)) {
       // see if the settings file exists
       $file_path = PA::$core_dir . "/web/extra/".PA::$config->project_safe_updates."_safe_updates.php";
@@ -118,7 +118,7 @@ class net_extra {
     $description = 'This is home network for PeopleAggregator';
     $created = $changed = time();
     $extra = serialize(PA::$network_defaults);
-    $res = Dal::query("INSERT INTO {networks} (name, address, tagline, type,category_id, description,is_active, created, changed, extra) VALUES ( ?, ?, ?,?, ?, ?, ?, ?, ?, ? )", array($name, $address, $tagline, $type, $category_id, $description, 1, $created, $changed, $extra));
+    $res = Dal::query("INSERT INTO {networks} (name, address, tagline, type,category_id, description,is_active, created, changed, extra, owner_id) VALUES ( ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ? )", array($name, $address, $tagline, $type, $category_id, $description, 1, $created, $changed, $extra, SUPER_USER_ID));
     return;
   }
 

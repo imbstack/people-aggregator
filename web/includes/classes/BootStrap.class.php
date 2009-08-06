@@ -317,6 +317,7 @@ class BootStrap {
 
     if( !PA::$config->enable_networks ) {              // spawning disabled
       $network_prefix = 'default';
+      $network_url_prefix = PA::$config->domain_prefix;
       define( 'CURRENT_NETWORK_URL_PREFIX', PA::$config->domain_prefix );
       define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' ); // turn off spawning, and guess domain suffix
       PA::$config->enable_network_spawning = FALSE;
@@ -326,8 +327,10 @@ class BootStrap {
       // Make sure $domain_suffix is formatted correctly
       if(!empty($this->domain_prefix) && $this->domain_prefix != PA::$config->domain_prefix) {
         $network_prefix = $this->domain_prefix;
+        $network_url_prefix = $this->domain_prefix;
       } else { // domain prefix points to home network
         $network_prefix = 'default';
+        $network_url_prefix = PA::$config->domain_prefix;
 /*
         define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
         define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' );
@@ -339,7 +342,7 @@ class BootStrap {
     $network_folder = getShadowedPath("networks/$network_prefix");
     if($network_folder)  { // network exists
       if(!defined('CURRENT_NETWORK_URL_PREFIX')) {
-         define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+         define( 'CURRENT_NETWORK_URL_PREFIX', $network_url_prefix );
       }
       if(!defined('CURRENT_NETWORK_FSPATH')) {
          define( 'CURRENT_NETWORK_FSPATH', $network_folder );

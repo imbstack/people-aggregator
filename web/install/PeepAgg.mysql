@@ -1579,7 +1579,7 @@ CREATE TABLE IF NOT EXISTS `networks` (
   KEY `network_name_alpha` (`is_active`,`type`,`name`),
   KEY `network_created` (`is_active`,`type`,`created`),
   KEY `network_address` (`address`,`is_active`)
-) TYPE=MyISAM  AUTO_INCREMENT=2 ;
+) TYPE=MyISAM  AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
