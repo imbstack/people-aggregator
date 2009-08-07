@@ -129,8 +129,9 @@ class ManageAdCenterModule extends Module {
 				$error = TRUE;
 				$msg[] = MessagesHandler::get_message(19012);
 			}
-			if (!empty($request_data['ad_url'])) { // if url is given then validate
-				$request_data['ad_url'] = validate_url($request_data['ad_url']);
+			if (!empty($request_data['ad_url'])) { 
+			// if url is given then validate
+				$request_data['ad_url'] = Validation::validate_url($request_data['ad_url']);
 				if(!Validation::isValidURL($request_data['ad_url']) ) {
 					$error = TRUE;
 					$msg[] = MessagesHandler::get_message(19009);
