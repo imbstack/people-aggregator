@@ -21,15 +21,15 @@
 --
 
 CREATE TABLE IF NOT EXISTS `activity_log` (
-  `id` int(11) NOT NULL auto_increment,
-  `type` varchar(255) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `object` varchar(255) NOT NULL,
-  `extra` text,
-  `time` int(11) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `chrono_user_activity` (`subject`,`time`)
+`id` int(11) NOT NULL auto_increment,
+`type` varchar(255) NOT NULL,
+`subject` varchar(255) NOT NULL,
+`object` varchar(255) NOT NULL,
+`extra` text,
+`time` int(11) NOT NULL,
+`status` varchar(10) NOT NULL,
+PRIMARY KEY  (`id`),
+KEY `chrono_user_activity` (`subject`,`time`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
 --
 
 CREATE TABLE IF NOT EXISTS `activity_types` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(50) NOT NULL,
-  `type` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `points` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`title` varchar(50) NOT NULL,
+`type` varchar(50) NOT NULL,
+`description` text NOT NULL,
+`points` int(11) NOT NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=20 ;
 
 --
@@ -90,23 +90,23 @@ INSERT INTO `activity_types` (`id`, `title`, `type`, `description`, `points`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `advertisements` (
-  `ad_id` int(11) NOT NULL auto_increment,
-  `user_id` int(11) NOT NULL,
-  `ad_image` varchar(255) default NULL,
-  `url` varchar(255) default NULL,
-  `ad_script` text,
-  `title` varchar(255) default NULL,
-  `description` text,
-  `page_id` int(11) default NULL,
-  `orientation` varchar(255) default NULL,
-  `is_active` tinyint(1) default NULL,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `display_count` int(11) default '0',
-  `hit_count` int(11) default '0',
-  `type` enum('ad','textpad') NOT NULL default 'ad',
-  `group_id` int(11) default NULL,
-  PRIMARY KEY  (`ad_id`)
+`ad_id` int(11) NOT NULL auto_increment,
+`user_id` int(11) NOT NULL,
+`ad_image` varchar(255) default NULL,
+`url` varchar(255) default NULL,
+`ad_script` text,
+`title` varchar(255) default NULL,
+`description` text,
+`page_id` int(11) default NULL,
+`orientation` varchar(255) default NULL,
+`is_active` tinyint(1) default NULL,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`display_count` int(11) default '0',
+`hit_count` int(11) default '0',
+`type` enum('ad','textpad') NOT NULL default 'ad',
+`group_id` int(11) default NULL,
+PRIMARY KEY  (`ad_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -124,10 +124,10 @@ CREATE TABLE IF NOT EXISTS `advertisements` (
 --
 
 CREATE TABLE IF NOT EXISTS `audios` (
-  `content_id` int(11) NOT NULL default '0',
-  `audio_file` varchar(255) NOT NULL default '',
-  `audio_perm` int(2) NOT NULL default '0',
-  PRIMARY KEY  (`content_id`)
+`content_id` int(11) NOT NULL default '0',
+`audio_file` varchar(255) NOT NULL default '',
+`audio_perm` int(2) NOT NULL default '0',
+PRIMARY KEY  (`content_id`)
 ) TYPE=MyISAM;
 
 --
@@ -145,14 +145,14 @@ CREATE TABLE IF NOT EXISTS `audios` (
 --
 
 CREATE TABLE IF NOT EXISTS `blog_badges` (
-  `user_id` int(11) NOT NULL,
-  `badge_tag` varchar(32) NOT NULL,
-  `badge_config` text NOT NULL,
-  `badge_id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) NOT NULL default '',
-  `is_active` int(11) NOT NULL default '1',
-  PRIMARY KEY  (`badge_id`),
-  KEY `user_badges` (`is_active`,`user_id`,`badge_tag`)
+`user_id` int(11) NOT NULL,
+`badge_tag` varchar(32) NOT NULL,
+`badge_config` text NOT NULL,
+`badge_id` int(11) NOT NULL auto_increment,
+`title` varchar(255) NOT NULL default '',
+`is_active` int(11) NOT NULL default '1',
+PRIMARY KEY  (`badge_id`),
+KEY `user_badges` (`is_active`,`user_id`,`badge_tag`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -203,16 +203,16 @@ CREATE TABLE IF NOT EXISTS `blog_badges` (
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `category_id` int(11) NOT NULL auto_increment,
-  `position` varchar(255) default NULL,
-  `name` varchar(255) default NULL,
-  `description` text,
-  `type` enum('Default','Content') NOT NULL default 'Default',
-  `is_active` tinyint(1) default '0',
-  `created` int(11) default '0',
-  `changed` int(11) default '0',
-  PRIMARY KEY  (`category_id`),
-  KEY `active_position` (`is_active`,`position`)
+`category_id` int(11) NOT NULL auto_increment,
+`position` varchar(255) default NULL,
+`name` varchar(255) default NULL,
+`description` text,
+`type` enum('Default','Content') NOT NULL default 'Default',
+`is_active` tinyint(1) default '0',
+`created` int(11) default '0',
+`changed` int(11) default '0',
+PRIMARY KEY  (`category_id`),
+KEY `active_position` (`is_active`,`position`)
 ) TYPE=MyISAM  AUTO_INCREMENT=57 ;
 
 --
@@ -308,14 +308,14 @@ INSERT INTO `categories` (`category_id`, `position`, `name`, `description`, `typ
 --
 
 CREATE TABLE IF NOT EXISTS `channel_comment` (
-  `comment_id` int(11) NOT NULL auto_increment,
-  `channel_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `slug` text NOT NULL,
-  PRIMARY KEY  (`comment_id`)
+`comment_id` int(11) NOT NULL auto_increment,
+`channel_id` int(11) NOT NULL,
+`comment` text NOT NULL,
+`user_id` int(11) NOT NULL,
+`created` int(11) NOT NULL,
+`is_active` tinyint(1) NOT NULL,
+`slug` text NOT NULL,
+PRIMARY KEY  (`comment_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -333,27 +333,27 @@ CREATE TABLE IF NOT EXISTS `channel_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `comment_id` int(11) NOT NULL auto_increment,
-  `content_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  `subject` varchar(255) default NULL,
-  `comment` longtext NOT NULL,
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `is_active` tinyint(1) NOT NULL default '0',
-  `name` varchar(100) default NULL,
-  `email` varchar(100) default NULL,
-  `homepage` varchar(100) default NULL,
-  `ip_addr` varchar(32) NOT NULL,
-  `referrer` text NOT NULL,
-  `user_agent` varchar(255) NOT NULL,
-  `spam_state` int(11) NOT NULL default '0',
-  `akismet_spam` tinyint(1) default NULL,
-  `parent_id` int(11) default NULL,
-  `parent_type` varchar(100) default NULL,
-  PRIMARY KEY  (`comment_id`),
-  KEY `comments_for_content` (`is_active`,`content_id`,`created`),
-  KEY `comments_by_user` (`is_active`,`user_id`,`created`)
+`comment_id` int(11) NOT NULL auto_increment,
+`content_id` int(11) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+`subject` varchar(255) default NULL,
+`comment` longtext NOT NULL,
+`created` int(11) NOT NULL default '0',
+`changed` int(11) NOT NULL default '0',
+`is_active` tinyint(1) NOT NULL default '0',
+`name` varchar(100) default NULL,
+`email` varchar(100) default NULL,
+`homepage` varchar(100) default NULL,
+`ip_addr` varchar(32) NOT NULL,
+`referrer` text NOT NULL,
+`user_agent` varchar(255) NOT NULL,
+`spam_state` int(11) NOT NULL default '0',
+`akismet_spam` tinyint(1) default NULL,
+`parent_id` int(11) default NULL,
+`parent_type` varchar(100) default NULL,
+PRIMARY KEY  (`comment_id`),
+KEY `comments_for_content` (`is_active`,`content_id`,`created`),
+KEY `comments_by_user` (`is_active`,`user_id`,`created`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -371,10 +371,10 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `configurable_text` (
-  `id` int(11) NOT NULL auto_increment,
-  `caption` varchar(255) default NULL,
-  `caption_value` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`caption` varchar(255) default NULL,
+`caption_value` varchar(255) default NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=10 ;
 
 --
@@ -402,9 +402,9 @@ INSERT INTO `configurable_text` (`id`, `caption`, `caption_value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `config_variables` (
-  `variable` varchar(100) NOT NULL,
-  `value` tinytext NOT NULL,
-  PRIMARY KEY  (`variable`)
+`variable` varchar(100) NOT NULL,
+`value` tinytext NOT NULL,
+PRIMARY KEY  (`variable`)
 ) TYPE=MyISAM;
 
 --
@@ -422,17 +422,17 @@ CREATE TABLE IF NOT EXISTS `config_variables` (
 --
 
 CREATE TABLE IF NOT EXISTS `contentcollections` (
-  `collection_id` int(11) NOT NULL default '0',
-  `type` int(2) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `author_id` int(11) NOT NULL default '0',
-  `description` longtext,
-  `is_active` tinyint(1) NOT NULL default '0',
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `picture` text,
-  PRIMARY KEY  (`collection_id`),
-  KEY `is_active` (`is_active`)
+`collection_id` int(11) NOT NULL default '0',
+`type` int(2) NOT NULL default '0',
+`title` varchar(255) NOT NULL default '',
+`author_id` int(11) NOT NULL default '0',
+`description` longtext,
+`is_active` tinyint(1) NOT NULL default '0',
+`created` int(11) NOT NULL default '0',
+`changed` int(11) NOT NULL default '0',
+`picture` text,
+PRIMARY KEY  (`collection_id`),
+KEY `is_active` (`is_active`)
 ) TYPE=MyISAM;
 
 --
@@ -450,10 +450,10 @@ CREATE TABLE IF NOT EXISTS `contentcollections` (
 --
 
 CREATE TABLE IF NOT EXISTS `contentcollections_albumtype` (
-  `contentcollection_id` int(11) NOT NULL,
-  `album_type_id` int(2) NOT NULL,
-  KEY `album_type_to_contentcollection` (`album_type_id`,`contentcollection_id`),
-  KEY `contentcollections_to_album_type` (`contentcollection_id`,`album_type_id`)
+`contentcollection_id` int(11) NOT NULL,
+`album_type_id` int(2) NOT NULL,
+KEY `album_type_to_contentcollection` (`album_type_id`,`contentcollection_id`),
+KEY `contentcollections_to_album_type` (`contentcollection_id`,`album_type_id`)
 ) TYPE=MyISAM;
 
 --
@@ -471,10 +471,10 @@ CREATE TABLE IF NOT EXISTS `contentcollections_albumtype` (
 --
 
 CREATE TABLE IF NOT EXISTS `contentcollection_types` (
-  `type_id` int(11) NOT NULL default '0',
-  `name` varchar(50) NOT NULL default '',
-  `description` text,
-  PRIMARY KEY  (`type_id`)
+`type_id` int(11) NOT NULL default '0',
+`name` varchar(50) NOT NULL default '',
+`description` text,
+PRIMARY KEY  (`type_id`)
 ) TYPE=MyISAM;
 
 --
@@ -495,24 +495,24 @@ INSERT INTO `contentcollection_types` (`type_id`, `name`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
-  `content_id` int(11) NOT NULL default '0',
-  `author_id` int(11) NOT NULL default '0',
-  `type` int(2) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `is_active` tinyint(1) NOT NULL default '0',
-  `body` longtext NOT NULL,
-  `allow_comments` tinyint(1) NOT NULL default '0',
-  `collection_id` int(11) NOT NULL default '0',
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `trackbacks` text,
-  `display_on` tinyint(1) default '0',
-  `is_html` tinyint(1) default '1',
-  PRIMARY KEY  (`content_id`),
-  KEY `homepage_content` (`is_active`,`display_on`,`collection_id`,`created`),
-  KEY `homepage_typed_content` (`is_active`,`display_on`,`collection_id`,`type`,`created`),
-  KEY `user_content` (`is_active`,`collection_id`,`author_id`,`created`),
-  KEY `user_typed_content` (`is_active`,`collection_id`,`author_id`,`type`,`created`)
+`content_id` int(11) NOT NULL default '0',
+`author_id` int(11) NOT NULL default '0',
+`type` int(2) NOT NULL default '0',
+`title` varchar(255) NOT NULL default '',
+`is_active` tinyint(1) NOT NULL default '0',
+`body` longtext NOT NULL,
+`allow_comments` tinyint(1) NOT NULL default '0',
+`collection_id` int(11) NOT NULL default '0',
+`created` int(11) NOT NULL default '0',
+`changed` int(11) NOT NULL default '0',
+`trackbacks` text,
+`display_on` tinyint(1) default '0',
+`is_html` tinyint(1) default '1',
+PRIMARY KEY  (`content_id`),
+KEY `homepage_content` (`is_active`,`display_on`,`collection_id`,`created`),
+KEY `homepage_typed_content` (`is_active`,`display_on`,`collection_id`,`type`,`created`),
+KEY `user_content` (`is_active`,`collection_id`,`author_id`,`created`),
+KEY `user_typed_content` (`is_active`,`collection_id`,`author_id`,`type`,`created`)
 ) TYPE=MyISAM;
 
 --
@@ -530,10 +530,10 @@ CREATE TABLE IF NOT EXISTS `contents` (
 --
 
 CREATE TABLE IF NOT EXISTS `contents_sbmicrocontents` (
-  `content_id` int(11) NOT NULL default '0',
-  `microcontent_id` int(11) NOT NULL default '0',
-  KEY `content_to_microcontent` (`content_id`,`microcontent_id`),
-  KEY `microcontent_to_content` (`microcontent_id`,`content_id`)
+`content_id` int(11) NOT NULL default '0',
+`microcontent_id` int(11) NOT NULL default '0',
+KEY `content_to_microcontent` (`content_id`,`microcontent_id`),
+KEY `microcontent_to_content` (`microcontent_id`,`content_id`)
 ) TYPE=MyISAM;
 
 --
@@ -551,15 +551,15 @@ CREATE TABLE IF NOT EXISTS `contents_sbmicrocontents` (
 --
 
 CREATE TABLE IF NOT EXISTS `content_routing_destinations` (
-  `index_id` int(11) NOT NULL auto_increment,
-  `user_id` int(11) NOT NULL default '0',
-  `blog_name` varchar(50) NOT NULL default '',
-  `blog_url` varchar(255) NOT NULL default '',
-  `user_name` varchar(50) NOT NULL default '',
-  `password` varchar(20) NOT NULL default '',
-  `blog_type` char(2) NOT NULL default '',
-  PRIMARY KEY  (`index_id`),
-  KEY `user_id` (`user_id`)
+`index_id` int(11) NOT NULL auto_increment,
+`user_id` int(11) NOT NULL default '0',
+`blog_name` varchar(50) NOT NULL default '',
+`blog_url` varchar(255) NOT NULL default '',
+`user_name` varchar(50) NOT NULL default '',
+`password` varchar(20) NOT NULL default '',
+`blog_type` char(2) NOT NULL default '',
+PRIMARY KEY  (`index_id`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -577,11 +577,11 @@ CREATE TABLE IF NOT EXISTS `content_routing_destinations` (
 --
 
 CREATE TABLE IF NOT EXISTS `content_types` (
-  `type_id` int(2) NOT NULL default '0',
-  `name` varchar(50) NOT NULL default '',
-  `description` text,
-  PRIMARY KEY  (`type_id`),
-  KEY `name` (`name`)
+`type_id` int(2) NOT NULL default '0',
+`name` varchar(50) NOT NULL default '',
+`description` text,
+PRIMARY KEY  (`type_id`),
+KEY `name` (`name`)
 ) TYPE=MyISAM;
 
 --
@@ -609,11 +609,11 @@ INSERT INTO `content_types` (`type_id`, `name`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `announcements` (
-  `content_id` int(11) NOT NULL,
-  `announcement_time` int(11) NOT NULL default '0',
-  `position` tinyint(1) NOT NULL default '0',
-  `status` tinyint(1) NOT NULL default '0',
-  `is_active` tinyint(1) NOT NULL default '0'
+`content_id` int(11) NOT NULL,
+`announcement_time` int(11) NOT NULL default '0',
+`position` tinyint(1) NOT NULL default '0',
+`status` tinyint(1) NOT NULL default '0',
+`is_active` tinyint(1) NOT NULL default '0'
 ) TYPE=MyISAM;
 
 --
@@ -631,11 +631,11 @@ CREATE TABLE IF NOT EXISTS `announcements` (
 --
 
 CREATE TABLE IF NOT EXISTS `domains_in_comments` (
-  `domain_id` int(11) NOT NULL,
-  `comment_id` int(11) NOT NULL,
-  `occurrences` int(11) NOT NULL,
-  PRIMARY KEY  (`comment_id`,`domain_id`),
-  KEY `domain_id` (`domain_id`)
+`domain_id` int(11) NOT NULL,
+`comment_id` int(11) NOT NULL,
+`occurrences` int(11) NOT NULL,
+PRIMARY KEY  (`comment_id`,`domain_id`),
+KEY `domain_id` (`domain_id`)
 ) TYPE=MyISAM;
 
 --
@@ -653,13 +653,13 @@ CREATE TABLE IF NOT EXISTS `domains_in_comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `entities` (
-  `id` int(11) NOT NULL auto_increment,
-  `entity_service` varchar(32) NOT NULL,
-  `entity_type` varchar(32) NOT NULL,
-  `entity_id` varchar(64) NOT NULL,
-  `entity_name` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `entity_service` (`entity_service`,`entity_type`,`entity_id`)
+`id` int(11) NOT NULL auto_increment,
+`entity_service` varchar(32) NOT NULL,
+`entity_type` varchar(32) NOT NULL,
+`entity_id` varchar(64) NOT NULL,
+`entity_name` varchar(255) NOT NULL,
+PRIMARY KEY  (`id`),
+UNIQUE KEY `entity_service` (`entity_service`,`entity_type`,`entity_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -677,11 +677,11 @@ CREATE TABLE IF NOT EXISTS `entities` (
 --
 
 CREATE TABLE IF NOT EXISTS `entityattributes` (
-  `id` int(11) NOT NULL,
-  `attribute_name` varchar(32) NOT NULL,
-  `attribute_value` text NOT NULL,
-  `attribute_permission` int(11) default NULL,
-  KEY `id` (`id`,`attribute_name`)
+`id` int(11) NOT NULL,
+`attribute_name` varchar(32) NOT NULL,
+`attribute_value` text NOT NULL,
+`attribute_permission` int(11) default NULL,
+KEY `id` (`id`,`attribute_name`)
 ) TYPE=MyISAM;
 
 --
@@ -699,11 +699,11 @@ CREATE TABLE IF NOT EXISTS `entityattributes` (
 --
 
 CREATE TABLE IF NOT EXISTS `entityrelationattributes` (
-  `id` int(11) NOT NULL,
-  `attribute_name` varchar(32) NOT NULL,
-  `attribute_value` text NOT NULL,
-  `attribute_permission` int(11) default NULL,
-  KEY `id` (`id`,`attribute_name`)
+`id` int(11) NOT NULL,
+`attribute_name` varchar(32) NOT NULL,
+`attribute_value` text NOT NULL,
+`attribute_permission` int(11) default NULL,
+KEY `id` (`id`,`attribute_name`)
 ) TYPE=MyISAM;
 
 --
@@ -721,19 +721,19 @@ CREATE TABLE IF NOT EXISTS `entityrelationattributes` (
 --
 
 CREATE TABLE IF NOT EXISTS `entityrelations` (
-  `id` int(11) NOT NULL auto_increment,
-  `subject_service` varchar(32) NOT NULL,
-  `subject_type` varchar(32) NOT NULL,
-  `subject_id` varchar(64) NOT NULL,
-  `relation_type` varchar(32) NOT NULL,
-  `object_service` varchar(32) NOT NULL,
-  `object_type` varchar(32) NOT NULL,
-  `object_id` varchar(64) NOT NULL,
-  `start_time` int(11) NOT NULL,
-  `end_time` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `object_service` (`object_service`,`object_type`,`object_id`,`relation_type`,`end_time`),
-  KEY `subject_service` (`subject_service`,`subject_type`,`subject_id`,`relation_type`,`end_time`)
+`id` int(11) NOT NULL auto_increment,
+`subject_service` varchar(32) NOT NULL,
+`subject_type` varchar(32) NOT NULL,
+`subject_id` varchar(64) NOT NULL,
+`relation_type` varchar(32) NOT NULL,
+`object_service` varchar(32) NOT NULL,
+`object_type` varchar(32) NOT NULL,
+`object_id` varchar(64) NOT NULL,
+`start_time` int(11) NOT NULL,
+`end_time` int(11) default NULL,
+PRIMARY KEY  (`id`),
+KEY `object_service` (`object_service`,`object_type`,`object_id`,`relation_type`,`end_time`),
+KEY `subject_service` (`subject_service`,`subject_type`,`subject_id`,`relation_type`,`end_time`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -751,18 +751,18 @@ CREATE TABLE IF NOT EXISTS `entityrelations` (
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
-  `event_id` int(11) NOT NULL auto_increment,
-  `content_id` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `event_title` text NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `event_data` text,
-  PRIMARY KEY  (`event_id`),
-  KEY `uid` (`user_id`),
-  KEY `start_time` (`start_time`),
-  KEY `end_time` (`end_time`),
-  KEY `delta` (`start_time`,`end_time`)
+`event_id` int(11) NOT NULL auto_increment,
+`content_id` text NOT NULL,
+`user_id` int(11) NOT NULL,
+`event_title` text NOT NULL,
+`start_time` datetime NOT NULL,
+`end_time` datetime NOT NULL,
+`event_data` text,
+PRIMARY KEY  (`event_id`),
+KEY `uid` (`user_id`),
+KEY `start_time` (`start_time`),
+KEY `end_time` (`end_time`),
+KEY `delta` (`start_time`,`end_time`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -780,24 +780,24 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 CREATE TABLE IF NOT EXISTS `events_associations` (
-  `assoc_id` int(11) NOT NULL auto_increment,
-  `event_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `assoc_target_type` varchar(30) NOT NULL,
-  `assoc_target_id` int(11) NOT NULL,
-  `assoc_target_name` text NOT NULL,
-  `event_title` text NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `assoc_data` text,
-  PRIMARY KEY  (`assoc_id`),
-  KEY `event_id` (`event_id`),
-  KEY `user_id` (`user_id`),
-  KEY `assoc_target_type` (`assoc_target_type`),
-  KEY `assoc_target_id` (`assoc_target_id`),
-  KEY `start_time` (`start_time`),
-  KEY `end_time` (`end_time`),
-  KEY `target` (`assoc_target_type`,`assoc_target_id`)
+`assoc_id` int(11) NOT NULL auto_increment,
+`event_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`assoc_target_type` varchar(30) NOT NULL,
+`assoc_target_id` int(11) NOT NULL,
+`assoc_target_name` text NOT NULL,
+`event_title` text NOT NULL,
+`start_time` datetime NOT NULL,
+`end_time` datetime NOT NULL,
+`assoc_data` text,
+PRIMARY KEY  (`assoc_id`),
+KEY `event_id` (`event_id`),
+KEY `user_id` (`user_id`),
+KEY `assoc_target_type` (`assoc_target_type`),
+KEY `assoc_target_id` (`assoc_target_id`),
+KEY `start_time` (`start_time`),
+KEY `end_time` (`end_time`),
+KEY `target` (`assoc_target_type`,`assoc_target_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -815,14 +815,14 @@ CREATE TABLE IF NOT EXISTS `events_associations` (
 --
 
 CREATE TABLE IF NOT EXISTS `external_feed` (
-  `feed_id` int(11) NOT NULL auto_increment,
-  `import_url` varchar(255) NOT NULL default '',
-  `max_posts` smallint(4) default '5',
-  `is_active` int(2) default NULL,
-  `feed_type` varchar(100) NOT NULL default 'user',
-  `last_build_date` int(11) default NULL,
-  PRIMARY KEY  (`feed_id`),
-  KEY `is_active` (`is_active`)
+`feed_id` int(11) NOT NULL auto_increment,
+`import_url` varchar(255) NOT NULL default '',
+`max_posts` smallint(4) default '5',
+`is_active` int(2) default NULL,
+`feed_type` varchar(100) NOT NULL default 'user',
+`last_build_date` int(11) default NULL,
+PRIMARY KEY  (`feed_id`),
+KEY `is_active` (`is_active`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -840,12 +840,12 @@ CREATE TABLE IF NOT EXISTS `external_feed` (
 --
 
 CREATE TABLE IF NOT EXISTS `ext_cache` (
-  `cache_key` varchar(255) NOT NULL,
-  `created` datetime NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `data` text NOT NULL,
-  `expires` datetime NOT NULL,
-  KEY `item` (`user_id`,`cache_key`,`expires`)
+`cache_key` varchar(255) NOT NULL,
+`created` datetime NOT NULL,
+`user_id` int(11) NOT NULL,
+`data` text NOT NULL,
+`expires` datetime NOT NULL,
+KEY `item` (`user_id`,`cache_key`,`expires`)
 ) TYPE=MyISAM;
 
 --
@@ -863,14 +863,14 @@ CREATE TABLE IF NOT EXISTS `ext_cache` (
 --
 
 CREATE TABLE IF NOT EXISTS `feed_data` (
-  `feed_data_id` int(11) NOT NULL auto_increment,
-  `feed_id` int(11) NOT NULL default '0',
-  `title` varchar(255) default NULL,
-  `description` text,
-  `original_url` varchar(255) default NULL,
-  `publish_date` int(11) default NULL,
-  PRIMARY KEY  (`feed_data_id`),
-  KEY `feed_content` (`feed_id`,`publish_date`)
+`feed_data_id` int(11) NOT NULL auto_increment,
+`feed_id` int(11) NOT NULL default '0',
+`title` varchar(255) default NULL,
+`description` text,
+`original_url` varchar(255) default NULL,
+`publish_date` int(11) default NULL,
+PRIMARY KEY  (`feed_data_id`),
+KEY `feed_content` (`feed_id`,`publish_date`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -888,22 +888,22 @@ CREATE TABLE IF NOT EXISTS `feed_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `files` (
-  `file_id` int(11) NOT NULL auto_increment,
-  `filename` varchar(255) NOT NULL,
-  `file_class` varchar(32) NOT NULL,
-  `mime_type` varchar(255) NOT NULL,
-  `incomplete` tinyint(1) NOT NULL default '1',
-  `created` datetime NOT NULL,
-  `link_count` int(11) NOT NULL default '0',
-  `storage_backend` varchar(32) default NULL,
-  `local_id` varchar(255) default NULL,
-  `last_linked` datetime default NULL,
-  `last_unlinked` datetime default NULL,
-  `width` int(11) NOT NULL,
-  `height` int(11) NOT NULL,
-  PRIMARY KEY  (`file_id`),
-  KEY `incomplete` (`incomplete`),
-  KEY `cleanup_search` (`link_count`,`last_unlinked`,`created`)
+`file_id` int(11) NOT NULL auto_increment,
+`filename` varchar(255) NOT NULL,
+`file_class` varchar(32) NOT NULL,
+`mime_type` varchar(255) NOT NULL,
+`incomplete` tinyint(1) NOT NULL default '1',
+`created` datetime NOT NULL,
+`link_count` int(11) NOT NULL default '0',
+`storage_backend` varchar(32) default NULL,
+`local_id` varchar(255) default NULL,
+`last_linked` datetime default NULL,
+`last_unlinked` datetime default NULL,
+`width` int(11) NOT NULL,
+`height` int(11) NOT NULL,
+PRIMARY KEY  (`file_id`),
+KEY `incomplete` (`incomplete`),
+KEY `cleanup_search` (`link_count`,`last_unlinked`,`created`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -921,19 +921,19 @@ CREATE TABLE IF NOT EXISTS `files` (
 --
 
 CREATE TABLE IF NOT EXISTS `file_links` (
-  `link_id` int(11) NOT NULL auto_increment,
-  `file_id` int(11) NOT NULL,
-  `role` varchar(32) NOT NULL,
-  `user_id` int(11) default NULL,
-  `network_id` int(11) default NULL,
-  `group_id` int(11) default NULL,
-  `ad_id` int(11) default NULL,
-  `content_id` int(11) default NULL,
-  `parent_file_id` int(11) default NULL,
-  `dim` varchar(32) default NULL,
-  PRIMARY KEY  (`file_id`,`link_id`),
-  KEY `thumbnail_lookup` (`role`,`parent_file_id`,`dim`),
-  KEY `user_files` (`user_id`,`role`)
+`link_id` int(11) NOT NULL auto_increment,
+`file_id` int(11) NOT NULL,
+`role` varchar(32) NOT NULL,
+`user_id` int(11) default NULL,
+`network_id` int(11) default NULL,
+`group_id` int(11) default NULL,
+`ad_id` int(11) default NULL,
+`content_id` int(11) default NULL,
+`parent_file_id` int(11) default NULL,
+`dim` varchar(32) default NULL,
+PRIMARY KEY  (`file_id`,`link_id`),
+KEY `thumbnail_lookup` (`role`,`parent_file_id`,`dim`),
+KEY `user_files` (`user_id`,`role`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -951,12 +951,12 @@ CREATE TABLE IF NOT EXISTS `file_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `footer_links` (
-  `id` int(11) NOT NULL auto_increment,
-  `caption` varchar(255) default NULL,
-  `url` varchar(255) default NULL,
-  `is_active` tinyint(1) default NULL,
-  `extra` text,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`caption` varchar(255) default NULL,
+`url` varchar(255) default NULL,
+`is_active` tinyint(1) default NULL,
+`extra` text,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -974,11 +974,11 @@ CREATE TABLE IF NOT EXISTS `footer_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `forgot_password` (
-  `user_id` int(11) NOT NULL default '0',
-  `forgot_password_id` varchar(255) NOT NULL default '0',
-  `status` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`forgot_password_id`),
-  KEY `user_status_id` (`user_id`,`status`,`forgot_password_id`)
+`user_id` int(11) NOT NULL default '0',
+`forgot_password_id` varchar(255) NOT NULL default '0',
+`status` tinyint(1) NOT NULL default '0',
+PRIMARY KEY  (`forgot_password_id`),
+KEY `user_status_id` (`user_id`,`status`,`forgot_password_id`)
 ) TYPE=MyISAM;
 
 --
@@ -996,18 +996,18 @@ CREATE TABLE IF NOT EXISTS `forgot_password` (
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
-  `group_id` int(11) NOT NULL default '0',
-  `access_type` tinyint(1) NOT NULL default '0',
-  `reg_type` int(2) NOT NULL default '0',
-  `is_moderated` tinyint(1) NOT NULL default '0',
-  `category_id` int(11) NOT NULL default '0',
-  `header_image` text,
-  `header_image_action` int(2) default NULL,
-  `display_header_image` varchar(40) default '1',
-  `extra` text,
-  `group_type` varchar(64) NOT NULL default 'regular',
-  PRIMARY KEY  (`group_id`),
-  KEY `category_id` (`category_id`)
+`group_id` int(11) NOT NULL default '0',
+`access_type` tinyint(1) NOT NULL default '0',
+`reg_type` int(2) NOT NULL default '0',
+`is_moderated` tinyint(1) NOT NULL default '0',
+`category_id` int(11) NOT NULL default '0',
+`header_image` text,
+`header_image_action` int(2) default NULL,
+`display_header_image` varchar(40) default '1',
+`extra` text,
+`group_type` varchar(64) NOT NULL default 'regular',
+PRIMARY KEY  (`group_id`),
+KEY `category_id` (`category_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1025,12 +1025,12 @@ CREATE TABLE IF NOT EXISTS `groups` (
 --
 
 CREATE TABLE IF NOT EXISTS `groups_users` (
-  `group_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  `user_type` varchar(50) NOT NULL default '',
-  `created` int(11) default NULL,
-  KEY `users_groups` (`user_id`,`group_id`),
-  KEY `user_type_index` (`group_id`,`user_id`,`user_type`)
+`group_id` int(11) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+`user_type` varchar(50) NOT NULL default '',
+`created` int(11) default NULL,
+KEY `users_groups` (`user_id`,`group_id`),
+KEY `user_type_index` (`group_id`,`user_id`,`user_type`)
 ) TYPE=MyISAM;
 
 --
@@ -1048,10 +1048,10 @@ CREATE TABLE IF NOT EXISTS `groups_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `images` (
-  `content_id` int(11) NOT NULL default '0',
-  `image_file` varchar(255) NOT NULL default '',
-  `image_perm` int(2) NOT NULL default '0',
-  PRIMARY KEY  (`content_id`)
+`content_id` int(11) NOT NULL default '0',
+`image_file` varchar(255) NOT NULL default '',
+`image_perm` int(2) NOT NULL default '0',
+PRIMARY KEY  (`content_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1069,17 +1069,17 @@ CREATE TABLE IF NOT EXISTS `images` (
 --
 
 CREATE TABLE IF NOT EXISTS `invitations` (
-  `inv_id` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `inv_user_id` int(11) NOT NULL,
-  `inv_user_email` varchar(255) NOT NULL,
-  `inv_collection_id` int(11) NOT NULL,
-  `inv_status` int(2) NOT NULL,
-  `inv_data` longtext NOT NULL,
-  PRIMARY KEY  (`inv_id`),
-  KEY `inv_collection_id` (`inv_collection_id`),
-  KEY `inv_status` (`inv_status`),
-  KEY `user_id` (`user_id`)
+`inv_id` varchar(255) NOT NULL,
+`user_id` int(11) NOT NULL,
+`inv_user_id` int(11) NOT NULL,
+`inv_user_email` varchar(255) NOT NULL,
+`inv_collection_id` int(11) NOT NULL,
+`inv_status` int(2) NOT NULL,
+`inv_data` longtext NOT NULL,
+PRIMARY KEY  (`inv_id`),
+KEY `inv_collection_id` (`inv_collection_id`),
+KEY `inv_status` (`inv_status`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1097,18 +1097,18 @@ CREATE TABLE IF NOT EXISTS `invitations` (
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
-  `item_id` int(11) NOT NULL auto_increment,
-  `type` tinyint(1) NOT NULL,
-  `title` text NOT NULL,
-  `description` text,
-  `url` text,
-  `status` tinyint(1) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `created` int(11) NOT NULL,
-  `picture` text,
-  `changed` int(11) NOT NULL,
-  `changed_by` int(11) NOT NULL,
-  PRIMARY KEY  (`item_id`)
+`item_id` int(11) NOT NULL auto_increment,
+`type` tinyint(1) NOT NULL,
+`title` text NOT NULL,
+`description` text,
+`url` text,
+`status` tinyint(1) NOT NULL,
+`author_id` int(11) NOT NULL,
+`created` int(11) NOT NULL,
+`picture` text,
+`changed` int(11) NOT NULL,
+`changed_by` int(11) NOT NULL,
+PRIMARY KEY  (`item_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1126,9 +1126,9 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 CREATE TABLE IF NOT EXISTS `items_collection` (
-  `item_id` int(11) NOT NULL,
-  `collection_id` int(11) NOT NULL,
-  `is_default` tinyint(1) NOT NULL
+`item_id` int(11) NOT NULL,
+`collection_id` int(11) NOT NULL,
+`is_default` tinyint(1) NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -1146,9 +1146,9 @@ CREATE TABLE IF NOT EXISTS `items_collection` (
 --
 
 CREATE TABLE IF NOT EXISTS `items_content` (
-  `item_id` int(11) NOT NULL,
-  `content_id` int(11) NOT NULL,
-  `is_default` tinyint(1) NOT NULL
+`item_id` int(11) NOT NULL,
+`content_id` int(11) NOT NULL,
+`is_default` tinyint(1) NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -1166,10 +1166,10 @@ CREATE TABLE IF NOT EXISTS `items_content` (
 --
 
 CREATE TABLE IF NOT EXISTS `items_data` (
-  `item_id` int(11) NOT NULL,
-  `field_name` text NOT NULL,
-  `field_value` text NOT NULL,
-  `seq` tinyint(1) NOT NULL
+`item_id` int(11) NOT NULL,
+`field_name` text NOT NULL,
+`field_value` text NOT NULL,
+`seq` tinyint(1) NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -1187,10 +1187,10 @@ CREATE TABLE IF NOT EXISTS `items_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `items_user` (
-  `item_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `joined` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL
+`item_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`joined` int(11) NOT NULL,
+`is_active` tinyint(1) NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -1208,15 +1208,15 @@ CREATE TABLE IF NOT EXISTS `items_user` (
 --
 
 CREATE TABLE IF NOT EXISTS `item_messages` (
-  `id` int(11) NOT NULL auto_increment,
-  `item_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `message` text NOT NULL,
-  `created` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `type` tinyint(1) NOT NULL,
-  `url` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`item_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`message` text NOT NULL,
+`created` int(11) NOT NULL,
+`is_active` tinyint(1) NOT NULL,
+`type` tinyint(1) NOT NULL,
+`url` varchar(255) default NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1234,14 +1234,14 @@ CREATE TABLE IF NOT EXISTS `item_messages` (
 --
 
 CREATE TABLE IF NOT EXISTS `linkcategories` (
-  `category_id` int(11) NOT NULL auto_increment,
-  `category_name` varchar(255) default NULL,
-  `user_id` int(11) default NULL,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`category_id`),
-  KEY `user_categories` (`user_id`,`is_active`,`created`)
+`category_id` int(11) NOT NULL auto_increment,
+`category_name` varchar(255) default NULL,
+`user_id` int(11) default NULL,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`is_active` tinyint(1) default NULL,
+PRIMARY KEY  (`category_id`),
+KEY `user_categories` (`user_id`,`is_active`,`created`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1259,15 +1259,15 @@ CREATE TABLE IF NOT EXISTS `linkcategories` (
 --
 
 CREATE TABLE IF NOT EXISTS `links` (
-  `link_id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) default NULL,
-  `url` varchar(255) default NULL,
-  `category_id` int(11) default NULL,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`link_id`),
-  KEY `cat_active_created` (`category_id`,`is_active`,`created`)
+`link_id` int(11) NOT NULL auto_increment,
+`title` varchar(255) default NULL,
+`url` varchar(255) default NULL,
+`category_id` int(11) default NULL,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`is_active` tinyint(1) default NULL,
+PRIMARY KEY  (`link_id`),
+KEY `cat_active_created` (`category_id`,`is_active`,`created`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1285,14 +1285,14 @@ CREATE TABLE IF NOT EXISTS `links` (
 --
 
 CREATE TABLE IF NOT EXISTS `local_files` (
-  `file_id` int(11) NOT NULL,
-  `timestamp` datetime NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `servers` varchar(255) NOT NULL,
-  `is_deletion` tinyint(1) default '0',
-  PRIMARY KEY  (`file_id`),
-  KEY `filename` (`filename`),
-  KEY `when_changed` (`timestamp`)
+`file_id` int(11) NOT NULL,
+`timestamp` datetime NOT NULL,
+`filename` varchar(255) NOT NULL,
+`servers` varchar(255) NOT NULL,
+`is_deletion` tinyint(1) default '0',
+PRIMARY KEY  (`file_id`),
+KEY `filename` (`filename`),
+KEY `when_changed` (`timestamp`)
 ) TYPE=MyISAM;
 
 --
@@ -1310,8 +1310,8 @@ CREATE TABLE IF NOT EXISTS `local_files` (
 --
 
 CREATE TABLE IF NOT EXISTS `local_file_sync_state` (
-  `server_id` varchar(16) NOT NULL,
-  `timestamp` datetime NOT NULL
+`server_id` varchar(16) NOT NULL,
+`timestamp` datetime NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -1329,14 +1329,14 @@ CREATE TABLE IF NOT EXISTS `local_file_sync_state` (
 --
 
 CREATE TABLE IF NOT EXISTS `login_cookies` (
-  `user_id` int(11) NOT NULL,
-  `series` varchar(32) NOT NULL,
-  `token` varchar(32) NOT NULL,
-  `expires` datetime NOT NULL,
-  `user_agent` varchar(255) NOT NULL,
-  `ip_addr` varchar(16) NOT NULL,
-  PRIMARY KEY  (`user_id`,`series`),
-  KEY `expires` (`expires`)
+`user_id` int(11) NOT NULL,
+`series` varchar(32) NOT NULL,
+`token` varchar(32) NOT NULL,
+`expires` datetime NOT NULL,
+`user_agent` varchar(255) NOT NULL,
+`ip_addr` varchar(16) NOT NULL,
+PRIMARY KEY  (`user_id`,`series`),
+KEY `expires` (`expires`)
 ) TYPE=MyISAM;
 
 --
@@ -1354,9 +1354,9 @@ CREATE TABLE IF NOT EXISTS `login_cookies` (
 --
 
 CREATE TABLE IF NOT EXISTS `mc_db_status` (
-  `stmt_key` varchar(255) NOT NULL,
-  `network` varchar(50) NOT NULL default '',
-  PRIMARY KEY  (`stmt_key`,`network`)
+`stmt_key` varchar(255) NOT NULL,
+`network` varchar(50) NOT NULL default '',
+PRIMARY KEY  (`stmt_key`,`network`)
 ) TYPE=MyISAM;
 
 --
@@ -1374,21 +1374,21 @@ CREATE TABLE IF NOT EXISTS `mc_db_status` (
 --
 
 CREATE TABLE IF NOT EXISTS `media_videos` (
-  `id` int(11) NOT NULL auto_increment,
-  `video_id` varchar(50) NOT NULL,
-  `content_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `category_id` int(11) default NULL,
-  `external_thumbnail` text,
-  `internal_thumbnail` text,
-  `email_id` varchar(11) NOT NULL,
-  `views` int(11) default NULL,
-  `embed_tag` text,
-  `view_url` text,
-  `duration` int(11) default NULL,
-  `status` int(5) default NULL,
-  `video_perm` int(5) default NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`video_id` varchar(50) NOT NULL,
+`content_id` int(11) NOT NULL,
+`author_id` int(11) NOT NULL,
+`category_id` int(11) default NULL,
+`external_thumbnail` text,
+`internal_thumbnail` text,
+`email_id` varchar(11) NOT NULL,
+`views` int(11) default NULL,
+`embed_tag` text,
+`view_url` text,
+`duration` int(11) default NULL,
+`status` int(5) default NULL,
+`video_perm` int(5) default NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1406,11 +1406,11 @@ CREATE TABLE IF NOT EXISTS `media_videos` (
 --
 
 CREATE TABLE IF NOT EXISTS `message_folder` (
-  `fid` int(11) NOT NULL auto_increment,
-  `uid` int(11) NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`fid`),
-  KEY `name_to_fid` (`uid`,`name`)
+`fid` int(11) NOT NULL auto_increment,
+`uid` int(11) NOT NULL default '0',
+`name` varchar(255) NOT NULL default '',
+PRIMARY KEY  (`fid`),
+KEY `name_to_fid` (`uid`,`name`)
 ) TYPE=MyISAM  AUTO_INCREMENT=4 ;
 
 --
@@ -1432,8 +1432,8 @@ INSERT INTO `message_folder` (`fid`, `uid`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Message_seq` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  PRIMARY KEY  (`id`)
+`id` int(10) unsigned NOT NULL auto_increment,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=2 ;
 
 --
@@ -1453,10 +1453,10 @@ INSERT INTO `Message_seq` (`id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `moderation_queue` (
-  `collection_id` int(11) NOT NULL default '0',
-  `item_id` int(11) NOT NULL default '0',
-  `type` varchar(20) NOT NULL default '',
-  KEY `collection_id` (`collection_id`)
+`collection_id` int(11) NOT NULL default '0',
+`item_id` int(11) NOT NULL default '0',
+`type` varchar(20) NOT NULL default '',
+KEY `collection_id` (`collection_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1474,15 +1474,15 @@ CREATE TABLE IF NOT EXISTS `moderation_queue` (
 --
 
 CREATE TABLE IF NOT EXISTS `moduledata` (
-  `id` int(11) NOT NULL auto_increment,
-  `modulename` varchar(255) default NULL,
-  `caption` varchar(255) default NULL,
-  `data` text,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `modulename` (`modulename`),
-  KEY `created` (`created`)
+`id` int(11) NOT NULL auto_increment,
+`modulename` varchar(255) default NULL,
+`caption` varchar(255) default NULL,
+`data` text,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+PRIMARY KEY  (`id`),
+UNIQUE KEY `modulename` (`modulename`),
+KEY `created` (`created`)
 ) TYPE=MyISAM  AUTO_INCREMENT=3 ;
 
 --
@@ -1503,12 +1503,12 @@ INSERT INTO `moduledata` (`id`, `modulename`, `caption`, `data`, `created`, `cha
 --
 
 CREATE TABLE IF NOT EXISTS `modules_settings` (
-  `module_name` varchar(255) NOT NULL default '',
-  `module_id` int(11) NOT NULL default '0',
-  `is_active` tinyint(2) NOT NULL default '1',
-  `title` varchar(100) NOT NULL default '',
-  KEY `is_active` (`is_active`),
-  KEY `module_id` (`module_id`)
+`module_name` varchar(255) NOT NULL default '',
+`module_id` int(11) NOT NULL default '0',
+`is_active` tinyint(2) NOT NULL default '1',
+`title` varchar(100) NOT NULL default '',
+KEY `is_active` (`is_active`),
+KEY `module_id` (`module_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1556,29 +1556,29 @@ INSERT INTO `modules_settings` (`module_name`, `module_id`, `is_active`, `title`
 --
 
 CREATE TABLE IF NOT EXISTS `networks` (
-  `network_id` int(11) NOT NULL auto_increment,
-  `name` varchar(255) default NULL,
-  `address` varchar(50) default NULL,
-  `tagline` varchar(255) default NULL,
-  `type` int(1) default '0',
-  `maximum_members` int(11) default '0',
-  `category_id` int(11) default '0',
-  `description` text,
-  `header_image` varchar(255) default NULL,
-  `inner_logo_image` varchar(255) default NULL,
-  `network_alt_text` varchar(255) default NULL,
-  `is_active` int(1) default '0',
-  `created` int(11) default '0',
-  `changed` int(11) default '0',
-  `stop_after_limit` int(1) default '0',
-  `extra` text,
-  `member_count` int(11) NOT NULL,
-  `owner_id` int(11) NOT NULL,
-  PRIMARY KEY  (`network_id`),
-  KEY `network_member_counts` (`is_active`,`type`,`member_count`),
-  KEY `network_name_alpha` (`is_active`,`type`,`name`),
-  KEY `network_created` (`is_active`,`type`,`created`),
-  KEY `network_address` (`address`,`is_active`)
+`network_id` int(11) NOT NULL auto_increment,
+`name` varchar(255) default NULL,
+`address` varchar(50) default NULL,
+`tagline` varchar(255) default NULL,
+`type` int(1) default '0',
+`maximum_members` int(11) default '0',
+`category_id` int(11) default '0',
+`description` text,
+`header_image` varchar(255) default NULL,
+`inner_logo_image` varchar(255) default NULL,
+`network_alt_text` varchar(255) default NULL,
+`is_active` int(1) default '0',
+`created` int(11) default '0',
+`changed` int(11) default '0',
+`stop_after_limit` int(1) default '0',
+`extra` text,
+`member_count` int(11) NOT NULL,
+`owner_id` int(11) NOT NULL,
+PRIMARY KEY  (`network_id`),
+KEY `network_member_counts` (`is_active`,`type`,`member_count`),
+KEY `network_name_alpha` (`is_active`,`type`,`name`),
+KEY `network_created` (`is_active`,`type`,`created`),
+KEY `network_address` (`address`,`is_active`)
 ) TYPE=MyISAM  AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1591,13 +1591,13 @@ CREATE TABLE IF NOT EXISTS `networks` (
 --
 
 CREATE TABLE IF NOT EXISTS `networks_users` (
-  `network_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  `user_type` varchar(50) NOT NULL default '',
-  `created` int(11) NOT NULL,
-  KEY `recent_users` (`network_id`,`created`),
-  KEY `network_user_type` (`network_id`,`user_type`),
-  KEY `network_user_id_type` (`network_id`,`user_id`,`user_type`)
+`network_id` int(11) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+`user_type` varchar(50) NOT NULL default '',
+`created` int(11) NOT NULL,
+KEY `recent_users` (`network_id`,`created`),
+KEY `network_user_type` (`network_id`,`user_type`),
+KEY `network_user_id_type` (`network_id`,`user_id`,`user_type`)
 ) TYPE=MyISAM;
 
 --
@@ -1617,15 +1617,15 @@ INSERT INTO `networks_users` (`network_id`, `user_id`, `user_type`, `created`) V
 --
 
 CREATE TABLE IF NOT EXISTS `network_linkcategories` (
-  `category_id` int(11) NOT NULL auto_increment,
-  `category_name` varchar(255) default NULL,
-  `user_id` int(11) default NULL,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`category_id`),
-  KEY `user_cat` (`user_id`,`category_name`,`category_id`),
-  KEY `user_active` (`user_id`,`is_active`)
+`category_id` int(11) NOT NULL auto_increment,
+`category_name` varchar(255) default NULL,
+`user_id` int(11) default NULL,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`is_active` tinyint(1) default NULL,
+PRIMARY KEY  (`category_id`),
+KEY `user_cat` (`user_id`,`category_name`,`category_id`),
+KEY `user_active` (`user_id`,`is_active`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1643,16 +1643,16 @@ CREATE TABLE IF NOT EXISTS `network_linkcategories` (
 --
 
 CREATE TABLE IF NOT EXISTS `network_links` (
-  `link_id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) default NULL,
-  `url` varchar(255) default NULL,
-  `category_id` int(11) default NULL,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `is_active` tinyint(1) default NULL,
-  PRIMARY KEY  (`link_id`),
-  KEY `cat_title` (`category_id`,`title`),
-  KEY `is_active` (`is_active`)
+`link_id` int(11) NOT NULL auto_increment,
+`title` varchar(255) default NULL,
+`url` varchar(255) default NULL,
+`category_id` int(11) default NULL,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`is_active` tinyint(1) default NULL,
+PRIMARY KEY  (`link_id`),
+KEY `cat_title` (`category_id`,`title`),
+KEY `is_active` (`is_active`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1670,14 +1670,14 @@ CREATE TABLE IF NOT EXISTS `network_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `page_default_settings` (
-  `page_id` int(11) NOT NULL default '0',
-  `page_name` varchar(255) NOT NULL default '',
-  `default_settings` text,
-  `lft` tinytext NOT NULL,
-  `middle` tinytext NOT NULL,
-  `rght` tinytext NOT NULL,
-  `is_configurable` binary(1) default '0',
-  PRIMARY KEY  (`page_id`)
+`page_id` int(11) NOT NULL default '0',
+`page_name` varchar(255) NOT NULL default '',
+`default_settings` text,
+`lft` tinytext NOT NULL,
+`middle` tinytext NOT NULL,
+`rght` tinytext NOT NULL,
+`is_configurable` binary(1) default '0',
+PRIMARY KEY  (`page_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1695,13 +1695,13 @@ CREATE TABLE IF NOT EXISTS `page_default_settings` (
 --
 
 CREATE TABLE IF NOT EXISTS `page_settings` (
-  `assoc_id` int(11) NOT NULL default '0',
-  `page_id` int(11) NOT NULL default '0',
-  `settings` text,
-  `assoc_type` varchar(12) NOT NULL default 'user',
-  `middle` tinytext NOT NULL,
-  `rght` tinytext NOT NULL,
-  KEY `user_page` (`assoc_id`,`page_id`)
+`assoc_id` int(11) NOT NULL default '0',
+`page_id` int(11) NOT NULL default '0',
+`settings` text,
+`assoc_type` varchar(12) NOT NULL default 'user',
+`middle` tinytext NOT NULL,
+`rght` tinytext NOT NULL,
+KEY `user_page` (`assoc_id`,`page_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1719,13 +1719,13 @@ CREATE TABLE IF NOT EXISTS `page_settings` (
 --
 
 CREATE TABLE IF NOT EXISTS `page_views` (
-  `id` int(11) NOT NULL auto_increment,
-  `type` enum('article','video') NOT NULL,
-  `title` text,
-  `url` text NOT NULL,
-  `view` tinyint(4) NOT NULL,
-  `time_stamp` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`type` enum('article','video') NOT NULL,
+`title` text,
+`url` text NOT NULL,
+`view` tinyint(4) NOT NULL,
+`time_stamp` int(11) NOT NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1743,17 +1743,17 @@ CREATE TABLE IF NOT EXISTS `page_views` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forum` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) default NULL,
-  `description` text,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `category_id` int(11) default NULL,
-  `sort_order` int(11) default NULL,
-  `icon` varchar(128) default NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `category_id` (`category_id`)
+`id` int(11) NOT NULL auto_increment,
+`title` varchar(255) default NULL,
+`description` text,
+`is_active` tinyint(1) NOT NULL default '1',
+`category_id` int(11) default NULL,
+`sort_order` int(11) default NULL,
+`icon` varchar(128) default NULL,
+`created_at` datetime default NULL,
+`updated_at` datetime default NULL,
+PRIMARY KEY  (`id`),
+KEY `category_id` (`category_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1771,13 +1771,13 @@ CREATE TABLE IF NOT EXISTS `pa_forum` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forums_users` (
-  `user_id` int(11) NOT NULL,
-  `board_id` int(11) NOT NULL,
-  `user_status` set('owner','admin','allowed','waiting','limited','banned') NOT NULL default 'allowed',
-  `is_active` tinyint(1) NOT NULL,
-  `date_join` date NOT NULL,
-  KEY `board_id` (`board_id`),
-  KEY `user_id` (`user_id`)
+`user_id` int(11) NOT NULL,
+`board_id` int(11) NOT NULL,
+`user_status` set('owner','admin','allowed','waiting','limited','banned') NOT NULL default 'allowed',
+`is_active` tinyint(1) NOT NULL,
+`date_join` date NOT NULL,
+KEY `board_id` (`board_id`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM;
 
 --
@@ -1795,19 +1795,19 @@ CREATE TABLE IF NOT EXISTS `pa_forums_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forum_board` (
-  `id` int(11) NOT NULL auto_increment,
-  `owner_id` int(11) NOT NULL,
-  `title` varchar(128) NOT NULL,
-  `description` varchar(256) default NULL,
-  `type` set('network','group','personal','hidden') default NULL,
-  `theme` varchar(48) NOT NULL default 'default',
-  `settings` text,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `created_at` date NOT NULL,
-  `network_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `owner_id` (`owner_id`),
-  KEY `network_id` (`network_id`)
+`id` int(11) NOT NULL auto_increment,
+`owner_id` int(11) NOT NULL,
+`title` varchar(128) NOT NULL,
+`description` varchar(256) default NULL,
+`type` set('network','group','personal','hidden') default NULL,
+`theme` varchar(48) NOT NULL default 'default',
+`settings` text,
+`is_active` tinyint(1) NOT NULL default '1',
+`created_at` date NOT NULL,
+`network_id` int(11) NOT NULL,
+PRIMARY KEY  (`id`),
+KEY `owner_id` (`owner_id`),
+KEY `network_id` (`network_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1825,16 +1825,16 @@ CREATE TABLE IF NOT EXISTS `pa_forum_board` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forum_category` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(255) default NULL,
-  `board_id` int(11) NOT NULL,
-  `description` text,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `sort_order` int(11) default NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `board_id` (`board_id`)
+`id` int(11) NOT NULL auto_increment,
+`name` varchar(255) default NULL,
+`board_id` int(11) NOT NULL,
+`description` text,
+`is_active` tinyint(1) NOT NULL default '1',
+`sort_order` int(11) default NULL,
+`created_at` datetime default NULL,
+`updated_at` datetime default NULL,
+PRIMARY KEY  (`id`),
+KEY `board_id` (`board_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1852,21 +1852,21 @@ CREATE TABLE IF NOT EXISTS `pa_forum_category` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forum_post` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) default NULL,
-  `content` text,
-  `user_id` int(11) default NULL,
-  `parent_id` int(11) default NULL,
-  `thread_id` int(11) default NULL,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
-  `modified_by` varchar(32) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `parent_id` (`parent_id`),
-  KEY `thread_id` (`thread_id`),
-  KEY `created_at` (`created_at`)
+`id` int(11) NOT NULL auto_increment,
+`title` varchar(255) default NULL,
+`content` text,
+`user_id` int(11) default NULL,
+`parent_id` int(11) default NULL,
+`thread_id` int(11) default NULL,
+`is_active` tinyint(1) NOT NULL default '1',
+`created_at` datetime default NULL,
+`updated_at` datetime default NULL,
+`modified_by` varchar(32) default NULL,
+PRIMARY KEY  (`id`),
+KEY `user_id` (`user_id`),
+KEY `parent_id` (`parent_id`),
+KEY `thread_id` (`thread_id`),
+KEY `created_at` (`created_at`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1884,21 +1884,21 @@ CREATE TABLE IF NOT EXISTS `pa_forum_post` (
 --
 
 CREATE TABLE IF NOT EXISTS `pa_forum_thread` (
-  `id` int(11) NOT NULL auto_increment,
-  `related_content_id` int(11) default NULL,
-  `title` varchar(255) default NULL,
-  `content` text,
-  `status` set('public','private','hidden','locked','sticky') NOT NULL default 'public',
-  `forum_id` int(11) default NULL,
-  `user_id` int(11) default NULL,
-  `viewed` int(11) default NULL,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
-  `modified_by` varchar(32) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `forum_id` (`forum_id`),
-  KEY `user_id` (`user_id`)
+`id` int(11) NOT NULL auto_increment,
+`related_content_id` int(11) default NULL,
+`title` varchar(255) default NULL,
+`content` text,
+`status` set('public','private','hidden','locked','sticky') NOT NULL default 'public',
+`forum_id` int(11) default NULL,
+`user_id` int(11) default NULL,
+`viewed` int(11) default NULL,
+`is_active` tinyint(1) NOT NULL default '1',
+`created_at` datetime default NULL,
+`updated_at` datetime default NULL,
+`modified_by` varchar(32) default NULL,
+PRIMARY KEY  (`id`),
+KEY `forum_id` (`forum_id`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1916,15 +1916,15 @@ CREATE TABLE IF NOT EXISTS `pa_forum_thread` (
 --
 
 CREATE TABLE IF NOT EXISTS `personas` (
-  `persona_id` int(10) unsigned NOT NULL auto_increment,
-  `user_id` int(10) unsigned NOT NULL default '0',
-  `persona_service_id` int(10) unsigned NOT NULL default '0',
-  `sequence` int(10) unsigned NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  `configuration` text NOT NULL,
-  PRIMARY KEY  (`persona_id`),
-  KEY `persona_service_id` (`persona_service_id`),
-  KEY `user_id` (`user_id`)
+`persona_id` int(10) unsigned NOT NULL auto_increment,
+`user_id` int(10) unsigned NOT NULL default '0',
+`persona_service_id` int(10) unsigned NOT NULL default '0',
+`sequence` int(10) unsigned NOT NULL default '0',
+`name` varchar(255) NOT NULL default '',
+`configuration` text NOT NULL,
+PRIMARY KEY  (`persona_id`),
+KEY `persona_service_id` (`persona_service_id`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1942,21 +1942,21 @@ CREATE TABLE IF NOT EXISTS `personas` (
 --
 
 CREATE TABLE IF NOT EXISTS `persona_properties` (
-  `persona_property_id` int(10) unsigned NOT NULL auto_increment,
-  `parent_id` int(10) unsigned NOT NULL default '0',
-  `persona_id` int(10) unsigned NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  `content` text NOT NULL,
-  `content_type` varchar(255) NOT NULL default '',
-  `content_hash` varchar(255) NOT NULL default '',
-  `serial_number` int(10) unsigned NOT NULL default '0',
-  `last_update` datetime NOT NULL default '0000-00-00 00:00:00',
-  `category` varchar(255) NOT NULL default '',
-  `viewer` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`persona_property_id`),
-  KEY `key_index` (`name`),
-  KEY `parent_id` (`parent_id`),
-  KEY `persona_id` (`persona_id`)
+`persona_property_id` int(10) unsigned NOT NULL auto_increment,
+`parent_id` int(10) unsigned NOT NULL default '0',
+`persona_id` int(10) unsigned NOT NULL default '0',
+`name` varchar(255) NOT NULL default '',
+`content` text NOT NULL,
+`content_type` varchar(255) NOT NULL default '',
+`content_hash` varchar(255) NOT NULL default '',
+`serial_number` int(10) unsigned NOT NULL default '0',
+`last_update` datetime NOT NULL default '0000-00-00 00:00:00',
+`category` varchar(255) NOT NULL default '',
+`viewer` varchar(255) NOT NULL default '',
+PRIMARY KEY  (`persona_property_id`),
+KEY `key_index` (`name`),
+KEY `parent_id` (`parent_id`),
+KEY `persona_id` (`persona_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -1974,16 +1974,16 @@ CREATE TABLE IF NOT EXISTS `persona_properties` (
 --
 
 CREATE TABLE IF NOT EXISTS `persona_services` (
-  `persona_service_id` int(10) unsigned NOT NULL auto_increment,
-  `sequence` int(10) unsigned NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  `symbol` varchar(255) NOT NULL default '',
-  `description` text NOT NULL,
-  `category` varchar(255) NOT NULL default '',
-  `logo` varchar(255) NOT NULL default '',
-  `configuration` text NOT NULL,
-  `enabled` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`persona_service_id`)
+`persona_service_id` int(10) unsigned NOT NULL auto_increment,
+`sequence` int(10) unsigned NOT NULL default '0',
+`name` varchar(255) NOT NULL default '',
+`symbol` varchar(255) NOT NULL default '',
+`description` text NOT NULL,
+`category` varchar(255) NOT NULL default '',
+`logo` varchar(255) NOT NULL default '',
+`configuration` text NOT NULL,
+`enabled` tinyint(1) NOT NULL default '0',
+PRIMARY KEY  (`persona_service_id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=24 ;
 
 --
@@ -2025,16 +2025,16 @@ INSERT INTO `persona_services` (`persona_service_id`, `sequence`, `name`, `symbo
 --
 
 CREATE TABLE IF NOT EXISTS `persona_service_paths` (
-  `persona_service_path_id` int(10) unsigned NOT NULL auto_increment,
-  `persona_service_id` int(10) unsigned NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  `title` varchar(255) NOT NULL default '',
-  `category` varchar(255) NOT NULL default '',
-  `configuration` text NOT NULL,
-  `sequence` int(10) unsigned NOT NULL default '0',
-  `enabled` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`persona_service_path_id`),
-  KEY `persona_service_id` (`persona_service_id`)
+`persona_service_path_id` int(10) unsigned NOT NULL auto_increment,
+`persona_service_id` int(10) unsigned NOT NULL default '0',
+`name` varchar(255) NOT NULL default '',
+`title` varchar(255) NOT NULL default '',
+`category` varchar(255) NOT NULL default '',
+`configuration` text NOT NULL,
+`sequence` int(10) unsigned NOT NULL default '0',
+`enabled` tinyint(1) NOT NULL default '0',
+PRIMARY KEY  (`persona_service_path_id`),
+KEY `persona_service_id` (`persona_service_id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=37 ;
 
 --
@@ -2089,15 +2089,15 @@ INSERT INTO `persona_service_paths` (`persona_service_path_id`, `persona_service
 --
 
 CREATE TABLE IF NOT EXISTS `polls` (
-  `poll_id` int(11) NOT NULL auto_increment,
-  `content_id` int(11) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `user_id` int(11) NOT NULL default '0',
-  `options` longtext,
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `is_active` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`poll_id`)
+`poll_id` int(11) NOT NULL auto_increment,
+`content_id` int(11) NOT NULL default '0',
+`title` varchar(255) NOT NULL default '',
+`user_id` int(11) NOT NULL default '0',
+`options` longtext,
+`created` int(11) NOT NULL default '0',
+`changed` int(11) NOT NULL default '0',
+`is_active` int(11) NOT NULL default '0',
+PRIMARY KEY  (`poll_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2115,12 +2115,12 @@ CREATE TABLE IF NOT EXISTS `polls` (
 --
 
 CREATE TABLE IF NOT EXISTS `poll_vote` (
-  `vote_id` int(11) NOT NULL auto_increment,
-  `poll_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  `vote` longtext,
-  `is_active` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`vote_id`)
+`vote_id` int(11) NOT NULL auto_increment,
+`poll_id` int(11) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+`vote` longtext,
+`is_active` int(11) NOT NULL default '0',
+PRIMARY KEY  (`vote_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2138,27 +2138,24 @@ CREATE TABLE IF NOT EXISTS `poll_vote` (
 --
 
 CREATE TABLE IF NOT EXISTS `private_messages` (
-  `message_id` int(11) NOT NULL default '0',
-  `sender_id` int(11) NOT NULL default '0',
-  `all_recipients` text NOT NULL,
-  `subject` varchar(255) NOT NULL default '',
-  `body` longtext,
-  `sent_time` int(11) NOT NULL default '0',
-  `size` int(2) NOT NULL default '0',
-  `in_reply_to` int(11) NOT NULL default '0',
-  `conversation_id` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`message_id`),
-  KEY `sender_when` (`sender_id`,`sent_time`),
-  KEY `threading` (`message_id`,`in_reply_to`),
-  KEY `conversations` (`conversation_id`)
+`message_id` int(11) NOT NULL default '0',
+`sender_id` int(11) NOT NULL default '0',
+`all_recipients` text NOT NULL,
+`subject` varchar(255) NOT NULL default '',
+`body` longtext,
+`sent_time` int(11) NOT NULL default '0',
+`size` int(2) NOT NULL default '0',
+`in_reply_to` int(11) NOT NULL default '0',
+`conversation_id` int(11) NOT NULL default '0',
+PRIMARY KEY  (`message_id`),
+KEY `sender_when` (`sender_id`,`sent_time`),
+KEY `threading` (`message_id`,`in_reply_to`),
+KEY `conversations` (`conversation_id`)
 ) TYPE=MyISAM;
 
 --
 -- Dumping data for table `private_messages`
 --
-
-INSERT INTO `private_messages` (`message_id`, `sender_id`, `all_recipients`, `subject`, `body`, `sent_time`, `size`, `in_reply_to`, `conversation_id`) VALUES
-(1, 1, 'admin', 'Admin PeepAgg has joined your network PeopleAggregator', '<TABLE width="675" border="0" align="center" cellpadding="8">\n  <TR>\n    <TD><IMG src="http://www.dev3.ccc/images/pa_logo_static_pages.gif" width="150" height="30"></TD>\n  </TR>\n  <TR>\n    <TD colspan="2">\n    <table style="width:650px;">\n     <tr>\n        <td>\n        <strong><font color="#0099ff" face="Arial, Helvetica, sans-serif" size="5">\n        Admin PeepAgg has joined your network PeopleAggregator        </font></strong>\n        </td>  \n      </tr>\n    </table>\n    </TD>\n  </TR>   \n  <TR>\n    <TD valign="top" width="150"><IMG src="http://www.dev3.ccc/images/people2.gif" width="150" height="268"></TD>\n    <TD width="525"><br />Dear Admin PeepAgg,<br />\n<br /><br />\n<br /><br />\n<img alt="Admin PeepAgg" align="left" style="padding: 0px 12px 12px 0px;" border="0" src="http://www.dev3.ccc/files/rsz/crop_80x80/Themes/Default/images/default.png" width="80" height="80"/> Admin PeepAgg has joined your network, PeopleAggregator:<br />\n<br /><br />\n<br /><br />\n<a href="http://www.dev3.ccc/home" title="" alt="">PeopleAggregator</a><br />\n<br /><br />\nYou now have  0 members in the PeopleAggregator network.<br /><br />\n<br /><br />\nTo view this new member''s public blog page, go to:<br /><br />\n<a href="http://www.dev3.ccc/user/1" title="" alt="">Admin PeepAgg</a><br />\n<br /><br />\n<br /><br />\nTo moderate this new member''s account, go to the <a href="http://www.dev3.ccc/manage_user.php" title="" alt="">http://www.dev3.ccc/manage_user.php</a><br />\n<br /><br />\n<br /><br />\nBest regards,<br />\n<br /><br />\n<br /><br />\nThe PeopleAggregator Team<br />\n<br /><br /><br /><br />\nEveryone at PeopleAggregator respects your privacy. Your information will never be shared with third parties unless specifically requested by you.</TD>\n  </TR>\n  <TR>\n    <TD colspan="2"><DIV style=" width: auto; margin: 0px 0px 5px 0px; border-top:#FF9900 1px dashed"></DIV><CENTER>\n      <FONT face="Arial, Helvetica, sans-serif" size="1" color="#0099FF">PeopleAggregator\n        is an open social network service by Broadband Mechanics Inc. &copy;2009</FONT><br>\n      <FONT face="Arial, Helvetica, sans-serif" size="1" color="#0099FF"><A href="http://broadbandmechanics.com/who.html" style="color:#0099FF;">About\n          us</A> | <A href="http://www.dev3.ccc/features.php" style="color:#0099FF;">Features</A> | <A href="http://www.dev3.ccc/faq.php" style="color:#0099FF;">FAQ</A></FONT>\n\n          <br>\n          <br>\n          <A href="http://creativecommons.org/"><IMG src="http://www.dev3.ccc/images/cc.srr.primary.gif" alt="Creative Commons" width="75" height="25" border="0"></A><br>\n      </FONT>\n    </CENTER>\n    </TD>\n  </TR>\n</TABLE>\n', 1247499194, 3, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2170,14 +2167,14 @@ INSERT INTO `private_messages` (`message_id`, `sender_id`, `all_recipients`, `su
 --
 
 CREATE TABLE IF NOT EXISTS `rating` (
-  `index_id` int(11) NOT NULL auto_increment,
-  `rating_type` enum('user','content','collection','tag','comment','network','celebrity','radio1_channel') NOT NULL default 'content',
-  `type_id` int(11) NOT NULL default '0',
-  `attribute_id` smallint(3) NOT NULL default '-1',
-  `rating` mediumint(5) NOT NULL default '0',
-  `max_rating` mediumint(5) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`index_id`)
+`index_id` int(11) NOT NULL auto_increment,
+`rating_type` enum('user','content','collection','tag','comment','network','celebrity','radio1_channel') NOT NULL default 'content',
+`type_id` int(11) NOT NULL default '0',
+`attribute_id` smallint(3) NOT NULL default '-1',
+`rating` mediumint(5) NOT NULL default '0',
+`max_rating` mediumint(5) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+PRIMARY KEY  (`index_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2195,12 +2192,12 @@ CREATE TABLE IF NOT EXISTS `rating` (
 --
 
 CREATE TABLE IF NOT EXISTS `recent_media_track` (
-  `id` int(11) NOT NULL auto_increment,
-  `cid` int(11) default NULL,
-  `type` int(1) default NULL,
-  `created` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `cid` (`cid`)
+`id` int(11) NOT NULL auto_increment,
+`cid` int(11) default NULL,
+`type` int(1) default NULL,
+`created` int(11) default NULL,
+PRIMARY KEY  (`id`),
+KEY `cid` (`cid`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2218,18 +2215,18 @@ CREATE TABLE IF NOT EXISTS `recent_media_track` (
 --
 
 CREATE TABLE IF NOT EXISTS `relations` (
-  `user_id` int(11) NOT NULL,
-  `relation_id` int(11) NOT NULL,
-  `relationship_type` int(2) NOT NULL,
-  `network` varchar(255) default NULL,
-  `network_uid` varchar(255) default NULL,
-  `display_name` varchar(255) default NULL,
-  `thumbnail_url` tinytext,
-  `profile_url` tinytext,
-  `in_family` int(2) default NULL,
-  `status` enum('denied','pending','approved') NOT NULL default 'approved',
-  KEY `user_rel` (`user_id`,`relation_id`),
-  KEY `network_uid` (`network_uid`)
+`user_id` int(11) NOT NULL,
+`relation_id` int(11) NOT NULL,
+`relationship_type` int(2) NOT NULL,
+`network` varchar(255) default NULL,
+`network_uid` varchar(255) default NULL,
+`display_name` varchar(255) default NULL,
+`thumbnail_url` tinytext,
+`profile_url` tinytext,
+`in_family` int(2) default NULL,
+`status` enum('denied','pending','approved') NOT NULL default 'approved',
+KEY `user_rel` (`user_id`,`relation_id`),
+KEY `network_uid` (`network_uid`)
 ) TYPE=MyISAM;
 
 --
@@ -2247,10 +2244,10 @@ CREATE TABLE IF NOT EXISTS `relations` (
 --
 
 CREATE TABLE IF NOT EXISTS `relation_classifications` (
-  `relation_type` varchar(25) NOT NULL default '',
-  `relation_type_id` int(2) NOT NULL default '0',
-  KEY `relation_type_id` (`relation_type_id`),
-  KEY `relation_type` (`relation_type`)
+`relation_type` varchar(25) NOT NULL default '',
+`relation_type_id` int(2) NOT NULL default '0',
+KEY `relation_type_id` (`relation_type_id`),
+KEY `relation_type` (`relation_type`)
 ) TYPE=MyISAM;
 
 --
@@ -2274,13 +2271,13 @@ INSERT INTO `relation_classifications` (`relation_type`, `relation_type_id`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `report_abuse` (
-  `report_id` int(11) NOT NULL auto_increment,
-  `parent_type` varchar(100) default NULL,
-  `parent_id` int(11) NOT NULL,
-  `reporter_id` int(11) default NULL,
-  `body` text,
-  `created` int(11) NOT NULL,
-  PRIMARY KEY  (`report_id`)
+`report_id` int(11) NOT NULL auto_increment,
+`parent_type` varchar(100) default NULL,
+`parent_id` int(11) NOT NULL,
+`reporter_id` int(11) default NULL,
+`body` text,
+`created` int(11) NOT NULL,
+PRIMARY KEY  (`report_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2298,18 +2295,18 @@ CREATE TABLE IF NOT EXISTS `report_abuse` (
 --
 
 CREATE TABLE IF NOT EXISTS `reviews` (
-  `review_id` int(11) NOT NULL auto_increment,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `subject_type` varchar(32) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `title` varchar(255) default NULL,
-  `body` text NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  PRIMARY KEY  (`review_id`),
-  KEY `by_subject` (`is_active`,`subject_type`,`subject_id`),
-  KEY `by_freshness` (`is_active`,`subject_type`,`created`)
+`review_id` int(11) NOT NULL auto_increment,
+`is_active` tinyint(1) NOT NULL default '1',
+`subject_type` varchar(32) NOT NULL,
+`subject_id` int(11) NOT NULL,
+`author_id` int(11) NOT NULL,
+`title` varchar(255) default NULL,
+`body` text NOT NULL,
+`created` datetime NOT NULL,
+`updated` datetime NOT NULL,
+PRIMARY KEY  (`review_id`),
+KEY `by_subject` (`is_active`,`subject_type`,`subject_id`),
+KEY `by_freshness` (`is_active`,`subject_type`,`created`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2327,14 +2324,14 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(100) default NULL,
-  `description` tinytext,
-  `created` int(11) default NULL,
-  `changed` int(11) default NULL,
-  `read_only` tinyint(1) NOT NULL default '0',
-  `type` set('user','network','group') NOT NULL default 'network',
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`name` varchar(100) default NULL,
+`description` tinytext,
+`created` int(11) default NULL,
+`changed` int(11) default NULL,
+`read_only` tinyint(1) NOT NULL default '0',
+`type` set('user','network','group') NOT NULL default 'network',
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=9 ;
 
 --
@@ -2361,9 +2358,9 @@ INSERT INTO `roles` (`id`, `name`, `description`, `created`, `changed`, `read_on
 --
 
 CREATE TABLE IF NOT EXISTS `routing_destination_types` (
-  `destination_id` int(11) NOT NULL auto_increment,
-  `destination_name` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`destination_id`)
+`destination_id` int(11) NOT NULL auto_increment,
+`destination_name` varchar(255) NOT NULL default '',
+PRIMARY KEY  (`destination_id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=4 ;
 
 --
@@ -2385,11 +2382,11 @@ INSERT INTO `routing_destination_types` (`destination_id`, `destination_name`) V
 --
 
 CREATE TABLE IF NOT EXISTS `sbmicrocontent_types` (
-  `sbtype_id` int(11) NOT NULL auto_increment,
-  `name` varchar(100) NOT NULL default '',
-  `description` varchar(250) NOT NULL default '',
-  `titlefield` varchar(250) default NULL,
-  PRIMARY KEY  (`sbtype_id`)
+`sbtype_id` int(11) NOT NULL auto_increment,
+`name` varchar(100) NOT NULL default '',
+`description` varchar(250) NOT NULL default '',
+`titlefield` varchar(250) default NULL,
+PRIMARY KEY  (`sbtype_id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=23 ;
 
 --
@@ -2429,11 +2426,11 @@ INSERT INTO `sbmicrocontent_types` (`sbtype_id`, `name`, `description`, `titlefi
 --
 
 CREATE TABLE IF NOT EXISTS `site_ranking_parameters` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `point` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`name` varchar(50) NOT NULL,
+`description` text NOT NULL,
+`point` int(11) NOT NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=7 ;
 
 --
@@ -2458,15 +2455,15 @@ INSERT INTO `site_ranking_parameters` (`id`, `name`, `description`, `point`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `spam_domains` (
-  `id` int(11) NOT NULL auto_increment,
-  `domain` varchar(255) NOT NULL,
-  `count` int(11) NOT NULL,
-  `blacklisted` int(11) NOT NULL default '0',
-  `whitelisted` int(11) NOT NULL default '0',
-  `active_count` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `domain` (`domain`),
-  KEY `blacklisted` (`blacklisted`)
+`id` int(11) NOT NULL auto_increment,
+`domain` varchar(255) NOT NULL,
+`count` int(11) NOT NULL,
+`blacklisted` int(11) NOT NULL default '0',
+`whitelisted` int(11) NOT NULL default '0',
+`active_count` int(11) NOT NULL,
+PRIMARY KEY  (`id`),
+UNIQUE KEY `domain` (`domain`),
+KEY `blacklisted` (`blacklisted`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2484,15 +2481,15 @@ CREATE TABLE IF NOT EXISTS `spam_domains` (
 --
 
 CREATE TABLE IF NOT EXISTS `spam_terms` (
-  `id` int(11) NOT NULL auto_increment,
-  `term` varchar(255) NOT NULL,
-  `frequency` int(11) NOT NULL default '0',
-  `blacklist` tinyint(1) default '1',
-  PRIMARY KEY  (`id`),
-  KEY `by_word` (`term`),
-  KEY `by_freq` (`blacklist`,`frequency`,`term`),
-  KEY `bad_words` (`blacklist`,`term`),
-  KEY `term` (`term`)
+`id` int(11) NOT NULL auto_increment,
+`term` varchar(255) NOT NULL,
+`frequency` int(11) NOT NULL default '0',
+`blacklist` tinyint(1) default '1',
+PRIMARY KEY  (`id`),
+KEY `by_word` (`term`),
+KEY `by_freq` (`blacklist`,`frequency`,`term`),
+KEY `bad_words` (`blacklist`,`term`),
+KEY `term` (`term`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2510,11 +2507,11 @@ CREATE TABLE IF NOT EXISTS `spam_terms` (
 --
 
 CREATE TABLE IF NOT EXISTS `static_pages` (
-  `id` int(11) NOT NULL auto_increment,
-  `caption` varchar(255) default NULL,
-  `url` varchar(255) default NULL,
-  `page_text` text,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`caption` varchar(255) default NULL,
+`url` varchar(255) default NULL,
+`page_text` text,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2532,11 +2529,11 @@ CREATE TABLE IF NOT EXISTS `static_pages` (
 --
 
 CREATE TABLE IF NOT EXISTS `supergroup_data` (
-  `group_id` int(11) NOT NULL,
-  `field_name` varchar(255) NOT NULL,
-  `field_value` text,
-  `setting` enum('ecommerce','mailing_list','playlist','showcasing') NOT NULL,
-  `seq` int(11) default '0'
+`group_id` int(11) NOT NULL,
+`field_name` varchar(255) NOT NULL,
+`field_value` text,
+`setting` enum('ecommerce','mailing_list','playlist','showcasing') NOT NULL,
+`seq` int(11) default '0'
 ) TYPE=MyISAM;
 
 --
@@ -2554,14 +2551,14 @@ CREATE TABLE IF NOT EXISTS `supergroup_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `supergroup_settings` (
-  `group_id` int(11) NOT NULL,
-  `ecommerce` binary(1) NOT NULL default '0',
-  `mailing_list` binary(1) NOT NULL default '0',
-  `playlist` binary(1) NOT NULL default '0',
-  `showcasing` binary(1) NOT NULL default '0',
-  `image` varchar(255) default NULL,
-  `flash_script` text,
-  PRIMARY KEY  (`group_id`)
+`group_id` int(11) NOT NULL,
+`ecommerce` binary(1) NOT NULL default '0',
+`mailing_list` binary(1) NOT NULL default '0',
+`playlist` binary(1) NOT NULL default '0',
+`showcasing` binary(1) NOT NULL default '0',
+`image` varchar(255) default NULL,
+`flash_script` text,
+PRIMARY KEY  (`group_id`)
 ) TYPE=MyISAM;
 
 --
@@ -2579,10 +2576,10 @@ CREATE TABLE IF NOT EXISTS `supergroup_settings` (
 --
 
 CREATE TABLE IF NOT EXISTS `svn_meta` (
-  `revision` int(11) NOT NULL,
-  `repos_root` text NOT NULL,
-  `repos_path` text NOT NULL,
-  KEY `revision` (`revision`)
+`revision` int(11) NOT NULL,
+`repos_root` text NOT NULL,
+`repos_path` text NOT NULL,
+KEY `revision` (`revision`)
 ) TYPE=MyISAM;
 
 --
@@ -2600,14 +2597,14 @@ CREATE TABLE IF NOT EXISTS `svn_meta` (
 --
 
 CREATE TABLE IF NOT EXISTS `svn_objects` (
-  `path` varchar(255) NOT NULL,
-  `kind` varchar(32) NOT NULL,
-  `hash` varchar(32) default NULL,
-  `revision` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL default '1',
-  `held_revision` int(11) default NULL,
-  PRIMARY KEY  (`is_active`,`path`,`revision`),
-  UNIQUE KEY `revision` (`revision`,`path`)
+`path` varchar(255) NOT NULL,
+`kind` varchar(32) NOT NULL,
+`hash` varchar(32) default NULL,
+`revision` int(11) NOT NULL,
+`is_active` tinyint(1) NOT NULL default '1',
+`held_revision` int(11) default NULL,
+PRIMARY KEY  (`is_active`,`path`,`revision`),
+UNIQUE KEY `revision` (`revision`,`path`)
 ) TYPE=MyISAM;
 
 --
@@ -2625,10 +2622,10 @@ CREATE TABLE IF NOT EXISTS `svn_objects` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
-  `tag_id` int(11) NOT NULL auto_increment,
-  `tag_name` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`tag_id`),
-  UNIQUE KEY `tag_name` (`tag_name`)
+`tag_id` int(11) NOT NULL auto_increment,
+`tag_name` varchar(255) NOT NULL default '',
+PRIMARY KEY  (`tag_id`),
+UNIQUE KEY `tag_name` (`tag_name`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2646,10 +2643,10 @@ CREATE TABLE IF NOT EXISTS `tags` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags_contentcollections` (
-  `tag_id` int(11) NOT NULL default '0',
-  `collection_id` int(11) NOT NULL default '0',
-  KEY `contentcollection_to_tag` (`collection_id`,`tag_id`),
-  KEY `tag_to_contentcollection` (`tag_id`,`collection_id`)
+`tag_id` int(11) NOT NULL default '0',
+`collection_id` int(11) NOT NULL default '0',
+KEY `contentcollection_to_tag` (`collection_id`,`tag_id`),
+KEY `tag_to_contentcollection` (`tag_id`,`collection_id`)
 ) TYPE=MyISAM;
 
 --
@@ -2667,10 +2664,10 @@ CREATE TABLE IF NOT EXISTS `tags_contentcollections` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags_contents` (
-  `tag_id` int(11) NOT NULL default '0',
-  `content_id` int(11) NOT NULL default '0',
-  KEY `tag_to_content` (`tag_id`,`content_id`),
-  KEY `content_to_tags` (`content_id`,`tag_id`)
+`tag_id` int(11) NOT NULL default '0',
+`content_id` int(11) NOT NULL default '0',
+KEY `tag_to_content` (`tag_id`,`content_id`),
+KEY `content_to_tags` (`content_id`,`tag_id`)
 ) TYPE=MyISAM;
 
 --
@@ -2688,8 +2685,8 @@ CREATE TABLE IF NOT EXISTS `tags_contents` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags_item` (
-  `tag_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+`tag_id` int(11) NOT NULL,
+`item_id` int(11) NOT NULL
 ) TYPE=MyISAM;
 
 --
@@ -2707,10 +2704,10 @@ CREATE TABLE IF NOT EXISTS `tags_item` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags_networks` (
-  `tag_id` int(11) NOT NULL default '0',
-  `network_id` int(11) NOT NULL default '0',
-  KEY `network_to_tag` (`network_id`,`tag_id`),
-  KEY `tag_to_network` (`tag_id`,`network_id`)
+`tag_id` int(11) NOT NULL default '0',
+`network_id` int(11) NOT NULL default '0',
+KEY `network_to_tag` (`network_id`,`tag_id`),
+KEY `tag_to_network` (`tag_id`,`network_id`)
 ) TYPE=MyISAM;
 
 --
@@ -2728,10 +2725,10 @@ CREATE TABLE IF NOT EXISTS `tags_networks` (
 --
 
 CREATE TABLE IF NOT EXISTS `tags_users` (
-  `tag_id` int(11) NOT NULL default '0',
-  `user_id` int(11) NOT NULL default '0',
-  KEY `tag_to_user` (`tag_id`,`user_id`),
-  KEY `user_to_tag` (`user_id`,`tag_id`)
+`tag_id` int(11) NOT NULL default '0',
+`user_id` int(11) NOT NULL default '0',
+KEY `tag_to_user` (`tag_id`,`user_id`),
+KEY `user_to_tag` (`user_id`,`tag_id`)
 ) TYPE=MyISAM;
 
 --
@@ -2749,11 +2746,11 @@ CREATE TABLE IF NOT EXISTS `tags_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `tasks` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(255) NOT NULL,
-  `description` tinytext,
-  `task_value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`name` varchar(255) NOT NULL,
+`description` tinytext,
+`task_value` varchar(255) NOT NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=32 ;
 
 --
@@ -2803,10 +2800,10 @@ INSERT INTO `tasks` (`id`, `name`, `description`, `task_value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tasks_roles` (
-  `id` int(11) NOT NULL auto_increment,
-  `task_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
+`id` int(11) NOT NULL auto_increment,
+`task_id` int(11) NOT NULL,
+`role_id` int(11) NOT NULL,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=93 ;
 
 --
@@ -2917,15 +2914,15 @@ INSERT INTO `tasks_roles` (`id`, `task_id`, `role_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `testimonials` (
-  `testimonial_id` int(11) NOT NULL auto_increment,
-  `sender_id` int(11) NOT NULL,
-  `recipient_id` int(11) NOT NULL,
-  `body` text NOT NULL,
-  `status` varchar(50) default NULL,
-  `is_active` tinyint(1) default NULL,
-  `created` int(11) NOT NULL,
-  `changed` int(11) NOT NULL,
-  PRIMARY KEY  (`testimonial_id`)
+`testimonial_id` int(11) NOT NULL auto_increment,
+`sender_id` int(11) NOT NULL,
+`recipient_id` int(11) NOT NULL,
+`body` text NOT NULL,
+`status` varchar(50) default NULL,
+`is_active` tinyint(1) default NULL,
+`created` int(11) NOT NULL,
+`changed` int(11) NOT NULL,
+PRIMARY KEY  (`testimonial_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2943,13 +2940,13 @@ CREATE TABLE IF NOT EXISTS `testimonials` (
 --
 
 CREATE TABLE IF NOT EXISTS `trackback_contents` (
-  `index` int(11) NOT NULL auto_increment,
-  `trackback` text NOT NULL,
-  `content_id` int(11) NOT NULL default '0',
-  `title` varchar(255) NOT NULL default '',
-  `excerpt` text,
-  PRIMARY KEY  (`index`),
-  KEY `trackbacks_for_content` (`content_id`)
+`index` int(11) NOT NULL auto_increment,
+`trackback` text NOT NULL,
+`content_id` int(11) NOT NULL default '0',
+`title` varchar(255) NOT NULL default '',
+`excerpt` text,
+PRIMARY KEY  (`index`),
+KEY `trackbacks_for_content` (`content_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
@@ -2967,52 +2964,52 @@ CREATE TABLE IF NOT EXISTS `trackback_contents` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL default '0',
-  `login_name` varchar(50) NOT NULL default '',
-  `password` varchar(255) NOT NULL default '',
-  `first_name` varchar(100) NOT NULL default '',
-  `last_name` varchar(100) default NULL,
-  `email` varchar(255) NOT NULL default '',
-  `is_active` tinyint(1) NOT NULL default '0',
-  `picture` varchar(255) default NULL,
-  `created` int(11) NOT NULL default '0',
-  `changed` int(11) NOT NULL default '0',
-  `last_login` int(11) default NULL,
-  `zipcode` int(11) default NULL,
-  UNIQUE KEY `login_name` (`login_name`),
-  KEY `user_id` (`user_id`),
-  KEY `count_active` (`is_active`),
-  KEY `email` (`email`)
+`user_id` int(11) NOT NULL default '0',
+`login_name` varchar(50) NOT NULL default '',
+`password` varchar(255) NOT NULL default '',
+`first_name` varchar(100) NOT NULL default '',
+`last_name` varchar(100) default NULL,
+`email` varchar(255) NOT NULL default '',
+`is_active` tinyint(1) NOT NULL default '0',
+`picture` varchar(255) default NULL,
+`created` int(11) NOT NULL default '0',
+`changed` int(11) NOT NULL default '0',
+`last_login` int(11) default NULL,
+`zipcode` int(11) default NULL,
+UNIQUE KEY `login_name` (`login_name`),
+KEY `user_id` (`user_id`),
+KEY `count_active` (`is_active`),
+KEY `email` (`email`)
 ) TYPE=MyISAM;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'PeepAgg', 'admin@peepagg.com', 1, NULL, 1247499193, 1247499193, 1247499193, NULL);
+INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '', '', 'Admin', 'PeepAgg', '', 1, NULL, 1249785962, 1249785962, 1249785962, NULL);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `users_online`
 --
+
 -- Creation: Jul 13, 2009 at 05:30 PM
 -- Last update: Jul 13, 2009 at 05:33 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `users_online` (
-  `user_id` int(11) default NULL,
-  `timestamp` int(11) default NULL,
-  UNIQUE KEY `user_id` (`user_id`),
-  KEY `login_order` (`timestamp`),
-  KEY `timestamp` (`timestamp`)
+`user_id` int(11) default NULL,
+`timestamp` int(11) default NULL,
+UNIQUE KEY `user_id` (`user_id`),
+KEY `login_order` (`timestamp`),
+KEY `timestamp` (`timestamp`)
 ) TYPE=MyISAM;
 
 --
 -- Dumping data for table `users_online`
 --
-
 
 -- --------------------------------------------------------
 
@@ -3023,11 +3020,12 @@ CREATE TABLE IF NOT EXISTS `users_online` (
 -- Last update: Jul 13, 2009 at 05:33 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `users_roles` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(2) NOT NULL default '-1',
-  `extra` varchar(8048) NOT NULL default 'a:3:{s:4:"user";b:0;s:7:"network";b:1;s:6:"groups";a:0:{}}',
-  KEY `user_id` (`user_id`)
+`user_id` int(11) NOT NULL,
+`role_id` int(2) NOT NULL default '-1',
+`extra` varchar(8048) NOT NULL default 'a:3:{s:4:"user";b:0;s:7:"network";b:1;s:6:"groups";a:0:{}}',
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM;
 
 --
@@ -3046,21 +3044,21 @@ INSERT INTO `users_roles` (`user_id`, `role_id`, `extra`) VALUES
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `user_contact` (
-  `id` int(11) NOT NULL auto_increment,
-  `user_id` int(11) NOT NULL,
-  `contact_name` varchar(128) NOT NULL,
-  `contact_email` varchar(128) NOT NULL,
-  `contact_extra` text NOT NULL,
-  `contact_type` varchar(64) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `user_id` (`user_id`)
+`id` int(11) NOT NULL auto_increment,
+`user_id` int(11) NOT NULL,
+`contact_name` varchar(128) NOT NULL,
+`contact_email` varchar(128) NOT NULL,
+`contact_extra` text NOT NULL,
+`contact_type` varchar(64) NOT NULL,
+PRIMARY KEY  (`id`),
+KEY `user_id` (`user_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `user_contact`
 --
-
 
 -- --------------------------------------------------------
 
@@ -3071,21 +3069,21 @@ CREATE TABLE IF NOT EXISTS `user_contact` (
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `user_email_history` (
-  `user_id` int(11) NOT NULL,
-  `timestamp` datetime NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `remote_ip` char(15) default NULL,
-  `all_remote_ips` varchar(255) default NULL,
-  PRIMARY KEY  (`user_id`,`timestamp`)
+`user_id` int(11) NOT NULL,
+`timestamp` datetime NOT NULL,
+`email` varchar(255) NOT NULL,
+`remote_ip` char(15) default NULL,
+`all_remote_ips` varchar(255) default NULL,
+PRIMARY KEY  (`user_id`,`timestamp`)
 ) TYPE=MyISAM;
 
 --
 -- Dumping data for table `user_email_history`
 --
-
-
 -- --------------------------------------------------------
+
 
 --
 -- Table structure for table `user_feed`
@@ -3094,12 +3092,15 @@ CREATE TABLE IF NOT EXISTS `user_email_history` (
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
+
+
 CREATE TABLE IF NOT EXISTS `user_feed` (
-  `user_id` int(11) NOT NULL default '0',
-  `feed_id` int(11) NOT NULL default '0',
-  KEY `feed_to_user` (`feed_id`,`user_id`),
-  KEY `user_to_feed` (`user_id`,`feed_id`)
+`user_id` int(11) NOT NULL default '0',
+`feed_id` int(11) NOT NULL default '0',
+KEY `feed_to_user` (`feed_id`,`user_id`),
+KEY `user_to_feed` (`user_id`,`feed_id`)
 ) TYPE=MyISAM;
+
 
 --
 -- Dumping data for table `user_feed`
@@ -3115,27 +3116,26 @@ CREATE TABLE IF NOT EXISTS `user_feed` (
 -- Last update: Jul 13, 2009 at 05:33 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `user_message_folder` (
-  `index_id` int(11) NOT NULL auto_increment,
-  `mid` int(11) NOT NULL default '0',
-  `fid` int(11) NOT NULL default '0',
-  `new_msg` tinyint(1) NOT NULL default '0',
-  `reply` tinyint(1) NOT NULL default '0',
-  `forward` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`index_id`),
-  KEY `fid` (`fid`),
-  KEY `mid` (`mid`)
+`index_id` int(11) NOT NULL auto_increment,
+`mid` int(11) NOT NULL default '0',
+`fid` int(11) NOT NULL default '0',
+`new_msg` tinyint(1) NOT NULL default '0',
+`reply` tinyint(1) NOT NULL default '0',
+`forward` tinyint(1) NOT NULL default '0',
+PRIMARY KEY  (`index_id`),
+KEY `fid` (`fid`),
+KEY `mid` (`mid`)
 ) TYPE=MyISAM  AUTO_INCREMENT=3 ;
+
 
 --
 -- Dumping data for table `user_message_folder`
 --
 
-INSERT INTO `user_message_folder` (`index_id`, `mid`, `fid`, `new_msg`, `reply`, `forward`) VALUES
-(1, 1, 1, 1, 0, 0),
-(2, 1, 2, 1, 0, 0);
-
 -- --------------------------------------------------------
+
 
 --
 -- Table structure for table `user_popularity`
@@ -3144,11 +3144,12 @@ INSERT INTO `user_message_folder` (`index_id`, `mid`, `fid`, `new_msg`, `reply`,
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `user_popularity` (
-  `user_id` int(11) NOT NULL,
-  `popularity` int(11) NOT NULL,
-  `time` int(11) NOT NULL,
-  PRIMARY KEY  (`user_id`)
+`user_id` int(11) NOT NULL,
+`popularity` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+PRIMARY KEY  (`user_id`)
 ) TYPE=MyISAM;
 
 --
@@ -3158,6 +3159,7 @@ CREATE TABLE IF NOT EXISTS `user_popularity` (
 
 -- --------------------------------------------------------
 
+
 --
 -- Table structure for table `user_profile_data`
 --
@@ -3165,19 +3167,22 @@ CREATE TABLE IF NOT EXISTS `user_popularity` (
 -- Last update: Jul 13, 2009 at 05:33 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `user_profile_data` (
-  `user_id` int(11) NOT NULL default '0',
-  `field_name` varchar(255) NOT NULL default '',
-  `field_value` text,
-  `field_type` varchar(255) NOT NULL default '',
-  `field_perm` int(2) NOT NULL default '0',
-  `seq` int(3) unsigned zerofill default NULL,
-  KEY `profile_fields_seq` (`user_id`,`field_type`(32),`field_name`(32),`seq`)
+`user_id` int(11) NOT NULL default '0',
+`field_name` varchar(255) NOT NULL default '',
+`field_value` text,
+`field_type` varchar(255) NOT NULL default '',
+`field_perm` int(2) NOT NULL default '0',
+`seq` int(3) unsigned zerofill default NULL,
+KEY `profile_fields_seq` (`user_id`,`field_type`(32),`field_name`(32),`seq`)
 ) TYPE=MyISAM;
+
 
 --
 -- Dumping data for table `user_profile_data`
 --
+
 
 INSERT INTO `user_profile_data` (`user_id`, `field_name`, `field_value`, `field_type`, `field_perm`, `seq`) VALUES
 (1, 'settings', 'a:10:{s:17:"invitation_accept";a:3:{s:7:"caption";s:44:"join network invitations have been accepted.";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:19:"invite_accept_group";a:3:{s:7:"caption";s:42:"join group invitations have been accepted.";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:38:"relationship_created_with_other_member";a:3:{s:7:"caption";s:56:"someone has made them a friend or other kind of relation";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:24:"someone_join_their_group";a:3:{s:7:"caption";s:39:"someone has joined a group they created";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:19:"friend_request_sent";a:3:{s:7:"caption";s:38:"someone has sent them a friend request";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:23:"friend_request_approved";a:3:{s:7:"caption";s:39:"someone has approve your friend request";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:21:"friend_request_denial";a:3:{s:7:"caption";s:37:"someone has denied to be their friend";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:13:"bulletin_sent";a:3:{s:7:"caption";s:36:"network operator has sent a bulletin";s:5:"value";s:1:"0";s:13:"user_settable";s:1:"1";}s:15:"welcome_message";a:3:{s:7:"caption";s:15:"Welcome message";s:5:"value";s:1:"1";s:13:"user_settable";N;}s:17:"msg_waiting_blink";s:1:"0";}', 'notifications', 0, NULL),
@@ -3197,7 +3202,9 @@ INSERT INTO `user_profile_data` (`user_id`, `field_name`, `field_value`, `field_
 (1, 'user_caption_image', 'bay.jpg', '1', 0, NULL),
 (1, 'time_spent', '27', '5', 0, NULL);
 
+
 -- --------------------------------------------------------
+
 
 --
 -- Table structure for table `User_seq`
@@ -3207,8 +3214,8 @@ INSERT INTO `user_profile_data` (`user_id`, `field_name`, `field_value`, `field_
 --
 
 CREATE TABLE IF NOT EXISTS `User_seq` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  PRIMARY KEY  (`id`)
+`id` int(10) unsigned NOT NULL auto_increment,
+PRIMARY KEY  (`id`)
 ) TYPE=MyISAM  AUTO_INCREMENT=2 ;
 
 --
@@ -3220,6 +3227,7 @@ INSERT INTO `User_seq` (`id`) VALUES
 
 -- --------------------------------------------------------
 
+
 --
 -- Table structure for table `videos`
 --
@@ -3227,14 +3235,14 @@ INSERT INTO `User_seq` (`id`) VALUES
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
+
 CREATE TABLE IF NOT EXISTS `videos` (
-  `content_id` int(11) NOT NULL default '0',
-  `video_file` varchar(255) NOT NULL default '',
-  `video_perm` int(2) NOT NULL default '0',
-  PRIMARY KEY  (`content_id`)
+`content_id` int(11) NOT NULL default '0',
+`video_file` varchar(255) NOT NULL default '',
+`video_perm` int(2) NOT NULL default '0',
+PRIMARY KEY  (`content_id`)
 ) TYPE=MyISAM;
 
 --
 -- Dumping data for table `videos`
 --
-

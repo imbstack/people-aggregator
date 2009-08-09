@@ -4,6 +4,7 @@ require_once "HTTP/Client.php";
 class InstallTests
 {
     private $writable_dirs = array('log', 'networks', 'web/files', 'web/cache', 'web/sb-files', 'web/config');
+    private $writable_files = array('web/install/PeepAgg.mysql');
     private $test_type;
     private $test_data;
     public $error;
@@ -179,6 +180,20 @@ class InstallTests
             else
             {
                 $this->note("The <code>$d</code> directory does not appear to be writable.  If you are on Linux, you can fix this with: <br><code>chmod -R a+w $full_path</code>", 'error');
+            }
+        }
+
+        // check that various files are writable
+        foreach ($this->writable_files as $file)
+        {
+            $full_path = PA::$project_dir . "/$file";
+            if (is_writable($full_path))
+            {
+                $this->note("The <code>$file</code> file is writable.", 'ok');
+            }
+            else
+            {
+                $this->note("The <code>$file</code> file does not appear to be writable.  If you are on Linux, you can fix this with: <br><code>chmod -R a+w $full_path</code>", 'error');
             }
         }
 

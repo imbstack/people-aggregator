@@ -170,30 +170,10 @@ class RegistrationPage {
       $activation_url = PA::$url.'/mail_action.php?action=activate&token='.$token.$invitation;
       PAMail::send("activate_account", $this->reg_user->newuser, PA::$network_info, array('account.activation_url' => $activation_url));
 
-/* - Replaced with new PANotify code
-
-      $name = $user->login_name;
-      $activation_url = PA::$url.'/mail_action.php?action=activate&token='.$token.$invitation;
-      $subject = 'Hi '.$this->reg_user->newuser->login_name .'!  Please activate your '.PA::$site_name.' account.';
-      $message = __("Hi ").$name.", \n ".__("Activate your ").PA::$site_name. __(" account by clicking the following link:")." \n <a href=\"$activation_url\">$activation_url</a>";
-      $to = $this->reg_user->newuser->email;
-      $mail_type = 'activate_account';
-      $array_of_data = array('subject'=>$subject,
-                             'message'=>$message,
-                             'registraint'=>$name,
-                             'activation_url' => "<a href=\"$activation_url\">$activation_url</a>",
-                             'config_site_name'=>PA::$site_name);
-      // send mail
-      $check = pa_mail($to, $mail_type, $array_of_data);
-*/
+      global $app;
       $er_msg = urlencode("Check your email for activation code.");
       $app->redirect(PA::$url . PA_ROUTE_SYSTEM_MESSAGE . "?show_msg=7013&msg_type=info&redirect_url=" . urlencode(PA::$url . '/' . FILE_LOGIN));
 
-      // redirect to home page.
-/*
-      header("Location: ".PA::$url.PA_ROUTE_HOME_PAGE."/msg=7013");
-      exit;
-*/
     } //end if email validation is set
   }
 

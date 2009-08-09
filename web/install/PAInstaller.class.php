@@ -10,11 +10,13 @@ class PAInstaller {
    public  $allow_network_spawning;
    private $steps = array(1 => array('title' => 'License arrangement', 'conf_section' => null, 'curr_status' => false),
                           2 => array('title' => 'Installation requirements test', 'conf_section' => null, 'curr_status' => false),
-                          3 => array('title' => 'Database settings', 'conf_section' => 'database', 'curr_status' => false),
-                          4 => array('title' => 'Populating the Database', 'conf_section' => null, 'curr_status' => false),
+                          3 => array('title' => 'Setup Administrator account', 'conf_section' => null, 'curr_status' => false),
+                          4 => array('title' => 'Database settings', 'conf_section' => 'database', 'curr_status' => false),
+                          5 => array('title' => 'Populating the Database', 'conf_section' => null, 'curr_status' => false),
                     );
 
    private $curr_step = 0;
+   private $adm_data;
 
    public function __construct() {
       $this->config = array();
@@ -86,7 +88,7 @@ class PAInstaller {
       </div>
       </center>";
       $nav = "
-              <a onclick=\"if(document.getElementById('pa_inst_accept').checked==true) return true; else {alert('You did not accept the license terms. You can not continue the installation.'); return false;} \"class='bt next' href='?step=" . (($this->curr_step < 4) ? $this->curr_step+1 : $this->curr_step) . "' alt='next'></a>
+              <a onclick=\"if(document.getElementById('pa_inst_accept').checked==true) return true; else {alert('You did not accept the license terms. You can not continue the installation.'); return false;} \"class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $this->curr_step) . "' alt='next'></a>
        ";
 
       $data = array('message' => '',
@@ -119,7 +121,7 @@ class PAInstaller {
       $_SESSION['installer'] = serialize($this);
       $nav = "
               <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
-              <a class='bt next' href='?step=" . (($this->curr_step < 4) ? $this->curr_step+1 : $step) . "' alt='next'></a>
+              <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
       ";
       $data = array('message' => array('msg' => __('Please wait...'), 'class' => 'msg_warn'),
                     'title' => $params['title'],
@@ -129,7 +131,116 @@ class PAInstaller {
       return $data;
    }
 
-   private function GET_step_3($params) {
+   private function GET_step_3($params, $is_post = false) {
+     global $app;
+
+      if($this->error)
+         return $this->msg_unable_to_continue($params);
+
+      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
+      $rexp = "INSERT\sINTO\s\`users\`\s\([^\)]+\)\sVALUES\s\(([^\)]+)\)";
+      list($succ, $txt_line, $adm_data) = $this->findLine($fileName, $rexp);
+      if(!$succ) {
+        $this->error = true;
+        $params['message']['msg'] = __("Installer is unable to read \"$fileName\" file.");
+        $params['message']['class'] = 'msg_err';
+        return $this->msg_unable_to_continue($params);
+      }
+      $adm_data = explode(",", $adm_data);
+      $form = new PAForm('pa_inst');
+      $form->openTag('fieldset');
+      $form->addContentTag('legend', array('value' => 'Admin account details'));
+      $form->addHtml('<div>');
+      $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account.').'</p>');
+      $form->addInputField('text', __('Admin username'),
+                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : trim($adm_data[1], "'\t ")))
+      );
+      $form->addInputField('text', __('Admin password'),
+                             array('id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
+      );
+      $form->addInputField('text', __('Admin email'),
+                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
+      );
+      $form->addHtml('</div>');
+      $form->closeTag('fieldset');
+      $html = $form->getHtml();
+      $nav  = "<a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>";
+      if(!$is_post) {
+         $nav .= "<a class='bt submit' href='#' alt='submit' onclick='document.forms[\"pa_inst\"].submit();'></a>";
+      } else {
+         $nav .= "<a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>";
+      }
+      $data = array('message' => (!empty($params['message'])) ? $params['message'] :'',
+                    'title' => $params['title'],
+                    'step'  => $this->curr_step,
+                    'navig' => $nav,
+                    'content' => $html);
+      return $data;
+   }
+
+   private function POST_step_3($params) {
+     global $app;
+     require_once "api/Validation/Validation.php";
+
+     $form_data = $this->form_data;
+     $error = false;
+     $errors = array();
+
+     if(!Validation::validate_auth_id($form_data['admin_username']) || empty($form_data['admin_username'])) {
+       $error = true;
+       $errors[] = __("Invalid or empty user name.");
+     }
+     if(strlen($form_data['admin_password']) < MIN_PASSWORD_LENGTH) {
+       $error = true;
+       $errors[] = sprintf(__("Your password must be at least %d characters long."), MIN_PASSWORD_LENGTH);
+     }
+     if(strlen($form_data['admin_password']) > MAX_PASSWORD_LENGTH) {
+       $error = true;
+       $errors[] = sprintf(__("Your password can not be longer than %d characters."), MAX_PASSWORD_LENGTH);
+     }
+     if(!Validation::validate_email($form_data['admin_email']) || empty($form_data['admin_email'])) {
+       $error = true;
+       $errors[] = __("Invalid or empty email field.");
+     }
+     if($error) {
+      $params['message']['msg'] = implode("<br />", $errors);
+      $params['message']['class'] = 'msg_err';
+      return $this->GET_step_3($params);
+     }
+
+     $adm_login = $form_data['admin_username'];
+     $adm_pass  = $form_data['admin_password'];
+     $adm_mail  = $form_data['admin_email'];
+
+     $fileName = getShadowedPath("web/install/PeepAgg.mysql");
+     $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
+     $newLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '$adm_login', '".md5($adm_pass)."', 'Admin', 'PeepAgg', '$adm_mail', 1, NULL, ".time().", ".time().", ".time().", NULL);";
+
+     if($this->replaceLine($fileName, $oldLine, $newLine)) {
+      $params['message']['msg'] = __("Administrator account data sucessfully stored. Click 'Next' please...");
+      $params['message']['class'] = 'msg_info';
+      $this->adm_data['login_name'] = $adm_login;
+      $this->adm_data['password'] = $adm_pass;
+      $_SESSION['installer'] = serialize($this);
+      return $this->GET_step_3($params, true);
+     } else {
+      $params['message']['msg'] = __("Installer is unable to store administrator account data...Please, check file permissions for \"$fileName\" file.");
+      $params['message']['class'] = 'msg_err';
+      $this->error = true;
+      return $this->GET_step_3($params);
+     }
+
+/*
+      $data = array('message' => $params['message'],
+                    'title' => $params['title'],
+                    'step'  => $this->curr_step,
+                    'navig' => $nav,
+                    'content' => $html);
+*/
+
+   }
+
+   private function GET_step_4($params) {
      global $app;
 
       if($this->error)
@@ -170,7 +281,7 @@ class PAInstaller {
       return $data;
    }
 
-   private function POST_step_3($params) {
+   private function POST_step_4($params) {
       $db_data = $this->form_data;
       $db_sect = $this->form_data['section_name'];
       unset($db_data['section_name']);
@@ -179,7 +290,7 @@ class PAInstaller {
 
       $nav = "
               <a class='bt back' href='?step=" . $this->curr_step . "' alt='previous'></a>
-              <a class='bt next' href='?step=" . (($this->curr_step < 4) ? $this->curr_step+1 : $step) . "' alt='next'></a>
+              <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
       ";
       $data = array('message' => array('msg' => __('Please wait, trying to connect to the database.'), 'class' => 'msg_warn'),
                     'title' => __('Creating the Database'),
@@ -189,18 +300,17 @@ class PAInstaller {
       return $data;
    }
 
-   private function GET_step_4($params) {
+   private function GET_step_5($params) {
       if($this->error)
          return $this->msg_unable_to_continue($params);
       $this->updateSettings();
 
       $msg = "<p class='msg_info'>Congratulations. You have successfully installed People Aggregator.<br /><br />".
-             "Your initially assigned administrator user name: <b>admin</b><br />".
-             "Your initially assigned administrator password: <b>admin</b><br /><br />".
-             "For security reasons, change your initially assigned administrator password and be sure to delete your installation directory: \"pacore/web/install\". ".
-             "If you want to re-install People Aggregator application, replace your \"pacore/web/config/AppConfig.xml\" ".
-             "configuration file with a fresh copy from the installation archive and installation process ".
-             "will run again.<br /><br />" .
+             "Administrator user name: <b>" . $this->adm_data['login_name'] . "</b><br />".
+             "Administrator password: <b>" . $this->adm_data['password'] . "</b><br /><br />".
+             "<b>For security reasons, change your initially assigned administrator password and be sure to delete your installation directory: \"pacore/web/install\"</b>. ".
+             "If you want to re-install People Aggregator application, make backup of your \"pacore/web/config/AppConfig.xml\" ".
+             "configuration file and delete it. Then reload page in your browser and installation process will run again.<br /><br />" .
              "<center>Click <a href=\"". PA_BASE_URL . PA_ROUTE_HOME_PAGE . "\"><b>here</b></a> to continue.</center></p>";
 
       $data = array('message' => array('msg' => $msg, 'class' => 'msg_info'),
@@ -232,7 +342,7 @@ class PAInstaller {
        $nav  = "
               <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
        ";
-       $data = array('message' => array('msg' => $msg, 'class' => 'msg_err'),
+       $data = array('message' => array('msg' => $msg . ((!empty($params['message']['msg'])) ? "\nDetails: {$params['message']['msg']}" : ''), 'class' => 'msg_err'),
                     'title' => $params['title'],
                     'step'  => $this->curr_step,
                     'navig' => $nav,
@@ -273,6 +383,40 @@ class PAInstaller {
       $form->addInputTag('hidden', array('id' => 'section_name', 'value' => $section_name));
       $form->addHtml('</div>');
       return $form->getHtml();
+   }
+
+   private function replaceLine($fileName, $oldLine, $newLine) {
+    $lines = @file($fileName, FILE_IGNORE_NEW_LINES);
+    if(count($lines) <= 1) return false;
+    foreach($lines as &$line) {
+      $line = trim($line);
+    }
+    for($i = 0; $i < count($lines); ++$i) {
+       if(false !== strpos($lines[$i] , $oldLine)) {
+         $lines[$i] = $newLine;
+         $f = @fopen($fileName, 'w');
+         if(is_resource($f)) {
+           fwrite($f, implode(LINE_BREAK, $lines));
+           fclose($f);
+           return true;
+         }
+         return false;
+       }
+     }
+     return false;
+   }
+
+   private function findLine($fileName, $rexp) {
+     $lines = @file($fileName);
+//echo "$fileName, $rexp<pre>" . print_r($lines,1) . "</pre>"; die();
+     $matches = array();
+     if(count($lines) <= 1) return array(false, null, null);
+     for($i = 0; $i < count($lines); ++$i) {
+       if(preg_match("/$rexp/", $lines[$i], $matches)) {
+         return array(true, $lines[$i], $matches[1]);
+       }
+     }
+     return array(false, null, null);
    }
 
    private function formData($varname) {
