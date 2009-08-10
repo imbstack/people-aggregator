@@ -21,7 +21,7 @@ $mail_testing_callback = NULL; // see pa_mail() for usage
     $subject = @$email_data['subject']; 
     $message = @$email_data['message'];
     // patching up message and subject in the email container
-    $email_container = & new Template('web/Themes/Default/email_container/'.$container_html);
+    $email_container = & new Template('web/config/email_containers/'.$container_html);
     $email_container ->set('subject', $subject);
     $email_container ->set('message', $message);
     // actual message to be sent through the mail
@@ -58,7 +58,7 @@ $mail_testing_callback = NULL; // see pa_mail() for usage
     }    
     // patching up message and subject in the email container
     if (!empty($container_html)) {
-      $email_container = & new Template('web/Themes/Default/email_container/'.$container_html);
+      $email_container = & new Template('web/config/email_containers/'.$container_html);
       $email_container ->set('subject', $subject);
       $email_container ->set('message', $message);
       // actual message to be sent through the mail

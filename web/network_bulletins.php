@@ -34,35 +34,35 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
     // if no destination is selected
     $error_msg .= 'Please specify atleast one destination';
   }
-  if (!$error_msg) { // if no errors yet    
+  if (!$error_msg) { // if no errors yet
     $subject = $_POST['title'];
     $bull_message = $_POST['bulletin_body'];
     $from = (int)$_SESSION['user']['id'];
-    
-    if (PA::$network_info) { // getting network's users    
+
+    if (PA::$network_info) { // getting network's users
       $param = array('network_id'=>PA::$network_info->network_id,'neglect_owner' =>FALSE);
       $to_member = Network::get_members($param);
-    } 
+    }
     if (!empty($to_member)) { // if member exists
       $no_reg_user = FALSE;
 
-/*  - Replaced with new PANotify code     
+/*  - Replaced with new PANotify code
 
       $owner_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
       $mail_subject = 'People Aggregator - '.PA::$network_info->name .' network\'s owner has sent you a bulletin';
       $mail_message = $subject .'<br /><br />'. $bull_message;
 */
-      foreach($to_member['users_data'] as $recipient) { 
+      foreach($to_member['users_data'] as $recipient) {
         PANotify::send("bulletin_sent", $recipient['user_obj'], PA::$network_info, array('bulletin.message' => $bull_message));
       }
 
-/*  - Replaced with new PANotify code        
+/*  - Replaced with new PANotify code
 
       $array_of_data = array('user_id'=>$user->user_id,'subject'=>$mail_subject,'message'=>$mail_message,'owner_image'=>$owner_image, 'user_name'=>$user->first_name, 'config_site_name'=>PA::$site_name);
-      
+
       $net_owner = new User();
       $net_owner->load((int)PA::$network_info->owner_id);
-      
+
       if (!empty($_POST['inbox'])) { // posting the bulletin to Inbox
           $count_user = $to_member['total_users'];
           $multiple_recipient = "";
@@ -78,14 +78,14 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
                 Message::add_message($from, null, $to_name, $mail_subject, $mail_message);
               } catch (PAException $e) {
                 // catch Nothing
-                // This block of code is added, so that if folder isn't exist for 
+                // This block of code is added, so that if folder isn't exist for
                 // a user, then it skipped that user
                 // and continue to send bulletin to other users.
               }
               $my_messages_url = '<a href="' . PA::$url.'/'.FILE_MYMESSAGE . '">' . PA::$url.'/'.FILE_MYMESSAGE .'</a>';
               $_sender_url = url_for('user_blog', array('login'=>$user->login_name));
               $sender_url = "<a href=\"$_sender_url\">$_sender_url</a>";
-              
+
               $params = array(
               'first_name_sender' => $user->login_name,
               'first_name_recipient' => $to_user['login_name'],
@@ -102,11 +102,11 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
           }
       }
       if (!empty($_POST['mail'])) { // posting the bulletin to registered email
-        for ($i = 0; $i < count($to_member['users_data']); $i++ ) { 
+        for ($i = 0; $i < count($to_member['users_data']); $i++ ) {
           $to_uid = $to_member['users_data'][$i]['user_id'];
-          $user_profile = User::load_user_profile($to_uid, $to_uid, 'notifications'); 
+          $user_profile = User::load_user_profile($to_uid, $to_uid, 'notifications');
           if (!empty($user_profile)) {
-            $notify = unserialize($user_profile[0]['value']); 
+            $notify = unserialize($user_profile[0]['value']);
             $destination = $notify['bulletin_sent']['value'];
             if ($destination == NET_EMAIL || $destination == NET_BOTH) {
               $inv_user_email = $to_member['users_data'][$i]['email'];
@@ -118,10 +118,10 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
               }
             }
           }
-        }  
+        }
       }
-*/      
-    }  
+*/
+    }
     else { // else no registered member
       if ($_POST['inbox'] == 1 || $_POST['mail'] == 1) {
         $no_reg_user = TRUE;
@@ -139,9 +139,9 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
             $terms[] = $tr;
           }
         }
-      } 
+      }
       try {
-        
+
         $post_subject = "Network's owner bulletin - " . $_POST['title'];
         $post_message = $_POST['bulletin_body'];
         $res = BlogPost::save_blogpost(0, $from, $post_subject, $post_message, '', $terms, 0, $is_active = ACTIVE , $user->email);
@@ -151,15 +151,15 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
       if(!empty($res['cid'])) {
         $content_obj = Content::load_content((int)$res['cid']);
         PANotify::send("content_posted_to_comm_blog", PA::$network_info, $user, $content_obj);
-      }     
-/*  - Replaced with new PANotify code      
+      }
+/*  - Replaced with new PANotify code
 
       $permalink_cid = $res['cid'];
       $content_author_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-      $params['recipient_username'] = $net_owner->login_name; 
-      $params['recipient_firstname'] = $net_owner->first_name; 
-      $params['recipient_lastname'] = $net_owner->last_name; 
-      $params['cid'] = $permalink_cid;  
+      $params['recipient_username'] = $net_owner->login_name;
+      $params['recipient_firstname'] = $net_owner->first_name;
+      $params['recipient_lastname'] = $net_owner->last_name;
+      $params['cid'] = $permalink_cid;
       $params['first_name'] = $user->first_name;
       $params['user_id'] = $user->user_id;
       $params['user_image'] = $content_author_image;
@@ -171,22 +171,22 @@ if (!empty($_POST['bulletins']) && !$error) { // if no error and form is submitt
       $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT .'</a>';
       // send notification to owner, as a content is being posted to comm. blog
       auto_email_notification('content_posted_to_comm_blog', $params);
-*/      
+*/
     }
     if ($no_reg_user == TRUE) {
       $error_msg .= "No registered member in this network";
     }
     else {
       $error_msg .= " Bulletin has been sent ";
-    }              
-  }  
+    }
+  }
 } else if (@$_POST['preview']) { // if preview is selected.
   filter_all_post($_POST);
   $subject = $_POST['title'];
   $bull_message = nl2br($_POST['bulletin_body']);
   // say $container_html is '/default_email_container.tpl'
   $container_html = 'default_email_container.tpl';
-  $email_container = & new Template('web/Themes/Default/email_container/'.$container_html);
+  $email_container = & new Template('web/config/email_containers/'.$container_html);
   $email_container->set('subject', $subject);
   $email_container->set('message', $bull_message);
   $preview_msg = $email_container->fetch();
@@ -219,7 +219,7 @@ function setup_module($column, $module, $obj) {
 }
   $page = new PageRenderer("setup_module", PAGE_NETWORK_BULLETINS, "Network Bulletins", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
 
-  if (!empty($error_msg)) {  
+  if (!empty($error_msg)) {
   $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $error_msg);
   $m = $msg_tpl->fetch();
@@ -240,5 +240,5 @@ if (!empty($css_data['newcss']['value'])) {
   $page->add_header_html($css_data);
 }
 
-echo $page->render();  
+echo $page->render();
 ?>
