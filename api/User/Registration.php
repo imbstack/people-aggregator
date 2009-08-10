@@ -444,12 +444,11 @@ class User_Registration {
   }
 
   public static function add_default_links($user_id) {
-    global  $network_info;
     require_once "ext/NetworkLinks/NetworkLinks.php";
     require_once "api/Links/Links.php";
     $network_links = new NetworkLinks();
 
-    $network_owner_id = ($network_info->type == MOTHER_NETWORK_TYPE) ? SUPER_USER_ID : Network::get_network_owner($network_info->network_id);
+    $network_owner_id = (PA::$network_info->type == MOTHER_NETWORK_TYPE) ? SUPER_USER_ID : Network::get_network_owner(PA::$network_info->network_id);
 
     $condition = array('user_id'=> $network_owner_id, 'is_active'=> 1);
     $link_categories = $network_links->load_category($condition); // load category as set by network operator
@@ -485,9 +484,8 @@ class User_Registration {
 
   // This function provides a default blog to user
   public static function add_default_blog($user_id) {
-    global $network_info;
     require_once "ext/BlogPost/BlogPost.php";
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     if ($extra['user_defaults']['default_blog'] != NET_NO) {
       // if network operator has set a default blog
       $net_extra_blog_id = (int)$extra['user_defaults']['default_blog'];
@@ -505,7 +503,7 @@ class User_Registration {
   }
   public function add_default_header($user_id) {
     global $network_info;
-    $extra = unserialize($network_info->extra);
+    $extra = unserialize(PA::$network_info->extra);
     // check value's of network header, network option , network display for User
     // Now save all these value in network's User
     $header_image = $extra['user_defaults']['desktop_image']['name'];
