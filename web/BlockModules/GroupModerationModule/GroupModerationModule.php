@@ -109,6 +109,7 @@ class GroupModerationModule extends Module {
    **/
 
   private function get_links() {
+    $this->Paging["querystring"] = "view=members&gid=$this->set_id";
     $Group = new Group();
     $Group->collection_id = $this->set_id;
     $Group->is_active = 1;
@@ -150,6 +151,8 @@ class GroupModerationModule extends Module {
     $inner_html_gen->set('page_prev', $this->page_prev);
     $inner_html_gen->set('page_next', $this->page_next);
     $inner_html_gen->set('page_links', $this->page_links);
+    $inner_html_gen->set('page_first', $this->page_first);
+    $inner_html_gen->set('page_last', $this->page_last);
     $inner_html_gen->set('group_id', $this->set_id);
     $inner_html_gen->set('div_visible_for_moderation', $this->view);
 
