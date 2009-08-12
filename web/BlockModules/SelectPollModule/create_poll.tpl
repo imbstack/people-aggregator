@@ -9,6 +9,7 @@
 <div class="field_medium">
   <h4><label for="option"><span class="required"> * </span><?= __("Number Of Options") ?>:</label></h4>
   <select name="num_option" onchange="javascript: ajax_method_poll_options();" id="num_pollid">
+  	<option value=""></option>
     <?php for($i=2;$i<=8;$i++) {?>
       <option value="<?=$i?>"><?php echo $i;?></option>
     <?php }?>

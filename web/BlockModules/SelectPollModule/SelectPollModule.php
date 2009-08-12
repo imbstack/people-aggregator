@@ -28,15 +28,6 @@ class SelectPollModule extends Module {
 
   public function initializeModule($request_method, $request_data) {
     if (empty(PA::$login_uid)) return 'skip';
-/*    
-    if (empty($this->shared_data['configure_permission'])) {
-      $this->message = __('Sorry! you are not authorized to view the content of this page.');
-      $this->redirect2 = NULL;
-      $this->isError = TRUE;
-      $this->setWebPageMessage();
-      return 'skip';
-    }
-*/    
     if (!empty($request_data['type'])) { 
       $this->mode = htmlspecialchars($request_data['type']);
     }
@@ -100,7 +91,7 @@ class SelectPollModule extends Module {
       $obj->is_active = INACTIVE;
       $obj->save_poll();
       $this->message = __('Poll has been created successfully.');
-      $this->redirect2 = PA_ROUTE_HOME_PAGE;
+      $this->redirect2 = PA::$url.PA_ROUTE_CONFIG_POLL."?type=select"; //PA_ROUTE_HOME_PAGE; // <-- wtf was this going to the homepage??
       $this->queryString = NULL;
       $this->isError = FALSE;
       $this->setWebPageMessage();
