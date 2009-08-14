@@ -58,7 +58,7 @@ return type : true
 */
 
 function route2groups() {
-  global $user, PA::$network_info, $is_edit;
+  global $user, $is_edit;
   $extra = unserialize(PA::$network_info->extra);
   $tags = preg_split('/\s*,\s*/' , strtolower($_POST['tags']));
   $tags = array_unique($tags);
@@ -93,23 +93,6 @@ function route2groups() {
         $res = BlogPost::save_blogpost(0, PA::$login_uid, $_POST['blog_title'], $_POST['description'], NULL, $terms, $gid, $is_active = 1, $display_on_homepage);
         $permalink_cid = $res['cid'];
 
-/*  - Replaced with new PANotify code
-
-        $content_author_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-        $params['cid'] = $permalink_cid;
-        $params['first_name'] = $user->first_name;
-        $params['user_id'] = $user->user_id;
-        $params['user_image'] = $content_author_image;
-        $params['content_title'] = $_POST["blog_title"];
-        $params['network_name'] = PA::$network_info->name;
-        $params['network_owner_name'] = $net_owner->first_name;
-        $params['content_url'] = '<a href="' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid . $login_required_str.'">' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid .'</a>';
-        $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT .'</a>';
-        auto_email_notification('content_posted', $params);
-        if ($display_on_homepage == DISPLAY_ON_HOMEPAGE) {
-          auto_email_notification('content_posted_to_comm_blog', $params);
-        }
-*/
 
 // NOTE: would this notification message be sent for each group ???
         $content_obj = Content::load_content((int)$permalink_cid);
@@ -149,23 +132,6 @@ function route2groups() {
         $res = BlogPost::save_blogpost(0, PA::$login_uid, $_POST['blog_title'], $_POST['description'], NULL, $terms, $gid, $is_active = 1, $display_on_homepage);
         $permalink_cid = $res['cid'];
 
-/*  - Replaced with new PANotify code
-
-        $content_author_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-        $params['cid'] = $permalink_cid;
-        $params['first_name'] = $user->first_name;
-        $params['user_id'] = $user->user_id;
-        $params['user_image'] = $content_author_image;
-        $params['content_title'] = $_POST["blog_title"];
-        $params['network_name'] = PA::$network_info->name;
-        $params['network_owner_name'] = $net_owner->first_name;
-        $params['content_url'] = '<a href="' . PA::$url.PA_ROUTE_CONTENT.'/cid='.$permalink_cid .$login_required_str.'">' . PA::$url . PA_ROUTE_CONTENT . '/cid='.$permalink_cid .'</a>';
-        $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MODERATE_CONTENT .'</a>';
-        auto_email_notification('content_posted', $params);
-        if ($display_on_homepage == DISPLAY_ON_HOMEPAGE) {
-          auto_email_notification('content_posted_to_comm_blog', $params);
-        }
-*/
         $content_obj = Content::load_content((int)$permalink_cid);
         PANotify::send("content_posted", PA::$network_info, $user, $content_obj); // notify network owner (maybe group owner would be better?)
         if($display_on_homepage == DISPLAY_ON_HOMEPAGE) {

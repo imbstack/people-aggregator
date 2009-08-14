@@ -13,10 +13,10 @@ require_once "api/Permissions/PermissionsHandler.class.php";
 // for query count
 global $query_count_on_page;
 $query_count_on_page = 0;
+$error = null;
 
- 
 $parameter = js_includes("all");
-html_header("Media Gallery - PA::$network_info->name", $parameter);
+html_header("Media Gallery - " . PA::$network_info->name, $parameter);
 
 $uid = PA::$login_uid;
 /*  Check for the content author id */
@@ -58,15 +58,15 @@ if(!empty($_GET['cid'])) {
     }
     $show_media->tags = $tags_string;
     // loading content's contentcollection information
-    $cc_info = ContentCollection::load_collection($show_media->parent_collection_id, $_SESSION['user']['id']);
+    $cc_info = ContentCollection::load_collection($show_media->parent_collection_id, PA::$login_uid);
   }
 }
-if ($uid == $_SESSION['user']['id']) {
+if ($uid == PA::$login_uid) {
   $extra = unserialize(PA::$network_info->extra);
   // for edit - group media
   if (isset($_POST['submit_group']) && ($_POST['group_id'])) {
     if ($_POST['media_type'] == 'image') {
-      $module = 'Images'; 
+      $module = 'Images';
       $new_save = new Image();
       if (isset($_POST['image_perm'])) {
         $new_save->file_perm = $_POST['image_perm'];
@@ -184,7 +184,7 @@ if ($uid == $_SESSION['user']['id']) {
       try {
         $new_im_al->save();
         $new_save->parent_collection_id = $new_im_al->collection_id;
-      } 
+      }
       catch(PAException $e) {
         $error = $e->message;
       }
@@ -192,7 +192,7 @@ if ($uid == $_SESSION['user']['id']) {
     else {
       $new_save->parent_collection_id = $_POST['album'];
     }
-    
+
     if(!$error) {
       $condition = array('content_id' => $new_save->content_id);
       $is_active = ACTIVE;
@@ -240,11 +240,11 @@ function setup_module($column, $moduleName, $obj) {
         $obj->uid = $uid;
     break;
 
-    case 'middle':                
+    case 'middle':
         $obj->content_id = $_REQUEST['cid'];
         $obj->mode = PUB;
         $obj->uid = $uid;
-        $obj->media_data = $show_media;        
+        $obj->media_data = $show_media;
         $obj->contentcollection_type = $cc_info->type;
         $obj->author_id = $cc_info->author_id;
    break;
