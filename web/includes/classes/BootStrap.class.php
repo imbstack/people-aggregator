@@ -301,7 +301,7 @@ class BootStrap {
   *
   **/
   public function detectNetwork() {
-
+    global $network_prefix;
     $host = PA_SERVER_NAME;
     // URL to the root of the server.
     $base_url = "http://%network_name%.{$this->domain_suffix}";
@@ -377,6 +377,7 @@ class BootStrap {
     // Finally - Load network!
     PA::$network_info = get_network_info($network_prefix); // NOTE this should be retrieved from network XML config file
     PA::$extra = unserialize(PA::$network_info->extra);
+
   }
 
   public function detectDBSettings() {
