@@ -55,7 +55,6 @@ class MISReportModule extends Module {
   }
   
   function generate_inner_html ($links) {    
-    global PA::$network_info;
     if ($this->market_report == TRUE) { // if marketting report is to be viewed
       $params = NULL;
       $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_market_report.tpl';
