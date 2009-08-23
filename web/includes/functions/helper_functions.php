@@ -305,4 +305,21 @@ function type_cast($object_or_array, $new_classname) {
   }
 }
 
+/**
+  * @author   Zoran Hron
+  * @name     url_decode_all
+  * @brief    This function decode single or array of URL encoded strings
+  * @return   URL decoded string or array of strings
+  *
+  */
+function url_decode_all($str_or_array) {
+  if(!is_array($str_or_array)) {
+     $str_or_array = array($str_or_array);
+  }
+  foreach($str_or_array as $k => &$v) {
+    $v = urldecode($v);
+  }
+  return $str_or_array;
+}
+
 ?>

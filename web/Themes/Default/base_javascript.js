@@ -19,7 +19,7 @@ function private_module_expand_collapse (header_id, content_id, align, configure
 
   if(content_block.style.display == "none") { //alert('hello');
     content_block.style.display = "block";
-    if ((block_type == 'ContentBlock') || (block_type == 'UserProfileBlock')) {      
+    if ((block_type == 'ContentBlock') || (block_type == 'UserProfileBlock')) {
         main_block.style.backgroundImage = "url(/Themes/Alpha/images/header-post-blog-open-long.gif)";
     }
     else {
@@ -143,10 +143,10 @@ function ajax_call_method (event_type_array, uid, ajax_url_array) {
     // var myAjax = new Ajax.Updater(id, url, {method: 'get'});
     // Here $() is the short form of document.getElementById() -->
     // $(id).innerHTML = '<div class="orange-font">loading ...</div>';
-    
+
     // AJAX jQuery way
     // this is ONE chained expression
-// alert(id);    
+// alert(id);
     $('#'+id)
       .html('<div class="orange-font">loading ...</div>')
       .load(url);
@@ -172,7 +172,7 @@ function ajax_call_method_for_sorting (event_type, uid, ajax_url, select_id) {
    var sort_by;
    var selected_index = document.getElementById(select_id).selectedIndex;
    sort_by = document.getElementById(select_id).options[selected_index].value;
-   id = 'list_'+event_type;   
+   id = 'list_'+event_type;
    url = ajax_url+"?sort_by="+sort_by;
    if (trim(uid) != '') {
      url = url+"&uid="+uid;
@@ -185,7 +185,7 @@ function ajax_call_method_for_sorting_group_members (event_type, gid, ajax_url, 
    var sort_by;
    var selected_index = document.getElementById(select_id).selectedIndex;
    sort_by = document.getElementById(select_id).options[selected_index].value;
-   id = 'list_'+event_type;   
+   id = 'list_'+event_type;
    url = ajax_url+"?sort_by="+sort_by;
    if (trim(gid) != '') {
      url = url+"&gid="+gid;
@@ -312,7 +312,7 @@ function get_value_foruserpage(type, uid, base_url, mode) {
     } else {
       redirect_url = base_url + '/myAccount' + '/post_type=' + type;
     }
-  } 
+  }
   window.location = redirect_url;
   return;
 }
@@ -524,7 +524,7 @@ function search_user() {
       else if (document.myform_search.sex[2].checked) {
         n1 = 'all';
       }
-      
+
     }
     else {
       n1 = trim(n.value);
@@ -1105,14 +1105,14 @@ function addElements(identity) {
      data += '</h4>';
      data +='<input type="text" class="text longer" name="firstname[' + total + ']" />';
      data +='</div>';
-     
+
      data += '<div class="field_medium">';
      data += '<h4>';
      data += '<label for="lastname"> Last Name</label>';
      data += '</h4>';
      data +='<input type="text" class="text longer" name="lastname[' + total + ']" />';
      data +='</div>';
-     
+
      data += '<div class="field_medium">';
      data += '<h4>';
      data += '<label for="email"><span class="required"> * </span>Email or Login name</label>';
@@ -1142,28 +1142,28 @@ if (total < 5) {
 
     data ='<div class="field_medium start"><h5><label for="select file">Select a file to upload: or enter a URL below</label></h5>';
     data += '<input name="userfile_' + total + '" type="file" id="select_file" class="text long" value="" /></div>';
-      
+
     if (page_id == 'media_gallery') {
       data += '<div class="field"><h5><label for="file url">Enter the URL of image</label></h5>';
-      data += '<input name="userfile_url_'+ total +'" class="text long" id="file_url" type="text" value="" /></div>'; 
+      data += '<input name="userfile_url_'+ total +'" class="text long" id="file_url" type="text" value="" /></div>';
     }
-      
+
     data += '<div class="field"><h5><label for="image title">Image title</label></h5>';
     data += '<input type="text" name="caption[' + total + ']" value="" class="text long" id="image_title"  /></div>';
-    
+
     data += '<div class="field_big"><h5><label for="description">Description:</label></h5>';
     data += '<textarea id="description" name="body[' + total + ']" rows="3" cols="28"></textarea></div>';
 
     data += '<div class="field_medium"><h5><label for="tags">Tags (Separete tags with commas):</label></h4>';
-     
+
     data += '<input type="text" name="tags[' + total + ']" class="text long" id="tag" value="" maxlength="255" /></div>';
    if (page_id == 'media_gallery') {
-   
+
      data +=' <div class="field_medium end"><div class="center"><h5><label for="select image">Select who can see this image:</label></h5>';
      data += setect_box ;
    }
    data += '</div>';
-    
+
    mydiv.innerHTML = data;
    document.getElementById(identity).appendChild(mydiv);
    total++;
@@ -1178,27 +1178,27 @@ var total_audio= 1;
 function addaudiomedia(identity,page_id) {
 
  if (total_audio < 5) {
-  var setect_box = get_media_access('audio_perm['+total+']'); 
+  var setect_box = get_media_access('audio_perm['+total+']');
   mydiv = document.createElement('div');
   var divIdName = 'my'+total+'Audio';
   mydiv.setAttribute('id',divIdName);
-  
+
     data ='<div class="field_medium start"><h5><label for="select file">Select a file to upload: or enter a URL below</label></h5>';
     data += '<input name="userfile_audio_' + total_audio + '" type="file" id="select_file" class="text long" value="" /></div>';
-      
+
     if (page_id == 'media_audio') {
       data += '<div class="field"><h5><label for="file url">URL of audio</label></h5>';
-      data += '<input name="userfile_audio_url_'+ total_audio +'" class="text long" id="file_url" type="text" value="" /></div>'; 
+      data += '<input name="userfile_audio_url_'+ total_audio +'" class="text long" id="file_url" type="text" value="" /></div>';
     }
-      
+
     data += '<div class="field"><h5><label for="image title">Audio Title</label></h5>';
     data += '<input type="text" name="caption_audio[' + total_audio + ']" value="" class="text long" id="image_title"  /></div>';
-    
+
     data += '<div class="field_big"><h5><label for="description">Description:</label></h5>';
     data += '<textarea id="description" name="body_audio[' + total_audio + ']" rows="3" cols="28"></textarea></div>';
 
     data += '<div class="field_medium"><h5><label for="tags">Tags (Separete tags with commas):</label></h5>';
-     
+
     data += '<input type="text" name="tags_audio[' + total_audio + ']" class="text long" id="tag" value="" maxlength="255" /></div>';
 
     if (page_id == 'media_audio') {
@@ -1210,7 +1210,7 @@ function addaudiomedia(identity,page_id) {
    document.getElementById(identity).appendChild(mydiv);
    total_audio++;
  }
-     
+
  if (total_audio == 5){
    document.getElementById("addmore_audiobutton").className = "display_false"
  }
@@ -1224,23 +1224,23 @@ function addvideomedia(identity,page_id) {
    mydiv = document.createElement('div');
    var divIdName = 'my'+total+'Video';
    mydiv.setAttribute('id',divIdName);
-    
+
     data =' <div class="field_medium start"><h5><label for="select file">Select a file to upload: or enter a URL below</label></h5>';
     data += '<input name="userfile_video_' + total_video + '" type="file" id="select_file" class="text long" value="" /></div>';
-      
+
     if (page_id == 'media_video') {
       data += '<div class="field"><h5><label for="file url">URL of video</label></h5>';
-      data += '<input name="userfile_video_url_'+ total_video +'" class="text long" id="file_url" type="text" value="" /></div>'; 
+      data += '<input name="userfile_video_url_'+ total_video +'" class="text long" id="file_url" type="text" value="" /></div>';
     }
-      
+
     data += '<div class="field"><h5><label for="image title">Video Title</label></h5>';
     data += '<input type="text" name="caption_video[' + total_video + ']" value="" class="text long" id="image_title"  /></div>';
-    
+
     data += '<div class="field_big"><h5><label for="description">Description:</label></h5>';
     data += '<textarea id="description" name="body_video[' + total_video + ']" rows="3" cols="28"></textarea></div>';
 
     data += '<div class="field_medium"><h5><label for="tags">Tags (Separete tags with commas):</label></h5>';
-     
+
     data += '<input type="text" name="tags_video[' + total_video + ']" class="text long" id="tag" value="" maxlength="255" /></div>';
    if (page_id == 'media_video') {
      data +=' <div class="field_medium end"><div class="center"><h5><label for="select image">Select who can see this audio:</label></h5>';
@@ -1251,7 +1251,7 @@ function addvideomedia(identity,page_id) {
    document.getElementById(identity).appendChild(mydiv);
    total_video++;
  }
-  
+
  if (total_video == 5){
    document.getElementById("addmore_videobutton").className = "display_false"
  }
@@ -1283,7 +1283,7 @@ function change_edit_profile_perm(select_box_id)
   }
 
   var select_id = document.getElementById(select_box_id).value;
-  
+
     for (var k=0; k<field.length; k++) {
       var id = field[k]+'_perm';
       try {
@@ -1303,7 +1303,7 @@ function other_state(select_box_id)
     else  {
        document.getElementById('other_state_div').style.display="none";
     }
-     
+
 }
 
 function ajax_check_network_availability (element_id, network_url_id) {
@@ -1356,7 +1356,7 @@ function ajax_category_links (element_id, category_field) {
       document.getElementById("error_message").innerHTML = '';
       document.getElementById("error_message_links").innerHTML = '';
     } catch(msg) {
-      
+
     }
 }
 
@@ -1653,7 +1653,7 @@ function links_validation (frm, button) {
 // functions for login-layer:
 function showlogin() {
   try {
-    document.getElementById('login-layer').style.display='block';    
+    document.getElementById('login-layer').style.display='block';
     document.getElementById('overlap').style.visibility="hidden";
   } catch(e) {
     // alert(e);
@@ -1661,7 +1661,7 @@ function showlogin() {
 }
 function hidelogin() {
   try {
-    document.getElementById('login-layer').style.display='none';    
+    document.getElementById('login-layer').style.display='none';
     document.getElementById('overlap').style.visibility="visible";
   } catch(e) {
     // alert(e);
@@ -1678,14 +1678,14 @@ function forum_validation () {
       if(temp == "") {
         msg += '-> ' +form_obj.elements[i].id+' can not be left blank.\n';
       }
-    }    
+    }
   }
   if(msg.length > 0) {
     alert(msg);
     return false;
   } else {
-    return true;  
-  }  
+    return true;
+  }
 }
 
 var search_action = {
@@ -1708,42 +1708,42 @@ function show_hide_network_categories(div_id, img_id) {
        document.getElementById(div_id+'_iframe').className = 'display_false';
       }
    str_url=window.location.href;
-   
-   if (str_url.indexOf('action=')>0) {   
-     
+
+   if (str_url.indexOf('action=')>0) {
+
      url=make_url_aftermessagedisplay('action',str_url);
      window.location=url;
-     
+
    }else if(str_url.indexOf('msg=') > 0 ){
-   
+
      url=make_url_aftermessagedisplay('msg',str_url);
      window.location=url;
-   } 
+   }
    else if(str_url.indexOf('msg_id=') > 0){
-   
+
      url=make_url_aftermessagedisplay('msg_id',str_url);
      window.location=url;
    }
    if ( document.getElementById('embed_video') ) {
      document.getElementById('embed_video').style.display='block';
    }
-   
+
 }
 function change_background_color(div_1,a_id) {
   document.getElementById(div_1).style.background = 'white';
   document.getElementById(a_id).className = 'links-header-greyheader';
 }
-// for Confirmation on deleting 
+// for Confirmation on deleting
 
 function delete_confirmation_msg(msg) {
   return_argument = confirm(msg);
   return return_argument;
 }
 //for deselection of all other selected value on the selection of one particular value
-function deselect_others(select_box_id) {  
+function deselect_others(select_box_id) {
   var obj = document.getElementById(select_box_id);
   var len = obj.options.length;
-  if (obj.selectedIndex == 0 || obj.selectedIndex == 1) {  
+  if (obj.selectedIndex == 0 || obj.selectedIndex == 1) {
     if(obj.selectedIndex == 0)  {
       obj.options[1].selected = false;
     }
@@ -1769,7 +1769,7 @@ function user_info_hide_show(div_id_1,div_id_2,div_id_3,div_id_4,div_id_5,div_id
 
 }
 
-function showhide_block(id, display){  
+function showhide_block(id, display){
   block_id = document.getElementById (id);
   if (trim(block_id.style.display)=='' || block_id.style.display=='none') {
     block_id.style.display = 'block';
@@ -1787,27 +1787,27 @@ function video_tour_display() {
 
 //this function is for hide alternative option if one particular option is selected from select box
 function hide_alternative_option(month_select_id) {
-  var obj = document.getElementById(month_select_id); 
+  var obj = document.getElementById(month_select_id);
   if(obj.selectedIndex == 0) {
     document.getElementById('alternative_month').style.display = "none";
   }else {
     document.getElementById('alternative_month').style.display = "block";
   }
-   
+
 }
 
-/* function to (u)check all the checboxes in a given form 
+/* function to (u)check all the checboxes in a given form
    @param:form name-> string, checkbox name which will be used for (un)check all
 */
 function check_uncheck_all (manage_users, check_uncheck) {
   var form_obj = document.manage_users;
   var total_elements = form_obj.elements.length;
   var checkbox_status = false;
-  
+
   if( form_obj.check_uncheck.checked ) {
     checkbox_status = true;
   }
-  
+
   for( counter = 0; counter < total_elements; counter++ ) {
     if( form_obj[counter].type == "checkbox" ) {
       form_obj[counter].checked = checkbox_status;
@@ -1824,7 +1824,7 @@ function addfeed(identity,maxlimit) {
 
     var divIdName = 'my'+total+'feed';
     mydiv.setAttribute('id',divIdName);
-    
+
     data = '<dl>';
     data +='<dt>Feed Title:</dt>';
     data +='<dd><input name="title_' + total + '" type="text" /></dd>';
@@ -1854,7 +1854,7 @@ function show_side_gallery_module (content_id) {
       document.getElementById(active_li[1]).className='active';
    }
   }
-  
+
 }
 
 function announcement_submit(perform, content_id) {
@@ -1879,7 +1879,7 @@ function show_hide_inner_data (id) {
         else {
           document.getElementById(thisChild.id).style.display='none';
         }
-      
+
     }
     thisChild = thisChild.nextSibling;
     total++;
@@ -1891,7 +1891,7 @@ function edit_delete_media(select_id,check_val,form_name) {
       val = delete_content1();
        if (val == true) {
 //         document.getElementById(form_name).action += "&id="+select_id ;
-         document.getElementById('media_id').value = select_id;       
+         document.getElementById('media_id').value = select_id;
          document.getElementById(form_name).submit();
        }
        else {
@@ -1907,31 +1907,31 @@ function show_hide_media (id_1,id_2) {
 
 function select_album() {
   var url = document.URL;
-/*  
+/*
   var m = url.indexOf('?');
   if ((url.indexOf('msg_id')) != -1) {
     url = url.replace('msg_id','');
   }
   if (m == -1) {
     window.location.href = url + '?album_id=' + document.getElementById('album_name').value;
-  } 
+  }
   else {
-*/  
-      if(document.URL.indexOf('album_id') == -1 ) { 
+*/
+      if(document.URL.indexOf('album_id') == -1 ) {
 //         window.location.href = url + '&album_id=' + document.getElementById('album_name').value+'&msg_rep';
          window.location.href = url + '&album_id=' + document.getElementById('album_name').value;
-      } 
+      }
       else {
           var new_url = url.replace(/(album_id\=\d+)/g, 'album_id=' + document.getElementById('album_name').value );
           window.location.href = new_url;
-/*          
+/*
           var m = url.indexOf('album_id=');
           var mm = url.substring(0, m);
           mm += "album_id=" + document.getElementById('album_name').value;
           window.location.href = mm;
-*/          
-/*          
-          // If variable exits          
+*/
+/*
+          // If variable exits
           var qs = location.search.substring(1);
           var abc = "a?" + location;
           var reg = /[a][l][b][u][m][_][i][d]/;
@@ -1951,9 +1951,9 @@ function select_album() {
                        str += nv[i];
                     }
                }
-  
+
           }
-*/          
+*/
       }
 //  }
   if ((str.indexOf('msg_id')) != -1) {
@@ -1963,16 +1963,16 @@ function select_album() {
 }
 function select_frnd() {
   var url = document.URL;
-/*  
+/*
   var m = url.indexOf('?');
   if (m == -1) {
     window.location.href = url + '?uid=' + document.getElementById('frnd_list').value;
-  } 
+  }
   else {
-*/  
-      if(document.URL.indexOf('uid') == -1 ) { 
+*/
+      if(document.URL.indexOf('uid') == -1 ) {
          window.location.href = url + '&uid=' + document.getElementById('frnd_list').value + "&view=friends";
-      } 
+      }
       else {
           var new_url = url.replace(/(uid\=\d+)/g, 'uid=' + document.getElementById('frnd_list').value );
           window.location.href = new_url;
@@ -1999,7 +1999,7 @@ function select_frnd() {
                }
              location.replace(abc.split('?')[1] + "?" + str);
           }
-*/          
+*/
       }
 //  }
 }
@@ -2007,7 +2007,7 @@ function select_frnd() {
 function user_messages(form_action, skip) {
   var form_name = 'messageList';
   var form_obj = document.forms[form_name];
-  var condition;  
+  var condition;
   if (skip) {
     condition = true;
   } else {
@@ -2037,9 +2037,9 @@ function user_messages(form_action, skip) {
       } else {
 //        form_obj.form_action.value = 'move';
         form_obj.action.value = 'move';
-        form_obj.submit();        
+        form_obj.submit();
       }
-    break;    
+    break;
   }
 }
 
@@ -2047,36 +2047,36 @@ function checked_boxes(form_name) {
   var form_obj, n, i;
   form_obj = document.forms[form_name];
   n = form_obj.elements.length;//total number of elements in the form
-  for (i=0; i < n; i++) {  
+  for (i=0; i < n; i++) {
     if ((form_obj.elements[i].type == "checkbox") && form_obj.elements[i].checked == true) {
       return true;
     }
-  }  
+  }
   return false;
 }
 
 function select_group() {
   var url = document.URL;
-/*  
+/*
   var m = url.indexOf('?');
   if (m == -1) {
     window.location.href = url + '?gid=' + document.getElementById('group_list').value;
-  } 
+  }
   else {
-*/  
-      if(document.URL.indexOf('gid') == -1 ) { 
+*/
+      if(document.URL.indexOf('gid') == -1 ) {
          window.location.href = url + '&gid=' + document.getElementById('group_list').value;
-      } 
+      }
       else {
           var new_url = url.replace(/(gid\=\d+)/g, 'gid=' + document.getElementById('group_list').value );
           window.location.href = new_url;
-/*          
+/*
           var m = url.indexOf('gid=');
           var mm = url.substring(0, m);
           mm += "gid=" + document.getElementById('group_list').value;
           window.location.href = mm;
-*/          
-/*          
+*/
+/*
           var qs = location.search.substring(1);
           var abc = "a?" + location;
           var reg = /[g][i][d]/;
@@ -2101,7 +2101,7 @@ function select_group() {
                }
             location.replace(abc.split('?')[1] + "?" + str);
           }
-*/          
+*/
       }
 //  }
 }
@@ -2139,7 +2139,7 @@ var add_message = {
       }
     }
     document.forms['compose_form'].submit();
-    
+
   },
   confirm: function(msg) {
     if (confirm(msg) == true) {
@@ -2198,24 +2198,24 @@ function addfile(identity,page_id) {
     data += '<input name="userfile_' + total + '" type="file" id="select_file" class="text longer" value="" /></div>';
     if (page_id == 'image_gallery') {
           data += '<div class="field_big"><h5><label for="file url">Enter the URL of image</label></h5>';
-          data += '<input name="userfile_url_'+ total +'" class="text longer" id="file_url" type="text" value=""  maxlength="100"/></div>'; 
+          data += '<input name="userfile_url_'+ total +'" class="text longer" id="file_url" type="text" value=""  maxlength="100"/></div>';
         }
-          
+
      data += '<div class="field_big"><h5><label for="image title">Image title</label></h5>';
      data += '<input type="text" name="caption[' + total + ']" value="" class="textlonger" id="image_title"  maxlength="100" /></div>';
      mydiv.innerHTML = data;
      document.getElementById(identity).appendChild(mydiv);
       }
       else {
-            
+
           alert("You can not added more images to Emblem");
           var olddiv_1= document.getElementById("addmore_button");
            olddiv_1.style.display = "none";
            return;
       }
       total++;
-  
-  
+
+
 }
 // for Emblem image  Removing
 
@@ -2260,11 +2260,11 @@ function show_rows(baseurl)
      }
    }
  }
- 
+
  function get_media_access(name_of_var, default_selected) {
   if (default_selected == null) {
    default_selected = 1;
-  } 
+  }
   var output = '<select name= "'+name_of_var+'"  id="'+name_of_var+'"  class="select-txt text" style="width: 120px;">';
 
   if (default_selected == 0) {
@@ -2285,7 +2285,7 @@ function show_rows(baseurl)
   else {
     output += '<option value="2">Immediate Relations</option>';
   }
-  
+
   output += '</select>';
   return output;
 }
@@ -2299,7 +2299,7 @@ function show_hide_network_default_categories(div_id,img_id,image_id) {
        document.getElementById(div_id).className = 'display_false';
        document[image_id].src = '/Themes/Default/images/plus.gif';
      }
-      
+
 }
 
 /**
@@ -2317,12 +2317,12 @@ function make_url_aftermessagedisplay(action,url) {
       start=start + 1;
       len=len-1;
     }
-    
+
  } else {
    url_fetch=str_first_url[0].substr(0,str_first_url[0].length-1);
    finalurl= url_fetch;
  }
-    
+
  return finalurl;
 }
 
@@ -2330,12 +2330,12 @@ var show_hide_shortcuts = {
   obj : function (id) {
     return document.getElementById(id);
   },
-  onmouseover : function (id) {  
+  onmouseover : function (id) {
     if (this.obj(id).className == 'display_false'); {
       this.obj(id).className = 'display_true';
     }
   },
-  onmouseout : function(id) {    
+  onmouseout : function(id) {
     if (this.obj(id).className == 'display_true'); {
       this.obj(id).className = 'display_false';
     }
@@ -2345,7 +2345,7 @@ var show_hide_shortcuts = {
 function hide_message_window(confirm_id) {
   try {
     document.getElementById(confirm_id).focus();
-  }  
+  }
   catch(e) {
   }
 }
@@ -2362,10 +2362,10 @@ function track_this_ad(ad_id) {
 function showhide_ad_block(id, display, page) {
   block_id = document.getElementById(id);
   if (display == 1) {
-    window.location = page;       
+    window.location = page;
   } else {
     window.location = page+"open=1";
-  }  
+  }
 }
 function show_pending_invitation(base_url) {
   var gid = document.getElementById("groups").value;
@@ -2389,7 +2389,7 @@ function preview_url(url_str, element_id, base_url) {
       if (url.charAt(i) == field[j]) {
          flag=true;
          break;
-       } 
+       }
     }
     if (flag==true) {
       preferred_url = preferred_url + '_';
@@ -2399,7 +2399,7 @@ function preview_url(url_str, element_id, base_url) {
   }
   document.forms['formStaticPagesManagement'].preferred_caption.value = preferred_url;
   document.getElementById(element_id).innerHTML = 'Url for your page would be like '+base_url+'/links/'+preferred_url;
-    
+
 }
 function show_email_details(base_url) {
   var selected_index = document.getElementById("email_type").selectedIndex;
@@ -2414,7 +2414,7 @@ function delete_selected_groups() {
   condition = checked_boxes('manage_users');
   if (condition) {
     val = delete_confirmation_msg('Are you sure you want to delete these groups ?');
-    if (val) {     
+    if (val) {
       document.forms['manage_users'].submit();
     } else {
       return false;
@@ -2428,7 +2428,7 @@ function delete_selected_celebrities() {
   condition = checked_boxes('manage_users');
   if (condition) {
     val = delete_confirmation_msg('Are you sure you want to delete these celebrities ?');
-    if (val) {     
+    if (val) {
       document.forms['manage_users'].submit();
     } else {
       return false;
@@ -2465,8 +2465,28 @@ function ajax_sort_activities(event_type, ajax_url, select_id) {
    var sort_by;
    var selected_index = document.getElementById(select_id).selectedIndex;
    sort_by = document.getElementById(select_id).options[selected_index].value;
-   id = 'list_'+event_type;   
+   id = 'list_'+event_type;
    url = ajax_url+"&sort_by="+sort_by;
 
    $('#'+id).html('<div style="padding-left: 28px"><img src="/Themes/Default/images/ajaxload.gif" /><br />Loading...</div>').load(url);
+}
+
+function sanitize_input(frm) {
+    var len,val;
+    len=frm.elements.length;
+    for(i=0;i<len;i++){
+       if (frm.elements[i].type == 'text'){
+         val=frm.elements[i].value;
+         frm.elements[i].value = url_encode(val);
+       }
+       if (frm.elements[i].type == 'textarea'){
+         val=frm.elements[i].value;
+         frm.elements[i].value = url_encode(val);
+       }
+    }
+    return true;
+}
+
+function url_encode(str) {
+  return str.replace(/\(/g,'%28').replace(/\)/g,'%29').replace(/\:/g,'%3A').replace(/\;/g,'%3B').replace(/\#/g,'%23').replace(/\{/g,'%7B').replace(/\}/g,'%7D').replace(/\</g,'%3C').replace(/\>/g,'%3E').replace(/\[/g,'%5B').replace(/\]/g,'%5D').replace(/\+/g,'%2B').replace(/%20/g, '%20').replace(/\*/g, '%2A').replace(/\//g, '%2F').replace(/@/g, '%40');
 }

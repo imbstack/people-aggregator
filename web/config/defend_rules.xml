@@ -43,7 +43,7 @@
   <item>
     <expression>(?:\([\w\s]+\([\w\s]+\)[\w\s]+\))|(?:(?&lt;!(?:mozilla\/\d\.\d\s))\([^)[]+\[[^\]]+\][^)]*\))|(?:[^\s!][{([][^({[]+[{([][^}\])]+[}\])][\s+",\d]*[}\])])|(?:"\)?\]\W*\[)|(?:=\s*[^\s:;]+\s*[{([][^}\])]+[}\])];)</expression>
     <description>self-executing JavaScript function injection attack</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>(?:\\u00[a-f0-9]{2})|(?:\\x0*[a-f0-9]{2})|(?:\\\d{2,3})</expression>
@@ -88,7 +88,7 @@
   <item>
     <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:hash|name|href|navigateandfind|source|pathname|close|constructor|port|protocol|assign|replace|back|forward|document|window|self|parent|frames|_?content|date|cookie|innerhtml|innertext|csstext+?|outerhtml|print|moveby|resizeto|createstylesheet|stylesheets)(?(1)[^\w%"]|(?:\s*[^@\/\s\w%",.+\-]))</expression>
     <description>JavaScript object properties and methods injection attempt</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:join|pop|push|reverse|shift|sp?lice|sort|unshift)(?(1)[^\w%"]|(?:\s*[^@\s\w%",.+\-]))</expression>
@@ -103,7 +103,7 @@
   <item>
     <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z_@&gt;\-\|])(\s*return\s*)?(?:globalstorage|sessionstorage|postmessage|callee|constructor|content|domain|prototype|try|catch|top|call|apply|url|function|object|array|string|math|if|elseif|case|switch|regex|boolean|location|settimeout|setinterval|void|setexpression|namespace|while)(?(1)[^\w%"]|(?:\s*[^@\s\w%",.+\-]))</expression>
     <description>attack via JavaScript language constructs</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>(?:,\s*(?:alert|showmodaldialog|eval)\s*,)|(?::\s*eval\s*[^\s])|([^:\s\w,.\/?+-]\s*)?(?&lt;![a-z\/_@])(\s*return\s*)?(?:(?:document\s*\.)?(?:.+\/)?(?:alert|eval|msgbox|showmodaldialog|prompt|write(?:ln)?|confirm|dialog|open))\s*(?(1)[^\w]|(?:\s*[^\s\w,.@\/+-]))|(?:java[\s\/]*\.[\s\/]*lang)|(?:\w\s*=\s*new\s+\w+)|(?:&amp;\s*\w+\s*\)[^,])|(?:\+[\W\d]*new\s+\w+[\W\d]*\+)|(?:document\.\w)</expression>
@@ -203,7 +203,7 @@
   <item>
     <expression>(?:"\s*(?:#|--|{))|(?:\/\*!\s?\d+)|(?:ch(?:a)?r\s*\(\s*\d)|(?:(?:(n?and|x?or|not)\s+|\|\||\&amp;\&amp;)\s*\w+\()</expression>
     <description>MySQL comments, conditions or ch(a)r injection attempt</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>(?:\)\s*like\s*\()|(?:having\s+[\d\w\-"]+\s*[(=&lt;&gt;~])|(?:if\s?\([\d\w]\s*[=&lt;&gt;~])</expression>
@@ -213,7 +213,7 @@
   <item>
     <expression>(?:\\x(?:23|27|3d))|(?:^.?"$)|(?:^.*\\".+(?&lt;!\\)")|(?:(?:^["\\]*(?:[\d"]+|[^"]+"))+\s*(?:n?and|x?or|not |\|\||\&amp;\&amp;)\s*[\d"[+&amp;!@(),.-])|(?:[^\w\s]\w+\s*[|-]\s*"\s*\w)|(?:@\w+\s+(and|or)\s*["\d]+)|(?:@[\w-]+\s(and|or)\s*[^\w\s])|(?:[^\w\s:]\s*\d\W+[^\w\s]\s*".)</expression>
     <description>SQL injection attempt - case A</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>(?:"\s*\*.+(?:or|id)\W*"\d)|(?:\^")|(?:^[\w\s"-]+(?&lt;=and\s)(?&lt;=or\s)(?&lt;=xor\s)(?&lt;=nand\s)(?&lt;=not\s)(?&lt;=\|\|)(?&lt;=\&amp;\&amp;)\w+\()|(?:"[\s\d]*[^\w\s]+\W*\d\W*.*["\d])|(?:"\s*[^\w\s?]+\s*[^\w\s]+\s*")|(?:"\s*[^\w\s]+\s*[\W\d].*(?:#|--))|(?:".*\*\s*\d)|(?:"\s*or\s[\w-]+[\s=*])|(?:[()*&lt;&gt;%+-][\w-]+[^\w\s]+"[^,])</expression>
@@ -233,7 +233,7 @@
   <item>
     <expression>(?:(?:n?and|x?or|not |\|\||\&amp;\&amp;)\s+[\s\w+]+(?:regexp\s*\(|sounds\s+like\s*"|[=\d]+x))|("\s*\d\s*(?:--|#))|(?:"[%&amp;&lt;&gt;^=]+\d\s*(=|or))|(?:"\W+[\w+-]+\s*=\s*\d\W+")|(?:"\s*is\s*\d.+"?\w)|(?:"\|?[\w-]{3,}[^\w\s.,]+")|(?:"\s*is\s*[\d.]+\s*\W.*")</expression>
     <description>SQL authentication bypass attempt - case C</description>
-    <active>0</active>
+    <active>1</active>
   </item>
   <item>
     <expression>(?:^\s*[;&gt;"]\s*(?:union|select|create|rename|truncate|load|alter|delete|update|insert|desc))|(?:(?:select|create|rename|truncate|load|alter|delete|update|insert|desc)\s+(?:concat|char|load_file)\s?\(?)|(?:end\s*\);)|("\s+regexp\W)</expression>

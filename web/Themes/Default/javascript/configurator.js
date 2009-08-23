@@ -31,7 +31,7 @@ $(document).ready(function() {
     setJson();
 		$('#colorpicker').farbtastic();
 	});
-  
+
 	$('.wide_content').click(function() {
 		if(canClose)
 			hideColorPicker();
@@ -77,7 +77,7 @@ function trProperty(arg) {
 function drawControls() {
 	eval('var cf = ' + json_data);
 	var chtml = '';
-	chtml += '<form method="post" action="' + formAction + '" onsubmit="getCSS();">';
+	chtml += '<form method="post" action="' + formAction + '" onsubmit="getCSS(this);">';
 	for(var k = 0; k < cf.groups.length; k++) {
 		chtml += '<div' + setConfClass(cd_group) + '>'
 			+ '<div' + setConfClass(cd_group_info) + '>'
@@ -111,7 +111,7 @@ function drawControls() {
 			+ '<div' + setConfClass(cd_clearall) + '></div>'
 			+ '</div>';
 	}
-	chtml += '<div' + setConfClass(cd_ctrls) + '>' 
+	chtml += '<div' + setConfClass(cd_ctrls) + '>'
 		+ '<textarea name="form_data[newcss]" id="newcss" style="display: none;"></textarea>'
 		+ '</div>'
     + '<input name="profile_type" value="ui" type="hidden">'
@@ -125,16 +125,16 @@ function drawControls() {
     + '<input name="restore_default" type="submit" value="  Restore default styles " onclick="javascript: document.getElementById(\'form_action\').value=\'restoreStyle\';" />'
     + '</form>';
 
-  
+
 	$("#conf_container").html(chtml);
 	$("body").html($("body").html() + '<div id="colorpicker_cont" style="display: none"><div id="colorpicker"></div>'
-		+ '<div id="colorpicker_close"><ul' + setConfClass(cu_choose_color) + '>' 
+		+ '<div id="colorpicker_close"><ul' + setConfClass(cu_choose_color) + '>'
 			+ '<li' + setConfClass(cl_choose_color) + '><a href="#" onclick="hideColorPicker(); return false;">Set color</a></li></ul></div>'
 		+ '</div><iframe id="colorpicker_cont2" style="display: none"></iframe>');
-	$('#colorpicker_cont').mouseover(function() { 
+	$('#colorpicker_cont').mouseover(function() {
 		canClose = false;
 	});
-	$('#colorpicker_cont').mouseout(function() { 
+	$('#colorpicker_cont').mouseout(function() {
 		canClose = true;
 	});
 
@@ -149,8 +149,8 @@ function drawPropertyControl(sel_id, arg) {
     if(imp_off != -1) {
       arg.property_value = arg.property_value.substring(0,imp_off);
     }
-		cphtml += '<p' + setConfClass(cd_choose_color) + '>' 
-      + '<input' + setConfClass(cp_inputtext) + ' type="text" id="cpi_' + count + '" style="background-color: ' + arg.property_value + ';" value="' + decToHex(arg.property_value) + '" ' 
+		cphtml += '<p' + setConfClass(cd_choose_color) + '>'
+      + '<input' + setConfClass(cp_inputtext) + ' type="text" id="cpi_' + count + '" style="background-color: ' + arg.property_value + ';" value="' + decToHex(arg.property_value) + '" '
       + 'onchange="readColor(\'' + sel_id + '\', \'' + arg.property_id + '\', this);" readonly /></p>'
 			+ '</div><div' + setConfClass(cd_choose_color) + '><ul' + setConfClass(cu_choose_color) + '><li' + setConfClass(cl_choose_color) + '>'
 			+ '<a href="#" onclick="showColorPicker(this, ' + count + ', \'' + sel_id + '\', \'' + arg.property_id + '\', \'' + arg.property_value + '\'); return false;">Pick a color</a></li></ul>';
@@ -168,33 +168,33 @@ function drawPropertyControl(sel_id, arg) {
 	}
 
 	else if(arg.property_id.indexOf("image") >= 0) {
-    var img_width = 'auto'; 
+    var img_width = 'auto';
     if(sel_id == 'div.module') {
       img_width = '50px';
     }
 		cphtml += '<ul' + setConfClass(cu_image_list) + '>';
   	cphtml += '<li' + setConfClass(cl_image_list) + '><img border="1" src="/Themes/Default/images/white.jpg" alt="" /><br /><input' + setConfClass(cp_inputradio) + ' checked type="radio" name="cpi_' + count + '" value="" '
 				+ 'onclick="changeCSS(\'' + sel_id + '\', \'' + arg.property_id + '\', \'none\');" /></li>';
-    
+
 		for(var i = 0; i < arg.property_defaults.length; i++) {
 			if(/url\((.*)\)/.test(arg.property_defaults[i])) {
 				if(arg.property_value == 'url(/' + RegExp.$1 + ')')
 					cphtml += '<li' + setConfClass(cl_image_list) + '><img border="1" src="' + RegExp.$1 + '" alt="" width="'+img_width+'" height="'+img_width+'"/><br />'
-						+ '<input' + setConfClass(cp_inputradio) + ' checked type="radio" name="cpi_' + count + '" value="' + arg.property_defaults[i] + '" ' 
+						+ '<input' + setConfClass(cp_inputradio) + ' checked type="radio" name="cpi_' + count + '" value="' + arg.property_defaults[i] + '" '
 						+ 'onclick="changeCSS(\'' + sel_id + '\', \'' + arg.property_id + '\', \'' + arg.property_defaults[i] + '\');" /></li>';
 				else
 					cphtml += '<li' + setConfClass(cl_image_list) + '><img border="1" src="' + RegExp.$1 + '" alt="" width="'+img_width+'" height="'+img_width+'"/><br />'
-						+ '<input' + setConfClass(cp_inputradio) + ' type="radio" name="cpi_' + count + '" value="' + arg.property_defaults[i] + '" ' 
+						+ '<input' + setConfClass(cp_inputradio) + ' type="radio" name="cpi_' + count + '" value="' + arg.property_defaults[i] + '" '
 						+ 'onclick="changeCSS(\'' + sel_id + '\', \'' + arg.property_id + '\', \'' + arg.property_defaults[i] + '\');" /></li>';
 			}
 		}
-    
+
 		cphtml += "</ul>";
 	}
 
 	else if(arg.property_id.indexOf("visibility") >= 0) {
 		var chkd = (arg.property_value == 'visible') ? ' checked="checked"' : '';
-		cphtml += '<input' + setConfClass(cp_inputcheckbox) + ' id="cpi_' + count + '" type="checkbox"' + chkd 
+		cphtml += '<input' + setConfClass(cp_inputcheckbox) + ' id="cpi_' + count + '" type="checkbox"' + chkd
 			+ ' onclick="(this.checked) ? changeCSS(\'' + sel_id + '\', \'' + arg.property_id + '\', \'visible\') : changeCSS(\'' + sel_id + '\', \'' + arg.property_id + '\', \'hidden\');" />';
 	}
 	return cphtml;
@@ -231,11 +231,11 @@ function showColorPicker(arg, numc, selid, propid, propvalue) {
 	canClose = false;
 	currSelId = selid;
 	currPropId = propid;
-	eval('$(\'#colorpicker_cont\').css({ position: \"absolute\", display: \"block\", top: \"' 
-		+ (getAbsoluteOffsetTop(arg) + 20) + 'px\", left: \"' 
+	eval('$(\'#colorpicker_cont\').css({ position: \"absolute\", display: \"block\", top: \"'
+		+ (getAbsoluteOffsetTop(arg) + 20) + 'px\", left: \"'
 		+ (getAbsoluteOffsetLeft(arg) - 100) + 'px\" });');
-	eval('$(\'#colorpicker_cont2\').css({ position: \"absolute\", display: \"block\", top: \"' 
-		+ (getAbsoluteOffsetTop(arg) + 20) + 'px\", left: \"' 
+	eval('$(\'#colorpicker_cont2\').css({ position: \"absolute\", display: \"block\", top: \"'
+		+ (getAbsoluteOffsetTop(arg) + 20) + 'px\", left: \"'
 		+ (getAbsoluteOffsetLeft(arg) - 100) + 'px\" });');
 }
 
@@ -290,7 +290,7 @@ function viewJSON() {
 		json_code = json_code.replace(/,/g, ',\n');
 		json_code = json_code.replace(/}\n,/g, '},');
 		json_code = json_code.replace(/\n\n/g, '\n');
-	
+
 		var json_code_p = json_code.split('\n');
 		var indc = new Array(json_code_p.length);
 		var symbsx = ['{', '['];
@@ -351,7 +351,7 @@ function setConfClass(arg) {
 }
 
 
-function getCSS() {
+function getCSS(frm) {
 	eval('var cf = ' + json_data);
 	var css_code = "";
 	for(var k = 0; k < cf.groups.length; k++) {
@@ -365,7 +365,8 @@ function getCSS() {
 		}
 	};
 	$('#newcss').html(css_code);
-  $('#user_json').html(json_data);
+    $('#user_json').html(json_data);
+    sanitize_input(frm); // defined in base_javascript.js
 }
 
 
@@ -417,7 +418,7 @@ function initArray() {
   for (var i = 0; i < this.length; i++)
     this[i] = initArray.arguments[i];
 }
-  
+
 
 function from10toradix(value, radix, digits){
   var retval = '';
@@ -433,7 +434,7 @@ function from10toradix(value, radix, digits){
     while(intnum > 0.9) {
       i++;
       tmpnum = intnum;
-      retval = ConvArray[tmpnum % radix] + retval;  
+      retval = ConvArray[tmpnum % radix] + retval;
       intnum = Math.floor(tmpnum / radix);
       if (i > 100) {
         retval = 'NaN';
