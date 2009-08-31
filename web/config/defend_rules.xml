@@ -13,7 +13,7 @@
   <item>
     <expression>(?:[\s\/"]+(?:on\w+|style)=["\w])</expression>
     <description>attribute injection attempt</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:^&gt;[\w\s]*&lt;\/?\w{2,}&gt;)</expression>

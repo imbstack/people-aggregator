@@ -20,6 +20,13 @@ require_once "web/includes/authorize.inc.php";
 $permission_to_post = $task_perm;//set from authorize.inc.php
 */
 $user = get_user();
+
+$_GET = url_decode_all($_GET);
+$_POST = url_decode_all($_POST);
+$_REQUEST = url_decode_all($_REQUEST);
+
+//filter_all_post($_POST);
+
 // check to see if we are here for edit and user has permissions to do it
 if( $cid = @$_REQUEST['cid'] ) {
 

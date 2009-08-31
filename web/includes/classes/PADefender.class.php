@@ -140,7 +140,7 @@
       $template_file = getShadowedPath('web/Themes/Default/defender.tpl');
       $template = & new Template($template_file);
       $template->set('message', $message);
-      $template->set('details', $msg /* . "<pre>" . print_r($_POST,1) . "</pre>" */);
+      $template->set('details', $msg /* . "<pre>" . print_r($_POST,1) . "</pre>" */ );
       echo $template->fetch();
       exit;
     }

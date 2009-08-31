@@ -20,7 +20,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
   
 ?>
 
-<form name="formCreateContent" method="post" enctype="multipart/form-data" action="<?php echo $form_action;?>">
+<form name="formCreateContent" method="post" enctype="multipart/form-data" action="<?php echo $form_action;?>" onsubmit="return sanitize_input(this);">
 <div id="content_post">
   <div class="steps">
     <ul>

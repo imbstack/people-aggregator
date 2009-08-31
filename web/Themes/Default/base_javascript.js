@@ -2476,12 +2476,19 @@ function sanitize_input(frm) {
     len=frm.elements.length;
     for(i=0;i<len;i++){
        if (frm.elements[i].type == 'text'){
+//       alert("Text: " + frm.elements[i].value);
          val=frm.elements[i].value;
          frm.elements[i].value = url_encode(val);
        }
        if (frm.elements[i].type == 'textarea'){
-         val=frm.elements[i].value;
-         frm.elements[i].value = url_encode(val);
+          if(tinyMCE != 'undefined' && frm.elements[i].name.length > 0 && tinyMCE.get(frm.elements[i].name).getContent().length > 0) {
+            val = url_encode(tinyMCE.get(frm.elements[i].name).getContent());
+            tinyMCE.get(frm.elements[i].name).setContent(val);
+ //           alert("TextArea, name:" + frm.elements[i].name + " Value: " + tinyMCE.get(frm.elements[i].name).getContent());
+          } else {
+            val=frm.elements[i].value;
+            frm.elements[i].value = url_encode(val);
+          }
        }
     }
     return true;
