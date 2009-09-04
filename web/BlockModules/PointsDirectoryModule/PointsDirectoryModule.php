@@ -4,6 +4,8 @@ error_reporting(E_ALL);
 // require_once "api/...";
 // require_once "web/includes/classes/...";
 require_once 'api/Entity/PointsEntity.php';
+require_once 'api/Entity/FamilyTypedGroupEntity.php';
+require_once 'api/Entity/TypedGroupEntityRelation.php';
 
 class PointsDirectoryModule extends Module {
   public $module_type = 'user';
@@ -21,13 +23,27 @@ class PointsDirectoryModule extends Module {
   }
 
   private function check_edit_perm() {
-    return ((PA::$login_uid && (PA::$login_uid == PA::$page_uid)) ? true : false); // for now: simple edit perm - if user is owner of page
+    return ((($this->relType == 'parent') || ($this->relType == 'grand parent'))  ? true : false); // for now: simple edit perm
   }
 
+  private function get_familly_members($familly) {
+      $fam_members = $familly->get_members(false, 'ALL', 0, 'created', 'DESC', true);
+      foreach($fam_members as &$member) {
+        list($relType, $relLabel) = TypedGroupEntityRelation::get_relation_to_group($member['user_id'], $familly->collection_id);
+        if (empty($relType)) {
+           $relType = 'member';
+        }
+        $member['member_type'] = $relType;
+        $muser = new User();
+        $muser->load((int)$member['user_id']);
+        $member['user'] = $muser;
+      }
+//      echo "<pre>" . print_r($fam_members,1) . "</pre>";
+      return $fam_members;
+  }
 
   function initializeModule($request_method, $request_data) {
-       $this->edit_perm = $this->check_edit_perm();
-       $this->action = (!empty($request_data['action'])) ? $request_data['action'] : null;
+       $this->action = (!empty($request_data['faction'])) ? $request_data['faction'] : null;
        $this->module = (!empty($request_data['module'])) ? $request_data['module'] : null;
 
        $this->page    = (empty($request_data['page'])) ? 1 : (int)$request_data['page'];
@@ -38,15 +54,30 @@ class PointsDirectoryModule extends Module {
 
        $this->renderer->add_header_css('/' . PA::$theme_rel . '/points_directory.css');
 
+       $this->relType = 'guest';
+       if((!empty($request_data['fid'])) || (!empty($request_data['gid']))) { 
+         if(!empty($request_data['fid'])) {
+           $this->criteria['family_id'] = $request_data['fid'];
+         } else if(!empty($request_data['gid'])) {
+           $this->criteria['family_id'] = $request_data['gid'];
+         }
+         $this->fid = $this->criteria['family_id'];
+    	 list($relType, $relLabel) = TypedGroupEntityRelation::get_relation_to_group(PA::$login_uid, (int)$this->fid);
+    	 if (empty($relType)) {
+    		$relType = 'member';
+    	 }
+         $this->relType = $relType;
+         $this->familly = ContentCollection::load_collection((int)$this->fid, PA::$login_uid);
+         $this->fam_members = $this->get_familly_members($this->familly);
+         $this->edit_perm = $this->check_edit_perm();
+         $this->sub_title = sprintf(__('%s Points') , $this->familly->title . ' Family');  // this string should be replaced with $family->name
+  
+       }
+
        if(!empty($request_data['uid'])) {
          $this->user_id = $request_data['uid'];
          $this->sub_title = sprintf(__('Points for %s') , PA::$user->display_name);
          $this->criteria['user_id'] = $request_data['uid'];
-       }
-
-       if(!empty($request_data['fid'])) {
-         $this->sub_title = sprintf(__('%s Points') , 'Family');  // this string should be replaced with $family->name
-         $this->criteria['family_id'] = $request_data['fid'];
        }
 
        if(!empty($this->category)) {
@@ -55,6 +86,7 @@ class PointsDirectoryModule extends Module {
        }
 
        if($request_method == 'GET') {
+//echo "Action: " . $this->action . "Module: " . $this->module . "clname: " . $this->class_name; die();
          if(!empty($this->action) && ($this->module == $this->class_name)) {
            switch($this->action) {
                case 'newPoints':
@@ -112,7 +144,9 @@ class PointsDirectoryModule extends Module {
                                                          'user_id' => $this->user_id,
                                                          'page_first' => $this->page_first,
                                                          'page_last' => $this->page_last,
-                                                         'page_links' => $this->page_links
+                                                         'page_links' => $this->page_links,
+                                                         'fid'        => (isset($this->fid) ? $this->fid : null),
+                                                         'fam_members' => (isset($this->fam_members) ? $this->fam_members : null)
                                                         )
                                                   );
   }
@@ -198,7 +232,8 @@ class PointsDirectoryModule extends Module {
                                                            'category' => $this->category,
                                                            'categories' => $this->categories,
                                                            'user_id' => $this->user_id,
-                                                           'item' => $item
+                                                           'item' => $item,
+                                                           'fid'  => $this->fid 
                                                           )
                                                     );
     }
@@ -224,7 +259,8 @@ class PointsDirectoryModule extends Module {
                                                            'category' => $this->category,
                                                            'categories' => $this->categories,
                                                            'user_id' => $this->user_id,
-                                                           'item' => $items[0]
+                                                           'item' => $items[0],
+                                                           'fid' => $this->fid
                                                           )
                                                     );
     }
@@ -291,7 +327,8 @@ class PointsDirectoryModule extends Module {
                                                           'user_id' => $this->user_id,
                                                           'item' => $items[0],
                                                           'error' => $error,
-                                                          'message' => $msg
+                                                          'message' => $msg,
+                                                          'fid'     => $this->fid 
                                                          )
                                                    );
   }

@@ -44,7 +44,7 @@ class ManageAdCenterModule extends Module {
 			$error_msg = __("You do not have permission to manage Ads.");
 			return "skip";
 		}
-		
+                PADefender::setMode(PADefender::suspended);
 		// aging
 		if (!empty($request_data['page'])) {
 			$this->Paging["page"] = (int)$request_data['page'];

@@ -5,8 +5,24 @@
 <?php include "filters.tpl.php" ?>
 
 <h1><?= $sub_title ?></h1>
-
 <div id="PointsDirectoryModule">
+<div class="points_list">
+  <?php if($edit_perm) : ?>
+    <?php if(!empty($_REQUEST['uid'])) : ?>
+      <a class="button_silver" href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?faction=newPoints&module=PointsDirectoryModule&uid={$_REQUEST['uid']}&fid=$fid" ?>"><?= __("New") ?></a>
+      <br /><br />
+    <?php else: ?>
+       <label><?= __("Please, select a family member that you wish to assign points") ?>: </label>
+       <select name="select_member" id="select_member" onchange="javascript: document.location = '<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY?>?faction=newPoints&module=PointsDirectoryModule&fid=<?=$fid?>&uid=' + this.options[this.selectedIndex].value
+;">
+          <option value=""><?=__("Select") ?></option>
+       <?php foreach($fam_members as $fmember) : ?>
+          <option value="<?=$fmember['user']->user_id?>"><?=$fmember['user']->display_name?></option>
+       <?php endforeach; ?>
+       </select>
+    <?php endif; ?>
+  <?php endif; ?>
+</div>
   <?php if(!empty($page_links)) : ?>
    <div class="prev_next">
      <?php if ($page_first) {echo $page_first;} ?>
@@ -14,10 +30,6 @@
      <?php if ($page_last) {echo $page_last;} ?>
    </div>
   <?php endif;  ?>
-  <?php if($edit_perm) : ?>
-      <a class="button_silver" href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?action=newPoints&module=PointsDirectoryModule&uid={$_REQUEST['uid']}" ?>"><?= __("New") ?></a>
-      <br /><br />
-  <?php endif; ?>
   <?php if(count($items) > 0) : ?>
     <ul class="points_list">
     <?php foreach($items as $item) : ?>
@@ -45,8 +57,8 @@
     </li>
     <div class="points_buttons">
      <?php if($edit_perm) : ?>
-      <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?action=editPoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id" ?>"><?= __("Edit") ?></a> |
-      <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?action=deletePoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id" ?>"><?= __("Delete") ?></a>
+      <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?faction=editPoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id&fid=$fid" ?>"><?= __("Edit") ?></a> |
+      <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?faction=deletePoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id&fid=$fid" ?>"><?= __("Delete") ?></a>
      <?php endif; ?>
     </div>
     <?php endforeach; ?>

@@ -1,9 +1,9 @@
 <ul id="filters">
-	<li><a name="label"><?=__("sort by")?></a></li>â
+	<li><a name="label"><?=__("sort by")?></a></li>
   <?php 
   foreach ($mod->sortFields as $i=>$field) {
   	?>
-  <li <? if ($mod->sort_by == $field['name']) echo 'class="active"'?> ><a href="<?=PA::$url.PA_ROUTE_FAMULY_DIRECTORY?>?sort_by=<?=$field['name']?>"><?= $field['label']?></a></li>
+  <li <? if ($mod->sort_by == $field['name']) echo 'class="active"'?> ><a href="<?=PA::$url.PA_ROUTE_FAMILY_DIRECTORY?>?sort_by=<?=$field['name']?>"><?= $field['label']?></a></li>
   	<?
   } ?>
 </ul>

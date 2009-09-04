@@ -73,15 +73,16 @@
    <input type="hidden" name="form_data[user_id]" id="form_data_user_id" value="<?= PA::$login_uid?>" />
    <input type="hidden" name="form_data[entity_id]" id="form_data_entity_id" value="<?=(!empty($item['entity_id'])) ? $item['entity_id'] : null ?>" />
    <input type="hidden" name="uid" id="uid" value="<?=PA::$login_uid?>" />
+   <input type="hidden" name="fid" id="fid" value="<?=$fid?>" />
    <input type="hidden" name="form_data[network_id]" id="form_data_network_id" value="<?=(!empty($item['network_id'])) ? $item['network_id'] : PA::$network_info->network_id ?>" />
-   <input type="hidden" name="form_data[family_id]" id="form_data_family_id" value="<?=(!empty($item['family_id'])) ? $item['family_id'] : null ?>" />
+   <input type="hidden" name="form_data[family_id]" id="form_data_family_id" value="<?=(!empty($item['family_id'])) ? $item['family_id'] : $fid ?>" />
    <input type="hidden" name="form_data[created]" id="form_data_created" value="<?=(!empty($item['created'])) ? $item['created'] : PA::date(time(), 'short') ?>" />
    <input type="hidden" name="form_data[updated]" id="form_data_updated" value="<?= PA::date(time(), 'short') ?>" />
-   <input type="hidden" name="action" id="action" value="savePoints" />
+   <input type="hidden" name="faction" id="faction" value="savePoints" />
    <div class="field" style="height:32px">
     <div id="buttonbar" style="float: right;">
       <br />
-      <input type="button" name="back_btn" id="back_btn" value="Back" onclick="javascript: location.href = '<?=$back_url?>';" />
+      <input type="button" name="back_btn" id="back_btn" value="Back" onclick="javascript:history.back()" />
       <input type="submit" name="submit" id="submit_form" value="Save" />
     </div>
    </div>
