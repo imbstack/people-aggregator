@@ -14,6 +14,7 @@
      <?php if ($mod->page_last) { echo $mod->page_last;}?>
    </div>
   <?php }  ?>
+  <?php if (PA::$login_uid) { ?>
 <div class="blog">
 	<div style="float:right;">
 		<form action="<?=PA::$url.PA_ROUTE_FAMILY_EDIT?>">
@@ -28,6 +29,8 @@
 		</form>
 	</div>
 </div>
+  <?php }  ?>
+
 <?php
 foreach ($mod->typedGroupEntities as $i=>$entity) {
 	$atts = $entity->attributes;

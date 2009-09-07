@@ -8,7 +8,7 @@ class FamilyTypedGroupEntity extends TypedGroupEntity {
 		$profile = array();
 		$profile[] = array(
 			'name' => 'established',
-			'label' => __("Date Established"),
+			'label' => __("Date the Family was formed"),
 			'type' => 'dateselect',
 			'sort' => true
 		);

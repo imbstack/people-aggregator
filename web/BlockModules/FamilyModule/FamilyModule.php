@@ -250,7 +250,6 @@ class FamilyModule extends Module {
       $group = $this->shared_data['group_info'];
       if (Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) {
         // deal with TypedGroup Relations
-        if (!empty(PA::$config->useTypedGroups)) {
             require_once("api/Entity/TypedGroupEntityRelation.php");
             $uid = PA::$login_uid;
             $gid = $group->collection_id;
@@ -261,7 +260,7 @@ class FamilyModule extends Module {
             } catch (PAException $e) {
                 $error_msg = $e->getMessage();
             }
-        }
+
       }
         }
     }
@@ -314,7 +313,6 @@ class FamilyModule extends Module {
 
       if (@$user_joined) {
         // deal with TypedGroup Relations
-        if (!empty(PA::$config->useTypedGroups)) {
             require_once("api/Entity/TypedGroupEntityRelation.php");
             $uid = PA::$login_uid;
             $gid = $group->collection_id;
@@ -324,7 +322,7 @@ class FamilyModule extends Module {
             } catch (PAException $e) {
                 $error_msg = $e->getMessage();
             }
-        }
+
 
         $gid = (int)$request_data['gid'];
         if(!(Group::member_exists($gid, (int)PA::$login_uid)) && $group->reg_type == REG_MODERATED) { // if it is a manual join not an invited join
