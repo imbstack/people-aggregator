@@ -20,14 +20,14 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
        $_POST['user_cv']['value'] = $user_cv;
        Storage::link($user_cv, array("role" => "cv", "user" => PA::$login_user->user_id));
      }
-   } else {
+   } else if (!empty($this->user->{'professional'}['user_cv']['value'])) {
      $user_cv = $this->user->{'professional'}['user_cv']['value'];
      $_POST['user_cv']['value'] = $user_cv;
    }
 
   // $this is  DynamicProfile class instance
   $this->processPOST('professional');
-  if (! $error) {
+  if (empty($error)) {
     try {
       // $this is  DynamicProfile class instance
       $this->save('professional', PROFESSIONAL);
@@ -37,7 +37,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'professional')) {
     }
   }
 
-  if ($error == TRUE || $save_error == TRUE) {
+  if (!empty($error) || !empty($save_error)) {
     $msg = __('Sorry: you are unable to save data').'<br>'.__('Reason: ')."$msg";
   } else {
 		global $error_msg;
