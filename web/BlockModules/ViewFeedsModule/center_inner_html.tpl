@@ -1,6 +1,6 @@
 <?php  
   global $page_uid;
-  $user_info = get_user();
+  $user_info = PA::$login_user;
   if (!empty($profile_feeds)) {
     foreach ($profile_feeds as $feed) {
     echo '<h1>'.$feed['blog_title'].'</h1>';
