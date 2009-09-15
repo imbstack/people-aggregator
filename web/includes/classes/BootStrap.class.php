@@ -489,9 +489,13 @@ class BootStrap {
   private function afterParse() {
     require_once "web/includes/functions/functions.php";
       if(PA::$profiler) PA::$profiler->startTimer('PADefender');
+//
+// QUESTION: Whether "post" and "get" data should be filtered here for all requests?
+//
 //      filter_all_post($_GET);
 //      filter_all_post($_POST);
 //      filter_all_post($_REQUEST);
+
       PADefender::testArrayRecursive($_GET, $this->defend_rules);
       PADefender::testArrayRecursive($_POST, $this->defend_rules);
       PADefender::testArrayRecursive($_REQUEST, $this->defend_rules);

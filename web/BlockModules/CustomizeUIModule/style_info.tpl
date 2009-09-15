@@ -1,6 +1,4 @@
-<?php
-include "center_inner_private.tpl";
-?>
+<?php include "center_inner_private.tpl"; ?>
  
 <div class="description"><?= __("Use these settings to customize the look of your Network pages") ?><br><?= __("that others will see.") ?></div>
 <div id="conf_container"></div>

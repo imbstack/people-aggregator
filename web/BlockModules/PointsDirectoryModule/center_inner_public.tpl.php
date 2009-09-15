@@ -36,12 +36,12 @@
     <li>
       <div><?= $item['media_icon'] ?></div>
       <div class="points_center">
-        <h2><?= abbreviate_text($item['entity_name'], 17, 10) ?></h2>
+        <h2><?= abbreviate_text($item['entity_name'], 21, 10) ?></h2>
         <div class="points_descr"><?= $item['description'] ?></div>
       </div>
       <div class="points_details">
         <table>
-          <tr><td class="categ"><?= abbreviate_text($item['category'], 7, 3) ?></td></tr>
+          <tr><td class="categ"><?= abbreviate_text($item['category'], 8, 3) ?></td></tr>
           <tr><td><b><?= __("Date: ") ?></b><?= PA::date($item['updated'], 'short') ?></td></tr>
           <tr><td><?= abbreviate_text($item['place'], 20, 13) ?></td></tr>
         </table>

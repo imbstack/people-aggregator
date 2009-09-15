@@ -86,7 +86,7 @@
     <active>1</active>
   </item>
   <item>
-    <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:hash|name|href|navigateandfind|source|pathname|close|constructor|port|protocol|assign|replace|back|forward|document|window|self|parent|frames|_?content|date|cookie|innerhtml|innertext|csstext+?|outerhtml|print|moveby|resizeto|createstylesheet|stylesheets)(?(1)[^\w%"]|(?:\s*[^@\/\s\w%",.+\-]))</expression>
+    <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:hash|name|href|navigateandfind|source|pathname|close|constructor|port|protocol|assign|replace|back|forward|document|window|self|parent|frames|_?cookie|innerhtml|innertext|csstext+?|outerhtml|print|moveby|resizeto|createstylesheet|stylesheets)(?(1)[^\w%"]|(?:\s*[^@\/\s\w%",.+\-]))</expression>
     <description>JavaScript object properties and methods injection attempt</description>
     <active>1</active>
   </item>
@@ -101,7 +101,7 @@
     <active>1</active>
   </item>
   <item>
-    <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z_@&gt;\-\|])(\s*return\s*)?(?:globalstorage|sessionstorage|postmessage|callee|constructor|content|domain|prototype|try|catch|top|call|apply|url|function|object|array|string|math|if|elseif|case|switch|regex|boolean|location|settimeout|setinterval|void|setexpression|namespace|while)(?(1)[^\w%"]|(?:\s*[^@\s\w%",.+\-]))</expression>
+    <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z_@&gt;\-\|])(\s*return\s*)?(?:globalstorage|sessionstorage|postmessage|callee|constructor|domain|prototype|try|catch|top|call|apply|url|function|object|array|string|math|if|elseif|case|switch|regex|boolean|location|settimeout|setinterval|void|setexpression|namespace|while)(?(1)[^\w%"]|(?:\s*[^@\s\w%",.+\-]))</expression>
     <description>attack via JavaScript language constructs</description>
     <active>1</active>
   </item>
@@ -121,7 +121,7 @@
     <active>1</active>
   </item>
   <item>
-    <expression>(?:\/[\w\s]+\/\.)|(?:=\s*\/\w+\/\s*\.)|(?:(?:this|window|top|parent|frames|self|content)\[\s*[(,"]*\s*\w)|(?:,\s*new\s+\w+\s*[,;)])</expression>
+    <expression>(?:\/[\w\s]+\/\.)|(?:=\s*\/\w+\/\s*\.)|(?:(?:this|window|top|parent|frames|self)\[\s*[(,"]*\s*\w)|(?:,\s*new\s+\w+\s*[,;)])</expression>
     <description>basic obfuscated JavaScript script injection attempt</description>
     <active>1</active>
   </item>

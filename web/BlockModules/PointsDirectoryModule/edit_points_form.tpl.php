@@ -12,7 +12,7 @@
  <fieldset class="center_box">
     <div class="field">
       <h4><span class="required"> * </span><label for="form_data_entity_name"><?=__("Title")?></label></h4>
-      <input type="text" name="form_data[entity_name]" id="form_data_entity_name" value="<?=(!empty($item['entity_name'])) ? $item['entity_name'] : null ?>" class="text short" maxlength="45" />
+      <input type="text" name="form_data[entity_name]" id="form_data_entity_name" value="<?=(!empty($item['entity_name'])) ? $item['entity_name'] : null ?>" class="text short error" maxlength="45" />
     </div>
 
     <div class="field">

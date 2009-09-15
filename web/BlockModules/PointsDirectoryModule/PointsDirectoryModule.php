@@ -61,7 +61,7 @@ class PointsDirectoryModule extends Module {
          } else if(!empty($request_data['gid'])) {
            $this->criteria['family_id'] = $request_data['gid'];
          }
-         $this->fid = $this->criteria['family_id'];
+         $this->fid = (!empty($this->criteria['family_id'])) ? $this->criteria['family_id'] : null;
     	 list($relType, $relLabel) = TypedGroupEntityRelation::get_relation_to_group(PA::$login_uid, (int)$this->fid);
     	 if (empty($relType)) {
     		$relType = 'member';
@@ -83,6 +83,22 @@ class PointsDirectoryModule extends Module {
        if(!empty($this->category)) {
          $this->sub_title = sprintf(__('Search results for \'%s\' Category') , $this->category);
          $this->criteria['category'] = $this->category;
+       }
+
+       switch($this->page_id) {
+            case PAGE_FAMILY:
+                   $this->url_base = PA::$url . PA_ROUTE_FAMILY . "?gid=$this->fid";
+            break;
+            case PAGE_FAMILY_DIRECTORY:
+                   $this->url_base = PA::$url . PA_ROUTE_FAMILY_DIRECTORY;
+            break;
+            case PAGE_POINTS_DIRECTORY:
+                   if($this->fid) {
+                     $this->url_base = PA::$url . PA_ROUTE_FAMILY . "?gid=$this->fid";
+                   } else {
+                     $this->url_base = PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?uid=$this->user_id";
+                   }
+            break;
        }
 
        if($request_method == 'GET') {
@@ -124,6 +140,11 @@ class PointsDirectoryModule extends Module {
 
   private function showPointsDirectory($request_data) {
 
+    if(!empty($this->fid)) {
+       $this->Paging["querystring"] = "fid=$this->fid&gid=$this->fid";
+    } else if (!empty($this->user_id)) {
+       $this->Paging["querystring"] = "uid=$this->user_id";
+    }
     $this->Paging['page'] = $this->page;
     $this->Paging['show'] = $this->limit;
     $this->Paging['count'] = PointsEntity::search($this->criteria, true);
@@ -145,7 +166,9 @@ class PointsDirectoryModule extends Module {
                                                          'page_first' => $this->page_first,
                                                          'page_last' => $this->page_last,
                                                          'page_links' => $this->page_links,
-                                                         'fid'        => (isset($this->fid) ? $this->fid : null),
+                                                         'url_base'   => $this->url_base, 
+                                                         'message'     => (isset($request_data['message']) ? $request_data['message'] : null),
+                                                         'fid'         => (isset($this->fid) ? $this->fid : null),
                                                          'fam_members' => (isset($this->fam_members) ? $this->fam_members : null)
                                                         )
                                                   );
@@ -232,6 +255,7 @@ class PointsDirectoryModule extends Module {
                                                            'category' => $this->category,
                                                            'categories' => $this->categories,
                                                            'user_id' => $this->user_id,
+                                                           'url_base' => $this->url_base, 
                                                            'item' => $item,
                                                            'fid'  => $this->fid 
                                                           )
@@ -259,6 +283,7 @@ class PointsDirectoryModule extends Module {
                                                            'category' => $this->category,
                                                            'categories' => $this->categories,
                                                            'user_id' => $this->user_id,
+                                                           'url_base'   => $this->url_base, 
                                                            'item' => $items[0],
                                                            'fid' => $this->fid
                                                           )
@@ -290,6 +315,7 @@ class PointsDirectoryModule extends Module {
   }
 
   public function handlePOST_savePoints($request_data) {
+   global $app;
      $msg = null;
      $error = false;
      $form_data  = $request_data['form_data'];
@@ -318,6 +344,7 @@ class PointsDirectoryModule extends Module {
      unset($request_data['media']);
      unset($request_data['action']);
      unset($request_data['module']);
+/*
      $this->view_mode = 'edit';
      $this->sub_title = __('Edit Points');
      $this->set_inner_template('edit_points_form.tpl.php');
@@ -325,12 +352,22 @@ class PointsDirectoryModule extends Module {
                                                           'category' => $this->category,
                                                           'categories' => $this->categories,
                                                           'user_id' => $this->user_id,
+                                                          'url_base'   => $this->url_base, 
                                                           'item' => $items[0],
                                                           'error' => $error,
                                                           'message' => $msg,
                                                           'fid'     => $this->fid 
                                                          )
                                                    );
+*/
+/*
+     $request_data['message'] = $msg;
+     $this->view_mode = 'list';
+     $this->set_inner_template('center_inner_public.tpl.php');
+     $this->showPointsDirectory($request_data);
+*/
+     $app->redirect($this->url_base . "&msg=" . urlencode($msg));
+
   }
 
   function set_inner_template($template_fname) {

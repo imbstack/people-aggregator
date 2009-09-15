@@ -14,15 +14,18 @@ $(document).ready(function() {
 
     var validate_1 =  $("#edit_points_form").validate({
                 rules: {
-                        'form_data[title]': {
+                        'form_data[entity_name]': {
                                 required: true,
-                                minLength: 2
+                                minLength: 3,
+                                maxLength: 20
                         },
                         'form_data[description]': {
-                                minLength: 3
+                                minLength: 6,
+                                maxLength: 132 
                         },
                         'form_data[place]': {
-                                minLength: 2
+                                minLength: 3,
+                                maxLength: 12
                         },
                         'form_data[category]': {
                                 required: true
@@ -32,15 +35,18 @@ $(document).ready(function() {
                         }
                 },
                 messages: {
-                        'form_data[title]': {
+                        'form_data[entity_name]': {
                                 required: "Title is a required field",
-                                minLength: "Title must be at least 2 characters"
+                                minLength: "Title must be at least 3 characters",
+                                maxLength: "Title can not be longer than 20 characters"
                         },
                         'form_data[description]': {
-                                minLength: "Description must be at least 3 characters"
+                                minLength: "Description must be at least 6 characters",
+                                maxLength: "Description can not be longer than 132 characters"
                         },
                         'form_data[place]': {
-                                minLength: "Place must be at least 2 characters"
+                                minLength: "Place must be at least 3 characters",
+                                maxLength: "Place can not be longer than 12 characters"
                         },
                         'form_data[category]': {
                                 required: "Category is a required field"
@@ -58,11 +64,18 @@ $(document).ready(function() {
     });
 
     $('#submit_form').click( function() {
+//      alert('Validating');
        if(validate_1.form() && ($('#form_data_category').val() != '')) {
          return true;
        }
        if($('#form_data_category').val() == '') {
           alert("Category is a required field");
+       }
+       if($('#form_data_category').val().length < 3) {
+         alert("Category must be at least 3 characters");
+       }
+       if($('#form_data_category').val().length > 8) {
+         alert("Category can not be longer than 8 characters");
        }
        return false;
     });

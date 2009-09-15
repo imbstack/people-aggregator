@@ -407,7 +407,9 @@ class CustomizeUIModule extends Module {
     // adding some New Css files require for this page only
     $this->renderer->add_header_css($css_path . "configurator.css");
     $this->renderer->add_header_css($css_path . "farbtastic.css");
-
+    
+    PADefender::setMode(PADefender::suspended);
+    
     switch($this->settings_type) {
       case 'user':
         $user = $this->shared_data['user_info'];
