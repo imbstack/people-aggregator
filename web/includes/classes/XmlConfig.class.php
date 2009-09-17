@@ -519,9 +519,16 @@ class XmlConfig extends DOMDocument
  */
 class XmlConfigException extends Exception
 {
-    public function __construct($message, $fnc_name)
+    public function __construct($message, $fnc_name, $object = null)
     {
-        parent::__construct("XmlConfig::$fnc_name() - " . $message);
+        if($object) 
+        { 
+          parent::__construct(get_class($object) . "::$fnc_name() - " . $message);
+        } 
+        else 
+        {
+          parent::__construct("XmlConfig::$fnc_name() - " . $message);
+        }
     }
 }
 ?>

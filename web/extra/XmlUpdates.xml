@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<updates>
+  <add>
+    <node_value path="//configuration/pages/value" descr="adding PAGE_TESTPAGE_HOME entry">
+        <PAGE_TESTPAGE_HOME category="constant" type="int" readonly="true" section="pages" page_name="TestPage Home" page_type="network">
+          <value>1111</value>
+        </PAGE_TESTPAGE_HOME>
+    </node_value> 
+  </add>
+  <replace>
+    <node_value path="//configuration/pages/value/PAGE_TESTPAGE_HOME" descr="replacing value of PAGE_TESTPAGE_HOME entry">
+        <value>9000</value>
+    </node_value> 
+  </replace>
+  <remove>
+    <node_value path="//configuration/pages/value/PAGE_TESTPAGE_HOME" descr="removing PAGE_TESTPAGE_HOME entry"/>
+  </remove>
+</updates>
