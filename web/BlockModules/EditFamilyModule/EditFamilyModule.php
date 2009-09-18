@@ -43,9 +43,9 @@ class EditFamilyModule extends Module {
         $this->group_photo = $group->picture;
         $this->upfile = $group->picture;
       }
-       if ($group->header_image) {
+      if ($group->header_image) {
         $this->header_image = $group->header_image;
-        $this->upfile = $group->picture;
+        // $this->upfile = $group->picture;
         $this->header_image_action=$group->header_image_action;
       }
 
@@ -184,7 +184,7 @@ class EditFamilyModule extends Module {
                 	Group::save_new_group($collection_id, PA::$login_uid, $groupname, $body, $upfile, $group_tags, $group_category, $access, $reg_type, $is_moderated, $header_image, $header_image_action, $display_header_image, $this->extra);
                $ccid = $result;
                if (!is_numeric($result)) {
-               	throw new PAException(GROUP_CREATION_FAILED, 'Group creation failed: '.$result);
+               	throw new PAException(GROUP_CREATION_FAILED, 'Family creation failed: '.$result);
               } else {
               	if (@$avatar_uploaded) Storage::link($upfile, array("role" => "avatar", "group" => (int)$result));
                 if (@$header_uploaded) Storage::link($header_image, array("role" => "header", "group" => (int)$result));
@@ -240,7 +240,8 @@ class EditFamilyModule extends Module {
 
         $msg_array = array();
         $msg_array['failure_msg'] = @$error_msg;
-        $msg_array['success_msg'] = (!empty($this->id)) ? 90231:90221;
+        $msg_array['success_msg'] = (!empty($this->id)) ? __("Family has been updated successfully.")
+        : __("Family has been created successfully.");
         $redirect_url = PA::$url . PA_ROUTE_FAMILY;
         $query_str = "?gid=".@$result;
         set_web_variables($msg_array, $redirect_url, $query_str);

@@ -144,7 +144,7 @@ $type = $mod->dynFields->getVal('type');
           </div>
          <input type="hidden" name="gid" value="<?= @$mod->collection_id?>"/>
          <input type="hidden" name="ccid" value="<?= @$mod->collection_id?>"/>
-         <input type="hidden" name="file" value="<?= @$upfile?>"/>
+         <input type="hidden" name="file" value="<?= @$mod->upfile?>"/>
          <input type="hidden" name="header_file" value="<?= @$mod->header_file?>"/>
          <input type="hidden" name="form_handler" value="AddGroupModule" />
       </fieldset>
