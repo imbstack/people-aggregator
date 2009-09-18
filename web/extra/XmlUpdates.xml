@@ -15,4 +15,13 @@
   <remove>
     <node_value path="//configuration/pages/value/PAGE_TESTPAGE_HOME" descr="removing PAGE_TESTPAGE_HOME entry"/>
   </remove>
+
+  <add>
+    <node_value path="//configuration/pages/value" descr="adding PAGE_FAMILY_MEMBERS entry">
+<PAGE_FAMILY_MEMBERS category="constant" type="int" readonly="true" section="pages" page_name="Family Settings" page_type="network">
+	<value>323</value>
+</PAGE_FAMILY_MEMBERS>
+    </node_value> 
+  </add>
+
 </updates>

@@ -18,6 +18,7 @@
     <right>
       <item>UserPhotoModule</item>
       <item>AboutUserModule</item>
+      <item>MyFamiliesModule</item>
       <item>EventCalendarSidebarModule</item>
     </right>
     <javascripts>

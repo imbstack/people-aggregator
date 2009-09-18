@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <page>
-  <page_id>321</page_id>
-  <page_name>Family Page</page_name>
+  <page_id>323</page_id>
+  <page_name>Family Members</page_name>
   <is_configurable>1</is_configurable>
   <data>
     <left>
       <item>MyFamiliesModule</item>
     </left>
     <middle>
-      <item>FamilyModule</item>
-      <item>PointsDirectoryModule</item>
+      <item>ViewAllMembersModule</item>
     </middle>
     <right>
     	<item>FamilyFacewallModule</item>

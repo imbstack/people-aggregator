@@ -339,6 +339,14 @@
     *
     **/
     "^/family/edit[\/]?(.*)$" => "/dynamic.php?page_id=322&%s",
+    
+    
+    /**
+    *
+    *  /family/members -> dynamic.php?page_id=323
+    *
+    **/
+    "^/family/members[\/]?(.*)$" => "/dynamic.php?page_id=323&%s",
 
 
     /**
@@ -394,5 +402,6 @@ define("PA_ROUTE_POINTS_DIRECTORY", "/points");
 define("PA_ROUTE_FAMILY_DIRECTORY", "/families");
 define("PA_ROUTE_FAMILY", "/family");
 define("PA_ROUTE_FAMILY_EDIT", "/family/edit");
+define("PA_ROUTE_FAMILY_MEMBERS", "/family/members");
 
 ?>

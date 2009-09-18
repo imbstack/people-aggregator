@@ -21,6 +21,7 @@
     <right>
       <item>UserPhotoModule</item>
       <item>AboutUserModule</item>
+      <item>MyFamiliesModule</item>
       <item>UserMessagesModule</item>
       <item>RecentCommentsModule</item>
     </right>
