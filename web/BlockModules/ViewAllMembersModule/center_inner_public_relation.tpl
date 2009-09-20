@@ -1,6 +1,11 @@
 <?php
   if (!empty($gid)) {
-    $description = sprintf(__('There are %d members in this %s.'), $total, strtolower(PA::$group_noun));
+  	if (!empty($mod->entity_type)) {
+  		$group_noun = $mod->entity_type;
+  	} else {
+  		$group_noun = strtolower(PA::$group_noun);
+  	}
+    $description = sprintf(__('There are %d members in this %s.'), $total, $group_noun);
   } else if ( !isset($_GET['uid']) ) {
     if ( !isset(PA::$login_uid) || $view_type != 'relations') {
     $description = sprintf(__('There are %d members.'), $total);

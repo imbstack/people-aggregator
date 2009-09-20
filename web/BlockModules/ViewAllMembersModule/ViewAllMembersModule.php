@@ -16,9 +16,30 @@ class ViewAllMembersModule extends Module {
     $this->html_block_id = "ViewAllMembersModule";
   }
 
+  function initializeModule($request_method, $request_data) {
+    if (!empty($this->shared_data['group_info'])) {
+	  	$this->gid = $this->shared_data['group_info']->collection_id;
+	  	$this->view_type = "all";
+	  	if ($this->shared_data['group_info']->group_type == "typedgroup") {
+	  		PA::$config->useTypedGroups = true;
+	  		require_once 'api/Entity/TypedGroupEntity.php';
+	  		$this->entity = TypedGroupEntity::load_for_group((int)$this->gid);
+	  		$this->entity_type = $this->entity->entity_type;
+// echo "<pre>".print_r($this->entity, 1)."</pre>";exit;
+	  	}
+    }
+    $this->network_info = PA::$network_info;
+    global $paging;
+    $this->Paging["page"] = $paging["page"];
+    $this->Paging["show"] = $paging["show"];
+    $this->page_user = NULL;
+    if (PA::$page_uid && (PA::$page_uid != PA::$login_uid)) {
+    	$user = new User(); ¤user-load(PA::$page_uid);
+    	$this->page_user = $user->get_name();
+    }
+  }
 
    function render() {
-   	 
     if ($this->view_type == 'all') {
       $this->Paging["count"] =  Network::get_members(array( 'network_id'=>$this->network_info->network_id, 'cnt'=>TRUE));
       $param = array('show'=>$this->Paging["show"],'page'=>$this->Paging["page"],'network_id'=>$this->network_info->network_id);
@@ -80,7 +101,7 @@ class ViewAllMembersModule extends Module {
       }
     }
 
-    $this->inner_HTML = $this->generate_inner_html ();
+    $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
@@ -104,7 +125,7 @@ class ViewAllMembersModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public_relation.tpl';
     }
 
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = & new Template($inner_template, $this);
     $obj_inner_template->set_object('links', $this->links);
     $obj_inner_template->set_object('gid', @$this->gid);
     $obj_inner_template->set('sub_title', @$this->sub_title);

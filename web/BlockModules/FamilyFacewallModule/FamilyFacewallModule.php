@@ -22,69 +22,43 @@ class FamilyFacewallModule extends FacewallModule {
     $this->sort_by = $sort_by;
     $this->title = __("Family Members");
     $this->html_block_id = "members";
-    $this->view_all_url = PA::$url . PA_ROUTE_PEOPLES_PAGE;
  }
 
   public function initializeModule($request_method, $request_data)  {
-    if(!empty($this->shared_data['group_info'])) {
-       $sort = ($this->sort_by == 'last_login') ? 'last_login' : 'created';
-       $group = $this->shared_data['group_info'];
-       $this->gid = $group->collection_id;
-       $users = $group->get_members($cnt=FALSE, 5, 1, $sort, 'DESC',FALSE);
-       $total_users = count($users);
-    } else {
-    	return "skip";
-    }
+    if(empty($this->shared_data['group_info'])) return "skip";
+    
+    $sort = ($this->sort_by == 'last_login') ? 'last_login' : 'created';
+    $group = $this->shared_data['group_info'];
+    $this->gid = $group->collection_id;
+    $users = $group->get_members($cnt=FALSE, 5, 1, $sort, 'DESC',FALSE);
+    $total_users = count($users);
+
     $users_data = array();
 
     $status = null;
     if (!empty(PA::$extra['reciprocated_relationship']) && PA::$extra['reciprocated_relationship'] == NET_YES) {
         $status = APPROVED;
     }
-    if (!empty($users)) {
-      if(!empty($this->shared_data['group_info'])) {
-        foreach ($users as $user) {
-            $count_relations = Relation::get_relations($user['user_id'], $status, PA::$network_info->network_id);
-            $group_member = new User();
-            $group_member->load((int)$user['user_id']);
-            $users_data[] = array(
-            	'user_id' => $user['user_id'],
-            'picture' => $group_member->picture,
-            'login_name' => $group_member->login_name,
-            'display_name' => $group_member->display_name,
-            'no_of_relations' => count($count_relations)
-            );
+		foreach ($users as $user) {
+				$count_relations = Relation::get_relations($user['user_id'], $status, PA::$network_info->network_id);
+				$group_member = new User();
+				$group_member->load((int)$user['user_id']);
+				$users_data[] = array(
+					'user_id' => $user['user_id'],
+				'picture' => $group_member->picture,
+				'login_name' => $group_member->login_name,
+				'display_name' => $group_member->display_name,
+				'no_of_relations' => count($count_relations)
+				);
 
-        }
-        $users = array('users_data'=>$users_data, 'total_users'=>$total_users);
-
-      } else {
-
-        // counting no of relation of each user
-        for ($i=0; $i<$total_users; $i++) {
-          $count_relations = Relation::get_relations($users['users_data'][$i]['user_id'], $status, PA::$network_info->network_id);
-          $curr_user_relations = $count_relations;
-          $users['users_data'][$i]['no_of_relations'] = count($count_relations);
-        }
-      }
-      $this->links = $users;
-      $this->sort_by = TRUE;
-    } else {
-      $this->do_skip = TRUE;
-    }
+		}
+		$users = array('users_data'=>$users_data, 'total_users'=>$total_users);
+		$this->links = $users;
+		$this->sort_by = TRUE;
   }
 
-  /**
-  *  Function : render()
-  *  Purpose  : produce html code from tpl file
-  *  @return   type string
-  *            returns rendered html code
-  */
   function render() {
-
-    if (!empty($this->gid)) {//if it is group's facewall then append gid in url
-      $this->view_all_url = "/view_all_members.php?gid=".$this->gid;
-    }
+    $this->view_all_url = PA_ROUTE_FAMILY_MEMBERS."/?gid=".$this->gid;
     $content = parent::render();
     return $content;
   }

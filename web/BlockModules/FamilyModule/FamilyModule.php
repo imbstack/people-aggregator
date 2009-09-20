@@ -57,7 +57,6 @@ class FamilyModule extends Module {
   }
 
   function initializeModule($request_method, $request_data) {
-  	 
     if (empty($this->shared_data['group_info'])) {
     	return 'skip';
     }
