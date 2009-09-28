@@ -1,4 +1,5 @@
 <?php
+require_once "web/includes/functions/validations.php";
 
 class ForgotPasswordModule extends Module {
 
