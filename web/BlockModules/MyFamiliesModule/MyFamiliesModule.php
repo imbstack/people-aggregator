@@ -25,7 +25,7 @@ class MyFamiliesModule extends Module {
           $this->user_name = PA::$page_user->login_name;
         break;
         case PAGE_USER_PRIVATE:
-          $this->title = __('My Groups');
+          $this->title = __('My Families');
           $this->uid = PA::$login_uid;
         break;
         case PAGE_FAMILY:

@@ -80,7 +80,7 @@ class TypedGroupEntityRelation extends EntityRelation {
 		return NULL;
 	}
 
-	public static function get_relation_for_user($uid, $type=NULL) {
+	public static function get_relation_for_user($uid, $type=NULL, $load_attrs=true) {
 		$relation = array(
 			'subject_service' => 'internal',
 			'subject_type' => 'user',
@@ -90,7 +90,7 @@ class TypedGroupEntityRelation extends EntityRelation {
 		if ($type) {
 			$relation['object_type'] = $type;
 		}
-		$match = parent::load_match($relation);
+		$match = parent::load_match($relation, $load_attrs);
 		return $match;
 	}
 }

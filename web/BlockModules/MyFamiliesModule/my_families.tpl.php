@@ -1,5 +1,15 @@
 <?php
-if (!empty($families[0])) { ?>
+if (!empty($families[0])) { 
+
+if (0) {
+	// Testcode for on_same_family
+	if (PA::$login_uid != PA::$page_uid) {
+		require_once("api/Entity/FamilyTypedGroupEntity.php");
+		echo "<pre>".print_r(FamilyTypedGroupEntity::in_same_family(PA::$login_uid, PA::$page_uid), 1)."</pre>";
+	}
+} // end test code
+
+?>
 <div class="module_icon_list">
   <ul class="members">
   <?php foreach ($families as $family) { ?>

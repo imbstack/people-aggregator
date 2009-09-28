@@ -129,7 +129,7 @@ class EntityRelation extends DbObject {
 	// load relations that match the passed params
 	// this can be zero, one (exact match)
 	// or many (all of one type etc)
-  public static function load_match($r) {
+  public static function load_match($r, $load_attrs=true) {
     $where = " WHERE 1 ";
     $args = array();
     foreach ($r as $k=>$v) {
@@ -137,9 +137,11 @@ class EntityRelation extends DbObject {
     	$args[] = $v;
     }
     $relations = self::load_many_from_query("EntityRelation", "SELECT * FROM {entityrelations} $where", $args);
-    // get attributes
-    foreach ($relations as $relation) {
-    	$relation->attributes = EntityRelation::load_attributes($relation->id);
+    if ($load_attrs) {
+			// get attributes
+			foreach ($relations as $relation) {
+				$relation->attributes = EntityRelation::load_attributes($relation->id);
+			}
     }
     return $relations;
   }
