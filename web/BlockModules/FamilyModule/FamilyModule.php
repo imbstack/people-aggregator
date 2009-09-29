@@ -366,12 +366,12 @@ class FamilyModule extends Module {
       } else {
         $error_msg = sprintf(__("You are not member of \"%s\"."), stripslashes($group->title));
       }
-      if (!empty(PA::$config->useTypedGroups)) {
+      if (@$x) {
+        $error_msg = sprintf(__("You have left \"%s\" successfully."), stripslashes($group->title));
+        
+        // also delete Family relation
         require_once 'api/Entity/TypedGroupEntityRelation.php';
         TypedGroupEntityRelation::delete_relation(PA::$login_uid, $request_data['gid'], PA::$network_info->network_id);
-      }
-      if(@$x) {
-        $error_msg = sprintf(__("You have left \"%s\" successfully."), stripslashes($group->title));
       }
     }
   }
