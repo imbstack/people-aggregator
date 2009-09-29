@@ -362,6 +362,21 @@ class Navigation {
       unset($people_children);
      }
     ///EOF children of people 2nd level link
+    
+    $family_children = array(
+    	'neighbours' => array(
+    		'caption' => __("Neighbours"),
+    		'url' => $this->base_url . PA_ROUTE_FAMILY_DIRECTORY
+    	),
+    	'family_home' => array(
+    		'caption' => __("Family Homepage"),
+    		'url' => $this->base_url . PA_ROUTE_FAMILY . "/gid=" . $this->group_id
+    	),
+    	'family_members' => array(
+    		'caption' => __("Family Members"),
+    		'url' => $this->base_url . PA_ROUTE_FAMILY_MEMBERS . "/gid=" . $this->group_id
+    	),
+    );
 
     /// group general children
     //    $users_first_group_id = $this->get_users_first_group_id();
@@ -569,6 +584,7 @@ class Navigation {
     /// second level menu for network
     $level_3 = array('user'=>@$user_children,
                          'people'=>@$people_children,
+                         'family'=>@$family_children,
                          'groups'=>$groups_children,
                          'network'=>$network,
                          'network_notify'=>$network_notify,
@@ -808,6 +824,16 @@ class Navigation {
         $level_3 = $this->get_level_3('people');
         $level_3['highlight'] = 'find_people';
       break;
+
+
+      /*----------------------------------------------------*/
+      case PAGE_FAMILY :
+      case PAGE_FAMILY_EDIT :
+      case PAGE_FAMILY_MEMBERS :
+        $level_2['highlight'] = 'people';
+        $level_3 = $this->get_level_3('family');
+      break;
+
       /*----------------------------------------------------*/
        case FILE_VIEW_ALL_MEMBERS :
        if (@$_GET['gid']) {
