@@ -30,7 +30,7 @@
     </page_css>
     <page_theme>Default</page_theme>
     <body_attributes></body_attributes>
-    <access_permission/>
+    <access_permission>view_content</access_permission>
     <navigation_code/>
     <boot_code><![CDATA[
       if($login = $app->getRequestParam('login')) {

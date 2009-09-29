@@ -332,6 +332,21 @@ class User {
     return $result;
   }
 
+  /**
+  * check
+  * @return TRUE if user have role with appropriate role ID
+  */
+  public function has_role_id($role_id) {
+    $result = false;
+
+    foreach($this->role as $role_obj) {
+      if($role_obj->role_id == $role_id) {
+         $result = true;
+         break;
+      }
+    }
+    return $result;
+  }
 
 
   /**

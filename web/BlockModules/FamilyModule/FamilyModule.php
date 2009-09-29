@@ -332,6 +332,13 @@ class FamilyModule extends Module {
           $error_msg = sprintf(__("You have joined \"%s\" successfully."), stripslashes($group->title));
         }
         PANotify::send($mail_type, $group, PA::$login_user, array());
+        
+        if($type == 'child') {                 // if user type == child remove LoginUser and GroupMember roles
+          PA::$login_user->delete_user_role(); // then assign 'Child' role only
+          $_extra = serialize(array( 'user' => false, 'network' => false, 'groups' => array($gid)));
+          $user_roles[] = array('role_id' => CHILD_MEMBER_ROLE, 'extra' => $_extra);
+          PA::$login_user->set_user_role($user_roles);
+        }
       }
     } else {
         // redirect to login
@@ -344,9 +351,9 @@ class FamilyModule extends Module {
 
   private function handleGET_leave($request_data) {
     global $error_msg;
-    if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
+    if(PA::$login_uid && !empty($this->shared_data['group_info'])) {
       $group = $this->shared_data['group_info'];
-      $user  = $this->shared_data['login_user'];
+      $user  = PA::$login_user;
       $user_type = Group::get_user_type(PA::$login_uid, (int)$request_data['gid']);
       if((Group::is_admin((int)$request_data['gid'], (int)PA::$login_uid)) && ($user_type == OWNER)) { // admin can leave a group but owner can't
         $error_msg = __("You can't leave your own group.");
@@ -371,9 +378,9 @@ class FamilyModule extends Module {
 
   private function handleGET_delete($request_data) {
     global $error_msg;
-    if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user']) && ((@$_POST['content_type'] != 'media'))) {
+    if(PA::$login_uid && !empty($this->shared_data['group_info']) && ((@$_POST['content_type'] != 'media'))) {
       $group = $this->shared_data['group_info'];
-      $user  = $this->shared_data['login_user'];
+      $user  = PA::$login_user;
       if(Group::is_admin((int)$request_data['gid'], (int)PA::$login_uid)) {
         $group->delete();
         // Deleting all the activities of this group from activities table for rivers of people module

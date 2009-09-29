@@ -60,6 +60,18 @@ class db_update_page
         // $this->qup("changed id field in review-type movie", "UPDATE review_type SET review_id = 1 WHERE review_name = 'Movie'");
         // finally, run the 'safe' updates in net_extra.php.
 
+        $child_role = array('id' => 9, 'name' => 'Child', 'description' => 'Role for family members with Child status', 'read_only' => 1, 'type' => 'group', 'tasks' => array(12, 13, 15, 16, 22, 30));
+        $this->qup_all_networks("2009-09-28, by: Zoran Hron - adding Child role, ID: " . $child_role['id'],
+                                "INSERT INTO {roles} (id, name, description, created, changed, read_only, type)
+                                 VALUES (".$child_role['id'].", '".$child_role['name']."', '".$child_role['description']."', ".time().", ".time().", ".$child_role['read_only'].", '".$child_role['type']."')
+                                 ON DUPLICATE KEY UPDATE name = '".$child_role['name']."', description = '".$child_role['description']."', read_only = ".$child_role['read_only'].", type = '".$child_role['type']."'"
+                               );
+       foreach($child_role['tasks'] as $task_id) {
+         $this->qup_all_networks("2009-09-28, by: Zoran Hron - adding tasks/permissions for Child role. ID=".$child_role['id'].", task ID=" . $task_id,
+                                 "INSERT IGNORE INTO {tasks_roles} (`task_id`, `role_id`) VALUES (".$task_id.", ".$child_role['id'].");"
+                                );
+       }
+
         $this->run_xml_updates();
         run_net_extra();
     }//__endof__ do_updates

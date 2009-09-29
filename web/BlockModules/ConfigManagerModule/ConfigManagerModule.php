@@ -10,7 +10,7 @@ class ConfigManagerModule extends Module
     public $module_type = 'system|network';
     public $module_placement = 'middle';
     private $section;
-    private $sections = array('system_strings', 'blogging', 'basic_group_settings', 'typedgroups', 'basic_network_settings', 'network_defaults', 'site_related', 'ad_center', 'api_keys', 'database', 'debug');
+    private $sections = array('system_strings', 'blogging', 'basic_group_settings', 'basic_family_settings', 'typedgroups', 'basic_network_settings', 'network_defaults', 'site_related', 'ad_center', 'api_keys', 'database', 'debug');
 
     function __construct()
     {

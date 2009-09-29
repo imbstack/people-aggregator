@@ -76,10 +76,10 @@ class GroupActionsModule {
 
   private function handleGET_join($request_data) {
     global $error_msg;
-    if (PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
+    if (PA::$login_uid && !empty($this->shared_data['group_info'])) {
       $group = $this->shared_data['group_info'];
       if (!Group::member_exists((int)$request_data['gid'], (int)PA::$login_uid)) {
-        $user  = $this->shared_data['login_user'];
+        $user  = PA::$login_user;
         $login_name = $user->login_name;
         $group_invitation_id = (!empty($request_data['GInvID'])) ? $request_data['GInvID'] : null;
         try {
@@ -156,9 +156,9 @@ class GroupActionsModule {
 
   private function handleGET_leave($request_data) {
     global $error_msg;
-    if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user'])) {
+    if(PA::$login_uid && !empty($this->shared_data['group_info'])) {
       $group = $this->shared_data['group_info'];
-      $user  = $this->shared_data['login_user'];
+      $user  = PA::$login_user;
       $user_type = Group::get_user_type(PA::$login_uid, (int)$request_data['gid']);
       if((Group::is_admin((int)$request_data['gid'], (int)PA::$login_uid)) && ($user_type == OWNER)) { // admin can leave a group but owner can't
         $error_msg = __("You can't leave your own group.");
@@ -183,9 +183,9 @@ class GroupActionsModule {
 
   private function handleGET_delete($request_data) {
     global $error_msg;
-    if(PA::$login_uid && !empty($this->shared_data['group_info']) && !empty($this->shared_data['login_user']) && ((@$_POST['content_type'] != 'media'))) {
+    if(PA::$login_uid && !empty($this->shared_data['group_info']) && ((@$_POST['content_type'] != 'media'))) {
       $group = $this->shared_data['group_info'];
-      $user  = $this->shared_data['login_user'];
+      $user  = PA::$login_user;
       if(Group::is_admin((int)$request_data['gid'], (int)PA::$login_uid)) {
         $group->delete();
         // Deleting all the activities of this group from activities table for rivers of people module

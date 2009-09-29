@@ -204,6 +204,10 @@ define_once("GROUP_ADMIN_ROLE", 4);      // Group Administrator Role
 define_once("GROUP_MODERATOR_ROLE", 5);  // Group Moderator Role
 define_once("GROUP_MEMBER_ROLE", 6);     // Group Member Role
 
+define_once("AD_MANAGER_ROLE", 7);       // Ad Manager
+define_once("GROUP_AD_MANAGER_ROLE", 8); // Group Ad Manager Role
+define_once("CHILD_MEMBER_ROLE", 9);     // Member of family with 'Child' status
+
 /** ---------------------------------------------------------------------------------------
 *
 *   Tags

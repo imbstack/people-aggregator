@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <updates>
+<!--
   <add>
     <node_value path="//configuration/pages/value" descr="adding PAGE_TESTPAGE_HOME entry">
         <PAGE_TESTPAGE_HOME category="constant" type="int" readonly="true" section="pages" page_name="TestPage Home" page_type="network">
@@ -15,12 +16,23 @@
   <remove>
     <node_value path="//configuration/pages/value/PAGE_TESTPAGE_HOME" descr="removing PAGE_TESTPAGE_HOME entry"/>
   </remove>
-
+-->
   <add>
     <node_value path="//configuration/pages/value" descr="adding PAGE_FAMILY_MEMBERS entry">
-<PAGE_FAMILY_MEMBERS category="constant" type="int" readonly="true" section="pages" page_name="Family Settings" page_type="network">
-	<value>323</value>
-</PAGE_FAMILY_MEMBERS>
+      <PAGE_FAMILY_MEMBERS category="constant" type="int" readonly="true" section="pages" page_name="Family Settings" page_type="network">
+        <value>323</value>
+      </PAGE_FAMILY_MEMBERS>
+    </node_value> 
+  </add>
+  <add>
+    <node_value path="//configuration" descr="adding config section: basic_family_settings">
+      <basic_family_settings description="Basic Family settings">
+        <value>
+          <CHILD_LOWER_AGES category="constant" type="int" readonly="false" section="basic_family_settings" descr="The lower age limit for the child.">
+            <value>14</value>
+          </CHILD_LOWER_AGES>
+        </value>
+      </basic_family_settings>
     </node_value> 
   </add>
 

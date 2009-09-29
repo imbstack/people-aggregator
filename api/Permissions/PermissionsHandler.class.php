@@ -3,6 +3,7 @@ require_once "api/Tasks/Tasks.php";
 require_once "api/Content/Content.php";
 require_once "api/ContentCollection/ContentCollection.php";
 require_once "api/PAException/PAException.php";
+require_once 'api/Entity/FamilyTypedGroupEntity.php';
 
 
 /**
@@ -433,6 +434,30 @@ class PermissionsHandler
   }
 
   private function can_view_content ($params, $type) {
+    global $app;
+
+    if(PAGE_USER_PUBLIC == $app->getRequestParam('page_id')) {
+      if(PA::$page_user->has_role_id(CHILD_MEMBER_ROLE)) {  // page owner is a Child - apply special rules!
+        if(!empty(PA::$login_user)) {
+          if(PA::$login_uid == PA::$page_uid) {
+            return true;    // page owner always should be able to view its own public page
+          }
+          $own_age = date('Y') - PA::$page_user->get_profile_field(GENERAL, 'dob_year');
+          if($own_age < CHILD_LOWER_AGES) {     // page owner is a child below the age
+            $is_in_family = FamilyTypedGroupEntity::in_same_family(PA::$login_uid, PA::$page_uid);
+            if(count($is_in_family) > 0) {      // so, check whether the visitor is a member of family
+              return true;                     
+            } else {
+              return false;
+            }
+          } else {
+             return true;                       // the child is over age - allow visitors to view page 
+          }
+        } else {
+          return false;     // anonymous users should not be able to see a Child page
+        }
+      }
+    } else {
       $user_permiss = $this->get_available_permiss_by_type($params, 'user');
       if(in_array('view_content', $user_permiss)) {
         return true;
@@ -445,7 +470,8 @@ class PermissionsHandler
       if(in_array('view_content', $network_permiss)) {
         return true;
       }
-      return false;
+    }  
+    return false;
   }
 
   private function can_manage_forum ($params, $type) {
