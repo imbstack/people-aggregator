@@ -436,13 +436,13 @@ class PermissionsHandler
   private function can_view_content ($params, $type) {
     global $app;
 
-    if(PAGE_USER_PUBLIC == $app->getRequestParam('page_id')) {
-      if(PA::$page_user->has_role_id(CHILD_MEMBER_ROLE)) {  // page owner is a Child - apply special rules!
+    if(PAGE_USER_PUBLIC == $app->getRequestParam('page_id') && PA::$page_user->has_role_id(CHILD_MEMBER_ROLE)) {
         if(!empty(PA::$login_user)) {
           if(PA::$login_uid == PA::$page_uid) {
             return true;    // page owner always should be able to view its own public page
           }
-          $own_age = date('Y') - PA::$page_user->get_profile_field(GENERAL, 'dob_year');
+          $user_dob = PA::$page_user->get_profile_field(GENERAL, 'dob_year');
+          $own_age = date('Y') - $user_dob;
           if($own_age < CHILD_LOWER_AGES) {     // page owner is a child below the age
             $is_in_family = FamilyTypedGroupEntity::in_same_family(PA::$login_uid, PA::$page_uid);
             if(count($is_in_family) > 0) {      // so, check whether the visitor is a member of family
@@ -456,7 +456,6 @@ class PermissionsHandler
         } else {
           return false;     // anonymous users should not be able to see a Child page
         }
-      }
     } else {
       $user_permiss = $this->get_available_permiss_by_type($params, 'user');
       if(in_array('view_content', $user_permiss)) {
