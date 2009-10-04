@@ -131,27 +131,6 @@
           $user_url = "<a href=\"". PA::$url . "/mail_action.php?token=$token&action=user\">". PA::$url ."/mail_action.php?token=$token&action=user</a>";
           $edit_url = "<a href=\"". PA::$url . "/mail_action.php?token=$token&action=profile\">". PA::$url ."/mail_action.php?token=$token&action=profile</a>";
 
-/*  - Replaced with new PANotify code  
-
-          $array_of_data = array(
-            'first_name'=>$newuser->first_name ,
-            'network_name'=>PA::$network_info->name,
-            'user_name'=> $newuser->login_name,
-            'recipient_username' => $newuser->login_name, 
-            'recipient_firstname' => $newuser->first_name, 
-            'recipient_lastname' => $newuser->last_name, 
-            'password'=>$password, 
-            'user_id'=>$_SESSION['user']['id'],
-            'user_url'=>$user_url,
-            'edit_url'=>$edit_url,
-            'greeting_msg'=>$_POST['greeting_msg'],
-            'config_site_name'=>PA::$site_name
-         );
-       
-          $inv_user_email = $newuser->email;
-          $mail_type = 'create_new_user_by_admin';
-          $check = pa_mail($inv_user_email, $mail_type, $array_of_data, $_SESSION['user']['email']);
-*/          
           PAMail::send("create_new_user_by_admin", $newuser, PA::$network_info, array('greeting.message' => $_POST['greeting_msg'], 'user.password' => $password, 'user.link' => $user_url, 'edit.link' => $edit_url));
 
             // adding default relation

@@ -111,9 +111,8 @@ foreach ($mod->profilefields as $i=>$field) {
 <?php } ?>
 
 <?php if ($mod->is_admin) { ?>
-  <a href="<?= PA::$url.PA_ROUTE_FAMILY_EDIT?>?gid=<?= $mod->group_details->collection_id?>">
-   <?= __('Family Settings')?>    
-  </a>
+  <a href="<?= PA::$url.PA_ROUTE_FAMILY_EDIT?>?gid=<?= $mod->group_details->collection_id?>"><?= __('Family Settings')?></a> | 
+  <a href='<?= UrlHelper::url_for(PA_ROUTE_FAMILY_MODERATION, array('gid' => $mod->group_details->collection_id)) ?>'><?= __("Add a Child")  ?></a>
 <?php 
   }
 ?>

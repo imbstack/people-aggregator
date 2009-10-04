@@ -830,6 +830,7 @@ class Navigation {
       case PAGE_FAMILY :
       case PAGE_FAMILY_EDIT :
       case PAGE_FAMILY_MEMBERS :
+      case PAGE_FAMILY_MODERATION :
         $level_2['highlight'] = 'people';
         $level_3 = $this->get_level_3('family');
       break;

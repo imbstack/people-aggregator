@@ -13,7 +13,12 @@ require_once 'web/includes/classes/file_uploader.php';
 require_once "api/Messaging/MessageDispatcher.class.php";
 
 class RegistrationPage {
-
+  public $silent;
+  
+  public function __construct($silent = false ) {
+    $this->silent = $silent; // silent - do not send any notif. messages and skip email verification!
+  }
+  
   function handle_uploaded_avatar_pic() {
     if(isset($_POST['user_filename']))
        $_POST['user_filename'] = Storage::validateFileId($_POST['user_filename']);
@@ -49,17 +54,17 @@ class RegistrationPage {
       return;
     }
 
-    if ($extra['email_validation'] == NET_NO) {
+    if (($extra['email_validation'] == NET_NO) || $this->silent) {  // silent registration - no email validation!
       // Success!
-      register_session($this->reg_user->newuser->login_name, $this->reg_user->newuser->user_id,
-		       $this->reg_user->newuser->role,
-		       $this->reg_user->newuser->first_name, $this->reg_user->newuser->last_name,
-		       $this->reg_user->newuser->email,
-		       $this->reg_user->newuser->picture);
-      $_SESSION['login_source'] = 'password'; // password recently entered, so enable access to edit profile
-
-      PANotify::send("new_user_registered", PA::$network_info, $this->reg_user->newuser, array());
-
+      if(!$this->silent) {
+        register_session($this->reg_user->newuser->login_name, $this->reg_user->newuser->user_id,
+                         $this->reg_user->newuser->role,
+                         $this->reg_user->newuser->first_name, $this->reg_user->newuser->last_name,
+                         $this->reg_user->newuser->email,
+                         $this->reg_user->newuser->picture);
+        $_SESSION['login_source'] = 'password'; // password recently entered, so enable access to edit profile
+        PANotify::send("new_user_registered", PA::$network_info, $this->reg_user->newuser, array());
+      }
   if($invitation_id) { // if an invitation to join a network
 	    $this->inv_error = "";
 	    $is_valid = Invitation::validate_invitation_id($invitation_id);
@@ -94,7 +99,9 @@ class RegistrationPage {
         }
 
         $new_invite->inv_relation_type = $relation_type;
-        PANotify::send("invitation_accept", $user_obj, $this->reg_user->newuser, $new_invite);
+        if(!$this->silent) {
+          PANotify::send("invitation_accept", $user_obj, $this->reg_user->newuser, $new_invite);
+        }  
 	  } catch (PAException $e) {
 	    $this->inv_error = $e->message;
 	    $this->reg_user->msg = "$e->message";
@@ -167,9 +174,10 @@ class RegistrationPage {
       }
       $user_type = NETWORK_WAITING_MEMBER;
       Network::join(PA::$network_info->network_id, $this->reg_user->newuser->user_id, $user_type);
-      $activation_url = PA::$url.'/mail_action.php?action=activate&token='.$token.$invitation;
-      PAMail::send("activate_account", $this->reg_user->newuser, PA::$network_info, array('account.activation_url' => $activation_url));
-
+      if(!$this->silent) {
+        $activation_url = PA::$url.'/mail_action.php?action=activate&token='.$token.$invitation;
+        PAMail::send("activate_account", $this->reg_user->newuser, PA::$network_info, array('account.activation_url' => $activation_url));
+      }
       global $app;
       $er_msg = urlencode("Check your email for activation code.");
       $app->redirect(PA::$url . PA_ROUTE_SYSTEM_MESSAGE . "?show_msg=7013&msg_type=info&redirect_url=" . urlencode(PA::$url . '/' . FILE_LOGIN));

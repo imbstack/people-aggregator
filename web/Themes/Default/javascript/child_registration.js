@@ -22,6 +22,9 @@ $(document).ready(function() {
                                 required: true,
                                 minLength: 3
                         },
+                        dob_year: {
+                            required: true
+                        },
                         password: {
                                 required: true,
                                 minLength: 5
@@ -40,113 +43,34 @@ $(document).ready(function() {
                         },
                         avatar_url: {
                               url:true
-                        },
-                        chkbox_agree: "required"
-                },
-                messages: {
-                        first_name: { 
-                                required: "Please enter your firstname"
-                        },
-                        login_name: {
-                                required: "Please enter a username",
-                                minLength: "Your username must consist of at least 2 characters"
-                        },
-                        password: {
-                                required: "Please provide a password",
-                                minLength: "Your password must be at least 5 characters long"
-                        },
-                        confirm_password: {
-                                required: "Please enter confirmation password",
-                                minLength: "Your password must be at least 5 characters long",
-                                equalTo: "Please enter the same password as above"
-                        },
-                        email: "Please enter a valid email address",
-                        userfile: "Please select a valid image file. (gif, jpg, bmp, png)",
-                        avatar_url: "Please enter a valid image URL.",
-                        chkbox_agree: "Please accept our policy"
-                },
-                errorLabelContainer: $("#validation_error")
-        });
-/*
-        var validate_2 =  $("#register_user_form").validate({
-
-                rules: {
-                        battalion: {
-                                required: true,
-                                minLength: 1
                         }
                 },
                 messages: {
-                        battalion: "Please select your Battalion"
-                },
-
-        errorLabelContainer: $("#validation_error")
-        });
-
-        var validate_3 =  $("#register_user_form").validate({
-
-                rules: {
-                        member_status: {
-                                required: true,
-                                minLength: 1
+                        first_name: { 
+                            required: "Please enter the firstname of the child"
                         },
-                        userfile: {
-                              accept:'gif|jpg'
+                        login_name: {
+                                required: "Please enter a user name for the child",
+                                minLength: "Child's user name must consist of at least 2 characters"
                         },
-                        avatar_url: {
-                              url:true
+                        dob_year: {
+                            required: "Please enter the year of birth for your child"
                         },
-                        chkbox_agree: "required"
+                        password: {
+                            required: "Please provide a password for the child",
+                            minLength: "Child's password must be at least 5 characters long"
+                        },
+                        confirm_password: {
+                                required: "Please enter confirmation password",
+                                minLength: "Child's password must be at least 5 characters long",
+                                equalTo: "Please enter the same password as above"
+                        },
+                        email: "Please enter a valid email address for the child",
+                        userfile: "Please select a valid image file. (gif, jpg, bmp, png)",
+                        avatar_url: "Please enter a valid image URL."
                 },
-                messages: {
-                        member_status: "Please select your Member Status",
-                        userfile: "Please select a valid image file.",
-                        avatar_url: "Please enter a valid image URL.",
-                        chkbox_agree: "Please accept our policy"
-                },
-        errorLabelContainer: $("#validation_error2")
+                errorLabelContainer: $("#validation_error")
         });
-
-        $('.member_status').change( function () {
-             if( this.value == 'Alumni') {
-                 $('#alumniextra').show('slow');
-             } else {
-                $('#alumniextra').hide('slow');
-             }
-        });
-
-        $('#next_step1').click( function () {
-           if(validate_1.form()) {
-             $('#registration_step1').removeClass('current');
-             $('#registration_step2').addClass('current');
-             $("#current_step").val("#next_step1");
-             return false;
-           }
-        });
-
-        $('#next_step2').click( function () {
-           if(validate_2.form()) {
-             $('#registration_step2').removeClass('current');
-             $('#registration_step3').addClass('current');
-             $("#current_step").val("#next_step2");
-             return false;
-           }
-        });
-
-        $('#prev_step2').click( function () {
-             $('#registration_step2').removeClass('current');
-             $('#registration_step1').addClass('current');
-             $("#current_step").val("#prev_step2");
-             return false;
-        });
-
-        $('#prev_step3').click( function () {
-             $('#registration_step3').removeClass('current');
-             $('#registration_step2').addClass('current');
-             $("#current_step").val("prev_step3");
-             return false;
-        });
-*/
 
         $("#state_1").change( function() { 
             if(this.value == -1) {
@@ -157,9 +81,8 @@ $(document).ready(function() {
             }
         });
         
-        $('#joinbutton').click( function () {
+        $('#reg_child').click( function () {
            if(validate_1.form()) {
-//             document.getElementById("register_user_form").submit();
              return true;
            }
            return false;

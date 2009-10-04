@@ -35,5 +35,12 @@
       </basic_family_settings>
     </node_value> 
   </add>
+  <add>
+    <node_value path="//configuration/pages/value" descr="adding PAGE_FAMILY_MODERATION entry">
+      <PAGE_FAMILY_MODERATION category="constant" type="int" readonly="true" section="pages" page_name="Family Moderation" page_type="group">
+        <value>324</value>
+      </PAGE_FAMILY_MODERATION>
+    </node_value> 
+  </add>
 
 </updates>
