@@ -100,7 +100,7 @@ class FamilyModerationModule extends Module {
 
 
   public function handlePOST_deleteFamilyMembers($request_data) {
-  global $error_msg;
+   global $app;
     if (!empty($request_data["members"]) && !empty($request_data["family_id"])) {
       $membersArr = array();
       $membersArr = $request_data["members"];
@@ -110,14 +110,16 @@ class FamilyModerationModule extends Module {
       for($counter = 0; $counter < $membersArr_count; $counter++) {
         list($res, $msg) = $this->leaveFamily($family, (int)$membersArr[$counter]);
         if(!$res) {
-          $error_msg = $msg;
           return;
         }
       }
-      $error_msg = __("Member(s) Deleted");
+      $msg = __("Member(s) Deleted");
     } else {
-      $error_msg = __('Please select a member');
+      $msg = __('Please select a member');
     }
+    $url = UrlHelper::url_for(PA_ROUTE_FAMILY_MODERATION, array('gid'    => $request_data["family_id"],
+                                                                'msg'    => urlencode($msg)));
+    $app->redirect($url);                                                                
   }
 
   private function leaveFamily($family, $uid) {

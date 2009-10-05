@@ -71,14 +71,17 @@ $lc_group_noun = __("Family");
       <input type="hidden" name="action" id="action" value="deleteFamilyMembers">
 
      </table>
+    <?php }  else { echo sprintf(__("There are no members in this %s"), $lc_group_noun);}?>
      <table width="100%" cellpadding="0" cellspacing="5" border="0">
        <tr>
          <td>
            <div class="buttonbar" style="width: 150px; margin: 0px;">
              <ul>
+              <?php if($links) : ?>
                <li>
                  <a href='#' onclick="javascript: if(confirm('Are you sure?')) { document.forms['formAllMembers'].submit(); return true; } else {return false;}"><?= __("Remove Selected")  ?></a>
                </li>
+              <?php endif; ?> 
                <li>
                  <a href='<?= UrlHelper::url_for(PA_ROUTE_FAMILY_MODERATION, array('gid' => $family_id, 'action' => 'addChild' )) ?>'><?= __("Add a Child")  ?></a>
                </li>
@@ -87,7 +90,6 @@ $lc_group_noun = __("Family");
          </td>  
        </tr>
     </table>
-    <?php }  else { echo sprintf(__("There are no members in this %s"), $lc_group_noun);}?>
 
    </form>
  </div>
