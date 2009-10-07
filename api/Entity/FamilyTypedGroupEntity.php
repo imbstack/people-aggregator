@@ -38,7 +38,7 @@ class FamilyTypedGroupEntity extends TypedGroupEntity {
 			'parent' => __("Parent"),
 			'relative' => __("Relative"),
 			'child' => __("Child"),
-			'friend' => __("Friend of Family")
+			// 'friend' => __("Friend of Family")
 		);
 	}
 	
