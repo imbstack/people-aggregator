@@ -21,7 +21,7 @@ $(document).ready(function() {
                         },
                         'form_data[description]': {
                                 minLength: 6,
-                                maxLength: 132 
+                                maxLength: 400 
                         },
                         'form_data[place]': {
                                 minLength: 3,
@@ -42,7 +42,7 @@ $(document).ready(function() {
                         },
                         'form_data[description]': {
                                 minLength: "Description must be at least 6 characters",
-                                maxLength: "Description can not be longer than 132 characters"
+                                maxLength: "Description can not be longer than 400 characters"
                         },
                         'form_data[place]': {
                                 minLength: "Place must be at least 3 characters",

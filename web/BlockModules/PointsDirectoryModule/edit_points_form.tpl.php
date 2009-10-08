@@ -70,7 +70,7 @@
       </div>
     </div>
 
-   <input type="hidden" name="form_data[user_id]" id="form_data_user_id" value="<?= PA::$login_uid?>" />
+   <input type="hidden" name="form_data[user_id]" id="form_data_user_id" value="<?= PA::$page_uid?>" />
    <input type="hidden" name="form_data[entity_id]" id="form_data_entity_id" value="<?=(!empty($item['entity_id'])) ? $item['entity_id'] : null ?>" />
    <input type="hidden" name="uid" id="uid" value="<?=PA::$login_uid?>" />
    <input type="hidden" name="fid" id="fid" value="<?=$fid?>" />

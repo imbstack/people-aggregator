@@ -39,7 +39,6 @@ class CustomizeUIModule extends Module {
     $this->gid = (!empty($request_data['gid'])) ? $request_data['gid'] : null;
     $this->type = (!empty($request_data['type'])) ? $request_data['type'] : 'theme';
     $this->settings_type = (!empty($request_data['stype'])) ? $request_data['stype'] : 'network';
-
     switch($this->settings_type) {
       case 'user':
         if(!empty($this->shared_data['user_info'])) {
@@ -161,14 +160,28 @@ class CustomizeUIModule extends Module {
     $selected = null;
     $current_selecion = null;
     $select_options = array();
-    foreach ($pages_default_setting as $page_details) {
-      $select_options[$page_details->page_name] = $page_details->page_id;
-      if($this->pid == $page_details->page_id) {
-         $selected = $page_details->page_id;
-         $current_selection = $page_details;
-         $restore_settings  = $page_details->getPageSettings();
+    if($this->settings_type == 'user') {
+      $user_configurable_pages = array(PAGE_USER_PRIVATE, PAGE_USER_PUBLIC);
+      foreach ($pages_default_setting as $page_details) {
+        if(in_array($page_details->page_id, $user_configurable_pages)) {
+          $select_options[$page_details->page_name] = $page_details->page_id;
+          if(($this->pid == $page_details->page_id)) {
+              $selected = $page_details->page_id;
+              $current_selection = $page_details;
+              $restore_settings  = $page_details->getPageSettings();
+          }
+        }  
       }
-    }
+    } else {
+      foreach ($pages_default_setting as $page_details) {
+        $select_options[$page_details->page_name] = $page_details->page_id;
+        if($this->pid == $page_details->page_id) {
+           $selected = $page_details->page_id;
+           $current_selection = $page_details;
+           $restore_settings  = $page_details->getPageSettings();
+        }
+      }
+    }  
 
     if($this->restore_module_settings) {
       $module_settings = $restore_settings;

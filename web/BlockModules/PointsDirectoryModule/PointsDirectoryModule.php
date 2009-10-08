@@ -93,7 +93,7 @@ class PointsDirectoryModule extends Module {
                    $this->url_base = PA::$url . PA_ROUTE_FAMILY_DIRECTORY;
             break;
             case PAGE_POINTS_DIRECTORY:
-                   if($this->fid) {
+                   if(isset($this->fid)) {
                      $this->url_base = PA::$url . PA_ROUTE_FAMILY . "?gid=$this->fid";
                    } else {
                      $this->url_base = PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?uid=$this->user_id";

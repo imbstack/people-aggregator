@@ -71,7 +71,6 @@ class ModuleSetting {
   */
   static function load_setting($page_id, $assoc_id, $assoc_type = "network", $child_type = null, $only_configurable = false ) {
     Logger::log("Enter: function ModuleSetting::load_setting");
-
     $settings = null;
     $sql = "SELECT page_id, settings FROM {page_settings} WHERE assoc_id=? AND page_id=? AND assoc_type =?";
     $data = array($assoc_id, $page_id, $assoc_type);
@@ -90,7 +89,7 @@ class ModuleSetting {
       foreach($settings as $key => $value) {           // merge DB and XML settings
         $page_settings[$key] = $value;
       }
-      if(!is_null($child_type)) {
+      if(!is_null($child_type)) { 
         if(false !== strpos($dynamic_page->page_type, $child_type)) {
           $settings = $page_settings;
         } else {
@@ -108,6 +107,8 @@ class ModuleSetting {
         if(!is_null($child_type)) {
           if(false !== strpos($dynamic_page->page_type, $child_type)) {
             $settings = $dynamic_page->getPageSettings();
+          } else {
+            $settings = null;
           }
         } else  {
           $settings = $dynamic_page->getPageSettings();
@@ -203,7 +204,7 @@ class ModuleSetting {
     } else {
       $return = array();
 
-      $results = $app->configObj->query("//*[@section='pages']");
+      $results = $app->configObj->query("//*[@section='pages' and contains(@page_type, '$page_type')]");
 //echo "Results:<pre>" . print_r($results, 1). "</pre>"; die();
 
 //      $pages = array_flip(getConstantsByPrefix('PAGE_'));  // function defined in helper_functions.php

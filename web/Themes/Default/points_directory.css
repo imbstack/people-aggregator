@@ -4,15 +4,25 @@
   margin: 12px;
   color: #000;
 }
-.points_list li {
+.points_list li.points_item {
    width: 100%;
-   height: 102px;
+   height: auto; /*  102px; */
+   float: left;
+   display: block;
    list-style: none;
    background-color: #feb546;
    margin-top: 2px;
    margin-bottom: 2px;
    border: 1px solid #000;
 }
+
+.points_list li.points_buttons {
+   float: right;
+   display: block;
+   list-style: none;
+   height: 12px;
+}
+
 .points_list li div {
     float: left;
     padding: 4px;
@@ -30,14 +40,14 @@
 
 .points_descr {
   width: 96%;
-  height: 48px;
+  height: auto; /*48px; */
   border: 1px solid #000;
   background-color: #fff;
 }
 
 .points_center {
   width: 218px;
-  height: 92px;
+  height: auto; /*92px;*/
   padding: 0px;
   margin: 0px;
 /*
@@ -74,10 +84,6 @@
 .points_rating p {
    font-size: 28px;
    margin-bottom: 6px;
-}
-
-
-.points_buttons {
 }
 
 .points_message,

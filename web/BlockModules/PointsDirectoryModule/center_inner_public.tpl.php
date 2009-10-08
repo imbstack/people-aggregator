@@ -3,7 +3,7 @@
 ?>
 
 <?php include "filters.tpl.php" ?>
-
+<?php echo "" //"<pre>" . print_r($items, 1) . "</pre>"; ?>
 <h1><?= $sub_title ?></h1>
 <div id="PointsDirectoryModule">
 <div class="points_list">
@@ -33,7 +33,7 @@
   <?php if(count($items) > 0) : ?>
     <ul class="points_list">
     <?php foreach($items as $item) : ?>
-    <li>
+    <li class="points_item">
       <div><?= $item['media_icon'] ?></div>
       <div class="points_center">
         <h2><?= abbreviate_text($item['entity_name'], 21, 10) ?></h2>
@@ -55,12 +55,12 @@
         <?= __("Points") ?>
       </div>
     </li>
-    <div class="points_buttons">
+    <li class="points_buttons">
      <?php if($edit_perm) : ?>
       <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?faction=editPoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id&fid=$fid" ?>"><?= __("Edit") ?></a> |
       <a href="<?= PA::$url . PA_ROUTE_POINTS_DIRECTORY . "?faction=deletePoints&module=PointsDirectoryModule&eid={$item['entity_id']}&uid=$user_id&fid=$fid" ?>"><?= __("Delete") ?></a>
      <?php endif; ?>
-    </div>
+    </li>
     <?php endforeach; ?>
     </ul>
   <?php else: ?>
