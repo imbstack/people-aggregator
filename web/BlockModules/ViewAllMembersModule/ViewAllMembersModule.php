@@ -25,6 +25,7 @@ class ViewAllMembersModule extends Module {
 	  		require_once 'api/Entity/TypedGroupEntity.php';
 	  		$this->entity = TypedGroupEntity::load_for_group((int)$this->gid);
 	  		$this->entity_type = $this->entity->entity_type;
+	  		PA::$group_noun = $this->entity->entity_type;
 // echo "<pre>".print_r($this->entity, 1)."</pre>";exit;
 	  	}
     }
