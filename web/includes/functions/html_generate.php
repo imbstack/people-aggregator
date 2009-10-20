@@ -52,8 +52,6 @@ This function prints html header with a link to style.css of a theme
 **/
 
 function html_header($title='', $optional_arguements='', $style_css='') {
-  // global var $_base_url has been removed - please, use PA::$url static variable
-
   global $use_theme;
 
   echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
@@ -72,6 +70,12 @@ function html_header($title='', $optional_arguements='', $style_css='') {
   }
 
   echo "<link rel=\"shortcut icon\" href=\"". PA::$url . "/favicon.ico\" type=\"image/x-icon\" />";
+  
+  // force IE8 to use IE7 compat mode
+  // this should be removed once we can fix the IE8 compate issue
+  echo '<meta http-equiv="X-UA-Compatible" content="IE=7" />';
+  
+  
   echo $optional_arguements;
   echo "  </head>\n";
 }
