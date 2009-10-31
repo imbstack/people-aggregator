@@ -9,13 +9,16 @@
     </left>
     <middle>
       <item>FamilyModule</item>
+    	<item>FamilyFacewallModule</item>
       <item>PointsDirectoryModule</item>
     </middle>
     <right>
-    	<item>FamilyFacewallModule</item>
     </right>
     <javascripts/>
-    <page_css/>
+    <page_css>
+      <item>fwstyle.css</item>
+      <item>javascript/facewall/tooltip/tooltip.css</item>
+    </page_css>
     <page_theme>Default</page_theme>
     <body_attributes/>
     <access_permission/>

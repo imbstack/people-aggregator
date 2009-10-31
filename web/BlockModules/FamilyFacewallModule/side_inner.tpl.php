@@ -1,5 +1,5 @@
-<div <?= ($mod->may_see_details) ? 'class="module_icon_list"' : 'class="module"' ?> id="list_members">
-<ul class="members">
+<div <?= ($mod->may_see_details) ? 'class="module_icon_list"' : '' ?> id="list_members">
+<ul class="memb ers">
   <?php
     for ($counter = 0; $counter < count($links['users_data']); $counter++) {
       $class = (( $counter%2 ) == 0) ? 'class="color"': NULL;
