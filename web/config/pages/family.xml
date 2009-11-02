@@ -4,12 +4,14 @@
   <page_name>Family Page</page_name>
   <is_configurable>1</is_configurable>
   <data>
+    <toprow>
+    	<item>FamilyFacewallModule</item>
+    </toprow>
     <left>
       <item>MyFamiliesModule</item>
     </left>
     <middle>
       <item>FamilyModule</item>
-    	<item>FamilyFacewallModule</item>
       <item>PointsDirectoryModule</item>
     </middle>
     <right>
@@ -94,7 +96,7 @@
       }
       uihelper_get_network_style();
     ]]></boot_code>
-    <page_template>container_three_column.tpl</page_template>
+    <page_template>container_three_column_toprow.tpl</page_template>
     <header_template>header.tpl</header_template>
     <page_mode>public</page_mode>
     <block_type>Homepage</block_type>

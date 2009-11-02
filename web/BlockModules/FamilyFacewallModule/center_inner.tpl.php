@@ -1,4 +1,4 @@
-<div class="blog" style="overflow:hidden;">
+<div class="blo g" style="overflow:hidden;">
 
 <?php if ($mod->may_see_details) { ?>
   <div style="padding-left: 18px; clear: both; float: left; width:540px">

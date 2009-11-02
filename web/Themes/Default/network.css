@@ -63,7 +63,7 @@
 
 #content  {
 	width: auto;
-	overflow: auto;
+	overflow: hidden;
 	clear: both;
 	margin-top: -714px;
 	top: 177px; }

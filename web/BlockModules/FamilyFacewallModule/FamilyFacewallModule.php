@@ -31,6 +31,7 @@ class FamilyFacewallModule extends Module {
     if(empty($this->shared_data['group_info'])) return "skip";
     switch($this->column) {
     	case 'middle':
+    	case "toprow":
 	    	$this->outer_template = 'outer_public_center_module.tpl';
 	  	  $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner.tpl.php';
       break;

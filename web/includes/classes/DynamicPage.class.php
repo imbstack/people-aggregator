@@ -54,6 +54,7 @@
 //    $this->checkXmlConfigStructure($new_settings);
     $this->page_name       = (string)$this->getConfigData('page_name', '//page');
     $this->is_configurable = (bool)$this->getConfigData('is_configurable', '//page');
+    $this->toprow    = $this->getModules("toprow");
     $this->left    = $this->getModules("left");
     $this->middle  = $this->getModules("middle");
     $this->right   = $this->getModules("right");
@@ -221,7 +222,7 @@
 
   public function getAllModules() {
      $modules = array();
-     foreach(array('middle', 'left', 'right') as $layout) {
+     foreach(array('toprow', 'middle', 'left', 'right') as $layout) {
        $modules[$layout] = $this->getModules($layout);
      }
      return $modules;
@@ -287,6 +288,7 @@
     $page_settings['page_name']       = $this->page_name;
     $page_settings['page_type']       = $this->page_type;
     $page_settings['is_configurable'] = $this->is_configurable;
+    $page_settings['toprow']            = $this->toprow;
     $page_settings['left']            = $this->left;
     $page_settings['middle']          = $this->middle;
     $page_settings['right']           = $this->right;

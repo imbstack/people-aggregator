@@ -236,7 +236,7 @@ class PageRenderer {
     }
 
     $this->modules_array = array();
-    foreach (array("middle", "left", "right") as $module_column) {
+    foreach (array("toprow", "middle", "left", "right") as $module_column) {
       $column_modules = (!PA::$config->page_type) ? array() : @$this->setting_data[$module_column];
 			if (count($column_modules) > 0) {
 				foreach ($column_modules as $moduleName) {
