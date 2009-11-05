@@ -18,6 +18,7 @@ require_once "api/User/UserDisplayName.class.php";
 require_once "api/Forum/PaForumsUsers.class.php";
 require_once "api/Validation/Validation.php";
 require_once "api/Messaging/MessageDispatcher.class.php";
+require_once "api/User/UserPopularity.class.php";
 
 
 /**
@@ -1985,6 +1986,8 @@ class User {
       Comment::delete_user_comments($uid);
 
       PaForumsUsers::delete_PaForumsUsers($uid);
+
+      UserPopularity::deleteUserPopularity( $uid )
 
     } catch(PAException $e) {
       Logger::log('Exception occured while deleting user:' . $uid . ' : ' . $e->message);
