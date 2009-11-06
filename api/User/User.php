@@ -1987,7 +1987,7 @@ class User {
 
       PaForumsUsers::delete_PaForumsUsers($uid);
 
-      UserPopularity::deleteUserPopularity( $uid )
+      UserPopularity::deleteUserPopularity( $uid );
 
     } catch(PAException $e) {
       Logger::log('Exception occured while deleting user:' . $uid . ' : ' . $e->message);
