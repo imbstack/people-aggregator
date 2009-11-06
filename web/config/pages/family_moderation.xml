@@ -25,7 +25,9 @@
     <block_type>Homepage</block_type>
     <body_attributes></body_attributes>
     <access_permission>manage_groups</access_permission>
-    <navigation_code></navigation_code>
+    <navigation_code><![CDATA[
+        $level_2['highlight'] = 'families';
+      ]]></navigation_code>
     <boot_code><![CDATA[
       if($uid = $app->getRequestParam('uid')) {
         $user = new User();

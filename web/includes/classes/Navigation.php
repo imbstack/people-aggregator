@@ -288,11 +288,18 @@ class Navigation {
     										);
 		if (!empty(PA::$config->useTypedGroups)) {
 			$level_2 = $level_2 + array(
-                       'directory' => array('caption'=>__('Directory'),
+                       'directory' => array('caption'=>__('Orgs'),
                                   'url'=>$this->base_url.PA_ROUTE_TYPED_DIRECTORY
                               ),
     										);
     }
+
+			$level_2 = $level_2 + array(
+                       'families' => array('caption'=>__('Neighbours'),
+                                  'url'=>$this->base_url.PA_ROUTE_FAMILY_DIRECTORY
+                              ),
+    										);
+
 		$level_2 = $level_2 + array('forum' => array('caption'=>__('Forum'),
                                   'url'=>$this->base_url . PA_ROUTE_FORUMS . "/network_id=" .$this->network_info->network_id,
                                   ),
@@ -305,36 +312,81 @@ class Navigation {
     /// children of user 2nd level link
     $uid = $this->get_uid();
     //we need uid for some links
-    $user_children = array(
+    $user_children = array();
+    $user_children = $user_children + array(
                        'user_private' => array('caption'=>__('My Page'),
                                   'url'=>$this->base_url . PA_ROUTE_USER_PRIVATE),
+                                  );
+    $user_children = $user_children + array(
                        'user_widgets' => array('caption'=>__('My Widgets'),
                                   'url'=>$this->base_url.'/'.FILE_WIDGET
                                    ),
+                                  );
+    $user_children = $user_children + array(
                        'messages' => array('caption'=>__('My Messages'),
                                   'url'=>$this->base_url . PA_ROUTE_MYMESSAGE
                                   ),
+                                  );
+    $user_children = $user_children + array(
                        'my_gallery' => array('caption'=>__('My Gallery'),
                                   'url'=>$this->base_url . PA_ROUTE_MEDIA_GALLEY_IMAGES . "/uid=$uid"
                                   ),
+                                  );
+    $user_children = $user_children + array(
                        'my_events' => array('caption'=>__('My Events'),
                                   'url'=>$this->base_url.'/'.FILE_USER_CALENDAR
                                   ),
                        'my_friends' => array('caption'=>__('My Friends'),
                                   'url'=>$this->base_url . "/view_all_members.php?view_type=in_relations&amp;uid=$uid"
                                   ),
+                                  );
+    $user_children = $user_children + array(
                        'my_forum'  => array('caption'=>__('My Forum'),
                                   'url'=>$this->base_url. PA_ROUTE_FORUMS . "/network_id=" .$this->network_info->network_id . '&user_id='.$uid
                                   ),
+                                  );
+    $user_children = $user_children + array(
                        'my_points'  => array('caption'=>__('My Points'),
                                   'url'=>$this->base_url. PA_ROUTE_POINTS_DIRECTORY . "?uid=$uid"
                                   ),
+                                  );
+
+		// get this users Family or Families
+		require_once "api/Entity/TypedGroupEntityRelation.php";
+		$userfamilyRelations = TypedGroupEntityRelation::get_relation_for_user($uid, 'family');
+		if (count($userfamilyRelations) == 1) {
+    $user_children = $user_children + array(
+    	'my_family'  => array('caption'=>__('My Family'),
+    	'url' => $this->base_url. PA_ROUTE_FAMILY . "?gid=" . $userfamilyRelations[0]->object_id
+    	));
+		} else {
+			$html = "<ul>";
+			foreach($userfamilyRelations as $i=>$relation) {
+				$group = ContentCollection::load_collection((int)$relation->object_id, PA::$login_uid);
+// echo "<pre>".print_r($group, 1)."</pre>";exit;
+				$html .= "<li>";
+				$html .= "<a href=\"".
+					$this->base_url. PA_ROUTE_FAMILY . "?gid=" . $relation->object_id
+				."\">".$group->title."</a>";
+				$html .= "</li>";
+			}
+			$html .= "</ul>";
+    $user_children = $user_children + array( 
+    	'my_family'  => array('caption'=>__('My Families'),
+    	'html' => $html
+    	));
+		}
+
+    $user_children = $user_children + array(
                        'settings' => array('caption'=>__('Edit My Account'),
                                   'url'=>$this->base_url.PA_ROUTE_EDIT_PROFILE
                                   ),
+                                  );
+    $user_children = $user_children + array(
                        'customize_ui' => array('caption'=>__('Themes'),
                                   'url'=>$this->base_url . PA_ROUTE_CUSTOMIZE_USER_GUI . "/theme/uid=$uid"
-                                  )                       );
+                                  ) 
+                       );
      if ( $this->is_anonymous ) {
       //these links are not for anonymous
       unset($user_children);

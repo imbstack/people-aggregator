@@ -25,7 +25,7 @@
     <body_attributes/>
     <access_permission/>
     <navigation_code><![CDATA[
-        $level_2['highlight'] = 'directory';
+        $level_2['highlight'] = 'families';
       ]]></navigation_code>
     <boot_code><![CDATA[
       if($uid = $app->getRequestParam('uid')) {

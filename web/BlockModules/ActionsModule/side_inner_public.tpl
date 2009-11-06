@@ -20,7 +20,7 @@
   <?php
   } else if (! empty($action['html'])) { ?>
         <li <?=$class?>>
-        <?=$action['title']?><br />
+        <?=$action['caption']?><br />
         <?=$action['html']?>
         </li>
   <?php
