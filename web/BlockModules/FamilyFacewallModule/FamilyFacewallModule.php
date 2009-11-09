@@ -47,7 +47,7 @@ class FamilyFacewallModule extends Module {
     $sort = 'created';
     $group = $this->shared_data['group_info'];
     $this->gid = $group->collection_id;
-    $users = $group->get_members($cnt=FALSE, 5, 1, $sort, 'DESC',FALSE);
+    $users = $group->get_members($cnt=FALSE, 'ALL', 1, $sort, 'DESC',FALSE);
     $total_users = count($users);
 
     $users_data = array();
