@@ -1,0 +1,44 @@
+#toprow {
+	display:block; 
+	margin-left: 7px;
+	border: 1px solid; 
+	width: 790px; 
+	float: left; 
+	background-color: #fff;
+}
+#col_a {
+	clear:both;
+}
+#col_b {
+}
+#col_c {
+	position: absolute; 
+	top: 190px; 
+	left: 1010px
+}
+
+.face {
+	float: left;
+	margin: 6px;
+	margin-right: 0;
+	border: 4px solid;
+}
+.picture img {
+	margin: 4px;
+}
+.name {
+	margin: 2px;
+	text-align: center;
+}
+
+ul.members, ul.members li {
+	list-style: none;
+	float: left;
+	margin: 6px;
+	margin-right: 0;
+	padding: 0;
+}
+ul.members li {
+	padding-right: 6px;
+	border-right: 2px solid;
+}

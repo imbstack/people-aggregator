@@ -3,7 +3,7 @@
   <?php echo $header;?>
 <div id="bg_blog_post"></div>        
   <div id="content">  
-    <div id="toprow" style="display:block;">
+    <div id="toprow">
     
     <?php
       if ( !empty($array_toprow_modules)) {

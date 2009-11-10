@@ -1,25 +1,23 @@
-<div class="blo g" style="overflow:hidden;">
+<div class="">
 
 <?php if ($mod->may_see_details) { ?>
-  <div style="padding-left: 18px; clear: both; float: left; width:540px">
   <?php 
   for ($counter = 0; $counter < count($links['users_data']); $counter++) {
   ?>
-		<div class="buddyimg">
-			<div id="imgcontainer_<?= $link['user_id'] ?>" >
+		<div class="face">
+			<div class="picture">
 				<a href="<?= PA::$url . PA_ROUTE_USER_PUBLIC . '/' . urlencode($links['users_data'][$counter]['login_name']) ?>">
 					<?php echo uihelper_resize_mk_user_img($links['users_data'][$counter]['picture'], 80, 80, 'alt="PA"') ?>
 					</a>
 			</div>
 			<div>
-				<p class="buddytext" style="display: block" align="left">
+				<p class="name">
 					<b><?= chop_string($links['users_data'][$counter]['display_name'], 12) ?></b><br />
 					<?= $links['users_data'][$counter]['family_status'] ?>
 				</p>
 			</div>
 		</div>
 		<?php } ?>
-  </div>
 <? } else { ?>
 	<ul class="members">
   <?php
