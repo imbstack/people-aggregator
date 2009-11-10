@@ -15,7 +15,45 @@ if (!function_exists('property_exists')) {
   }
 }
 
+function get_svn_version() {
+  global $debug_show_svn_version;
+	// show svn version at the bottom of each page
+	$entries_fn = PA::$path . "/.svn/entries";
 
+	$svn_text = 'svn?';
+	if (file_exists($entries_fn)) {
+		$f = fopen($entries_fn, "rt");
+		$line = trim(fgets($f));
+		if (preg_match("/^<"."\?xml/", $line)) {
+// pre v1.4 svn entries file
+$dom = new DOMDocument;
+@$dom->load($entries_fn);
+$xp = new DOMXPath($dom);
+$xp->registerNamespace("svn", "svn:");
+$entries = $xp->query("//svn:entry[1]");
+if ($entries->length) {
+	$entry = $entries->item(0);
+	$url = $xp->query("@url", $entry)->item(0)->nodeValue;
+	$rev = $xp->query("@revision", $entry)->item(0)->nodeValue;
+	$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
+} else {
+	$svn_text = 'svn xml?';
+}
+		} elseif (is_numeric($line)) {
+// post v1.4 entries file?
+fgets($f); fgets($f);
+$rev = trim(fgets($f));
+$url = trim(fgets($f));
+if (is_numeric($rev) && preg_match("/^http/", $url)) {
+	$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
+} else $svn_text = 'svn new?';
+		} else {
+$svn_text = "svn fmt?";
+		}
+	}
+	return $svn_text;
+}
+  
 function pa_end_of_page_ob_filter($html) {
   // if headers not sent yet, and we don't have a content type specified, send text/html; charset=UTF-8
   if (!headers_sent()) {
@@ -35,42 +73,8 @@ function pa_end_of_page_ob_filter($html) {
   $duration = microtime(TRUE) - $pa_page_render_start;
   $eop_text = sprintf("[%.2f s]", $duration);
 
-  global $debug_show_svn_version;
   if ($debug_show_svn_version) {
-    // show svn version at the bottom of each page
-    $entries_fn = PA::$path . "/.svn/entries";
-
-    $svn_text = 'svn?';
-    if (file_exists($entries_fn)) {
-      $f = fopen($entries_fn, "rt");
-      $line = trim(fgets($f));
-      if (preg_match("/^<"."\?xml/", $line)) {
-  // pre v1.4 svn entries file
-  $dom = new DOMDocument;
-  @$dom->load($entries_fn);
-  $xp = new DOMXPath($dom);
-  $xp->registerNamespace("svn", "svn:");
-  $entries = $xp->query("//svn:entry[1]");
-  if ($entries->length) {
-    $entry = $entries->item(0);
-    $url = $xp->query("@url", $entry)->item(0)->nodeValue;
-    $rev = $xp->query("@revision", $entry)->item(0)->nodeValue;
-    $svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
-  } else {
-    $svn_text = 'svn xml?';
-  }
-      } elseif (is_numeric($line)) {
-  // post v1.4 entries file?
-  fgets($f); fgets($f);
-  $rev = trim(fgets($f));
-  $url = trim(fgets($f));
-  if (is_numeric($rev) && preg_match("/^http/", $url)) {
-    $svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
-  } else $svn_text = 'svn new?';
-      } else {
-  $svn_text = "svn fmt?";
-      }
-    }
+    $svn_text = get_svn_version();
     $eop_text .= " [$svn_text]";
   }
 
