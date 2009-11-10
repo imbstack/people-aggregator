@@ -12,9 +12,9 @@
 #col_b {
 }
 #col_c {
-	position: absolute; 
-	top: 190px; 
-	left: 1010px
+	float:right;
+	margin:0;
+	margin-right: 6px;
 }
 
 .face {

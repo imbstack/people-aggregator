@@ -3,6 +3,20 @@
   <?php echo $header;?>
 <div id="bg_blog_post"></div>        
   <div id="content">  
+
+    <div id="col_c">
+    <?php 
+    // note that in this layout the right gutter is float:right, so it needs to be 
+    // FIRST in the HTML dom to be aligned with the top
+    if ( isset($array_right_modules) and (count( $array_right_modules ) > 0) ) {
+        foreach ( $array_right_modules as $right_module ) {
+          echo $right_module;
+        }
+      }
+    ?>    
+    
+    </div>
+
     <div id="toprow">
     
     <?php
@@ -42,17 +56,6 @@
     
     </div>    
 
-    <div id="col_c">
-    
-    <?php 
-      if ( isset($array_right_modules) and (count( $array_right_modules ) > 0) ) {
-        foreach ( $array_right_modules as $right_module ) {
-          echo $right_module;
-        }
-      }
-    ?>    
-    
-    </div>
   </div>
   
   <?php 
