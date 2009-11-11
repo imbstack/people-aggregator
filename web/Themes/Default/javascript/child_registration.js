@@ -162,7 +162,36 @@ $(document).ready(function() {
           }
           return false;
         });
-
+        
+        $('#email_type_parent').click( function() {
+            
+            var parent_uid = $('#parent_uid').val();
+            get_data = "parent_uid="+parent_uid;
+                $.ajax({
+                    type: "GET",
+                    url: "/ajax/get_user_email.php",
+                    data: get_data,
+                    success: function(msg) {
+                        if(msg.length > 0) {
+                            $('#email').val(msg);
+                            $('#email').attr("readonly", "readonly"); 
+//                            $('#email_ajax_cont').html(msg);
+                        } else {
+                            alert("No AJAX response from get_user_email.php");
+                        }
+                    }
+                });
+                return true;
+        });
+        $('#email_type_own').click( function() {
+            if ($('#email').attr("readonly") == true) 
+            { 
+                $('#email').removeAttr("readonly"); 
+            } 
+            $('#email').val("");
+            return true;
+        });
+        
 });
 
 function html_entity_decode(str)

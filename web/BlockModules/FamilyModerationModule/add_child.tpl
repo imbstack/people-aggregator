@@ -81,11 +81,24 @@
             <input type="password" class="text" name="confirm_password" id="confirm_password"/>
           </div>
           
-          <div class="field_medium">
-            <h4><label><span class="required"> * </span> <?= __("Email") ?>:</label></h4>
-            <input type="text" name="email" class="text" value="<?= htmlspecialchars(@$_POST['email']) ?>" />
+          <div class="field_big" id="email_container">
+            <table cellpadding="5" cellspacing="5" width="100%">
+            <tr>
+              <th rowspan="2" id="email_ajax_cont">
+                <h4><label><span class="required"> * </span> <?= __("Email") ?>:</label></h4>
+                <input type="text" name="email" id="email" class="text" value="<?= htmlspecialchars(@$_POST['email']) ?>" />
+              </th>
+              <td>
+                <input name="use_parent_email" id="email_type_own" type="radio" class="text" value="0" checked /> <?= __("use own email account")  ?>
+              </td>
+            </tr>
+            <tr>
+              <td>
+               <input name="use_parent_email" id="email_type_parent" type="radio" value="1" class="text" /> <?= __("use a parent's email account")  ?>
+              </td>
+            </tr>
+            </table>
           </div>
-
         <div class="field_medium" style="height: auto">
          <div>
            <h4><label><?= __("Upload a photo") ?>:<span class="required"> &nbsp; </span></label></h4>
@@ -118,6 +131,8 @@
             <input type="checkbox" name="chkbox_agree" id="chkbox_agree" checked="checked" value="1"/><?= sprintf(__("I have read and agree to the %s <a href='%s/terms.php' target='_blank'>Terms and Conditions</a>"), PA::$site_name, PA::$url) ?>.
           </div>
 -->          
+            
+          <input type = "hidden" name = "parent_uid" id="parent_uid" value = "<?= $parent_uid ?>" />
           <input type = "hidden" name = "op" value = "register" />
            <div class="button_position">
              <input type="button" name="back_btn" id="back_btn" value="<?= __("Cancel") ?>" onclick="javascript:history.back()" />

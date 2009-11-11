@@ -497,7 +497,7 @@ class User {
   * set the user_id for the user.
   *
   */
-  public function save() {
+  public function save($check_unique_email = true) {
     Logger::log("Enter: function User::save");
     // global var $_base_url has been removed - please, use PA::$url static variable
 
@@ -540,16 +540,18 @@ class User {
           Logger::log(" Throwing exception USER_LOGINNAME_TAKEN | Message: This Login name has already been taken", LOGGER_ERROR);
           throw new PAException(USER_LOGINNAME_TAKEN,"This Login name has already been taken");
         }
-        // make sure that the email address is unique
-        $sql = 'SELECT * FROM {users} WHERE email = ? AND is_active <> ?';
-        $data = array($this->email, DELETED);
-        $res = Dal::query($sql, $data);
+        
+        if($check_unique_email) {
+          // make sure that the email address is unique
+          $sql = 'SELECT * FROM {users} WHERE email = ? AND is_active <> ?';
+          $data = array($this->email, DELETED);
+          $res = Dal::query($sql, $data);
 
-        if (($res->numRows() > 0)) {
-          Logger::log(" Throwing exception USER_EMAIL_NOT_UNIQUE | Message: Email address must be unique", LOGGER_ERROR);
-          throw new PAException(USER_EMAIL_NOT_UNIQUE, "Email address that you have given is already taken please give another email address");
-        }
-
+          if (($res->numRows() > 0)) {
+            Logger::log(" Throwing exception USER_EMAIL_NOT_UNIQUE | Message: Email address must be unique", LOGGER_ERROR);
+            throw new PAException(USER_EMAIL_NOT_UNIQUE, "Email address that you have given is already taken please give another email address");
+          }
+        }  
 
         $this->user_id = Dal::next_id("User");
         $this->password = md5($this->password);
@@ -590,19 +592,20 @@ class User {
           $this->set_user_role($user_roles);
         }
       } else {
-        // make sure that the email address is unique
-        $sql = 'SELECT * FROM {users} WHERE email = ?';
-        $data = array($this->email);
-        $res = Dal::query($sql, $data);
+        if($check_unique_email) {
+          // make sure that the email address is unique
+          $sql = 'SELECT * FROM {users} WHERE email = ?';
+          $data = array($this->email);
+          $res = Dal::query($sql, $data);
 
-        if (($res->numRows() > 0)) {
-          $row = $res->fetchRow(DB_FETCHMODE_OBJECT);
-          if ($row->user_id != $this->user_id) {
-            Logger::log(" Throwing exception USER_EMAIL_NOT_UNIQUE | Message: Email address must be unique", LOGGER_ERROR);
-            throw new PAException(USER_EMAIL_NOT_UNIQUE, "Email address that you have given is already taken please give another email address");
+          if (($res->numRows() > 0)) {
+            $row = $res->fetchRow(DB_FETCHMODE_OBJECT);
+            if ($row->user_id != $this->user_id) {
+              Logger::log(" Throwing exception USER_EMAIL_NOT_UNIQUE | Message: Email address must be unique", LOGGER_ERROR);
+              throw new PAException(USER_EMAIL_NOT_UNIQUE, "Email address that you have given is already taken please give another email address");
+            }
           }
-        }
-
+        }    
         $sql = 'UPDATE {users} SET login_name = ?, password = ?, first_name = ?, last_name = ?, email = ?, is_active = ?, changed = ?, picture = ? WHERE user_id = ?';
         $data = array($this->login_name, $this->password, $this->first_name, $this->last_name, $this->email, 1, time(), $this->picture, $this->user_id);
         Dal::query($sql, $data);

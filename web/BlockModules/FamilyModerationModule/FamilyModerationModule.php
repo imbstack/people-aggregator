@@ -161,7 +161,7 @@ class FamilyModerationModule extends Module {
     $countries    = $countries + array_values(PA::getCountryList());
     $this->inner_HTML = $this->generate_inner_html(array('title' => $title, 'states' => $states, 
                                                          'countries' => $countries, 'months' => $months,
-                                                         'years' => $years));
+                                                         'years' => $years, 'parent_uid' => PA::$login_uid ));
   }
   
   private function handlePOST_addChild($request_data) {
@@ -173,7 +173,8 @@ class FamilyModerationModule extends Module {
     $last_name = stripslashes( trim( $_POST['last_name'] ) );
     $email = trim( $_POST['email'] );
     $password = trim( $_POST['password'] );
-
+    $use_parent_email = $_POST['use_parent_email'];
+//echo "<pre>".print_r($_POST, 1)."</pre>"; die();
     if(!isset($_POST['state'])) {
        if(isset($_POST['stateOther'])){
          $_POST['state'] = $_POST['stateOther'];
@@ -217,7 +218,11 @@ class FamilyModerationModule extends Module {
         }
         if( $error == FALSE ) {
           try {
-              $newuser->save();
+              if($use_parent_email) {
+                $newuser->save($check_unique_email = false);
+              } else {
+                $newuser->save($check_unique_email = true);
+              }  
               if (!empty($file)) {
                 Storage::link($file, array("role" => "avatar", "user" => $newuser->user_id));
               }
@@ -249,7 +254,7 @@ class FamilyModerationModule extends Module {
     $states       = array_values(PA::getStatesList());
     $countries    = array_values(PA::getCountryList());
     $profile_keys = array('dob_day', 'dob_month', 'dob_year', 'homeAddress1', 'homeAddress2',
-                          'city', 'state', 'country', 'postal_code', 'phone');
+                          'city', 'state', 'country', 'postal_code', 'phone', 'use_parent_email');
     $profile_data = array();                  
     filter_all_post($_POST);//filters all data of html
     foreach($profile_keys as $k => $pkey) { 
