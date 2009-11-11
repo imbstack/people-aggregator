@@ -295,7 +295,7 @@ class Navigation {
     }
 
 			$level_2 = $level_2 + array(
-                       'families' => array('caption'=>__('Neighbours'),
+                       'families' => array('caption'=>__('Neighbors'),
                                   'url'=>$this->base_url.PA_ROUTE_FAMILY_DIRECTORY
                               ),
     										);
@@ -402,9 +402,9 @@ class Navigation {
                        'my_friends' => array('caption'=>__('My friends'),
                                   'url'=>$this->base_url.'/'.FILE_VIEW_ALL_MEMBERS.'?view_type=relations&amp;uid='.$uid
                                   ),
-                       'people_who_call_me_friend' => array('caption'=>sprintf(__('%s who call me friend'), __(PA::$people_noun)),
+                       /* 'people_who_call_me_friend' => array('caption'=>sprintf(__('%s who call me friend'), __(PA::$people_noun)),
                                   'url'=>$this->base_url.'/'.FILE_VIEW_ALL_MEMBERS.'?view_type=in_relations&amp;uid='.$uid
-                                  ),
+                                  ), */
                        'friends_gallery' => array('caption'=>__('Friends gallery'),
                                   'url'=>$this->base_url . PA_ROUTE_MEDIA_GALLEY_IMAGES . "/uid=$friend_id&view=friends",
                                  )

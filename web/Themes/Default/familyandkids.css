@@ -17,28 +17,29 @@
 	margin-right: 6px;
 }
 
-.face {
+.familyandkidsfacewall .face {
 	float: left;
 	margin: 6px;
 	margin-right: 0;
 	border: 4px solid;
 }
-.picture img {
+.familyandkidsfacewall .picture img {
 	margin: 4px;
 }
-.name {
+.familyandkidsfacewall .name {
 	margin: 2px;
 	text-align: center;
 }
 
-ul.members, ul.members li {
+.familyandkidsfacewall ul.members, 
+.familyandkidsfacewall ul.members li {
 	list-style: none;
 	float: left;
 	margin: 6px;
 	margin-right: 0;
 	padding: 0;
 }
-ul.members li {
+.familyandkidsfacewall ul.members li {
 	padding-right: 6px;
 	border-right: 2px solid;
 }

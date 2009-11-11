@@ -1,4 +1,4 @@
-<div class="">
+<div class="familyandkidsfacewall">
 
 <?php if ($mod->may_see_details) { ?>
   <?php 
