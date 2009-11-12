@@ -281,6 +281,16 @@ class EditFamilyModule extends Module {
       if (empty($this->err)) {
           // sync it
           FamilyTypedGroupEntity::sync($data);
+					if (empty($request_data['gid'])) {  
+						// also add the creator of this family as a parent!
+						require_once("api/Entity/TypedGroupEntityRelation.php");
+						try {
+								TypedGroupEntityRelation::set_relation(PA::$login_uid, $this->gid, 'parent');
+						} catch (PAException $e) {
+								$error_msg = $e->getMessage();
+						} 
+					}
+
       }
     }
 

@@ -33,15 +33,6 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
 
   $this->processPOST('general'); // so we get this data for display
 
-  /* disabled 2007-10-30 by PP as many countries have non-numeric postal codes!
-  //check for invalid zipcode in general profile.
-  $postal_code = @trim($_POST['postal_code']['value']);
-  if (!empty($postal_code) && !is_numeric($postal_code)) {
-    $msg = MessagesHandler::get_message(3000);
-    $error = TRUE;
-  }
-  */
-
  if(!empty($personal_website) && !Validation::isValidURL($personal_website)) {
     $msg = __('Url is invalid');
     $error = TRUE;
@@ -82,7 +73,25 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
   }
 }
 ?>
+
   <h1><?= __("General Info") ?></h1>
+<div>
+		<form action="<?=PA::$url.PA_ROUTE_FAMILY_EDIT?>">
+<fieldset>	<div style="float:right;">
+		<?php 
+		$createType = "family";
+		$createLabel = __("Family");
+		?>
+			<input type="hidden" name="entityType" value="<?=$createType?>" />
+			<input type="submit" name="submit" value="<?=
+				sprintf(__("Create new %s"), $createLabel)
+				?>" />
+	</div>
+	<br style="clear:both;" />
+</fieldset>
+		</form>
+</div>
+
       <form enctype="multipart/form-data" name="drop_list" action="" method="post">
         <fieldset>
           <div class="field">

@@ -28,6 +28,7 @@
 				?>" />
 		</form>
 	</div>
+	<br style="clear:both;" />
 </div>
   <?php }  ?>
 

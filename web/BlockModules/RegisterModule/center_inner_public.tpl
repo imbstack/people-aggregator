@@ -48,7 +48,7 @@
             </div>
           
           <div class="field_medium">
-            <h4><label>><span class="required"> * </span> <?= __("Last name") ?>:</label></h4>
+            <h4><label><span class="required"> * </span> <?= __("Last name") ?>:</label></h4>
             <input type="text" name="last_name" id="last_name" value="<?= htmlspecialchars(@$_POST['last_name']) ?>" class="text" />
           </div>
 
