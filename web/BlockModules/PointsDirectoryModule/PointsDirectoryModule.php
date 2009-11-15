@@ -155,7 +155,7 @@ class PointsDirectoryModule extends Module {
     $this->page_last  = $pagination->getLastPage();
     $this->page_links = $pagination->getPageLinks();
 
-    $items = PointsEntity::search($this->criteria, false, null, $this->page, $this->limit);
+    $items = PointsEntity::search($this->criteria, false, "(SELECT attribute_value FROM entityattributes where attribute_name = 'created' AND id = EA.id) DESC", $this->page, $this->limit);
     $this->items = $this->build_list_of_items($items);
     $this->inner_HTML = $this->generate_inner_html(array('sub_title' => $this->sub_title,
                                                          'category' => $this->category,
@@ -175,7 +175,8 @@ class PointsDirectoryModule extends Module {
   }
 
   private function build_list_of_items($items) {
-    $entity_attrs = array('user_id', 'family_id', 'network_id', 'entity_id',
+
+    $entity_attrs = array('user_id', 'giveuser_id', 'family_id', 'network_id', 'entity_id',
                           'category', 'description', 'media_cid', 'media_type', 'media_file', 'rating',
                           'place', 'updated', 'created'
                          );
@@ -187,9 +188,18 @@ class PointsDirectoryModule extends Module {
       foreach($entity_attrs as $attr) {
          $results[$cnt][$attr] = (!empty($item['attributes'][$attr]['value'])) ? $item['attributes'][$attr]['value'] : null;
       }
+
       $user = new User();
       $user->load((int)$results[$cnt]['user_id']);
       $results[$cnt]['user'] = $user;
+
+      if(!isset($results[$cnt]['giveuser_id']) || empty($results[$cnt]['giveuser_id'])) {
+         $results[$cnt]['giveuser_id'] = $this->familly->owner_id;
+      }
+      $giveuser = new User();
+      $giveuser->load((int)$results[$cnt]['giveuser_id']);
+      $results[$cnt]['giveuser'] = $giveuser;
+ 
       switch($results[$cnt]['media_type']) {
           case 'image': $default_pic = uihelper_resize_mk_img($results[$cnt]['media_file'], 86, 92, 'images/default_image.png', "", RESIZE_CROP);
           break;
@@ -249,7 +259,9 @@ class PointsDirectoryModule extends Module {
      return;
    }
    $item = array();
-   $item['entity_id'] = PointsEntity::get_next_id_for_user(PA::$login_uid);
+   $item['entity_id'] = PointsEntity::get_next_id_for_user($this->user_id);
+   $item['giveuser_id'] = PA::$login_uid;
+//echo "$this->user_id <pre>" . print_r( $item, 1) . "</pre>";
     try{
       $this->inner_HTML = $this->generate_inner_html(array('sub_title' => $this->sub_title,
                                                            'category' => $this->category,
@@ -315,10 +327,13 @@ class PointsDirectoryModule extends Module {
   }
 
   public function handlePOST_savePoints($request_data) {
+
    global $app;
      $msg = null;
      $error = false;
      $form_data  = $request_data['form_data'];
+     $form_data['created'] = strtotime($form_data['created']);
+     $form_data['updated'] = strtotime($form_data['updated']);
      $ent_name = array_shift($form_data);
      $media_data = $request_data['media'];
      foreach($media_data as $key => $value) {

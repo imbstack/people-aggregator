@@ -82,8 +82,9 @@
 }
 
 .points_rating p {
-   font-size: 28px;
-   margin-bottom: 6px;
+font-size:22px;
+margin-bottom:0;
+margin-top:0;
 }
 
 .points_message,

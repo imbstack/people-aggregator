@@ -89,10 +89,10 @@ class Entity extends DbObject {
   			// sort by entity_name
   			$sql .= " ORDER BY E.entity_name ASC";
   		} else {
-  			$sql .= " ORDER BY sort_by ASC";
+  			$sql .= " ORDER BY $sort_by";
   		}
   	}
-  	
+ // 	echo "SQL = " . $sql . "<br>";
   	// paging
   	if ($show) {
 			// add paging

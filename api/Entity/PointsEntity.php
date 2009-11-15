@@ -22,6 +22,7 @@ class PointsEntity extends Entity {
         } catch (PAException $e) {
             throw $e;
         }
+//echo "PENT<pre>" . print_r($points_ent, 1) . "</pre>";
         return (($count) ? count($points_ent) : $points_ent);
     }
 
@@ -111,6 +112,7 @@ class PointsEntity extends Entity {
             $entity_ids[] = preg_replace("/^(\w+:)/", '', $points['entity_id']);
         }
         sort($entity_ids);
+// echo "UID: $uid<pre>" . print_r($entity_ids, 1) . "</pre>";
         $last = array_pop($entity_ids)+1;
         return "$uid:" . (string)$last;
     }
