@@ -5,4 +5,4 @@
 # Don't forget to update web/config/default_config.php too if bumping the version number,
 # and make a note in the log in web/update/version.php.
 
-PA_VERSION=2.1.2
+PA_VERSION=2.1.3
