@@ -84,7 +84,7 @@ class ForgotPasswordModule extends Module {
       // case when single field is field 
       if (!$error) {
         if(!empty($this->email)) {
-          $val = validate_email($this->email);
+          $val = Validation::validate_email($this->email);
           if (empty($val)) {
             $msg = __("Invalid email address.  Please try again.");
             $error = TRUE;

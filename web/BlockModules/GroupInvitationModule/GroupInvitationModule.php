@@ -129,7 +129,7 @@ class GroupInvitationModule extends Module {
         $cnt_email = count($friend_email_array);
         // Check for valid-invalid email addresses start
         for ($counter = 0; $counter < $cnt_email; $counter++) {
-          $email_validation = validate_email(trim($friend_email_array[$counter]));
+          $email_validation = Validation::validate_email(trim($friend_email_array[$counter]));
           if ($email_validation == '0') {
             $invalid[] = trim($friend_email_array[$counter]);
           }
