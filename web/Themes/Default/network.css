@@ -157,8 +157,10 @@ a img { border: 0; }
 	background: url(images/bg_page.png);
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_page.png'); }
+	/* _background-image: none; */
+	/* this following filter makes all links inside the content div unclickable in IE8! -Martin Jan 2010 */
+	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_page.png'); */
+	}
 
 #header {
 	background-image: url(images/header_net.gif);
@@ -169,7 +171,8 @@ a img { border: 0; }
 	background-repeat: no-repeat;
 	background-color: none;
 	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_posts.png'); }
+	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_posts.png'); */
+	}
 
 #container {
 	background-color: #FFFFFF;
@@ -336,7 +339,8 @@ a img { border: 0; }
 	height: 150px;
 	background-color: none;
 	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/header_navbar_back.png'); }
+	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/header_navbar_back.png'); */
+	}
 
 #peopleaggregator_networks {
 	color: #ffffff;
@@ -407,7 +411,8 @@ a img { border: 0; }
 	background-repeat: no-repeat;
 	background-color: #666666;
 	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_top_module.png'); }
+	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_top_module.png'); */
+	}
 
 	/* check this line below-MS */
 
@@ -1216,7 +1221,7 @@ html[xmlns*=""] body:last-child .module_tagcloud ul li span { margin-top: 0px; }
 	background-repeat: no-repeat;
 	background-color: none;
 	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_big.png');
+	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_big.png'); */
 	width: 994px;
 	height: 714px; }
 

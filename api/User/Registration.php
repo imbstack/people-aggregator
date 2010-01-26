@@ -492,13 +492,15 @@ class User_Registration {
       $condition = 'content_id = '.$net_extra_blog_id;
       $admin_content = Content::get(NULL, $condition);
       $no_display_on_home_page = !DISPLAY_ON_HOMEPAGE;
-      try {
-        $post_saved = BlogPost::save_blogpost(0, $user_id, $admin_content[0]['title']
-        , $admin_content[0]['body'], NULL, NULL, -1, ACTIVE,
-        $no_display_on_home_page, TRUE);
-      } catch (PAException $e) {
-        throw $e;
-      }
+      if (!empty($admin_content[0])) {
+ 				try {
+					$post_saved = BlogPost::save_blogpost(0, $user_id, $admin_content[0]['title']
+					, $admin_content[0]['body'], NULL, NULL, -1, ACTIVE,
+					$no_display_on_home_page, TRUE);
+				} catch (PAException $e) {
+					throw $e;
+				}
+     }
     } // end of if
   }
   public function add_default_header($user_id) {

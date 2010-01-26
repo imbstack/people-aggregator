@@ -23,7 +23,7 @@ class Entity extends DbObject {
 			$sql = "SELECT * FROM {entities} AS E";
 			if ($sort_by && $sort_by != 'name') {
 				// sort by an attribute
-				$sql = "SELECT E.*, EAS.attribute_value AS sort_by 
+				$sql = "SELECT E.*, EAS.attribute_value AS $sort_by 
 					 FROM {entities} AS E
 					 LEFT JOIN {entityattributes} AS EAS ON (EAS.id = E.id AND EAS.attribute_name=?)";
 				$args[] = $sort_by;
