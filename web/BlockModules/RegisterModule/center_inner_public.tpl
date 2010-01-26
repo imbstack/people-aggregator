@@ -125,8 +125,8 @@
            <input type="text" name="avatar_url" id="avatar_url" class="text short" value="<?= htmlspecialchars(@$_POST['avatar_url']) ?>" />
          </div>
          <div class="field_text" style="margin-top:8px;">
-           <a href ="#" id="prev_image" title="<?= __("Preview Image") ?>" /><?= __("Preview Image") ?></a> |
-           <a href ="#" id="clear_image" title="<?= __("Clear Image") ?>" /><?= __("Clear Image") ?></a>
+           <a href="#" id="prev_image" title="<?= __("Preview Image") ?>"><?= __("Preview Image") ?></a> |
+           <a href="#" id="clear_image" title="<?= __("Clear Image") ?>"><?= __("Clear Image") ?></a>
          </div>
         </div>
         <div id="image_preview">
@@ -147,13 +147,12 @@
           <?php if (@$extra['captcha_required'] == NET_YES) { // added by Z.Hron - if captcha is required ?>
           <div class="capcha_image" style="margin-left:36px;">
             <img src="comment_verification.php"><br />Enter the text as above in the box&nbsp;
-            <input name="txtNumber" type="text" size="12">
+            <input name="txtNumber" type="text" size="12" />
           </div>
           <? } ?>
-          <input type = "hidden" name = "op" value = "register" />
+          <input type="hidden" name="op" value="register" />
            <div class="button_position"> <input type="image" name="submit" id="joinbutton" value="<?= __("Join now") ?>" src="<?=PA::$theme_url;?>/images/join-now.gif" alt="Join now"/></div>
 
-<!--        </body> -->
        </fieldset>
       </form>
 
