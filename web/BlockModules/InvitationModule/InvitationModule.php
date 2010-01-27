@@ -126,11 +126,8 @@ class InvitationModule extends Module {
           $inv->inv_status = INVITATION_PENDING;
           $auth_token = get_invitation_token(LONG_EXPIRES, $valid_email[$counter]);
           $token = '&amp;token='.$auth_token;
-          $link_desc = wordwrap(PA::$url . "/" . FILE_REGISTER . "?InvID=$inv->inv_id", 120, "<br>", 1);
-          $inv->register_url = "<a href=\"". PA::$url . "/". FILE_REGISTER . "?InvID=$inv->inv_id\">$link_desc</a>";
-
-          $acc_link_desc = wordwrap(PA::$url . "/" . FILE_LOGIN . "?action=accept&InvID=$inv->inv_id$token", 120, "<br>", 1);
-          $inv->accept_url = "<a href=\"". PA::$url . "/" . FILE_LOGIN . "?action=accept&InvID=$inv->inv_id$token\">$acc_link_desc</a>";
+          $inv->register_url = PA::$url . "/". FILE_REGISTER . "?InvID=$inv->inv_id";
+          $inv->accept_url = PA::$url . "/" . FILE_LOGIN . "?action=accept&InvID=$inv->inv_id$token";
 
           $inv->inv_user_id = NULL;
           $inv->inv_user_first_name = $valid_user_first_emails[$counter];
