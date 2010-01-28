@@ -150,16 +150,12 @@ a img { border: 0; }
 /*Modify  by Saurabh -- Because it gives a lot horizontal space in IE6 */
 *html #body_shadow {
 	_background-image: none;
-	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg.png'); */
   }
 
 #shadow {
 	background: url(images/bg_page.png);
 	background-repeat: no-repeat;
 	background-color: none;
-	/* _background-image: none; */
-	/* this following filter makes all links inside the content div unclickable in IE8! -Martin Jan 2010 */
-	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_page.png'); */
 	}
 
 #header {
@@ -170,8 +166,6 @@ a img { border: 0; }
 	background: url(images/bg_blog_posts.png);
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_posts.png'); */
 	}
 
 #container {
@@ -338,8 +332,6 @@ a img { border: 0; }
 	width: 1016px;
 	height: 150px;
 	background-color: none;
-	_background-image: none;
-	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/header_navbar_back.png'); */
 	}
 
 #peopleaggregator_networks {
@@ -410,8 +402,6 @@ a img { border: 0; }
 	background: url(images/bg_top_module.png);
 	background-repeat: no-repeat;
 	background-color: #666666;
-	_background-image: none;
-	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_top_module.png'); */
 	}
 
 	/* check this line below-MS */
@@ -1221,7 +1211,6 @@ html[xmlns*=""] body:last-child .module_tagcloud ul li span { margin-top: 0px; }
 	background-repeat: no-repeat;
 	background-color: none;
 	_background-image: none;
-	/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_big.png'); */
 	width: 994px;
 	height: 714px; }
 

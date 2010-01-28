@@ -21,8 +21,6 @@ margin-top: 10px;
   background: url(images/bg_blog_big.png);
   background-repeat: no-repeat;
   background-color: none;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/images/bg_blog_big.png');
   width: 994px;
   height: 714px;
 }

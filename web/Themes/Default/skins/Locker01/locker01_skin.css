@@ -39,11 +39,6 @@ a:hover {
   width: 100%;
   height: 500px; }
   
-*html #body_shadow {
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg.png',sizingMethod="crop"); }
-
-
 #container {
   background-color: #0000FF;
 }
@@ -69,17 +64,13 @@ a:hover {
   
 #shadow { 
   background-image: url(images/bg_page.png);
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg_page.png');
   }
 
 #header_navbar_back { 
   background: url(images/header_navbar_back.png) no-repeat;
   width: 1016px;
   height: 150px;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/header_navbar_back.png');
-/*  margin-left: -10px; */ } 
+} 
 
 
 
@@ -160,16 +151,13 @@ background-color: #999999;
   background: url(images/bg_blog_posts.png);
   background-repeat: no-repeat;
   background-color: transparent;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg_blog_posts.png'); }
+}
   
 #bg_blog_big,
 #bg_post { 
   background: url(images/bg_blog_big.png);
   background-repeat: no-repeat;
   background-color: none;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg_blog_big.png');
   width: 994px;
   height: 714px; }
   
@@ -268,8 +256,6 @@ margin-top: 100px;
   margin-top: 0;
   margin-bottom: 0;
   background: #333333 url(images/bg_top_module.png) no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg_top_module.png');
 }
 
 #col_a .module {
@@ -290,8 +276,6 @@ margin-top: 100px;
   font-family: verdana;
   font-size: 12px;
   background: transparent url(images/bg_top_module_flat.png) no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Locker01/images/bg_top_module_flat.png');
 }
 
 
@@ -627,8 +611,6 @@ margin-bottom: 14px;
   width: 322px;
   height: 457px;
   background-repeat: no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Planets/images/front_earth.png');
   top: 320px;
   right: -200px;
   position: absolute; 

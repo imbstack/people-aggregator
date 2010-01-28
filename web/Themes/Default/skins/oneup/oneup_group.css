@@ -19,25 +19,18 @@ body {
 	height: 500px; 
 	}
 	
-*html #body_shadow {
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/oneup/images/bg.png'); }
-
-	
 #shadow { 
 	background: url(none);
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(none); }
+}
 
 /* Take out center column bg shadow because it's height is difficult to manage relative to the shifted cloumn height. */
 #bg_blog_post { 
 	background: url(none);
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(none); }
+	}
 	 
 #container {
 	background-color: transparent;
@@ -67,8 +60,7 @@ body {
 	width: 1016px;
 	height: 150px;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(none); }
+	}
 
 
 /* This area adjusts the main nav height. Main nav moved down for some  skins. */
@@ -147,8 +139,6 @@ body {
 	background: url(images/mod_bg_trans_wht.png);
 	background-repeat: no-repeat;
 	background-color: transparent;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(none)
 	}
 	
 *html .module {

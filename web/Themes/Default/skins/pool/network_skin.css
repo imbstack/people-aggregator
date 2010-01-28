@@ -41,8 +41,6 @@ a:hover {
 #body_shadow {
   background: url(images/bg.png);
   background-repeat: no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg.png');
   width: 100%;
   height: 500px;
 }
@@ -52,8 +50,6 @@ a:hover {
   background: url(images/bg_page.png);
   background-repeat: no-repeat;
   background-color: none;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_page.png');
 }
 
 #bg_blog_post { 
@@ -62,8 +58,6 @@ a:hover {
   background: url(images/bg_blog_posts.png);
   background-repeat: no-repeat;
   background-color: none;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_blog_posts.png');
   width: 600px;
   height: 714px;
 }
@@ -180,8 +174,6 @@ a:hover {
   width: 1016px;
   height: 150px;
   background-color: none;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/header_navbar_back.png');
 }
 
 #peopleaggregator_networks {
@@ -268,8 +260,6 @@ a:hover {
   font-size: 12px;
   background: url(images/bg_top_module.png);
   background-repeat: no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module.png');
 }
 
 *html .module h1{
@@ -773,8 +763,6 @@ a:hover {
   font-size: 12px;
   background: url(images/bg_top_module_big.png);
   background-repeat: no-repeat;
-  _background-image: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module_big.png');
 }
 
 .module_wide form {
@@ -1182,10 +1170,6 @@ margin-left:0px;
     margin-top: 0;
     background: #860011 url(images/bg_top_module_big.png);
     background-repeat: repeat;
-    _background-image: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module_big.png');
-    
-
 }
 
 .wide_content_media_full_view ul li {

@@ -37,11 +37,6 @@ a:hover {
 	height: 500px;
 }
 
-*html #body_shadow {
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/bg.png'); }
-
-
 
 #container {
 	background-color: #3C3C8A;
@@ -53,41 +48,31 @@ a:hover {
 	
 #shadow { 
 	background-image: url(images/bg_page.png);
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/bg_page.png');
 	}
 
 #header_navbar_back { 
 	background: #000066 url(images/header_navbar_back.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/header_navbar_back.png');
-/*  margin-left: -10px; */ } 
+	} 
 
 #pg_showcontent #header_navbar_back { 
 	background: #000066 url(images/header_navbar_back_ny.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/header_navbar_back_ny.png');
-/*  margin-left: -10px; */ } 
+	} 
 
 #pg_people #header_navbar_back { 
 	background: #000066 url(images/header_navbar_back_sf.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/header_navbar_back_sf.png');
-/*  margin-left: -10px; */ } 
+	} 
 
 #pg_network_home #header_navbar_back { 
 	background: #000066 url(images/header_navbar_back_paris.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/header_navbar_back_paris.png');
-/*  margin-left: -10px; */ } 
+	} 
 
 
 
@@ -154,8 +139,7 @@ background-color: #333333;
 	background: url(images/bg_blog_posts.png);
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/bg_blog_posts.png'); }
+	}
 
 
 
@@ -206,9 +190,7 @@ margin-top: 100px;
 	font-family: verdana;
 	font-size: 12px;
 	background: #000066 url(images/bg_top_module.png) no-repeat;
- 	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/City/images/bg_top_module.png');
-}
+	}
 
 
 
@@ -573,8 +555,6 @@ margin-bottom: 14px;
 	width: 322px;
 	height: 457px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Planets/images/front_earth.png');
 	top: 320px;
 	right: -200px;
 	position: absolute; 

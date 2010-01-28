@@ -34,8 +34,6 @@ a:hover {
 /* Default Body Shadow height is 500px. 200 added and 200 added to container margin height below. */
 
 *html #body_shadow {
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/dream_places/images/bg_700_sh.jpg'); 
 	background: url(images/bg_700_sh.jpg) no-repeat center;
 }
 
@@ -81,17 +79,12 @@ a:hover {
 	background: none;
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
 }
 
 #header_navbar_back { 
 	background: url(images/header_navbar_back150.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/dream_place/images/header_navbar_back150.png');
-	
 } 
 
 #page_people #header_navbar_back,
@@ -99,9 +92,6 @@ a:hover {
 	background: url(images/header_navbar_back150_clean.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/dream_place/images/header_navbar_back150_clean.png');
-	
 } 
 
 
@@ -150,7 +140,6 @@ padding: 5px 10px 5px 0px;
 background-color: transparent;
 background-image: url(images/bg_nav_tier2.png);
 background-repeat: no-repeat;
-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/dream_place/images/bg_nav_tier2.png');
  }
  
 
@@ -183,7 +172,6 @@ img, #bg_blog_post { behavior: url(iepngfix.htc); }
 #bg_blog_post { 
 	background: url(images/bg_blog_posts2.png) no-repeat 0px 0px;
 	background-repeat: no-repeat;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_noneThemes/Default/skins/dream_place/images/bg_blog_posts2.png'); 
 }
 
 
@@ -274,9 +262,6 @@ background-color: #999999; }
 	font-family: verdana;
 	font-size: 12px;
 	background: #336600 url(images/bg_top_module.png) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Dream_place/images/bg_top_module.png');
-	
 	}
 
 /*
@@ -289,8 +274,6 @@ background-color: #999999; }
 	font-family: verdana;
 	font-size: 12px;
 	background: #000000 url(images/bg_top_module.png) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_top_module.png');
 }
 
 */
@@ -584,8 +567,6 @@ background-image: url(images/frontbranch.png);
 width: 187px;
 height: 116px;
 background-repeat: no-repeat;
-_background-image: none;
-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/Dream_place/images/frontbranch.png');
 top: 27px;
 left: 140px;
 position: absolute; }
@@ -596,8 +577,6 @@ background-image: none;
 width: 187px;
 height: 116px;
 background-repeat: no-repeat;
-_background-image: none;
-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
 top: 27px;
 left: 140px;
 position: absolute; }

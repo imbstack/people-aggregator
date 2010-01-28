@@ -95,7 +95,6 @@ div#user_info li textarea.copyme {
   background-color: #000;
   background-color: transparent;
   background-image: url(images/blank.gif);
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="Themes/Default/images/overlay.png", sizingMethod="scale");
 }
 
 #modal_window {

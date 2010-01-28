@@ -37,12 +37,7 @@ a:hover {
 
 
 
-*html #body_shadow {
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_noneThemes/Default/skins/planets/images/bg_stars.jpg'); 
-	background: url(images/bg_stars.jpg) no-repeat center;
-	}
-	
+
 
 #body_shadow {
 	background: url(images/bg_stars.jpg) no-repeat center;
@@ -90,17 +85,13 @@ a:hover {
 	background: none;
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
 }
 
 #header_navbar_back { 
 	background: url(_images/header_navbar_back.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_images/header_navbar_back.png');
-/*  margin-left: -10px; */ } 
+} 
 
 /* Main First Tier Nav Bar */
 #first_tier_navbar { 
@@ -143,7 +134,6 @@ padding: 5px 10px 5px 0px;
 background-color: transparent;
 background-image: url(images/bg_nav_tier2.png);
 background-repeat: no-repeat;
-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/planets/images/bg_nav_tier2.png');
  }
  
 
@@ -201,8 +191,6 @@ img, #bg_blog_post { behavior: url(iepngfix.htc); }
 #bg_blog_post { 
 	background: url(images/bg_blog_posts2.png) no-repeat 0px 0px;
 	background-repeat: no-repeat;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=':_none/Themes/Default/skins/planets/images/bg_blog_posts2.png');
-	
 }
 
 
@@ -289,8 +277,6 @@ margin-top: 100px;
 	font-family: verdana;
 	font-size: 12px;
 	background: #666666 url(images/bg_top_module.png) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/bg_top_module.png');
 }
 
 
@@ -303,8 +289,6 @@ margin-top: 100px;
 	font-family: verdana;
 	font-size: 12px;
 	background: #333333 url(none) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/planets/images/bg_top_module.png');
 }
 
 
@@ -703,8 +687,6 @@ margin-bottom: 14px;
 	width: 322px;
 	height: 457px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_earth.png');
 	top: 320px;
 	right: -200px;
 	position: absolute; 
@@ -717,8 +699,6 @@ margin-bottom: 14px;
 	width: 228px;
 	height: 249px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_planet.png');
 	top: 400px;
 	left: -165px;
 	position: absolute; 
@@ -729,8 +709,6 @@ margin-bottom: 14px;
 	width: 223px;
 	height: 241px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_earth_sm.png');
 	top: 300px;
 	left: -140px;
 	position: absolute; 
@@ -741,8 +719,6 @@ margin-bottom: 14px;
 	width: 228px;
 	height: 249px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/planets/images/front_planet.png');
 	top: 300px;
 	right: -165px;
 	position: absolute; 
@@ -754,8 +730,6 @@ margin-bottom: 14px;
 	width: 228px;
 	height: 249px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/planets/images/front_earth.png');
 	top: 400px;
 	left: -165px;
 	position: absolute; 

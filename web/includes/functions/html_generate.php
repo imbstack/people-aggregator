@@ -71,11 +71,6 @@ function html_header($title='', $optional_arguements='', $style_css='') {
 
   echo "<link rel=\"shortcut icon\" href=\"". PA::$url . "/favicon.ico\" type=\"image/x-icon\" />";
   
-  // force IE8 to use IE7 compat mode
-  // this should be removed once we can fix the IE8 compate issue
-  echo '<meta http-equiv="X-UA-Compatible" content="IE=7" />';
-  
-  
   echo $optional_arguements;
   echo "  </head>\n";
 }

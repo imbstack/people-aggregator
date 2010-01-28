@@ -54,7 +54,6 @@ iframe.tooltip {
 .iettip {
  background-image: none;
  filter: alpha(opacity:0); 
- filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='/Themes/Default/javascript/facewall/tooltip/bubble.png');
 }
 
 div.tooltip div.tooltip_header {

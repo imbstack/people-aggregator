@@ -36,8 +36,6 @@ a:hover {
 
 
 *html #body_shadow {
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_noneThemes/Default/skins/swim/images/bg.png'); 
 	background: url(images/bg.jpg) no-repeat center;
 }
 
@@ -93,17 +91,13 @@ a:hover {
 	background: none;
 	background-repeat: no-repeat;
 	background-color: none;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='none');
 }
 
 #header_navbar_back { 
 	background: url(images/header_navbar_back.png) no-repeat;
 	width: 1016px;
 	height: 150px;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/swim/images/header_navbar_back.png');
-/*  margin-left: -10px; */ } 
+} 
 
 /* Main First Tier Nav Bar */
 #first_tier_navbar { 
@@ -289,8 +283,6 @@ margin-top: 100px;
 	font-family: verdana;
 	font-size: 12px;
 	background: #999999 url(_none/bg_top_module.png) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='_none/Themes/Default/skins/Hoops/images/bg_top_module.png'); */
 }
 
 
@@ -303,8 +295,6 @@ margin-top: 100px;
 	font-family: verdana;
 	font-size: 12px;
 	background: #0099FF url(images/bg_top_module.png) no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/swim/images/bg_top_module.png');
 }
 
 /* ad module only */
@@ -612,8 +602,6 @@ margin-bottom: 14px;
 	width: 330px;
 	height: 98px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/swim/images/frnt_splash.png');
 	top: 202px;
 	left: -25px;
 	position: absolute; 
@@ -625,8 +613,6 @@ margin-bottom: 14px;
 	width: 500px;
 	height: 98px;
 	background-repeat: no-repeat;
-	_background-image: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Themes/Default/skins/swim/images/frnt_splash_02.png');
 	top: 218px;
 	left: -20px;
 	position: absolute; 
