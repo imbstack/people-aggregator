@@ -145,7 +145,7 @@
     */
     private function _redirect_fn ($redirect=array()) {
     
-      $location = (strstr($redirect['url'], "http://")) ? $redirect['url'] : PA::$url.'/'.$redirect['url'];
+      $location = (preg_match("!^http(s*)://!", $redirect['url'])) ? $redirect['url'] : PA::$url.'/'.$redirect['url'];
       if (!empty($redirect['msg_id'])) {
         $location .= (preg_match('/\?/',$location)) ? '&' : '?';
         $location .= 'msg_id='.$redirect['msg_id'];
