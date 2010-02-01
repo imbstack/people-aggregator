@@ -19,6 +19,16 @@ var formAction = '';
 var json_file = '/configurator.json';
 
 $(document).ready(function() {
+	// test if the user_js_data is a valid JSON
+	if (trim(user_js_data) != '') {
+		try {
+			eval('var test_json = ' + user_js_data);
+		} catch(e) {
+			alert("There is a problem with your stored CSS data, resetting Editor to defaults.\nError: "+e);
+			user_js_data = '';
+		}
+	}
+
 	$.get(json_file, function(json) {
     if (trim(user_js_data) == '') {
       user_js_data = json;
@@ -377,7 +387,7 @@ function restoreDefaults() {
 }
 
 function readCSS() {
-  eval('var cf = ' + json_data);
+	eval('var cf = ' + json_data);
   for(var k = 0; k < cf.groups.length; k++) {
     for(var i = 0; i < cf.groups[k].selectors.length; i++) {
       var sel_id = cf.groups[k].selectors[i].selector_id;
