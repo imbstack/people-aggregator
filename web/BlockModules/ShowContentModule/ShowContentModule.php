@@ -305,7 +305,7 @@ class ShowContentModule extends Module {
     }
 
 
-    $this->inner_HTML = $this->generate_inner_html ($this->contents, $this->type);
+    $this->inner_HTML = $this->generate_inner_html($this->contents, $this->type);
     if ($this->do_pagination) {
 			$Pagination = new Pagination;
 			$Pagination->setPaging($this->Paging);
@@ -351,7 +351,8 @@ class ShowContentModule extends Module {
       $tag_name = Tag::get_tag_name($this->tag_id);
       $inner_html .= "<h1>".sprintf(__("Showing results for tag %s."), $tag_name)."</h1>";
     }
-         if ($this->type == 'group') {
+    
+    if ($this->type == 'group') {
         $inner_html .= '<div id="buttonbar">
         <ul>';
         if ($this->group_member) {

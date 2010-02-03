@@ -175,6 +175,9 @@
         }
       }
       if(isset($uid)) {
+      	$rss_data='<link rel="alternate" type="application/rss+xml" title="RSS feed" href="'.PA::$url .'/feed.php?uid='.$uid.'" />';
+      	$this->add_header_html($rss_data);
+
         uihelper_set_user_heading($this, true, $uid);
       } else {
         uihelper_get_network_style();
