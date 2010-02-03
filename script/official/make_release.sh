@@ -1,6 +1,13 @@
 #!/bin/bash
 
-REPOS=http://update.peopleaggregator.org/svn/$1/pa
+# get the version string for this version we are working with
+source ../version.sh
+
+# REPOS=http://update.peopleaggregator.org/svn/$1/pa
+
+REPO_URL=http://update.svn.broadbandmechanics.com/svn/$1
+REPOS=$REPO_URL/peopleaggregator-$PA_VERSION
+
 
 if [ -n "$2" ]; then
     REV="-r $2";
@@ -28,6 +35,8 @@ echo "pulling out the dist files"
 ls -al
 mv repos.tmp/*.tar.gz dist.tmp/
 mv repos.tmp/*.zip dist.tmp/
+
+rm -rf repos
 
 popd
 
