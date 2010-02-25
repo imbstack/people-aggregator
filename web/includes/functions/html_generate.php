@@ -154,10 +154,12 @@ mysql> <b>source <?php echo PA::$path ?>/db/PeepAgg.mysql</b></pre>
     // render an error message
     $code_esc = intval($exception->getCode());
     $msg_esc = htmlspecialchars($exception->getMessage());
+    $traceback = $exception->getTraceAsString();
     $template_file = getShadowedPath(PA::$theme_path . '/exception.tpl');
     $template = & new Template($template_file);
     $template->set('code_esc', $code_esc);
     $template->set('msg_esc', $msg_esc);
+    $template->set('traceback', $traceback);
     echo $template->fetch();
 /*
     $page = new PageRenderer(NULL, NULL, "Error $code_esc: $msg_esc", "container_one_column.tpl");

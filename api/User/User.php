@@ -464,11 +464,10 @@ class User {
       $login_names = array( $login_names );
     }
     foreach ($login_names as $login_name) {
-    $r = Dal::query_one("SELECT user_id FROM {users} WHERE login_name = ?", array($login_name));
-    if (!$r) {
-      throw new PAException(USER_NOT_FOUND, "User with login name '$login_name' not found");
-    }
-    $ret[$login_name] = $r[0];
+			$r = Dal::query_one("SELECT user_id FROM {users} WHERE login_name = ?", array($login_name));
+			if ($r) {
+				$ret[$login_name] = $r[0];
+			}
     }
     return $ret;
   }

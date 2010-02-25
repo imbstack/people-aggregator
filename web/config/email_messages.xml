@@ -1313,7 +1313,7 @@ Hi %recipient.display_name%, <br />
 <br />
 Activate your %config_site_name% account by clicking the following link:
 <br />
-<a href="%account.activation_url%">%account.activation_url%</a>"
+<a href="%account.activation_url%">%account.activation_url%</a>
 <br />
 <br />
 Regards,<br />

@@ -124,8 +124,10 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
       }
     }
     if(isset($_POST['relate_me']) && ($_POST['relate_me'] == 1)) {//and some names are specified for relationships
-      $array = array($_SESSION['user']['name'], $related);
-      $comma_separated = implode(",", $array);//concatenate both through ,
+      $comma_separated = $_SESSION['user']['name'];
+      if (!empty($related)) {
+      	$comma_separated .= ','.$related;
+      }
       $form_data['extra']['user_defaults']['user_friends'] = $comma_separated;
     }
     else {
@@ -133,7 +135,7 @@ if (($action == 'save' || $action == 'store_as_defaults') && !$error && !$import
     }
   }//.. end of  $_POST['user_friends']
   // if nothing is supplied
-  if ((isset($_POST['relate_me'])) && ($_POST['relate_me'] != 1) && ($_POST['user_friends'] == '')) {
+  if (empty($_POST['relate_me']) && empty($_POST['user_friends'])) {
     $form_data['extra']['user_defaults']['user_friends'] = '';
   }
   //user's default desktop image start
