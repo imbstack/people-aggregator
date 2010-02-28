@@ -42,9 +42,8 @@ class TekMedia {
    public function generate_form($gid = NULL) {
      if ($form_key = $this->generate_form_key($gid)) {
         $redirection_path = PA::$url.'/save_tekmedia.php';
-        // $get_form_url = 	PA::$url."/upload_video_form.php"; 
+        $get_form_url = 	PA::$url."/upload_video_form.php"; 
         // need this to live on a public access server!
-        $get_form_url = "http://pre8staging.dev.vm.broadbandmechanics.com/upload_video_form.php";
 
         if(!empty($gid)) {
           $form_url = $get_form_url.'?gid='.$gid;

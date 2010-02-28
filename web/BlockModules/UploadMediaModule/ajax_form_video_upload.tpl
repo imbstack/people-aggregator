@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="http://www.pre8staging.dev.vm.broadbandmechanics.com/Themes/Default/network.css" />
+<link rel="stylesheet" type="text/css" href="/Themes/Default/network.css" />
 <style>body {background:#fff;}</style>
 
-<script type="text/javascript" language="javascript" src="http://www.pre8staging.dev.vm.broadbandmechanics.com/Themes/Default/javascript/jquery.lite.js"></script>
-<script type="text/javascript" language="javascript" src="http://www.pre8staging.dev.vm.broadbandmechanics.com/Themes/Default/javascript/forms.js"></script>
+<script type="text/javascript" language="javascript" src="/Themes/Default/javascript/jquery.lite.js"></script>
+<script type="text/javascript" language="javascript" src="/Themes/Default/javascript/forms.js"></script>
 
 <script type="text/javascript">
 var ajax_ready;

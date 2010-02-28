@@ -9,9 +9,8 @@ $redirection_path = PA::$url."/ajax/save_tekmedia.php";
 if (@$use_tek_form) {
 	$iframe_src = "http://www.glued.in/Integration/index.php?form_key=$form_key";
 } else {
-	// $form_url = PA::$url."/ajax/upload_video_form.php";
+	$form_url = PA::$url."/ajax/upload_video_form.php";
 	// need this to live on a public access server!
-	$form_url = "http://pre8staging.dev.vm.broadbandmechanics.com/ajax/upload_video_form.php";
 	if (!empty($_REQUEST['gid'])) {
 		$form_url .= "?gid=".$_REQUEST['gid'];
 	}
