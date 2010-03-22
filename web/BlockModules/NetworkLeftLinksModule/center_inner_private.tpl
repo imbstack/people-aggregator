@@ -44,10 +44,13 @@
       <li><a  id="show_hide_splash_page_options"><?= __('Manage splash') ?></a>
         <ul id="splash_page_options">
           <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=configure"><?= __('Configure') ?></a></li>
-          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=showcased_networks"><?= __('Showcased networks') ?></a></li>
-          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=network_of_moment"><?= __('Network of Moment') ?></a></li>
-          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=video_tours"><?= __('Video Tours') ?></a></li>
+          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=info_boxes"><?= __('Info Boxes') ?></a></li>
+          <!--<li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=network_of_moment"><?= __('Network of Moment') ?></a></li>-->
+        <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=showcase"><?= __('Showcase Modules') ?></a></li>
+
+        <!-- <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=video_tours"><?= __('Video Tours') ?></a></li>-->
          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=server_announcement"><?= __('Server Announcement') ?></a></li>
+         <!--<li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=survey"><?= __('Survey NOT YET IMPL.') ?></a></li>-->
          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=register_today"><?= __('Register Today') ?></a></li>
         </ul>
       </li>

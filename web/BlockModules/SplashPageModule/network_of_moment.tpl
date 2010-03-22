@@ -1,3 +1,4 @@
+<!--
 <form name="<?php echo $section?>" method="post" enctype="multipart/form-data">
   <fieldset class="center_box">
     <div class="field_medium">
@@ -44,4 +45,5 @@
     <input type="submit" name="video_tours_submit" value="<?= __("Save Network of the Moment") ?>" />
   </div>
 <?php echo $config_navigation_url; ?>
-</form>
+</form>-->
+

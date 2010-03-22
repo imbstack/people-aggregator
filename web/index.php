@@ -22,20 +22,32 @@ $login_required = FALSE;
 $use_theme = 'Beta';
 include_once("web/includes/page.php");
 require_once "api/ModuleData/ModuleData.php";
+require_once("web/dologin.php");
 
 
 $configure = unserialize(ModuleData::get('configure'));
 $module_name = 'SplashPage';
-$configurable_sections = array('showcased_networks', 'network_of_moment', 'video_tours', 'register_today', 'server_announcement');
+$configurable_sections = array('info_boxes', 'network_of_moment', 'video_tours', 'register_today', 'server_announcement', 'survey');
 foreach ($configurable_sections as $key => $section) {
   $$section = unserialize(ModuleData::get($section));
 }
 
-// Redirect straight to the homepage if logged in
+// Display welcome Message if logged in, otherwise show login prompt
+
 if ( PA::logged_in() || (!isset($configure['show_splash_page'])) || $configure['show_splash_page'] == INACTIVE) {
-  $location =  PA_ROUTE_HOME_PAGE;
-  header("Location: $location");
-  exit;
+  $uname = $user->get_name();
+  $message = "Welcome, $uname! <a href='logout.php'>Logout</a>";
+}
+else{
+  $message = ' <form action="dologin.php?action=login" method="post" style="margin: 0px;">
+         <input type="hidden" name="InvID" value=""/>
+         <input type="hidden" name="GInvID" value=""/>
+         Username<input type="text" name="username"/>
+         Password<input type="password" name="password"/>
+         <input type="submit" value="login"/>
+         or
+         <a href="register.php">REGISTER</a></form>';
+
 }
 
 $parameter = js_includes("all");
@@ -46,138 +58,80 @@ $mothership_info = mothership_info();
 <html>
 
   <head>
-    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
-    <meta name="generator" content="Adobe GoLive">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>Welcome to PeopleAggregator</title>
+<script type="text/javascript" src="<?php echo PA::$theme_url;?>javascript/jquery.js"></script>
     <link href="<?php echo PA::$theme_url;?>/style_index.css" rel="stylesheet" type="text/css" media="all">
     <?
     echo $parameter;
     ?>
-
   </head>
   <body>
-    <div id="wrapper">
-      <div class="header">
-        <h1>
-          A place to create and run your own social network
-        </h1>
-        <div class="login">
-          Already a member?<br>
-          <a href="<?php echo PA::$url?>/login.php">Login now</a> or <a href="<?php echo PA::$url?>/register.php">register</a>
-        </div>
-      </div>
-      <div class="first_row">
-        <div class="cel_one">
-          <span class="spanone"><a href="<?= PA::$url;?>/register.php"><div class="number1">1</div><div class="text1 cursor-pointer">join</div></a></span><div class="info_text1">open an account on the PeopleAggregator Home network</div>
-          <span class="spantwo"><a href="<?= PA::$url;?>/register.php"><div class="number2">2</div><div class="text2 cursor-pointer">create</div></a></span><div class="info_text2">create your own social network. Pick a name, upload a logo, set the rules and start the community blog</div>
-          <span class="spanthree"><a href="<?= PA::$url;?>/register.php"><div class="number3">3</div><div class="text3 cursor-pointer">invite</div></a></span><div class="info_text3">Invite your friends to blog, create groups, upload media and meet each other. All in your own social network</div>
-        </div>
-        <div class="cel_two">
-          <h2>Register today</h2>
+<div id="everythingIsInHere">
+    <div id="header">
+      <div id="titlebox">
+       <img border="none" src="/Themes/Default/images/title.png">
+          </div>
+      <div id="login" class="centerbox">
+
           <?php
-            if (!empty($register_today)) {
-          ?>
-          <div class="text">
-            <?php echo $register_today['description']?><br /><br />
-          </div>
-          <div class="text" align="center">
-            <a href="<?= PA::$url;?>/register.php">
-              <?php echo uihelper_resize_mk_img($register_today['network_image'], 193, 67, 'images/default.png', 'alt="PeopleAggregator"') ?>
-            </a>
-          </div>
-          <?php
-            }
-          ?>
-        </div>
-        <div class="cel_three">
-          <h2>Video Tours</h2>
-          <?php
-            if (!empty($video_tours)) {
-          ?>
-          <div class="text">
-            <?php echo $video_tours['description']?><br><br>
-          </div>
-          <div class="text" align="center">
-            <a href="<?php echo $video_tours['video_url']?>">
-              <?php echo uihelper_resize_mk_img($video_tours['network_image'], 193, 67, 'images/default.png', 'alt="PeopleAggregator"') ?>
-            </a>
-          </div>
-          </div>
-          <?php
-            }
-          ?>
-      </div>
-      <div class="second_row">
-        <div class="cel_one">
-          <h2>Network Showcase</h2>
-          <div class="text">
-            <?php
-              if ($showcased_networks) {
+echo $message;
             ?>
-              Here are a random collection of PeopleAggregator networks. Each network has its own membership, community blog, media galleries, groups, message system, etc. Rollover to view details, click to jump there.
-              <p><span class="showcase">
-              <?php
-                foreach ($showcased_networks as $network) {
-              ?>
-                <a href="<?php echo $network['network_url']?>" target="_blank">
-                  <?php echo uihelper_resize_mk_img($network['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?>
-                </a>
-              <?php
-                }
-              ?>
-              </span></p>
-            <?php
-              } else {
-                echo 'There are no showcased networks';
-              }
-            ?>
-            <p>Visit our <a href="<?= PA::$url;?>/networks_home.php">network directory</a></p>
+        </form>   
           </div>
         </div>
-        <div class="cel_two">
-                  <h2>Network of the Moment</h2>
-          <div class="text">
-          <?php
-            if (!empty($network_of_moment)) {
-          ?>
-            <a href="<?php echo $network_of_moment['network_url']?>" target="_blank"><?php echo $network_of_moment['network_caption']?></a> - <?php echo $network_of_moment['description']?></div>
-          <div class="text" align="center">
-            <p><a href="<?php echo $network_of_moment['network_url'];?>" target="_blank">
-              <?php echo uihelper_resize_mk_img($network_of_moment['network_image'], 193, 67, 'images/default.png', 'alt="PeopleAggregator"') ?>
-            </a></p>
+      <div id="mainbody">
+      <div id="announcement">
+          <span id="atext">Announcement:</span> <br>
+          <!--THIS CANT BE TURNED OFF FROM THE INTERFACE YET, IMPLEMENT LATER!!!
+          <?php echo uihelper_resize_mk_img($server_announcement['network_image'], 185, 100, 'images/default.png', 'alt="PeopleAggregator"')?>  -->
+          <h3 class="<?php echo $server_announcement['importance']?>"><?php echo $server_announcement['description']?></h3><hr></div>
+        <div id="infocontainer">
+<div style="padding: 20px;">
+      <div id="news" class="infobox">
+      <span class="caption"><?php echo $info_boxes[0]['caption']?> </span>
+      <a href=<?php echo $info_boxes[0]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[0]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
           </div>
-          <?php
-            }
-          ?>
-        </div>
-        <div class="cel_three">
-          <h2>On your server?</h2>
+      <div id="safety" class="infobox">
+<span class="caption"> <?php echo $info_boxes[2]['caption']?></span>
 
+         <a href=<?php echo $info_boxes[2]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[2]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
 
-
-<?php
-            if (!empty($server_announcement)) {
-          ?>
-          <div class="text">
-            <?php echo $server_announcement['description']?><br><br>
           </div>
-          <div class="text" align="center">
-            <a href="http://wiki.peopleaggregator.org/Main_Page">
-              <?php echo uihelper_resize_mk_img($server_announcement['network_image'], 185, 110, 'images/default.png', 'alt="PeopleAggregator"') ?>
-            </a>
-          </div>
+      <div id="health" class="infobox">
+<span class="caption"> <?php echo $info_boxes[1]['caption']?>  </span>
 
-          <?php
-            }
-          ?>
+         <a href=<?php echo $info_boxes[1]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[1]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
 
 </div>
+</div><div style="padding: 20px;">
+      <div id="energy" class="infobox">
+<span class="caption"> <?php echo $info_boxes[3]['caption']?>  </span>
 
+         <a href=<?php echo $info_boxes[3]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[3]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
 
+      </div>
+      <div id="me" class="infobox">
+<span class="caption"> <?php echo $info_boxes[5]['caption']?>  </span>
 
+         <a href=<?php echo $info_boxes[5]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[5]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
 
+      </div>
+      <div id="education" class="infobox">
+<span class="caption"> <?php echo $info_boxes[4]['caption']?>  </span>
 
+         <a href=<?php echo $info_boxes[4]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[4]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+      </div>
+</div>
+    </div>
 
+<div id="survey" class="wide_content">
+<?php
+require_once("BlockModules/PollModule/PollModule.php");
+$p = new PollModule();
+echo $p->render();
+?>
+</div>
  </div>
       <div class="footer">
         <div class="footer_text">copyright 2006 Broadband Mechanics <a href="http://www.broadbandmechanics.com/" target="_blank">About Us</a> | <a href="<?= PA::$url?>/features.php" target="_blank">Features</a>| <a href="<?= PA::$url?>/faq.php" target="_blank">FAQ</a> | <a href="<?php echo PA::$url .'/roadmap.php';?>" target="_blank">Roadmap</a> | <a href="http://wiki.peopleaggregator.org/Main_Page" target="_blank">Developer Wiki</a></div>

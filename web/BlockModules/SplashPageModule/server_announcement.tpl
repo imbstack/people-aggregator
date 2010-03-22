@@ -1,7 +1,7 @@
 <form name="<?php echo $section?>" method="post" enctype="multipart/form-data">
   <fieldset class="center_box">
     
-    <div class="field_bigger">
+    <div class="field_medium">
       <h4><label for="description"><span class="required"> * </span> <?= __("Description") ?></label></h4>
       <textarea name="description" id="description"><?php echo field_value(@$networks_data['description'], field_value(@$_POST['description'], ''))?></textarea>
     </div>
@@ -28,6 +28,12 @@
       <div class="field_text">
         <?= __("Uploaded image will be displayed at 185 pixels by 110 pixels.") ?>
       </div>
+    </div>
+    
+    <div class=field_medium">
+      <h4><Label for="color">Urgency of Message:</Label></h4><br> 
+      <input type="radio" name="importance" value="important"/>Important<br>
+      <input type="radio" name="importance" value="normal" checked/>Passive
     </div>
     
   </fieldset>

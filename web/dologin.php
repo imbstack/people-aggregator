@@ -11,8 +11,8 @@ require_once "api/Messaging/MessageDispatcher.class.php";
 require_once "web/includes/classes/UrlHelper.class.php";
 
 // Getting all variable through get/post
-$invitation_id = ( @$_GET['InvID'] ) ? $_GET['InvID'] : $_POST['InvID'] ;
-$group_invitation_id = ( @$_GET['GInvID'] ) ? $_GET['GInvID'] : $_POST['GInvID'] ;
+$invitation_id = ( @$_GET['InvID'] ) ? $_GET['InvID'] : @$_POST['InvID'] ;
+$group_invitation_id = ( @$_GET['GInvID'] ) ? $_GET['GInvID'] : @$_POST['GInvID'] ;
 $token = (@$_GET['token']) ? $_GET['token'] : @$_POST['token'];
 
 $return_url = null;

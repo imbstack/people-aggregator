@@ -6,7 +6,6 @@
 ?>
 <form name="<?php echo $section?>" method="post">
   <fieldset class="center_box">
-    
     <div class="field_bigger">
       <h4><label for="description"><?= __("Show Splash Page") ?></label></h4>
       <input type="checkbox" name="show_splash_page" id="show_splash_page" value="1"<?php echo $checked?>>

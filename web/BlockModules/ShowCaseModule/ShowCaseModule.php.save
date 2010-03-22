@@ -1,0 +1,42 @@
+<?php
+
+class ShowCaseModule extends Module {
+
+    public $module_type = 'group';
+    public $module_placement = 'middle'; //This is going to be changed to top
+    public $outer_template = 'outer_public_group_center_module.tpl';
+
+    public $Paging;
+    public $page_links, $page_prev, $page_next, $page_count;
+
+    function __construct() {
+        parent::__construct();
+        $this->title = _("ShowCase");
+        $this->html_block_id = "ShowCaseModule";
+    }
+
+    function render() {
+        return "<div id='SuperTest' class='infobox'>
+                <div id='Test' class='infobox'>
+                <span class='caption'> Test </span>
+
+                <a href='http://www.google.com/'>".uihelper_resize_mk_img('images/default.png', 145, 145, 'images/default.png', 'alt=PeopleAggregator')."</a>".
+                "</div>".
+                "<div id='Test' class'infobox'>
+                <span class='caption'> Test </span>
+                <a href='http://www.people.tdooner.com/'>".uihelper_resize_mk_img('images/default.png', 145, 145, 'images/default.png', 'alt=PeopleAggregator')."</a>".
+                "</div>".
+                "<div id='Test' class'infobox'>
+                <span class='caption'> Test </span>
+                <a href='http://www.people.tdooner.com/'>".uihelper_resize_mk_img('images/default.png', 145, 145, 'images/default.png', 'alt=PeopleAggregator')."</a>".
+                "</div>".
+                "<div id='Test' class'infobox'>
+                <span class='caption'> Test </span>
+                <a href='http://www.people.tdooner.com/'>".uihelper_resize_mk_img('images/default.png', 145, 145, 'images/default.png', 'alt=PeopleAggregator')."</a>".
+                "</div> </div>".
+		"<a href='http://i.imgur.com/9saej.png'>Breaking News: The Stock Market is Screwed</a>";
+    }
+
+}
+
+?>

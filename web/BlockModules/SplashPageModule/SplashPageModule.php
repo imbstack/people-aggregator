@@ -31,9 +31,9 @@
           $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/configure.tpl';
           $this->title = 'Configure Splash Page';
         break;
-        case 'network_of_moment':
-          $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/network_of_moment.tpl';
-          $this->title = __('Network of the Moment');
+        case 'showcase':
+          $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/showcase.tpl';
+          $this->title = __('Showcase Module');
         break;
         case 'video_tours':
           $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/video_tours.tpl';
@@ -47,15 +47,21 @@
           $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/server_announcement.tpl';
           $this->title = 'SERVER ANNOUNCEMENT';
         break;
+          case 'survey':
+          $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/survey.tpl';
+          $this->title = 'SURVEY';
+          break;
         default:  
-          $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/showcased_networks.tpl';
-          $this->title = 'Showcased Networks';
+          $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/info_boxes.tpl';
+          $this->title = 'Info Boxes';
       }
       $config_navigation_url = network_config_navigation($_GET['section']);
       $inner_html_gen = & new Template($tmp_file);
       $inner_html_gen->set('network_links', $this->network_links);
-      $inner_html_gen->set ('featured_network', @$this->featured_network);      
-      $inner_html_gen->set ('showcased_networks', $this->showcased_networks);
+      //$inner_html_gen->set ('featured_network', @$this->featured_network);     
+      $inner_html_gen->set ('showcase', @$this->showcase); 
+      $inner_html_gen->set ('survey', @$this->survey);  
+      $inner_html_gen->set ('info_boxes', @$this->info_boxes);
       $inner_html_gen->set ('networks_data', $this->networks_data);
       $inner_html_gen->set ('section', $this->mode);
       $inner_html_gen->set ('config_navigation_url', $config_navigation_url);
