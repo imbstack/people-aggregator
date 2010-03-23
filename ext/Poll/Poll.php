@@ -7,8 +7,6 @@
  * @author Tekriti Software (http://www.tekritisoftware.com)
  */
 
-include_once dirname(__FILE__)."/../../config.inc";
-// global var $path_prefix has been removed - please, use PA::$path static variable
 require_once "api/Logger/Logger.php";
 require_once "api/Content/Content.php";
 
@@ -164,21 +162,17 @@ class Poll extends Content {
   * Loads poll for database
   * @access public
   */
-  public function load_poll($poll_id = 0, $content_id = 0) {
+  public function load_poll($poll_id = 0) {
     Logger::log("Enter: Poll::load_poll()");
-    if ($content_id != 0) {
-    Logger::log("Calling: parent::save()");
-    parent::load($content_id);
-    }
     $data = array();
     if ($poll_id == 0) {
-      $sql = "SELECT * FROM {polls} where is_active <> 0";
+      $sql = "SELECT * FROM {polls} WHERE is_active <> 0 ORDER BY changed DESC";
       $res = Dal::query($sql);
       if ($res->numRows()) {
-      while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
-        $data[] = $row;
-      }
-    }
+				while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
+					$data[] = $row;
+				}
+			}
     } else {
         $sql = "SELECT poll_id,content_id, title, user_id, options, created, changed, is_active             FROM {polls} WHERE poll_id = ? AND is_active<>0";
         $res = Dal::query($sql, $poll_id);

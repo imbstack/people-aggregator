@@ -50,7 +50,16 @@
 
         <!-- <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=video_tours"><?= __('Video Tours') ?></a></li>-->
          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=server_announcement"><?= __('Server Announcement') ?></a></li>
-         <!--<li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=survey"><?= __('Survey NOT YET IMPL.') ?></a></li>-->
+   <?php if ($task_perms['user_defaults'] == TRUE) { ?>
+   <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>"><?= __('Survey') ?></a>
+     <ul>
+       <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>?type=create"><?= __('Create Survey') ?></a></li>
+       <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>?type=select"><?= __('Select Survey') ?></a></li>
+     </ul>
+   </li>
+   <?php }?>
+
+         
          <li><a href="<?php echo PA::$url;?>/configure_splash_page.php?section=register_today"><?= __('Register Today') ?></a></li>
         </ul>
       </li>
@@ -171,14 +180,6 @@
      </ul>
    </li>
    <?}?>
-   <?php if ($task_perms['user_defaults'] == TRUE) { ?>
-   <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>"><?= __('Poll') ?></a>
-     <ul>
-       <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>?type=select"><?= __('Select Poll') ?></a></li>
-       <li><a href="<?php echo PA::$url.PA_ROUTE_CONFIG_POLL;?>?type=create"><?= __('Create Poll') ?></a></li>
-     </ul>
-   </li>
-   <?php }?>
 
 <?php if ($task_perms['manage_settings'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url .PA_ROUTE_RANKING_POINTS;?>"><?= __('Points') ?></a>
