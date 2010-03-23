@@ -158,6 +158,24 @@ class Poll extends Content {
     }
     return $data;  
   }
+
+  /** 
+  *loads previous poll topic
+  *@access public
+  */
+  public function load_prev_polls() {
+    $sql = "SELECT * FROM {polls} WHERE is_active = 1 ORDER BY changed DESC LIMIT 1,18446744073709551615"; // this excludes the first result, but gives all others
+    
+    $res = Dal::query($sql);
+    $data = array();
+    if ($res->numRows()) {
+      while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
+        $data[] = $row;
+      }
+    }
+    return $data;   
+  }
+
   /**
   * Loads poll for database
   * @access public
@@ -228,21 +246,6 @@ class Poll extends Content {
     return $data;  
   }
   
-  /** 
-  *loads previous poll topic
-  *@access public
-  */
-  public function load_prevous_polls() {
-    $sql = "SELECT * FROM {polls} WHERE is_active = 1 AND created <> changed";
-    $res = Dal::query($sql);
-    $data = array();
-    if ($res->numRows()) {
-      while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
-        $data[] = $row;
-      }
-    }
-    return $data;   
-  }
   
   /**
    *Delete poll from database.

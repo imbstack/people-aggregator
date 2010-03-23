@@ -187,11 +187,19 @@
 
     /**
     *
-    *  /configure/polls/* -> dynamic.php?page_id=16&*
+    *  /configure/polls/* -> dynamic.php?page_id=99&*
     *
     *
     **/
     "^/configure/polls[\/]?(.*)$" => "/dynamic.php?page_id=99&%s",
+
+    /**
+    *
+    *  /polls* -> dynamic.php?page_id=799&*
+    *
+    *
+    **/
+    "^/polls[\/]?(.*)$" => "/dynamic.php?page_id=799&%s",
 
     /**
     *
@@ -411,5 +419,6 @@ define("PA_ROUTE_FAMILY", "/family");
 define("PA_ROUTE_FAMILY_EDIT", "/family/edit");
 define("PA_ROUTE_FAMILY_MEMBERS", "/family/members");
 define("PA_ROUTE_FAMILY_MODERATION", "/family/moderation");
+define("PA_ROUTE_POLL_ARCHIVE", "/polls");
 
 ?>

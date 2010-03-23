@@ -74,5 +74,5 @@
     <page_type>network</page_type>
   </data>
   <is_configurable>1</is_configurable>
-  <page_name>poll</page_name>
+  <page_name>Configure Surveys</page_name>
 </page>

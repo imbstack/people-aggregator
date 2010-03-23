@@ -330,6 +330,11 @@
         <PAGE_CONFIGURE_DEFENDER category="constant" type="int" readonly="true" section="pages" page_name="PADefender Configruation Manager" page_type="network">
           <value>738</value>
         </PAGE_CONFIGURE_DEFENDER>
+
+        <PAGE_POLL_ARCHIVE category="constant" type="int" readonly="true" section="pages" page_name="Poll Archive" page_type="network">
+          <value>799</value>
+        </PAGE_POLL_ARCHIVE>
+
       </value>
     </pages>
     <system_strings description="Various strings and messages">

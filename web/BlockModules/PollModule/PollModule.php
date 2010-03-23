@@ -22,12 +22,12 @@ class PollModule extends Module {
     $this->flag = 0 ;
     $obj = new Poll();
     $current = $obj->load_current();
-    $prev_poll = $obj->load_prevous_polls();
+    $prev_poll = $obj->load_prev_polls();
     $this->cnt_prev = count($prev_poll);
     if ($current) {
       $user_vate = $obj->load_vote($current[0]->poll_id, PA::$login_uid);
       $total_vote = $obj->load_vote($current[0]->poll_id);
-      $this->total_vote = count($total_vote);
+      $this->total_vote_count = count($total_vote);
 
       $this->topic = $obj->load_poll($current[0]->poll_id);
       $this->options = unserialize($this->topic[0]->options);
@@ -50,7 +50,8 @@ class PollModule extends Module {
       }
       if (!empty($vote)) {
         for ($i=0; $i<count($vote); $i++){
-          $this->per_option[] = round(($vote[$i][2]->counter / count($total_vote)) * 100, 1); 
+          $this->option_precent[] = round(($vote[$i][2]->counter / $this->total_vote_count) * 100, 1); 
+          $this->option_vote_count[] = $vote[$i][2]->counter; 
         }
       }
       $this->inner_HTML = $this->generate_inner_html();
@@ -66,9 +67,10 @@ class PollModule extends Module {
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     $inner_html_gen= & new Template($inner_template);
     $inner_html_gen->set('flag', $this->flag);
-    $inner_html_gen->set('percentage', $this->per_option);
+    $inner_html_gen->set('percentage', @$this->option_precent);
+    $inner_html_gen->set('vote_count', @$this->option_vote_count);
     $inner_html_gen->set('topic', $this->topic);
-    $inner_html_gen->set('total_vote', $this->total_vote);
+    $inner_html_gen->set('total_vote', $this->total_vote_count);
     $inner_html_gen->set('options', $this->options);
     $inner_html_gen->set('cnt_prev', $this->cnt_prev);
     $inner_html = $inner_html_gen->fetch();
