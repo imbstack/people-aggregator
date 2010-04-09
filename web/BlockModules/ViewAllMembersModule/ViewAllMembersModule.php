@@ -36,7 +36,7 @@ class ViewAllMembersModule extends Module {
     $this->page_user = NULL;
     if (PA::$page_uid && (PA::$page_uid != PA::$login_uid)) {
     	$user = new User(); 
-    	$user-load(PA::$page_uid);
+    	$user->load(PA::$page_uid);
     	$this->page_user = $user->get_name();
     }
   }
