@@ -292,14 +292,15 @@ class Navigation {
                                   'url'=>$this->base_url.PA_ROUTE_TYPED_DIRECTORY
                               ),
     										);
-    }
-
-			$level_2 = $level_2 + array(
+    	$level_2 = $level_2 + array(
                        'families' => array('caption'=>__('Neighbors'),
                                   'url'=>$this->base_url.PA_ROUTE_FAMILY_DIRECTORY
                               ),
     										);
 
+    }
+    
+		
 		$level_2 = $level_2 + array('forum' => array('caption'=>__('Forum'),
                                   'url'=>$this->base_url . PA_ROUTE_FORUMS . "/network_id=" .$this->network_info->network_id,
                                   ),
@@ -416,8 +417,8 @@ class Navigation {
     ///EOF children of people 2nd level link
     
     $family_children = array(
-    	'neighbours' => array(
-    		'caption' => __("Neighbours"),
+    	'neighbors' => array(
+    		'caption' => __("Neighbors"),
     		'url' => $this->base_url . PA_ROUTE_FAMILY_DIRECTORY
     	),
     	'family_home' => array(
