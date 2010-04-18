@@ -6,13 +6,16 @@ require_once "web/includes/classes/PADefender.class.php";
 /**
  * @class BootStrap
  *
- * The BootStrap class implements the basics methods for the PA
+ * The BootStrap class implements the basic methods for the PA
  * bootstrap and installation processes, including configuration
  * files loading, system environement data collecting  and
  * registering global variables.
  *
  * @author     Zoran Hron <zhron@broadbandmechanics.com>
- * @version    0.1.2
+ * @version    0.1.3
+ * update      Apr 2010, martin: 
+ * corrected loading of AppConfig.yml file to load from project_dir first
+ * all configuration should ONLY be on the project_dir, which in case of standalone Pa is IDENTICAL with core_dir
  *
  *
  */

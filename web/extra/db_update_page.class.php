@@ -284,7 +284,7 @@ class db_update_page
         
         if(!isset($xmlUpdAppConf)) {
            require_once PA::$core_dir . "/web/extra/XmlUpdate.class.php";
-           $xmlUpdAppConf = new XmlUpdate(PA_PROJECT_CORE_DIR . APPLICATION_CONFIG_FILE, "application", $this);
+           $xmlUpdAppConf = new XmlUpdate(PA_PROJECT_PROJECT_DIR . APPLICATION_CONFIG_FILE, "application", $this);
         }
         $xmlUpdAppConf->run_updates();
     }
@@ -320,6 +320,7 @@ class db_update_page
     function main()
     {
         $this->db = Dal::get_connection();
+        $this->write('<table>');
         $this->note('Doing database update');
         // We use $this->db->getOne() below instead of Dal::query_one() as
         // the first time this script is run, the mc_db_status table will
@@ -344,11 +345,6 @@ class db_update_page
             $this->query('ALTER TABLE mc_db_status ADD PRIMARY KEY(stmt_key, network)');
         }
         
-        /* 'broken' col disabled for now - use $this->broken_networks instead.
-        // make sure the network table has the 'broken' column before we get started
-        if (!$this->column_exists("networks", "broken")) {
-           Dal::query("ALTER TABLE networks ADD COLUMN broken BOOLEAN DEFAULT '0'");
-        }*/
 
         // find networks which have their tables (i.e. skip over broken networks)
         $this->networks = DbUpdate::get_valid_networks();
@@ -370,8 +366,9 @@ class db_update_page
         $this->do_updates();
         
         if (!$this->quiet)
-        {//        $this->dump_schema();
+        {
             $this->note('CORE db updates done.');
+            $this->write('</table>');
         }
     }
     

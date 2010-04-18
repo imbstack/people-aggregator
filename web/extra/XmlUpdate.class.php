@@ -32,7 +32,7 @@ class XmlUpdate extends XmlConfig {
         if ($this->db_update_obj->is_applied($descr, NULL))
         {
             if (!$this->db_update_obj->quiet)
-               $this->db_update_obj->note("XML config data patch - '$descr' - already applied");
+               $this->db_update_obj->note("XML config data patch - '$descr' - was already applied");
             return;
         }
 
@@ -52,7 +52,7 @@ class XmlUpdate extends XmlConfig {
        $query = "$path/$node->nodeName";
        $old_node = $xpath->query($query);
        if (($old_node->length > 0) && !$replace) {
-          throw new XmlConfigException("XML data entry for '$node->nodeName' can't be overwritten - use replace() function instead of add().", 'add', $this);
+          $this->db_update_obj->note("XML data entry for '$node->nodeName' can't be overwritten - use replace() function instead of add().");
        }
        
         if(!$replace) {
@@ -68,7 +68,7 @@ class XmlUpdate extends XmlConfig {
         
         if (!$this->db_update_obj->quiet)
         {
-           $this->db_update_obj->note("applying XML configuration data patch - $descr" . ($this->db_update_obj->running_on_cli ? (' (<a href="db_update.php?override='.htmlspecialchars($descr).'">override</a>)') : ''));
+           $this->db_update_obj->note("applying XML configuration data patch - $descr");
         }
         Dal::query('INSERT INTO mc_db_status SET stmt_key=?', Array($descr));
         
