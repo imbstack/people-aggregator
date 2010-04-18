@@ -6,12 +6,16 @@ require_once "api/Theme/Template.php";
 require_once "api/Login/PA_Login.class.php";
 require_once "web/includes/classes/UrlHelper.class.php";
 
-//if return url is set in the request then after logout redirect to the location else redirect to homepage.Change done for Channel login widget.
-$return = UrlHelper::url_for(PA::$url . '/' . FILE_LOGIN, array(), 'https');
-//$return = PA::$url . '/' . FILE_LOGIN;
+
+
+// if return url is set in the request then after logout redirect to the location else redirect to homepage.
 if (!empty($_REQUEST['return'])) {
   $return = $_REQUEST['return'];
+} else {
+	// build rthe url via UrlHelper so we can respect the SSL directives
+	$return = UrlHelper::url_for(PA::$url . '/' . FILE_LOGIN, array(), 'https');
 }
+
 // destroy the login cookie
 PA_Login::log_out();
 
@@ -26,5 +30,5 @@ session_start();
 
 // and go home :)
 header("Location: $return");
-
+exit;
 ?>

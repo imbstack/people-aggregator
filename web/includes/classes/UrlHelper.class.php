@@ -8,18 +8,18 @@ class UrlHelper {
 
   public static function url_for($route, $query_vars = array(), $scheme = 'http') {
    global $app;
-    if($route == 'current_page') {
+    if ($route == 'current_page') {
       $url = PA::$url . $app->current_route;
-    } else if(preg_match("#http[s]?://[\w\.]+/[\w]+.php#i", $route)) {
+    } else if(preg_match("#http(s)?://#i", $route)) {
       $url = $route;
     } else {
       $url = PA::$url . $route;
     }
 
-    if(($scheme == 'https') && (PA::$ssl_security_on || PA::$ssl_force_https_urls)) {
-       $url = preg_replace('/(http[s]?)/i', 'https', $url);
+    if (($scheme == 'https') && (PA::$ssl_security_on || PA::$ssl_force_https_urls)) {
+       $url = preg_replace('/^http(s)?/i', 'https', $url);
     } else {
-       $url = preg_replace('/(http[s]?)/i', 'http', $url);
+       $url = preg_replace('/^http(s)?/i', 'http', $url);
     }
     return self::add_query_vars($url, $query_vars);
   }
