@@ -262,35 +262,28 @@ class BootStrap {
 
   public function loadConfigFile($fname) {
     $this->pa_static_vars = array_keys(get_class_vars('PA'));
-
-    if(file_exists(PA::$core_dir . $fname)) {               // check for config data in core path
-      $core_conf = new XmlConfig(PA::$core_dir . $fname, 'application');
-      $core_conf = $core_conf->asArray();
-    } elseif(file_exists(PA::$core_dir . "{$fname}.distr")) { // or try to load default config file
-      $core_conf = new XmlConfig(PA::$core_dir . "{$fname}.distr", 'application');
-      $core_conf = $core_conf->asArray();
-      $export_config = new XmlConfig(PA::$core_dir . $fname, 'application');  // and create AppConfig.xml
-      $export_config->loadFromArray($core_conf, $export_config->root_node);
+    if (file_exists(PA::$project_dir . $fname)) { // check for config data in paproject path
+      $proj_conf = new XmlConfig(PA::$project_dir . $fname, 'application');
+      $proj_conf = $proj_conf->asArray();
+    } 
+    // or try to load default config file
+    // this happens on install etc, so we search for it in the CORE dir
+    else if (file_exists(PA::$core_dir . "{$fname}.distr")) { 
+      $proj_conf = new XmlConfig(PA::$core_dir . "{$fname}.distr", 'application');
+      $proj_conf = $proj_conf->asArray();
+      // but we SAVE it to project_dir!!!
+      $export_config = new XmlConfig(PA::$project_dir . $fname, 'application');  // and create AppConfig.xml
+      $export_config->loadFromArray($proj_conf, $export_config->root_node);
       $export_config->saveToFile();
     } else {
         throw new BootStrapException( "BootStrap::loadConfigFile() - Unable to load \"$fname\"config. file!", 1 );
     }
 
-    if(file_exists(PA::$project_dir . $fname)) { // check for config data in paproject path
-      $core_keys = array_keys($core_conf['configuration']);
-      $proj_conf = new XmlConfig(PA::$project_dir . $fname, 'application');
-      $proj_conf = $proj_conf->asArray();
-      foreach($proj_conf['configuration'] as $pr_key => $pr_value) {
-         if(in_array($pr_key, $core_keys)) {
-           unset($core_conf['configuration'][$pr_key]);  // config section overwritten by project data
-         }
-         $core_conf['configuration'][$pr_key] = $pr_value;
-      }
-    }
-    $this->configData = $core_conf;
+    $this->configData = $proj_conf;
     $this->configObj  = new XmlConfig(null, 'application');
-    $this->configObj->loadFromArray($this->configData, $this->configObj->root_node);
-    $this->parseConfigFile('configuration', $core_conf['configuration']);
+    $this->configObj->loadFromArray($this->configData, 
+    	$this->configObj->root_node);
+    $this->parseConfigFile('configuration', $proj_conf['configuration']);
     $this->afterParse();
   }
 

@@ -17,13 +17,7 @@ class NetworkDefaultControlModule extends Module {
 
    function render() {
     $conf = new NetworkConfig();
-//    echo "<pre>".print_r($conf,1)."</pre>";
-/*
-    $store = new XmlConfig("web/config/backend.xml");
-    $store->loadFromArray($net_vars_arr, $store->root_node);
-    $store->saveToFile();
-*/
-    $this->inner_HTML = $this->generate_inner_html ();
+    $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }

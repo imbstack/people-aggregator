@@ -26,6 +26,13 @@ require_once("web/dologin.php");
 
 
 $configure = unserialize(ModuleData::get('configure'));
+
+if ( (!isset($configure['show_splash_page'])) || $configure['show_splash_page'] == INACTIVE) {
+   $location =  PA_ROUTE_HOME_PAGE;
+   header("Location: $location");
+   exit;
+}
+
 $module_name = 'SplashPage';
 $configurable_sections = array('info_boxes', 'network_of_moment', 'video_tours', 'register_today', 'server_announcement', 'survey');
 foreach ($configurable_sections as $key => $section) {
