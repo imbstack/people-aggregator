@@ -133,7 +133,7 @@
   <item>
     <expression>(?:[^:\s\w]+\s*[^\w\/](href|protocol|host|hostname|pathname|hash|port|cookie)[^\w])</expression>
     <description>JavaScript cookie stealing and redirection attempt</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:data:(?:.)*,)|(?:\w+\s*=\W*(?!https?)\w+:)|(jar:\w+:)</expression>
