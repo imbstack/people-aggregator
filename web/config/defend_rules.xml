@@ -23,7 +23,7 @@
   <item>
     <expression>(?:[+\/]\s*name[\W\d]*[)+])|(?:;\W*url\s*=)|(?:[^\w\s\/?:&gt;]\s*(?:location|referrer|name)\s*[^\/\w\s-])</expression>
     <description>url, name, JSON or referrer-contained payload attack</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:\W\s*hash\s*[^\w\s-])|(?:\w+=\W*[^,]*,[^\s(]\s*\()|(?:\?"[^\s"]":)|(?:(?&lt;!\/)__[a-z]+__)|(?:(?:^|[\s)\]\}])(?:s|g)etter\s*=)</expression>
@@ -118,7 +118,7 @@
   <item>
     <expression>(?:\W\s*(?:location|document)\s*\W[^({[;]+[({[;])|(?:\(\w+\?[:\w]+\))|(?:\w+\s*=\s*\d+\W\w+)|(?:\]\s*\(\s*\w+)</expression>
     <description>JavaScript location/document property access and window access obfuscation</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:\/[\w\s]+\/\.)|(?:=\s*\/\w+\/\s*\.)|(?:(?:this|window|top|parent|frames|self)\[\s*[(,"]*\s*\w)|(?:,\s*new\s+\w+\s*[,;)])</expression>
@@ -153,7 +153,7 @@
   <item>
     <expression>(?:\+=\s*\(\s")|(?:!+\s*[\d.,]+\w?\d*\s*\?)|(?:=\s*\[s*\])|(?:"\s*\+\s*")|(?:[^\s]\[\s*\d+\s*\]\s*[;+])|(?:"\s*[&amp;|]+\s*")|(?:\/\s*\?\s*")|(?:\/\s*\)\s*\[)|(?:\d\?.+:\d)|(?:]\s*\[\W*\w)|(?:[^\s]\s*=\s*\/)</expression>
     <description>common XSS concatenation attempt - case A</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>(?:=\s*\d*\.\d*\?\d*\.\d*)|(?:[|&amp;]{2,}\s*")|(?:!\d+\.\d*\?")|(?:\/:[\w.]+,)|(?:=[\d\W\s]*\[[^]]+\])|(?:\?\w+:\w+)</expression>
