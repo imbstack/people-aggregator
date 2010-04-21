@@ -10,12 +10,14 @@ require_once "web/includes/classes/Pagination.php";
 $msg = array();
 $edit = FALSE;
 
+$error = false; // reset any previous errors 
 
-$static_page = new StaticPage();
-filter_all_post($_POST);
-if (!@$error && !empty($_POST) && @$_POST['btn_static_pages']) { // if page is submitted
-  if (!empty($_POST['id'])) {
-    $static_page->id = $_POST['id'];
+if (!empty($_POST) && !empty($_POST['btn_static_pages'])) { // if page is submitted
+	$static_page = new StaticPage();
+	filter_all_post($_POST);
+
+  if (!empty($_REQUEST['id'])) {
+    $static_page->id = $_REQUEST['id'];
     $msg_id = 12007;
   } else {
     $msg_id = 12008;
@@ -86,9 +88,7 @@ if (!empty($msg)) {
   for ($counter = 0; $counter < count($msg); $counter++) {
     $message .= $msg[$counter]."<br />";
   }
-}
-// display message
-if (!empty($_GET['msg_id'])) {
+} else if (!empty($_GET['msg_id'])) { // message id was passed on URL
   $message = $_GET['msg_id'];
 }
 uihelper_error_msg($message);

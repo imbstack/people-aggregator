@@ -65,11 +65,10 @@
         <textarea name="page_text" id="page_text"><?php echo $form_data['page_text'];?></textarea>      
       </div>
       <div class="button_position">
-        <input type="hidden" name="id" value="<?php echo $form_data['id']?>" />
-        <input type="hidden" id="preferred_caption" name="preferred_caption" value="<?php echo $form_data['preferred_caption']?>"/>
+        <input type="hidden" name="id" value="<?php echo @$form_data['id']?>" />
+        <input type="hidden" id="preferred_caption" name="preferred_caption" value="<?php echo @$form_data['preferred_caption']?>"/>
         <input type="submit" name="btn_static_pages" value="<?= __("Save") ?>" class="buttonbar" />
       </div>        
     </fieldset>    
   </div>
-<?php /*echo $config_navigation_url*/;?>
 </form>
