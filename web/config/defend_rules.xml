@@ -88,7 +88,7 @@
   <item>
     <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:hash|name|href|navigateandfind|source|pathname|close|constructor|port|protocol|assign|replace|back|forward|document|window|self|parent|frames|_?cookie|innerhtml|innertext|csstext+?|outerhtml|print|moveby|resizeto|createstylesheet|stylesheets)(?(1)[^\w%"]|(?:\s*[^@\/\s\w%",.+\-]))</expression>
     <description>JavaScript object properties and methods injection attempt</description>
-    <active>1</active>
+    <active>0</active>
   </item>
   <item>
     <expression>([^*:\s\w,.\/?+-]\s*)?(?&lt;![a-z]\s)(?&lt;![a-z\/_@&gt;\-\|])(\s*return\s*)?(?:join|pop|push|reverse|shift|sp?lice|sort|unshift)(?(1)[^\w%"]|(?:\s*[^@\s\w%",.+\-]))</expression>
