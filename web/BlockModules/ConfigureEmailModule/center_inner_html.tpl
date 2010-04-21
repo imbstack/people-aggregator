@@ -19,7 +19,6 @@ require_once "web/includes/classes/xHtml.class.php";
 <div class="description"><?= __("Configure Email") ?></div>
 <form name="config_email_form" action="" method="post">
   <fieldset class="center_box" <?=$style?> >
-    <legend><?= __("Manage Static Pages") ?></legend>
     <div class="field_medium">
     <h4><label for="select_a_group"><?= __("Select An email type") ?></label></h4>
     <select id="email_type" name="email_type" onchange="javascript: show_email_details('<?php echo PA::$url;?>');" >

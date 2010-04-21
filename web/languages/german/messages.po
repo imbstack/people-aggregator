@@ -200,7 +200,7 @@ msgstr "Gruppen Kategorie"
 #: ../../web/BetaBlockModules/NetworkBulletinsModule/center_inner_public.tpl:21
 #: ../../web/BetaBlockModules/PostContentModule/center_inner_blog.tpl:37
 msgid "Tags"
-msgstr "Stichwürter"
+msgstr "Stichwörter"
 
 #, fuzzy
 #: ../../web/BetaBlockModules/AddGroupModule/center_inner_public.tpl:43

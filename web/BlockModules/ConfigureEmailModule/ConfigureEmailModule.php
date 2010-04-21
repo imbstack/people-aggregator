@@ -1,5 +1,4 @@
 <?php
-// global var $path_prefix has been removed - please, use PA::$path static variable
 require_once "ext/EmailMessages/EmailMessages.php";
 require_once "web/includes/classes/TinyMCE.class.php";
 

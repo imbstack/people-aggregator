@@ -388,9 +388,9 @@ Everyone at %config_site_name% respects your privacy. Your information will neve
   <bulletin_sent>
     <category>network_bulletin</category>
     <template>default_email_container.tpl</template>
-    <subject><![CDATA[%network.owner.display_name% network's owner has sent you a bulletin]]></subject>
+    <subject><![CDATA[%config_site_name% bulletin: %bulletin.subject%]]></subject>
     <message><![CDATA[
-<br />%network.owner.image% %network.owner.display_name% network's owner has sent you a bulletin:
+<br />%network.owner.image% %network.owner.display_name% has sent you a bulletin:
 <br />
 %bulletin.message%
 <br />
@@ -404,6 +404,7 @@ Thanks
 ]]></message>
     <description>Network owner's Bulletin</description>
     <configurable_variables>
+      <bulletin_subject>%bulletin.subject%</bulletin_subject>
       <bulletin_message>%bulletin.message%</bulletin_message>
     </configurable_variables>
   </bulletin_sent>

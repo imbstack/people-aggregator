@@ -1,6 +1,5 @@
-<?php // global var $_base_url has been removed - please, use PA::$url static variable
-
-  require_once "web/includes/tinymce.php";
+<?php
+	require_once "web/includes/tinymce.php";
   install_tinymce('full');?>
 
 <div class="description"><?= __("Use this tool to send announcements to all registered network members") ?>. </div>

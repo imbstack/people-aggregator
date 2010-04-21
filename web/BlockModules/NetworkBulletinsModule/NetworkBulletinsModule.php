@@ -13,12 +13,12 @@ class NetworkBulletinsModule extends Module {
   }
 
    function render() {    
-    $this->inner_HTML = $this->generate_inner_html ();
+    $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
 
-  function generate_inner_html () {
+  function generate_inner_html() {
      
     switch( $this->mode ) {
       default:
