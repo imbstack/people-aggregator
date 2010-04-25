@@ -73,6 +73,7 @@ function pa_end_of_page_ob_filter($html) {
   $duration = microtime(TRUE) - $pa_page_render_start;
   $eop_text = sprintf("[%.2f s]", $duration);
 
+  global $debug_show_svn_version;
   if ($debug_show_svn_version) {
     $svn_text = get_svn_version();
     $eop_text .= " [$svn_text]";
