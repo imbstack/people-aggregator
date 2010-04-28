@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-26 14:33+0200\n"
+"POT-Creation-Date: 2010-04-28 18:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,14 +37,12 @@ msgstr "Zuletzt eingeloggt"
 msgid "Latest Registered"
 msgstr "Neueste Registrierung"
 
-#: ../../web/ajax/attach_media.php:63
-#: ../../web/ajax/upload_media.php:61
+#: ../../web/ajax/attach_media.php:63 ../../web/ajax/upload_media.php:61
 #, php-format
 msgid "Select any %s file to upload"
 msgstr "Wähle ine %s Datein zum Hochladen"
 
-#: ../../web/ajax/attach_media.php:67
-#: ../../web/ajax/upload_media.php:65
+#: ../../web/ajax/attach_media.php:67 ../../web/ajax/upload_media.php:65
 #, php-format
 msgid "You have to login before uploading a %s"
 msgstr "Du musst eingeloggt sein um eine %s Datei hochzuladen"
@@ -104,32 +102,27 @@ msgid "Username and/or password field can't be empty!"
 msgstr ""
 
 #: ../../web/ajax/refresh_role_extra.php:44
-#: ../../web/ajax/show_role_extra.php:48
-#: ../../web/ajax/user_roles.php:106
+#: ../../web/ajax/show_role_extra.php:48 ../../web/ajax/user_roles.php:106
 msgid "Apply to User pages"
 msgstr ""
 
 #: ../../web/ajax/refresh_role_extra.php:45
-#: ../../web/ajax/show_role_extra.php:49
-#: ../../web/ajax/user_roles.php:107
+#: ../../web/ajax/show_role_extra.php:49 ../../web/ajax/user_roles.php:107
 msgid "Apply to this Network"
 msgstr ""
 
 #: ../../web/ajax/refresh_role_extra.php:49
-#: ../../web/ajax/show_role_extra.php:51
-#: ../../web/ajax/user_roles.php:111
+#: ../../web/ajax/show_role_extra.php:51 ../../web/ajax/user_roles.php:111
 msgid "Apply to "
 msgstr ""
 
 #: ../../web/ajax/refresh_role_extra.php:49
-#: ../../web/ajax/show_role_extra.php:51
-#: ../../web/ajax/user_roles.php:111
+#: ../../web/ajax/show_role_extra.php:51 ../../web/ajax/user_roles.php:111
 msgid " group"
 msgstr ""
 
 #: ../../web/ajax/refresh_role_extra.php:55
-#: ../../web/ajax/show_role_extra.php:55
-#: ../../web/ajax/user_roles.php:117
+#: ../../web/ajax/show_role_extra.php:55 ../../web/ajax/user_roles.php:117
 msgid "Tasks/Permissions"
 msgstr ""
 
@@ -137,8 +130,7 @@ msgstr ""
 msgid "Edit/Assign Role for user: "
 msgstr ""
 
-#: ../../web/ajax/user_roles.php:133
-#: ../../web/ajax/user_roles.php:136
+#: ../../web/ajax/user_roles.php:133 ../../web/ajax/user_roles.php:136
 msgid ""
 "Select roles you want to associate with this user and press left/right "
 "arrow, <br />"
@@ -148,22 +140,19 @@ msgstr ""
 msgid "We haven't found any contacts on your MSLive account."
 msgstr ""
 
-#: ../../web/ajax_sortgroups.php:23
-#: ../../web/ajax_sortnetworks.php:21
+#: ../../web/ajax_sortgroups.php:23 ../../web/ajax_sortnetworks.php:21
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:6
 #: ../../web/BlockModules/NewestNetworkModule/side_inner_public.tpl:6
 msgid "Recently Created"
 msgstr ""
 
-#: ../../web/ajax_sortgroups.php:24
-#: ../../web/ajax_sortnetworks.php:22
+#: ../../web/ajax_sortgroups.php:24 ../../web/ajax_sortnetworks.php:22
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:7
 #: ../../web/BlockModules/NewestNetworkModule/side_inner_public.tpl:7
 msgid "Recently Modified"
 msgstr ""
 
-#: ../../web/ajax_sortgroups.php:25
-#: ../../web/ajax_sortnetworks.php:23
+#: ../../web/ajax_sortgroups.php:25 ../../web/ajax_sortnetworks.php:23
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:8
 msgid "Largest Group"
 msgstr ""
@@ -355,7 +344,7 @@ msgstr ""
 #: ../../web/BlockModules/EditProfileModule/professional_info.tpl:89
 #: ../../web/BlockModules/ForumModule/_display_post.php:12
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:25
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:16
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:14
 #: ../../web/BlockModules/ManageCategoryModule/center_inner_public.tpl:23
 #: ../../web/BlockModules/ManageRankingPointsModule/default_inner.tpl:13
 #: ../../web/BlockModules/MediaManagementModule/center_inner_public_tmp.tpl:28
@@ -763,7 +752,7 @@ msgstr ""
 #: ../../web/BlockModules/LinksModule/center_inner_private.tpl:58
 #: ../../web/BlockModules/LinksModule/center_inner_private.tpl:85
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:146
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:107
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:105
 #: ../../web/BlockModules/ManageCategoryModule/center_inner_public.tpl:65
 #: ../../web/BlockModules/ManageFileContents/center_inner_private.tpl:15
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:84
@@ -867,8 +856,8 @@ msgstr "Autor"
 #: ../../web/BlockModules/CommentsManagementModule/center_inner_public.tpl:36
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:33
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:50
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:21
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:34
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:19
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:32
 #: ../../web/BlockModules/ManageCategoryModule/center_inner_public.tpl:33
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:18
 #: ../../web/BlockModules/ManageQuestionsModule/center_inner_private.tpl:23
@@ -1505,8 +1494,8 @@ msgstr ""
 
 #: ../../web/BlockModules/CustomizeUIModule/module_selector.tpl:49
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:48
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:19
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:34
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:17
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:32
 #: ../../web/BlockModules/ModuleSelectorModule/center_inner_html.tpl:15
 #: ../../web/BlockModules/NetworkResultUserModule/center_inner_private.tpl:63
 #: ../../web/BlockModules/NetworkResultUserModule/center_inner_private.tpl:141
@@ -1600,8 +1589,8 @@ msgstr ""
 #: ../../web/BlockModules/GroupsContentsManagementModule/forum_inner_template.tpl:45
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:32
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:49
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:20
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:34
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:18
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:32
 #: ../../web/BlockModules/ManageCategoryModule/center_inner_public.tpl:33
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:17
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:22
@@ -1615,7 +1604,7 @@ msgstr "Bearbeiten"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_group.tpl:48
 msgid "Full view"
-msgstr ""
+msgstr "Vollansicht"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_group.tpl:71
 #: ../../web/BlockModules/MediaFullViewModule/center_inner_public.tpl:103
@@ -1641,23 +1630,23 @@ msgstr "Auswählen"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_public.tpl:22
 msgid "Access"
-msgstr ""
+msgstr "Zugang"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_public.tpl:62
 msgid "in which your"
-msgstr ""
+msgstr "in welchem deine"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_public.tpl:62
 msgid "file will appear..."
-msgstr ""
+msgstr "erscheinen wird"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_public.tpl:67
 msgid "Create New Album"
-msgstr ""
+msgstr "Neues Album erstellen"
 
 #: ../../web/BlockModules/EditMediaModule/center_inner_public.tpl:75
 msgid "Return to media gallery"
-msgstr ""
+msgstr "Zurück zur Gallerie"
 
 #: ../../web/BlockModules/EditProfileModule/basic_info.tpl:1
 msgid "Basic info"
@@ -1801,13 +1790,12 @@ msgstr ""
 
 #: ../../web/BlockModules/EditProfileModule/center_inner_private.tpl:42
 #: ../../web/BlockModules/EditProfileModule/export.tpl:17
-#: ../../web/BlockModules/UserContactsModule/navigation.tpl:49
 msgid "Export"
 msgstr ""
 
 #: ../../web/BlockModules/EditProfileModule/center_inner_private.tpl:49
 #: ../../web/BlockModules/EditProfileModule/delete_account.tpl:1
-#: ../../web/BlockModules/UserContactsModule/navigation.tpl:60
+#: ../../web/BlockModules/UserContactsModule/navigation.tpl:51
 msgid "Delete Account"
 msgstr "Account löschen"
 
@@ -2199,70 +2187,70 @@ msgstr ""
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:1
 msgid "Event"
-msgstr ""
+msgstr "Ereigniss"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:3
 msgid "Event Banner"
-msgstr ""
+msgstr "Ereigniss Banner"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:10
 msgid "Starts"
-msgstr ""
+msgstr "Beginnt"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:14
 #: ../../web/Themes/Default/Event.tpl:23
 #: ../../web/Themes/Default/EventPermalink.tpl:30
 msgid "Ends"
-msgstr ""
+msgstr "Endet"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:19
 msgid "Venue"
-msgstr ""
+msgstr "Ort"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:39
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:159
 msgid "Are you sure you want to delete this Event?"
-msgstr ""
+msgstr "Bist du sicher, dass du dieses Ereigniss löschen willst"
 
 #: ../../web/BlockModules/EventCalendarModule/display_event.php:41
 msgid "Create new Event"
-msgstr ""
+msgstr "Neues Ereigniss erstellen"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:3
 msgid "Edit Event"
-msgstr ""
+msgstr "Ereigniss bearbeiten"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:5
 msgid "Create Event"
-msgstr ""
+msgstr "Ereigniss erstellen"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:10
 msgid "Event title"
-msgstr ""
+msgstr "Ereigniss Titel"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:20
 msgid "Start date"
-msgstr ""
+msgstr "Start Datum"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:51
 msgid "Start time"
-msgstr ""
+msgstr "Start Zeit"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:73
 msgid "End date"
-msgstr ""
+msgstr "Ende Datum"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:103
 msgid "End time"
-msgstr ""
+msgstr "Ende Zeit"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:125
 msgid "Event venue"
-msgstr ""
+msgstr "Ort"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:134
 msgid "Event description"
-msgstr ""
+msgstr "Beschribung"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:145
 msgid "Current Event Banner"
@@ -2270,15 +2258,15 @@ msgstr ""
 
 #: ../../web/BlockModules/EventCalendarModule/edit_event.php:152
 msgid "Upload Event Banner"
-msgstr ""
+msgstr "Banner hochladen"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_eventassocs.php:2
 msgid "This event appears on"
-msgstr ""
+msgstr "Dieses Ereigniss erscheint auf"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_eventassocs.php:16
 msgid "Calendar for"
-msgstr ""
+msgstr "Kalender für"
 
 #: ../../web/BlockModules/EventCalendarModule/edit_eventassocs.php:39
 msgid "(This event will always appear in the creator's calendar.)"
@@ -2298,7 +2286,7 @@ msgstr ""
 
 #: ../../web/BlockModules/EventCalendarModule/edit_eventassocs.php:98
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: ../../web/BlockModules/EventCalendarModule/EventCalendarModule.php:28
 msgid "Unknown event association"
@@ -2306,15 +2294,15 @@ msgstr "Unbekannte ereignis Verknüpfung"
 
 #: ../../web/BlockModules/EventCalendarModule/RenderCalendar.php:170
 msgid "Display as"
-msgstr ""
+msgstr "Anzeigen als"
 
 #: ../../web/BlockModules/EventCalendarModule/RenderCalendar.php:171
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: ../../web/BlockModules/EventCalendarModule/RenderCalendar.php:172
 msgid "Calendar"
-msgstr ""
+msgstr "Kaöender"
 
 #: ../../web/BlockModules/EventCalendarSidebarModule/EventCalendarSidebarModule.php:36
 #: ../../web/user_calendar.php:24
@@ -4075,12 +4063,12 @@ msgid "Image"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:27
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:17
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:15
 msgid "Page"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:28
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:18
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:16
 msgid "Orientation"
 msgstr ""
 
@@ -4098,8 +4086,8 @@ msgid "Enable/Disable"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:48
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:19
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:34
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:17
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:32
 #: ../../web/BlockModules/NetworkResultUserModule/center_inner_private.tpl:71
 #: ../../web/BlockModules/NetworkResultUserModule/center_inner_private.tpl:140
 msgid "Disable"
@@ -4123,12 +4111,12 @@ msgid "Create New Ad"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:79
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:61
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:59
 msgid "Enter Title"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:81
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:63
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:61
 msgid "Title should not be greater than 30 characters"
 msgstr ""
 
@@ -4162,29 +4150,29 @@ msgid "Or Enter JavaScript(.js code)/ Html code"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:105
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:66
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:64
 #: ../../web/BlockModules/ManageCategoryModule/center_inner_public.tpl:60
 msgid "Enter Description"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:109
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:70
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:68
 msgid "Select Page"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:111
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:72
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:70
 msgid "Select a page"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:130
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:91
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:89
 msgid "Select Horizontal position"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:136
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:97
-#: ../../web/includes/functions/html_generate.php:399
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:244
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:95
 msgid "Select vertical position"
 msgstr ""
 
@@ -4197,23 +4185,45 @@ msgstr ""
 msgid "You do not have permission to manage Ads."
 msgstr ""
 
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:11
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:239
+msgid "Select horizontal position"
+msgstr "Wähöe horizontale Position"
+
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:240
+#: ../../api/Advertisement/Advertisement.php:275
+msgid "left"
+msgstr "links"
+
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:241
+msgid "center"
+msgstr "mitte"
+
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:242
+#: ../../api/Advertisement/Advertisement.php:276
+msgid "right"
+msgstr "rechts"
+
+#: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:245
+msgid "top"
+msgstr "oben"
+
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:9
 msgid "Edit Textpad"
 msgstr ""
 
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:11
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:9
 msgid "Create Textpad"
 msgstr ""
 
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:34
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:32
 msgid "Are you sure you want to delete this Textpad"
 msgstr ""
 
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:42
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:40
 msgid "Available Textpads"
 msgstr ""
 
-#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:54
+#: ../../web/BlockModules/ManageAdCenterModule/textpad.tpl:52
 msgid "New Textpad"
 msgstr ""
 
@@ -4483,7 +4493,7 @@ msgstr ""
 
 #: ../../web/BlockModules/MediaFullViewModule/center_inner_public.tpl:73
 msgid "Media file has been deleted from album or gallery."
-msgstr ""
+msgstr "Medien datei wurde aus dem Albun gelöscht."
 
 #: ../../web/BlockModules/MediaFullViewModule/center_inner_public.tpl:86
 msgid "Author of this content is no longer a member of this group"
@@ -4519,7 +4529,7 @@ msgstr ""
 
 #: ../../web/BlockModules/MediaManagementModule/center_inner_public_tmp.tpl:6
 msgid "All Posts"
-msgstr ""
+msgstr "Alle Beiträge"
 
 #: ../../web/BlockModules/MediaManagementModule/center_inner_public_tmp.tpl:8
 msgid "Events"
@@ -5307,8 +5317,7 @@ msgid "Textpads"
 msgstr ""
 
 #: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:30
-#: ../../web/manage_textpads.php:126
-#: ../../web/manage_textpads.php:153
+#: ../../web/manage_textpads.php:126 ../../web/manage_textpads.php:153
 msgid "Manage Textpads"
 msgstr "Textpads verwalten"
 
@@ -6044,7 +6053,9 @@ msgstr "Oder erstelle ein Album in deiner Galerie"
 msgid ""
 "The post you are composing will be lost if you continue, are you sure you "
 "want to leave  without saving?"
-msgstr "Der Beitrag in Bearbeitung geht verloren wenn du die Seite verlässt. Bist du sicher, dss du ohne zu speichern weitermachen willst?"
+msgstr ""
+"Der Beitrag in Bearbeitung geht verloren wenn du die Seite verlässt. Bist du "
+"sicher, dss du ohne zu speichern weitermachen willst?"
 
 #: ../../web/BlockModules/PostContentModule/PostContentModule.php:136
 msgid "Add Blog Post"
@@ -6098,7 +6109,9 @@ msgstr "Neue Beiträge"
 #: ../../web/BlockModules/RecentPostModule/side_inner_public.tpl:23
 #, php-format
 msgid "No contents in blog.  <a href=\"%s\">Click here to make a post</a>!"
-msgstr "Noch keine Beiträge im Blog.  <a href=\"%s\">Hier klicken um einen Beitrag zu erstellen</a>!"
+msgstr ""
+"Noch keine Beiträge im Blog.  <a href=\"%s\">Hier klicken um einen Beitrag "
+"zu erstellen</a>!"
 
 #: ../../web/BlockModules/RecentTagsModule/RecentTagsModule.php:15
 msgid "Browse Tags"
@@ -6145,6 +6158,7 @@ msgid "My "
 msgstr "Meine "
 
 #: ../../web/BlockModules/RelationsModule/side_inner_public.tpl:23
+#, php-format
 msgid "No %ss made yet."
 msgstr "Noch keine %s gemacht."
 
@@ -6225,10 +6239,8 @@ msgid "Manage Roles"
 msgstr ""
 
 #: ../../web/BlockModules/RoleManageModule/RoleManageModule.php:65
-#: ../../web/configure_email.php:67
-#: ../../web/email_notification.php:41
-#: ../../web/network_statistics.php:28
-#: ../../web/network_statistics.php:68
+#: ../../web/configure_email.php:67 ../../web/email_notification.php:41
+#: ../../web/network_statistics.php:28 ../../web/network_statistics.php:68
 #: ../../web/network_user_defaults.php:42
 #: ../../web/relationship_settings.php:41
 msgid ""
@@ -6246,10 +6258,8 @@ msgid " file."
 msgstr ""
 
 #: ../../web/BlockModules/RoleManageModule/RoleManageModule.php:79
-#: ../../web/configure_email.php:93
-#: ../../web/email_notification.php:57
-#: ../../web/network_statistics.php:43
-#: ../../web/network_statistics.php:82
+#: ../../web/configure_email.php:93 ../../web/email_notification.php:57
+#: ../../web/network_statistics.php:43 ../../web/network_statistics.php:82
 #: ../../web/network_user_defaults.php:57
 #: ../../web/relationship_settings.php:57
 msgid "Please, select a valid XML configuration file."
@@ -6429,7 +6439,8 @@ msgstr "Du wirst in "
 #: ../../web/BlockModules/ShowMessageModule/show_error_message.tpl:20
 #: ../../web/BlockModules/ShowMessageModule/show_info_message.tpl:20
 msgid " seconds, or you can click here to redirect now"
-msgstr " Sekunden umgeleitet. Du kannst hier klicken um gleich umgeletet zu werden"
+msgstr ""
+" Sekunden umgeleitet. Du kannst hier klicken um gleich umgeletet zu werden"
 
 #: ../../web/BlockModules/ShowMessageModule/ShowMessageModule.php:22
 msgid "An Error Has Occurred"
@@ -6654,7 +6665,9 @@ msgstr "%s Verzeichnis"
 msgid ""
 "There is no TypedEntity associated with this Group yet. Would you like to "
 "create one?"
-msgstr "Noch keine TypedEntity mit dieser Gruppe verknüpft, möchtest du eine erstellen?"
+msgstr ""
+"Noch keine TypedEntity mit dieser Gruppe verknüpft, möchtest du eine "
+"erstellen?"
 
 #: ../../web/BlockModules/TypedGroupModule/typedgroup.tpl.php:16
 msgid "--- Please select ---"
@@ -6700,7 +6713,9 @@ msgstr "Dateiformat kann gif, jpg, jpeg, png, xpm oder bmp sein"
 msgid ""
 "Do not upload photos containing cartoons, celebrities, nudity, artwork or "
 "copyrighted images"
-msgstr "Bitte keine Bilder hochladen dir Copyright geschützt sind oder unpassende Inhalte zeugen"
+msgstr ""
+"Bitte keine Bilder hochladen dir Copyright geschützt sind oder unpassende "
+"Inhalte zeugen"
 
 #: ../../web/BlockModules/UploadMediaModule/ajax_image.tpl.php:29
 #: ../../web/BlockModules/UploadMediaModule/group_image_upload.tpl:42
@@ -6805,7 +6820,7 @@ msgstr "MS Live Kontakte: "
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: ../../web/BlockModules/UserContactsModule/navigation.tpl:53
+#: ../../web/BlockModules/UserContactsModule/navigation.tpl:44
 msgid "Import"
 msgstr "Import"
 
@@ -6912,8 +6927,7 @@ msgstr "Noch keine Antworten auf dies Umfrage"
 msgid "Edit Events"
 msgstr "Ereignisse bearbeiten"
 
-#: ../../web/calendar.php:30
-#: ../../web/includes/classes/Navigation.php:337
+#: ../../web/calendar.php:30 ../../web/includes/classes/Navigation.php:337
 #: ../../web/user_calendar.php:34
 msgid "My Events"
 msgstr "Meine Ereignisse"
@@ -6922,8 +6936,7 @@ msgstr "Meine Ereignisse"
 msgid "Email Messages settings data successfully loaded from "
 msgstr "Email Einstellungen erfolgreich geladen von "
 
-#: ../../web/configure_email.php:118
-#: ../../web/configure_email.php:134
+#: ../../web/configure_email.php:118 ../../web/configure_email.php:134
 msgid "Email message settings successfully restored."
 msgstr ""
 
@@ -6964,8 +6977,7 @@ msgstr ""
 msgid "You need to be member of this group to view the contents"
 msgstr "Du musst Mitglied dieser Gruppe sein um die Inhalte zu sehen."
 
-#: ../../web/create_network.php:55
-#: ../../web/networks_home.php:10
+#: ../../web/create_network.php:55 ../../web/networks_home.php:10
 msgid "Networks are disabled."
 msgstr "Netzwerk Funktion deaktiviert."
 
@@ -6984,29 +6996,31 @@ msgid ""
 "message and try again."
 msgstr "Keine Nachricht ausgewählt, bitte mindestens eine Nachricht auswählen."
 
-#: ../../web/deletemessage.php:103
-#: ../../web/deletemessage.php:114
+#: ../../web/deletemessage.php:103 ../../web/deletemessage.php:114
 #: ../../web/deletemessage.php:125
 msgid "There was a problem:"
 msgstr "Es ist ein Fehler aufgetreten:"
 
-#: ../../web/deletemessage.php:103
-#: ../../web/deletemessage.php:125
+#: ../../web/deletemessage.php:103 ../../web/deletemessage.php:125
 msgid "No folder selected. Please select a folder and try again."
 msgstr "Kein Ordner ausgewählt."
 
 #: ../../web/deletemessage.php:114
 msgid ""
 "No message(s) selected. Please select at least one message and try again."
-msgstr "Keine Nachrichten ausgewählt. Bitte mindestens eine Nachricht auswählen."
+msgstr ""
+"Keine Nachrichten ausgewählt. Bitte mindestens eine Nachricht auswählen."
 
 #: ../../web/dynamic.php:95
 #, php-format
 msgid "%s - %s"
 msgstr ""
 
-#: ../../web/edit_media.php:121
-#: ../../web/edit_media.php:218
+#: ../../web/dynamic.php:95
+msgid "page_name"
+msgstr ""
+
+#: ../../web/edit_media.php:121 ../../web/edit_media.php:218
 msgid " updated successfully"
 msgstr " erfolgreich geändert."
 
@@ -7015,38 +7029,31 @@ msgstr " erfolgreich geändert."
 msgid "%s - Edit your profile - %s"
 msgstr "%s - Profil bearbeiten - %s"
 
-#: ../../web/email_notification.php:31
-#: ../../web/network_user_defaults.php:32
+#: ../../web/email_notification.php:31 ../../web/network_user_defaults.php:32
 #: ../../web/relationship_settings.php:31
 msgid "Sorry! you are not authorized to view content of this page"
 msgstr "Du bist nicht autorisiert den Inhalt dieser Seite zu sehen"
 
-#: ../../web/email_notification.php:49
-#: ../../web/network_statistics.php:35
-#: ../../web/network_statistics.php:75
-#: ../../web/network_user_defaults.php:49
+#: ../../web/email_notification.php:49 ../../web/network_statistics.php:35
+#: ../../web/network_statistics.php:75 ../../web/network_user_defaults.php:49
 #: ../../web/relationship_settings.php:49
 msgid "File "
 msgstr "Datei "
 
-#: ../../web/email_notification.php:49
-#: ../../web/network_statistics.php:35
+#: ../../web/email_notification.php:49 ../../web/network_statistics.php:35
 #: ../../web/network_user_defaults.php:49
 #: ../../web/relationship_settings.php:49
 msgid " loaded successfully."
 msgstr " erfolgreich geladen."
 
-#: ../../web/email_notification.php:50
-#: ../../web/email_notification.php:65
-#: ../../web/network_statistics.php:36
-#: ../../web/network_statistics.php:52
+#: ../../web/email_notification.php:50 ../../web/email_notification.php:65
+#: ../../web/network_statistics.php:36 ../../web/network_statistics.php:52
 #: ../../web/network_user_defaults.php:50
 #: ../../web/network_user_defaults.php:65
 msgid "Click \"Save\" button to save new settings."
 msgstr "'Sichern' klicken um die Änderungen zu speichern."
 
-#: ../../web/email_notification.php:64
-#: ../../web/network_statistics.php:51
+#: ../../web/email_notification.php:64 ../../web/network_statistics.php:51
 #: ../../web/network_user_defaults.php:64
 #: ../../web/relationship_settings.php:64
 msgid "Default settings sucessfully restored."
@@ -7444,7 +7451,9 @@ msgstr "Konnte die Plaxo Ordner nicht lesen."
 msgid ""
 "Sorry - you are not logged in or you have been logged out due to inactivity. "
 "Please, log in again."
-msgstr "Du bist nicht eingeloggt oder wurdest aufgrund von Inaktivität ausgeloggt. Bitte erneut einloggen."
+msgstr ""
+"Du bist nicht eingeloggt oder wurdest aufgrund von Inaktivität ausgeloggt. "
+"Bitte erneut einloggen."
 
 #: ../../web/includes/functions/html_generate.php:209
 #: ../../web/includes/functions/html_generate.php:211
@@ -7517,28 +7526,6 @@ msgstr "41-50 Jahre"
 #: ../../web/includes/functions/html_generate.php:374
 msgid "Over 50 years"
 msgstr "Über 50 Jahre"
-
-#: ../../web/includes/functions/html_generate.php:394
-msgid "Select horizontal position"
-msgstr "Wähöe horizontale Position"
-
-#: ../../web/includes/functions/html_generate.php:395
-#: ../../api/Advertisement/Advertisement.php:275
-msgid "left"
-msgstr "links"
-
-#: ../../web/includes/functions/html_generate.php:396
-msgid "center"
-msgstr "mitte"
-
-#: ../../web/includes/functions/html_generate.php:397
-#: ../../api/Advertisement/Advertisement.php:276
-msgid "right"
-msgstr "rechts"
-
-#: ../../web/includes/functions/html_generate.php:400
-msgid "top"
-msgstr "oben"
 
 #: ../../web/includes/shortcuts_menu.php:9
 msgid "Create Post"
@@ -7687,8 +7674,7 @@ msgstr " ist schon an der angegeben Position aktiviert."
 msgid "Please select atleast one user."
 msgstr "Bitte mindestens einen User auswählen."
 
-#: ../../web/manage_user.php:51
-#: ../../web/manage_user.php:69
+#: ../../web/manage_user.php:51 ../../web/manage_user.php:69
 #: ../../web/manage_user.php:98
 msgid "Status of selected user(s) updated successfully"
 msgstr "Status der ausgewählten User erfolgreich geändert."
@@ -7720,7 +7706,8 @@ msgstr "Administrations Seite"
 
 #: ../../web/network_user_defaults.php:121
 msgid "Following relations could not be added as default relation "
-msgstr "Folgende Personen konnten nicht als Standard Beziehungen gespeichert werden: "
+msgstr ""
+"Folgende Personen konnten nicht als Standard Beziehungen gespeichert werden: "
 
 #: ../../web/network_user_defaults.php:216
 msgid "Default settings for the network has been saved"
@@ -7735,25 +7722,24 @@ msgstr "Auf \"Sichern\" klicken um die neuen Einstellungen zu sichern"
 msgid "Date range selected is invalid, so it has been ignored in searching"
 msgstr "Datums Bereich war ungültig und wurde daher für die Suche ignoriert"
 
-#: ../../web/submit_comment.php:26
-#: ../../web/submit_comment.php:116
+#: ../../web/submit_comment.php:26 ../../web/submit_comment.php:116
 msgid "Your comment contains some illegal characters. Please try again."
 msgstr "Der Kommentar enthält unerlaubte Zeichen."
 
-#: ../../web/submit_comment.php:29
-#: ../../web/submit_comment.php:120
+#: ../../web/submit_comment.php:29 ../../web/submit_comment.php:120
 msgid "Comment can not be left blank"
 msgstr "Kommentar darf nicht leer sein."
 
-#: ../../web/submit_comment.php:80
-#: ../../web/submit_comment.php:138
+#: ../../web/submit_comment.php:80 ../../web/submit_comment.php:138
 msgid ""
 "Sorry, your comment cannot be posted as it looks like spam. Try removing any "
 "links to possibly suspect sites, and re-submitting."
-msgstr "Der Kommentar konnte nicht gespeichert werden, da er wie Spam aussieht, oder Links zu Seiten in der Blacklist enthält. Bitte überprüfe die Links in dem Kommentar, und stelle sicher, dass Name und Email korrekt sind."
+msgstr ""
+"Der Kommentar konnte nicht gespeichert werden, da er wie Spam aussieht, oder "
+"Links zu Seiten in der Blacklist enthält. Bitte überprüfe die Links in dem "
+"Kommentar, und stelle sicher, dass Name und Email korrekt sind."
 
-#: ../../web/submit_comment.php:83
-#: ../../web/submit_comment.php:142
+#: ../../web/submit_comment.php:83 ../../web/submit_comment.php:142
 msgid "Your comment has been posted successfully"
 msgstr "Der Kommentar wurde erfolgreich gepostet."
 
@@ -7762,14 +7748,22 @@ msgid ""
 "Sorry, your comment cannot be posted as it was classified as spam by "
 "Akismet, or contained links to blacklisted sites.  Please check the links in "
 "your post, and that your name and e-mail address are correct."
-msgstr "Der Kommentar konnte nicht gespeichert werden, da er von Akismet als Spam klassifiziert wurde, oder Links zu Seiten in der Blacklist enthält. Bitte überprüfe die Links in dem Kommentar, und stelle sicher, dass Name und Email korrekt sind."
+msgstr ""
+"Der Kommentar konnte nicht gespeichert werden, da er von Akismet als Spam "
+"klassifiziert wurde, oder Links zu Seiten in der Blacklist enthält. Bitte "
+"überprüfe die Links in dem Kommentar, und stelle sicher, dass Name und Email "
+"korrekt sind."
 
 #: ../../web/submit_comment.php:145
 msgid ""
 "Sorry, your comment cannot be posted as it was classified as spam by "
 "Akismet, or contained links to blacklisted sites. Please check the links in "
 "your post, and that your name and e-mail address are correct."
-msgstr "Der Kommentar konnte nicht gespeichert werden, da er von Akismet als Spam klassifiziert wurde, oder Links zu Seiten in der Blacklist enthält. Bitte überprüfe die Links in dem Kommentar, und stelle sicher, dass Name und Email korrekt sind."
+msgstr ""
+"Der Kommentar konnte nicht gespeichert werden, da er von Akismet als Spam "
+"klassifiziert wurde, oder Links zu Seiten in der Blacklist enthält. Bitte "
+"überprüfe die Links in dem Kommentar, und stelle sicher, dass Name und Email "
+"korrekt sind."
 
 #: ../../web/terms.php:5
 #, php-format
@@ -8100,8 +8094,7 @@ msgstr ""
 msgid "Error processing request"
 msgstr ""
 
-#: ../../web/widgets.php:98
-#: ../../web/widgets.php:105
+#: ../../web/widgets.php:98 ../../web/widgets.php:105
 msgid "Error parsing URL"
 msgstr "Fehler bein parsen der URL."
 
@@ -8216,7 +8209,8 @@ msgstr "Meine Nachrichten"
 msgid ""
 "Cannot create networks: this installation is not configured for network "
 "operation."
-msgstr "Kann Netwerk nicht erstelen da diese funktion hier nicht verfügbar ist."
+msgstr ""
+"Kann Netwerk nicht erstelen da diese funktion hier nicht verfügbar ist."
 
 #: ../../api/Network/Network.php:1063
 #, php-format
@@ -8227,7 +8221,8 @@ msgstr "Kann Netzwerk nicht erstellen: %s ist nicht schreibbar"
 msgid ""
 "Cannot create networks: Network spawning has been disabled on this "
 "installation."
-msgstr "Kann Netwerk nicht erstelen da diese funktion hier nicht verfügbar ist."
+msgstr ""
+"Kann Netwerk nicht erstelen da diese funktion hier nicht verfügbar ist."
 
 #: ../../api/Storage/Storage.php:621
 #, php-format
@@ -8248,22 +8243,28 @@ msgid "E-mail address is not valid."
 msgstr "Ungültige Email Adresse."
 
 #: ../../api/User/Registration.php:180
-msgid "The domain of your E-mail address is not in the list of allowed domains."
-msgstr "Die Domain der Email Adresse ist nicht in der Liste der erlaubten Damains."
+msgid ""
+"The domain of your E-mail address is not in the list of allowed domains."
+msgstr ""
+"Die Domain der Email Adresse ist nicht in der Liste der erlaubten Damains."
 
 #: ../../api/User/Registration.php:191
 #, php-format
 msgid ""
 "\n"
 "The password must be less than %d characters."
-msgstr "\nDas Passwort muss weniger als %d Zeichen haebn."
+msgstr ""
+"\n"
+"Das Passwort muss weniger als %d Zeichen haebn."
 
 #: ../../api/User/Registration.php:197
 #, php-format
 msgid ""
 "\n"
 "The password must be longer than %d characters."
-msgstr "\nDas Passwort muss mehr als %d Zeichen haebn."
+msgstr ""
+"\n"
+"Das Passwort muss mehr als %d Zeichen haebn."
 
 #: ../../ext/RssFeedHelper.php:41
 #, php-format
@@ -8285,5 +8286,5 @@ msgstr "%s: %s Blog"
 msgid "Failed to retrieve %s: %s"
 msgstr "Konnte %s nicht laden: %s"
 
-msgid "Me"
-msgstr "Ich"
+#~ msgid "Me"
+#~ msgstr "Ich"

@@ -16,9 +16,12 @@ for L in `cat languages.txt`; do
     echo "Updating language: $L"
     F=../../web/languages/$L/messages.po
     if [ ! -f $F ]; then
-	cp messages.po $F
+    	cp messages.po $F
     fi
-    $CMD -j -o $F
+    # $CMD -j -o $F
+    # use msgmerge to retain translations that still match
+    # but dump all translations and source references that are no longer in the code
+    msgmerge -U $F messages.po
 done
 
 popd

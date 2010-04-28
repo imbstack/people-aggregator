@@ -4,118 +4,90 @@
 
 $TRANSLATED_STRINGS = array(
 
-'Your file is too large for the web server.  The largest file you can upload '
-.'here is %.1fM.  If this is too small, please ask the administrator to '
-.'increase the <code>upload_max_filesize</code> directive in <code>php.ini</'
-.'code>.'
-=> 'll tuo file è troppo grande. La dimensione massima di file che puoi caricare '
-.'è %.1fM.',
+'Create Group'
+=> 'Crea un gruppo',
 
-'The uploaded file was only partially uploaded.'
-=> 'Il file è stato caricato solo parzialmente.',
+'Edit Group'
+=> 'Modifica gruppo',
 
-'No file was uploaded'
-=> 'Non è stato caricato nessun file',
+'Message sent successfully to '
+=> '',
 
-'File too large; %s file uploads are limited to %s.  If this is too small, '
-.'please ask the administrator to increase the limit.'
-=> 'Il file è troppo grande; %s il caricamento di file è limitato a  %s.',
+'Last Login'
+=> 'Utimo login',
 
-'Invalid image file.'
-=> 'Questo non è un file immagine valido.',
+'Latest Registered'
+=> 'Ultimi registrati',
 
-'Invalid media file.'
-=> 'Questo non è un file media valido.',
+'Select any %s file to upload'
+=> '',
 
-'Invalid document type - supported formats are: %s'
-=> 'Tipo di documento non valido - i formati supportati sono: %s',
+'You have to login before uploading a %s'
+=> '',
 
-'File error: File already exists'
-=> 'errore: il fie esiste già',
+'Blog Feed sucessfully deleted.'
+=> '',
 
-'Return to home network'
-=> 'Torna alla home della rete',
+'Role can\'t be deleted.'
+=> 'Il ruolo non può essere eliminato.',
 
-'Network directory'
-=> 'Lista reti',
+'Successfully deleted.'
+=> 'Eliminato con successo',
 
-'Configure'
-=> 'Configura',
+'Not found'
+=> '',
 
-'Create a network'
-=> 'Crea una rete',
+'Please enter a valid URL!'
+=> 'Inserisci un indirizzo valido!',
 
-'Home'
-=> 'Home',
+'Please, select one of the following Professional profiles: '
+=> 'Per favore, seleziona uno dei seguenti profili professionali:',
 
-'Me'
-=> 'Io',
+'Please, select the XFN relations you want to import: '
+=> 'Seleziona i contatti XFN che vuoi importare:',
 
-'People'
-=> 'Persone',
+'Sorry, we couldn\'t any identity informations '
+=> '',
 
-'Groups'
-=> 'Gruppi',
+'at: '
+=> 'a:',
 
-'Search'
-=> 'Cerca',
+'in your HTML text.'
+=> 'nel tuo testo HTML',
 
-'My Page'
-=> 'La mia pagina',
+'Please, select contacts you want to import.'
+=> '',
 
-'My Widgets'
-=> 'I miei widget',
+'We haven\'t found any contacts on your Plaxo account.'
+=> 'Non abbiamo trovato alcun contatto nel tuo account Plaxo.',
 
-'My Messages'
-=> 'I miei messaggi',
+'Username and/or password field can\'t be empty!'
+=> 'Il campo username e/o password non può essere vuoto!',
 
-'My Gallery'
-=> 'La mia gallery',
+'Apply to User pages'
+=> '',
 
-'Edit My Account'
-=> 'Modifica il mio account',
+'Apply to this Network'
+=> '',
 
-'Themes'
-=> 'Temi',
+'Apply to '
+=> '',
 
-'Community Blog'
-=> 'Blog della community',
+' group'
+=> '',
 
-'No content in personal blog.  <a href="%s">Click here to make a post</a>!'
-=> 'Nessun contenuto nel blog personale.  <a href="%s">Clicca qui per scrivere '
-.'un messaggio</a>!',
+'Tasks/Permissions'
+=> '',
 
-'Recent Posts'
-=> 'Post recenti',
+'Edit/Assign Role for user: '
+=> '',
 
-'Photo'
-=> 'Foto',
+'Select roles you want to associate with this user and press left/right '
+.'arrow, <br />'
+=> '',
 
-'Members'
-=> 'Iscritti',
-
-'No relations made yet.'
-=> 'Non sono state ancora create connessioni.',
-
-'Relations'
-=> 'Connessioni',
-
-'Featured Network'
-=> 'Rete configurata',
-
-'Multiple networks are disabled - please configure your system for network '
-.'operation.'
-=> 'Reti multiple disabilitate - si prega di configurare il sistema per il '
-.'funzionamento della rete.',
-
-'The current featured network is: <a href="%s">%s</a>'
-=> 'La rete attualmente configurata è: <a href="%s">%s</a>',
-
-'Select a featured network:'
-=> 'Scegli una rete configurata:',
-
-'Select a network'
-=> 'Scegli una rete',
+'We haven\'t found any contacts on your MSLive account.'
+=> '',
 
 'Recently Created'
 => 'Creato di recente',
@@ -123,36 +95,60 @@ $TRANSLATED_STRINGS = array(
 'Recently Modified'
 => 'Modificato di recente',
 
-'Largest Network'
-=> 'Reti più grandi',
-
-'Sort By'
-=> 'Ordina per',
-
-'No network created yet.'
-=> 'Non sono state ancora create reti.',
-
-'Take A Tour'
-=> 'Fai un giro',
-
 'Largest Group'
 => 'Gruppo con più iscritti',
 
-'No groups created yet. Be the first to <a href="%s">create one</a>!'
-=> 'Non sono ancora stati creati gruppi. <a href="%s" style="display:inline;'
-.'">clicca qui</a> se vuoi essere il primo a crearne uno!',
+'Answer can not be left blank'
+=> '',
 
-'No image'
-=> 'Nessuna immagine',
+'Sorry, your Answer cannot be posted as it looks like spam. Try removing any '
+.'links to possibly suspect sites, and re-submitting.'
+=> '',
 
-'No tags added yet'
-=> 'Non sono stati ancora aggiunti tag',
+'Your Answer has been posted successfully'
+=> '',
 
-'Most Popular Tags'
-=> 'I tag più popolari',
+'Sorry, your answer cannot be posted as it was classified as spam by Akismet, '
+.'or contained links to blacklisted sites. Please check the links in your '
+.'post, and that your name and e-mail address are correct.'
+=> '',
 
-'Added as a friend by'
-=> 'aggiunto come amico da',
+'This section is disabled. Click the checkbox above to show it in your '
+.'sidebar widget.'
+=> '',
+
+'click to include'
+=> '',
+
+'Design your sidebar widget'
+=> '',
+
+'Rename this widget'
+=> '',
+
+'Rename'
+=> '',
+
+'Or'
+=> '',
+
+'Delete this widget'
+=> '',
+
+'Are you sure you wish to delete this widget?'
+=> '',
+
+'Preview'
+=> '',
+
+'%s - My Widgets - %s'
+=> '%s - i miei widget - %s',
+
+'About Me'
+=> '',
+
+'About'
+=> '',
 
 'User image.'
 => 'Immagine dell\'utente.',
@@ -163,11 +159,17 @@ $TRANSLATED_STRINGS = array(
 'Sex'
 => 'Sesso',
 
+'Date of birth'
+=> 'Data di nascita',
+
 'State'
 => 'Stato',
 
 'City'
 => 'Città',
+
+'ZIP code'
+=> 'CAP',
 
 'Country'
 => 'Nazione',
@@ -208,17 +210,26 @@ $TRANSLATED_STRINGS = array(
 'Career skill'
 => 'Esperienza professionale',
 
-'Download CV'
-=> 'Scarica CV',
-
-'Download'
-=> 'Scarica',
-
 'Prior Company'
 => 'Società precedente',
 
 'Degree'
 => 'Titolo di studio',
+
+'Languages'
+=> '',
+
+'Awards'
+=> '',
+
+'Summary'
+=> '',
+
+'Download CV'
+=> 'Scarica CV',
+
+'Download'
+=> 'Scarica',
 
 'Personal'
 => 'Personale',
@@ -247,767 +258,153 @@ $TRANSLATED_STRINGS = array(
 'Music'
 => 'Musica',
 
-'About: %s'
-=> 'A proposito di: %s',
+'Cuisines'
+=> 'Cucine',
 
-'Contents'
-=> 'Contenuti',
+'TV shows'
+=> 'Programmi televisivi',
 
-'Create post'
-=> 'Scrivi un messaggio',
+'Actions'
+=> '',
 
-'Manage posts'
-=> 'Gestisci i messaggi',
+'Activity Feed'
+=> '',
 
-'View my public page'
-=> 'Vedi la mia pagina pubblica',
+'My Activity Feeds'
+=> '',
 
-'Showing results for tag %s.'
-=> 'Mostra risultati per il tag %s.',
+'Activity Feeds'
+=> '',
 
-'Invite'
-=> 'Invita',
+'Change Group Settings'
+=> '',
 
-'Group Settings'
-=> 'Impostazioni gruppo',
+'File upload error: '
+=> '',
 
-'Moderate'
-=> 'Modera',
+'Please supply a name.'
+=> '',
 
-'Manage content'
-=> 'Gestisci contenuto',
+'Group Name'
+=> '',
 
-'Join this group'
-=> 'Iscriviti al gruppo',
+'Group Category'
+=> '',
 
-'No content found.'
-=> 'Nessun contenuto trovato.',
+'Tags'
+=> '',
 
-'Click <a href="%s">here</a> to create one.'
-=> 'Clicca <a href="%s">qui</a> per crearne uno.',
+'separated tags with commas'
+=> '',
 
-'Browse %d Groups'
-=> 'Sfoglia %d i gruppi',
+'Group Photo'
+=> '',
 
-'No groups in this category'
-=> 'Non ci sono gruppi in questa categoria',
+'Choose File'
+=> '',
 
-'No network joined yet.'
-=> 'Non ti sei ancora iscritto ad alcuna rete',
+'Current Photo'
+=> '',
 
-'My Networks'
-=> 'Le mie reti',
+'Group Description'
+=> '',
 
-'Gallery'
-=> 'Gallery',
+'Registration Type'
+=> '',
 
-'My Groups'
-=> 'I miei gruppi',
+'Open'
+=> '',
 
-'User Information'
-=> 'Informazioni sull\'utente',
+'Moderated'
+=> '',
 
-'Blog contents'
-=> 'Contenuti del blog',
+'Invite Only'
+=> '',
 
-'Messages'
-=> 'Messaggi',
+'Submit'
+=> '',
 
-'My Recent Comments'
-=> 'I miei ultimi commenti',
+'Entity Type'
+=> '',
 
-'Delicious Links'
-=> 'Link di Delicious',
+'Compose'
+=> '',
 
-'My Links'
-=> 'I miei link',
+'Message sent successfully to %s'
+=> '',
 
-'About User'
-=> 'Informazioni sull\'utente',
+'Message sending failed for %s  as user(s) doesn\'t exist'
+=> '',
 
-'External Feeds'
-=> 'Feed esterni',
+'Send'
+=> '',
 
-'Network of the Moment'
-=> 'La rete più popolare',
+'Message composed will be discarded. Do you want to continue?'
+=> '',
 
-'No links under this category'
-=> 'Non ci sono link in questa categoria',
+'To'
+=> '',
 
-'No links have been added.'
-=> 'Non sono stati aggiunti link.',
+'select friend'
+=> '',
 
-'Network Default Links'
-=> 'Link predefiniti della rete',
-
-'Network Statistics'
-=> 'Statistiche della rete',
-
-'Last login'
-=> 'Ultimo login',
-
-'Latest registered'
-=> 'Ultimi registrati',
-
-'Recover Password'
-=> 'Recupera password',
-
-'A link has been e-mailed to you to let you change your password.  Thanks!'
-=> 'Abbiamo inviato al tuo indirizzo email un link per cambiare la password. '
-.'Grazie!',
-
-'Forgotten your PeopleAggregator account information?'
-=> 'Hai dimenticato come accedere al tuo account PeopleAggregator?',
-
-'Just enter the e-mail address you signed up with, and we\'ll mail you a link '
-.'to change your password.'
-=> 'Inserisci l\'indirizzo email con cui ti sei registrato e ti invieremo un link '
-.'per cambiare la tua password.',
-
-'E-mail address:'
-=> 'Email:',
-
-'Get new password'
-=> 'Ottieni una nuova password',
-
-'There are no messages in this folder.'
-=> 'Non ci sono messaggi in questa cartella',
-
-'No messages matched your search'
-=> 'Nessun messaggio corrisponde alla tua ricerca',
-
-'Compose message'
-=> 'Scrivi un messaggio',
-
-'Delete'
-=> 'Elimina',
-
-'Create new folder'
-=> 'Crea una nuova cartella',
-
-'Move to:'
-=> 'Sposta in:',
-
-'- Select Folder -'
-=> '- seleziona cartella -',
-
-'(no folders available)'
-=> '(nessuna cartella disponibile)',
-
-'Sent To'
-=> 'Inviato a',
+'Note: to address a message to a user who is not your friend, please visit '
+.'their public page and click \'send message\'.'
+=> '',
 
 'Subject'
 => 'Oggetto',
 
-'Date'
-=> 'Data',
+'Message'
+=> '',
 
-'To:'
-=> 'A:',
-
-'Sender'
-=> 'Mittente',
-
-'Mailbox'
-=> 'Casella',
-
-'Search ...'
-=> 'Cerca...',
-
-'Inbox'
-=> 'Ricevuti',
-
-'Sent'
-=> 'Inviati',
+'Cancel'
+=> '',
 
 'You have not created any folders.'
 => 'Non hai creato nessuna cartella.',
 
-'Go'
-=> 'Vai',
-
-'Back to search results'
-=> 'Torna ai risultati della ricerca',
-
-'Reply'
-=> 'Rispondi',
-
-'Forward'
-=> 'Inoltra',
-
-'Date:'
-=> 'Data:',
-
-'From:'
-=> 'Da:',
-
-'Subject:'
-=> 'Oggetto:',
-
-'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
-.'groups yet.'
-=> 'Non hai <a href="%s">creato</a> nè ti sei ancora <a href="%s">iscritto</'
-.'a> ad alcun gruppo.',
-
-'User has not joined any groups yet.'
-=> 'L\'utente non si è ancora iscritto ad alcun gruppo.',
-
-'Recent Comments'
-=> 'Ultimi commenti',
-
-'No comments posted yet.'
-=> 'Non sono stati ancora inseriti commenti.',
-
-'Advertisement'
-=> 'Pubblicità',
-
-'Network Directory'
-=> 'Lista reti',
-
-'Search Networks'
-=> 'Cerca reti',
-
-'Images'
-=> 'Immagini',
-
-'Video'
-=> 'Video',
-
-'Audio'
-=> 'Audio',
-
-'No images have been published yet.'
-=> 'Non sono state ancora pubblicate immagini.',
-
-'No videos have been published yet.'
-=> 'Non sono stati ancora pubblicati video.',
-
-'No audio has been published yet.'
-=> 'Non sono stati ancora pubblicati file audio.',
-
-'Newest Groups'
-=> 'Ultimi gruppi creati',
-
-'Already a member?'
-=> 'Sei già iscritto?',
-
-'Login now'
-=> 'Login',
-
-'Register'
-=> 'Registrati',
-
-'shortcuts'
-=> 'scorciatoie',
-
-'logoff'
-=> 'Esci',
-
-'or'
-=> 'oppure',
-
-'All Posts'
-=> 'Tutti i messaggi',
-
-'About us'
-=> 'Chi siamo',
-
-'Features'
-=> 'Funzionalità',
-
-'FAQ'
-=> 'FAQ',
-
-'Roadmap'
-=> 'Roadmap',
-
-'Report Bugs'
-=> 'Segnala errori',
-
-'Feedback'
-=> 'Feedback',
-
-'Developer Wiki'
-=> 'Sviluppatore Wiki',
-
-'&copy; 2007 Broadband Mechanics, Inc.'
-=> '&copy; 2007 Broadband Mechanics, Inc.',
-
-'posted by %s on %s'
-=> 'inserito da %s il %s',
-
-'permalink'
-=> 'permalink',
-
-'comments'
-=> 'commenti',
-
-'Event'
-=> 'Evento',
-
-'Review'
-=> 'Rivedi',
-
-'Image'
-=> 'Immagine',
-
-'Group'
-=> 'Gruppo',
-
-'register'
-=> 'registrati',
-
-'PeopleAggregator Networks'
-=> 'Reti di PeopleAggregator',
-
-'view all'
-=> 'vedi tutti',
-
-'Invalid email address.  Please try again.'
-=> 'Indirizzo email non valido. Riprova.',
-
-'There are no accounts in our system with the e-mail address <font color='
-.'"blue">%s</font>.\n'
-.'\n'
-.'If you have spelled the address incorrectly or entered the wrong address, '
-.'please try again.'
-=> 'Non esistono account con l\'indirizzo email <font color="blue">%s</font>.\n'
-.'\n'
-.'Se hai scritto male l\'indirizzo o ne hai inserito uno sbagliato, prova di '
-.'nuovo.',
-
-'About:'
-=> 'A proposito di:',
-
-'My %s'
-=> 'I miei %s',
-
-'Me - %s - %s'
-=> 'Io - %s - %s',
-
-'%s\'s Relations'
-=> 'Connessioni di %s',
-
-'%s\'s Networks'
-=> 'Reti di %s',
-
-'%s\'s Links'
-=> 'Link di %s',
-
-'%s\'s Groups'
-=> 'Gruppi di %s',
-
-'%s\'s Comments'
-=> 'Commenti di %s',
-
-'%s\'s Blog'
-=> 'Blog di %s',
-
-'%s %s - %s'
-=> '%s %s - %s',
-
-'Last Login'
-=> 'Utimo login',
-
-'Latest Registered'
-=> 'Ultimi registrati',
-
-'Groups - %s'
-=> 'Gruppi - %s',
-
-'Sorry! you are not authorized to view content of this page'
-=> 'Spiacenti! Non sei autorizzato a vedere il contenuto di questa pagina',
-
-'General Network Settings'
-=> 'Impostazioni generali rete',
-
-'Tags:'
-=> 'Tag:',
-
-'People - %s'
-=> 'Persone - %s',
-
-'Recent Media'
-=> 'File media più recenti',
-
-'Cannot create networks: this installation is not configured for network '
-.'operation.'
-=> 'Impossibile creare reti: l\'installazione non è configurata.',
-
-'Cannot create networks: %s is not writable'
-=> 'Impossibile creare reti: %s non è scrivibile',
-
-'title'
-=> 'titolo',
-
-'%s - My Links - %s'
-=> '%s - I miei link - %s',
-
-'page_name'
-=> 'page_name',
-
-'%s - Edit your profile - %s'
-=> '%s - Modifica il tuo profilo - %s',
-
-'Create Group'
-=> 'Crea un gruppo',
-
-'Edit Group'
-=> 'Modifica gruppo',
-
-'Could not retrieve file from URL: %s'
-=> 'Impossibile recuperare il file dall\'URL: %s',
-
-'Previous'
-=> 'Precedente',
-
-'Next'
-=> 'Successivo',
-
-'Please login to access this page'
-=> 'Devi effettuare il login per accedere a questa pagina',
-
-'Network name'
-=> 'Nome della rete',
-
-'Network address'
-=> 'Indirizzo della rete',
-
-'Network tagline'
-=> 'Tagline della rete',
-
-'Group name'
-=> 'Nome del gruppo',
-
-'Group description'
-=> 'Descrizione del gruppo',
-
-'Group tag'
-=> 'Tag del gruppo',
-
-'Select age'
-=> 'Seleziona età',
-
-'Under 10 years'
-=> 'Meno di 10 anni',
-
-'11-20 years'
-=> '11-20 anni',
-
-'21-30 years'
-=> '21-30 anni',
-
-'31-40 years'
-=> '31-40 anni',
-
-'Over 50 years'
-=> 'oltre i 50 anni',
-
-'Select horizontal position'
-=> 'Seleziona posizione orizzontale',
-
-'left'
-=> 'sinistra',
-
-'center'
-=> 'centro',
-
-'right'
-=> 'destra',
-
-'Select vertical position'
-=> 'Seleziona posizione verticale',
-
-'top'
-=> 'sopra',
-
-'no name'
-=> 'nessun nome',
-
-'no email'
-=> 'nessuna email',
-
-'File %s not uploaded correctly.'
-=> 'File %s non caricato correttamente.',
-
-'Security error: File %s is not an uploaded file:'
-=> 'Errore di sicurezza: il file %s non è un file caricato:',
-
-'JOIN Network'
-=> 'ISCRIVITI alla rete',
-
-'Unjoin Network'
-=> 'Cancella la tua iscrizione alla rete',
-
-'My Events'
-=> 'I miei eventi',
-
-'Find people'
-=> 'Cerca persone',
-
-'My friends'
-=> 'I miei amici',
-
-'People who call me friend'
-=> 'Persone che mi hanno aggiunto come amico',
-
-'Friends gallery'
-=> 'Gallery degli amici',
-
-'Find groups'
-=> 'Trova gruppi',
-
-'Create'
-=> 'Crea',
-
-'Group Home'
-=> 'Home del gruppo',
-
-'Forum'
-=> 'Forum',
-
-'Group gallery'
-=> 'Gallery del gruppo',
-
-'Group Events'
-=> 'Eventi del gruppo',
-
-'Join'
-=> 'Iscriviti',
-
-'Unjoin'
-=> 'Cancella iscrizione',
-
-'Are you sure you want to delete this group'
-=> 'Sei sicuro di voler eliminare questo gruppo',
-
-'Email Notification'
-=> 'Notifica email',
-
-'Bulletins'
-=> 'Bulletins',
-
-'Set Feature Network'
-=> 'Imposta funzionalità di rete',
-
-'Manage Emblem'
-=> 'Gestisci simbolo',
-
-'Personalized Video'
-=> 'Video personalizzato',
-
-'Configure Splash Page'
-=> 'Configura splash page',
-
-'Top Bar Enable/Disable'
-=> 'Abilita/disabilita barra superiore',
-
-'Create User'
-=> 'Crea utente',
-
-'User Defaults'
-=> 'Predefiniti utente',
-
-'Relationships'
-=> 'Relazioni',
-
-'Manage Users'
-=> 'Gestisci utenti',
-
-'Manage Contents'
-=> 'Gestisci contenuti',
-
-'Manage Links'
-=> 'Gestisci link',
-
-'General'
-=> 'Generale',
-
-'Customize UI'
-=> 'Personalizza UI',
-
-'Home Page'
-=> 'Homepage',
-
-'User Default Page'
-=> 'Pagina predefinita utente',
-
-'Group Directory Page'
-=> 'Elenco gruppi',
-
-'Network Directory Page'
-=> 'Elenco reti',
-
-'Send a message'
-=> 'Invia un messaggio',
-
-'Change '
-=> 'Cambia',
-
-'Are you sure you want to delete this Relationship'
-=> 'Sei sicuro di voler eliminare questa relazione?',
-
-'Write Testimonial'
-=> 'Scrivi un testimonial',
-
-'Write Comment'
-=> 'Scrivi un commento',
-
-'Add as '
-=> 'Aggiungi come',
-
-'Create Post'
-=> 'Scrivi un messaggio',
-
-'Messages '
-=> 'Messaggi',
-
-'Widgets'
-=> 'Widget',
-
-'Edit my account'
-=> 'Modifica il mio account',
-
-'&copy;'
+'Write Comment for '
 => '',
 
-'%s Networks'
-=> '%s reti',
-
-'Location'
-=> 'Posizione',
-
-'Begins'
-=> 'Inizia',
-
-'Ends'
-=> 'Finisce',
-
-'Right-click to download'
-=> 'Clicca tasto destro per scaricare',
-
-'Invite people - %s'
-=> 'invita persone - %s',
-
-'Personal Events'
-=> 'Eventi personali',
-
-'My events'
-=> 'I miei eventi',
-
-'%s - My Widgets - %s'
-=> '%s - i miei widget - %s',
-
-'Events'
-=> 'Eventi',
-
-'Homepage'
-=> 'Homepage',
-
-'%s - My Page - %s'
-=> '%s - la mia pagina - %s',
-
-'Manage Ads'
-=> 'Gestisci annunci',
-
-'Manage Textpads'
-=> 'Gestisci Textpad',
-
-'Connected. Please, select contacts you want to import.'
-=> 'Connesso. Per favore seleziona i contatti che vuoi importare.',
-
-'We haven\'t found any contacts on your Windows Live account.'
-=> 'Non abbiamo trovato alcun contatto nel tuo account Windows Live.',
-
-'Authentication failed!'
-=> 'Autenticazione fallita!',
-
-'Username and/or password field can\'t be empty!'
-=> 'Il campo username e/o password non può essere vuoto!',
-
-'Your Windows Live ID'
-=> 'La tua ID Windows Live',
-
-'(your Windows Live email address)'
-=> '(il tuo indirizzo email Windows Live)',
-
-'Enter your password'
-=> 'Inserisci la tua password',
-
-'Role can\'t be deleted.'
-=> 'Il ruolo non può essere eliminato.',
-
-'Successfully deleted.'
-=> 'Eliminato con successo',
-
-'Select roles you want to associate with this user and press left/right arrow.'
-=> 'Seleziona i ruoli che desideri attribuire a questo utente e clicca la '
-.'freccia sinistra/destra.',
-
-'Please enter a valid URL!'
-=> 'Inserisci un indirizzo valido!',
-
-'Please, select one of the following Professional profiles: '
-=> 'Per favore, seleziona uno dei seguenti profili professionali:',
-
-'Please, select the XFN relations you want to import: '
-=> 'Seleziona i contatti XFN che vuoi importare:',
-
-'Sorry, we couldn\'t any identity informations '
+'\'s Answers'
 => '',
 
-'at: '
-=> 'a:',
+'No answer is posted till now'
+=> '',
 
-'in your HTML text.'
-=> 'nel tuo testo HTML',
+'Submit your answer'
+=> '',
 
-'We haven\'t found any contacts on your Plaxo account.'
-=> 'Non abbiamo trovato alcun contatto nel tuo account Plaxo.',
+'Answers'
+=> '',
 
-'Select authentication method'
-=> 'Scegli un metodo di autenticazione',
+'Submit Answers'
+=> '',
 
-'Enter your Plaxo ID'
-=> 'Inserisci la tua ID Plaxo',
+'Album'
+=> '',
 
-'(email or AIM screen name)'
-=> '(email o screen name AIM)',
+'Select Album'
+=> '',
 
-'Networks are disabled.'
-=> 'Le reti sono disabilitate',
+'Upload'
+=> '',
 
-'Content'
-=> 'Contenuto',
+'Groups'
+=> 'Gruppi',
 
-'%s - Media Gallery - %s'
-=> '%s - Media Gallery - %s',
+'Thumbnail'
+=> '',
 
-'Configure Email'
-=> 'Configura email',
+'Title/Description/Date/Tags'
+=> '',
 
-'View All Members'
-=> 'Visualizza tutti gli iscritti',
+'Album/Playlist'
+=> '',
 
-'View All Group Members'
-=> 'Visualizza tutti gli iscritti al gruppo',
-
-'%s - Themes - %s'
-=> '%s - Temi - %s',
-
-'Edit Events'
-=> 'Modifica eventi',
-
-'Please confirm network deletion by selecting deletion checkbox.'
-=> 'Si prega di confermare l\'eliminazione della rete selezionando l\'apposita '
-.'casella ',
-
-'Network Statistics - %s'
-=> 'Statistiche della rete - %s',
-
-'Administration panel'
-=> 'Pannello di controllo',
+'No Audio'
+=> '',
 
 'Blog Settings'
 => 'Impostazioni del blog',
@@ -1035,1400 +432,163 @@ $TRANSLATED_STRINGS = array(
 'Save'
 => 'Salva',
 
+'View my public page'
+=> 'Vedi la mia pagina pubblica',
+
 'Configure external blog'
 => 'Configura blog esterno',
 
-'Mp3 Player'
-=> 'Mp3 Player',
+'Welcome'
+=> '',
 
-'Just enter the e-mail address or login name you signed up with, and we\'ll '
-.'mail you a link to change your password.'
-=> 'Inserisci l\'indirizzo email o lo username con cui ti sei registrato e ti '
-.'invieremo un link per cambiare la tua password.',
+'Enter your new password'
+=> '',
 
-'Login Name'
-=> 'Username',
+'Re-enter the new password'
+=> '',
 
-'There are no accounts in our system with the e-mail address <font color='
-.'"blue">%s</font>.\n'
-.'      \n'
-.'      If you have spelled the address incorrectly or entered the wrong '
-.'address, please try again.'
-=> 'Non esistono account con l\'indirizzo email <font color="blue">%s</font>.\n'
-.'\n'
-.'Se hai scritto male l\'indirizzo o ne hai inserito uno sbagliato, prova di '
-.'nuovo.',
+'Change Password'
+=> '',
 
-'Actions for '
-=> 'Azioni per',
+'Please enter your new password'
+=> '',
 
-'Configure this Network'
-=> 'Configura questa rete',
+'Please confirm your new password'
+=> '',
 
-'no data'
-=> 'non ci sono dati',
+'Passwords do not match. Please re-enter'
+=> '',
 
-'Age'
-=> 'età',
+'Password should be of %s characters or more.'
+=> '',
 
-'Gender'
-=> 'Sesso',
+'Password should be less than %s charcaters.'
+=> '',
 
-'Add as'
-=> 'Aggiungi come',
+'Manage comments.'
+=> '',
 
-'Advanced Search'
-=> 'Ricerca avanzata',
+'When'
+=> '',
 
-'Simple Search'
-=> 'Ricerca semplice',
+'Parent'
+=> '',
 
-'Recent Users'
-=> 'Ultimi utenti',
+'Abuses'
+=> '',
 
-'Alphabetical'
-=> 'Ordine alfabetico',
+'Author'
+=> '',
 
-' with picture in profile'
-=> 'con foto nel profilo',
+'Delete'
+=> 'Elimina',
 
-'Select rows'
-=> 'Seleziona righe',
+'No Comments'
+=> '',
 
-'First name'
-=> 'Nome',
+'Manage Comments'
+=> '',
 
-'Last name'
-=> 'Cognome',
+'Anonymous'
+=> '',
 
-'Find Users'
-=> 'Trova utenti',
+'ConfigManager'
+=> '',
 
-'Male'
-=> 'Maschio',
+'Section does not exists!'
+=> '',
 
-'Female'
-=> 'Femmina',
+'Configuration data sucessfully stored.'
+=> '',
 
-'Any'
-=> 'Qualsiasi',
+'Select edit mode and section name'
+=> '',
 
-'Company Name'
-=> 'Nome della società',
+'Mode'
+=> '',
 
-'Interests'
-=> 'Interessi',
+'Section'
+=> '',
 
-'No contents in blog.  <a href="%s">Click here to make a post</a>!'
-=> 'Nessun contenuto nel blog.  <a href="%s">Clicca qui per scrivere un '
-.'messaggio</a>!',
+'People Aggregator Defender setup'
+=> '',
 
-'Author of this content is no longer a member of this group'
-=> 'L\'autore di questo contenuto non è più iscritto a questo gruppo',
+'Rule'
+=> '',
 
-'Moderate Group Members'
-=> 'Modera gli iscritti al gruppo',
+'Status'
+=> '',
 
-'Moderate Membership'
-=> 'Modera l\'adesione',
+'description'
+=> '',
 
-'Moderate Content'
-=> 'Contenuto moderato',
+'PADefender configuration data sucessfully stored.'
+=> '',
 
-'There are no pending moderation requests'
-=> 'Non ci sono richieste di moderazione in sospeso',
+'Configure Email'
+=> 'Configura email',
 
-'Moderation'
-=> 'Moderazione',
+'Select An email type'
+=> '',
 
-'Remove selected members from the group'
-=> 'Rimuovi dal gruppo gli utenti selezionati',
-
-'There are no members in this group'
-=> 'Questo gruppo non ha iscritti',
-
-'No celebrities added yet.'
-=> 'Non sono state ancora aggiunte celebrity.',
-
-'Recent Celebrities'
-=> 'Ultime celebrity',
-
-'%s\'s Group Blog'
-=> 'Blog del gruppo %s',
-
-'Click <a href="%s">here</a> to add content.'
-=> 'Clicca <a href="%s">qui</a> per aggiungere un contenuto.',
-
-'Date of birth'
-=> 'Data di nascita',
-
-'ZIP code'
-=> 'CAP',
-
-'Cuisines'
-=> 'Cucine',
-
-'TV shows'
-=> 'Programmi televisivi',
-
-'Largest Groups'
-=> 'Gruppi con più iscritti',
-
-'Question of the Day'
-=> 'Domanda del giorno',
-
-'No links have been added. Click <a href="%s">here</a> to add links.'
-=> 'Non sono stati aggiunti link. Clicca <a href="%s">qui</a> per aggiungere '
-.'link.',
-
-'No links have been added'
-=> 'Non sono stati aggiunti link.',
-
-'Your Profile'
-=> 'Il tuo profiilo',
-
-'Please select the data import format and type<br />'
-=> 'Seleziona il formato dei dati da importare e digita<br />',
-
-'then click the \'import\' button.'
-=> 'quindi clicca il pulsante \'importa\'.',
-
-'Your Profile as hCard/XFN'
-=> 'Il tuo profilo in formato hCard/XFN',
-
-'Select the data you want to import:'
-=> 'Seleziona i dati che vuoi importare:',
-
-'Your profile'
-=> 'Il tuo profilo',
-
-'Your profile data are successfuly updated.'
-=> 'Le informazioni nel tuo profilo sono state aggiornate.',
-
-' can\'t be imported'
-=> 'impossibile importare',
-
-'No data selected.'
-=> 'Nessun dato selezionato.',
-
-'Relations data: '
-=> 'Dati relativi ai contatti:',
-
-'Size'
-=> 'Dimensione',
-
-'Date Created'
-=> 'Data di creazione',
-
-'Group Directory'
-=> 'Lista dei gruppi',
-
-'Create a Group'
-=> 'Crea un gruppo',
-
-'Search Groups'
-=> 'Ricerca gruppi',
-
-'Search for'
-=> 'Ricerca',
-
-'Member'
-=> 'Utente',
-
-'Created'
-=> 'Creato',
-
-'Moderated By'
-=> 'Moderato da',
-
-'No groups found.'
-=> 'Nessun gruppo trovato.',
-
-'No networks in this category'
-=> 'Non ci sono reti in questa categoria',
-
-'Manage Ad Center'
-=> 'Gestisci il centro annunci',
-
-'Edit Ad'
-=> 'Modifica annuncio',
-
-'Create An Ad'
-=> 'Crea un annuncio',
-
-'Page'
-=> 'Pagina',
-
-'Orientation'
-=> 'Orientamento',
-
-'Display count'
-=> 'Mostra conteggio',
-
-'Hit count'
-=> 'Hit count',
-
-'Enable/Disable'
-=> 'Abilita/disabilita',
-
-'Edit'
-=> 'Modifica',
-
-'Enable'
-=> 'Abilita',
-
-'Disable'
-=> 'Disabilita',
-
-'Are you sure you want to delete this Ad'
-=> 'Sei sicuro di voler eliminare questo annuncio',
-
-'In this page you can manage ads on your network'
-=> 'In questa pagina puoi gestire gli annunci della tua rete',
-
-'Create New Ad'
-=> 'Crea un nuovo annuncio',
-
-'Enter Title'
-=> 'Inserisci titolo',
-
-'Title should not be greater than 30 characters'
-=> 'Il titolo non dovrebbe essere più lungo di 30 caratteri',
-
-'Select An Image'
-=> 'Seleziona un\'immagine',
-
-'Preferred size'
-=> 'Dimensione preferita',
-
-'for side modules and'
-=> 'per i moduli laterali e',
-
-'for center modules'
-=> 'per i moduli centrali',
-
-'Previously Selected Image'
-=> 'Immagine selezionata precedentemente',
-
-'Enter URL'
-=> 'Inserisci URL',
-
-'Or Enter JavaScript(.js code)/ Html code'
-=> 'Oppure inserisci codice JavaScript(.js code)/ Html',
-
-'Enter Description'
-=> 'Inserisci descrizione',
-
-'Select Page'
-=> 'Seleziona pagina',
-
-'Select a page'
-=> 'Seleziona una pagina',
-
-'Select Horizontal position'
-=> 'Seleziona posizione orizzontale',
-
-'Edit Textpad'
-=> 'Modifica Textpad',
-
-'Create Textpad'
-=> 'Crea Textpad',
-
-'Are you sure you want to delete this Textpad'
-=> 'Sei sicuro di voler eliminare questo Textpad',
-
-'Available Textpads'
-=> 'Textpad disponibili',
-
-'New Textpad'
-=> 'Nuovo Textpad',
-
-'Nothing has been tagged yet'
-=> 'Non sono state ancora inseriti tag',
-
-'Browse Tags'
-=> 'Sfoglia tag',
-
-'Click here to watch the video'
-=> 'Clicca qui per vedere il video',
-
-'You cannot add an Event to the calendar of group %s, as you are not a member.'
-=> 'Non puoi aggiungere eventi al calendario del gruppo %s perchè non sei '
-.'iscritto.',
-
-'Couldn\'t create event:'
-=> 'Impossibile creare evento:',
-
-'Couldn\'t create EventAssociation:'
-=> 'Impossibile creare EventAssociation:',
-
-'There was a problem updating the event:'
-=> 'Si è verificato un problema nell\'aggiornamento dell\'evento:',
-
-'Event %d doesn\'t exist'
-=> 'L\'evento %d non esiste',
-
-'Couldn\'t update the event:'
-=> 'Impossibile aggiornare l\'evento:',
-
-'There was a problem deleting the event:'
-=> 'Si è verificato un problema nell\'eliminazione dell\'evento:',
-
-'The event has been deleted.'
-=> 'L\'evento è stato eliminato.',
-
-'Couldn\'t delete the event:'
-=> 'Impossibile eliminare l\'evento:',
-
-'No users given'
-=> 'Nessun utente',
-
-'There was a problem associating the event:'
-=> 'Si è verificato un problema nell\'associare l\'evento:',
-
-'%s is not a user'
-=> '%s non è un utente',
-
-'Add people:'
-=> 'Aggiungi persone:',
-
-'You cannot add an Event to the caledar of group %s, as you are not a member.'
-=> 'Non puoi aggiungere eventi al calendario del gruppo %s perchè non sei '
-.'iscritto.',
-
-'Add group:'
-=> 'Aggiungi gruppo:',
-
-'You may not remove the association to this event.'
-=> 'Non puoi rimuovere l\'associazione a questo evento',
-
-'You cannot remove yourself from this event, as you created it.  Please use '
-.'\'Delete Event\' instead.'
-=> 'Non puoi cancellarti da questo evento perchè l\'hai creato. Utilizza il '
-.'comando \'elimina evento\'.',
-
-'Edit Event'
-=> 'Modifica evento',
-
-'Create Event'
-=> 'Crea un evento',
-
-'Event title'
-=> 'Titolo dell\'evento',
-
-'Start date'
-=> 'Data d\'inizio',
-
-'Start time'
-=> 'Orario d\'inizio',
-
-'End date'
-=> 'Data di fine',
-
-'End time'
-=> 'Orario di fine',
-
-'Event venue'
-=> 'Luogo dell\'evento',
-
-'Event description'
-=> 'Descrizione dell\'evento',
-
-'Current Event Banner'
-=> 'Attuale banner dell\'evento',
-
-'Upload Event Banner'
-=> 'Carica banner dell\'evento',
-
-'Are you sure you want to delete this Event?'
-=> 'Sei sicuro di voler eliminare questo evento?',
-
-'Display as:'
-=> 'Visualizza come:',
-
-'List'
-=> 'Lista',
-
-'Calendar'
-=> 'Calendario',
-
-'This event appears on'
-=> 'Questo evento appare su',
-
-'Calendar for'
-=> 'Calendario per',
-
-'(This event will always appear in the creator\'s calendar.)'
-=> '(Questo evento verrà sempre mostrato nel calendario dell\'autore.)',
-
-'Remove'
-=> 'Rimuovi',
-
-'Add to further calendars'
-=> 'Aggiungi ad altri calendari',
-
-'Add people\'s login names here, seperated by commas.'
-=> 'Inserisci qui gli username separati da virgole',
-
-'Groups you are a member of'
-=> 'I gruppi a cui sei iscritto',
-
-'Add'
-=> 'Aggiungi',
-
-'Event Banner'
-=> 'Banner evento',
-
-'Starts'
-=> 'Inizia',
-
-'Venue'
-=> 'Luogo',
+'Select an email type'
+=> '',
 
 'Description'
 => 'Descrizione',
 
-'Create new Event'
-=> 'Crea nuovo evento',
-
-'s made yet.'
-=> '',
-
-'Invite friends and colleagues to join %s:'
-=> 'Invita amici e colleghi a iscriversi a %s:',
-
-'Click to import your contacts from:'
-=> 'Clicca per importare i tuoi contatti da:',
-
-'Email:'
-=> 'Email:',
-
-'(separate addresses with commas)'
-=> '(separa gli indirizzi con le virgole)',
-
-'(separated by comma)'
-=> '(separati da virgola)',
-
-'Write your invitation Message:'
-=> 'Scrivi il tuo messaggio di invito:',
-
-'Send Invitation'
-=> 'Spedisci invito',
-
-'In this page you can manage groups on your network'
-=> 'In questa pagina puoi gestire i gruppi nella tua rete',
-
-'View all Members'
-=> 'Visualizza tutti gli iscritti',
-
-'View all '
-=> 'Visualizza tutti',
-
-'View all people who call '
-=> 'Vedi tutte le persone che mi hanno aggiunto come',
-
-'me a friend'
-=> 'amico',
-
-'Click <a href="%s">here</a> to enter your Flickr username or e-mail '
-.'address to see your pictures!'
-=> 'Clicca <a href="%s">qui</a> per inserire il tuo username Flickr o il tuo '
-.'indirizzo email e vedere le tue foto!',
-
-'Loading'
-=> 'Loading',
-
-'Search Content'
-=> 'Ricerca contenuto',
-
-'Search Terms'
-=> 'Ricerca parole',
-
-'all these words'
-=> 'tutte queste parole',
-
-'this exact phrase'
-=> 'la frase esatta',
-
-'any of these words'
-=> 'Una qualsiasi di queste parole',
-
-'none of these words'
-=> 'nessuna di queste parole',
-
-'Date Range'
-=> 'Intervallo di tempo',
-
-'start date'
-=> 'Data d\'inizio',
-
-'Select'
-=> 'Seleziona',
-
-'end date'
-=> 'Data di fine',
-
-'Showcased Members'
-=> 'Vetrina iscritti',
-
-'member'
-=> 'iscritto',
-
-'No groups created yet. Be the first to <a href="%s" style="display:inline;'
-.'">create one</a>!'
-=> 'Non sono ancora stati creati gruppi. <a href="%s" style="display:inline;'
-.'">clicca qui</a> se vuoi essere il primo a crearne uno!',
-
-'Conversations'
-=> 'Conversazioni',
-
-'Conversations View'
-=> 'Visualizza conversazioni',
-
-'Network Activity Feed'
-=> 'Feed attività rete',
-
-'Welcome to %s!'
-=> 'Benvenuto %s!',
-
-'With your %s account you will be able to:'
-=> 'Con il tuo %s account potrai:',
-
-'Edit, share and store all your digital stuff in one place.'
-=> 'Modificare, condividere e conservare tutti i tuoi file in un posto solo',
-
-'Manage all your friends, groups and content.'
-=> 'Gestire i tuoi amici, gruppi e contenuti.',
-
-'Unite your online life by connecting all your presences together.'
-=> 'Crearti un\'unica identità online che metta insieme tutte le tue presenze in '
-.'rete',
-
-'Provide the following information to join and start connecting all your '
-.'digital worlds!'
-=> 'Compila il form per registrarti e inizia a unire tutti i tuoi mondi digitali!',
-
-'Login name'
-=> 'Username',
-
-'Login name may contain letters, numbers and underscores (_).'
-=> 'Lo username può contenere lettere, numeri e underscore (_).',
-
-'Password'
-=> 'Password',
-
-'Password can be 5-15 characters long, and is case sensitive.'
-=> 'La password deve essere lunga dai 5 ai 15 caratteri ed è case sensitive '
-.'(distingue tra maiuscole e minuscole).',
-
-'Confirm password'
-=> 'Conferma password',
-
-'Email'
-=> 'Email',
-
-'Your photo'
-=> 'La tua foto',
-
-'To use a different image, click Browse or enter a URL below.'
-=> 'Per utilizzare un\'immagine diversa, clicca Sfoglia oppure inserisci un URL.',
-
-'Upload a photo'
-=> 'Carica una foto',
-
-'Or enter a photo URL'
-=> 'Oppure inserisci l\'URL di una foto',
-
-'Preview image'
-=> 'Anteprima immagine',
-
-'I have read and agree to the %s <a href=\'%s/terms.php\' target=\'_blank\'>Terms '
-.'and Conditions</a>'
-=> 'Ho letto e approvo i %s <a href=\'%s/terms.php\' target=\'_blank\'>Termini e '
-.'Condizioni di servizio</a>',
-
-'Manage users registered on your network'
-=> 'Gestisci gli utenti registrati nella tua rete',
-
-'Search Registered Users'
-=> 'Ricerca utenti registrati',
-
-'Registered'
-=> 'Registrato',
-
-'User Name'
-=> 'Username',
-
-'Action'
-=> 'Azione',
-
-'Approve'
-=> 'Approva',
-
-'Are you sure you want to delete this user?'
-=> 'Sei sicuro di voler eliminare questo utente?',
-
-'pending'
-=> 'In sospeso',
-
-'Assign Role'
-=> 'Assegna ruolo',
-
-'Selected'
-=> 'Selezionato',
-
-'Are you sure?'
-=> 'Sei sicuro?',
-
-'(un)check all'
-=> '(de)seleziona tutto',
-
-'No users'
-=> 'Nessun utente',
-
-'No networks found'
-=> 'Nessuna rete trovata',
-
-'Requests'
-=> 'Richieste',
-
-'Approve or deny requests to join this group'
-=> 'Conferma o rifiuta richieste di iscrizione a questo gruppo',
-
-'Please, select your administration task'
-=> 'Seleziona un\'operazione di amministrazione',
-
-'Network Address'
-=> 'Indirizzo di rete',
-
-'Network address will be part of the URL of your network, e.g. <code>http://'
-.'<b>abc</b>.%s/</code>. It should be less than 10 characters.'
-=> 'L\'indirizzo di rete (utilizzare possibilmente meno di 10 caratteri) farà '
-.'parte dell\'URL della tua rete, ad esempio <code>http://<b>abc</b>.%s/</code>.',
-
-'Check Availability'
-=> 'Controlla disponibilità',
-
-'Network Title/Heading'
-=> 'Titolo/Intestazione rete',
-
-'Title appears on network pages.  For best results, keep below 60 characters '
-.'(max 100 characters).'
-=> 'Il titolo compare sulle pagine della rete. Per un migliore risultato è '
-.'preferibile mantenersi al di sotto dei 60 caratteri, comunque non più di 100.',
-
-'Network Sub Title'
-=> 'Sottotitolo della rete',
-
-'The sub-title will be displayed below the Network Title.'
-=> 'Il sottotitolo verrà visualizzato sotto al titolo della rete.',
-
-'Network Category'
-=> 'Categoria Reti',
-
-'This category is used to organise the Network Directory.'
-=> 'Questa categoria è utilizzata per organizzare la lista delle reti.',
-
-'Network Description'
-=> 'Descrizione della rete',
-
-'A short paragraph or two describing your network.'
-=> 'inserisci una breve descrizione della tua rete.',
-
-'Community Blog Title'
-=> 'Titolo del blog della community',
-
-'The Network group title will be displayed on the homepage.'
-=> '',
-
-'Network Icon'
-=> 'Icona della rete',
-
-'The icon will appear in the network listing.'
-=> 'L\'icona comparirà nella lista delle reti.',
-
-'Current Icon'
-=> 'Icona attuale',
-
-'Ideal size 70 x 60 pixels'
-=> 'Dimensione ideale 70x60 pixel',
-
-'Check if content moderation is required.'
-=> 'Controllare se è richiesta la moderazione del contenuto.',
-
-'Check if People page should only show users with a profile photo.'
-=> 'Controllare se la pagina Persone mostra solo utenti con foto nel profilo.',
-
-'Check if top menu bar is not required.'
-=> 'Controllare se è richiesta la barra del menù superiore.',
-
-'Check if reciprocated relationships are required.'
-=> 'Controllare se è richiesta la reciprocità del contatto.',
-
-'Check if email address validation is required.'
-=> 'Controllare se è richiesta la validazione dell\'indirizzo email.',
-
-'Check if CAPTCHA is required during registration.'
-=> 'Controllare se è richiesto un CAPTCHA durante la registrazione.',
-
-'Reciprocated relationships are required.'
-=> 'è necessaria la reciprocità del contatto.',
-
-'Reciprocated relationships are not required.'
-=> 'Non è necessaria la reciprocità del contatto.',
-
-'Email address validation is required.'
-=> 'è necessaria la validazione dell\'indirizzo email.',
-
-'Email address validation is not required.'
-=> 'Non è necessaria la validazione dell\'indirizzo email.',
-
-'CAPTCHA is required during registration.'
-=> 'è richiesto un CAPTCHA durante la registrazione.',
-
-'CAPTCHA is not required during registration.'
-=> 'Non è richiesto un CAPTCHA durante la registrazione.',
-
-'Friend'
-=> 'Amico',
-
-'%s supports several ID systems.'
-=> '%s supporta diversi ID.',
-
-'%s login.'
-=> '%s login.',
-
-'OpenID'
-=> 'OpenID',
-
-'Flickr ID'
-=> 'Flickr ID',
-
-'Vista CardSpace'
-=> 'Vista CardSpace',
-
-'Remember me on this computer'
-=> 'Ricordami su questo computer',
-
-'Forgot your password?'
-=> 'Hai dimenticato la password?',
-
-'Nothing has been tagged yet.'
-=> 'Non sono stati ancora inseriti tag',
-
-'Invitation Status'
-=> 'Stato dell\'invito',
-
-'Accepted invitations'
-=> 'Inviti accettati',
-
-'No Accepted Invitations'
-=> 'Inviti non accettati',
-
-'Pending invitations'
-=> 'Inviti in sospeso',
-
-'No pending Invitations'
-=> 'Non ci sono inviti in sospeso',
-
-'Terms and Conditions - %s'
-=> 'Termini e Condizioni di utilizzo - %s',
-
-'Status of selected user(s) updated successfully'
-=> 'Le informazioni sull\'utente/i selezionato/i sono state aggiornate',
-
-'An error has occured on deleting users.'
-=> 'Si è verificato un errore nell\'eliminazione utenti.',
-
-'%s - Private Messages - %s'
-=> '%s - Messaggi privati - %s',
-
-'Successfully updated'
-=> 'Aggiornato con successo',
-
-'Newest People'
-=> 'Nuovi arrivati',
-
-'Friends'
-=> 'Amici',
-
-'%s\'s Gallery'
-=> 'Gallery di %s',
-
-'Network spawning disabled.'
-=> 'Espansione rella rete disabilitata',
-
-'Create Network - %s'
-=> 'Crea una rete - %s',
-
-'User Public Page'
-=> 'Pagina pubblica dell\'utente',
-
-'Group Page'
-=> 'Pagina del gruppo',
-
-'Cannot create networks: Network spawning has been disabled on this '
-.'installation.'
-=> 'Impossibile creare reti: l\'espansione della rete è stata disabilitata.',
-
-'Files with extension \'%s\' may not be uploaded'
-=> 'I file con estensione \'%s\' non possono essere caricati',
-
-'Unable to determine image type'
-=> 'Impossibile determinare il tipo di immagine',
-
-'File MIME type is %s, expected %s'
-=> 'Il file MIME type è %s, atteso %s',
-
-'Latest posts from %s'
-=> 'Ultimi messaggi da %s',
-
-'Newest posts from everyone on %s'
-=> 'Messaggi più recenti da tutti gli utenti su %s',
-
-'%s: %s blog'
-=> '%s: %s blog',
-
-'Failed to retrieve %s: %s'
-=> 'Impossibile recuperare %s: %s',
-
-'Sorry! you are not authorized to view the content of this page.'
-=> '',
-
-'Following relations could not be added as default relation '
-=> '',
-
-'Default settings for the network has been saved'
-=> '',
-
-'Group deleted successfully'
-=> '',
-
-' deleted successfully'
-=> '',
-
-'Hi '
-=> '',
-
-'Activate your people aggregator account by clicking the following link:'
-=> '',
-
-'Invalid or missing SOAP XML file'
-=> '',
-
-'No response from'
-=> '',
-
-'Invalid response received from'
-=> '',
-
-'Invalid XML response received from'
-=> '',
-
-'BinarySecurityToken not found in XML response received from'
-=> '',
-
-'XML parsing error!'
-=> '',
-
-'Data not found or XML parsing error!'
-=> '',
-
-'Can\'t get data from URL. Please, check the given URL.'
-=> '',
-
-'Can\'t open file \''
-=> '',
-
-'File'
-=> '',
-
-'doesn\'t exist.'
-=> '',
-
-'No data! Check is file empty.'
-=> '',
-
-'This class need \'Sockets\' extension!'
-=> '',
-
-'SSL connection not available on this server!'
-=> '',
-
-'Can\'t connect to '
-=> '',
-
-'Delete as '
-=> '',
-
-'First'
-=> '',
-
-'Last'
-=> '',
-
-'Module'
-=> '',
-
-'Request'
-=> '',
-
-'Response'
-=> '',
-
-'Rendered response'
-=> '',
-
-'An unknown error occurred - no response available.'
-=> '',
-
-'Note: do not enable widgetization on public facing webservers as it allows '
-.'operations to be performed as arbitrary users! Access must be restricted to '
-.'trusted front-end systems.'
-=> '',
-
-'Overall Rating'
-=> '',
-
-'Your Rating'
-=> '',
-
-'Please'
-=> '',
-
-'log in'
-=> '',
-
-'to rate this video'
-=> '',
-
-'Are you sure you want  to post the comment?'
-=> '',
-
-'Leave a Comment'
-=> '',
-
-'Comment'
-=> '',
-
-'Submit Comment'
-=> '',
-
-'to rate this post'
-=> '',
-
-'to rate this image'
-=> '',
-
-'Showing profile fields in sidebar widget.'
-=> '',
-
-'peopleaggregator: widgetization testbench'
-=> '',
-
-'Select a module'
-=> '',
-
-'Report abuse'
-=> '',
-
-'Submit Abuse'
-=> '',
-
-'Unknown error.'
-=> '',
-
-'Detailed information has been written into the error log.'
-=> '',
-
-'Are you sure you want to post the comment?'
-=> '',
-
-'to rate this audio'
-=> '',
-
-'Your request for adding '
-=> '',
-
-' as a relation has already been sent'
-=> '',
-
-'Edit Relationship'
-=> '',
-
-'Request to join'
-=> '',
-
-'Your comment contains some illegal characters. Please try again.'
-=> '',
-
-'Comment can not be left blank'
-=> '',
-
-'Sorry, your comment cannot be posted as it looks like spam. Try removing any '
-.'links to possibly suspect sites, and re-submitting.'
-=> '',
-
-'Your comment has been posted successfully'
-=> '',
-
-'Sorry, your comment cannot be posted as it was classified as spam by '
-.'Akismet, or contained links to blacklisted sites.  Please check the links in '
-.'your post, and that your name and e-mail address are correct.'
-=> '',
-
-'Sorry, your comment cannot be posted as it was classified as spam by '
-.'Akismet, or contained links to blacklisted sites. Please check the links in '
-.'your post, and that your name and e-mail address are correct.'
-=> '',
-
-'You need to be member of this group to view the contents'
-=> '',
-
-'basecamp test disabled'
-=> '',
-
-'please enter your basecamp login details above.'
-=> '',
-
-'scraping contacts page to get companies'
-=> '',
-
-'getting list of people from company '
-=> '',
-
-' who are working on this project'
-=> '',
-
-'testing ImageResize module with engine'
-=> '',
-
-'make sure to hit ctrl-F5 after clicking, to clear the cache'
-=> '',
-
-'flushing cache'
-=> '',
-
-'done'
-=> '',
-
-'expanding and cropping 135x75 to fit inside 300x300'
-=> '',
-
-'reduce only'
-=> '',
-
-'fitting 135x75 inside 300x300'
-=> '',
-
-'reduce only, smaller'
-=> '',
-
-'This section is disabled. Click the checkbox above to show it in your '
-.'sidebar widget.'
-=> '',
-
-'click to include'
-=> '',
-
-'Design your sidebar widget'
-=> '',
-
-'Rename this widget'
-=> '',
-
-'Rename'
-=> '',
-
-'Or'
-=> '',
-
-'Delete this widget'
-=> '',
-
-'Are you sure you wish to delete this widget?'
-=> '',
-
-'Preview'
-=> '',
-
-'Headline saved successfully'
-=> '',
-
-'Song added successfully'
-=> '',
-
-'Album added successfully'
-=> '',
-
-'MIS Reports'
-=> '',
-
-' is already enabled at specified orientation'
-=> '',
-
-'Date range selected is invalid, so it has been ignored in searching'
-=> '',
-
-'Please enter either data or date to search'
-=> '',
-
-'Network URL cannot be left empty for showcased network '
-=> '',
-
-' For showcased network '
-=> '',
-
-'No caption given to network of moment'
-=> '',
-
-'Please provide URL for network of moment'
-=> '',
-
-'No video URL provided for video tours'
-=> '',
-
-'No description provided for network of moment'
-=> '',
-
-' For network of moment, '
-=> '',
-
-'Message sent successfully to '
-=> '',
-
-'Location: '
-=> '',
-
-'View All fans of '
-=> '',
-
-'Question is set for all users'
-=> '',
-
-'Please select a question to activate.'
-=> '',
-
-'Question has been successfully saved'
-=> '',
-
-'Fields marked with * must not be left empty'
-=> '',
-
-'Question has been deleted successfully'
-=> '',
-
-'All the files have been updated. Now you need to'
-=> '',
-
-'click here to update the database'
-=> '',
-
-'and the update will be complete'
-=> '',
-
-'Error occurred running database update:'
-=> '',
-
-'PeopleAggregator system update'
-=> '',
-
-'This file may not be called directly.'
-=> '',
-
-'No admininstrator password configured'
-=> '',
-
-'To use the updater, add a line like this to'
-=> '',
-
-'Log in'
-=> '',
-
-'There was a problem:<br>No message(s) selected. Please select at least one '
-.'message and try again.'
-=> '',
-
-'There was a problem:'
-=> '',
-
-'No folder selected. Please select a folder and try again.'
-=> '',
-
-'No message(s) selected. Please select at least one message and try again.'
-=> '',
-
-'Write Comment for '
-=> '',
-
-'Show Splash Page'
-=> '',
-
-'If this checkbox is checked then Splash Page will be the first page to be '
-.'shown to the anonymous users otherwise Homepage will be the first page'
-=> '',
-
-'Current Image'
-=> '',
-
-'No image selected.'
-=> '',
-
-'Upload Image'
-=> '',
-
-'Uploaded image will be displayed at 185 pixels by 110 pixels.'
-=> '',
-
-'Save Announcement'
-=> '',
-
-'Uploaded image will be displayed at 193 pixels by 67 pixels.'
-=> '',
-
-'Showcased Network '
-=> '',
-
-'Showcased Network URL'
-=> '',
-
-'Paste the complete URL of the network here'
-=> '',
-
-'Showcased Network Image'
-=> '',
-
-'Caption'
-=> '',
-
-'Uploaded images will be displayed at 145 pixels by 145 pixels.'
-=> '',
-
-'Set Showcased Networks'
-=> '',
-
-'Video URL'
-=> '',
-
-'Video Tours Image'
-=> '',
-
-'Save Video Tour'
-=> '',
-
-'Network URL'
-=> '',
-
-'Network of the Moment Image'
-=> '',
-
-'Uploaded image will be displayed at 193 pixels by 67 pixels'
-=> '',
-
-'Save Network of the Moment'
-=> '',
-
-'In this page you can moderate users registered on your network'
-=> '',
-
-'Picture'
-=> '',
-
-'Name'
-=> '',
-
-'No User.'
-=> '',
-
-'Moderate Users'
-=> '',
-
-'Enable Modules'
-=> '',
-
-'Replace these fields in your PeopleAggregator profile'
-=> '',
-
-'Please be careful: the fields you select to import in this section will '
-.'overwrite the info you had in those fields in your PeopleAggregator profile.'
-=> '',
-
-'Create new fields in your PeopleAggregator profile'
-=> '',
-
-'The fields you select below will be added to your PeopleAggregator profile.'
-=> '',
-
-'Latest video of %s'
-=> '',
-
-'No Video uploaded yet.'
-=> '',
-
-'Full view'
-=> '',
-
-'Tags'
-=> '',
-
-'Apply Changes'
+'Email Template'
 => '',
 
-'Return to group gallery'
+'Configurable variables related to the selected message'
 => '',
 
-'Access'
+'Recipient/Requester configurable variables available in each message'
 => '',
 
-'in which your'
+'Network configurable variables available in each message'
 => '',
 
-'file will appear...'
+'Group configurable variables available in each message of Group type'
 => '',
 
-'Create New Album'
+'Restore Default'
 => '',
 
-'Return to media gallery'
+'Store as Defaults'
 => '',
 
-'No Forum Activity.'
+'Caution - software developers only'
 => '',
 
-'Recent Forum Activity'
+'Load / restore Email Message settings from local disk'
 => '',
 
-'Your page created sucessfull. Page data'
+'Select XML configuration file.'
 => '',
 
-'Click here for preview'
+'Select action'
 => '',
 
-'This module should be used for testing a new PA feature - generating page '
-.'"in fly" or'
+'Load Email Message settings'
 => '',
 
-'Dynamic page generation. This module also demonstrate handling actions '
-.'inside a module'
+'Revert All Messages'
 => '',
 
-'instead by a script placed in the WEB root path. And, another module has '
-.'been customized'
+'Warning: you will lose all message changes made at this site.'
 => '',
 
-'(AddGroupModule) to demonstrate that. Click here to see that example'
+'Select page'
 => '',
 
-'NOTE: Many of the existing modules could be used without any changes, but '
-.'all modules which'
+'Select page you want to customize.'
 => '',
 
-'has been initialized from the WEB-root script should be adapted and '
-.'initialization and action'
+'Get module info'
 => '',
 
-'handling code should be moved inside a module. For more details, please take '
-.'a look on the following source'
+'Add this module to: '
 => '',
 
 'Page ID'
@@ -2446,22 +606,37 @@ $TRANSLATED_STRINGS = array(
 'Enter Page name'
 => '',
 
-'Page Type'
+'Login required'
 => '',
 
-'Public Page'
+'No'
 => '',
 
-'Private Page'
+'Yes'
 => '',
 
 'Select Page type'
 => '',
 
+'Page type'
+=> '',
+
+'Enter Page type (user, group, network). For multiple types use "|" to '
+.'separate types.'
+=> '',
+
+'Is page configurable'
+=> '',
+
+'If a page is configurable - these settings will be available in Customize UI '
+.'pages.'
+=> '',
+
 'Required user or administration permissions for access to this page'
 => '',
 
-'Enter required administration permissions. This permissions available'
+'Enter required administration permissions. Currently, these permissions are '
+.'available'
 => '',
 
 'Page Theme'
@@ -2495,8 +670,8 @@ $TRANSLATED_STRINGS = array(
 .'$module_shared_data variable. For example'
 => '',
 
-'NOTE: Code in the box above is only for example. If your page does not '
-.'require boot code, delete it!'
+'NOTE: If your page does not require additional boot code, leave this '
+.'untouched.'
 => '',
 
 'Left modules'
@@ -2585,25 +760,46 @@ $TRANSLATED_STRINGS = array(
 'Select if you want to save generated Page'
 => '',
 
-'Submit'
+'Edit/Create Dynamic Page'
 => '',
 
-'Create Dynamic Page'
+'Your page created sucessfull. Page data'
 => '',
 
-'Networks'
+'Click here for preview'
 => '',
 
-'Upload'
+'Write Testimonial'
+=> 'Scrivi un testimonial',
+
+'Testimonial'
 => '',
 
-'Are you sure you want to delete this image'
+'Write Testimonial for '
 => '',
 
-'No Photos.'
+'Left'
 => '',
 
-'Tag Search'
+'Right'
+=> '',
+
+'Middle'
+=> '',
+
+'Background Image'
+=> '',
+
+'Current Background Image'
+=> '',
+
+'Upload Background Image'
+=> '',
+
+'Image as header background will appear on your Networks Pages'
+=> '',
+
+'Apply background image'
 => '',
 
 'Theme Selector'
@@ -2618,176 +814,25 @@ $TRANSLATED_STRINGS = array(
 'Customize Theme'
 => '',
 
-'Use these settings to customize the look of your "Me" page and the look of '
-.'your public blog page<br>that others will see.'
-=> '',
-
 'Desktop Image'
 => '',
 
 'Current Desktop Image'
 => '',
 
-'Upload desktop image'
+'Upload Desktop Image'
 => '',
 
-'Image will appear on your public page'
+'Image will appear on your Personal Pages'
 => '',
 
-'Set image appearance'
-=> '',
-
-'Images 1016 pixels wide by 191 pixels tall will give the best results.'
-=> '',
-
-'Use desktop image?'
-=> '',
-
-'Select "yes" to turn on or "no" to turn off your custom desktop image.'
-=> '',
-
-'Restore Default Image'
-=> '',
-
-'Check / Uncheck all modules'
-=> '',
-
-'In this page you can manage category on your network'
-=> '',
-
-'Manage Category'
-=> '',
-
-'Select Type'
-=> '',
-
-'Parent'
-=> '',
-
-'Options'
-=> '',
-
-'Are you sure you want to delete this category?'
-=> '',
-
-'Create New Category'
-=> '',
-
-'Parent Category (Optional)'
-=> '',
-
-'Enter Tilte'
-=> '',
-
-'You can upload an audio file'
-=> '',
-
-'Maximum size'
-=> '',
-
-'Select a file to upload, or enter a URL below'
-=> '',
-
-'Audio URL'
-=> '',
-
-'Audio title'
-=> '',
-
-'Tags (separate with commas)'
-=> '',
-
-'Select who can listen this Audio'
-=> '',
-
-'Add More'
-=> '',
-
-'Or finish below'
-=> '',
-
-'Send to album'
-=> '',
-
-'Or create new album'
-=> '',
-
-'Upload audio'
-=> '',
-
-'You can upload a video file'
-=> '',
-
-'Select a file to upload'
-=> '',
-
-'Video title'
-=> '',
-
-'Upload video'
-=> '',
-
-'Back'
-=> '',
-
-'You can upload a gif, jpg, jpeg, png, xpm or bmp file'
-=> '',
-
-'Do not upload photos containing cartoons, celebrities, nudity, artwork or '
-.'copyrighted images'
-=> '',
-
-'Image title'
-=> '',
-
-'Upload image'
-=> '',
-
-'Select who can see this image'
-=> '',
-
-'Image URL'
-=> '',
-
-'Are you sure you want to delete this comment'
-=> '',
-
-'No comment yet.'
-=> '',
-
-'Login to comment'
-=> '',
-
-'Comments on %s'
-=> '',
-
-'Comment can not be empty'
-=> '',
-
-'Comment saved successfully'
-=> '',
-
-'Please enter your email address or login name.'
-=> '',
-
-'Please enter either email or Login name'
-=> '',
-
-'There are no accounts in our system with the e-mail address %s.\n'
-.'              If you have spelled the address incorrectly or entered the '
-.'wrong address, please try again.'
-=> '',
-
-'Login required'
-=> '',
-
-'Use these settings to customize the look of your '
-=> '',
-
-'No header'
+'Image will appear on your Groups Pages'
 => '',
 
 'Image will appear on your Networks Pages'
+=> '',
+
+'Set image appearance'
 => '',
 
 'Stretch to fit'
@@ -2805,960 +850,6 @@ $TRANSLATED_STRINGS = array(
 'Images 1016 pixels wide by 191 pixels tall will have the best results'
 => '',
 
-'Here to set the Desktop image is display turn on or off.'
-=> '',
-
-'Apply desktop image'
-=> '',
-
-'Restore Default'
-=> '',
-
-'Configure Group Homepage'
-=> '',
-
-'Available Modules'
-=> '',
-
-'Show in Left or Right'
-=> '',
-
-'Stacking Order'
-=> '',
-
-'Left'
-=> '',
-
-'Right'
-=> '',
-
-'Blogs'
-=> '',
-
-'Previously Selected photo'
-=> '',
-
-'Image description'
-=> '',
-
-'Previously Selected Video'
-=> '',
-
-'Video description'
-=> '',
-
-'Manage Domain List'
-=> '',
-
-'Please press enter after each entry'
-=> '',
-
-'In this page you can manage Ads on a celebrity page.'
-=> '',
-
-'Place Holder'
-=> '',
-
-'Target url'
-=> '',
-
-'Add new celebrity ad'
-=> '',
-
-'Select ad place holder'
-=> '',
-
-'Upload Picture'
-=> '',
-
-'Ad target url'
-=> '',
-
-'Group Name'
-=> '',
-
-'Group Type'
-=> '',
-
-'Select Group Type'
-=> '',
-
-'Select Super Group Features'
-=> '',
-
-'Group Category'
-=> '',
-
-'separated tags with commas'
-=> '',
-
-'Group Photo'
-=> '',
-
-'Choose File'
-=> '',
-
-'Current Photo'
-=> '',
-
-'Group Description'
-=> '',
-
-'Registration Type'
-=> '',
-
-'Open'
-=> '',
-
-'Moderated'
-=> '',
-
-'Invite Only'
-=> '',
-
-'Change Group Settings'
-=> '',
-
-'Change Super Group Settings'
-=> '',
-
-'File upload error: '
-=> '',
-
-'Member Deleted'
-=> '',
-
-'Edit Static Page'
-=> '',
-
-'Create Static Page'
-=> '',
-
-'URL'
-=> '',
-
-'Page Text'
-=> '',
-
-'Are you sure you want to delete this page?'
-=> '',
-
-'In this page you can manage static pages.'
-=> '',
-
-'Manage Static Pages'
-=> '',
-
-'Create New Static Page'
-=> '',
-
-'Enter Caption'
-=> '',
-
-'Caption should be less than 30 characters.'
-=> '',
-
-'Enter Page Text'
-=> '',
-
-'Thumbnail'
-=> '',
-
-'Title/Description/Date/Tags'
-=> '',
-
-'Album/Playlist'
-=> '',
-
-'No Videos'
-=> '',
-
-'No Video'
-=> '',
-
-'You can upload a gif, jpg, jpeg, png, xpm, bmp, file.'
-=> '',
-
-'Do not upload photos containing cartoons, celebrities, nudity, artwork of '
-.'copyrighted images.'
-=> '',
-
-'For better result image dimension  should be 36x191'
-=> '',
-
-'Enter the destination URL of image'
-=> '',
-
-'No Fan listed yet.'
-=> '',
-
-'Become Fan'
-=> '',
-
-'Remove Fan'
-=> '',
-
-'View All'
-=> '',
-
-'Fans'
-=> '',
-
-'Fan has been added successfully'
-=> '',
-
-'Removed from fan list successfully'
-=> '',
-
-'caption'
-=> '',
-
-'Group doesn\'t exist'
-=> '',
-
-'Manage TakeATour'
-=> '',
-
-'In this page you can manage celebrities on your network'
-=> '',
-
-'Search Celebrities'
-=> '',
-
-'Second Picture'
-=> '',
-
-'Author'
-=> '',
-
-'Links'
-=> '',
-
-'Delete selected'
-=> '',
-
-'create your post'
-=> '',
-
-'select where you want it to go'
-=> '',
-
-'You can route this post to one or many destinations with the selectors '
-.'below. You can even publish it to blogs outside of the PeopleAggregator '
-.'network by configuring an'
-=> '',
-
-'account in your'
-=> '',
-
-'settings'
-=> '',
-
-'Please note that routing does not post to private groups'
-=> '',
-
-'Routing'
-=> '',
-
-'Send to selected group blogs'
-=> '',
-
-'Send to selected external blogs'
-=> '',
-
-'Select albums in your media gallery to send to'
-=> '',
-
-'Select none of my galleries'
-=> '',
-
-'Select all of my galleries'
-=> '',
-
-'No Albums'
-=> '',
-
-'Or, create a new album in your media gallery'
-=> '',
-
-'publish post'
-=> '',
-
-'The publish post button will send you creation to all the destination you '
-.'have selected above. You can always edit this post or send it other places '
-.'later by selecting Manage Posts, found on the Blog module on'
-=> '',
-
-'Your Page.'
-=> '',
-
-'Cancel'
-=> '',
-
-'Add Blog Post'
-=> '',
-
-'Default Image Album'
-=> '',
-
-'Default Audio Album'
-=> '',
-
-'Default Video Album'
-=> '',
-
-'Create Blog'
-=> '',
-
-'Separate tags with commas'
-=> '',
-
-'Send'
-=> '',
-
-'Message composed will be discarded. Do you want to continue?'
-=> '',
-
-'To'
-=> '',
-
-'select friend'
-=> '',
-
-'Message'
-=> '',
-
-'Check Mail'
-=> '',
-
-'Compose'
-=> '',
-
-'Message sent successfully to %s'
-=> '',
-
-'Message sending failed for %s  as user(s) doesn\'t exist'
-=> '',
-
-'Polls'
-=> '',
-
-'No previous poll to display'
-=> '',
-
-'No votes are posted for this poll'
-=> '',
-
-'Manage Network Bulletins'
-=> '',
-
-'Use this tool to send announcements to all registered network members'
-=> '',
-
-'Message/post'
-=> '',
-
-'Destination'
-=> '',
-
-'Deliver message to all registered members by internal mail'
-=> '',
-
-'Email message to all network members'
-=> '',
-
-'Post message to network home page community blog'
-=> '',
-
-'Send to me only'
-=> '',
-
-'No Group added yet.'
-=> '',
-
-'Manage Network Content'
-=> '',
-
-'Search Posts'
-=> '',
-
-'Browse Months'
-=> '',
-
-'Network Operator Controls'
-=> '',
-
-'In this page you can'
-=> '',
-
-'celebrity on your network'
-=> '',
-
-'celebrity'
-=> '',
-
-'Enter the Description'
-=> '',
-
-'Enter the Official site'
-=> '',
-
-'Upload celebrity photo'
-=> '',
-
-'Previously Selected another photo'
-=> '',
-
-'Upload celebrity another photo'
-=> '',
-
-'Edit '
-=> '',
-
-'Create a '
-=> '',
-
-'Forum Topic'
-=> '',
-
-'Create A New Forum Topic'
-=> '',
-
-'Please specify a title for the forum topic'
-=> '',
-
-'Error occured in saving data'
-=> '',
-
-'Manage content on your network.'
-=> '',
-
-'Search posts'
-=> '',
-
-'Browse months'
-=> '',
-
-'When'
-=> '',
-
-'Type'
-=> '',
-
-'Comments'
-=> '',
-
-'Abuses'
-=> '',
-
-'Are you sure you want to delete this content?'
-=> '',
-
-'No Content.'
-=> 'Nessun contenuto.',
-
-'Manage Content'
-=> '',
-
-'Fields marked with * can not be empty, First name can not be empty.'
-=> 'I campi segnalati con * non possono essere vuoti, il nome non pu&ograve; '
-.'essere vuoto. ',
-
-'Fields marked with * can not be empty, Email field is mandatory.'
-=> '',
-
-'Password and confirm password should match.'
-=> '',
-
-'Password should be of %s characters or more.'
-=> '',
-
-'Password should be less than %s charcaters.'
-=> '',
-
-'Profile updated successfully.'
-=> '',
-
-'Personal and professional info'
-=> '',
-
-'show everything'
-=> '',
-
-'show what your friends see'
-=> '',
-
-'show only public info'
-=> '',
-
-'Sidebar preview of your hCard/XFN profile'
-=> '',
-
-'ID Hub (WORK IN PROGRESS)'
-=> '',
-
-'Manage'
-=> '',
-
-'Couldn\'t disconnect the Service.'
-=> '',
-
-'You have 3 blog options'
-=> '',
-
-'You also can have a personal blog. A personal blog shows up on your page '
-.'with posts routed to the community blog by default. You can opt for those to '
-.'only be on your personal blog'
-=> '',
-
-'If you already have a blog, you can display your External Blog on My Page'
-=> '',
-
-'Basic Info'
-=> '',
-
-'General Info'
-=> '',
-
-'Personal Info'
-=> '',
-
-'Professional Info'
-=> '',
-
-'Blogs/RSS'
-=> '',
-
-'Notifications'
-=> '',
-
-'External Accounts'
-=> '',
-
-'ID Hub'
-=> '',
-
-'Export'
-=> '',
-
-'Import'
-=> '',
-
-'Delete Account'
-=> '',
-
-'Sorry: you are unable to save data'
-=> '',
-
-'Reason: '
-=> '',
-
-'Select for All'
-=> '',
-
-'Upload CV'
-=> '',
-
-'Valid file types are .doc and .pdf'
-=> '',
-
-'This will replace your current CV'
-=> '',
-
-'Career Skills'
-=> '',
-
-'Prior Title'
-=> '',
-
-'College Name'
-=> '',
-
-'Summary'
-=> '',
-
-'Your full Professional biography here. Please note there is a 2,500 '
-.'character limit.'
-=> '',
-
-'Languages'
-=> '',
-
-'Honors &amp; Awards'
-=> '',
-
-'Please modify the hCard/XFN preview below to suit your taste.'
-=> '',
-
-'Once you have selected what you want to display, click \'create hCard\', then '
-.'copy the generated HTML to your blog or wherever you want to use it.'
-=> '',
-
-'Sorry: you are unable to save data.'
-=> 'Impossible salvare i dati',
-
-' Reason: '
-=> ' Errore: ',
-
-'Political View'
-=> '',
-
-'TV Shows'
-=> '',
-
-'Basic info'
-=> '',
-
-'Confirm Password'
-=> '',
-
-'First Name'
-=> '',
-
-'Last Name'
-=> '',
-
-'Upload Photo'
-=> '',
-
-'Remove Picture'
-=> '',
-
-'I want to receive  notifications when'
-=> '',
-
-'via my registered email'
-=> '',
-
-'via my account inbox'
-=> '',
-
-'Notify \'messages waiting\''
-=> '',
-
-'through my registered mail'
-=> '',
-
-'\'messages waiting\' notifications in my mail box, when new messages arrive'
-=> '',
-
-'The Date of Birth is invalid.'
-=> '',
-
-'Url is invalid'
-=> '',
-
-'Slogan'
-=> '',
-
-'Slogan will appear on your Public Page.'
-=> '',
-
-'Shout Out'
-=> '',
-
-'Shout out will appear on your Public Page.'
-=> '',
-
-'Date of Birth'
-=> '',
-
-'State/Province'
-=> '',
-
-'Other state'
-=> '',
-
-'Zip/Postal Code'
-=> '',
-
-'Outputthis username'
-=> '',
-
-'Outputthis password'
-=> '',
-
-'Seperate tags with commas.'
-=> '',
-
-'Add another Blog'
-=> '',
-
-'Permission to view your Blog'
-=> '',
-
-'Blog Title'
-=> '',
-
-'Blog URL'
-=> '',
-
-'Blog Feed URL'
-=> '',
-
-'If you delete your account, all your content posted and your membership in '
-.'other networks will be deleted. Your complete information will be deleted '
-.'from the network.'
-=> '',
-
-'To delete your account you have to enter your password.'
-=> '',
-
-'Delete My Account'
-=> '',
-
-'There are'
-=> '',
-
-'No group Found.'
-=> '',
-
-'Write Testimonial for '
-=> '',
-
-'Testimonial'
-=> '',
-
-'Reviews'
-=> '',
-
-'No Content Published.'
-=> 'Nessun contenuto pubblicato.',
-
-'On this page you can manage all posts you have created.'
-=> '',
-
-'No Content Published'
-=> 'Nessun contenuto pubblicato.',
-
-'Manage Post'
-=> '',
-
-'Echo Test'
-=> '',
-
-'This is the echo test module.'
-=> '',
-
-'>Update:'
-=> '',
-
-'Edit Link'
-=> '',
-
-'Create A Link'
-=> '',
-
-'Are you sure you want to delete this link?'
-=> '',
-
-'In this page you can manage footer links.'
-=> '',
-
-'Manage Footer Links'
-=> '',
-
-'Create New Footer Link'
-=> '',
-
-'Check this, if you want to open link in a different window'
-=> '',
-
-'Manage ads'
-=> '',
-
-'Add ads'
-=> '',
-
-'Manage Headlines'
-=> '',
-
-'Manage headlines'
-=> '',
-
-'Manage Top Songs'
-=> '',
-
-'Manage Songs'
-=> '',
-
-'Manage Top Albums'
-=> '',
-
-'Manage Album'
-=> '',
-
-'Admin configuration module'
-=> '',
-
-'Specify how close you are in your relationship with'
-=> '',
-
-'Check if'
-=> '',
-
-'is'
-=> '',
-
-'in family'
-=> '',
-
-'Create New List'
-=> '',
-
-'List Caption'
-=> '',
-
-'Current CSV File'
-=> '',
-
-'Contacts File (.csv file)'
-=> '',
-
-'Mailing Lists'
-=> '',
-
-'Sr No.'
-=> '',
-
-'Actions'
-=> '',
-
-'Send Message To List'
-=> '',
-
-'Select List(s)'
-=> '',
-
-'Current no mailing list have been added.'
-=> '',
-
-'Click'
-=> '',
-
-'here'
-=> '',
-
-'to add.'
-=> '',
-
-'Playlist Caption'
-=> '',
-
-'Enter url of playlist(.xspf) file'
-=> '',
-
-'Upload playlist(.xspf) file'
-=> '',
-
-'Playlists'
-=> '',
-
-'No playlist added yet.'
-=> '',
-
-'Please specify widget caption.'
-=> '',
-
-'Please specify widget script.'
-=> '',
-
-'Please select at least one mailing list.'
-=> '',
-
-'Please specify the subject for the message.'
-=> '',
-
-'Please specify the message to be send.'
-=> '',
-
-'Statistics for '
-=> '',
-
-'mailing list(s)'
-=> '',
-
-'Successfull'
-=> '',
-
-'Failed'
-=> '',
-
-'Please specify caption for the mailing list.'
-=> '',
-
-'Please upload a valid CSV file.'
-=> '',
-
-'Invalid caption given in CSV file. Valid captions are'
-=> '',
-
-'Invalid CSV file. Captions provided are not valid'
-=> '',
-
-'Please provide the CSV file.'
-=> '',
-
-'Please specify playlist caption.'
-=> '',
-
-'Please specify playlist url or upload a new playlist.'
-=> '',
-
-'Specified playlist file doesn not exists.'
-=> '',
-
-'Invalid playlist file.'
-=> '',
-
-'Super Group Settings'
-=> '',
-
-'Ecommerce Widget Caption'
-=> '',
-
-'Widget Script'
-=> '',
-
-'Widget Caption'
-=> '',
-
-'Are you sure you want to delete this video'
-=> '',
-
-'Latest Headlines'
-=> '',
-
-'No headline is added yet'
-=> '',
-
-'Top songs'
-=> '',
-
-'No song is added yet'
-=> '',
-
-'Top albums'
-=> '',
-
-'No album is added yet'
-=> '',
-
-'Manage Profanity List'
-=> '',
-
-'Background Image'
-=> '',
-
-'that others will see.'
-=> '',
-
-'Select Theme'
-=> '',
-
-'Upload Desktop Image'
-=> '',
-
 'Set Desktop image Turn on/off'
 => '',
 
@@ -3768,1245 +859,10 @@ $TRANSLATED_STRINGS = array(
 'Turn off'
 => '',
 
-'Current Background Image'
+'Here to set the Desktop image is display turn on or off.'
 => '',
 
-'Upload Background Image'
-=> '',
-
-'Image as header background will appear on your Networks Pages'
-=> '',
-
-'Apply background image'
-=> '',
-
-'Edit question'
-=> '',
-
-'Create new question'
-=> '',
-
-'select'
-=> '',
-
-'Question'
-=> '',
-
-'Are you sure you want to delete this?'
-=> '',
-
-'In this page you can manage questions for your network\'s users'
-=> '',
-
-'Manage Questions'
-=> '',
-
-'Set Active Question'
-=> '',
-
-'\'s Answers'
-=> '',
-
-'No answer is posted till now'
-=> '',
-
-'Submit your answer'
-=> '',
-
-'Answers'
-=> '',
-
-'Submit Answers'
-=> '',
-
-'Display as'
-=> '',
-
-'Site Ranking'
-=> '',
-
-'%s\'s'
-=> '',
-
-'No Testimonial Found'
-=> '',
-
-'testimonials'
-=> '',
-
-'New Testimonials'
-=> '',
-
-'Album'
-=> '',
-
-'Select Album'
-=> '',
-
-'No Audio'
-=> '',
-
-' Login Name'
-=> '',
-
-'Following user names are not valid %s'
-=> '',
-
-'Following email addresses are not valid: %s'
-=> '',
-
-' Invalid Email addresses'
-=> '',
-
-'Sorry: you are unable to invite a friend. Reason: %s'
-=> '',
-
-'An Invitation has been sent to - %s'
-=> '',
-
-'Announcements'
-=> '',
-
-'Post reply for '
-=> '',
-
-'Post Reply'
-=> '',
-
-'Start a new topic in '
-=> '',
-
-'Post New Topic'
-=> '',
-
-'No active forum topics found'
-=> '',
-
-'Message forum'
-=> '',
-
-'Please specify title for your comments.'
-=> '',
-
-'Please enter your comments.'
-=> '',
-
-'Error occured in saving thread'
-=> '',
-
-'You are not a member of this group.'
-=> '',
-
-'Manage Groups'
-=> '',
-
-'Leave This Group'
-=> '',
-
-'Request to join this group'
-=> '',
-
-'Join This Group'
-=> '',
-
-'Celebrity Stats'
-=> '',
-
-'There are '
-=> '',
-
-' members '
-=> '',
-
-'Deny'
-=> '',
-
-' as a friend'
-=> '',
-
-'who'
-=> '',
-
-' members in group '
-=> '',
-
-' friends for '
-=> '',
-
-'member since:'
-=> '',
-
-'No relation exists'
-=> '',
-
-'No image uploaded yet.'
-=> '',
-
-'Latest Photo of %s'
-=> '',
-
-'Select a group to invite into'
-=> '',
-
-'Enter Your friend\'s login name(in People Aggregator) or email address'
-=> '',
-
-'Write here personalized message for invitees. It will be appended to email'
-=> '',
-
-'Write your invitation Message'
-=> '',
-
-'Please select a group'
-=> '',
-
-'Invite Into Groups'
-=> '',
-
-'Invitation could not be sent to following login names- %s'
-=> '',
-
-'Invitation could not be sent to following email addresses- %s'
-=> '',
-
-'Invitation from %s %s to join %s'
-=> '',
-
-'Sorry: you are unable to invite a friend.  Reason: %s'
-=> '',
-
-'Loading ...'
-=> '',
-
-'In this page you can view stats about system usage'
-=> '',
-
-'Registered Users'
-=> '',
-
-'Number of blog post'
-=> '',
-
-'Number of Images'
-=> '',
-
-'Profile Views'
-=> '',
-
-'Maximum'
-=> '',
-
-'Minimum'
-=> '',
-
-'Average'
-=> '',
-
-'Profile Visited by User'
-=> '',
-
-'Relations Statistics'
-=> '',
-
-'Number of Users by Email Domain:'
-=> '',
-
-'Domain Name'
-=> '',
-
-'Number of Users'
-=> '',
-
-'In this page you can view Email Addresses of all users'
-=> '',
-
-'All Users'
-=> '',
-
-'Most Active Users'
-=> '',
-
-'Dormant Users'
-=> '',
-
-'User'
-=> '',
-
-'Email Addresses'
-=> '',
-
-'Total Points'
-=> '',
-
-'Vote'
-=> '',
-
-'Poll'
-=> '',
-
-'Manage your link lists'
-=> '',
-
-'Create new'
-=> '',
-
-'Edit selected list'
-=> '',
-
-'Delete selected list'
-=> '',
-
-'Create a list'
-=> '',
-
-'New List Name'
-=> '',
-
-'Links under the selected list will be shown here'
-=> '',
-
-'Create link'
-=> '',
-
-'Link caption'
-=> '',
-
-'Links Control Panel'
-=> '',
-
-'In this page you can manage different admin roles'
-=> '',
-
-'Sr.No.'
-=> '',
-
-'No roles have been created yet.'
-=> '',
-
-'Add New Role'
-=> '',
-
-'Manage Roles'
-=> '',
-
-'No Groups found.'
-=> '',
-
-'to create.'
-=> '',
-
-' is not a valid folder name.'
-=> '',
-
-'Folder creation failed. You already have a folder named '
-=> '',
-
-'1 message has been deleted successfully'
-=> '',
-
-' messages have been deleted successfully'
-=> '',
-
-'1 message has been moved to folder '
-=> '',
-
-' successfully'
-=> '',
-
-' messages have been moved to folder '
-=> '',
-
-'Selected message(s) are already in '
-=> '',
-
-' folder'
-=> '',
-
-'Please select message(s) to move'
-=> '',
-
-'Folder creation failed). '
-=> '',
-
-'In this page you can manage headlines on a celebrity page.'
-=> '',
-
-'Associated Url'
-=> '',
-
-'No Headlines added yet'
-=> '',
-
-'Add new celebrity Headlines'
-=> '',
-
-'Enter the Headline'
-=> '',
-
-'In this page you can manage Top Album on a celebrity page.'
-=> '',
-
-'Add new celebrity Album'
-=> '',
-
-'Album Description'
-=> '',
-
-'Album url'
-=> '',
-
-'In this page you can manage Top songs on a celebrity page.'
-=> '',
-
-'Add new Song'
-=> '',
-
-'No Song added yet'
-=> '',
-
-'Add new celebrity Song'
-=> '',
-
-'Song Description'
-=> '',
-
-'Song url'
-=> '',
-
-'Celebrity Headlines'
-=> '',
-
-'Select An email type'
-=> '',
-
-'Select an email type'
-=> '',
-
-'Available configurable variables'
-=> '',
-
-'Statistics'
-=> '',
-
-'Personal Activity Feed'
-=> '',
-
-'Activity Feed'
-=> '',
-
-'Group Activity Feed'
-=> '',
-
-'Join now'
-=> '',
-
-'In this page you can assign roles to tasks'
-=> '',
-
-'Roles'
-=> '',
-
-'No roles have been created yet'
-=> '',
-
-'Assign Roles to Tasks'
-=> '',
-
-'On this page you can manage all posts which of the Group.'
-=> '',
-
-'On this page you can manage all the forums of the Group.'
-=> '',
-
-'Create Forum'
-=> '',
-
-'Manage Groups Contents'
-=> '',
-
-'Welcome'
-=> '',
-
-'Enter your new password'
-=> '',
-
-'Re-enter the new password'
-=> '',
-
-'Change Password'
-=> '',
-
-'Please enter your new password'
-=> '',
-
-'Please confirm your new password'
-=> '',
-
-'Passwords do not match. Please re-enter'
-=> '',
-
-'Manage forums on your network.'
-=> '',
-
-'No Forums.'
-=> '',
-
-'Manage Forums'
-=> '',
-
-'Poll Topic'
-=> '',
-
-'Number Of Options'
-=> '',
-
-'Select Any One Topic'
-=> '',
-
-'No poll is created yet.'
-=> '',
-
-'Poll has been deleted successfully.'
-=> '',
-
-'Poll has been saved successfully.'
-=> '',
-
-'Poll has been created successfully.'
-=> '',
-
-'Moderate content on your network.'
-=> '',
-
-'No Content For Moderation.'
-=> '',
-
-'Manage Network Links'
-=> '',
-
-'No Link Categories'
-=> '',
-
-'Link Name'
-=> '',
-
-'Link'
-=> '',
-
-'Terms and conditions for using'
-=> '',
-
-'Settings'
-=> '',
-
-'Network settings'
-=> '',
-
-'Ad center'
-=> '',
-
-'Manage ad center'
-=> '',
-
-'Textpads'
-=> '',
-
-'Meta network'
-=> '',
-
-'Set featured network'
-=> '',
-
-'Manage emblems'
-=> '',
-
-'Manage splash'
-=> '',
-
-'Showcased networks'
-=> '',
-
-'Network of Moment'
-=> '',
-
-'Video Tours'
-=> '',
-
-'Server Announcement'
-=> '',
-
-'Register Today'
-=> '',
-
-'Take a Tour Video'
-=> '',
-
-'Usage'
-=> '',
-
-'Counts'
-=> '',
-
-'Marketing reports'
-=> '',
-
-'Manage Ranking points'
-=> '',
-
-'Theme selector'
-=> '',
-
-'Module selector'
-=> '',
-
-'Background image'
-=> '',
-
-'Header image'
-=> '',
-
-'Customize theme'
-=> '',
-
-'User defaults'
-=> '',
-
-'Default settings'
-=> '',
-
-'Relationship settings'
-=> '',
-
-'Users Settings'
-=> '',
-
-'Create users'
-=> '',
-
-'Manage users'
-=> '',
-
-'Moderate users'
-=> '',
-
-'Moderate contents'
-=> '',
-
-'Manage contents'
-=> '',
-
-'Manage forums'
-=> '',
-
-'Manage comments'
-=> '',
-
-'Manage links'
-=> '',
-
-'Network links'
-=> '',
-
-'Manage Profanity'
-=> '',
-
-'Profane Word List'
-=> '',
-
-'Manage Signup Access'
-=> '',
-
-'Manage Domain Names'
-=> '',
-
-'Manage Events'
-=> '',
-
-'Network Events'
-=> '',
-
-'Email notifications'
-=> '',
-
-'Manage Tasks Relationship'
-=> '',
-
-'Celebrity'
-=> '',
-
-'Manage Celebrity'
-=> '',
-
-'Create Celebrity'
-=> '',
-
-'Select Poll'
-=> '',
-
-'Create Poll'
-=> '',
-
-'Static Pages'
-=> '',
-
-'No Comments Found'
-=> '',
-
-'Configure Network'
-=> '',
-
-'Configure Basic Information'
-=> '',
-
-'Configure Email Notifications'
-=> '',
-
-'Configure User defaults'
-=> '',
-
-'Send Announcements'
-=> '',
-
-'Configure Relationships'
-=> '',
-
-'New User Account Defaults'
-=> '',
-
-'Network friends'
-=> '',
-
-'I appear as a friend in all new accounts'
-=> '',
-
-'These users appear as friends in all new accounts.'
-=> '',
-
-'(enter screen names of registered network users, separated by commas)'
-=> '',
-
-'Current default desktop image'
-=> '',
-
-'(Images 1016 pixels wide by 191 pixels tall will have the best results)'
-=> '',
-
-'Upload default desktop image'
-=> '',
-
-'Set desktop image turn on/off'
-=> '',
-
-'Media Gallery Images'
-=> '',
-
-'Select an image album(s) from your gallery to include in new user default '
-.'galleries. (An album in your gallery may contain one or more images.)'
-=> '',
-
-'Upload to gallery now'
-=> '',
-
-'For multiple selections hold down the &lt;Ctrl&gt;key PC or the &lt;'
-.'Command&gt; key(Mac) while clicking the desired selections.'
-=> '',
-
-'Media Gallery Audio'
-=> '',
-
-'Select an audio album(s) from your gallery to include in new user default '
-.'galleries. (An album in your gallery may contain one or more audio clips.)'
-=> '',
-
-'Media Gallery Video'
-=> '',
-
-'Default Blog'
-=> '',
-
-'Select a post to include in new user default.'
-=> '',
-
-'Manage link lists'
-=> '',
-
-'Select category'
-=> '',
-
-'Search Engines'
-=> '',
-
-'Ect...'
-=> '',
-
-'New List'
-=> '',
-
-'Edit List'
-=> '',
-
-'Delete List'
-=> '',
-
-'Add Link'
-=> '',
-
-'Delete Link'
-=> '',
-
-'Save Settings'
-=> '',
-
-'Email Notifications'
-=> '',
-
-'Notify network operator (me) when'
-=> '',
-
-'Registered members receive notifications when'
-=> '',
-
-'via their registered email'
-=> '',
-
-'via their account inbox'
-=> '',
-
-'Blink Messages Waiting:'
-=> '',
-
-'messages  waiting blinks in network member\'s toolbar when new messages arrive'
-=> '',
-
-'Save changes'
-=> '',
-
-'In this page you can manage users registered on your network'
-=> '',
-
-'Manage comments.'
-=> '',
-
-'No Comments'
-=> '',
-
-'Manage Comments'
-=> '',
-
-'Anonymous'
-=> '',
-
-'Looks like your authentication with Flickr has timed out. Let\'s try again.'
-=> '',
-
-'We haven\'t seen you before, have we?'
-=> '',
-
-'Would you like to register this persona with the PeopleAggregator, so that '
-.'you can login in the future?'
-=> '',
-
-'Click here to log in via Flickr.'
-=> '',
-
-'start here!'
-=> '',
-
-'Please login to Flickr via the new brower window that should have come up. '
-.'If it has not, you can'
-=> '',
-
-'click here to open it.'
-=> '',
-
-'Once you have logged in to Flickr, please reload this page by'
-=> '',
-
-'clicking here to finish the registration process.'
-=> '',
-
-'You also returned'
-=> '',
-
-'as your nick.'
-=> '',
-
-'as your email.'
-=> '',
-
-'It seems you are coming from an OpenID auth server, but there is something '
-.'wrong with your session. Please'
-=> '',
-
-'try again'
-=> '',
-
-'Could not create the FileStore directory'
-=> '',
-
-'Please check the effective permissions.'
-=> '',
-
-'Please enter the details you would like to use below.'
-=> '',
-
-'Username'
-=> '',
-
-'Register Persona'
-=> '',
-
-'You can\'t enable this ID, as another user'
-=> '',
-
-'has already done so.'
-=> '',
-
-'Sorry but the invitation ID you are using is no longer valid.'
-=> '',
-
-'Welcome to PeopleAggregator'
-=> '',
-
-'This is a private network'
-=> '',
-
-'You need to be member of this network to do anything. You can send a request '
-.'to join this network by clicking \'Request to join\'.'
-=> '',
-
-'Send request for joining network'
-=> '',
-
-'Your request to join this network could not be sent due to following reason: '
-.'%s. You can go back to the home network by clicking Return to home network'
-=> '',
-
-'Your request to join this network has been successfully sent to the '
-.'moderator of this network. The Moderator will check this request and approve '
-.'or deny the request. You can go back to mother network by clicking the '
-.'button Return to home network'
-=> '',
-
-'Return to home network successfully.'
-=> '',
-
-'Request Message'
-=> '',
-
-'Provide a login name, email address and basic information for a new network '
-.'member.'
-=> '',
-
-'Upon hitting the create button, the new member will be emailed a greeting '
-.'including an auto-generated password.'
-=> '',
-
-'Fields marked with an asterisk (*) are mandatory.'
-=> '',
-
-'Email address'
-=> '',
-
-'Photo/avatar'
-=> '',
-
-'Auto-generate new password for network member'
-=> '',
-
-'Manual password'
-=> '',
-
-'modify greeting if desired and click the create user button below tocomplete '
-.'process'
-=> '',
-
-'Hi,'
-=> '',
-
-'I\'ve created my own place on PeopleAggregator and I\'d like you to'
-=> '',
-
-'connect to me so we can stay in touch.'
-=> '',
-
-'You can view my blog, my reviews, my ratings, my photos, my lists -'
-=> '',
-
-'and all sorts of things that matter to me.'
-=> '',
-
-'You can create a personal page and blog of your own, which will be'
-=> '',
-
-'linked to mine.'
-=> '',
-
-'That way you\'ll always know when I post something new!'
-=> '',
-
-'topics in this Group'
-=> '',
-
-'Create Topic'
-=> '',
-
-'Topics'
-=> '',
-
-'Replies'
-=> '',
-
-'Setting correct default Notifications for Videoplay installations'
-=> '',
-
-'Answer can not be left blank'
-=> '',
-
-'Sorry, your Answer cannot be posted as it looks like spam. Try removing any '
-.'links to possibly suspect sites, and re-submitting.'
-=> '',
-
-'Your Answer has been posted successfully'
-=> '',
-
-'Sorry, your answer cannot be posted as it was classified as spam by Akismet, '
-.'or contained links to blacklisted sites. Please check the links in your '
-.'post, and that your name and e-mail address are correct.'
-=> '',
-
-'Please select atleast one user.'
-=> '',
-
-'Target url for the ad can not be empty'
-=> '',
-
-'Target url is not valid'
-=> '',
-
-'Ads picture can not be empty'
-=> '',
-
-'Ad created successfully'
-=> '',
-
-'Your Recommendation: '
-=> '',
-
-'Please login to comment'
-=> '',
-
-'Error processing request'
-=> '',
-
-'PeopleAggregator setup'
-=> '',
-
-'Already configured'
-=> '',
-
-'It looks like this PeopleAggregator is already set up.'
-=> '',
-
-'Click here to log in'
-=> '',
-
-'If something went wrong and you want to reconfigure PeopleAggregator, delete '
-.'the'
-=> '',
-
-'file and refresh this page'
-=> '',
-
-'Almost done!'
-=> '',
-
-'Congratulations - you have nearly finished installing PeopleAggregator!'
-=> '',
-
-'The final step is to move the'
-=> '',
-
-'file from'
-=> '',
-
-'up into the'
-=> '',
-
-'directory'
-=> '',
-
-'On Linux, the following command will do so'
-=> '',
-
-'Once that is done, please refresh this page'
-=> '',
-
-'Alternatively, if something went wrong and you want to reconfigure '
-.'PeopleAggregator, delete'
-=> '',
-
-'the'
-=> '',
-
-'Celebrity deleted successfully'
-=> '',
-
-' celebrities deleted successfully'
-=> '',
-
-'Comments for '
-=> '',
-
-'Please select an '
-=> '',
-
-' to upload'
-=> '',
-
-'Error parsing URL'
-=> '',
-
-'Enter here code that should be executed on page boot before any module '
-.'initialization function called. Use this only if you have a good reason for '
-.'that and when you can'
-=> '',
-
-'Please, select contacts you want to import.'
-=> '',
-
-'Apply to User pages'
-=> '',
-
-'Apply to this Network'
-=> '',
-
-'Apply to '
-=> '',
-
-' group'
-=> '',
-
-'Tasks/Permissions'
-=> '',
-
-'Select any %s file to upload'
-=> '',
-
-'You have to login before uploading a %s'
-=> '',
-
-'Edit/Assign Role for user: '
-=> '',
-
-'Select roles you want to associate with this user and press left/right '
-.'arrow, <br />'
-=> '',
-
-'We haven\'t found any contacts on your MSLive account.'
-=> '',
-
-'About Me'
-=> '',
-
-'About'
-=> '',
-
-'My Activity Feeds'
-=> '',
-
-'Activity Feeds'
-=> '',
-
-'Please select a type.'
-=> '',
-
-'TypedEntity associated successfully.'
-=> '',
-
-'Please upload a valid Game Image in %s'
-=> '',
-
-'Please supply a name.'
-=> '',
-
-'Entity Type'
-=> '',
-
-'Store as Defaults'
-=> '',
-
-'Caution - software developers only'
-=> '',
-
-'Load / restore Email Message settings from local disk'
-=> '',
-
-'Select XML configuration file.'
-=> '',
-
-'Select action'
-=> '',
-
-'Load Email Message settings'
-=> '',
-
-'Revert All Messages'
-=> '',
-
-'Warning: you will lose all message changes made at this site.'
-=> '',
-
-'Select page'
-=> '',
-
-'Select page you want to customize.'
-=> '',
-
-'Get module info'
-=> '',
-
-'Add this module to: '
-=> '',
-
-'No'
-=> '',
-
-'Yes'
-=> '',
-
-'Page type'
-=> '',
-
-'Enter Page type (user, group, network). For multiple types use "|" to '
-.'separate types.'
-=> '',
-
-'Is page configurable'
-=> '',
-
-'If a page is configurable - these settings will be available in Customize UI '
-.'pages.'
-=> '',
-
-'Enter required administration permissions. Currently, these permissions are '
-.'available'
-=> '',
-
-'NOTE: If your page does not require additional boot code, leave this '
-.'untouched.'
-=> '',
-
-'Edit/Create Dynamic Page'
-=> '',
-
-'Middle'
-=> '',
-
-'Image will appear on your Personal Pages'
-=> '',
-
-'Image will appear on your Groups Pages'
+'Apply desktop image'
 => '',
 
 'Select page layout'
@@ -5029,20 +885,266 @@ $TRANSLATED_STRINGS = array(
 .'column, then click "Save settings". '
 => '',
 
+'Available Modules'
+=> '',
+
+'Enable'
+=> 'Abilita',
+
+'Show in Left or Right'
+=> '',
+
+'Stacking Order'
+=> '',
+
 'Use these settings to customize the look of your Network pages'
+=> '',
+
+'that others will see.'
+=> '',
+
+'Select Theme'
+=> '',
+
+'Apply Changes'
+=> '',
+
+'This is the echo test module.'
+=> '',
+
+'>Update:'
+=> '',
+
+'Echo Test'
+=> '',
+
+'Family Name'
+=> '',
+
+'Family Photo'
+=> '',
+
+'About this Family'
+=> '',
+
+'Create Family'
+=> '',
+
+'Change Family Settings'
+=> '',
+
+'Please supply a name for the Family.'
+=> '',
+
+'Family has been updated successfully.'
+=> '',
+
+'Family has been created successfully.'
+=> '',
+
+'Edit'
+=> 'Modifica',
+
+'Full view'
 => '',
 
 'Return to %s gallery'
 => '',
 
+'Select'
+=> 'Seleziona',
+
+'Access'
+=> '',
+
+'in which your'
+=> '',
+
+'file will appear...'
+=> '',
+
+'Create New Album'
+=> '',
+
+'Return to media gallery'
+=> '',
+
+'Basic info'
+=> '',
+
+'Login Name'
+=> 'Username',
+
+'Password'
+=> 'Password',
+
+'Confirm Password'
+=> '',
+
+'First Name'
+=> '',
+
+'Last Name'
+=> '',
+
+'Email'
+=> 'Email',
+
+'Upload Photo'
+=> '',
+
+'Current Image'
+=> '',
+
+'Remove Picture'
+=> '',
+
+'You have 3 blog options'
+=> '',
+
+'You also can have a personal blog. A personal blog shows up on your page '
+.'with posts routed to the community blog by default. You can opt for those to '
+.'only be on your personal blog'
+=> '',
+
+'If you already have a blog, you can display your External Blog on My Page'
+=> '',
+
+'Profile updated successfully.'
+=> '',
+
+'Blogs/RSS'
+=> '',
+
+'Add another Blog'
+=> '',
+
+'Remove'
+=> 'Rimuovi',
+
+'Permission to view your Blog'
+=> '',
+
+'Blog Title'
+=> '',
+
+'Blog URL'
+=> '',
+
+'Blog Feed URL'
+=> '',
+
+'Basic Info'
+=> '',
+
+'General Info'
+=> '',
+
+'Personal Info'
+=> '',
+
+'Professional Info'
+=> '',
+
+'Notifications'
+=> '',
+
 'Import Contacts'
+=> '',
+
+'Export'
+=> '',
+
+'Delete Account'
 => '',
 
 'You are not allowed to delete your account here. You can delete your account '
 .'from meta organization only.'
 => '',
 
+'If you delete your account, all your content posted and your membership in '
+.'other networks will be deleted. Your complete information will be deleted '
+.'from the network.'
+=> '',
+
 'To delete your account you have to check this box.'
+=> '',
+
+'Delete My Account'
+=> '',
+
+'EditProfileModule::handleSaveProfile() - Unknown save handler!'
+=> '',
+
+'Fields marked with * can not be empty, First name can not be empty.'
+=> 'I campi segnalati con * non possono essere vuoti, il nome non pu&ograve; '
+.'essere vuoto. ',
+
+'Fields marked with * can not be empty, Email field is mandatory.'
+=> '',
+
+'Password and confirm password should match.'
+=> '',
+
+'Personal and professional info'
+=> '',
+
+'show everything'
+=> '',
+
+'show what your friends see'
+=> '',
+
+'show only public info'
+=> '',
+
+'Sidebar preview of your hCard/XFN profile'
+=> '',
+
+'Please modify the hCard/XFN preview below to suit your taste.'
+=> '',
+
+'Once you have selected what you want to display, click \'create hCard\', then '
+.'copy the generated HTML to your blog or wherever you want to use it.'
+=> '',
+
+'The Date of Birth is invalid.'
+=> '',
+
+'Url is invalid'
+=> '',
+
+'Sorry: you are unable to save data.'
+=> 'Impossible salvare i dati',
+
+'Reason: '
+=> '',
+
+'Family'
+=> '',
+
+'Create new %s'
+=> '',
+
+'Select for All'
+=> '',
+
+'Slogan'
+=> '',
+
+'Slogan will appear on your Public Page.'
+=> '',
+
+'Shout Out'
+=> '',
+
+'Shout out will appear on your Public Page.'
+=> '',
+
+'Gender'
+=> 'Sesso',
+
+'Date of Birth'
 => '',
 
 'Address'
@@ -5051,19 +1153,98 @@ $TRANSLATED_STRINGS = array(
 'Address 2'
 => '',
 
+'Other state'
+=> '',
+
+'State/Province'
+=> '',
+
+'Zip/Postal Code'
+=> '',
+
 'Phone'
 => '',
 
 'Mobile Phone'
 => '',
 
+'Seperate tags with commas.'
+=> '',
+
+'I want to receive  notifications when'
+=> '',
+
+'via my registered email'
+=> '',
+
+'via my account inbox'
+=> '',
+
+'Notify \'messages waiting\''
+=> '',
+
+'through my registered mail'
+=> '',
+
+'\'messages waiting\' notifications in my mail box, when new messages arrive'
+=> '',
+
 'Restore default settings'
+=> '',
+
+' Reason: '
+=> ' Errore: ',
+
+'Political View'
+=> '',
+
+'TV Shows'
+=> '',
+
+'Sorry: you are unable to save data'
+=> '',
+
+'Upload CV'
+=> '',
+
+'Valid file types are .doc and .pdf'
+=> '',
+
+'This will replace your current CV'
 => '',
 
 'Work Phone'
 => '',
 
+'Career Skills'
+=> '',
+
+'Prior Title'
+=> '',
+
+'College Name'
+=> '',
+
+'Your full Professional biography here. Please note there is a 2,500 '
+.'character limit.'
+=> '',
+
+'Honors &amp; Awards'
+=> '',
+
+'Specify how close you are in your relationship with'
+=> '',
+
 'User: '
+=> '',
+
+'Check if'
+=> '',
+
+'is'
+=> '',
+
+'in family'
 => '',
 
 'Update Relationship Request'
@@ -5072,11 +1253,449 @@ $TRANSLATED_STRINGS = array(
 'ADD as a Friend'
 => '',
 
+'Your request for adding '
+=> '',
+
+' as a relation has already been sent'
+=> '',
+
+'Edit Relationship'
+=> '',
+
+'Your relationship request approved.'
+=> '',
+
+'Relationship estabilished.'
+=> '',
+
+'You cannot add an Event to the calendar of group %s, as you are not a member.'
+=> 'Non puoi aggiungere eventi al calendario del gruppo %s perchè non sei '
+.'iscritto.',
+
+'Couldn\'t create event:'
+=> 'Impossibile creare evento:',
+
+'Couldn\'t create EventAssociation:'
+=> 'Impossibile creare EventAssociation:',
+
+'There was a problem updating the event:'
+=> 'Si è verificato un problema nell\'aggiornamento dell\'evento:',
+
+'Event %d doesn\'t exist'
+=> 'L\'evento %d non esiste',
+
+'Couldn\'t update the event:'
+=> 'Impossibile aggiornare l\'evento:',
+
+'There was a problem deleting the event:'
+=> 'Si è verificato un problema nell\'eliminazione dell\'evento:',
+
+'The event has been deleted.'
+=> 'L\'evento è stato eliminato.',
+
+'Couldn\'t delete the event:'
+=> 'Impossibile eliminare l\'evento:',
+
+'No users given'
+=> 'Nessun utente',
+
+'There was a problem associating the event:'
+=> 'Si è verificato un problema nell\'associare l\'evento:',
+
+'%s is not a user'
+=> '%s non è un utente',
+
+'Add people:'
+=> 'Aggiungi persone:',
+
+'You cannot add an Event to the caledar of group %s, as you are not a member.'
+=> 'Non puoi aggiungere eventi al calendario del gruppo %s perchè non sei '
+.'iscritto.',
+
+'Add group:'
+=> 'Aggiungi gruppo:',
+
+'You may not remove the association to this event.'
+=> 'Non puoi rimuovere l\'associazione a questo evento',
+
+'You cannot remove yourself from this event, as you created it.  Please use '
+.'\'Delete Event\' instead.'
+=> 'Non puoi cancellarti da questo evento perchè l\'hai creato. Utilizza il '
+.'comando \'elimina evento\'.',
+
+'Event'
+=> 'Evento',
+
+'Event Banner'
+=> 'Banner evento',
+
+'Starts'
+=> 'Inizia',
+
+'Ends'
+=> 'Finisce',
+
+'Venue'
+=> 'Luogo',
+
+'Are you sure you want to delete this Event?'
+=> 'Sei sicuro di voler eliminare questo evento?',
+
+'Create new Event'
+=> 'Crea nuovo evento',
+
+'Edit Event'
+=> 'Modifica evento',
+
+'Create Event'
+=> 'Crea un evento',
+
+'Event title'
+=> 'Titolo dell\'evento',
+
+'Start date'
+=> 'Data d\'inizio',
+
+'Start time'
+=> 'Orario d\'inizio',
+
+'End date'
+=> 'Data di fine',
+
+'End time'
+=> 'Orario di fine',
+
+'Event venue'
+=> 'Luogo dell\'evento',
+
+'Event description'
+=> 'Descrizione dell\'evento',
+
+'Current Event Banner'
+=> 'Attuale banner dell\'evento',
+
+'Upload Event Banner'
+=> 'Carica banner dell\'evento',
+
+'This event appears on'
+=> 'Questo evento appare su',
+
+'Calendar for'
+=> 'Calendario per',
+
+'(This event will always appear in the creator\'s calendar.)'
+=> '(Questo evento verrà sempre mostrato nel calendario dell\'autore.)',
+
+'Add to further calendars'
+=> 'Aggiungi ad altri calendari',
+
+'Add people\'s login names here, seperated by commas.'
+=> 'Inserisci qui gli username separati da virgole',
+
+'Groups you are a member of'
+=> 'I gruppi a cui sei iscritto',
+
+'Add'
+=> 'Aggiungi',
+
 'Unknown event association'
 => '',
 
+'Display as'
+=> '',
+
+'List'
+=> 'Lista',
+
+'Calendar'
+=> 'Calendario',
+
+'Personal Events'
+=> 'Eventi personali',
+
+'External Feeds'
+=> 'Feed esterni',
+
+'There are %d members in %s.'
+=> '',
+
+'There are %d friends.'
+=> '',
+
+'There are '
+=> '',
+
+' members '
+=> '',
+
+'Approve'
+=> 'Approva',
+
+'Deny'
+=> '',
+
+'There are %d members in this %s.'
+=> '',
+
+'There are %d members.'
+=> '',
+
+'There are %d friends for %s.'
+=> '',
+
+'member since:'
+=> '',
+
+'waiting approval'
+=> '',
+
+'No relation exists.'
+=> '',
+
+'FaceBookFeed'
+=> '',
+
+'Friend'
+=> 'Amico',
+
+'Last login'
+=> 'Ultimo login',
+
+'Latest registered'
+=> 'Ultimi registrati',
+
+'Sort By'
+=> 'Ordina per',
+
+'(%d %ss)'
+=> '',
+
+'sort by'
+=> '',
+
+'Family Directory'
+=> '',
+
+'Name'
+=> '',
+
+'Family Members'
+=> '',
+
+'Login name'
+=> 'Username',
+
+'Login name may contain letters, numbers and underscores (_).'
+=> 'Lo username può contenere lettere, numeri e underscore (_).',
+
+'First name'
+=> 'Nome',
+
+'Last name'
+=> 'Cognome',
+
+'Day'
+=> '',
+
+'Month'
+=> '',
+
+'Year'
+=> '',
+
+'Street address 1'
+=> '',
+
+'Street address 2'
+=> '',
+
+'ZIP Code'
+=> '',
+
+'Phone #'
+=> '',
+
+'Password can be 5-15 characters long, and is case sensitive.'
+=> 'La password deve essere lunga dai 5 ai 15 caratteri ed è case sensitive '
+.'(distingue tra maiuscole e minuscole).',
+
+'Confirm password'
+=> 'Conferma password',
+
+'use own email account'
+=> '',
+
+'use a parent\'s email account'
+=> '',
+
+'Upload a photo'
+=> 'Carica una foto',
+
+'Or enter a photo URL'
+=> 'Oppure inserisci l\'URL di una foto',
+
+'Preview Image'
+=> '',
+
+'Clear Image'
+=> '',
+
+'Your photo'
+=> 'La tua foto',
+
+'To use a different image, click Clear Image and select a new image.'
+=> '',
+
+'I have read and agree to the %s <a href=\'%s/terms.php\' target=\'_blank\'>Terms '
+.'and Conditions</a>'
+=> 'Ho letto e approvo i %s <a href=\'%s/terms.php\' target=\'_blank\'>Termini e '
+.'Condizioni di servizio</a>',
+
+'Family Members Moderation'
+=> '',
+
+'Edit/Assign Role'
+=> '',
+
+'Joined Family'
+=> '',
+
+'There are no members in this %s'
+=> '',
+
+'Remove Selected'
+=> '',
+
+'Add a Child'
+=> '',
+
+'Member(s) Deleted'
+=> '',
+
+'Please select a member'
+=> '',
+
+'You have left "%s" successfully.'
+=> '',
+
+'Child\'s account was successfully created'
+=> '',
+
+'Member'
+=> 'Utente',
+
+'Family Profile'
+=> '',
+
+'Sorry, you can\'t perform this action.'
+=> '',
+
+'Request to join this family as'
+=> '',
+
+'Join This family as'
+=> '',
+
+'You are a %s'
+=> '',
+
+'Edit %s profile'
+=> '',
+
+'%s profile'
+=> '',
+
+'Please select a type.'
+=> '',
+
+'TypedEntity associated successfully.'
+=> '',
+
+'Please upload a valid Game Image in %s'
+=> '',
+
+'You have updated your relation to "%s" successfully.'
+=> '',
+
+'You are already a member of "%s"'
+=> '',
+
+'Your request to join "%s" has been submitted to the owner of the group.'
+=> '',
+
+'You have joined "%s" successfully.'
+=> '',
+
+'You need to be logged in to join a group.'
+=> '',
+
+'You can\'t leave your own group.'
+=> '',
+
+'You are not member of "%s".'
+=> '',
+
+'Group sucessfully deleted.'
+=> '',
+
+'Leave this Family'
+=> '',
+
+'Update relation'
+=> '',
+
+'-- Please select --'
+=> '',
+
+'Update'
+=> '',
+
+'Join now'
+=> '',
+
+'Family Settings'
+=> '',
+
+'Forgotten your PeopleAggregator account information?'
+=> 'Hai dimenticato come accedere al tuo account PeopleAggregator?',
+
+'Just enter the e-mail address or login name you signed up with, and we\'ll '
+.'mail you a link to change your password.'
+=> 'Inserisci l\'indirizzo email o lo username con cui ti sei registrato e ti '
+.'invieremo un link per cambiare la tua password.',
+
+'E-mail address:'
+=> 'Email:',
+
+'Get new password'
+=> 'Ottieni una nuova password',
+
+'Please enter your email address or login name.'
+=> '',
+
+'Please enter either email or Login name'
+=> '',
+
+'Invalid email address.  Please try again.'
+=> 'Indirizzo email non valido. Riprova.',
+
+'A link has been e-mailed to you to let you change your password.  Thanks!'
+=> 'Abbiamo inviato al tuo indirizzo email un link per cambiare la password. '
+.'Grazie!',
+
+'There are no accounts in our system with the e-mail address %s.\n'
+.'              If you have spelled the address incorrectly or entered the '
+.'wrong address, please try again.'
+=> '',
+
+'Recover Password'
+=> 'Recupera password',
+
 'Latest Forum Posts'
 => '',
+
+'Date'
+=> 'Data',
 
 'Forum Name'
 => '',
@@ -5084,16 +1703,19 @@ $TRANSLATED_STRINGS = array(
 'Thread Title'
 => '',
 
+'User'
+=> '',
+
 'Last Post'
+=> '',
+
+'Replies'
 => '',
 
 'No posts'
 => '',
 
 'Posts'
-=> '',
-
-'Status'
 => '',
 
 'You will be able to answer this post after admin approve your membership '
@@ -5127,6 +1749,9 @@ $TRANSLATED_STRINGS = array(
 'Thread content'
 => '',
 
+'Forum'
+=> 'Forum',
+
 'Forum Last post'
 => '',
 
@@ -5134,6 +1759,9 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Category:'
+=> '',
+
+'Are you sure you want to delete this category?'
 => '',
 
 'Posted by'
@@ -5176,16 +1804,19 @@ $TRANSLATED_STRINGS = array(
 'Forum Board for this network has not yet been created.'
 => '',
 
-'Forum Board for this group have not yet been created.'
+'Forum Board for this group has not yet been created.'
 => '',
 
-'The personal forum board for this user have not yet been created.'
+'The personal forum board for this user has not yet been created.'
 => '',
 
-'Post does not exists!'
+'Post does not exist!'
 => '',
 
-'Thread does not exists!'
+'Thread does not exist!'
+=> '',
+
+'You don\'t have permissions to post on this Forum!'
 => '',
 
 'New Thread'
@@ -5294,6 +1925,12 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'You don\'t have required permissions for this task!'
+=> '',
+
+'Post does not exists!'
+=> '',
+
+'Thread does not exists!'
 => '',
 
 'Thread sucessfully removed'
@@ -5455,41 +2092,83 @@ $TRANSLATED_STRINGS = array(
 'Forum Statistics'
 => '',
 
+'Type'
+=> '',
+
+'Members'
+=> 'Iscritti',
+
 'Categories'
+=> '',
+
+'Topics'
 => '',
 
 'Founded'
 => '',
 
-'You have updated your relation to "%s" successfully.'
+'Request to join this group'
 => '',
 
-'You are already a member of "%s"'
+'Join This Group'
 => '',
 
-'Your request to join "%s" has been submitted to the owner of the group.'
+'Leave This Group'
 => '',
 
-'You have joined "%s" successfully.'
+'Group Settings'
+=> 'Impostazioni gruppo',
+
+'Invite Into Groups'
 => '',
 
-'You need to be logged in to join a group.'
+'Please select a group'
 => '',
 
-'You can\'t leave your own group.'
+'Invitation could not be sent to following login names- %s'
 => '',
 
-'You are not member of "%s".'
+'Invitation could not be sent to following email addresses- %s'
 => '',
 
-'You have left "%s" successfully.'
+'Invitation from %s %s to join %s'
 => '',
 
-'Group sucessfully deleted.'
+'Sorry: you are unable to invite a friend.  Reason: %s'
 => '',
 
-'Sorry you are not authorised to moderate this group'
+'Select a group to invite into'
 => '',
+
+'Enter Your friend\'s login name(in People Aggregator) or email address'
+=> '',
+
+'(separated by comma)'
+=> '(separati da virgola)',
+
+'Write here personalized message for invitees. It will be appended to email'
+=> '',
+
+'Write your invitation Message'
+=> '',
+
+'Send Invitation'
+=> 'Spedisci invito',
+
+'Moderate Group Members'
+=> 'Modera gli iscritti al gruppo',
+
+'Moderate Membership'
+=> 'Modera l\'adesione',
+
+'Moderate Content'
+=> 'Contenuto moderato',
+
+'Content'
+=> 'Contenuto',
+
+'There are no pending moderation requests'
+=> 'Non ci sono richieste di moderazione in sospeso',
 
 'Content Approved'
 => '',
@@ -5502,6 +2181,12 @@ $TRANSLATED_STRINGS = array(
 
 'Please select a content for denial'
 => '',
+
+'Requests'
+=> 'Richieste',
+
+'Approve or deny requests to join this group'
+=> 'Conferma o rifiuta richieste di iscrizione a questo gruppo',
 
 'User Approved'
 => '',
@@ -5518,6 +2203,9 @@ $TRANSLATED_STRINGS = array(
 'Moderate %s Members'
 => '',
 
+'Moderation'
+=> 'Moderazione',
+
 'Remove selected members from the %s'
 => '',
 
@@ -5527,32 +2215,91 @@ $TRANSLATED_STRINGS = array(
 'Declare as Member'
 => '',
 
-'Edit/Assign Role'
-=> '',
-
-'There are no members in this %s'
-=> '',
-
-'Member(s) Deleted'
-=> '',
-
-'Please select a member'
-=> '',
-
 'User status sucessfuly changed.'
 => '',
 
 'Can\'t change status for this user.'
 => '',
 
+'member'
+=> 'iscritto',
+
+'No groups created yet. Be the first to <a href="%s" style="display:inline;'
+.'">create one</a>!'
+=> 'Non sono ancora stati creati gruppi. <a href="%s" style="display:inline;'
+.'">clicca qui</a> se vuoi essere il primo a crearne uno!',
+
+'No Groups found.'
+=> '',
+
+'Click'
+=> '',
+
+'to create.'
+=> '',
+
+'caption'
+=> '',
+
+'Group doesn\'t exist'
+=> '',
+
+'Browse %d Groups'
+=> 'Sfoglia %d i gruppi',
+
+'No groups in this category'
+=> 'Non ci sono gruppi in questa categoria',
+
 'On this page you can manage all posts of the %s.'
+=> '',
+
+'Create post'
+=> 'Scrivi un messaggio',
+
+'title'
+=> 'titolo',
+
+'No Content Published'
+=> 'Nessun contenuto pubblicato.',
+
+'On this page you can manage all the forums of the Group.'
+=> '',
+
+'Create Forum'
 => '',
 
 'Manage %s Contents'
 => '',
 
+'Alphabetical'
+=> 'Ordine alfabetico',
+
 'Largest'
 => '',
+
+'Date Created'
+=> 'Data di creazione',
+
+'Group Directory'
+=> 'Lista dei gruppi',
+
+'Create a Group'
+=> 'Crea un gruppo',
+
+'Search Groups'
+=> 'Ricerca gruppi',
+
+'Search for'
+=> 'Ricerca',
+
+'Created'
+=> 'Creato',
+
+'Moderated By'
+=> 'Moderato da',
+
+'No groups found.'
+=> 'Nessun gruppo trovato.',
 
 'Group Statistics'
 => '',
@@ -5563,8 +2310,47 @@ $TRANSLATED_STRINGS = array(
 'Owner'
 => '',
 
+'No Photos.'
+=> '',
+
+'Gallery'
+=> 'Gallery',
+
+'Recent Media'
+=> 'File media più recenti',
+
 'Group Gallery'
 => '',
+
+'My Gallery'
+=> 'La mia gallery',
+
+'Images'
+=> 'Immagini',
+
+'Video'
+=> 'Video',
+
+'Audio'
+=> 'Audio',
+
+'No images have been published yet.'
+=> 'Non sono state ancora pubblicate immagini.',
+
+'No videos have been published yet.'
+=> 'Non sono stati ancora pubblicati video.',
+
+'No audio has been published yet.'
+=> 'Non sono stati ancora pubblicati file audio.',
+
+'Are you sure you want to delete this image'
+=> '',
+
+'Added as a friend by'
+=> 'aggiunto come amico da',
+
+'Invite friends and colleagues to join %s:'
+=> 'Invita amici e colleghi a iscriversi a %s:',
 
 'Choose a program or service below to import your contacts:'
 => '',
@@ -5574,6 +2360,9 @@ $TRANSLATED_STRINGS = array(
 
 '(Enter your email or AIM screen name here)'
 => '',
+
+'Enter your password'
+=> 'Inserisci la tua password',
 
 'We will not store your password. It will only be temporarily used to access '
 .'your Plaxo address book.'
@@ -5598,6 +2387,51 @@ $TRANSLATED_STRINGS = array(
 '(Select CSV file you want to load)'
 => '',
 
+'Email:'
+=> 'Email:',
+
+'(separate addresses with commas)'
+=> '(separa gli indirizzi con le virgole)',
+
+' Login Name'
+=> '',
+
+'Write your invitation Message:'
+=> 'Scrivi il tuo messaggio di invito:',
+
+'Invite'
+=> 'Invita',
+
+'Following user names are not valid %s'
+=> '',
+
+'Following email addresses are not valid: %s'
+=> '',
+
+' Invalid Email addresses'
+=> '',
+
+'Sorry: you are unable to invite a friend. Reason: %s'
+=> '',
+
+'An Invitation has been sent to - %s'
+=> '',
+
+'Invitation Status'
+=> 'Stato dell\'invito',
+
+'Accepted invitations'
+=> 'Inviti accettati',
+
+'No Accepted Invitations'
+=> 'Inviti non accettati',
+
+'Pending invitations'
+=> 'Inviti in sospeso',
+
+'No pending Invitations'
+=> 'Non ci sono inviti in sospeso',
+
 'Largest %s'
 => '',
 
@@ -5606,6 +2440,9 @@ $TRANSLATED_STRINGS = array(
 
 'No.'
 => '',
+
+'User Name'
+=> 'Username',
 
 'Last Activity Date'
 => '',
@@ -5622,12 +2459,51 @@ $TRANSLATED_STRINGS = array(
 'There\'s no ranked users.'
 => '',
 
+'Manage your link lists'
+=> '',
+
+'Create new'
+=> '',
+
+'Edit selected list'
+=> '',
+
+'Delete selected list'
+=> '',
+
+'Create a list'
+=> '',
+
+'New List Name'
+=> '',
+
+'Links'
+=> '',
+
+'Links under the selected list will be shown here'
+=> '',
+
+'Create link'
+=> '',
+
+'Link caption'
+=> '',
+
+'URL'
+=> '',
+
+'Links Control Panel'
+=> '',
+
 'Sorry - you are not logged in or you have been logged out due to inactivity.'
 .'<br />Please, log in again.<br />'
 => '',
 
 'Login'
 => '',
+
+'%s login.'
+=> '%s login.',
 
 'You can login directly if you have an account,<br />or you can <b><a href="/'
 .'register.php">sign up right now</a></b> to create a new account.'
@@ -5637,6 +2513,241 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Password: '
+=> '',
+
+'Remember me on this computer'
+=> 'Ricordami su questo computer',
+
+'Forgot your password?'
+=> 'Hai dimenticato la password?',
+
+'Edit Ad'
+=> 'Modifica annuncio',
+
+'Create An Ad'
+=> 'Crea un annuncio',
+
+'Image'
+=> 'Immagine',
+
+'Page'
+=> 'Pagina',
+
+'Orientation'
+=> 'Orientamento',
+
+'Display count'
+=> 'Mostra conteggio',
+
+'Hit count'
+=> 'Hit count',
+
+'Enable/Disable'
+=> 'Abilita/disabilita',
+
+'Disable'
+=> 'Disabilita',
+
+'Are you sure you want to delete this Ad?'
+=> '',
+
+'In this page you can manage ads on your network'
+=> 'In questa pagina puoi gestire gli annunci della tua rete',
+
+'Manage Ads'
+=> 'Gestisci annunci',
+
+'Create New Ad'
+=> 'Crea un nuovo annuncio',
+
+'Enter Title'
+=> 'Inserisci titolo',
+
+'Title should not be greater than 30 characters'
+=> 'Il titolo non dovrebbe essere più lungo di 30 caratteri',
+
+'Select An Image'
+=> 'Seleziona un\'immagine',
+
+'Preferred size'
+=> 'Dimensione preferita',
+
+'for side modules and'
+=> 'per i moduli laterali e',
+
+'for center modules'
+=> 'per i moduli centrali',
+
+'Previously Selected Image'
+=> 'Immagine selezionata precedentemente',
+
+'Enter URL'
+=> 'Inserisci URL',
+
+'Or Enter JavaScript(.js code)/ Html code'
+=> 'Oppure inserisci codice JavaScript(.js code)/ Html',
+
+'Enter Description'
+=> 'Inserisci descrizione',
+
+'Select Page'
+=> 'Seleziona pagina',
+
+'Select a page'
+=> 'Seleziona una pagina',
+
+'Select Horizontal position'
+=> 'Seleziona posizione orizzontale',
+
+'Select vertical position'
+=> 'Seleziona posizione verticale',
+
+'Manage Ad Center'
+=> 'Gestisci il centro annunci',
+
+'You do not have permission to manage Ads.'
+=> '',
+
+'Select horizontal position'
+=> 'Seleziona posizione orizzontale',
+
+'left'
+=> 'sinistra',
+
+'center'
+=> 'centro',
+
+'right'
+=> 'destra',
+
+'top'
+=> 'sopra',
+
+'Edit Textpad'
+=> 'Modifica Textpad',
+
+'Create Textpad'
+=> 'Crea Textpad',
+
+'Are you sure you want to delete this Textpad'
+=> 'Sei sicuro di voler eliminare questo Textpad',
+
+'Available Textpads'
+=> 'Textpad disponibili',
+
+'New Textpad'
+=> 'Nuovo Textpad',
+
+'In this page you can manage category on your network'
+=> '',
+
+'Manage Category'
+=> '',
+
+'Select Type'
+=> '',
+
+'Options'
+=> '',
+
+'Create New Category'
+=> '',
+
+'Parent Category (Optional)'
+=> '',
+
+'Enter Tilte'
+=> '',
+
+'You can upload a gif, jpg, jpeg, png, xpm, bmp, file.'
+=> '',
+
+'Maximum size'
+=> '',
+
+'Do not upload photos containing cartoons, celebrities, nudity, artwork of '
+.'copyrighted images.'
+=> '',
+
+'For better result image dimension  should be 36x191'
+=> '',
+
+'Select a file to upload'
+=> '',
+
+'Enter the destination URL of image'
+=> '',
+
+'Image title'
+=> '',
+
+'Manage Domain List'
+=> '',
+
+'Please press enter after each entry'
+=> '',
+
+'Edit Link'
+=> '',
+
+'Create A Link'
+=> '',
+
+'Caption'
+=> '',
+
+'Are you sure you want to delete this link?'
+=> '',
+
+'In this page you can manage footer links.'
+=> '',
+
+'Manage Footer Links'
+=> '',
+
+'Create New Footer Link'
+=> '',
+
+'Enter Caption'
+=> '',
+
+'Caption should be less than 30 characters.'
+=> '',
+
+'Check this, if you want to open link in a different window'
+=> '',
+
+'In this page you can manage groups on your network'
+=> 'In questa pagina puoi gestire i gruppi nella tua rete',
+
+'Manage Groups'
+=> '',
+
+'Manage Profanity List'
+=> '',
+
+'Edit question'
+=> '',
+
+'Create new question'
+=> '',
+
+'select'
+=> '',
+
+'Question'
+=> '',
+
+'Are you sure you want to delete this?'
+=> '',
+
+'In this page you can manage questions for your network\'s users'
+=> '',
+
+'Manage Questions'
+=> '',
+
+'Set Active Question'
 => '',
 
 'Id'
@@ -5651,14 +2762,50 @@ $TRANSLATED_STRINGS = array(
 'New'
 => '',
 
+'Manage Ranking points'
+=> '',
+
 '\'Title\' and/or \'Type\' filed should not be empty.'
 => '',
 
 '\'Points\' filed should be numeric and not empty.'
 => '',
 
+'Edit Static Page'
+=> '',
+
+'Create Static Page'
+=> '',
+
+'Page Text'
+=> '',
+
+'Are you sure you want to delete this page?'
+=> '',
+
+'Manage Static Pages'
+=> '',
+
+'Create New Static Page'
+=> '',
+
+'Enter Page Text'
+=> '',
+
+'Manage TakeATour'
+=> '',
+
+'Video URL'
+=> '',
+
+'Video description'
+=> '',
+
 'Media file has been deleted from album or gallery.'
 => '',
+
+'Author of this content is no longer a member of this group'
+=> 'L\'autore di questo contenuto non è più iscritto a questo gruppo',
 
 'Return to %s'
 => '',
@@ -5669,7 +2816,34 @@ $TRANSLATED_STRINGS = array(
 '%s\'s Page'
 => '',
 
+'My Page'
+=> 'La mia pagina',
+
 'No such content or media file has been deleted from the gallery.'
+=> '',
+
+'On this page you can manage all posts you have created.'
+=> '',
+
+'All Posts'
+=> 'Tutti i messaggi',
+
+'Events'
+=> 'Eventi',
+
+'Reviews'
+=> '',
+
+'People'
+=> 'Persone',
+
+'Group'
+=> 'Gruppo',
+
+'No Content Published.'
+=> 'Nessun contenuto pubblicato.',
+
+'Manage Post'
 => '',
 
 '%s Members'
@@ -5684,19 +2858,275 @@ $TRANSLATED_STRINGS = array(
 'Folder creation failed. '
 => '',
 
+' is not a valid folder name.'
+=> '',
+
+'Folder creation failed. You already have a folder named '
+=> '',
+
+'1 message has been deleted successfully'
+=> '',
+
+' messages have been deleted successfully'
+=> '',
+
+'1 message has been moved to folder '
+=> '',
+
+' successfully'
+=> '',
+
+' messages have been moved to folder '
+=> '',
+
+'Selected message(s) are already in '
+=> '',
+
+' folder'
+=> '',
+
+'Please select message(s) to move'
+=> '',
+
+'There are no messages in this folder.'
+=> 'Non ci sono messaggi in questa cartella',
+
+'No messages matched your search'
+=> 'Nessun messaggio corrisponde alla tua ricerca',
+
+'Compose message'
+=> 'Scrivi un messaggio',
+
+'Create new folder'
+=> 'Crea una nuova cartella',
+
+'Move to:'
+=> 'Sposta in:',
+
+'- Select Folder -'
+=> '- seleziona cartella -',
+
+'(no folders available)'
+=> '(nessuna cartella disponibile)',
+
+'Sent To'
+=> 'Inviato a',
+
+'To:'
+=> 'A:',
+
+'Sender'
+=> 'Mittente',
+
+'Search ...'
+=> 'Cerca...',
+
+'Inbox'
+=> 'Ricevuti',
+
+'Sent'
+=> 'Inviati',
+
+'Conversations View'
+=> 'Visualizza conversazioni',
+
+'Go'
+=> 'Vai',
+
+'Mailbox'
+=> 'Casella',
+
 'Search Results'
 => '',
 
 'You can\'t access other user\'s messages.'
 => '',
 
+'Conversations'
+=> 'Conversazioni',
+
 'Please create a folder to move message(s)'
+=> '',
+
+'Back to search results'
+=> 'Torna ai risultati della ricerca',
+
+'Reply'
+=> 'Rispondi',
+
+'Forward'
+=> 'Inoltra',
+
+'Previous'
+=> 'Precedente',
+
+'Next'
+=> 'Successivo',
+
+'Date:'
+=> 'Data:',
+
+'From:'
+=> 'Da:',
+
+'Subject:'
+=> 'Oggetto:',
+
+'In this page you can view Email Addresses of all users'
+=> '',
+
+'All Users'
+=> '',
+
+'Most Active Users'
+=> '',
+
+'Dormant Users'
+=> '',
+
+'Email Addresses'
+=> '',
+
+'Total Points'
+=> '',
+
+'In this page you can view stats about system usage'
+=> '',
+
+'Registered Users'
+=> '',
+
+'Number of blog post'
+=> '',
+
+'Number of Images'
+=> '',
+
+'Profile Views'
+=> '',
+
+'Maximum'
+=> '',
+
+'Minimum'
+=> '',
+
+'Average'
+=> '',
+
+'Profile Visited by User'
+=> '',
+
+'Relations Statistics'
+=> '',
+
+'Number of Users by Email Domain:'
+=> '',
+
+'Domain Name'
+=> '',
+
+'Number of Users'
+=> '',
+
+'MIS Reports'
+=> '',
+
+'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
+.'families yet.'
+=> '',
+
+'User has not joined any family yet.'
+=> '',
+
+'Families'
+=> '',
+
+'My Families'
+=> '',
+
+'My Groups'
+=> 'I miei gruppi',
+
+'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
+.'groups yet.'
+=> 'Non hai <a href="%s">creato</a> nè ti sei ancora <a href="%s">iscritto</'
+.'a> ad alcun gruppo.',
+
+'User has not joined any groups yet.'
+=> 'L\'utente non si è ancora iscritto ad alcun gruppo.',
+
+'My Links'
+=> 'I miei link',
+
+'No links under this category'
+=> 'Non ci sono link in questa categoria',
+
+'No links have been added. Click <a href="%s">here</a> to add links.'
+=> 'Non sono stati aggiunti link. Clicca <a href="%s">qui</a> per aggiungere '
+.'link.',
+
+'No links have been added'
+=> 'Non sono stati aggiunti link.',
+
+'My Networks'
+=> 'Le mie reti',
+
+'No network joined yet.'
+=> 'Non ti sei ancora iscritto ad alcuna rete',
+
+'Use this tool to send announcements to all registered network members'
+=> '',
+
+'Message/post'
+=> '',
+
+'Destination'
+=> '',
+
+'Deliver message to all registered members by internal mail'
+=> '',
+
+'Email message to all network members'
+=> '',
+
+'Post message to network home page community blog'
+=> '',
+
+'Send to me only'
+=> '',
+
+'Manage Network Bulletins'
+=> '',
+
+'Email Notifications'
+=> '',
+
+'Notify network operator (me) when'
+=> '',
+
+'Registered members receive notifications when'
+=> '',
+
+'via their registered email'
+=> '',
+
+'via their account inbox'
 => '',
 
 'User settable'
 => '',
 
+'Blink Messages Waiting:'
+=> '',
+
+'messages  waiting blinks in network member\'s toolbar when new messages arrive'
+=> '',
+
 'Update All Current Users'
+=> '',
+
+'Save changes'
 => '',
 
 'Restore Defaults'
@@ -5711,14 +3141,105 @@ $TRANSLATED_STRINGS = array(
 'Save Relationship'
 => '',
 
+'Network Address'
+=> 'Indirizzo di rete',
+
+'Network address will be part of the URL of your network, e.g. <code>http://'
+.'<b>abc</b>.%s/</code>. It should be less than 10 characters.'
+=> 'L\'indirizzo di rete (utilizzare possibilmente meno di 10 caratteri) farà '
+.'parte dell\'URL della tua rete, ad esempio <code>http://<b>abc</b>.%s/</code>.',
+
+'Check Availability'
+=> 'Controlla disponibilità',
+
+'Network Title/Heading'
+=> 'Titolo/Intestazione rete',
+
+'Title appears on network pages.  For best results, keep below 60 characters '
+.'(max 100 characters).'
+=> 'Il titolo compare sulle pagine della rete. Per un migliore risultato è '
+.'preferibile mantenersi al di sotto dei 60 caratteri, comunque non più di 100.',
+
+'Network Sub Title'
+=> 'Sottotitolo della rete',
+
+'The sub-title will be displayed below the Network Title.'
+=> 'Il sottotitolo verrà visualizzato sotto al titolo della rete.',
+
+'Network Category'
+=> 'Categoria Reti',
+
+'This category is used to organise the Network Directory.'
+=> 'Questa categoria è utilizzata per organizzare la lista delle reti.',
+
+'Network Description'
+=> 'Descrizione della rete',
+
+'A short paragraph or two describing your network.'
+=> 'inserisci una breve descrizione della tua rete.',
+
 'Default Network Language'
 => '',
 
 'Select the Network default language'
 => '',
 
+'Community Blog Title'
+=> 'Titolo del blog della community',
+
+'The Network group title will be displayed on the homepage.'
+=> '',
+
+'Network Icon'
+=> 'Icona della rete',
+
+'The icon will appear in the network listing.'
+=> 'L\'icona comparirà nella lista delle reti.',
+
+'Current Icon'
+=> 'Icona attuale',
+
+'Ideal size 70 x 60 pixels'
+=> 'Dimensione ideale 70x60 pixel',
+
+'Check if content moderation is required.'
+=> 'Controllare se è richiesta la moderazione del contenuto.',
+
+'Check if People page should only show users with a profile photo.'
+=> 'Controllare se la pagina Persone mostra solo utenti con foto nel profilo.',
+
 'Check if you want to enable the languages menu bar.'
 => '',
+
+'Check if top menu bar is not required.'
+=> 'Controllare se è richiesta la barra del menù superiore.',
+
+'Check if reciprocated relationships are required.'
+=> 'Controllare se è richiesta la reciprocità del contatto.',
+
+'Check if email address validation is required.'
+=> 'Controllare se è richiesta la validazione dell\'indirizzo email.',
+
+'Check if CAPTCHA is required during registration.'
+=> 'Controllare se è richiesto un CAPTCHA durante la registrazione.',
+
+'Reciprocated relationships are required.'
+=> 'è necessaria la reciprocità del contatto.',
+
+'Reciprocated relationships are not required.'
+=> 'Non è necessaria la reciprocità del contatto.',
+
+'Email address validation is required.'
+=> 'è necessaria la validazione dell\'indirizzo email.',
+
+'Email address validation is not required.'
+=> 'Non è necessaria la validazione dell\'indirizzo email.',
+
+'CAPTCHA is required during registration.'
+=> 'è richiesto un CAPTCHA durante la registrazione.',
+
+'CAPTCHA is not required during registration.'
+=> 'Non è richiesto un CAPTCHA durante la registrazione.',
 
 'Load / restore General Network Settings from local disk'
 => '',
@@ -5738,11 +3259,574 @@ $TRANSLATED_STRINGS = array(
 'Upload new default settings file'
 => '',
 
+'New User Account Defaults'
+=> '',
+
+'Network friends'
+=> '',
+
+'I appear as a friend in all new accounts'
+=> '',
+
+'These users appear as friends in all new accounts.'
+=> '',
+
+'(enter screen names of registered network users, separated by commas)'
+=> '',
+
+'Current default desktop image'
+=> '',
+
+'(Images 1016 pixels wide by 191 pixels tall will have the best results)'
+=> '',
+
+'Upload default desktop image'
+=> '',
+
+'Set desktop image turn on/off'
+=> '',
+
+'Media Gallery Images'
+=> '',
+
+'Select an image album(s) from your gallery to include in new user default '
+.'galleries. (An album in your gallery may contain one or more images.)'
+=> '',
+
+'Upload to gallery now'
+=> '',
+
+'For multiple selections hold down the &lt;Ctrl&gt;key PC or the &lt;'
+.'Command&gt; key(Mac) while clicking the desired selections.'
+=> '',
+
+'Media Gallery Audio'
+=> '',
+
+'Select an audio album(s) from your gallery to include in new user default '
+.'galleries. (An album in your gallery may contain one or more audio clips.)'
+=> '',
+
+'Media Gallery Video'
+=> '',
+
+'Default Blog'
+=> '',
+
+'Select a post to include in new user default.'
+=> '',
+
+'Save Settings'
+=> '',
+
+'Network Default Links'
+=> 'Link predefiniti della rete',
+
+'No links have been added.'
+=> 'Non sono stati aggiunti link.',
+
+'Multiple networks are disabled - please configure your system for network '
+.'operation.'
+=> 'Reti multiple disabilitate - si prega di configurare il sistema per il '
+.'funzionamento della rete.',
+
+'The current featured network is: <a href="%s">%s</a>'
+=> 'La rete attualmente configurata è: <a href="%s">%s</a>',
+
+'Select a featured network:'
+=> 'Scegli una rete configurata:',
+
+'Select a network'
+=> 'Scegli una rete',
+
+'Featured Network'
+=> 'Rete configurata',
+
+'Configure'
+=> 'Configura',
+
+'System Settings'
+=> '',
+
+'Configuration manager'
+=> '',
+
+'PA Defender'
+=> '',
+
+'Network Settings'
+=> '',
+
+'Network settings'
+=> '',
+
+'Ad Center'
+=> '',
+
+'Textpads'
+=> '',
+
+'Manage Textpads'
+=> 'Gestisci Textpad',
+
+'Meta network'
+=> '',
+
+'Set featured network'
+=> '',
+
+'Manage emblems'
+=> '',
+
+'Manage splash'
+=> '',
+
+'Info Boxes'
+=> '',
+
+'Network of Moment'
+=> '',
+
+'Showcase Modules'
+=> '',
+
+'Video Tours'
+=> '',
+
+'Server Announcement'
+=> '',
+
+'Survey'
+=> '',
+
+'Create Survey'
+=> '',
+
+'Select Survey'
+=> '',
+
+'Register Today'
+=> '',
+
+'Take a Tour Video'
+=> '',
+
+'Usage'
+=> '',
+
+'Counts'
+=> '',
+
+'Marketing reports'
+=> '',
+
+'Themes'
+=> 'Temi',
+
+'Theme selector'
+=> '',
+
+'Module selector'
+=> '',
+
+'Background image'
+=> '',
+
+'Header image'
+=> '',
+
+'Customize theme'
+=> '',
+
+'User defaults'
+=> '',
+
+'Default settings'
+=> '',
+
+'Relationship settings'
+=> '',
+
+'Users Settings'
+=> '',
+
+'Create users'
+=> '',
+
+'Manage users'
+=> '',
+
+'Moderate users'
+=> '',
+
+'Moderate contents'
+=> '',
+
+'Manage contents'
+=> '',
+
+'Manage comments'
+=> '',
+
+'Manage links'
+=> '',
+
+'Network links'
+=> '',
+
+'Manage Profanity'
+=> '',
+
+'Profane Word List'
+=> '',
+
+'Manage Signup Access'
+=> '',
+
+'Manage Domain Names'
+=> '',
+
+'Manage Events'
+=> '',
+
+'Network Events'
+=> '',
+
+'Bulletins'
+=> 'Bulletins',
+
+'Email notifications'
+=> '',
+
+'Roles'
+=> '',
+
 'Manage Roles & Tasks'
 => '',
 
+'Manage Tasks Relationship'
+=> '',
+
+'Static Pages'
+=> '',
+
+'Manage Network Links'
+=> '',
+
+'No Link Categories'
+=> '',
+
+'Manage Links'
+=> 'Gestisci link',
+
+'Link Name'
+=> '',
+
+'Link'
+=> '',
+
+'Manage Network Content'
+=> '',
+
+'Search Posts'
+=> '',
+
+'Browse Months'
+=> '',
+
+'Search'
+=> 'Cerca',
+
+'Network Operator Controls'
+=> '',
+
+'In this page you can manage users registered on your network'
+=> '',
+
+'Search Registered Users'
+=> 'Ricerca utenti registrati',
+
+'Manage Users'
+=> 'Gestisci utenti',
+
+'Moderate content on your network.'
+=> '',
+
+'No Content For Moderation.'
+=> '',
+
+'In this page you can moderate users registered on your network'
+=> '',
+
+'Picture'
+=> '',
+
+'Registered'
+=> 'Registrato',
+
+'Action'
+=> 'Azione',
+
+'No User.'
+=> '',
+
+'Moderate Users'
+=> '',
+
+'Manage content on your network.'
+=> '',
+
+'Search posts'
+=> '',
+
+'Browse months'
+=> '',
+
+'Comments'
+=> '',
+
+'Are you sure you want to delete this content?'
+=> '',
+
+'No Content.'
+=> 'Nessun contenuto.',
+
+'Manage Content'
+=> '',
+
+'Manage users registered on your network'
+=> 'Gestisci gli utenti registrati nella tua rete',
+
+'Are you sure you want to delete this user?'
+=> 'Sei sicuro di voler eliminare questo utente?',
+
+'pending'
+=> 'In sospeso',
+
+'Assign Role'
+=> 'Assegna ruolo',
+
+'Selected'
+=> 'Selezionato',
+
+'Are you sure?'
+=> 'Sei sicuro?',
+
+'(un)check all'
+=> '(de)seleziona tutto',
+
+'No users'
+=> 'Nessun utente',
+
+'No networks in this category'
+=> 'Non ci sono reti in questa categoria',
+
+'Size'
+=> 'Dimensione',
+
+'Network Directory'
+=> 'Lista reti',
+
+'Search Networks'
+=> 'Cerca reti',
+
+'No networks found'
+=> 'Nessuna rete trovata',
+
+'Network Statistics'
+=> 'Statistiche della rete',
+
 'Newest %s'
 => '',
+
+'Networks'
+=> '',
+
+'Largest Network'
+=> 'Reti più grandi',
+
+'No network created yet.'
+=> 'Non sono state ancora create reti.',
+
+'Provide a login name, email address and basic information for a new network '
+.'member.'
+=> '',
+
+'Upon hitting the create button, the new member will be emailed a greeting '
+.'including an auto-generated password.'
+=> '',
+
+'Fields marked with an asterisk (*) are mandatory.'
+=> '',
+
+'Email address'
+=> '',
+
+'Photo/avatar'
+=> '',
+
+'Auto-generate new password for network member'
+=> '',
+
+'Manual password'
+=> '',
+
+'modify greeting if desired and click the create user button below tocomplete '
+.'process'
+=> '',
+
+'Hi,'
+=> '',
+
+'I\'ve created my own place on PeopleAggregator and I\'d like you to'
+=> '',
+
+'connect to me so we can stay in touch.'
+=> '',
+
+'You can view my blog, my reviews, my ratings, my photos, my lists -'
+=> '',
+
+'and all sorts of things that matter to me.'
+=> '',
+
+'You can create a personal page and blog of your own, which will be'
+=> '',
+
+'linked to mine.'
+=> '',
+
+'That way you\'ll always know when I post something new!'
+=> '',
+
+'Create User'
+=> 'Crea utente',
+
+'Location'
+=> 'Posizione',
+
+'no data'
+=> 'non ci sono dati',
+
+'Age'
+=> 'età',
+
+'Add as'
+=> 'Aggiungi come',
+
+'Advanced Search'
+=> 'Ricerca avanzata',
+
+'Simple Search'
+=> 'Ricerca semplice',
+
+'Recent Users'
+=> 'Ultimi utenti',
+
+' with picture in profile'
+=> 'con foto nel profilo',
+
+'Select rows'
+=> 'Seleziona righe',
+
+'Find Users'
+=> 'Trova utenti',
+
+'Male'
+=> 'Maschio',
+
+'Female'
+=> 'Femmina',
+
+'Any'
+=> 'Qualsiasi',
+
+'Company Name'
+=> 'Nome della società',
+
+'Interests'
+=> 'Interessi',
+
+'College'
+=> '',
+
+'Cusines'
+=> '',
+
+'Shout-out'
+=> '',
+
+'Click here to add your Shout-out.'
+=> '',
+
+'Please, select a family member that you wish to assign points'
+=> '',
+
+'Date: '
+=> '',
+
+'No entries.'
+=> '',
+
+'or click here to add a new'
+=> '',
+
+'Rating Points'
+=> '',
+
+'Place'
+=> '',
+
+'Related Media'
+=> '',
+
+'Click here to upload'
+=> '',
+
+'%s Points Directory'
+=> '',
+
+'%s Points'
+=> '',
+
+'Points for %s'
+=> '',
+
+'Search results for \'%s\' Category'
+=> '',
+
+'Add Points'
+=> '',
+
+'Edit Points'
+=> '',
+
+'You do not have permission for this action!'
+=> '',
+
+'Points Entity not found!'
+=> '',
+
+'Points sucessfully deleted.'
+=> '',
+
+'Points data sucessfully stored'
+=> '',
+
+'Survey Archive'
+=> '',
+
+'Answer'
+=> '',
+
+'See all recent Surveys'
+=> '',
+
+'Most Popular Tags'
+=> 'I tag più popolari',
+
+'Nothing has been tagged yet.'
+=> 'Non sono stati ancora inseriti tag',
 
 'Attach Media'
 => '',
@@ -5750,8 +3834,20 @@ $TRANSLATED_STRINGS = array(
 'Add Image or Video'
 => '',
 
+'Separate tags with commas'
+=> '',
+
 'edit your post'
 => '',
+
+'create your post'
+=> '',
+
+'Routing'
+=> '',
+
+'Community Blog'
+=> 'Blog della community',
 
 'Post to %s (On this networks home page)'
 => '',
@@ -5759,40 +3855,160 @@ $TRANSLATED_STRINGS = array(
 'You can route this post to one or many destinations with the selectors below.'
 => '',
 
+'Please note that routing does not post to private groups'
+=> '',
+
 'Post to community Blog (On this networks home page)'
 => '',
 
-'My Comments'
+'Send to selected group blogs'
 => '',
 
-'Street address 1'
+'Send to selected external blogs'
 => '',
 
-'Street address 2'
+'Select albums in your media gallery to send to'
 => '',
 
-'ZIP Code'
+'Select none of my galleries'
 => '',
 
-'Phone #'
+'Select all of my galleries'
 => '',
 
-'Preview Image'
+'No Albums'
 => '',
 
-'Clear Image'
+'Or, create a new album in your media gallery'
 => '',
 
-'To use a different image, click Clear Image and select a new image.'
+'The post you are composing will be lost if you continue, are you sure you '
+.'want to leave  without saving?'
 => '',
+
+'Add Blog Post'
+=> '',
+
+'Default Image Album'
+=> '',
+
+'Default Audio Album'
+=> '',
+
+'Default Video Album'
+=> '',
+
+'Blogs'
+=> '',
+
+'Question of the Day'
+=> 'Domanda del giorno',
+
+'Site Ranking'
+=> '',
+
+'Recent Comments'
+=> 'Ultimi commenti',
+
+'My Friend\'s Comments'
+=> '',
+
+'No title'
+=> '',
+
+'No comments posted yet.'
+=> 'Non sono stati ancora inseriti commenti.',
+
+'Recent Posts'
+=> 'Post recenti',
+
+'No contents in blog.  <a href="%s">Click here to make a post</a>!'
+=> 'Nessun contenuto nel blog.  <a href="%s">Clicca qui per scrivere un '
+.'messaggio</a>!',
+
+'Browse Tags'
+=> 'Sfoglia tag',
+
+'Nothing has been tagged yet'
+=> 'Non sono state ancora inseriti tag',
+
+'Welcome to %s!'
+=> 'Benvenuto %s!',
+
+'With your %s account you will be able to:'
+=> 'Con il tuo %s account potrai:',
+
+'Edit, share and store all your digital stuff in one place.'
+=> 'Modificare, condividere e conservare tutti i tuoi file in un posto solo',
+
+'Manage all your friends, groups and content.'
+=> 'Gestire i tuoi amici, gruppi e contenuti.',
+
+'Unite your online life by connecting all your presences together.'
+=> 'Crearti un\'unica identità online che metta insieme tutte le tue presenze in '
+.'rete',
+
+'Provide the following information to join and start connecting all your '
+.'digital worlds!'
+=> 'Compila il form per registrarti e inizia a unire tutti i tuoi mondi digitali!',
 
 'My '
+=> '',
+
+'No %ss made yet.'
+=> 'Non sono state ancora create connessioni.',
+
+'Send request for joining network'
+=> '',
+
+'Your request to join this network could not be sent due to following reason: '
+.'%s. You can go back to the home network by clicking Return to home network'
+=> '',
+
+'Your request to join this network has been successfully sent to the '
+.'moderator of this network. The Moderator will check this request and approve '
+.'or deny the request. You can go back to mother network by clicking the '
+.'button Return to home network'
+=> '',
+
+'Return to home network successfully.'
+=> '',
+
+'Request Message'
+=> '',
+
+'Welcome to PeopleAggregator'
+=> '',
+
+'This is a private network'
+=> '',
+
+'You need to be member of this network to do anything. You can send a request '
+.'to join this network by clicking \'Request to join\'.'
+=> '',
+
+'Return to home network'
+=> 'Torna alla home della rete',
+
+'In this page you can manage different admin roles'
+=> '',
+
+'Sr.No.'
+=> '',
+
+'No roles have been created yet.'
+=> '',
+
+'Add New Role'
 => '',
 
 'Load / restore Roles Settings from local disk'
 => '',
 
 'Load Roles Settings'
+=> '',
+
+'Manage Roles'
 => '',
 
 'Invalid configuration file format. Configuration file should be a valid XML '
@@ -5829,8 +4045,26 @@ $TRANSLATED_STRINGS = array(
 'There is no Roles data in default XML settings file.'
 => '',
 
+'Tag Search'
+=> '',
+
+'Search Terms'
+=> 'Ricerca parole',
+
 'all of these words'
 => '',
+
+'this exact phrase'
+=> 'la frase esatta',
+
+'any of these words'
+=> 'Una qualsiasi di queste parole',
+
+'none of these words'
+=> 'nessuna di queste parole',
+
+'Date Range'
+=> 'Intervallo di tempo',
 
 'Start Date'
 => '',
@@ -5838,14 +4072,74 @@ $TRANSLATED_STRINGS = array(
 'End Date'
 => '',
 
+'Search Content'
+=> 'Ricerca contenuto',
+
+'Poll Topic'
+=> '',
+
+'Number Of Options'
+=> '',
+
+'Select Any One Topic'
+=> '',
+
+'No poll was created yet.'
+=> 'Non sono state ancora create reti.',
+
+'Poll has been deleted successfully.'
+=> '',
+
+'Poll has been saved successfully.'
+=> '',
+
+'Poll has been created successfully.'
+=> '',
+
+'Announcements'
+=> '',
+
+'ShowCase'
+=> '',
+
+'Contents'
+=> 'Contenuti',
+
 'Date range selected is invalid. Please, select a valid date range.'
 => '',
+
+'Please enter either data or date to search'
+=> '',
+
+'%s\'s Group Blog'
+=> 'Blog del gruppo %s',
+
+'Manage posts'
+=> 'Gestisci i messaggi',
 
 'Return to private page'
 => '',
 
+'Showing results for tag %s.'
+=> 'Mostra risultati per il tag %s.',
+
+'Moderate'
+=> 'Modera',
+
+'Manage content'
+=> 'Gestisci contenuto',
+
+'Join this group'
+=> 'Iscriviti al gruppo',
+
 'No items match your search criteria.'
 => '',
+
+'Back'
+=> '',
+
+'Click <a href="%s">here</a> to add content.'
+=> 'Clicca <a href="%s">qui</a> per aggiungere un contenuto.',
 
 'You will be redirected in '
 => '',
@@ -5868,10 +4162,131 @@ $TRANSLATED_STRINGS = array(
 'Warning!'
 => '',
 
+'No Testimonial Found'
+=> '',
+
 'Testimonials'
 => '',
 
-'Create new %s'
+'New Testimonials'
+=> '',
+
+'Click here to submit a Testimonial'
+=> '',
+
+'Testimonials for '
+=> '',
+
+'Comment rejected by spam filter'
+=> '',
+
+'Comment can\'t be empty.'
+=> '',
+
+'Show Splash Page'
+=> '',
+
+'If this checkbox is checked then Splash Page will be the first page to be '
+.'shown to the anonymous users otherwise Homepage will be the first page'
+=> '',
+
+'Info for: '
+=> '',
+
+'Info URL'
+=> '',
+
+'Paste the complete URL of the network here'
+=> '',
+
+'Info Image'
+=> '',
+
+'No image selected.'
+=> '',
+
+'Upload Image'
+=> '',
+
+'Uploaded images will be displayed at 145 pixels by 145 pixels.'
+=> '',
+
+'Set Info Boxes'
+=> '',
+
+'Network URL'
+=> '',
+
+'Network of the Moment Image'
+=> '',
+
+'Uploaded image will be displayed at 193 pixels by 67 pixels'
+=> '',
+
+'Save Network of the Moment'
+=> '',
+
+'Uploaded image will be displayed at 193 pixels by 67 pixels.'
+=> '',
+
+'Uploaded image will be displayed at 185 pixels by 110 pixels.'
+=> '',
+
+'Save Announcement'
+=> '',
+
+'Featured User'
+=> '',
+
+'Featured Group ID'
+=> '',
+
+'Featured Video Link'
+=> '',
+
+'Featured Business ID'
+=> '',
+
+'Save Showcase Module'
+=> '',
+
+'Showcased Network '
+=> '',
+
+'Showcased Network URL'
+=> '',
+
+'Showcased Network Image'
+=> '',
+
+'Set Showcased Networks'
+=> '',
+
+'Showcase Module'
+=> '',
+
+'Video Tours Image'
+=> '',
+
+'Save Video Tour'
+=> '',
+
+'Click here to watch the video'
+=> 'Clicca qui per vedere il video',
+
+'Take A Tour'
+=> 'Fai un giro',
+
+'In this page you can assign roles to tasks'
+=> '',
+
+'No roles have been created yet'
+=> '',
+
+'Assign Roles to Tasks'
+=> '',
+
+'Terms and conditions for using'
 => '',
 
 'There are %s entries in this directory.'
@@ -5893,19 +4308,7 @@ $TRANSLATED_STRINGS = array(
 'Create it'
 => '',
 
-'Update relation'
-=> '',
-
-'-- Please select --'
-=> '',
-
-'Update'
-=> '',
-
 'Typed Group Settings'
-=> '',
-
-'Sorry, you can\'t perform this action.'
 => '',
 
 'Request to join this group as'
@@ -5914,13 +4317,62 @@ $TRANSLATED_STRINGS = array(
 'Join This Group as'
 => '',
 
-'You are a %s'
+'You can upload an audio file'
 => '',
 
-'Edit %s profile'
+'Audio title'
 => '',
 
-'%s profile'
+'You can upload a gif, jpg, jpeg, png, xpm or bmp file'
+=> '',
+
+'Do not upload photos containing cartoons, celebrities, nudity, artwork or '
+.'copyrighted images'
+=> '',
+
+'Upload image'
+=> '',
+
+'Select who can see this image'
+=> '',
+
+'Tags (separate with commas)'
+=> '',
+
+'Add More'
+=> '',
+
+'Or finish below'
+=> '',
+
+'Upload audio'
+=> '',
+
+'You can upload a video file'
+=> '',
+
+'Video title'
+=> '',
+
+'Upload video'
+=> '',
+
+'Select a file to upload, or enter a URL below'
+=> '',
+
+'Audio URL'
+=> '',
+
+'Select who can listen to this Audio'
+=> '',
+
+'Send to album'
+=> '',
+
+'Or create new album'
+=> '',
+
+'Image URL'
 => '',
 
 'Unkonwn type selected'
@@ -5936,6 +4388,9 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Contacts'
+=> '',
+
+'Import'
 => '',
 
 'Outlook Contacts: '
@@ -5968,59 +4423,53 @@ $TRANSLATED_STRINGS = array(
 ' contact(s) sucessfully deleted.'
 => '',
 
+'General'
+=> 'Generale',
+
 'Other'
 => '',
 
 'No details.'
 => '',
 
-'There are %d members in %s.'
+'Messages'
+=> 'Messaggi',
+
+'Photo'
+=> 'Foto',
+
+'No Videos'
 => '',
 
-'There are %d friends.'
+'No Video'
 => '',
 
-'There are %d members in this %s.'
+'Are you sure you want to delete this video'
 => '',
 
-'There are %d members.'
-=> '',
+'View all Members'
+=> 'Visualizza tutti gli iscritti',
 
-'There are %d friends for %s.'
-=> '',
-
-'No relation exists.'
-=> '',
+'View all '
+=> 'Visualizza tutti',
 
 'View All %s Members'
 => '',
 
-'Business'
+'Polls'
 => '',
 
-'Church'
+'No previous poll to display'
 => '',
 
-'School'
+'No votes are posted for this poll'
 => '',
 
-'Fan'
-=> '',
+'Edit Events'
+=> 'Modifica eventi',
 
-'Supporter'
-=> '',
-
-'Customer'
-=> '',
-
-'Employee'
-=> '',
-
-'Postal Code'
-=> '',
-
-'Phone Number'
-=> '',
+'My Events'
+=> 'I miei eventi',
 
 'Email Messages settings data successfully loaded from '
 => '',
@@ -6028,8 +4477,69 @@ $TRANSLATED_STRINGS = array(
 'Email message settings successfully restored.'
 => '',
 
+'Network URL cannot be left empty for showcased network '
+=> '',
+
+' For showcased network '
+=> '',
+
+'No caption given to network of moment'
+=> '',
+
+'Please provide URL for network of moment'
+=> '',
+
+'No video URL provided for video tours'
+=> '',
+
+'No description provided for network of moment'
+=> '',
+
+' For network of moment, '
+=> '',
+
+'Configure Splash Page'
+=> 'Configura splash page',
+
+'You need to be member of this group to view the contents'
+=> '',
+
+'Networks are disabled.'
+=> 'Le reti sono disabilitate',
+
+'Network spawning disabled.'
+=> 'Espansione rella rete disabilitata',
+
+'Create Network - %s'
+=> 'Crea una rete - %s',
+
+'There was a problem:<br>No message(s) selected. Please select at least one '
+.'message and try again.'
+=> '',
+
+'There was a problem:'
+=> '',
+
+'No folder selected. Please select a folder and try again.'
+=> '',
+
+'No message(s) selected. Please select at least one message and try again.'
+=> '',
+
+'%s - %s'
+=> '',
+
+'page_name'
+=> 'page_name',
+
 ' updated successfully'
 => '',
+
+'%s - Edit your profile - %s'
+=> '%s - Modifica il tuo profilo - %s',
+
+'Sorry! you are not authorized to view content of this page'
+=> 'Spiacenti! Non sei autorizzato a vedere il contenuto di questa pagina',
 
 'File '
 => '',
@@ -6064,20 +4574,121 @@ $TRANSLATED_STRINGS = array(
 'Upload %s'
 => '',
 
+'Your file is too large for the web server.  The largest file you can upload '
+.'here is %.1fM.  If this is too small, please ask the administrator to '
+.'increase the <code>upload_max_filesize</code> directive in <code>php.ini</'
+.'code>.'
+=> 'll tuo file è troppo grande. La dimensione massima di file che puoi caricare '
+.'è %.1fM.',
+
+'The uploaded file was only partially uploaded.'
+=> 'Il file è stato caricato solo parzialmente.',
+
+'No file was uploaded'
+=> 'Non è stato caricato nessun file',
+
+'File %s not uploaded correctly.'
+=> 'File %s non caricato correttamente.',
+
 'File is not uploaded correctly.'
 => '',
 
-'Directory'
+'File too large; %s file uploads are limited to %s.  If this is too small, '
+.'please ask the administrator to increase the limit.'
+=> 'Il file è troppo grande; %s il caricamento di file è limitato a  %s.',
+
+'Invalid image file.'
+=> 'Questo non è un file immagine valido.',
+
+'Invalid media file.'
+=> 'Questo non è un file media valido.',
+
+'Invalid document type - supported formats are: %s'
+=> 'Tipo di documento non valido - i formati supportati sono: %s',
+
+'File error: File already exists'
+=> 'errore: il fie esiste già',
+
+'Security error: File %s is not an uploaded file:'
+=> 'Errore di sicurezza: il file %s non è un file caricato:',
+
+'XML parsing error!'
+=> '',
+
+'Data not found or XML parsing error!'
+=> '',
+
+'Can\'t get data from URL. Please, check the given URL.'
+=> '',
+
+'Can\'t open file \''
+=> '',
+
+'File'
+=> '',
+
+'doesn\'t exist.'
+=> '',
+
+'No data! Check if file is empty.'
+=> '',
+
+'Network directory'
+=> 'Lista reti',
+
+'JOIN Network'
+=> 'ISCRIVITI alla rete',
+
+'Unjoin Network'
+=> 'Cancella la tua iscrizione alla rete',
+
+'Create a network'
+=> 'Crea una rete',
+
+'Home'
+=> 'Home',
+
+'Orgs'
+=> '',
+
+'Neighbors'
+=> '',
+
+'My Widgets'
+=> 'I miei widget',
+
+'My Messages'
+=> 'I miei messaggi',
+
+'My Friends'
 => '',
 
 'My Forum'
 => '',
 
+'My Points'
+=> '',
+
+'My Family'
+=> '',
+
+'Edit My Account'
+=> 'Modifica il mio account',
+
 'Find %s'
 => '',
 
-'%s who call me friend'
+'My friends'
+=> 'I miei amici',
+
+'Friends gallery'
+=> 'Gallery degli amici',
+
+'Family Homepage'
 => '',
+
+'Create'
+=> 'Crea',
 
 '%s Home'
 => '',
@@ -6088,19 +4699,104 @@ $TRANSLATED_STRINGS = array(
 '%s Gallery'
 => '',
 
-'Activate your '
+'Join'
+=> 'Iscriviti',
+
+'Unjoin'
+=> 'Cancella iscrizione',
+
+'Are you sure you want to delete this group'
+=> 'Sei sicuro di voler eliminare questo gruppo',
+
+'Email Notification'
+=> 'Notifica email',
+
+'Set Feature Network'
+=> 'Imposta funzionalità di rete',
+
+'Manage Emblem'
+=> 'Gestisci simbolo',
+
+'Personalized Video'
+=> 'Video personalizzato',
+
+'Top Bar Enable/Disable'
+=> 'Abilita/disabilita barra superiore',
+
+'User Defaults'
+=> 'Predefiniti utente',
+
+'Relationships'
+=> 'Relazioni',
+
+'Manage Contents'
+=> 'Gestisci contenuti',
+
+'Customize UI'
+=> 'Personalizza UI',
+
+'Home Page'
+=> 'Homepage',
+
+'User Default Page'
+=> 'Pagina predefinita utente',
+
+'Group Directory Page'
+=> 'Elenco gruppi',
+
+'Network Directory Page'
+=> 'Elenco reti',
+
+'Send a message'
+=> 'Invia un messaggio',
+
+'Change Relation'
 => '',
 
-' account by clicking the following link:'
+'Delete as %s'
 => '',
+
+'Are you sure you want to delete this Relationship?'
+=> '',
+
+'Add as %s'
+=> '',
+
+'%s function expects string as first argument.'
+=> '',
+
+'Malicious or unauthorized activities detected. If you think this is an '
+.'error, '
+=> '',
+
+'First'
+=> '',
+
+'Last'
+=> '',
+
+'Could not retrieve file from URL: %s'
+=> 'Impossibile recuperare il file dall\'URL: %s',
 
 'User ID or Password field can\'t be blank.'
+=> '',
+
+'Invalid or missing SOAP XML file'
+=> '',
+
+'Invalid response received from'
+=> '',
+
+'Invalid XML response received from'
+=> '',
+
+'BinarySecurityToken not found in XML response received from'
 => '',
 
 'Can\'t estabilish WEB connection.'
 => '',
 
-'Unknown communication error has been occured.'
+'Unknown communication error has occured.'
 => '',
 
 'Communication error - no response received.'
@@ -6108,6 +4804,12 @@ $TRANSLATED_STRINGS = array(
 
 'AdrBook: Invalid response received from'
 => '',
+
+'no name'
+=> 'nessun nome',
+
+'no email'
+=> 'nessuna email',
 
 'Plaxo data parser error.'
 => '',
@@ -6137,34 +4839,462 @@ $TRANSLATED_STRINGS = array(
 'In Family'
 => '',
 
+'Network name'
+=> 'Nome della rete',
+
+'Network address'
+=> 'Indirizzo della rete',
+
+'Network tagline'
+=> 'Tagline della rete',
+
+'Group name'
+=> 'Nome del gruppo',
+
+'Group description'
+=> 'Descrizione del gruppo',
+
+'Group tag'
+=> 'Tag del gruppo',
+
+'Select age'
+=> 'Seleziona età',
+
+'Under 10 years'
+=> 'Meno di 10 anni',
+
+'11-20 years'
+=> '11-20 anni',
+
+'21-30 years'
+=> '21-30 anni',
+
+'31-40 years'
+=> '31-40 anni',
+
 '41-50 years'
 => '',
 
+'Over 50 years'
+=> 'oltre i 50 anni',
+
+'Create Post'
+=> 'Scrivi un messaggio',
+
+'Messages '
+=> 'Messaggi',
+
+'Edit my account'
+=> 'Modifica il mio account',
+
+'Tags:'
+=> 'Tag:',
+
+'Installer will perform now a series of tests to determine the working '
+.'environment of the server and the minimum conditions for a successful '
+.'installation. Please do not interrupt this step of the installation process.'
+=> '',
+
+'Please wait...'
+=> '',
+
+'Please complete the following information to create an admin account.'
+=> '',
+
+'Admin username'
+=> '',
+
+'Admin password'
+=> '',
+
+'Admin email'
+=> '',
+
+'Invalid or empty user name.'
+=> '',
+
+'Your password must be at least %d characters long.'
+=> '',
+
+'Your password can not be longer than %d characters.'
+=> '',
+
+'Invalid or empty email field.'
+=> '',
+
+'Administrator account data sucessfully stored. Click \'Next\' please...'
+=> '',
+
+'Please complete the following information if you have already created a '
+.'database for People Aggregator application.'
+=> '',
+
+'or you can provide bellow MySQL root username/password and People Aggregator '
+.'will create a database for you.'
+=> '',
+
+'MySQL root username'
+=> '',
+
+'MySQL root password'
+=> '',
+
+'Please wait, trying to connect to the database.'
+=> '',
+
+'Creating the Database'
+=> '',
+
+'Congratulations!'
+=> '',
+
+'%s - My Links - %s'
+=> '%s - I miei link - %s',
+
+'Group deleted successfully'
+=> '',
+
+'%s groups deleted successfully'
+=> '',
+
+'Question is set for all users'
+=> '',
+
+'Please select a question to activate.'
+=> '',
+
+'Question has been successfully saved'
+=> '',
+
+'Fields marked with * must not be left empty'
+=> '',
+
+'Question has been deleted successfully'
+=> '',
+
+'Caption has already been taken, please enter a different caption'
+=> '',
+
+'Successfully updated'
+=> 'Aggiornato con successo',
+
+' is already enabled at specified orientation'
+=> '',
+
+'Please select atleast one user.'
+=> '',
+
+'Status of selected user(s) updated successfully'
+=> 'Le informazioni sull\'utente/i selezionato/i sono state aggiornate',
+
+'An error has occured on deleting users.'
+=> 'Si è verificato un errore nell\'eliminazione utenti.',
+
 ' uploaded successfully.'
+=> '',
+
+'Please confirm network deletion by selecting deletion checkbox.'
+=> 'Si prega di confermare l\'eliminazione della rete selezionando l\'apposita '
+.'casella ',
+
+'Network Statistics - %s'
+=> 'Statistiche della rete - %s',
+
+'General Network Settings'
+=> 'Impostazioni generali rete',
+
+'Administration panel'
+=> 'Pannello di controllo',
+
+'Following relations could not be added as default relation '
+=> '',
+
+'Default settings for the network has been saved'
 => '',
 
 'Click "Save" button to store new settings.'
 => '',
 
-'User Private Page'
+'Date range selected is invalid, so it has been ignored in searching'
 => '',
 
-'People Page'
+'Your comment contains some illegal characters. Please try again.'
 => '',
 
-'Blog Post Permalink Page'
+'Comment can not be left blank'
 => '',
 
-'Forums Page'
+'Sorry, your comment cannot be posted as it looks like spam. Try removing any '
+.'links to possibly suspect sites, and re-submitting.'
 => '',
 
-'Search Page'
+'Your comment has been posted successfully'
+=> '',
+
+'Sorry, your comment cannot be posted as it was classified as spam by '
+.'Akismet, or contained links to blacklisted sites.  Please check the links in '
+.'your post, and that your name and e-mail address are correct.'
+=> '',
+
+'Sorry, your comment cannot be posted as it was classified as spam by '
+.'Akismet, or contained links to blacklisted sites. Please check the links in '
+.'your post, and that your name and e-mail address are correct.'
+=> '',
+
+'Terms and Conditions - %s'
+=> 'Termini e Condizioni di utilizzo - %s',
+
+'basecamp test disabled'
+=> '',
+
+'please enter your basecamp login details above.'
+=> '',
+
+'scraping contacts page to get companies'
+=> '',
+
+'getting list of people from company '
+=> '',
+
+' who are working on this project'
+=> '',
+
+'testing ImageResize module with engine'
+=> '',
+
+'make sure to hit ctrl-F5 after clicking, to clear the cache'
+=> '',
+
+'flushing cache'
+=> '',
+
+'done'
+=> '',
+
+'expanding and cropping 135x75 to fit inside 300x300'
+=> '',
+
+'reduce only'
+=> '',
+
+'fitting 135x75 inside 300x300'
+=> '',
+
+'reduce only, smaller'
+=> '',
+
+'Report abuse'
+=> '',
+
+'Comment'
+=> '',
+
+'Submit Abuse'
+=> '',
+
+'Right-click to download'
+=> 'Clicca tasto destro per scaricare',
+
+'Overall Rating'
+=> '',
+
+'Your Rating'
+=> '',
+
+'Please'
+=> '',
+
+'log in'
+=> '',
+
+'to rate this audio'
+=> '',
+
+'to rate this post'
+=> '',
+
+'Are you sure you want  to post the comment?'
+=> '',
+
+'Leave a Comment'
+=> '',
+
+'Submit Comment'
+=> '',
+
+'Are you sure you want to post the comment?'
+=> '',
+
+'posted by %s on %s'
+=> 'inserito da %s il %s',
+
+'permalink'
+=> 'permalink',
+
+'comments'
+=> 'commenti',
+
+'Unknown error.'
+=> '',
+
+'Detailed information has been written into the error log.'
+=> '',
+
+'Begins'
+=> 'Inizia',
+
+'Click here to go back to the Home page'
+=> '',
+
+'&copy;'
+=> '',
+
+'Already a member?'
+=> 'Sei già iscritto?',
+
+'Login now'
+=> 'Login',
+
+'or'
+=> 'oppure',
+
+'Register'
+=> 'Registrati',
+
+'shortcuts'
+=> 'scorciatoie',
+
+'logoff'
+=> 'Esci',
+
+'to rate this image'
+=> '',
+
+'Network is temporarily closed. We apologize for any inconvenience and thank '
+.'you for your patience as we improve the system. Please try after some time. '
+.'Currently, only site administrator can login.'
+=> '',
+
+'view all'
+=> 'vedi tutti',
+
+'%s Networks'
+=> '%s reti',
+
+'to rate this video'
+=> '',
+
+'Showing profile fields in sidebar widget.'
+=> '',
+
+'peopleaggregator: widgetization testbench'
+=> '',
+
+'Select a module'
+=> '',
+
+'Module'
+=> '',
+
+'Request'
+=> '',
+
+'Response'
+=> '',
+
+'Rendered response'
+=> '',
+
+'An unknown error occurred - no response available.'
+=> '',
+
+'Note: do not enable widgetization on public facing webservers as it allows '
+.'operations to be performed as arbitrary users! Access must be restricted to '
+.'trusted front-end systems.'
+=> '',
+
+'This file may not be called directly.'
+=> '',
+
+'No admininstrator password configured'
+=> '',
+
+'To use the updater, add a line like this to'
+=> '',
+
+'Log in'
+=> '',
+
+'All the files have been updated. Now you need to'
+=> '',
+
+'click here to update the database'
+=> '',
+
+'and the update will be complete'
+=> '',
+
+'Error occurred running database update:'
+=> '',
+
+'PeopleAggregator system update'
+=> '',
+
+'%s - Media Gallery - %s'
+=> '%s - Media Gallery - %s',
+
+'View All Members'
+=> 'Visualizza tutti gli iscritti',
+
+'View All Group Members'
+=> 'Visualizza tutti gli iscritti al gruppo',
+
+'Comment can not be empty'
+=> '',
+
+'Please login to comment'
+=> '',
+
+'Your Recommendation: '
+=> '',
+
+'Error processing request'
+=> '',
+
+'Error parsing URL'
+=> '',
+
+'Ad Title can not have empty.'
+=> '',
+
+'Ad Target page is not specified.'
+=> '',
+
+'attributes'
+=> '',
+
+'middle'
 => '',
 
 'Date Established'
 => '',
 
+'Postal Code'
+=> '',
+
+'Phone Number'
+=> '',
+
 'Honors / Awards'
+=> '',
+
+'Supporter'
+=> '',
+
+'Customer'
+=> '',
+
+'Employee'
 => '',
 
 'Religion / Faith'
@@ -6179,6 +5309,21 @@ $TRANSLATED_STRINGS = array(
 'Church goer'
 => '',
 
+'Date the Family was formed'
+=> '',
+
+'City of Origin'
+=> '',
+
+'Grand Parent'
+=> '',
+
+'Relative'
+=> '',
+
+'Child'
+=> '',
+
 'owner'
 => '',
 
@@ -6191,53 +5336,57 @@ $TRANSLATED_STRINGS = array(
 'limited'
 => '',
 
-' E-mail address is not valid'
+'Group moderation'
 => '',
 
-'The domain of your E-mail address is not in the list of  allowed domains'
+'My messages'
 => '',
 
-'Are you sure you want to delete this Ad?'
+'Cannot create networks: this installation is not configured for network '
+.'operation.'
+=> 'Impossibile creare reti: l\'installazione non è configurata.',
+
+'Cannot create networks: %s is not writable'
+=> 'Impossibile creare reti: %s non è scrivibile',
+
+'Cannot create networks: Network spawning has been disabled on this '
+.'installation.'
+=> 'Impossibile creare reti: l\'espansione della rete è stata disabilitata.',
+
+'Files with extension \'%s\' may not be uploaded'
+=> 'I file con estensione \'%s\' non possono essere caricati',
+
+'Unable to determine image type'
+=> 'Impossibile determinare il tipo di immagine',
+
+'File MIME type is %s, expected %s'
+=> 'Il file MIME type è %s, atteso %s',
+
+'E-mail address is not valid.'
+=> 'Non è necessaria la validazione dell\'indirizzo email.',
+
+'The domain of your E-mail address is not in the list of allowed domains.'
 => '',
 
-'Ad Center'
+'\n'
+.'The password must be less than %d characters.'
 => '',
 
-'%s - %s'
+'\n'
+.'The password must be longer than %d characters.'
 => '',
 
-'Caption has already been taken, please enter a different caption'
-=> '',
+'Latest posts from %s'
+=> 'Ultimi messaggi da %s',
 
-'Ad Title can not have empty.'
-=> '',
+'Newest posts from everyone on %s'
+=> 'Messaggi più recenti da tutti gli utenti su %s',
 
-'Ad Target page is not specified.'
-=> '',
+'%s: %s blog'
+=> '%s: %s blog',
 
-'middle'
-=> '',
-
-'(%d %ss)'
-=> '',
-
-'Forum Board for this group has not yet been created.'
-=> '',
-
-'The personal forum board for this user has not yet been created.'
-=> '',
-
-'Post does not exist!'
-=> '',
-
-'Thread does not exist!'
-=> '',
-
-'You do not have permission to manage Ads.'
-=> '',
-
-'Add as %s'
-=> '',
+'Failed to retrieve %s: %s'
+=> 'Impossibile recuperare %s: %s',
 
 );
 

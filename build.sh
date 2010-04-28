@@ -9,3 +9,8 @@
 pushd tools/webapiwrappergen
 ./build.sh
 popd
+
+# create localisation strings.php files from messages.po
+pushd tools/i18n
+./build.sh
+popd
