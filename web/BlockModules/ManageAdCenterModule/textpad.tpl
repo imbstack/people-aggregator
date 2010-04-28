@@ -1,6 +1,4 @@
 <?php
-  // global var $_base_url has been removed - please, use PA::$url static variable
-
   $ads_pages = Advertisement::get_pages();
 
   $class = ($edit || !empty($form_data)) ? 'class="display_true"' : 'class="display_false"';
@@ -87,13 +85,13 @@
           list($x, $y) = explode(',', $form_data['orientation']);
         }
       ?>
-      <div class="field_medium"><?php $x_options = get_ad_options('horizontal', $x);?>
+      <div class="field_medium"><?php $x_options = $mod->get_ad_options('horizontal', $x);?>
         <h4><label for="orientation"><?= __("Select Horizontal position") ?></label></h4>
         <select name="x_loc" id="x_loc" class="text">
           <?php echo $x_options;?>
         </select>
       </div>
-      <div class="field_medium"><?php $y_options = get_ad_options('vertical', $y);?>
+      <div class="field_medium"><?php $y_options = $mod->get_ad_options('vertical', $y);?>
         <h4><label for="orientation"><?= __("Select vertical position") ?></label></h4>
         <select name="y_loc" id="y_loc" class="text">
           <?php echo $y_options;?>

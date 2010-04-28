@@ -246,7 +246,7 @@ class SimpleMSLiveClient extends ServiceProtocolHandler {
            } else if(isset($psf_error_code)) {
              $this->status = $general_err_text;
            } else {
-             $this->status = __("Unknown communication error has been occured.");
+             $this->status = __("Unknown communication error has occured.");
            }
         }
       }

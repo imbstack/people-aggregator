@@ -139,13 +139,13 @@ class User_Registration {
       }
     }
 
-    // if error occur than no need to checks these errors
+    // if error occur than no need to check these errors
     if (!$this->error) {
       if (!Validation::validate_email($email)) {
         $email_invalid = TRUE;
         $this->array_of_errors['error_email'] = $email_invalid;
         $this->error = TRUE;
-        $this->msg .= __(' E-mail address is not valid');
+        $this->msg .= __('E-mail address is not valid.');
       }
 
       // Calculating Allowed Domains
@@ -177,7 +177,7 @@ class User_Registration {
         $email_invalid = TRUE;
         $this->array_of_errors['error_email'] = $email_invalid;
         $this->error = TRUE;
-        $this->msg .= __('The domain of your E-mail address is not in the list of  allowed domains');
+        $this->msg .= __('The domain of your E-mail address is not in the list of allowed domains.');
       }
 
 

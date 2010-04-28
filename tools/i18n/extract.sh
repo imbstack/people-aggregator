@@ -4,7 +4,9 @@ pushd `dirname $0`
 rm -f messages.po
 
 # figure out where text could be lurking
-FILES=`find ../../web ../../api ../../ext ! -name 'akismet.php' -name '*.php' -or -name '*.tpl'`
+FILES=`find ../../web ../../api ../../ext ! -name 'akismet.php' -name '*.php' -or -name '*.tpl' -or -name '*.xml'`
+
+
 CMD="xgettext -L PHP --keyword=__ $FILES"
 
 $CMD

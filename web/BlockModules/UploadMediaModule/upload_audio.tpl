@@ -37,7 +37,7 @@
             <input type="text" name="tags_audio[0]" class="text long" id="tag" value="" maxlength="255" />
           </div>
           <div class="field_medium end">
-            <h5><label for="select image"><?= __("Select who can listen this Audio") ?>:</label></h5>
+            <h5><label for="select image"><?= __("Select who can listen to this Audio") ?>:</label></h5>
             <div class="right">
               <?php print get_media_access_list('audio_perm[0]'); ?>
             </div>

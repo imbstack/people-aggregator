@@ -39,15 +39,6 @@
   <li <?php isActiveNav('notifications', $type) ?>>
     <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=notifications" id="show-notifications"><?= __("Notifications") ?></a>
   </li>
-  <li<?php isActiveNav('external', $type) ?>>
-    <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=external" id="show-external"><?= __("External Accounts") ?></a>
-  </li>
-  <li<? isActiveNav('idhub', $type) ?>>
-    <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=idhub" id="show-idhub"><?= __("ID Hub") ?></a>
-  </li>
-  <li<?php isActiveNav('export', $type) ?>>
-    <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=export" id="show-export"><?= __("Export") ?></a>
-  </li>
   <? // import module, added by Zoran Hron ?>
   <li<?php isActiveNav('import', $type) ?>>
     <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=import" id="show-import"><?= __("Import") ?></a>

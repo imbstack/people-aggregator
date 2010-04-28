@@ -169,7 +169,7 @@ class hCardXFN  {
     if ($str) { 
        return $this->getFromString($str);
     }
-    $this->setError(__("No data! Check is file empty."));
+    $this->setError(__("No data! Check if file is empty."));
     return false;
   }
   

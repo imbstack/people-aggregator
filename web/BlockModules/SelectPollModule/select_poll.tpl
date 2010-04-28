@@ -30,6 +30,6 @@ if (!empty($counter) && is_object($topic[0])) {
 </form>
 <?php } else {?>
   <div style="width:100%;text-align:center;margin-top:10px;">
-    <b><?= __("No poll is created yet.") ?></b>
+    <b><?= __("No poll was created yet.") ?></b>
   </div>
 <?php }?>

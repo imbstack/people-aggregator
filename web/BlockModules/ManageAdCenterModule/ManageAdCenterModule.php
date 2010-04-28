@@ -219,7 +219,7 @@ class ManageAdCenterModule extends Module {
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
         $config_link_page = 'manage_ad_center';
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = & new Template($tmp_file, $this);
     $inner_html_gen->set('links', $links);
     $inner_html_gen->set('edit', $this->edit);
     $inner_html_gen->set('form_data', $this->form_data);
@@ -231,5 +231,47 @@ class ManageAdCenterModule extends Module {
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;
   }
+
+	/**
+	* Function to get the drop down for ad center - used on manage_ad_center.php
+	*/
+	function get_ad_options($type, $selected = '') {
+		$x_options = array(0 => array('caption' => __('Select horizontal position'), 'value' => 0),
+											 1 => array('caption' => '1 - '.__('left').'', 'value' => 1),
+											 2 => array('caption' => '2 - '.__('center').'', 'value' => 2),
+											 3 => array('caption' => '3 - '.__('right').'', 'value' => 3)
+											);
+		$y_options = array(0 => array('caption' => __('Select vertical position'), 'value' => 0),
+											 1 => array('caption' => '1 - '.__('top').'', 'value' => 1),
+											 2 => array('caption' => '2', 'value' => 2),
+											 3 => array('caption' => '3', 'value' => 3),
+											 4 => array('caption' => '4', 'value' => 4),
+											 5 => array('caption' => '5', 'value' => 5),
+											 6 => array('caption' => '6', 'value' => 6),
+											 7 => array('caption' => '7', 'value' => 7),
+											 8 => array('caption' => '8', 'value' => 8),
+											 9 => array('caption' => '9', 'value' => 9)
+											);
+		$options = '';
+		if ('horizontal' == $type) {
+			foreach ($x_options as $k => $v) {
+				$s = '';
+				if (!empty($selected) && ($selected == $v["value"])) {
+					$s = ' selected="selected"';
+				}
+				$options .= '<option value="'.$v["value"].'" '.$s.'>'.$v["caption"].'</option>'.chr(10);
+			}
+		}
+		if ('vertical' == $type) {
+			foreach ($y_options as $k => $v) {
+				$s = '';
+				if (!empty($selected) && ($selected == $v["value"])) {
+					$s = ' selected="selected"';
+				}
+				$options .= '<option value="'.$v["value"].'" '.$s.'>'.$v["caption"].'</option>'.chr(10);
+			}
+		}
+		return $options;
+	}
 }
 ?>

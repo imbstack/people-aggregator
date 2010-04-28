@@ -20,7 +20,7 @@ $lower_rel = strtolower($rel_term);
 0;No $lower_rel"."s
 1;One $lower_rel", $link['no_of_relations']) ?></span></a></li>
 	<?} } else { ?>
-  <li><span><?= __("No $lower_rel"."s made yet."); ?></span></li>
+  <li><span><?= sprintf(__("No %ss made yet."), $lower_rel); ?></span></li>
   <?php } ?>
 </ul>
 </div>
