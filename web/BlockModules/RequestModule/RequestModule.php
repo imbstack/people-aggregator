@@ -12,7 +12,7 @@ class RequestModule extends Module {
 
   public function __construct() {
     parent::__construct();
-    $this->title = __('Send request for joining network');
+    $this->title = __('Send request to join this network');
   }
 
   public function initializeModule($request_method, $request_data) {  

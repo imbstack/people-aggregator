@@ -1467,6 +1467,9 @@ $TRANSLATED_STRINGS = array(
 'Sort By'
 => 'Ordina per',
 
+'(%d friends)'
+=> 'I miei amici',
+
 '(%d %ss)'
 => '',
 
@@ -2221,22 +2224,14 @@ $TRANSLATED_STRINGS = array(
 'Can\'t change status for this user.'
 => '',
 
-'member'
-=> 'iscritto',
-
-'No groups created yet. Be the first to <a href="%s" style="display:inline;'
-.'">create one</a>!'
-=> 'Non sono ancora stati creati gruppi. <a href="%s" style="display:inline;'
-.'">clicca qui</a> se vuoi essere il primo a crearne uno!',
+'%d members'
+=> 'Iscritti',
 
 'No Groups found.'
 => '',
 
-'Click'
-=> '',
-
-'to create.'
-=> '',
+'Click <a href="%s">here</a> to create one.'
+=> 'Clicca <a href="%s">qui</a> per crearne uno.',
 
 'caption'
 => '',
@@ -2283,6 +2278,9 @@ $TRANSLATED_STRINGS = array(
 'Group Directory'
 => 'Lista dei gruppi',
 
+'There are %d groups'
+=> 'Sfoglia %d i gruppi',
+
 'Create a Group'
 => 'Crea un gruppo',
 
@@ -2291,6 +2289,9 @@ $TRANSLATED_STRINGS = array(
 
 'Search for'
 => 'Ricerca',
+
+'%d Members'
+=> 'Iscritti',
 
 'Created'
 => 'Creato',
@@ -3031,6 +3032,9 @@ $TRANSLATED_STRINGS = array(
 
 'MIS Reports'
 => '',
+
+'member'
+=> 'iscritto',
 
 'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
 .'families yet.'
@@ -3952,14 +3956,20 @@ $TRANSLATED_STRINGS = array(
 .'digital worlds!'
 => 'Compila il form per registrarti e inizia a unire tutti i tuoi mondi digitali!',
 
-'My '
-=> '',
+'%s\'s friends'
+=> 'I miei amici',
 
-'No %ss made yet.'
+'My friends'
+=> 'I miei amici',
+
+'Friends'
+=> 'Amici',
+
+'No friends made yet.'
 => 'Non sono state ancora create connessioni.',
 
-'Send request for joining network'
-=> '',
+'Send request to join this network'
+=> 'Conferma o rifiuta richieste di iscrizione a questo gruppo',
 
 'Your request to join this network could not be sent due to following reason: '
 .'%s. You can go back to the home network by clicking Return to home network'
@@ -4678,9 +4688,6 @@ $TRANSLATED_STRINGS = array(
 'Find %s'
 => '',
 
-'My friends'
-=> 'I miei amici',
-
 'Friends gallery'
 => 'Gallery degli amici',
 
@@ -5146,8 +5153,8 @@ $TRANSLATED_STRINGS = array(
 'Click here to go back to the Home page'
 => '',
 
-'&copy;'
-=> '',
+'&copy; %s Broadband Mechanics, Inc.'
+=> '&copy; 2007 Broadband Mechanics, Inc.',
 
 'Already a member?'
 => 'Sei già iscritto?',

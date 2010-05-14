@@ -90,13 +90,13 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Recently Created'
-=> '',
+=> 'Zuletzt erstellt',
 
 'Recently Modified'
-=> '',
+=> 'Zuletzt geändert',
 
 'Largest Group'
-=> '',
+=> 'Grössze Hruppe',
 
 'Answer can not be left blank'
 => '',
@@ -199,7 +199,7 @@ $TRANSLATED_STRINGS = array(
 => 'Branche',
 
 'Company'
-=> '',
+=> 'Firma',
 
 'Title'
 => 'Titel',
@@ -277,7 +277,7 @@ $TRANSLATED_STRINGS = array(
 => 'Aktivitäten',
 
 'Change Group Settings'
-=> '',
+=> 'Gruppen Einstellungen ändern',
 
 'File upload error: '
 => '',
@@ -1432,22 +1432,22 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'There are %d members in this %s.'
-=> '',
+=> 'Es gibt %d Mitglieder in dieser %s.',
 
 'There are %d members.'
-=> '',
+=> 'Es gibt %d Mitglieder.',
 
 'There are %d friends for %s.'
-=> '',
+=> '%d Freunde von %s.',
 
 'member since:'
-=> '',
+=> 'Mitglied seit:',
 
 'waiting approval'
-=> '',
+=> 'wartet auf Zustimmung',
 
 'No relation exists.'
-=> '',
+=> 'Es gibt keine Beziehung.',
 
 'FaceBookFeed'
 => '',
@@ -1464,11 +1464,14 @@ $TRANSLATED_STRINGS = array(
 'Sort By'
 => '',
 
+'(%d friends)'
+=> '(%d Freunde)',
+
 '(%d %ss)'
 => '(%d %se)',
 
 'sort by'
-=> '',
+=> 'sortieren nach',
 
 'Family Directory'
 => '',
@@ -2216,21 +2219,14 @@ $TRANSLATED_STRINGS = array(
 'Can\'t change status for this user.'
 => '',
 
-'member'
-=> '',
-
-'No groups created yet. Be the first to <a href="%s" style="display:inline;'
-.'">create one</a>!'
-=> '',
+'%d members'
+=> '%s Mitglieder',
 
 'No Groups found.'
-=> '',
+=> 'Keine Gruppen gefunden.',
 
-'Click'
-=> '',
-
-'to create.'
-=> '',
+'Click <a href="%s">here</a> to create one.'
+=> '<a href="%s">Hier</a> klicken um eibe zu erstellen.',
 
 'caption'
 => 'Überschrift',
@@ -2254,13 +2250,13 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'No Content Published'
-=> '',
+=> 'Keine Inhalte veröffentlicht',
 
 'On this page you can manage all the forums of the Group.'
 => '',
 
 'Create Forum'
-=> '',
+=> 'Forum erstellen',
 
 'Manage %s Contents'
 => '',
@@ -2269,34 +2265,40 @@ $TRANSLATED_STRINGS = array(
 => 'Alfabetisch',
 
 'Largest'
-=> '',
+=> 'Grösste',
 
 'Date Created'
-=> '',
+=> 'Erstellungs Datum',
 
 'Group Directory'
-=> '',
+=> 'Gruppen Verzeichnis',
+
+'There are %d groups'
+=> 'Es gibt %d Gruppen',
 
 'Create a Group'
-=> '',
+=> 'Erstelle eine Gruppe',
 
 'Search Groups'
-=> '',
+=> 'Durchsuche Gruppen',
 
 'Search for'
-=> '',
+=> 'Suche nach',
+
+'%d Members'
+=> '%s Mitglieder',
 
 'Created'
-=> '',
+=> 'Erstellt',
 
 'Moderated By'
-=> '',
+=> 'Moderiert von',
 
 'No groups found.'
-=> '',
+=> 'Keine Gruppen gefumden.',
 
 'Group Statistics'
-=> '',
+=> 'Gruppen Statistiken',
 
 'Category'
 => 'Kategorie',
@@ -2305,7 +2307,7 @@ $TRANSLATED_STRINGS = array(
 => 'Eigentümer',
 
 'No Photos.'
-=> '',
+=> 'Keine Fotos.',
 
 'Gallery'
 => 'Gallerie',
@@ -2484,36 +2486,38 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'URL'
-=> '',
+=> 'URL',
 
 'Links Control Panel'
 => '',
 
 'Sorry - you are not logged in or you have been logged out due to inactivity.'
 .'<br />Please, log in again.<br />'
-=> '',
+=> 'Du bist nicht eingeloggt oder wurdest aufgrund von Inaktivität '
+.'ausgeloggt<br />Bitte erneut einloggen.',
 
 'Login'
-=> '',
+=> 'Einloggen',
 
 '%s login.'
-=> '',
+=> '%s Login',
 
 'You can login directly if you have an account,<br />or you can <b><a href="/'
 .'register.php">sign up right now</a></b> to create a new account.'
-=> '',
+=> 'DU kannst dich hier direkt einloggen wenn du Mitglied bist,<br />oder du '
+.'kannst dich <b><a href="/register.php">hier anmelden</a></b>.',
 
 'User name: '
-=> '',
+=> 'Login Name: ',
 
 'Password: '
-=> '',
+=> 'Passwort: ',
 
 'Remember me on this computer'
-=> '',
+=> 'Mit diesem Computer eingeloggt bleiben',
 
 'Forgot your password?'
-=> '',
+=> 'Passwort vergessen?',
 
 'Edit Ad'
 => '',
@@ -3026,6 +3030,9 @@ $TRANSLATED_STRINGS = array(
 'MIS Reports'
 => '',
 
+'member'
+=> '',
+
 'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
 .'families yet.'
 => '',
@@ -3044,10 +3051,11 @@ $TRANSLATED_STRINGS = array(
 
 'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
 .'groups yet.'
-=> '',
+=> 'Du hast noch keine Gruppe <a href="%s">erstellt</a> und bist noch nicht <a '
+.'href="%s">Mitglied</a> einer Gruppe.',
 
 'User has not joined any groups yet.'
-=> '',
+=> 'Noch nicht Mitglied einer Gruppe.',
 
 'My Links'
 => 'Meine Links',
@@ -3812,7 +3820,7 @@ $TRANSLATED_STRINGS = array(
 => 'Alle alten Umfragen anzeigen',
 
 'Most Popular Tags'
-=> '',
+=> 'Häufigste Stichwörter',
 
 'Nothing has been tagged yet.'
 => 'Noch keine Stichwörter.',
@@ -3943,14 +3951,20 @@ $TRANSLATED_STRINGS = array(
 .'digital worlds!'
 => 'Bitte mache die folgenden Angaben um Mitglied zu werden!',
 
-'My '
-=> 'Meine ',
+'%s\'s friends'
+=> '%ss Freunde',
 
-'No %ss made yet.'
-=> 'Noch keine %s gemacht.',
+'My friends'
+=> 'Meine Freunde',
 
-'Send request for joining network'
-=> '',
+'Friends'
+=> 'Freunde',
+
+'No friends made yet.'
+=> 'Noch keine Freunde gemacht.',
+
+'Send request to join this network'
+=> 'Mitgkiedschaft in diesem Netzwerk beantragen',
 
 'Your request to join this network could not be sent due to following reason: '
 .'%s. You can go back to the home network by clicking Return to home network'
@@ -4670,9 +4684,6 @@ $TRANSLATED_STRINGS = array(
 'Find %s'
 => '%s finden',
 
-'My friends'
-=> 'Meine Freunde',
-
 'Friends gallery'
 => 'Freunde Gallerie',
 
@@ -5146,7 +5157,7 @@ $TRANSLATED_STRINGS = array(
 'Click here to go back to the Home page'
 => '',
 
-'&copy;'
+'&copy; %s Broadband Mechanics, Inc.'
 => '',
 
 'Already a member?'

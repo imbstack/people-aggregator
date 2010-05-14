@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 18:31+0200\n"
+"POT-Creation-Date: 2010-05-14 01:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2422,6 +2422,11 @@ msgid "Sort By"
 msgstr "Ordenar por"
 
 #: ../../web/BlockModules/FacewallModule/side_inner_public.tpl:30
+#: ../../web/BlockModules/RelationsModule/side_inner_public.tpl:19
+#, php-format
+msgid "(%d friends)"
+msgstr ""
+
 #: ../../web/BlockModules/FacewallModule/side_inner_sortby.tpl:40
 #, php-format
 msgid "(%d %ss)"
@@ -2613,7 +2618,6 @@ msgstr ""
 
 #: ../../web/BlockModules/FamilyModerationModule/FamilyModerationModule.php:338
 #: ../../web/BlockModules/FamilyModule/FamilyModule.php:90
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:83
 #: ../../web/BlockModules/TypedGroupModule/TypedGroupModule.php:78
 msgid "Member"
 msgstr ""
@@ -3575,33 +3579,24 @@ msgid "Can't change status for this user."
 msgstr ""
 
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:37
-#: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:26
-#: ../../web/BlockModules/MyGroupsModule/side_inner_public.tpl:18
-#: ../../api/Forum/PaForumsUsers.class.php:1010
-msgid "member"
-msgstr ""
+#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:38
+#, fuzzy, php-format
+msgid "%d members"
+msgstr "Miembros"
 
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:46
-#, php-format
-msgid ""
-"No groups created yet. Be the first to <a href=\"%s\" style=\"display:inline;"
-"\">create one</a>!"
-msgstr ""
-
 #: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
 msgid "No Groups found."
 msgstr ""
 
-#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
-msgid "Click"
-msgstr ""
-
-#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
-msgid "to create."
-msgstr ""
+#: ../../web/BlockModules/GroupModule/side_inner_public.tpl:47
+#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:48
+#, php-format
+msgid "Click <a href=\"%s\">here</a> to create one."
+msgstr "Clic <a href=\"%s\">aquí</a> para crear uno."
 
 #: ../../web/BlockModules/GroupOverviewModule/center_inner_public.tpl:17
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:99
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:97
 msgid "caption"
 msgstr ""
 
@@ -3675,28 +3670,38 @@ msgstr ""
 msgid "Group Directory"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:19
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:14
+#, fuzzy, php-format
+msgid "There are %d groups"
+msgstr "Buscar %d grupos"
+
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:17
 msgid "Create a Group"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:25
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:23
 msgid "Search Groups"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:27
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:25
 #: ../../web/BlockModules/NetworksDirectoryModule/center_inner_public.tpl:22
 msgid "Search for"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:90
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:80
+#, fuzzy, php-format
+msgid "%d Members"
+msgstr "Miembros"
+
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:87
 msgid "Created"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:90
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:88
 msgid "Moderated By"
 msgstr ""
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:110
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:108
 msgid "No groups found."
 msgstr ""
 
@@ -4838,6 +4843,12 @@ msgstr ""
 #: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:67
 #: ../../web/misreports.php:37
 msgid "MIS Reports"
+msgstr ""
+
+#: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:26
+#: ../../web/BlockModules/MyGroupsModule/side_inner_public.tpl:18
+#: ../../api/Forum/PaForumsUsers.class.php:1010
+msgid "member"
 msgstr ""
 
 #: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:36
@@ -6145,17 +6156,27 @@ msgid ""
 "digital worlds!"
 msgstr ""
 
+#: ../../web/BlockModules/RelationsModule/RelationsModule.php:25
+#, fuzzy, php-format
+msgid "%s's friends"
+msgstr "Enlaces de %s"
+
 #: ../../web/BlockModules/RelationsModule/RelationsModule.php:29
-msgid "My "
+#: ../../web/includes/classes/Navigation.php:403
+msgid "My friends"
+msgstr ""
+
+#: ../../web/BlockModules/RelationsModule/RelationsModule.php:32
+msgid "Friends"
 msgstr ""
 
 #: ../../web/BlockModules/RelationsModule/side_inner_public.tpl:23
-#, fuzzy, php-format
-msgid "No %ss made yet."
+#, fuzzy
+msgid "No friends made yet."
 msgstr "No se han hecho relaciones aún."
 
 #: ../../web/BlockModules/RequestModule/RequestModule.php:15
-msgid "Send request for joining network"
+msgid "Send request to join this network"
 msgstr ""
 
 #: ../../web/BlockModules/RequestModule/RequestModule.php:47
@@ -7235,10 +7256,6 @@ msgstr "Editar mi cuenta"
 msgid "Find %s"
 msgstr ""
 
-#: ../../web/includes/classes/Navigation.php:403
-msgid "My friends"
-msgstr ""
-
 #: ../../web/includes/classes/Navigation.php:409
 msgid "Friends gallery"
 msgstr ""
@@ -7907,8 +7924,9 @@ msgid "Click here to go back to the Home page"
 msgstr ""
 
 #: ../../web/Themes/Default/footer.tpl:22
-msgid "&copy;"
-msgstr ""
+#, fuzzy, php-format
+msgid "&copy; %s Broadband Mechanics, Inc."
+msgstr "&copy; 2007 Broadband Mechanics, Inc."
 
 #: ../../web/Themes/Default/header.tpl:43
 #: ../../web/Themes/Default/header_group.tpl:47
@@ -8294,9 +8312,6 @@ msgstr ""
 #~ msgid "No content found."
 #~ msgstr "No se encontraron contenidos."
 
-#~ msgid "Click <a href=\"%s\">here</a> to create one."
-#~ msgstr "Clic <a href=\"%s\">aquí</a> para crear uno."
-
 #~ msgid "User Information"
 #~ msgstr "Información de usuario"
 
@@ -8349,9 +8364,6 @@ msgstr ""
 #~ msgid "Developer Wiki"
 #~ msgstr "Wiki de desarrolladores"
 
-#~ msgid "&copy; 2007 Broadband Mechanics, Inc."
-#~ msgstr "&copy; 2007 Broadband Mechanics, Inc."
-
 #~ msgid "Review"
 #~ msgstr "Revisión"
 
@@ -8388,9 +8400,6 @@ msgstr ""
 
 #~ msgid "%s's Networks"
 #~ msgstr "Redes de %s"
-
-#~ msgid "%s's Links"
-#~ msgstr "Enlaces de %s"
 
 #~ msgid "%s's Groups"
 #~ msgstr "Grupos de %s"

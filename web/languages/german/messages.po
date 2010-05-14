@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 18:31+0200\n"
+"POT-Creation-Date: 2010-05-14 01:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,18 +144,18 @@ msgstr ""
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:6
 #: ../../web/BlockModules/NewestNetworkModule/side_inner_public.tpl:6
 msgid "Recently Created"
-msgstr ""
+msgstr "Zuletzt erstellt"
 
 #: ../../web/ajax_sortgroups.php:24 ../../web/ajax_sortnetworks.php:22
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:7
 #: ../../web/BlockModules/NewestNetworkModule/side_inner_public.tpl:7
 msgid "Recently Modified"
-msgstr ""
+msgstr "Zuletzt geändert"
 
 #: ../../web/ajax_sortgroups.php:25 ../../web/ajax_sortnetworks.php:23
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:8
 msgid "Largest Group"
-msgstr ""
+msgstr "Grössze Hruppe"
 
 #: ../../web/answers.php:30
 #: ../../web/BlockModules/AnswersModule/AnswersModule.php:44
@@ -335,7 +335,7 @@ msgstr "Branche"
 #: ../../web/BlockModules/AboutUserModule/side_inner_public.tpl:85
 #: ../../web/BlockModules/EditProfileModule/professional_info.tpl:88
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #: ../../web/BlockModules/AboutUserModule/side_inner_public.tpl:89
 #: ../../web/BlockModules/CommentsManagementModule/center_inner_public.tpl:23
@@ -478,7 +478,7 @@ msgstr "Aktivitäten"
 
 #: ../../web/BlockModules/AddGroupModule/AddGroupModule.php:51
 msgid "Change Group Settings"
-msgstr ""
+msgstr "Gruppen Einstellungen ändern"
 
 #: ../../web/BlockModules/AddGroupModule/AddGroupModule.php:241
 #: ../../web/BlockModules/EditFamilyModule/EditFamilyModule.php:179
@@ -2361,13 +2361,13 @@ msgstr ""
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:8
 #, php-format
 msgid "There are %d members in this %s."
-msgstr ""
+msgstr "Es gibt %d Mitglieder in dieser %s."
 
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:11
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:11
 #, php-format
 msgid "There are %d members."
-msgstr ""
+msgstr "Es gibt %d Mitglieder."
 
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:13
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:16
@@ -2375,24 +2375,24 @@ msgstr ""
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:16
 #, php-format
 msgid "There are %d friends for %s."
-msgstr ""
+msgstr "%d Freunde von %s."
 
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:68
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:107
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:68
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:107
 msgid "member since:"
-msgstr ""
+msgstr "Mitglied seit:"
 
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:84
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:84
 msgid "waiting approval"
-msgstr ""
+msgstr "wartet auf Zustimmung"
 
 #: ../../web/BlockModules/FaceBookModule/center_inner_public_relation.tpl:114
 #: ../../web/BlockModules/ViewAllMembersModule/center_inner_public_relation.tpl:114
 msgid "No relation exists."
-msgstr ""
+msgstr "Es gibt keine Beziehung."
 
 #: ../../web/BlockModules/FaceBookModule/FaceBookModule.php:15
 msgid "FaceBookFeed"
@@ -2423,6 +2423,11 @@ msgid "Sort By"
 msgstr ""
 
 #: ../../web/BlockModules/FacewallModule/side_inner_public.tpl:30
+#: ../../web/BlockModules/RelationsModule/side_inner_public.tpl:19
+#, fuzzy, php-format
+msgid "(%d friends)"
+msgstr "(%d Freunde)"
+
 #: ../../web/BlockModules/FacewallModule/side_inner_sortby.tpl:40
 #, php-format
 msgid "(%d %ss)"
@@ -2430,7 +2435,7 @@ msgstr "(%d %se)"
 
 #: ../../web/BlockModules/FamilyDirectoryModule/family_directory.tpl.php:2
 msgid "sort by"
-msgstr ""
+msgstr "sortieren nach"
 
 #: ../../web/BlockModules/FamilyDirectoryModule/FamilyDirectoryModule.php:13
 msgid "Family Directory"
@@ -2619,7 +2624,6 @@ msgstr ""
 
 #: ../../web/BlockModules/FamilyModerationModule/FamilyModerationModule.php:338
 #: ../../web/BlockModules/FamilyModule/FamilyModule.php:90
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:83
 #: ../../web/BlockModules/TypedGroupModule/TypedGroupModule.php:78
 msgid "Member"
 msgstr "Mitglied"
@@ -3579,33 +3583,24 @@ msgid "Can't change status for this user."
 msgstr ""
 
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:37
-#: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:26
-#: ../../web/BlockModules/MyGroupsModule/side_inner_public.tpl:18
-#: ../../api/Forum/PaForumsUsers.class.php:1010
-msgid "member"
-msgstr ""
+#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:38
+#, fuzzy, php-format
+msgid "%d members"
+msgstr "%s Mitglieder"
 
 #: ../../web/BlockModules/GroupModule/side_inner_public.tpl:46
-#, php-format
-msgid ""
-"No groups created yet. Be the first to <a href=\"%s\" style=\"display:inline;"
-"\">create one</a>!"
-msgstr ""
-
 #: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
 msgid "No Groups found."
-msgstr ""
+msgstr "Keine Gruppen gefunden."
 
-#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
-msgid "Click"
-msgstr ""
-
-#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:47
-msgid "to create."
-msgstr ""
+#: ../../web/BlockModules/GroupModule/side_inner_public.tpl:47
+#: ../../web/BlockModules/GroupModule/side_inner_sortby.tpl:48
+#, fuzzy, php-format
+msgid "Click <a href=\"%s\">here</a> to create one."
+msgstr "<a href=\"%s\">Hier</a> klicken um eibe zu erstellen."
 
 #: ../../web/BlockModules/GroupOverviewModule/center_inner_public.tpl:17
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:99
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:97
 msgid "caption"
 msgstr "Überschrift"
 
@@ -3643,7 +3638,7 @@ msgstr ""
 #: ../../web/BlockModules/GroupsContentsManagementModule/forum_inner_template.tpl:62
 #: ../../web/BlockModules/MediaManagementModule/center_inner_public.tpl:105
 msgid "No Content Published"
-msgstr ""
+msgstr "Keine Inhalte veröffentlicht"
 
 #: ../../web/BlockModules/GroupsContentsManagementModule/forum_inner_template.tpl:12
 msgid "On this page you can manage all the forums of the Group."
@@ -3651,7 +3646,7 @@ msgstr ""
 
 #: ../../web/BlockModules/GroupsContentsManagementModule/forum_inner_template.tpl:17
 msgid "Create Forum"
-msgstr ""
+msgstr "Forum erstellen"
 
 #: ../../web/BlockModules/GroupsContentsManagementModule/GroupsContentsManagementModule.php:14
 #, php-format
@@ -3667,46 +3662,56 @@ msgstr "Alfabetisch"
 
 #: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:9
 msgid "Largest"
-msgstr ""
+msgstr "Grösste"
 
 #: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:10
 #: ../../web/BlockModules/NetworkResultUserModule/center_inner_private.tpl:25
 #: ../../web/BlockModules/NetworksDirectoryModule/center_inner_public.tpl:9
 msgid "Date Created"
-msgstr ""
+msgstr "Erstellungs Datum"
 
 #: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:13
 msgid "Group Directory"
-msgstr ""
+msgstr "Gruppen Verzeichnis"
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:19
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:14
+#, php-format
+msgid "There are %d groups"
+msgstr "Es gibt %d Gruppen"
+
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:17
 msgid "Create a Group"
-msgstr ""
+msgstr "Erstelle eine Gruppe"
+
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:23
+msgid "Search Groups"
+msgstr "Durchsuche Gruppen"
 
 #: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:25
-msgid "Search Groups"
-msgstr ""
-
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:27
 #: ../../web/BlockModules/NetworksDirectoryModule/center_inner_public.tpl:22
 msgid "Search for"
-msgstr ""
+msgstr "Suche nach"
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:90
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:80
+#, fuzzy, php-format
+msgid "%d Members"
+msgstr "%s Mitglieder"
+
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:87
 msgid "Created"
-msgstr ""
+msgstr "Erstellt"
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:90
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:88
 msgid "Moderated By"
-msgstr ""
+msgstr "Moderiert von"
 
-#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:110
+#: ../../web/BlockModules/GroupsDirectoryModule/center_inner_public.tpl:108
 msgid "No groups found."
-msgstr ""
+msgstr "Keine Gruppen gefumden."
 
 #: ../../web/BlockModules/GroupStatsModule/GroupStatsModule.php:12
 msgid "Group Statistics"
-msgstr ""
+msgstr "Gruppen Statistiken"
 
 #: ../../web/BlockModules/GroupStatsModule/side_inner_public.tpl:6
 #: ../../web/BlockModules/PointsDirectoryModule/edit_points_form.tpl.php:24
@@ -3721,7 +3726,7 @@ msgstr "Eigentümer"
 #: ../../web/BlockModules/ImagesMediaGalleryModule/thumbnail.tpl:79
 #: ../../web/BlockModules/ImagesViewAllModule/center_inner_public.tpl:48
 msgid "No Photos."
-msgstr ""
+msgstr "Keine Fotos."
 
 #: ../../web/BlockModules/ImagesModule/ImagesModule.php:22
 #: ../../web/BlockModules/ImagesModule/ImagesModule.php:77
@@ -4004,7 +4009,7 @@ msgstr ""
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:15
 #: ../../web/BlockModules/ManageStaticPageModule/center_inner_private.tpl:15
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../../web/BlockModules/LinksModule/LinksModule.php:20
 msgid "Links Control Panel"
@@ -4015,37 +4020,41 @@ msgid ""
 "Sorry - you are not logged in or you have been logged out due to inactivity."
 "<br />Please, log in again.<br />"
 msgstr ""
+"Du bist nicht eingeloggt oder wurdest aufgrund von Inaktivität "
+"ausgeloggt<br />Bitte erneut einloggen."
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:30
 msgid "Login"
-msgstr ""
+msgstr "Einloggen"
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:33
 #, php-format
 msgid "%s login."
-msgstr ""
+msgstr "%s Login"
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:34
 msgid ""
 "You can login directly if you have an account,<br />or you can <b><a href=\"/"
 "register.php\">sign up right now</a></b> to create a new account."
 msgstr ""
+"DU kannst dich hier direkt einloggen wenn du Mitglied bist,<br />oder du "
+"kannst dich <b><a href=\"/register.php\">hier anmelden</a></b>."
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:55
 msgid "User name: "
-msgstr ""
+msgstr "Login Name: "
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:61
 msgid "Password: "
-msgstr ""
+msgstr "Passwort: "
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:67
 msgid "Remember me on this computer"
-msgstr ""
+msgstr "Mit diesem Computer eingeloggt bleiben"
 
 #: ../../web/BlockModules/LoginModule/inner_html.tpl:69
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: ../../web/BlockModules/ManageAdCenterModule/center_inner_public.tpl:20
 msgid "Edit Ad"
@@ -4844,6 +4853,12 @@ msgstr ""
 msgid "MIS Reports"
 msgstr ""
 
+#: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:26
+#: ../../web/BlockModules/MyGroupsModule/side_inner_public.tpl:18
+#: ../../api/Forum/PaForumsUsers.class.php:1010
+msgid "member"
+msgstr ""
+
 #: ../../web/BlockModules/MyFamiliesModule/my_families.tpl.php:36
 #, php-format
 msgid ""
@@ -4876,10 +4891,12 @@ msgid ""
 "You haven't <a href=\"%s\">created</a> or <a href=\"%s\">joined</a> any "
 "groups yet."
 msgstr ""
+"Du hast noch keine Gruppe <a href=\"%s\">erstellt</a> und bist noch nicht <a "
+"href=\"%s\">Mitglied</a> einer Gruppe."
 
 #: ../../web/BlockModules/MyGroupsModule/side_inner_public.tpl:31
 msgid "User has not joined any groups yet."
-msgstr ""
+msgstr "Noch nicht Mitglied einer Gruppe."
 
 #: ../../web/BlockModules/MyLinksModule/MyLinksModule.php:15
 #: ../../web/BlockModules/MyLinksModule/MyLinksModule.php:28
@@ -5967,7 +5984,7 @@ msgstr "Alle alten Umfragen anzeigen"
 
 #: ../../web/BlockModules/PopularTagsModule/PopularTagsModule.php:33
 msgid "Most Popular Tags"
-msgstr ""
+msgstr "Häufigste Stichwörter"
 
 #: ../../web/BlockModules/PopularTagsModule/side_inner_public.tpl:19
 msgid "Nothing has been tagged yet."
@@ -6153,18 +6170,28 @@ msgid ""
 "digital worlds!"
 msgstr "Bitte mache die folgenden Angaben um Mitglied zu werden!"
 
+#: ../../web/BlockModules/RelationsModule/RelationsModule.php:25
+#, fuzzy, php-format
+msgid "%s's friends"
+msgstr "%ss Freunde"
+
 #: ../../web/BlockModules/RelationsModule/RelationsModule.php:29
-msgid "My "
-msgstr "Meine "
+#: ../../web/includes/classes/Navigation.php:403
+msgid "My friends"
+msgstr "Meine Freunde"
+
+#: ../../web/BlockModules/RelationsModule/RelationsModule.php:32
+msgid "Friends"
+msgstr "Freunde"
 
 #: ../../web/BlockModules/RelationsModule/side_inner_public.tpl:23
-#, php-format
-msgid "No %ss made yet."
-msgstr "Noch keine %s gemacht."
+#, fuzzy
+msgid "No friends made yet."
+msgstr "Noch keine Freunde gemacht."
 
 #: ../../web/BlockModules/RequestModule/RequestModule.php:15
-msgid "Send request for joining network"
-msgstr ""
+msgid "Send request to join this network"
+msgstr "Mitgkiedschaft in diesem Netzwerk beantragen"
 
 #: ../../web/BlockModules/RequestModule/RequestModule.php:47
 #, php-format
@@ -7240,10 +7267,6 @@ msgstr "Meine Mitgliedschaft bearbeiten"
 msgid "Find %s"
 msgstr "%s finden"
 
-#: ../../web/includes/classes/Navigation.php:403
-msgid "My friends"
-msgstr "Meine Freunde"
-
 #: ../../web/includes/classes/Navigation.php:409
 msgid "Friends gallery"
 msgstr "Freunde Gallerie"
@@ -7926,7 +7949,8 @@ msgid "Click here to go back to the Home page"
 msgstr ""
 
 #: ../../web/Themes/Default/footer.tpl:22
-msgid "&copy;"
+#, php-format
+msgid "&copy; %s Broadband Mechanics, Inc."
 msgstr ""
 
 #: ../../web/Themes/Default/header.tpl:43
@@ -8285,6 +8309,9 @@ msgstr "%s: %s Blog"
 #, php-format
 msgid "Failed to retrieve %s: %s"
 msgstr "Konnte %s nicht laden: %s"
+
+#~ msgid "My "
+#~ msgstr "Meine "
 
 #~ msgid "Me"
 #~ msgstr "Ich"

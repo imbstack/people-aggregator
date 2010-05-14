@@ -101,12 +101,12 @@ class GroupsDirectoryModule extends Module {
     }
 
 
-    $this->inner_HTML = $this->generate_inner_html ();
+    $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
 
-  function group_info_with_uid ($uid, $sort_by) {
+  function group_info_with_uid($uid, $sort_by) {
     $group = new group();
      if ( $this->name_string ) {
        if($this->name_string !='tags') {
@@ -171,13 +171,13 @@ class GroupsDirectoryModule extends Module {
   
   }
   
-  function generate_inner_html () {
+  function generate_inner_html() {
     $Pagination = new Pagination;
     $group = new group();
     $user_group_ids = array();
     if ( @$_SESSION['user']['id'] ) {
-         $user_group_ids = $group->get_user_groups ( $_SESSION['user']['id'] );
-         $user_group_ids = $this->get_user_group_id ( $user_group_ids );
+         $user_group_ids = $group->get_user_groups( $_SESSION['user']['id'] );
+         $user_group_ids = $this->get_user_group_id( $user_group_ids );
     }
     $Pagination->setPaging($this->Paging);
     $this->page_first = $Pagination->getFirstPage();

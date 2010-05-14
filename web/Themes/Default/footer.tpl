@@ -19,7 +19,7 @@
   <ul>
     <?php echo $link_html;?>
   </ul>
-    <?= __("&copy;" . date('Y') . " Broadband Mechanics, Inc.") ?>
+    <?= sprintf(__("&copy; %s Broadband Mechanics, Inc."), date('Y')) ?>
     [<?= get_svn_version() ?>]
     <!--**timing**-->
 </div>

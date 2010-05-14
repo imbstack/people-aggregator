@@ -25,16 +25,16 @@
     ?>
     <li>
       <a href="<?= PA::$url  . PA_ROUTE_GROUP .  "/gid=" . $link['group_id'] ?>">
-      <?php echo uihelper_resize_mk_img($link['picture'], 35, 35, "images/default_group.gif", 'alt="group image"', RESIZE_CROP)?>
+      <?= uihelper_resize_mk_img($link['picture'], 35, 35, "images/default_group.gif", 'alt="group image"', RESIZE_CROP)?>
       </a>
       <span>
         <b>
           <a href="<?= PA::$url  . PA_ROUTE_GROUP . "/gid=" . $link['group_id']?>">
-          <?php echo chop_string(stripslashes($link['title']), 17);?>
+          <?= chop_string(stripslashes($link['title']), 17);?>
           </a>
         </b>
 	      <br/>
-	      <?php echo uihelper_plural($link['members'], ''.__('member').'') ?>
+	      <?= sprintf(__("%d members"), $link['members']) ?>
     </span>
     </li>
    <?php
@@ -43,7 +43,8 @@
      }
      else {
      ?>
-       <li><?= sprintf(__('No groups created yet. Be the first to <a href="%s" style="display:inline;">create one</a>!'), PA::$url . "/addgroup.php") ?></li>
+           <li><?= __("No Groups found.") ?><span> 
+    <?= sprintf(__('Click <a href="%s">here</a> to create one.'), PA::$url.'/addgroup.php') ?></span></li>
      <?php
      }
    ?>    

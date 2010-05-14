@@ -16,11 +16,12 @@ $lower_rel = strtolower($rel_term);
 	<span> <b>
    <?=$link['display_name']; ?>
   </b><br />
-  <?= _n(";%d $lower_rel"."s
-0;No $lower_rel"."s
-1;One $lower_rel", $link['no_of_relations']) ?></span></a></li>
+  <?= sprintf(__("(%d friends)"), $link['no_of_relations']) ?>
+  </span></a></li>
 	<?} } else { ?>
-  <li><span><?= sprintf(__("No %ss made yet."), $lower_rel); ?></span></li>
+  <li><span>
+  <?= __("No friends made yet."); ?>
+  </span></li>
   <?php } ?>
 </ul>
 </div>

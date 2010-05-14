@@ -22,14 +22,14 @@ class RelationsModule extends Module {
     switch ($this->page_id) {
       case PAGE_USER_PUBLIC:
         if (empty(PA::$page_uid)) return 'skip';
-        $this->title = abbreviate_text(PA::$page_user->display_name.'\'s ', 18, 10) . $this->rel_term.'s';
+        $this->title = abbreviate_text(sprintf(__("%s's friends"), PA::$page_user->display_name), 18, 10);
       break;  
       case PAGE_USER_PRIVATE:
         if (empty(PA::$login_uid)) return 'skip';
-        $this->title = __("My " . $this->rel_term . "s");
+        $this->title = __("My friends");
       break;  
       default:
-        $this->title = __($this->rel_term);
+        $this->title = __("Friends");
     }
   }
 

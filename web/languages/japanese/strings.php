@@ -1463,6 +1463,9 @@ $TRANSLATED_STRINGS = array(
 'Sort By'
 => 'ソート',
 
+'(%d friends)'
+=> '',
+
 '(%d %ss)'
 => '',
 
@@ -2213,21 +2216,14 @@ $TRANSLATED_STRINGS = array(
 'Can\'t change status for this user.'
 => '',
 
-'member'
-=> '',
-
-'No groups created yet. Be the first to <a href="%s" style="display:inline;'
-.'">create one</a>!'
-=> '',
+'%d members'
+=> '会員',
 
 'No Groups found.'
 => '',
 
-'Click'
-=> '',
-
-'to create.'
-=> '',
+'Click <a href="%s">here</a> to create one.'
+=> '<a href="%s">ここクッリク</a>して作成',
 
 'caption'
 => '',
@@ -2274,6 +2270,9 @@ $TRANSLATED_STRINGS = array(
 'Group Directory'
 => '',
 
+'There are %d groups'
+=> '',
+
 'Create a Group'
 => '',
 
@@ -2282,6 +2281,9 @@ $TRANSLATED_STRINGS = array(
 
 'Search for'
 => '',
+
+'%d Members'
+=> '会員',
 
 'Created'
 => '',
@@ -3021,6 +3023,9 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'MIS Reports'
+=> '',
+
+'member'
 => '',
 
 'You haven\'t <a href="%s">created</a> or <a href="%s">joined</a> any '
@@ -3936,13 +3941,19 @@ $TRANSLATED_STRINGS = array(
 .'digital worlds!'
 => '',
 
-'My '
+'%s\'s friends'
 => '',
 
-'No %ss made yet.'
+'My friends'
+=> '',
+
+'Friends'
+=> '',
+
+'No friends made yet.'
 => 'トピックがありません。',
 
-'Send request for joining network'
+'Send request to join this network'
 => '',
 
 'Your request to join this network could not be sent due to following reason: '
@@ -4661,9 +4672,6 @@ $TRANSLATED_STRINGS = array(
 'Find %s'
 => '',
 
-'My friends'
-=> '',
-
 'Friends gallery'
 => '',
 
@@ -5128,8 +5136,8 @@ $TRANSLATED_STRINGS = array(
 'Click here to go back to the Home page'
 => '',
 
-'&copy;'
-=> '',
+'&copy; %s Broadband Mechanics, Inc.'
+=> '&copy; 2007 Broadband Mechanics, Inc.',
 
 'Already a member?'
 => '公認ﾒﾝﾊﾞｰ',
