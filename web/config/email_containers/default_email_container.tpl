@@ -19,7 +19,12 @@
   </TR>   
   <TR>
     <TD valign="top" width="150"><IMG src="<?php echo PA::$url .'/images/people2.gif';?>" width="150" height="268"></TD>
-    <TD width="525"><?php echo $message;?></TD>
+    <TD width="525"><?php echo $message;?>
+    <br />
+    <br />
+    Everyone at <?= $config_site_name ?> respects your privacy. 
+    Your information will never be shared with third parties unless specifically requested by you.
+    </TD>
   </TR>
   <TR>
     <TD colspan="2"><DIV style=" width: auto; margin: 0px 0px 5px 0px; border-top:#FF9900 1px dashed"></DIV><CENTER>

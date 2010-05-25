@@ -21,8 +21,6 @@ class GroupAccessModule extends Module {
 
   function render() {
     $this->group_details = $this->shared_data['group_info']; 
-    $this->title = chop_string(stripslashes((!empty($this->group_details) ? $this->group_details->title : NULL)), GROUP_TITLE_LENGTH);
-    //$this->title = chop_string(stripslashes($this->group_details->title), GROUP_TITLE_LENGTH);
     $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;

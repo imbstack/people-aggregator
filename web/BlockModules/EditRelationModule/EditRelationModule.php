@@ -43,7 +43,7 @@ class EditRelationModule extends Module {
     $this->display_name = $this->user->display_name;
     $this->relation_picture = $this->user->picture;
     if ($this->uid == $request_data['uid']) {
-      $message = MessagesHandler::get_message(1050);
+      $message = __("You cannot make a relationship with yourself.");
       $this->is_error = TRUE;
       global $error_msg;
       $error_msg = $message;
@@ -82,7 +82,7 @@ class EditRelationModule extends Module {
         $this->status = $relation['status'];
         if ($this->status == PENDING) {
           if (PA::$extra['reciprocated_relationship'] == NET_YES && ($action == 'add')) {
-            $msg = __('Your request for adding ').$relation['display_name'].__(' as a relation has already been sent');
+            $msg = sprintf(__('Your request for adding %s as a relation has already been sent'), $relation['display_name']);
           }
         }
       }
@@ -101,7 +101,6 @@ class EditRelationModule extends Module {
     }
     if(isset($request_data['submit'])) {
       $this->rel_creater = PA::$user;
-      //$this->rel_creater->load((int)$_SESSION['user']['id']);
       $this->relationship_level = $request_data['level'];
       if (PA::$extra['reciprocated_relationship'] == NET_YES) {
         if(Relation::getRelationData($this->relation_uid, $this->uid, PA::$network_info->network_id)) {
@@ -110,7 +109,7 @@ class EditRelationModule extends Module {
             $relation_obj = Relation::getRelationData($this->relation_uid, $this->uid, PA::$network_info->network_id);
             PANotify::send("reciprocated_relation_estab", PA::$network_info, PA::$login_user, $relation_obj); // recipient is network owner
 
-            $location = PA_ROUTE_USER_PRIVATE . '/msg=' . urlencode(__("Your relationship request approved."));
+            $location = PA_ROUTE_USER_PRIVATE . '/msg=' . urlencode(__("The relationship request was approved."));
             header('Location:'.PA::$url.$location);
             exit;
         }
@@ -166,7 +165,7 @@ class EditRelationModule extends Module {
             $location = PA_ROUTE_USER_PUBLIC . '/' . $this->relation_uid . "&msg=" . urlencode(__("Relationship estabilished."));
           }
         } else {
-          $location = PA_ROUTE_USER_PRIVATE . '/msg_id=1051';
+          $location = PA_ROUTE_USER_PRIVATE . '/msg_id='.urlencode(__("Your request has been sent for approval"));
         }
         header('Location:'.PA::$url.$location);
       }

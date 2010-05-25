@@ -41,12 +41,12 @@ class AddMessageModule extends Module {
     if (!empty(PA::$login_uid)){
       $this->uid = PA::$login_uid;
     }
-    if(!empty($request_data['do_action'])) {
+    if (!empty($request_data['do_action'])) {
       if (in_array($request_data['do_action'], $possible_actions)) {
         $this->action = $request_data['do_action'];
       }
     }
-    if(!empty($request_data['mssg_id'])) {
+    if (!empty($request_data['mssg_id'])) {
       // message id of the message for which some action has to be taken.
       $this->mid = $request_data['mssg_id'];
     } else {
@@ -64,7 +64,7 @@ class AddMessageModule extends Module {
   public function handleAddMessagesSubmit($request_method, $request_data) {
     switch ($request_method) {
       case 'POST':
-        if(method_exists($this, 'handlePOSTPageSubmit')) {  // function handlePOSTPageSubmit implemented?
+        if (method_exists($this, 'handlePOSTPageSubmit')) {  // function handlePOSTPageSubmit implemented?
            $this->handlePOSTPageSubmit($request_data);      // yes, use this function to handle POST data!
         }
     }
@@ -93,9 +93,8 @@ class AddMessageModule extends Module {
             $subject = '[none]';
           }
           $login_names = preg_split("/,\s*/", $request_data['to']);
-          $found = array();//user id of all the valid login names
           $valid_recipients = array(); //login name of all the valid login names.
-          $invalid_recipients = array();//names of all the invalid recipients.
+          $invalid_recipients = array(); // names of all the invalid recipients.
           foreach ($login_names as $login_name) {
             try {
               $User = new User();
@@ -105,9 +104,12 @@ class AddMessageModule extends Module {
               $valid_recipients['display_name'][] = $User->display_name;
               $valid_recipients['fname'][] = $User->first_name;
               $valid_recipients['email'][] = $User->email;
+              
+              $valid_recipients['user'][] = $User;
+              
               $notif_settings = null;
               $recipient_profile = User::load_user_profile($User->user_id, $User->user_id, 'notifications');
-              if(!empty($recipient_profile)) {
+              if (!empty($recipient_profile)) {
                 $notif_settings = unserialize($recipient_profile[0]['value']);
               }
               $valid_recipients['notifications'][] = $notif_settings;
@@ -119,37 +121,39 @@ class AddMessageModule extends Module {
           $message = null;
           if (count($valid_recipients)) {
             $is_draft = FALSE;
+            
+            // actually 'send' the message
             Message::add_message(PA::$login_uid, $valid_recipients['id'], $valid_recipients['name'], $subject, $body, $is_draft, $in_reply_to);
+            
+            // handle 'also send to email' and 'message_waiting_blink'
             $valid_recipients_count = count($valid_recipients['id']);
             for ($counter = 0; $counter < $valid_recipients_count; $counter++) {
-              if(!empty($valid_recipients['notifications'][$counter])) {
+              if (!empty($valid_recipients['notifications'][$counter])) {
                 $rec_notif_settings = $valid_recipients['notifications'][$counter];
-                if(!empty($rec_notif_settings['msg_waiting_blink']) && ($rec_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
+                
+                $as_email = false;
+                if (!empty($rec_notif_settings['user_send_message']['value'])) {
+                	switch ($rec_notif_settings['user_send_message']['value']) {
+                		case NET_EMAIL:
+                		case NET_BOTH:
+											$as_email = true;
+											PAMail::send("user_send_message", $valid_recipients['user'][$counter], PA::$login_user, 
+												array(
+													'subject' => $subject,
+													'message' => $body
+												));
+                		break;
+                		default:
+                		break;
+                	}
+                } 
+                // if they are not getting it in email already
+                if (!empty(!$as_email && $rec_notif_settings['msg_waiting_blink']) && ($rec_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
                   PAMail::send("msg_waiting_blink", $valid_recipients['email'][$counter], PA::$login_user, array());
                 }  
               }
             }
-/*            
-            $valid_recipients_count = count($valid_recipients['id']);
-            for ($counter = 0; $counter < $valid_recipients_count; $counter++) {
-              $_sender_url = url_for('user_blog',  array('login'=>$_SESSION['user']['name']));
-              $sender_url = "<a href=\"$_sender_url\">$_sender_url</a>";
-              $params = array(
-                  'first_name_sender' => $_SESSION['user']['first_name'],
-                  'first_name_recipient' =>$valid_recipients['fname'][$counter],
-                  'sender_id' => PA::$login_uid,
-                  'recipient_id' =>  $valid_recipients['id'][$counter], 
-		  'config_site_name' => PA::$site_name,
-		  'site_name' => PA::$site_name,
-		  'network_name' => PA::$network_info->name,
 
-                  'recipient_email' => $valid_recipients['email'][$counter],
-                  'sender_url' => $sender_url,
-                  'my_messages_url' => '<a href="' . PA::$url . PA_ROUTE_MYMESSAGE . '">' . PA::$url . PA_ROUTE_MYMESSAGE .'</a>'
-              );
-              auto_email_notification('msg_waiting_blink', $params);
-            }
-*/            
             $message =   sprintf(__("Message sent successfully to %s"), implode(", ", $valid_recipients['display_name']));
           }
     

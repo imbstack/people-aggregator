@@ -73,7 +73,7 @@ class MessageDispatcher {
 
   private function getMessage() {
     $retval = null;
-    if(!empty($this->config_obj->settings['email_messages'][$this->message_type])) {
+    if (!empty($this->config_obj->settings['email_messages'][$this->message_type])) {
       $message_data = $this->config_obj->settings['email_messages'][$this->message_type];
       $message_data['type'] = $this->message_type;
       $msg_obj = new MessageRenderer($message_data, $this->recipient_obj, $this->requester_obj, $this->associated_obj);
@@ -86,17 +86,17 @@ class MessageDispatcher {
   }
 
   protected function sendEmail($recipient = null) {
-    if(empty($recipient)) {
+    if (empty($recipient)) {
       $recipient = $this->message_obj->template_vars["%recipient.email_address%"];
     }
     $subject   = $this->message_obj->message['subject'];
     $message   = $this->message_obj->message['message'];
     $container_html  = $this->message_obj->message['template'];
-    if($container_html != 'text_only') {
+    if ($container_html != 'text_only') {
       // patching up message and subject in the email container
       $email_container = & new Template(PA::$config_path . "/email_containers/$container_html");
-      $email_container ->set('subject', $subject);
-      $email_container ->set('message', $message);
+      $email_container->set('subject', $subject);
+      $email_container->set('message', $message);
 
       // actual message to be sent through the mail
       $body = $email_container->fetch();
@@ -118,24 +118,23 @@ class MessageDispatcher {
     $mail->AddAddress($recipient, $recipient);
     $mail->Subject = $subject;
 
-    if($container_html != 'text_only') {
+    if ($container_html != 'text_only') {
       $mail->AltBody = strip_tags($body);
       $mail->MsgHTML($body);
     } else {
       $mail->Body = $body;
     }
 
-    if(!$mail->Send()) {
+    if (!$mail->Send()) {
        throw new PAException(MAIL_FUNCTION_FAILED, "Mail is not sent due to PHPMailer error: ".$mail->ErrorInfo);
     } else {
-//       echo $body;
        return TRUE;
     }
     return FALSE;
   }
 
   protected function sendNotification() {
-    if(empty($this->message_obj->template_vars["%requester.user_id%"]) || empty($this->message_obj->template_vars["%recipient.login_name%"])) {
+    if (empty($this->message_obj->template_vars["%requester.user_id%"]) || empty($this->message_obj->template_vars["%recipient.login_name%"])) {
        Logger::log("Error exit: function MessageDispatcher::sendNotification() - Missing Recipient or Requester info.");
        throw new Exception("MessageDispatcher::sendNotification() - Missing Recipient or Requester info.");
     }
@@ -143,59 +142,59 @@ class MessageDispatcher {
     $destination = NET_NONE;                              // initial set to NONE
     $msg_waiting_blink = NET_NONE;                        // initial set to NONE
     $msg_categ = $this->message_obj->message['category'];
+
     $recipient_id = $this->message_obj->template_vars["%recipient.user_id%"];
     $recipient_profile = User::load_user_profile($recipient_id, $recipient_id, 'notifications');
-    if(!empty($recipient_profile)) {
+    if (!empty($recipient_profile)) {
       $recipient_notif_settings = unserialize($recipient_profile[0]['value']);
     }
 
-    if($msg_categ == 'notify_network_owner') {            // get network notification settings and notify network owner
+    if ($msg_categ == 'notify_network_owner') {            // get network notification settings and notify network owner
       $extra = unserialize(PA::$network_info->extra);
-      if(isset($extra['notify_owner'][$this->message_type]['value'])) {
+      if (isset($extra['notify_owner'][$this->message_type]['value'])) {
         $destination = $extra['notify_owner'][$this->message_type]['value'];
       } else {                      // temporrary solution - if no notification settings data defined for a message
         $destination = NET_BOTH;    // message category is 'notify_network_owner', so notify owner
       }
     }
-    else if($msg_categ == 'notify_group_owner') {
-      $destination = NET_BOTH;                            // temporrary solution - currently there is no group notification settings
+    else if ($msg_categ == 'notify_group_owner') {
+      $destination = NET_BOTH;                            
+      // temporrary solution - currently there is no group notification settings
     }
     else {
-      if(!empty($recipient_notif_settings) && isset($recipient_notif_settings[$this->message_type]['value'])) {
+      if (!empty($recipient_notif_settings) && isset($recipient_notif_settings[$this->message_type]['value'])) {
         $destination = $recipient_notif_settings[$this->message_type]['value'];
       }
     }
 
-    if(isset($recipient_notif_settings['msg_waiting_blink']) && ($recipient_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
-        $msg_waiting_blink = $recipient_notif_settings['msg_waiting_blink'];
-    }
-
-    if($msg_categ == 'outgoing_email') {
+    if ($msg_categ == 'outgoing_email') {
       $destination = NET_EMAIL;              // override destination if message category is outgoing_email
     }
 
-    if($destination != NET_NONE) {
+    if ($destination != NET_NONE) {
+    	$email_recipient = $this->message_obj->template_vars["%recipient.email_address%"];
+    	$requester = $this->message_obj->template_vars["%requester.user_id%"];
+    	$recipient = $this->message_obj->template_vars["%recipient.login_name%"];
       switch($destination) {
         case NET_MSG:
-          $requester = $this->message_obj->template_vars["%requester.user_id%"];
-          $recipient = $this->message_obj->template_vars["%recipient.login_name%"];
           self::internalMessage($recipient, $requester);
+					// only send message_waiting if the user isn't already recieving the message as email ^^
+					if (isset($recipient_notif_settings['msg_waiting_blink']) && ($recipient_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
+							$msg_waiting_blink = $recipient_notif_settings['msg_waiting_blink'];
+					}
+
         break;
         case NET_EMAIL:
-          $recipient = $this->message_obj->template_vars["%recipient.email_address%"];
-          self::sendEmail($recipient);
+          self::sendEmail($email_recipient);
         break;
         case NET_BOTH:
-          $email_recipient = $this->message_obj->template_vars["%recipient.email_address%"];
-          $requester = $this->message_obj->template_vars["%requester.user_id%"];
-          $recipient = $this->message_obj->template_vars["%recipient.login_name%"];
           self::internalMessage($recipient, $requester);
           self::sendEmail($email_recipient);
         break;
       }
     }
 
-    if($msg_waiting_blink == NET_EMAIL) {
+    if ($msg_waiting_blink == NET_EMAIL) {
       $recipient_id = $this->message_obj->template_vars["%recipient.user_id%"];
       $recipient = new User();
       $recipient->load((int)$recipient_id);
@@ -208,7 +207,7 @@ class MessageDispatcher {
     $subject   = $this->message_obj->message['subject'];
     $message   = $this->message_obj->message['message'];
     $container_html   = $this->message_obj->message['template'];
-    if($container_html != 'text_only') {
+    if ($container_html != 'text_only') {
       // patching up message and subject in the email container
       $message = nl2br($message);
       $email_container = & new Template(PA::$config_path . "/email_containers/$container_html");

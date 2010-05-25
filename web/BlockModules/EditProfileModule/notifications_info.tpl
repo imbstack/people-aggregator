@@ -37,7 +37,7 @@ if ($profile['settings']) {
   $notification_settings = Array();
 }
 
-// get the default notification setting for the betwork
+// get the default notification setting for the network
 $default_notification_settings = PA::$extra['notify_members'];
 // merge defaults into user settings
 foreach($default_notification_settings as $setting => $data) {

@@ -55,7 +55,7 @@
 
           $module_shared_data['calendar_info']['assoc_type'] = "group";
           $module_shared_data['calendar_info']['assoc_id'] = $gid;
-          $module_shared_data['calendar_info']['title'] = 'Group Events';
+          $module_shared_data['calendar_info']['title'] = __('Group Events');
           $module_shared_data['calendar_info']['mode'] = PUB;
 
           if($member_type == NOT_A_MEMBER) {

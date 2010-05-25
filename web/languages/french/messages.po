@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-14 01:58+0200\n"
+"POT-Creation-Date: 2010-05-25 16:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -574,12 +574,12 @@ msgstr ""
 msgid "Compose"
 msgstr ""
 
-#: ../../web/BlockModules/AddMessageModule/AddMessageModule.php:153
+#: ../../web/BlockModules/AddMessageModule/AddMessageModule.php:157
 #, php-format
 msgid "Message sent successfully to %s"
 msgstr ""
 
-#: ../../web/BlockModules/AddMessageModule/AddMessageModule.php:158
+#: ../../web/BlockModules/AddMessageModule/AddMessageModule.php:162
 #, php-format
 msgid "Message sending failed for %s  as user(s) doesn't exist"
 msgstr ""
@@ -940,8 +940,8 @@ msgstr ""
 
 #: ../../web/BlockModules/ConfigureEmailModule/center_inner_html.tpl:19
 #: ../../web/BlockModules/ConfigureEmailModule/ConfigureEmailModule.php:13
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:33
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:35
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:26
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:28
 #: ../../web/configure_email.php:203
 msgid "Configure Email"
 msgstr ""
@@ -1779,7 +1779,7 @@ msgstr ""
 
 #: ../../web/BlockModules/EditProfileModule/center_inner_private.tpl:31
 #: ../../web/BlockModules/EditProfileModule/notifications_info.tpl:118
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:166
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:31
 #: ../../web/BlockModules/UserContactsModule/navigation.tpl:25
 #: ../../web/BlockModules/UserContactsModule/navigation.tpl:40
 msgid "Notifications"
@@ -2085,24 +2085,29 @@ msgstr ""
 msgid "ADD as a Friend"
 msgstr ""
 
-#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:85
-msgid "Your request for adding "
+#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:46
+msgid "You cannot make a relationship with yourself."
 msgstr ""
 
 #: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:85
-msgid " as a relation has already been sent"
+#, php-format
+msgid "Your request for adding %s as a relation has already been sent"
 msgstr ""
 
 #: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:92
 msgid "Edit Relationship"
 msgstr ""
 
-#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:113
-msgid "Your relationship request approved."
+#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:112
+msgid "The relationship request was approved."
 msgstr ""
 
-#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:166
+#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:165
 msgid "Relationship estabilished."
+msgstr ""
+
+#: ../../web/BlockModules/EditRelationModule/EditRelationModule.php:168
+msgid "Your request has been sent for approval"
 msgstr ""
 
 #: ../../web/BlockModules/EventCalendarModule/center_inner_private.tpl:102
@@ -2303,7 +2308,12 @@ msgstr ""
 msgid "Calendar"
 msgstr ""
 
-#: ../../web/BlockModules/EventCalendarSidebarModule/EventCalendarSidebarModule.php:36
+#: ../../web/BlockModules/EventCalendarSidebarModule/EventCalendarSidebarModule.php:23
+#, fuzzy
+msgid "Group Events"
+msgstr "Groupes"
+
+#: ../../web/BlockModules/EventCalendarSidebarModule/EventCalendarSidebarModule.php:39
 #: ../../web/user_calendar.php:24
 msgid "Personal Events"
 msgstr ""
@@ -3402,11 +3412,11 @@ msgstr ""
 msgid "Founded"
 msgstr ""
 
-#: ../../web/BlockModules/GroupAccessModule/GroupAccessModule.php:61
+#: ../../web/BlockModules/GroupAccessModule/GroupAccessModule.php:59
 msgid "Request to join this group"
 msgstr ""
 
-#: ../../web/BlockModules/GroupAccessModule/GroupAccessModule.php:63
+#: ../../web/BlockModules/GroupAccessModule/GroupAccessModule.php:61
 msgid "Join This Group"
 msgstr ""
 
@@ -4176,7 +4186,7 @@ msgid "Select vertical position"
 msgstr ""
 
 #: ../../web/BlockModules/ManageAdCenterModule/ManageAdCenterModule.php:15
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:25
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:16
 msgid "Manage Ad Center"
 msgstr ""
 
@@ -4344,7 +4354,7 @@ msgstr ""
 
 #: ../../web/BlockModules/ManageFooterLinksModule/center_inner_private.tpl:30
 #: ../../web/BlockModules/ManageFooterLinksModule/ManageFooterLinksModule.php:29
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:196
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:189
 msgid "Manage Footer Links"
 msgstr ""
 
@@ -4419,7 +4429,7 @@ msgid "Id"
 msgstr ""
 
 #: ../../web/BlockModules/ManageRankingPointsModule/default_inner.tpl:16
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:185
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:178
 #: ../../web/BlockModules/PointsDirectoryModule/center_inner_public.tpl.php:59
 msgid "Points"
 msgstr ""
@@ -4434,7 +4444,7 @@ msgid "New"
 msgstr ""
 
 #: ../../web/BlockModules/ManageRankingPointsModule/ManageRankingPointsModule.php:12
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:187
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:180
 msgid "Manage Ranking points"
 msgstr ""
 
@@ -4465,7 +4475,7 @@ msgstr ""
 
 #: ../../web/BlockModules/ManageStaticPageModule/center_inner_private.tpl:30
 #: ../../web/BlockModules/ManageStaticPageModule/ManageStaticPageModule.php:28
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:197
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:190
 msgid "Manage Static Pages"
 msgstr ""
 
@@ -5294,36 +5304,33 @@ msgid "Configure"
 msgstr ""
 
 #: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:6
-msgid "System Settings"
-msgstr ""
-
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:8
-msgid "Configuration manager"
-msgstr ""
-
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:9
-msgid "PA Defender"
-msgstr ""
-
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:15
 msgid "Network Settings"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:17
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:8
 msgid "Network settings"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:23
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:14
 msgid "Ad Center"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:28
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:19
 msgid "Textpads"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:30
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:21
 #: ../../web/manage_textpads.php:126 ../../web/manage_textpads.php:153
 msgid "Manage Textpads"
+msgstr ""
+
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:33
+#: ../../web/includes/classes/Navigation.php:547
+msgid "Bulletins"
+msgstr ""
+
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:34
+msgid "Email notifications"
 msgstr ""
 
 #: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:40
@@ -5494,30 +5501,33 @@ msgstr ""
 msgid "Network Events"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:168
-#: ../../web/includes/classes/Navigation.php:547
-msgid "Bulletins"
-msgstr ""
-
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:169
-msgid "Email notifications"
-msgstr ""
-
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:174
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:167
 #: ../../web/BlockModules/TaskRoleManageModule/center_inner_private.tpl:10
 msgid "Roles"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:176
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:169
 msgid "Manage Roles & Tasks"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:178
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:171
 msgid "Manage Tasks Relationship"
 msgstr ""
 
-#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:194
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:187
 msgid "Static Pages"
+msgstr ""
+
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:196
+msgid "System Settings"
+msgstr ""
+
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:198
+msgid "Configuration manager"
+msgstr ""
+
+#: ../../web/BlockModules/NetworkLeftLinksModule/center_inner_private.tpl:199
+msgid "PA Defender"
 msgstr ""
 
 #: ../../web/BlockModules/NetworkLinkModule/NetworkLinkModule.php:13

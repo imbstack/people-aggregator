@@ -5,7 +5,7 @@
     <template>default_email_container.tpl</template>
     <subject><![CDATA[%invite.inviter.display_name% has invited you to join %group.name% group in %network.name%]]></subject>
     <message><![CDATA[
-<br /><p>%invite.inviter.image%<br />Dear %invite.invited_user_name%,<br /><br />I have created my own group called %group.name% Group on the %network.name% network and I'd like you to come and join us!<br /><br />The %group.name% Group has it's own blog, forum, media gallery and we'll be able to see who else is a member of the Group. Once you have accepted this invitation, you will be able to:<br /><br />Post blog posts into the %group.name% Group blog<br />Upload media into the %group.name% Group media gallery<br />Participate in any %group.name% Group forum threads<br />Invite others to come and join the %group.name% Group<br /><br />If you want an overview of this group, click here:<br /><br />%group.link%<br />If you are already a registered member of %config_site_name%, click here to accept this invitation:</p><p>%invite.accept_url%<br /><br />If you are NOT a registered member of %config_site_name%, then click here to register and accept this invitation:<br /><br />%invite.register_link%<br /><br />Here is the personalized message for you from %invite.inviter.display_name%<br /><br />%invite.message%<br /><br />Thanks<br /><br />%invite.inviter.display_name%<br /><br />Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.</p>
+<br /><p>%invite.inviter.image%<br />Dear %invite.invited_user_name%,<br /><br />I have created my own group called %group.name% Group on the %network.name% network and I'd like you to come and join us!<br /><br />The %group.name% Group has it's own blog, forum, media gallery and we'll be able to see who else is a member of the Group. Once you have accepted this invitation, you will be able to:<br /><br />Post blog posts into the %group.name% Group blog<br />Upload media into the %group.name% Group media gallery<br />Participate in any %group.name% Group forum threads<br />Invite others to come and join the %group.name% Group<br /><br />If you want an overview of this group, click here:<br /><br />%group.link%<br />If you are already a registered member of %config_site_name%, click here to accept this invitation:</p><p>%invite.accept_url%<br /><br />If you are NOT a registered member of %config_site_name%, then click here to register and accept this invitation:<br /><br />%invite.register_link%<br /><br />Here is the personalized message for you from %invite.inviter.display_name%<br /><br />%invite.message%<br /><br />Thanks<br /><br />%invite.inviter.display_name%<br /></p>
 ]]></message>
     <description>Invite into group</description>
     <configurable_variables>
@@ -78,10 +78,6 @@ Here is the personalized message for you from %invite.inviter.display_name%
 Thanks
 <br />
 %invite.inviter.display_name%
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Group Invitation by member</description>
     <configurable_variables>
@@ -137,9 +133,8 @@ Here is the personalized message for you from %invite.inviter.display_name% <br 
 %invite.message% <br />
 <br />
 Thanks, <br />
-%invite.inviter.display_name% <br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you. </p>
+%invite.inviter.display_name% 
+</p>
 ]]></message>
     <description>Invite into PeopleAggregator</description>
     <configurable_variables>
@@ -183,8 +178,7 @@ You can also control access to your profile info, content, media and meta-data b
 <br />
 Thanks <br />
 The %config_site_name% Team <br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you. </p>
+ </p>
 ]]></message>
     <description>PeopleAggregator Invitation accepted</description>
     <configurable_variables>
@@ -214,8 +208,7 @@ Everyone at %config_site_name% respects your privacy. Your information will neve
     <message><![CDATA[
 <br />Dear %recipient.display_name%, <br /><br />
 As we understand it, you have requested a copy of your current username and password. <br />Here they are:
-username:%recipient.login_name%<br /><br />To change your password, click on the link below (or copy the URL and paste it into your browser):<br />%change_password_url%<br /><br />Thanks<br />The %config_site_name% Team<br /><br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+username:%recipient.login_name%<br /><br />To change your password, click on the link below (or copy the URL and paste it into your browser):<br />%change_password_url%<br /><br />Thanks<br />The %config_site_name% Team<br /><br />
 
 ]]></message>
     <description>Forgot Password</description>
@@ -258,10 +251,6 @@ be invited into any of %relation.inviter.display_name%'s Groups or Networks.
 Thanks
 <br />
 %network.owner.display_name%
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Friend Request Mail</description>
     <configurable_variables>
@@ -314,10 +303,6 @@ To view ALL of your friends and relations, click here  (or copy and paste the UR
 Thank you
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Friend Response Mail</description>
     <configurable_variables>
@@ -357,10 +342,6 @@ Sorry again,
 <br />
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Friend Denied Mail</description>
     <configurable_variables>
@@ -385,6 +366,23 @@ Everyone at %config_site_name% respects your privacy. Your information will neve
       <relation_friend_list_link>%relation.friend_list_link%</relation_friend_list_link>
     </configurable_variables>
   </friend_request_denial>
+
+  <user_send_message>
+    <category>notify_network_members</category>
+    <template>default_email_container.tpl</template>
+    <subject><![CDATA[%subject%]]></subject>
+    <message><![CDATA[
+%message%
+]]></message>
+    <description>User to user Messages</description>
+    <configurable_variables>
+      <subject>%subject%</subject>
+      <message>%message%</message>
+    </configurable_variables>
+  </user_send_message>
+
+
+
   <bulletin_sent>
     <category>network_bulletin</category>
     <template>default_email_container.tpl</template>
@@ -396,11 +394,6 @@ Everyone at %config_site_name% respects your privacy. Your information will neve
 <br />
 <br />
 Thanks
-<br />
-%config_site_name% Team
-<br />
-<p>Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.</p>
-
 ]]></message>
     <description>Network owner's Bulletin</description>
     <configurable_variables>
@@ -408,6 +401,7 @@ Thanks
       <bulletin_message>%bulletin.message%</bulletin_message>
     </configurable_variables>
   </bulletin_sent>
+
   <group_created>
     <category>notify_network_owner</category>
     <template>default_email_container.tpl</template>
@@ -424,10 +418,6 @@ To view the %group.name% group go to %group.link%
 <br />
 <br />Regards,<br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Group Created Notification Mail</description>
     <configurable_variables>
@@ -467,10 +457,6 @@ To view the %group.name% group go to %group.link%
 <br />
 <br />Regards,<br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Group settings data updated Notification Mail</description>
     <configurable_variables>
@@ -520,8 +506,7 @@ Best regards,
 <br />
 <br />
 The %config_site_name% Team
-<br /><br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+<br /><br />
 
 ]]></message>
     <description>Network Joined Notification Mail</description>
@@ -651,10 +636,6 @@ To moderate this %content.author.display_name%'s content, go to the %content.mod
 Regards,
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Content Posted to Community Blog</description>
     <configurable_variables>
@@ -699,10 +680,6 @@ To moderate this %content.author.display_name%'s content, go to the %content.mod
 Regards,
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Content Posted Notification Mail</description>
     <configurable_variables>
@@ -747,10 +724,6 @@ To moderate this %content.author.display_name%'s content, go to the %content.mod
 Regards,
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Content Modified Notification Mail</description>
     <configurable_variables>
@@ -798,10 +771,6 @@ To moderate these members you can click here to go to the Network Operator scree
 Regards,<br />
 The %config_site_name% Team
 <br />
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Reciprocated Relation Establisted Notification Mail</description>
     <configurable_variables>
@@ -853,8 +822,7 @@ To view ALL of your friends and relations, click here (or copy and paste the URL
 <br /><br />Thank you<br />
 The %config_site_name% Team
 <br />
-<br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+<br />
 
 ]]></message>
     <description>Relation Establisted Mail</description>
@@ -901,10 +869,6 @@ There are now %group.member_count% members in the %group.name% Group.
 Thanks
 <br />
 The %config_site_name% Team
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Group Invitation Accepted</description>
     <configurable_variables>
@@ -939,8 +903,7 @@ To view the %group.name% Group go to:<br />
 %group.moderation_link%
 <br />Very best regards,<br /><br />
 The %config_site_name% Team
-<br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+<br />
 
 ]]></message>
     <description>Group Joined Notification Mail</description>
@@ -967,8 +930,7 @@ To view the %group.name% Group go to:<br />
 %group.moderation_link%
 <br />Very best regards,<br /><br />
 The %config_site_name% Team
-<br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+<br />
 ]]></message>
     <description>Group Joining Requested Notification Mail</description>
     <configurable_variables>
@@ -1008,10 +970,6 @@ Or <br />
 <br />
 The %config_site_name% Team<br />
 <br />
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Welcome Mail for New User</description>
     <configurable_variables>
@@ -1048,8 +1006,7 @@ To view the %requester.display_name% Public page go to:<br />
 <br />
 To view the message sent, go to:<br />%recipient.messages_link%
 <br />best regards,<br /><br />
-The %config_site_name% Team <br /><br /><br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+The %config_site_name% Team <br /><br /><br />
 
 ]]></message>
     <description>Message Waiting Mail</description>
@@ -1088,8 +1045,7 @@ To view relationship establisher account go to: <br />
 To view related user account go to: <br />
 %relation.invited.profile_link%<br /><br />
 Very best regards,<br /><br />
-The %config_site_name% Team<br /><br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+The %config_site_name% Team<br />
 
 ]]></message>
     <description>Normal Relation Notification Mail</description>
@@ -1141,10 +1097,6 @@ Thanks<br />
 The %config_site_name% Team.
 <br />
 <br />
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Abuse Content Network Owner</description>
     <configurable_variables>
@@ -1189,10 +1141,6 @@ Click here %group.link% to have an overview of your group %group.name%
 <br />
 Thanks<br />
 The %config_site_name% Team.
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Abuse Content Group Owner</description>
     <configurable_variables>
@@ -1234,10 +1182,6 @@ Click here %abuse.delete_comment_link% to delete that comment
 <br />
 Thanks<br />
 The %config_site_name% Team.
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Abuse Comment Network Owner</description>
     <configurable_variables>
@@ -1282,10 +1226,6 @@ Click here %group.link% to have an overview of your group %group.name%
 <br />
 Thanks<br />
 The %config_site_name% Team.
-<br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
 ]]></message>
     <description>Abuse Comment Group Owner</description>
     <configurable_variables>
@@ -1320,8 +1260,7 @@ Activate your %config_site_name% account by clicking the following link:
 Regards,<br />
 The %config_site_name% Team
 <br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
+
 ]]></message>
      <description>Account Activation Email</description>
     <configurable_variables>
@@ -1353,8 +1292,7 @@ To view %requester.display_name%'s public blog page view the following link: <br
 <br />
 Thanks <br />
 The %config_site_name% Team <br />
-<br />
-Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you. </p>
+ </p>
 ]]></message>
     <description>New user registered Notification Email</description>
     <configurable_variables>

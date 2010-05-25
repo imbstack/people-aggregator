@@ -3,15 +3,6 @@
 <div id="configure_network"><h4><?= __('Configure') ?> <?php echo chop_string(PA::$network_info->name, 12);?></h4></div>
 <ul>
   <?php if ($task_perms['manage_settings'] == TRUE) { ?>
-  <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('System Settings') ?></a>
-    <ul>
-      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('Configuration manager') ?></a></li>
-      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_DEFENDER;?>"><?= __('PA Defender') ?></a></li>
-     </ul>
-  </li>
-  <?}?>
-
-  <?php if ($task_perms['manage_settings'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_NETWORK;?>"><?= __('Network Settings') ?></a>
     <ul>
       <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_NETWORK;?>"><?= __('Network settings') ?></a></li>
@@ -30,13 +21,22 @@
       <li><a href="<?php echo PA::$url;?>/manage_textpads.php"><?= __('Manage Textpads') ?></a></li>
     </ul>
   </li>
+  <?}?>
+    <?php if ($task_perms['notifications'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?><?php echo '/'.FILE_CONFIGURE_EMAIL;?>"><?= __('Configure Email') ?></a>
     <ul>
      <li><a href="<?php echo PA::$url;?><?php echo '/'.FILE_CONFIGURE_EMAIL;?>"><?= __('Configure Email') ?></a></li>
     </ul>
   </li>
-  <?}?>
-<?php if ($task_perms['meta_networks'] == TRUE) { ?>
+   <li><a href="<?php echo PA::$url;?>/email_notification.php"><?= __('Notifications') ?></a>
+     <ul>
+       <li><a href="<?php echo PA::$url;?>/network_bulletins.php"><?= __('Bulletins') ?></a></li>
+       <li><a href="<?php echo PA::$url;?>/email_notification.php"><?= __('Email notifications') ?></a></li>
+     </ul>
+   </li>
+   <?}?>
+   
+   <?php if ($task_perms['meta_networks'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url;?>/network_feature.php"><?= __('Meta network') ?></a>
     <ul>
       <li><a href="<?php echo PA::$url;?>/network_feature.php"><?= __('Set featured network') ?></a></li>
@@ -162,14 +162,7 @@
      </ul>
    </li>
    <?}?>
-    <?php if ($task_perms['notifications'] == TRUE) { ?>
-   <li><a href="<?php echo PA::$url;?>/email_notification.php"><?= __('Notifications') ?></a>
-     <ul>
-       <li><a href="<?php echo PA::$url;?>/network_bulletins.php"><?= __('Bulletins') ?></a></li>
-       <li><a href="<?php echo PA::$url;?>/email_notification.php"><?= __('Email notifications') ?></a></li>
-     </ul>
-   </li>
-   <?}?>
+
     <?php if ($task_perms['manage_settings'] == TRUE) { ?>
    <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIG_ROLES ;?>"><?= __('Roles') ?></a>
      <ul>
@@ -199,4 +192,14 @@
    </li>
 
    <?php } ?>
+  <?php if ($task_perms['manage_settings'] == TRUE) { ?>
+  <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('System Settings') ?></a>
+    <ul>
+      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('Configuration manager') ?></a></li>
+      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_DEFENDER;?>"><?= __('PA Defender') ?></a></li>
+     </ul>
+  </li>
+  <?}?>
+
+
 </ul>

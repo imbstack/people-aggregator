@@ -19,6 +19,9 @@ class EventCalendarSidebarModule extends Module {
       $this->assoc_type = $info['assoc_type'];
       $this->assoc_id = $info['assoc_id'];
       $this->title = $info['title'];
+      if (!empty($info{'group_info'})) {
+      	$this->title = __('Group Events');
+      }
       $this->may_edit = $info['may_edit'];
       $this->mode = $info['mode'];
 

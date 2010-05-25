@@ -1252,19 +1252,22 @@ $TRANSLATED_STRINGS = array(
 'ADD as a Friend'
 => '',
 
-'Your request for adding '
+'You cannot make a relationship with yourself.'
 => '',
 
-' as a relation has already been sent'
+'Your request for adding %s as a relation has already been sent'
 => '',
 
 'Edit Relationship'
 => '',
 
-'Your relationship request approved.'
+'The relationship request was approved.'
 => '',
 
 'Relationship estabilished.'
+=> '',
+
+'Your request has been sent for approval'
 => '',
 
 'You cannot add an Event to the calendar of group %s, as you are not a member.'
@@ -1405,6 +1408,9 @@ $TRANSLATED_STRINGS = array(
 
 'Calendar'
 => '',
+
+'Group Events'
+=> 'グループ',
 
 'Personal Events'
 => '',
@@ -3336,15 +3342,6 @@ $TRANSLATED_STRINGS = array(
 'Configure'
 => '',
 
-'System Settings'
-=> '',
-
-'Configuration manager'
-=> '',
-
-'PA Defender'
-=> '',
-
 'Network Settings'
 => '',
 
@@ -3358,6 +3355,12 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Manage Textpads'
+=> '',
+
+'Bulletins'
+=> '',
+
+'Email notifications'
 => '',
 
 'Meta network'
@@ -3483,12 +3486,6 @@ $TRANSLATED_STRINGS = array(
 'Network Events'
 => '',
 
-'Bulletins'
-=> '',
-
-'Email notifications'
-=> '',
-
 'Roles'
 => '',
 
@@ -3499,6 +3496,15 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Static Pages'
+=> '',
+
+'System Settings'
+=> '',
+
+'Configuration manager'
+=> '',
+
+'PA Defender'
 => '',
 
 'Manage Network Links'

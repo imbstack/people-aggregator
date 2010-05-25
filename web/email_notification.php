@@ -40,12 +40,12 @@ if(!empty($_REQUEST['config_action'])) {
         if($_FILES['local_file']['type'] != 'text/xml') {
           $msg = __('Invalid configuration file format. Configuration file should be a valid XML file. ');
         } else {
-          //  echo "<pre>".print_r($_REQUEST,1)."</pre>";
+// echo "<pre>".print_r($_REQUEST,1)."</pre>";
           try {
             $content = file_get_contents($_FILES['local_file']['tmp_name']);
             $imported_config = new NetworkConfig($content);
             $imported_defaults = $imported_config->getNotificationsSettings();
-//            echo "<pre>".print_r($imported_defaults,1)."</pre>";
+// echo "<pre>".print_r($imported_defaults,1)."</pre>";
             $msg = __("File ") . $_FILES['local_file']['name'] . __(" loaded successfully.") . "<br />"
                  . __("Click \"Save\" button to save new settings.");
           } catch (Exception $e) {
@@ -61,7 +61,7 @@ if(!empty($_REQUEST['config_action'])) {
       try {
         $imported_config = new NetworkConfig();
         $imported_defaults = $imported_config->getNotificationsSettings();
-        $msg = __('Default settings sucessfully restored.') . "<br />"
+				$msg = __('Default settings sucessfully restored.') . "<br />"
              . __("Click \"Save\" button to save new settings.");
       } catch (Exception $e) {
         $error = TRUE;

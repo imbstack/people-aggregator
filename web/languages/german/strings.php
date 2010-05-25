@@ -1235,40 +1235,43 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'User: '
-=> '',
+=> 'Mitgkied: ',
 
 'Check if'
-=> '',
+=> 'Spezifiziere ob',
 
 'is'
-=> '',
+=> 'ist',
 
 'in family'
-=> '',
+=> 'in der Familie',
 
 'Update Relationship Request'
-=> '',
+=> 'Anfrage aktualisieren',
 
 'ADD as a Friend'
-=> '',
+=> 'Als Freund hinzufügen',
 
-'Your request for adding '
-=> '',
+'You cannot make a relationship with yourself.'
+=> 'Du kannst dich nicht selbst als Freund angeben.',
 
-' as a relation has already been sent'
-=> '',
+'Your request for adding %s as a relation has already been sent'
+=> 'Deine Anfrage %s als Freund hinzuzufügen wurde bereits gesendet',
 
 'Edit Relationship'
-=> '',
+=> 'Beziehung bearbeiten',
 
-'Your relationship request approved.'
-=> '',
+'The relationship request was approved.'
+=> 'Die Anfrage wurde besrötigt.',
 
 'Relationship estabilished.'
-=> '',
+=> 'Beziehung erstellt.',
+
+'Your request has been sent for approval'
+=> 'Deine Anfrage wurde gesendet',
 
 'You cannot add an Event to the calendar of group %s, as you are not a member.'
-=> 'Du kannst dieses Ereignis nicht der Gruppe %s hinzufügen, weil du kein '
+=> 'Du kannst dieses Ereignis nicht der Gruppe %s hinzufügen, da du kein '
 .'Mitglieded bist.',
 
 'Couldn\'t create event:'
@@ -1405,7 +1408,10 @@ $TRANSLATED_STRINGS = array(
 => 'Liste',
 
 'Calendar'
-=> 'Kaöender',
+=> 'Kalender',
+
+'Group Events'
+=> 'Gruppen Ereignisse',
 
 'Personal Events'
 => 'Persönliche Ereignisse',
@@ -1414,7 +1420,7 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'There are %d members in %s.'
-=> '',
+=> 'Es gibt %d Mitglieder in %s.',
 
 'There are %d friends.'
 => '',
@@ -1621,7 +1627,7 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Your request to join "%s" has been submitted to the owner of the group.'
-=> '',
+=> 'Deine Anfrage wurde an den Moderator von %s gesendet.',
 
 'You have joined "%s" successfully.'
 => '',
@@ -2226,7 +2232,7 @@ $TRANSLATED_STRINGS = array(
 => 'Keine Gruppen gefunden.',
 
 'Click <a href="%s">here</a> to create one.'
-=> '<a href="%s">Hier</a> klicken um eibe zu erstellen.',
+=> '<a href="%s">Hier</a> klicken um eine zu erstellen.',
 
 'caption'
 => 'Überschrift',
@@ -2286,7 +2292,7 @@ $TRANSLATED_STRINGS = array(
 => 'Suche nach',
 
 '%d Members'
-=> '%s Mitglieder',
+=> '%d Mitglieder',
 
 'Created'
 => 'Erstellt',
@@ -2836,13 +2842,13 @@ $TRANSLATED_STRINGS = array(
 => 'Mitglieder',
 
 'Group'
-=> '',
+=> 'Gruppe',
 
 'No Content Published.'
-=> '',
+=> 'Keine Inhalte veröffentlicht.',
 
 'Manage Post'
-=> '',
+=> 'Beiträge verwalten',
 
 '%s Members'
 => '%s Mitglieder',
@@ -2851,7 +2857,7 @@ $TRANSLATED_STRINGS = array(
 => 'Leute finden',
 
 'Member Search'
-=> '',
+=> 'Mitglieder Suche',
 
 'Folder creation failed. '
 => '',
@@ -3342,15 +3348,6 @@ $TRANSLATED_STRINGS = array(
 'Configure'
 => 'Konfigurieren',
 
-'System Settings'
-=> '',
-
-'Configuration manager'
-=> '',
-
-'PA Defender'
-=> '',
-
 'Network Settings'
 => '',
 
@@ -3365,6 +3362,12 @@ $TRANSLATED_STRINGS = array(
 
 'Manage Textpads'
 => 'Textpads verwalten',
+
+'Bulletins'
+=> 'Bulletins',
+
+'Email notifications'
+=> 'Email Benachrichtigungen',
 
 'Meta network'
 => '',
@@ -3484,16 +3487,10 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Manage Events'
-=> '',
+=> 'Ereignisse verwalten',
 
 'Network Events'
-=> '',
-
-'Bulletins'
-=> 'Bulletins',
-
-'Email notifications'
-=> 'Email Benachrichtigungen',
+=> 'Netzwerk Ereignisse',
 
 'Roles'
 => '',
@@ -3505,6 +3502,15 @@ $TRANSLATED_STRINGS = array(
 => '',
 
 'Static Pages'
+=> '',
+
+'System Settings'
+=> '',
+
+'Configuration manager'
+=> '',
+
+'PA Defender'
 => '',
 
 'Manage Network Links'
@@ -4567,7 +4573,7 @@ $TRANSLATED_STRINGS = array(
 => '%s Ereignisse',
 
 'Data mapping error. Invalid data format.'
-=> 'Daten ZUprdniungs Fehler: ungültiges Daten Format.',
+=> 'Daten Zuordnungs Fehler: ungültiges Daten Format.',
 
 '-no email address-'
 => '-keine Email Adresse-',
