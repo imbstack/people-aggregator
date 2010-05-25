@@ -148,7 +148,7 @@ class AddMessageModule extends Module {
                 	}
                 } 
                 // if they are not getting it in email already
-                if (!empty(!$as_email && $rec_notif_settings['msg_waiting_blink']) && ($rec_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
+                if ((empty($as_email) && !empty($rec_notif_settings['msg_waiting_blink'])) && ($rec_notif_settings['msg_waiting_blink'] == NET_EMAIL)) {
                   PAMail::send("msg_waiting_blink", $valid_recipients['email'][$counter], PA::$login_user, array());
                 }  
               }
