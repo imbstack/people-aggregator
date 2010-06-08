@@ -17,7 +17,7 @@ require_once "db/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/MessageBoard/MessageBoard.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 define('DEFAULT_PARENT_ID','0');//root id
 /**
   * constant for Category class

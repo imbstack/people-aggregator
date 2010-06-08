@@ -14,9 +14,9 @@
 $login_required = FALSE;
 include_once("web/includes/page.php");  
 require_once "api/Theme/Template.php";
-require_once '../ext/Album/Album.php';
-require_once '../ext/Image/Image.php';
-require_once '../ext/Audio/Audio.php';
+require_once '../api/Album/Album.php';
+require_once '../api/Image/Image.php';
+require_once '../api/Audio/Audio.php';
 require_once '../ext/Video/Video.php';
 
 

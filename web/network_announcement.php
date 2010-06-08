@@ -20,7 +20,7 @@
   include_once("web/includes/page.php");
   include_once "api/ModuleSetting/ModuleSetting.php";
   include_once "api/Theme/Template.php";
-  require_once "ext/Announcement/Announcement.php";
+  require_once "api/Announcement/Announcement.php";
   include_once "api/Network/Network.php";
   require_once "web/includes/network.inc.php";
   require_once "web/includes/functions/auto_email_notify.php";

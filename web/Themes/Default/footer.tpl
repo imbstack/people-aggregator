@@ -1,6 +1,6 @@
 <?php
   global $network_info;
-  require_once "ext/FooterLink/FooterLink.php";
+  require_once "api/FooterLink/FooterLink.php";
 
   $footer_links = FooterLink::get(array('is_active' => ACTIVE));
   $count_footer_links = count($footer_links);

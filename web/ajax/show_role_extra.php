@@ -14,7 +14,7 @@
 
  require_once dirname(__FILE__).'/../../config.inc';
  require_once "api/Roles/Roles.php";
- require_once "ext/Group/Group.php";
+ require_once "api/Group/Group.php";
 
   
 

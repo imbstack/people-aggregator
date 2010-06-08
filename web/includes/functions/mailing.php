@@ -14,7 +14,7 @@
 require_once "web/includes/email_msg/english.php";
 require_once "api/PAException/PAException.php";
 require_once "web/includes/image_resize.php";
-require_once "ext/EmailMessages/EmailMessages.php";
+require_once "api/EmailMessages/EmailMessages.php";
 include_once "PHPMailer/class.phpmailer.php";
 
 global $default_sender, $mail_testing_callback;

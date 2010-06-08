@@ -16,12 +16,12 @@
   require_once "api/PAException/PAException.php";
   require_once "api/User/User.php";
   require_once "api/Network/Network.php";
-  require_once "ext/Group/Group.php";
+  require_once "api/Group/Group.php";
   require_once "api/Message/Message.php";
   require_once "web/includes/network.inc.php";
   require_once "web/includes/functions/mailing.php";
   require_once "web/includes/urls.php";
-  require_once "ext/EmailMessages/EmailMessages.php";
+  require_once "api/EmailMessages/EmailMessages.php";
 
   define("EXPIRES",3600*24*5);
 

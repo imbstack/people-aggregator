@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once "ext/InputSanitizer/InputSanitizer.php";
+require_once "api/InputSanitizer/InputSanitizer.php";
 
 /* Code to validate various things.
  *

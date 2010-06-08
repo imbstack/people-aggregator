@@ -19,7 +19,7 @@
   //including necessary files
   include_once("web/includes/page.php");
   include_once "api/ModuleSetting/ModuleSetting.php";  
-  include_once "ext/Group/Group.php";  
+  include_once "api/Group/Group.php";  
   
   global $login_uid;
   $msg = '';

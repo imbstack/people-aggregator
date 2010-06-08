@@ -25,7 +25,7 @@
  *
  */
 require_once PA::$blockmodule_path.'/MediaGalleryModule/MediaGalleryModule.php';
-require_once 'ext/Audio/Audio.php';
+require_once 'api/Audio/Audio.php';
 
 class AudiosMediaGalleryModule extends MediaGalleryModule {
 

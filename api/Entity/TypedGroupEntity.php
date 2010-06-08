@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once 'api/Entity/Entity.php';
-require_once 'ext/Group/Group.php';
+require_once 'api/Group/Group.php';
 
 class TypedGroupEntity extends Entity {
 

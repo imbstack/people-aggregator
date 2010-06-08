@@ -16,7 +16,7 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 
 include_once("web/includes/page.php");
 require_once "web/includes/network.inc.php";
-require_once "ext/FooterLink/FooterLink.php";
+require_once "api/FooterLink/FooterLink.php";
 require_once "web/includes/classes/Pagination.php";
 $msg = array();
 $edit = FALSE;

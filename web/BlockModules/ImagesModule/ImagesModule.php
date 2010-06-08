@@ -12,8 +12,8 @@
 ?>
 <?php
 
-require_once "ext/Image/Image.php";
-require_once "ext/Audio/Audio.php";
+require_once "api/Image/Image.php";
+require_once "api/Audio/Audio.php";
 require_once "ext/TekVideo/TekVideo.php";
 
 

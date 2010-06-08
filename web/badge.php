@@ -26,7 +26,7 @@ include dirname(__FILE__)."/../config.inc";
 require_once "web/includes/image_resize.php"; // for resizing funcs
 require_once "api/Storage/Storage.php";
 require_once "api/User/User.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require_once "api/Widget/Widget.php";
 
 /* Select a subset of a user's friends (or other friend-like objects)

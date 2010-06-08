@@ -26,8 +26,8 @@ include_once("web/includes/page.php");
 require_once "api/ImageResize/ImageResize.php";
 require_once "api/Relation/Relation.php";
 
-require_once "ext/Image/Image.php";
-require_once "ext/Audio/Audio.php";
+require_once "api/Image/Image.php";
+require_once "api/Audio/Audio.php";
 require_once "ext/Video/Video.php";
 require_once "api/Content/Content.php";
 require_once "web/includes/functions/user_page_functions.php";

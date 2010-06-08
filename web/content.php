@@ -35,7 +35,7 @@ if (!empty($_POST['addcomment'])) {
 require_once "api/Content/Content.php";
 require_once "api/Tag/Tag.php";
 require_once "api/Comment/Comment.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require_once "api/Category/Category.php";
 require_once "api/Network/Network.php";
 require_once "web/includes/functions/user_page_functions.php";

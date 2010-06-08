@@ -16,7 +16,7 @@ $login_required = TRUE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 
 include_once("web/includes/page.php");
-require_once "ext/EmailMessages/EmailMessages.php";
+require_once "api/EmailMessages/EmailMessages.php";
 require_once "web/includes/classes/NetworkConfig.class.php";
 require_once "web/includes/classes/EmailMessagesConfig.class.php";
 // require_once "web/config/default_email_messages.php";

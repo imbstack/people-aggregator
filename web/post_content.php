@@ -18,7 +18,7 @@ $use_theme = 'Beta';
 include_once("web/includes/page.php");
 
 require_once "api/Cache/Cache.php";
-require_once "ext/Album/Album.php";
+require_once "api/Album/Album.php";
 // require_once "web/includes/functions/auto_email_notify.php";
 require_once "api/Messaging/MessageDispatcher.class.php";
 require_once "api/Permissions/PermissionsHandler.class.php";

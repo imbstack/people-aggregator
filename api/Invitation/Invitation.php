@@ -19,7 +19,7 @@ require_once "api/User/User.php";
 require_once "api/Relation/Relation.php";
 require_once "api/Logger/Logger.php";
 require_once "web/includes/functions/mailing.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require_once "api/ContentCollection/ContentCollection.php";
 
 /**

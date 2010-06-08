@@ -24,7 +24,7 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
-require_once "ext/FooterLink/FooterLink.php";
+require_once "api/FooterLink/FooterLink.php";
 
  
 class ManageFooterLinksModule extends Module {

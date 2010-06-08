@@ -24,7 +24,7 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
-require_once "ext/Announcement/Announcement.php";
+require_once "api/Announcement/Announcement.php";
 
 /**
  * This class generates inner html of Announcement content type

@@ -14,7 +14,7 @@
 //TO DO: while saving content save function should be called once
 //variable for Blog save should be according to criteria specified
 
-require_once "ext/BlogPost/BlogPost.php";
+require_once "api/BlogPost/BlogPost.php";
 require_once "web/includes/functions/auto_email_notify.php";
 require_once "api/Activities/Activities.php";
 require_once "api/api_constants.php";

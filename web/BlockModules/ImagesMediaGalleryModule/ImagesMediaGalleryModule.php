@@ -25,7 +25,7 @@
  *
  */
 require_once PA::$blockmodule_path . "/MediaGalleryModule/MediaGalleryModule.php";
-require_once "ext/Image/Image.php";
+require_once "api/Image/Image.php";
 
 class ImagesMediaGalleryModule extends MediaGalleryModule {
 

@@ -31,7 +31,7 @@ require_once 'db/Dal/Dal.php';
 require_once "web/includes/network.inc.php";
 require_once 'api/User/User.php';
 require_once "api/Forum/PaForumBoard.class.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 
 class net_extra {
 

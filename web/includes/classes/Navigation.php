@@ -19,7 +19,7 @@
  * Date of creation 10 July 2006
  */
 
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 
 /**
  * constant for superuser Session ID

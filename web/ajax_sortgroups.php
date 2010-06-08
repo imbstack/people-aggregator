@@ -26,7 +26,7 @@
 $login_required = FALSE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require PA::$blockmodule_path . "/NewestGroupsModule/NewestGroupsModule.php";
 
 $uid = @$_GET['uid'];

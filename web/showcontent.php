@@ -17,7 +17,7 @@ include_once("web/includes/page.php");
 require_once "api/Content/Content.php";
 require_once "api/Comment/Comment.php";
 require_once "api/Tag/Tag.php";
-require_once "ext/BlogPost/BlogPost.php";
+require_once "api/BlogPost/BlogPost.php";
 include_once "api/Theme/Template.php";
 include_once "api/ModuleSetting/ModuleSetting.php";
 

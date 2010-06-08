@@ -367,9 +367,9 @@ class User_Registration {
   public static function add_default_media($user_id, $type='', $network_info=NULL) {
     // global var $path_prefix has been removed - please, use PA::$path static variable
     require_once "api/User/User.php";
-    require_once "ext/Album/Album.php";
-    require_once "ext/Image/Image.php";
-    require_once "ext/Audio/Audio.php";
+    require_once "api/Album/Album.php";
+    require_once "api/Image/Image.php";
+    require_once "api/Audio/Audio.php";
     require_once "ext/Video/Video.php";
     require_once "api/ContentCollection/ContentCollection.php";
 
@@ -496,7 +496,7 @@ class User_Registration {
 
   // This function provides a default blog to user
   public static function add_default_blog($user_id) {
-    require_once "ext/BlogPost/BlogPost.php";
+    require_once "api/BlogPost/BlogPost.php";
     $extra = unserialize(PA::$network_info->extra);
     if ($extra['user_defaults']['default_blog'] != NET_NO) {
       // if network operator has set a default blog

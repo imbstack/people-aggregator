@@ -18,7 +18,7 @@ include_once("web/includes/page.php");
 
 require_once "web/includes/functions/auto_email_notify.php";
 require_once "web/includes/functions/user_page_functions.php";
-require_once("ext/Group/Group.php");
+require_once("api/Group/Group.php");
 
 
 /*including Js files */

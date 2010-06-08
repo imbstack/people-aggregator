@@ -23,7 +23,7 @@ require_once "ext/PingClient/PingClient.php";
 require_once "web/includes/functions/mailing.php";
 require_once "api/api_constants.php";
 // require_once "ext/ConfigVariable/ConfigVariable.php";
-require_once "ext/Album/Album.php";
+require_once "api/Album/Album.php";
 require_once "web/includes/functions/functions.php";
 require_once "api/Storage/Storage.php";
 require_once "api/User/UserDisplayName.class.php";

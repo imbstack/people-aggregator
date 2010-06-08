@@ -19,7 +19,7 @@ require_once "api/Tag/Tag.php";
 require_once "api/ContentCollection/ContentCollection.php";
 require_once "api/Comment/Comment.php";
 include_once "api/ModuleSetting/ModuleSetting.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 include_once "api/Theme/Template.php";
 require_once "api/Category/Category.php";
  

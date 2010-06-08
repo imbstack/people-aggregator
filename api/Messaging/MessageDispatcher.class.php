@@ -16,7 +16,7 @@ require_once "api/PAException/PAException.php";
 require_once "web/includes/classes/NetworkConfig.class.php";
 require_once "web/includes/classes/UrlHelper.class.php";
 require_once "api/Messaging/MessageRenderer.class.php";
-require_once "ext/EmailMessages/EmailMessages.php";
+require_once "api/EmailMessages/EmailMessages.php";
 require_once "PHPMailer/class.phpmailer.php";
 
 /**

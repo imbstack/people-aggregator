@@ -70,9 +70,9 @@ function uihelper_upload_gallery($uid, $_POST, $_FILES, $type, $k=0) {
 
   require_once "api/User/User.php";
   require_once "api/Tag/Tag.php";
-  require_once "ext/Album/Album.php";
-  require_once "ext/Image/Image.php";
-  require_once "ext/Audio/Audio.php";
+  require_once "api/Album/Album.php";
+  require_once "api/Image/Image.php";
+  require_once "api/Audio/Audio.php";
   require_once "ext/Video/Video.php";
   require_once "web/includes/classes/file_uploader.php";
 
@@ -673,9 +673,9 @@ function uihelper_upload_gallery_for_group($uid, $_POST, $_FILES, $type, $k=0) {
 
   require_once "api/User/User.php";
   require_once "api/Tag/Tag.php";
-  require_once "ext/Album/Album.php";
-  require_once "ext/Image/Image.php";
-  require_once "ext/Audio/Audio.php";
+  require_once "api/Album/Album.php";
+  require_once "api/Image/Image.php";
+  require_once "api/Audio/Audio.php";
   require_once "ext/Video/Video.php";
   require_once "web/includes/classes/file_uploader.php";
   $logged_in_user = get_login_user();

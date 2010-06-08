@@ -16,8 +16,8 @@ $use_theme = 'Beta';
 
 include_once("web/includes/page.php");
 require_once "web/includes/functions/user_page_functions.php";
-require_once "ext/Image/Image.php";
-require_once "ext/Audio/Audio.php";
+require_once "api/Image/Image.php";
+require_once "api/Audio/Audio.php";
 require_once "ext/Video/Video.php";
 
 // for query count

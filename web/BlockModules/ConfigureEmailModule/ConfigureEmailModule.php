@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once "ext/EmailMessages/EmailMessages.php";
+require_once "api/EmailMessages/EmailMessages.php";
 require_once "web/includes/classes/TinyMCE.class.php";
 
 class ConfigureEmailModule extends Module {

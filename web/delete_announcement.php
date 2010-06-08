@@ -14,7 +14,7 @@
 $login_required = TRUE;
 include_once("web/includes/page.php");
 require_once "api/Content/Content.php";
-require_once "ext/Announcement/Announcement.php";
+require_once "api/Announcement/Announcement.php";
 require_once "api/Permissions/PermissionsHandler.class.php";
 
 if($_GET['aid'] ) {

@@ -43,7 +43,7 @@ if (
   exit;
 }
 
-require_once "ext/ConfigurableText/ConfigurableText.php";
+require_once "api/ConfigurableText/ConfigurableText.php";
 
 // middle content
 if (isset($_POST['submit'])) {//this is code for forgot password

@@ -18,7 +18,7 @@ include_once("web/includes/page.php");
 
 require_once "api/ContentCollection/ContentCollection.php";
 require_once "api/Comment/Comment.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require_once "api/Category/Category.php";
  
 

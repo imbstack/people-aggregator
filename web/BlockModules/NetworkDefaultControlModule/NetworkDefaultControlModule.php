@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once "ext/Album/Album.php";
+require_once "api/Album/Album.php";
 require_once "web/includes/constants.php";
 require_once "web/includes/classes/XmlConfig.class.php";
 require_once "web/includes/classes/NetworkConfig.class.php";

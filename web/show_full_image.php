@@ -26,8 +26,8 @@ require_once "BlockModules/PopularTagsModule/PopularTagsModule.php";
 require_once '../api/ImageResize/ImageResize.php';
 require_once '../api/Relation/Relation.php';
 include_once "../api/Theme/Template.php";
-require_once '../ext/Image/Image.php';
-require_once '../ext/Audio/Audio.php';
+require_once '../api/Image/Image.php';
+require_once '../api/Audio/Audio.php';
 require_once '../ext/Video/Video.php';
 
 $parameter = js_includes("all");

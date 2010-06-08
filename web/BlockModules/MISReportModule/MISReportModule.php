@@ -14,7 +14,7 @@
 // global var $path_prefix has been removed - please, use PA::$path static variable
 require_once "api/Network/Network.php";
 require_once "api/Content/Content.php";
-require_once "ext/Image/Image.php";
+require_once "api/Image/Image.php";
 require_once "web/includes/classes/Pagination.php";
 require_once "ext/Ranking/Ranking.php";
 

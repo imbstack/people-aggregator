@@ -8,7 +8,7 @@
 require_once("api/Event/Event.php");
 require_once("api/Event/EventAssociation.php");
 require_once("api/Event/Calendar.php");
-require_once("ext/Group/Group.php");
+require_once("api/Group/Group.php");
 require_once(dirname(__FILE__) . "/../EventCalendarModule/RenderCalendar.php");
 
 $date_ts = time();

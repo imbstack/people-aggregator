@@ -21,7 +21,7 @@ require_once dirname(__FILE__)."/../../../config.inc";
 require_once "api/User/User.php";
 require_once "api/Content/Content.php";
 require_once "api/Comment/Comment.php";
-require_once "ext/BlogPost/BlogPost.php";
+require_once "api/BlogPost/BlogPost.php";
 require_once "HTTP/Client.php";
 
 class PA_TestCase extends PHPUnit_Framework_TestCase {

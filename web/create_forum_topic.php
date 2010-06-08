@@ -17,7 +17,7 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 
 //including necessary files
 include_once("web/includes/page.php");
-include_once "ext/Group/Group.php";  
+include_once "api/Group/Group.php";  
 require_once "api/MessageBoard/MessageBoard.php";
 
 /*including Js files */

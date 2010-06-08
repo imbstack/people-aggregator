@@ -22,7 +22,7 @@ include_once "api/Message/Message.php";
 include_once "api/Network/Network.php";
 require_once "web/includes/network.inc.php";
 include_once "api/Theme/Template.php";
-include_once "ext/BlogPost/BlogPost.php";
+include_once "api/BlogPost/BlogPost.php";
 require_once "web/includes/functions/mailing.php";
 //require_once "web/includes/functions/auto_email_notify.php";
 require_once "api/Messaging/MessageDispatcher.class.php";

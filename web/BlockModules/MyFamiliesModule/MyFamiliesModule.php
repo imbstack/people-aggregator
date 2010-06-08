@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once "api/Category/Category.php";
-require_once "ext/Group/Group.php";
+require_once "api/Group/Group.php";
 require_once "web/includes/classes/Pagination.php";
 require_once "api/Entity/TypedGroupEntityRelation.php";
 
