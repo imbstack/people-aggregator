@@ -23,7 +23,7 @@ $parameter = '';
 include_once("web/includes/page.php");
 // global var $path_prefix has been removed - please, use PA::$path static variable
 require_once "api/PieChart/PieChart.php";
-require_once "ext/Poll/Poll.php";
+require_once "api/Poll/Poll.php";
 $poll_id = $_REQUEST['id'];
 $obj = new Poll();
 $data = $obj->load_poll($poll_id);

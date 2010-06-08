@@ -59,7 +59,7 @@
 
       if($uid) {
         require_once "api/ExternalFeed/ExternalFeed.php";
-        require_once "ext/UserProfileFeed/UserProfileFeed.php";
+        require_once "api/UserProfileFeed/UserProfileFeed.php";
 
         if(PA::$network_info->type != MOTHER_NETWORK_TYPE && !(Network::member_exists(PA::$network_info->network_id, PA::$page_uid))) {
           if(PA::$page_uid != PA::$login_uid) {

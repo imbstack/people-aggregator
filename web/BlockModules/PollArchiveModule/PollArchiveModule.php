@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once "api/Content/Content.php";
-require_once "ext/Poll/Poll.php";
+require_once "api/Poll/Poll.php";
 
 class PollArchiveModule extends Module {
  

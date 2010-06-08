@@ -16,7 +16,7 @@ require_once "api/Network/Network.php";
 require_once "api/Content/Content.php";
 require_once "ext/Image/Image.php";
 require_once "web/includes/classes/Pagination.php";
-require_once "ext/Ranking/Ranking.php";
+require_once "api/Ranking/Ranking.php";
 
 class MISReportModule extends Module {
   

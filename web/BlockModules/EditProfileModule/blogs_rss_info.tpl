@@ -1,6 +1,6 @@
 <?php
 
-require "ext/UserProfileFeed/UserProfileFeed.php";
+require "api/UserProfileFeed/UserProfileFeed.php";
 
 $profile = &$this->user->{'blogs_rss'};
 
