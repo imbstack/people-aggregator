@@ -14,7 +14,7 @@
 $login_required = FALSE;
 $use_theme = 'Beta';
 include_once "web/includes/page.php";
-require_once "ext/Poll/Poll.php";
+require_once "api/Poll/Poll.php";
 if (!empty($_POST['vote'])) {
   $vote = $_POST['vote'];
   $vote = html_entity_decode(stripslashes($vote));

@@ -92,7 +92,7 @@ default_exception();
 // Update user rankings.
 // TO DO: write a cron script to update ranking after a predefined period of time.
 // Code for updating ranking is commented out for now, because it causes load to the system
-// require_once "ext/Ranking/Ranking.php";
+// require_once "api/Ranking/Ranking.php";
 // $ranking = new Ranking();
 // $ranking->update_ranking();
 // *** See the definition for the PA class in config.inc for detail on

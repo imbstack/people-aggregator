@@ -13,7 +13,7 @@
 <?php
 
 include_once(dirname(__FILE__)."/../../../config.inc");
-include_once("ext/Poll/Poll.php");
+include_once("api/Poll/Poll.php");
 
 //spliting the path_info to get the id and the channel id.
 $param = preg_split("|/|", $path_info);

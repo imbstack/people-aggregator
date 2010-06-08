@@ -17,7 +17,7 @@ include_once("web/includes/page.php");
 //require "ext/Album/Album.php";
 require "ext/Image/Image.php";
 require "ext/Audio/Audio.php";
-require "ext/Video/Video.php";
+require "api/Video/Video.php";
 require_once "api/Activities/Activities.php";
 
 $location = PA::$url .'/manage_user.php';

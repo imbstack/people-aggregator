@@ -64,7 +64,7 @@
         $this->add_header_html($parameter);
         
         require_once "api/ExternalFeed/ExternalFeed.php";
-        require_once "ext/UserProfileFeed/UserProfileFeed.php";
+        require_once "api/UserProfileFeed/UserProfileFeed.php";
         
         $current_feed_data = array();
         $profile_feeds = UserProfileFeed::get_user_profile_feeds($uid, $uid);

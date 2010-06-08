@@ -18,7 +18,7 @@
   include_once("web/includes/page.php");  
   require_once "web/includes/network.inc.php";
   require_once "api/Validation/Validation.php";
-  require_once "ext/Poll/Poll.php";
+  require_once "api/Poll/Poll.php";
   $error = FALSE;
   $authorization_required = TRUE;
 
