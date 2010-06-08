@@ -1,10 +1,11 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* EventCalendarSidebarModule.php is a part of PeopleAggregator.
+* This module is like EventCalendarModule, except, not surprisingly,
+*  the calendar this one produces either goes in the left or right sidebar.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau?
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -24,7 +25,13 @@ class EventCalendarSidebarModule extends Module {
     $this->html_block_id = "EventCalendarSidebarModule";
     parent::__construct();
   }
-
+  
+  /** !!
+  * Initializes the module, by moving some variables around setting some
+  *  things.
+  * @param string $request_method Unused.
+  * @param array $request_data Unused.
+  */
   public function initializeModule($request_method, $request_data)  {
     if(!empty($this->shared_data['calendar_info'])) {
       $info = $this->shared_data['calendar_info'];
@@ -45,7 +52,11 @@ class EventCalendarSidebarModule extends Module {
     }  
   }
 
-  
+  /** !!
+  * Passes the HTML along to be rendered.
+  *
+  * @return string The HTML.
+  */
   function render() {
     if (empty($this->title)) {
       $this->title = __('Personal Events');
@@ -59,6 +70,10 @@ class EventCalendarSidebarModule extends Module {
     return $content;
   }
   
+  /** !!
+  * Generates the HTML to be passed along by {@see render()}
+  * @return string HTML.
+  */
   function generate_inner_html() {
     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';

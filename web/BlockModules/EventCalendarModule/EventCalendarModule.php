@@ -1,10 +1,10 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
+* EventCalendarModule.php is a part of PeopleAggregator.
 * [description including history]
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau?
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -23,7 +23,14 @@ class EventCalendarModule extends Module {
     $this->html_block_id = "EventCalendarModule";
     $this->block_type = 'EventCalendar';
   }
-
+  
+  /** !!
+  * Initializes the module, copies variables, etc., as is the case with
+  * all PA modules.
+  *
+  * @param string $request_method Unused.
+  * @param array $request_data Unused.
+  */
   public function initializeModule($request_method, $request_data)  {
     if(!empty($this->shared_data['calendar_info'])) {
       $info = $this->shared_data['calendar_info'];
@@ -43,14 +50,23 @@ class EventCalendarModule extends Module {
       $this->mode = $info['mode'];
     } // here should be added alternative initialization code !
   }
-
+  /** !!
+  * Renders the calendar as perscribed by {@see generate_inner_html()}
+  * @return string HTML to display.
+  */
    function render() {
     $this->inner_HTML = $this->generate_inner_html ();
     $content = parent::render();
     return $content;
   }
-
+  
+  /** !!
+  * Generates the HTML based on the template which is stored in the $inner_template
+  *  variable.
+  * @param string HTML to return.
+  */
   function generate_inner_html () {
+    
     switch ( $this->mode ) {
      default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
