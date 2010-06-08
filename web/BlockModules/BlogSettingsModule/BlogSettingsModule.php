@@ -1,10 +1,11 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* BlogSettingsModule.php is a part of PeopleAggregator.
+* Middle module which saves a BlogSetting variable to `pa.user_profile_data`.
+*  These settings are modified in eath User's control panel, under Blog/RSS
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -28,8 +29,15 @@ class BlogSettingsModule extends Module {
     $this->title = null;
   }
 
+  /** !!
+  * Checks for permission, and sets local variables.
+  * @todo These parameters do nothing.
+  * @param unknown $request_method
+  * @param unknown $request_data
+  * @return string Returns 'skip', which does not display this module, if the user
+  *  has a simple or external blog.
+  */
   public function initializeModule($request_method, $request_data) {
-  	 
     if (!(PA::$login_uid)) {
       header("Location: login.php?error=1");
       exit;
@@ -40,7 +48,6 @@ class BlogSettingsModule extends Module {
 		if (!empty(PA::$config->simple['use_simpleblog'])) {
       return 'skip';
     }
-		
     $params_profile = array('field_name'=>'BlogSetting','user_id'=>$this->uid);
     $data_profile = $this->user->get_profile_data($params_profile);
     if(!empty($data_profile) && $data_profile[0]->field_value > BLOG_SETTING_STATUS_NODISPLAY) {
@@ -48,6 +55,12 @@ class BlogSettingsModule extends Module {
     }
   }
   
+  /** !!
+  * Saves the form-submitted data.
+  * 
+  * @param string $request_method Should be POST
+  * @param array $request_data Submitted data from the blogs/RSS page
+  */
   public function handleBlogSetting($request_method, $request_data) {
     $msg = NULL;
     $error = FALSE;
@@ -88,13 +101,21 @@ class BlogSettingsModule extends Module {
     $query_str = NULL;
     set_web_variables($msg_array, $redirect_url, $query_str);
   }
-
+  
+  /** !!
+  * Takes the innerHTML and return it when the module instantiated.
+  */
   function render() {
     $this->inner_HTML = $this->generate_inner_html ();
     $content = parent::render();
     return $content;
   }
   
+  /** !!
+  * Generates the innerHTML for render()
+  * 
+  * @return string The innerHTML for this module.
+  */
   function generate_inner_html () {    
     $inner_template = NULL;
     switch ( $this->mode ) {

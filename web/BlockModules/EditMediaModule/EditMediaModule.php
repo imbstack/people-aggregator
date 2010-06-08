@@ -1,10 +1,16 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* EditMediaModule.php is a part of PeopleAggregator.
+* This module is displayed whenever media is edited on a user's, group's, or
+*  network's page. For example, clicking the edit button next to the content
+*  on the "Manage Group Contents" page leads to:
+*
+*    /edit_media.php?uid=[#]&cid=[#]&type=[type]
+*
+* Edit_Media.php is very similar to this object.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau?
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -22,7 +28,13 @@ class EditMediaModule extends Module {
     parent::__construct();
     $this->html_block_id = "EditMediaModule";
   }
-
+    /** !!
+    * Figures out what type of media we're looking at, then sets a couple
+    * internal variables, and then dispaches the flow to either
+    * {@see generate_inner_html()} and {@see generate_group_inner_html()}
+    *
+    * @return string Content to be displayed.
+    */
   function render() {
     
    if ($this->contentcollection_type == '1') {  // if contentcolectin is group
@@ -67,7 +79,11 @@ class EditMediaModule extends Module {
     $content = parent::render();
     return $content;
   }
-
+    /** !!
+    * Generates, using the template file in this directory, the edit page
+    *
+    * @return string The HTML for this module.
+    */
   function generate_inner_html () {
 
     switch( $this->mode ) {
@@ -85,6 +101,13 @@ class EditMediaModule extends Module {
     $inner_html = $template_file_obj->fetch();
     return $inner_html;
   }
+
+    /** !!
+    * Generates, again using the template file, the edit page, if the media meets
+    * a certain condition.
+    *
+    * @return string The HTML for this module.
+    */
   function generate_group_inner_html () {
     switch( $this->mode ) {
       default:

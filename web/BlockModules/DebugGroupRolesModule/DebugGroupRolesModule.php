@@ -1,10 +1,13 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* DebugGroupRolesModule.php is a part of PeopleAggregator.
+* According to its original author (Martin):
+*   this is a Module for DEBUGGING only
+*   add it to any Group page to see the list of members and their assigned Roles quickly
+*   NOTE: this Module cares not for permissions and privacy. It's for debugging, ok?
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -23,13 +26,23 @@ class DebugGroupRolesModule extends Module {
   function __construct() {
     parent::__construct();
   }
-
+  /** !!
+  * Copies $shared_data['group_info'] to a local variable.
+  *  skipping this module if that variable is not set.
+  *
+  * @todo These variables do nothing.
+  */
   function initializeModule($request_method, $request_data) {
     if (empty($this->shared_data['group_info'])) return 'skip';
     $this->group_details = $this->shared_data['group_info'];
   }
-
-	public function render() {
+  
+  /** !!
+  * Generates the HTML by iterating through a group's members with roles.
+  * 
+  * @return string HTML to display for the module.
+  */
+  public function render() {
 		$this->title = "Debug Dump of Members and Roles assigned";
 		$html = '';
 		$battalion = $this->group_details;
