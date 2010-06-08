@@ -1,10 +1,11 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* EditFamilyModule.php is a part of PeopleAggregator.
+* A seemingly unused file containing the logic for families.
+*  This is functionality which has yet to be implemented.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau?
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -27,7 +28,10 @@ class EditFamilyModule extends Module {
     $this->html_block_id = get_class($this);
     $this->id = 0;
   }
-
+  
+  /** !!
+  * Loads and initializes teh data if the user is in a group or not.
+  */
   function load_data($error_msg='', $request_data=NULL) {
     global $global_form_data;
     $array_tmp = array();
@@ -102,7 +106,14 @@ class EditFamilyModule extends Module {
 
     return;
   }
-
+  
+  /** !!
+  * Load the initial data, such as the gid if the user is in
+  * a group.
+  * 
+  * @param string $request_method The request method. Must be "POST".
+  * @param array $request_data Must contain key "gid".
+  */
   function initializeModule($request_method, $request_data) {
        
         if (!empty($request_data['gid'])) {
@@ -117,13 +128,23 @@ class EditFamilyModule extends Module {
             $this->handlePOST($request_data);
         }
     }
-
+    
+    /** !!
+    * Returns the innerHTML created by {@see generate_inner_html()} to be printed by a parent class.
+    *
+    * @return string The innerHTML.
+    */
   function render() {
     $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
-
+  
+  /** !!
+  * Uses the template in this directory to generate the HTML.
+  *
+  * @return string The innerHTML to be passed back by {@see render()}
+  */
   function generate_inner_html () {
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/edit_family.php';
     $inner_html_gen = & new Template($tmp_file, $this);
@@ -131,7 +152,14 @@ class EditFamilyModule extends Module {
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;
   }
-
+  
+  /** !!
+  * Handles all the logic for adding groups (families), and will
+  *  contain (presumably) more functionality when this file is
+  *  finished.
+  *
+  * @param array $request_Data The data which will be saved.
+  */
     public function handlePOST($request_data) {
         require_once "web/includes/classes/file_uploader.php";
         require_once "api/Activities/Activities.php";
@@ -259,7 +287,13 @@ class EditFamilyModule extends Module {
         set_web_variables($msg_array, $redirect_url, $query_str);
 
     }
-
+    
+    /** !!
+    * Iterates over $this->profilefields, doing some data parsing
+    *  and then saves it back.
+    *
+    * @param array $request_data POST/GET data of changed information.
+    */
   private function handleEntity($request_data) {
       $this->err = '';
       // $data = $this->filter($request_data);
@@ -305,7 +339,13 @@ class EditFamilyModule extends Module {
 
       }
     }
-
+    
+     /** !!
+    *  Removes certain undesirable variables from $request_data
+    *  so the variable can be directly dumped into the database.
+    *
+    * @param array $request_data GET/POST data which has extraneous elements.
+    */
   private function filter($request_data) {
       $filter = array('PHPSESSID', 'pa_login', 'uid', 'submit', 'action', 'page_id', 'op');
       foreach($filter as $f) {
