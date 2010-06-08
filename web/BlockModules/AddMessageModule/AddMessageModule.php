@@ -1,10 +1,12 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* This module is responsible for allowing a user to send and recieve messages
+* over People Aggregator.  It works between friends and also strangers
+* if a user clicks the "send message" link on the actions module
+* on a strangers page.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Tekriti Software
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -42,7 +44,14 @@ class AddMessageModule extends Module {
     parent::__construct();
     $this->title = __('Compose');
   }
-
+  
+  /** !!
+     * Determines what kind of action this module will be 
+     * doing, either create a new message, forward a message,
+     * or reply to a message.  It defaults to new message.
+     *
+     * @param array $request_data  The data that determines the action taken, and the message to be acted on.
+     */
   public function initializeModule($request_method, $request_data) {
     $possible_actions = array('reply', 'forward', 'new');
     $this->action = 'new'; //its a new message by default
@@ -67,12 +76,24 @@ class AddMessageModule extends Module {
     }
   }
   
+  /** !!
+     * This calls the {@link generate_inner_html() } function and
+     * then calls the parent class's render function which
+     * stiches together the inner and outer html.
+     *
+     * @return string $content The html to be rendered to the page.
+     */
   public function render() {
     $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
-
+  
+  /** !!
+     * This is stupid...
+     *
+     * @todo THIS DOES NOTHING! 
+     */
   public function handleAddMessagesSubmit($request_method, $request_data) {
     switch ($request_method) {
       case 'POST':
@@ -82,6 +103,15 @@ class AddMessageModule extends Module {
     }
   }
   
+  /** !!
+     * Takes the data submitted in the form and gets all of the useful data
+     * necessary to send a message.  It takes the name that is being sent to and 
+     * gets the id, email, and other assorted data.  It then sends the message and
+     * tells the user what the outcome of that process is. It also makes sure the
+     *  message is within the correct length.
+     *
+     *  @param array $request_data  The data to be operated on.
+     */
   public function handlePOSTPageSubmit($request_data) { 
     $error = false;
     if (!empty($request_data)) {
@@ -192,7 +222,13 @@ class AddMessageModule extends Module {
       
     }
   }
-  
+
+  /** !! 
+   * This takes the template and sets it up depending on what the 
+   * action being executed it.
+   *
+   * @return string $inner_html The html that is module specific.
+   */
   public function generate_inner_html () {
     
     switch ($this->mode) {

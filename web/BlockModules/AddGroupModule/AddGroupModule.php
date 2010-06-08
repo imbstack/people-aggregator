@@ -1,16 +1,18 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* As the name would imply, this module is used to create a group.  It also
+* is used to modify a groups information, once it has been created.  It has a
+* form with fields for name, category, tags, photo, description,
+* and registration type.  This also handles the data that is submitted.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Tekriti Software
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
-?>
-<?php
+
+
 require_once 'api/Category/Category.php';
 require_once 'api/Entity/TypedGroupEntity.php';
 require_once "api/Messaging/MessageDispatcher.class.php";
@@ -44,6 +46,15 @@ class AddGroupModule extends Module {
     $this->id = 0;
   }
 
+    /** !!
+     * This is the function responsible for setting up the data to be displayed
+     * in the form.  If this is a new group, it gives it a title and nothing
+     * else.  If it is a group that is being modified, then it loads the old 
+     * data and displays it.  When the form has been submitted, it fills in 
+     * the form with the data from $global_form_data
+     * @param string $error_message  The error from the submit.
+     * @param array $request_data   Used to determine what is being created.
+     */
   function load_data($error_msg='', $request_data=NULL) {
     global $global_form_data;
     $array_tmp = array();
@@ -144,6 +155,13 @@ class AddGroupModule extends Module {
     return;
   }
 
+    /** !!
+     * This sets the id and calls the {@link request_data() } method.
+     * Then it responds to the post when the form is submitted with
+     * {@link handlePOST() }.
+     * @param string $request_method   Only POSTs are read at the moment.
+     * @param array $request_data  Used to get the group id if possible.
+     */
   function initializeModule($request_method, $request_data) {
        
         if (!empty($request_data['gid'])) {
@@ -158,13 +176,26 @@ class AddGroupModule extends Module {
             $this->handlePOST($request_data);
         }
     }
-
+  
+   /** !!
+     * This is used to call the {@link generate_inner_html() } function,
+     * and stitch its output with the outer html together using the 
+     * {@link Module::render() } function.
+     *
+     * @return string $content  The full html to be displayed on the page
+    */
   function render() {
     $this->inner_HTML = $this->generate_inner_html ();
     $content = parent::render();
     return $content;
   }
-
+  
+  /** !!
+     * This calls in the template for the the form and sets the data to be displayed
+     * from the data that was brought in by {@link load_data()}.
+     *
+     * @return string $inner_html  The module specific code to be shown on the page.
+     */
   function generate_inner_html () {
     switch ( $this->mode ) {
       default:
@@ -192,7 +223,17 @@ class AddGroupModule extends Module {
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;
   }
-
+  
+  /** !!
+     * This handles the data that is POSTed back to the page upon
+     * submission of the form. There is a lot happening in here,
+     * but it basically looks at the submitted data, figures out
+     * what it is supposed to do with it (based on if the group is
+     * being created or modified), then creates a new group or
+     * updates the current data using the {@link handle_entity() } method.
+     *
+     * @param array $request_data  All of the data POSTed back to the form.
+     */
     public function handlePOST($request_data) {
         require_once "web/includes/classes/file_uploader.php";
         require_once "api/Activities/Activities.php";
@@ -332,7 +373,13 @@ class AddGroupModule extends Module {
         set_web_variables($msg_array, $redirect_url, $query_str);
 
     }
-
+  
+  /** !!
+     * This takes the data from the form and checks it
+     * for the purposes of creating an entity, then 
+     * syncs the data to the entity.
+     * @param $request_data  The data to be added to the entity
+     */
   private function handleEntity($request_data) {
       $this->err = '';
       // $data = $this->filter($request_data);
