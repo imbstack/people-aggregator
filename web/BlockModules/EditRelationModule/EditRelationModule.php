@@ -1,10 +1,10 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* EditRelationModule.php is a part of PeopleAggregator.
+* 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author [Original Author]
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
@@ -43,7 +43,12 @@ class EditRelationModule extends Module {
   function __construct() {
     parent::__construct();
   }
-
+    /** !!
+    * Shuffles some variables from global variables into local ones.
+    *
+    * @param string $request_method Even though this isn't used, it's here for backwards compatiblity.
+    * @param array $request_data Posted data to save.
+    */
   public function initializeModule($request_method, $request_data) {
     if(empty(PA::$login_uid)) {
       header("Location: ". PA::$url .'/'.FILE_LOGIN.'?error=1&return='.urlencode($_SERVER['REQUEST_URI']));
@@ -62,6 +67,12 @@ class EditRelationModule extends Module {
     }
   }
 
+    /** !!
+    * Called by web/dynamic.php, which does the page generation.
+    *
+    * @param string $request_method Not used. But here for standards.
+    * @param array $request_data POST data to save.
+    */
   public function handleRequest($request_method, $request_data) {
     $msg = NULL;
     $action = (isset($request_data['do'])) ? $request_data['do'] : NULL;
@@ -193,12 +204,19 @@ class EditRelationModule extends Module {
     set_web_variables($msg_array, $redirect_url, $query_str);
   }
 
+    /** !!
+    * Passes the HTML to be rendered.
+    */
   function render() {
     $this->inner_HTML = $this->generate_inner_html ();
     $content = parent::render();
     return $content;
   }
 
+    /** !!
+    * Generates the HTML using the template in this directory
+    *  and passes it to be rendered.
+    */
   function generate_inner_html() {
     $template_file = NULL;
     switch($this->mode) {
