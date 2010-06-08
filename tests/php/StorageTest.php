@@ -18,7 +18,7 @@
 
 require_once dirname(__FILE__)."/lib/common.php";
 require_once "api/Storage/Storage.php";
-require_once "ext/StorageBackend/LocalStorage.php";
+require_once "api/StorageBackend/LocalStorage.php";
 
 class StorageTest extends PHPUnit_Framework_TestCase {
     function setUp() {

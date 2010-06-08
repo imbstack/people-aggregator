@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once "api/Theme/Template.php";
-require_once "ext/Profiler/PATimer.class.php";
+require_once "api/Profiler/PATimer.class.php";
 
 /**
  * @Class PAProfiler
