@@ -1,3 +1,15 @@
+<?php
+/** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* [filename] is a part of PeopleAggregator.
+* [description including history]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author [creator, or "Original Author"]
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
+* @package PeopleAggregator
+*/
+?>
 <?php 
 /**
  * This file is used to delete the items and item related information based on the get variable type. If type is empty then the item will be deleted else the item_type will be deleted. For example if the type is message then the entry to be deleted is item_message

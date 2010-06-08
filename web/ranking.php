@@ -1,3 +1,15 @@
+<?php
+/** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* [filename] is a part of PeopleAggregator.
+* [description including history]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author [creator, or "Original Author"]
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
+* @package PeopleAggregator
+*/
+?>
 <?php 
 $login_required = TRUE;
 $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.

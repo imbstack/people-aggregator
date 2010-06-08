@@ -1,4 +1,16 @@
 <?php
+/** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* [filename] is a part of PeopleAggregator.
+* [description including history]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author [creator, or "Original Author"]
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
+* @package PeopleAggregator
+*/
+?>
+<?php
   /**
  * Project:     PeopleAggregator: a social network developement platform
  * File:        configure_splash_page.php, web file to set the three showcase Networks on the Splash Page

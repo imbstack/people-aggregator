@@ -1,4 +1,16 @@
 <?php
+/** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* [filename] is a part of PeopleAggregator.
+* [description including history]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author [creator, or "Original Author"]
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
+* @package PeopleAggregator
+*/
+?>
+<?php
 // Call ReportAbuseTest::main() if this source file is executed directly.
 if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "ReportAbuseTest::main");

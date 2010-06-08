@@ -1,4 +1,16 @@
 <?php
+/** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* [filename] is a part of PeopleAggregator.
+* [description including history]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author [creator, or "Original Author"]
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
+* @package PeopleAggregator
+*/
+?>
+<?php
 /**
  * $Header: /repository/pear/Log/Log/win.php,v 1.17 2005/02/26 14:48:59 chagenbu Exp $
  *
