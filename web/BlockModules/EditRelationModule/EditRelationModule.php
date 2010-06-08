@@ -2,7 +2,7 @@
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * EditRelationModule.php is a part of PeopleAggregator.
-* 
+*  This module manages things like friend requests.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @author [Original Author]
 * @license http://bit.ly/aVWqRV PayAsYouGo License
