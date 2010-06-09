@@ -576,39 +576,21 @@ abstract class Content {
         return null;
       }
 
-      require_once "ext/".$content_type.'/'.$content_type.".php";
+      require_once "api/".$content_type.'/'.$content_type.".php";
       try {
         $new_content = new $content_type();
         $new_content->load($content_id);
         $new_content->type = $content_type;
       }
       catch (Exception $e) {
-//        echo $e->getMessage();
         return null;
       }
-      /*
-      not usable right now will be implemented later
-      currently it increases some database hits only
-      if (!$new_content->check_access($user_id)) {
-        Logger::log("Throwing Exception USER_ACCESS_DENIED");
-        throw new PAException(USER_ACCESS_DENIED, "You are not authorized to access this content");
-      }*/
     }
     else {
       Logger::log("Throwing Exception CONTENT_NOT_FOUND");
       throw new PAException(CONTENT_NOT_FOUND, "No such content");
     }
 
-/* Not in use anymore - access permissions handled by PermissionHandler now!
-
-    if ($new_content->parent_collection_id != -1 && $new_content->parent_collection_id != 0) {
-      $collection = ContentCollection::load_collection((int)$new_content->parent_collection_id, $user_id);
-      if (!$collection->check_access($user_id, USER_ACCESS_WRITE, $new_content->content_id)) {
-        Logger::log("Throwing Exception USER_ACCESS_DENIED");
-        throw new PAException(USER_ACCESS_DENIED, "Access denied. You do not have permissions to access this content");
-      }
-    }
-*/
     Logger::log("Exit: Content::load_content()");
     return $new_content;
   }
