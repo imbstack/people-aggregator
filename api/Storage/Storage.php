@@ -12,7 +12,7 @@
 ?>
 <?php
 
-/** Storage: file storage abstraction.  Backend-specific stuff goes in api/StorageBackend/*.php
+/** Storage: file storage abstraction.  Backend-specific stuff goes in ext/StorageBackend/*.php
  * Author: Phillip Pearson
  * Copyright (C) 2007 Broadband Mechanics
  */
@@ -476,7 +476,7 @@ class Storage {
       throw new PAException(INVALID_ID, "Invalid characters in storage backend: $backend_type");
     }
     $class_name = ucfirst($backend_type).'Storage';
-    $backend_file = 'api/StorageBackend/'.$class_name.'.php';
+    $backend_file = 'ext/StorageBackend/'.$class_name.'.php';
     require_once $backend_file;
 
     // Instantiate, cache, return
