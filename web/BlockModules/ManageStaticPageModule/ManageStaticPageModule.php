@@ -25,7 +25,7 @@
  *
  */
 
-require_once "ext/StaticPage/StaticPage.php";
+require_once "api/StaticPage/StaticPage.php";
  
 class ManageStaticPageModule extends Module {
   

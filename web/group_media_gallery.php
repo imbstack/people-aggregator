@@ -35,7 +35,7 @@ include_once("web/includes/page.php");
 require_once "api/ContentCollection/ContentCollection.php";
 require_once "ext/Album/Album.php";
 require_once "ext/Image/Image.php";
-require_once "ext/Video/Video.php";
+require_once "api/Video/Video.php";
 require_once "ext/Audio/Audio.php";
 require_once "web/includes/functions/auto_email_notify.php";
 global $uid;

@@ -13,7 +13,7 @@
 <?php 
 $login_required = FALSE;
 include_once "../../includes/page.php";
-require_once "ext/Poll/Poll.php";
+require_once "api/Poll/Poll.php";
 
 if (!empty($_POST['vote'])) {
   $vote = $_POST['vote'];

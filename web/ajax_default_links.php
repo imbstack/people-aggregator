@@ -26,7 +26,7 @@
  */
   $login_required = TRUE;
   require_once dirname(__FILE__)."/includes/page.php";
-  require_once "ext/NetworkLinks/NetworkLinks.php";
+  require_once "api/NetworkLinks/NetworkLinks.php";
   
   if(!empty($_GET['category_id'])) {      
       $condition = array('category_id'=> $_GET['category_id'], 'is_active'=> 1);

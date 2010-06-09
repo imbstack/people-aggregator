@@ -28,7 +28,7 @@ require_once '../api/Relation/Relation.php';
 include_once "../api/Theme/Template.php";
 require_once '../ext/Image/Image.php';
 require_once '../ext/Audio/Audio.php';
-require_once '../ext/Video/Video.php';
+require_once '../api/Video/Video.php';
 
 $parameter = js_includes("all");
 

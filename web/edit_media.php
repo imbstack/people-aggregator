@@ -18,7 +18,7 @@ include_once("web/includes/page.php");
 require_once 'api/Category/Category.php';
 require_once 'ext/Image/Image.php';
 require_once 'ext/Audio/Audio.php';
-require_once 'ext/Video/Video.php';
+require_once 'api/Video/Video.php';
 require_once 'ext/Album/Album.php';
 require_once "api/Permissions/PermissionsHandler.class.php";
 

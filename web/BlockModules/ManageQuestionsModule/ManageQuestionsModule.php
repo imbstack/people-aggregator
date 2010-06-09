@@ -25,7 +25,7 @@
  *
  */
 require_once "web/includes/classes/Pagination.php";
-require_once "ext/Question/Question.php";
+require_once "api/Question/Question.php";
 
 class ManageQuestionsModule extends Module {
   

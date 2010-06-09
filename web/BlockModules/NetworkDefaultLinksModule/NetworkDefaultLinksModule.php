@@ -12,7 +12,7 @@
 ?>
 <?php
 
-require_once "ext/NetworkLinks/NetworkLinks.php";
+require_once "api/NetworkLinks/NetworkLinks.php";
 require_once "api/Network/Network.php";
 
 class NetworkDefaultLinksModule extends Module {

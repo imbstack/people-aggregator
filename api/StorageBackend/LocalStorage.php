@@ -18,7 +18,7 @@
  */
 
 require_once "api/Storage/Storage.php";
-require_once "ext/StorageBackend/StorageBackend.php";
+require_once "api/StorageBackend/StorageBackend.php";
 
 // used by LocalStorage::delete
 function not_this_server($server_id) {

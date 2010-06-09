@@ -13,7 +13,7 @@
 <?php
   require_once dirname(__FILE__)."/../config.inc";
   require_once "db/Dal/Dal.php";
-  require_once "ext/PingServer/PingServer.php";
+  require_once "api/PingServer/PingServer.php";
   
   
   // TO DO: Change the File Path.

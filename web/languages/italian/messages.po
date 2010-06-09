@@ -8308,7 +8308,7 @@ msgstr "Messaggi più recenti da tutti gli utenti su %s"
 msgid "%s: %s blog"
 msgstr "%s: %s blog"
 
-#: ../../ext/StorageBackend/StorageBackend.php:25
+#: ../../api/StorageBackend/StorageBackend.php:25
 #, php-format
 msgid "Failed to retrieve %s: %s"
 msgstr "Impossibile recuperare %s: %s"

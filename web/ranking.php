@@ -21,7 +21,7 @@ if (isset($_POST['submit_ranking'])) {
   // global var $_base_url has been removed - please, use PA::$url static variable
 
   $error = "";
-  require_once "ext/Ranking/Ranking.php";
+  require_once "api/Ranking/Ranking.php";
   $parameters["1"] = is_numeric($_POST['param_1'])?$_POST['param_1']:set_error('Only numbers are allowed');
   $parameters["2"] = is_numeric($_POST['param_2'])?$_POST['param_2']:set_error('Only numbers are allowed');
   $parameters["3"] = is_numeric($_POST['param_3'])?$_POST['param_3']:set_error('Only numbers are allowed');
