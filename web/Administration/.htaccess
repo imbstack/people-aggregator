@@ -1,6 +1,0 @@
-# this directory was deleted, but just in case someone still has the
-# old files on a server with register_globals on, we now have this
-# file to deny access to it.  In new installs this will be the only
-# file in the directory.
-
-Deny from all
