@@ -278,7 +278,7 @@ class ContentCollection {
       $row = $res->fetchRow(DB_FETCHMODE_ASSOC);
       $collection_type = $row['collection_type_name'];
 
-      require_once 'ext/'.$collection_type.'/'.$collection_type.'.php';
+      require_once 'api/'.$collection_type.'/'.$collection_type.'.php';
       $new_collection = new $collection_type();
 
       $new_collection->load($collection_id);

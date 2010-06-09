@@ -264,7 +264,6 @@ class NetworkConfig {
 
     $net_name = PA::$network_info->address;
     $file_path = DIRECTORY_SEPARATOR . 'networks' . DIRECTORY_SEPARATOR . $net_name;
-
     if(is_dir(PA::$project_dir . $file_path)) {
       if(is_readable(PA::$project_dir . $file_path)) {
         $file_name = PA::$project_dir . $file_path . DIRECTORY_SEPARATOR . "$net_name.xml";
@@ -277,6 +276,8 @@ class NetworkConfig {
         } else {
           throw new PAException(NETWORK_DIRECTORY_PERMISSION_ERROR, "Can't read data - Directory \"".PA::$core_dir . $file_path."\" is not readable.");
         }
+    } else {
+          throw new PAException(NETWORK_DIRECTORY_PERMISSION_ERROR, "Can't read data - Directory \"". $file_path."\" DOES NOT EXIST.");
     }
     if(file_exists($file_name) && is_readable($file_name)) {
       $this->settings_file = $file_name;
