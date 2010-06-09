@@ -370,7 +370,7 @@ class User_Registration {
     require_once "api/Album/Album.php";
     require_once "api/Image/Image.php";
     require_once "api/Audio/Audio.php";
-    require_once "ext/Video/Video.php";
+    require_once "api/Video/Video.php";
     require_once "api/ContentCollection/ContentCollection.php";
 
     //$extra contains networks extra information
@@ -456,7 +456,7 @@ class User_Registration {
   }
 
   public static function add_default_links($user_id) {
-    require_once "ext/NetworkLinks/NetworkLinks.php";
+    require_once "api/NetworkLinks/NetworkLinks.php";
     require_once "api/Links/Links.php";
     $network_links = new NetworkLinks();
 

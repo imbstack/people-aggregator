@@ -11,7 +11,7 @@
 */
 ?>
 <?php 
-require_once "ext/Question/Question.php";
+require_once "api/Question/Question.php";
 
 
 class QuestionsModule extends Module {

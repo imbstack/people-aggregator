@@ -17,7 +17,7 @@ require_once "api/Theme/Template.php";
 require_once '../api/Album/Album.php';
 require_once '../api/Image/Image.php';
 require_once '../api/Audio/Audio.php';
-require_once '../ext/Video/Video.php';
+require_once '../api/Video/Video.php';
 
 
 if(!$_GET['uid']) {

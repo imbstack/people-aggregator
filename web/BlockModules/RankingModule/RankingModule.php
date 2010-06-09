@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once "ext/Ranking/Ranking.php";
+require_once "api/Ranking/Ranking.php";
 
 class RankingModule extends Module {
   

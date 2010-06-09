@@ -14,7 +14,7 @@
 $login_required = TRUE;
 require_once dirname(__FILE__).'/../../config.inc';
 include_once("web/includes/page.php");
-require_once "ext/UserProfileFeed/UserProfileFeed.php";
+require_once "api/UserProfileFeed/UserProfileFeed.php";
 
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) and ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
    $msg = __("Blog Feed sucessfully deleted.");

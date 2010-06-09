@@ -27,7 +27,7 @@ require_once "api/Storage/Storage.php";
 require_once "api/Album/Album.php";    
 require_once "api/Image/Image.php";
 require_once "api/Audio/Audio.php";
-require_once "ext/Video/Video.php";
+require_once "api/Video/Video.php";
 require_once "api/BlogPost/BlogPost.php";
 require_once "web/api/lib/project_api_impl.php";
 

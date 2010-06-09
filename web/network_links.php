@@ -19,7 +19,7 @@ require_once "api/Tag/Tag.php";
 require_once "api/ContentCollection/ContentCollection.php";
 include_once "api/ModuleSetting/ModuleSetting.php";
 include_once "api/Theme/Template.php";
-include_once "ext/NetworkLinks/NetworkLinks.php";
+include_once "api/NetworkLinks/NetworkLinks.php";
 include_once "api/Validation/Validation.php";
 include_once "web/includes/network.inc.php";
 if ( PA::$network_info ) {

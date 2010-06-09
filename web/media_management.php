@@ -23,7 +23,7 @@ include_once "../api/Theme/Template.php";
 require_once '../api/Category/Category.php';
 require_once '../api/Image/Image.php';
 require_once '../api/Audio/Audio.php';
-require_once '../ext/Video/Video.php';
+require_once '../api/Video/Video.php';
 
  
 

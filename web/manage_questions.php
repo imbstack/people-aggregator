@@ -31,7 +31,7 @@ $use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
 
 //including necessary files
 include_once("web/includes/page.php");
-require_once "ext/Question/Question.php";
+require_once "api/Question/Question.php";
 
 
 //setting variables 

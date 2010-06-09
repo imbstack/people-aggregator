@@ -28,7 +28,7 @@ require_once "api/Relation/Relation.php";
 
 require_once "api/Image/Image.php";
 require_once "api/Audio/Audio.php";
-require_once "ext/Video/Video.php";
+require_once "api/Video/Video.php";
 require_once "api/Content/Content.php";
 require_once "web/includes/functions/user_page_functions.php";
 // for query count

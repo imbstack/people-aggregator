@@ -15,7 +15,7 @@ define("CONTENT_CONTENT",1);
 include_once dirname(__FILE__).'/../../../db/Dal/Dal.php';
 //require_once "api/LoginCookie/LoginCookie.php";
 require_once "api/InputSanitizer/InputSanitizer.php";
-require_once "ext/ReportAbuse/ReportAbuse.php";
+require_once "api/ReportAbuse/ReportAbuse.php";
 require_once "web/includes/classes/FormHandler.php";
 require_once "api/Login/PA_Login.class.php";
 

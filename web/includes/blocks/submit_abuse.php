@@ -15,7 +15,7 @@
 
 require_once "api/Network/Network.php";
 require_once "api/User/User.php";
-require_once "ext/ReportAbuse/ReportAbuse.php";
+require_once "api/ReportAbuse/ReportAbuse.php";
 require_once "api/Message/Message.php";
 
 // Now adding the report abuse for network owner message box

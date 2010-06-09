@@ -17,7 +17,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
 }
 
 require_once dirname(__FILE__)."/lib/common.php";
-require_once "ext/ReportAbuse/ReportAbuse.php";
+require_once "api/ReportAbuse/ReportAbuse.php";
 
 class ReportAbuseTest extends PHPUnit_Framework_TestCase {
     /**

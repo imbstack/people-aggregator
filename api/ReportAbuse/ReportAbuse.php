@@ -16,7 +16,7 @@ require_once "db/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Network/Network.php";
 require_once "api/Logger/Logger.php";
-require_once "ext/PingClient/PingClient.php";
+require_once "api/PingClient/PingClient.php";
 require_once "api/api_constants.php";
 
 /**

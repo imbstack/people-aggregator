@@ -73,7 +73,7 @@ function uihelper_upload_gallery($uid, $_POST, $_FILES, $type, $k=0) {
   require_once "api/Album/Album.php";
   require_once "api/Image/Image.php";
   require_once "api/Audio/Audio.php";
-  require_once "ext/Video/Video.php";
+  require_once "api/Video/Video.php";
   require_once "web/includes/classes/file_uploader.php";
 
   $logged_in_user = get_login_user();
@@ -676,7 +676,7 @@ function uihelper_upload_gallery_for_group($uid, $_POST, $_FILES, $type, $k=0) {
   require_once "api/Album/Album.php";
   require_once "api/Image/Image.php";
   require_once "api/Audio/Audio.php";
-  require_once "ext/Video/Video.php";
+  require_once "api/Video/Video.php";
   require_once "web/includes/classes/file_uploader.php";
   $logged_in_user = get_login_user();
   $user = new User();
@@ -1555,7 +1555,7 @@ function uihelper_create_comment_form($param) {
 
 function rating($rating_type, $type_id, $scale=5) {
   require_once 'api/Rating/Rating.php';
-  require_once 'ext/PA_Rating/PA_Rating.php';
+  require_once 'api/PA_Rating/PA_Rating.php';
   $return = array('overall'=>null, 'new'=>null);
   $Rating = new Rating();
   $Rating->set_rating_type($rating_type);
@@ -1709,7 +1709,7 @@ function thumbs_rating($rating_type, $type_id, $scale=1) {
 
   // User can rate any entity . An entity can be User, content, comments etc
   require_once 'api/Rating/Rating.php';
-  require_once 'ext/PA_Rating/PA_Rating.php';
+  require_once 'api/PA_Rating/PA_Rating.php';
   $return = array('overall'=>null, 'new'=>null);
   $Rating = new Rating();
   $Rating->set_rating_type($rating_type);

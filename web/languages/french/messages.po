@@ -8267,7 +8267,7 @@ msgstr ""
 msgid "%s: %s blog"
 msgstr ""
 
-#: ../../ext/StorageBackend/StorageBackend.php:25
+#: ../../api/StorageBackend/StorageBackend.php:25
 #, php-format
 msgid "Failed to retrieve %s: %s"
 msgstr ""

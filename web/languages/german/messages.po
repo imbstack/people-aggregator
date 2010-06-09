@@ -8312,7 +8312,7 @@ msgstr "Neueste Beiträge von %s"
 msgid "%s: %s blog"
 msgstr "%s: %s Blog"
 
-#: ../../ext/StorageBackend/StorageBackend.php:25
+#: ../../api/StorageBackend/StorageBackend.php:25
 #, php-format
 msgid "Failed to retrieve %s: %s"
 msgstr "Konnte %s nicht laden: %s"
