@@ -339,10 +339,10 @@ class BootStrap {
       } else { // domain prefix points to home network
         $network_prefix = 'default';
         $network_url_prefix = PA::$config->domain_prefix;
-/*
-        define( 'CURRENT_NETWORK_URL_PREFIX', $network_prefix );
+
+        define( 'CURRENT_NETWORK_URL_PREFIX', $network_url_prefix );
         define( 'CURRENT_NETWORK_FSPATH', PA::$project_dir . '/networks/default' );
-*/
+
       }
     }
     // Allow sessions to persist across entire domain
