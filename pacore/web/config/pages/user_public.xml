@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<page>
+  <page_id>2</page_id>
+  <data>
+    <left>
+      <item>RelationsModule</item>
+      <item>ImagesModule</item>
+      <item>MyLinksModule</item>
+      <item>ProfileFeedModule</item>
+      <item>ActivitiesModule</item>
+    </left>
+    <middle>
+      <item>PersonalAnnouncementModule</item>
+      <item>ShowUserCommentModule</item>
+      <item>ShowContentModule</item>
+      <item>ViewFeedsModule</item>
+    </middle>
+    <right>
+      <item>UserPhotoModule</item>
+      <item>AboutUserModule</item>
+      <item>MyFamiliesModule</item>
+      <item>EventCalendarSidebarModule</item>
+    </right>
+    <javascripts>
+      <item>inplaced.js</item>
+      <item>testimonial.js</item>
+    </javascripts>
+    <page_css>
+      <item>calendar.css</item>
+    </page_css>
+    <page_theme>Default</page_theme>
+    <body_attributes></body_attributes>
+    <access_permission>view_content</access_permission>
+    <navigation_code/>
+    <boot_code><![CDATA[
+      if($login = $app->getRequestParam('login')) {
+        $user = new User();
+        if(is_numeric($login)) {
+          $uid = $login;
+          try {
+            $user->load((int)$uid);
+            $module_shared_data['user_info'] = $user;
+            $app->setRequestParam('uid', $user->user_id,'GET');
+          } catch(Exception $e) {
+            $module_shared_data['user_info'] = null;
+          }
+        } else {
+          $uid = User::get_user_id_from_login_name($login, true);
+          $app->setRequestParam('uid', $uid,'GET');
+          $user = new User();
+          try {
+            $user->load((int)$uid);
+            $module_shared_data['user_info'] = $user;
+          } catch(Exception $e) {
+            $module_shared_data['user_info'] = null;
+          }
+        }
+      }
+
+      if($uid) {
+        require_once "api/ExternalFeed/ExternalFeed.php";
+        require_once "api/UserProfileFeed/UserProfileFeed.php";
+
+        if(PA::$network_info->type != MOTHER_NETWORK_TYPE && !(Network::member_exists(PA::$network_info->network_id, PA::$page_uid))) {
+          if(PA::$page_uid != PA::$login_uid) {
+            throw new PAException(NON_MEMBER_ACCESS_TO_NETWORK, "$page_user->login_name is not a member of $network_info->name network");
+          } else {
+            throw new PAException(NON_MEMBER_ACCESS_TO_NETWORK, "you are not a member of $network_info->name network");
+          }
+        }
+
+        // save view counts for this profile
+        $css_path = PA::$url . DIRECTORY_SEPARATOR . PA::$theme_rel . DIRECTORY_SEPARATOR;
+        $js_path  = PA::$url . DIRECTORY_SEPARATOR . PA::$theme_rel . DIRECTORY_SEPARATOR . "javascript" . DIRECTORY_SEPARATOR;
+        if(PA::$page_uid != PA::$login_uid) { // if current blog is not user's blog
+          $this->add_page_js($js_path . "common.js");
+          $this->add_page_js($js_path . "calendar.js");
+
+          $profile_viewer = new User();
+          $params = array('field_name'=>'profile_visitor_count', 'user_id' => PA::$page_uid);
+          $data = User::get_profile_data($params);
+          if(empty($data[0]->field_value)) {
+            $data[0]->field_value = 0;
+          }
+          $data[0]->field_value = $data[0]->field_value + 1;
+          $values = array();
+          $values['profile_visitor_count']['perm'] = 1;
+          $values['profile_visitor_count']['value'] = $data[0]->field_value;
+          $profile_viewer->user_id = PA::$page_uid;
+          $profile_viewer->save_profile_section($values, 'PROFILE_VIEWS');
+
+          // save profile view count made by logged in user
+          if(!empty(PA::$login_uid)) {
+            $param = array('field_name'=>'profile_visited_count', 'user_id' => PA::$login_uid);
+            $data = User::get_profile_data($param);
+            if(empty($data[0]->field_value)) {
+              $data[0]->field_value = 0;
+            }
+            $data[0]->field_value = $data[0]->field_value + 1;
+            $values = array();
+            $values['profile_visited_count']['perm'] = 1;
+            $values['profile_visited_count']['value'] = $data[0]->field_value;
+            PA::$login_user->save_profile_section($values, 'PROFILE_VISITED');
+          }
+        } else {
+            $this->add_page_js($js_path . "calendar.js");
+            $this->add_page_js($js_path . "iutil.js");
+            $this->add_page_js($js_path . "json.js");
+            $this->add_page_js($js_path . "idrag.js");
+            $this->add_page_js($js_path . "idrop.js");
+            $this->add_page_js($js_path . "isortables.js");
+            $this->add_page_js($js_path . "userpage.js");
+            $parameter =
+              "<script language='javascript' type='text/javascript'>
+               var page_id = " . $app->getRequestParam('page_id') . ";</script>";
+            $this->add_header_html($parameter);
+            $this->add_header_css($css_path . "user_skin.css");
+        }
+
+        $current_feed_data = array();
+        $profile_feeds = UserProfileFeed::get_user_profile_feeds($uid, $uid);
+        if(count($profile_feeds)) {
+          foreach($profile_feeds as $feed) {
+            $current_feed_data[] = $feed;
+            break ;
+          }
+          $module_shared_data['profile_feeds'] = $profile_feeds;
+          $module_shared_data['current_feed_data'] = $current_feed_data;
+        }
+
+        $field_type = GENERAL;
+        $params_profile = array('field_name' => 'BlogSetting','user_id' => PA::$login_uid);
+        $data_profile = User::get_profile_data($params_profile);
+        $module_shared_data['user_profile'] = $data_profile;
+
+        $module_shared_data['calendar_info']['assoc_type'] = "user";
+        $module_shared_data['calendar_info']['assoc_id'] = $user->user_id;
+        $module_shared_data['calendar_info']['title'] = 'Personal Events';
+        $module_shared_data['calendar_info']['mode'] = PRI;
+        $module_shared_data['calendar_info']['may_edit'] = (PA::$login_uid == $uid) ? true :false;
+      }
+
+      if($gid = $app->getRequestParam('gid')) {
+        try {
+          $group = ContentCollection::load_collection((int)$gid);
+          $module_shared_data['group_info'] = $group;
+        } catch(Exception $e) {
+          $module_shared_data['group_info'] = null;
+        }
+      }
+      if($nid = $app->getRequestParam('nid')) {
+        try {
+          $network = Network::get_by_id((int)$nid);
+          $module_shared_data['network_info'] = $network;
+          $extra = unserialize($network->extra);
+          $module_shared_data['extra'] = $extra;
+        } catch(Exception $e) {
+          $module_shared_data['network_info'] = null;
+          $module_shared_data['extra'] = null;
+        }
+      } else if(!empty(PA::$network_info)) {
+        $module_shared_data['network_info'] = PA::$network_info;
+        $extra = unserialize(PA::$network_info->extra);
+        $module_shared_data['extra'] = $extra;
+      } else {
+        $module_shared_data['network_info'] = null;
+        $module_shared_data['extra'] = null;
+      }
+      if($cid = $app->getRequestParam('cid')) {
+        try {
+          $content = Content::load_content((int)$cid, PA::$login_uid);
+          $module_shared_data['content_info'] = $content;
+        } catch(Exception $e) {
+          $module_shared_data['content_info'] = null;
+        }
+      }
+      if(isset($uid)) {
+      	$rss_data='<link rel="alternate" type="application/rss+xml" title="RSS feed" href="'.PA::$url .'/feed.php?uid='.$uid.'" />';
+      	$this->add_header_html($rss_data);
+
+        uihelper_set_user_heading($this, true, $uid);
+      } else {
+        uihelper_get_network_style();
+      }
+      ]]></boot_code>
+    <page_template>container_three_column.tpl</page_template>
+    <header_template>header_user.tpl</header_template>
+    <page_mode>public</page_mode>
+    <block_type>Homepage</block_type>
+    <page_type>user|network</page_type>
+  </data>
+  <page_name>User Public Page</page_name>
+  <is_configurable>1</is_configurable>
+</page>
