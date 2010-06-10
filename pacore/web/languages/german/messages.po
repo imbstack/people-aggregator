@@ -8297,17 +8297,17 @@ msgstr ""
 "\n"
 "Das Passwort muss mehr als %d Zeichen haebn."
 
-#: ../../ext/RssFeedHelper.php:41
+#: ../../api/RssFeedHelper/RssFeedHelper.php:41
 #, php-format
 msgid "Latest posts from %s"
 msgstr "Neueste Beiträge von %s"
 
-#: ../../ext/RssFeedHelper.php:45
+#: ../../api/RssFeedHelper/RssFeedHelper.php:45
 #, php-format
 msgid "Newest posts from everyone on %s"
 msgstr "Neueste Beiträge von %s"
 
-#: ../../ext/RssFeedHelper.php:62
+#: ../../api/RssFeedHelper/RssFeedHelper.php:62
 #, php-format
 msgid "%s: %s blog"
 msgstr "%s: %s Blog"

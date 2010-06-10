@@ -30,7 +30,7 @@ require_once "api/Logger/Logger.php";
 require_once "api/Tag/Tag.php";
 require_once "api/Comment/Comment.php";
 require_once "api/Validation/Validation.php";
-require_once "ext/RssFeedHelper.php";
+require_once "api/RssFeedHelper/RssFeedHelper.php";
 require_once "api/User/User.php";
 require_once "api/api_constants.php";
 
