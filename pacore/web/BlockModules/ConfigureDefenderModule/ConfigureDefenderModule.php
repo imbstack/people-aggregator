@@ -2,15 +2,15 @@
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * ConfigureDefenderModule.php is a part of PeopleAggregator.
-* [description including history]
+* Displays all the rules that govern PA defender and allows the user to toggle
+* which rules are used.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
-?>
-<?php
+
 error_reporting(E_ALL);// require_once "api/...";
 // require_once "web/includes/classes/...";
 require_once 'web/includes/classes/PAForm.class.php';
@@ -32,6 +32,46 @@ class ConfigureDefenderModule extends Module
     function __destruct() {
     }
 
+    /** !!i
+    * Handles page rendering
+    * @todo: why does this not call { @link generate_inner_html() }?
+    * generate_inner_html() is instead called directly from initializeModule()
+    */
+    function render()
+    {
+        $content = parent::render();
+        return $content;
+    }
+
+    /** !!
+    * create the html for the page
+    */
+    function generate_inner_html($template_vars = array())
+    {
+        $inner_html_gen = & new Template($this->inner_template);
+        foreach ($template_vars as $name => $value)
+        {
+            if (is_object($value))
+            {
+                $inner_html_gen->set_object($name, $value);
+            }
+            else
+            {
+                $inner_html_gen->set($name, $value);
+            }
+        }
+        $inner_html = $inner_html_gen->fetch();
+        return $inner_html;
+    }
+
+    /** !!
+    * Checks to see if the needed data from GET is available and if so call
+    * { @link getRules() } to get all the rules for PA Defender and their
+    * settings. Then call { @link set_inner_template } and 
+    * { @link generate_inner_html() } to set up how to display the page.
+    * @param string $request_method if this is GET create the page
+    * @todo: $request_data is unused
+    */
     function initializeModule($request_method, $request_data)
     {
        $defendObj = new XmlConfig(PA::$project_dir . '/web/config/defend_rules.xml', 'rules');
@@ -51,6 +91,14 @@ class ConfigureDefenderModule extends Module
         }
     }
 
+    /** !!
+    * Generate a PAFrom ( @link $form} to contain all the PA Defender rules.
+    * Call { @link populate_data() } to gath the rules and their current
+    * status and place the corresponding data into { @link $form}.
+    * @param array $rules collection of all PA Defender rules and their current
+    *		statuses
+    * @return PAForm $form PAForm containing all rules and their statuses
+    */
     public function getRules($rules)
     {
         $form = new PAForm("form_data");
@@ -64,7 +112,12 @@ class ConfigureDefenderModule extends Module
         return $form;
     }
 
-
+    /** !!
+    * Fill { @link $form } with all the html and css need for displaying the
+    * PA Defender rules.
+    * @param array $rules all rules and their statuses
+    * @param PAForm $form the PAForm to be filled out be the method
+    */
     private function populate_data($rules, &$form)
     {
         $form->openTag('table', array('class' => 'table', 'style' => 'margin-left: 12px; border: none'));
@@ -100,7 +153,12 @@ class ConfigureDefenderModule extends Module
         $form->closeTag('table');
     }
 
-
+    /** !!
+    * Handle request made to the server
+    * @param string $request_method POST/GET/AJAX, says hom the server call is made
+    * @param array $request_data tells the server what is requested based on
+    *		according to the payload in ['action']
+    */
     function handleRequest($request_method, $request_data)
     {
         if (!empty($request_data['action']))
@@ -146,7 +204,14 @@ class ConfigureDefenderModule extends Module
         }
     }
 
-
+    /** !!
+    * Save the rules that have been selected for PA Defender to use.
+    * After saving the rules update the page html to reflect the changes.
+    * This is done with the same function calls used by { @link initializeModule()}
+    * to generate page data and html.
+    * @param array $request_data contains the form the carries all the data
+    *		about rule settings
+    */
     private function handlePOST_saveDefendRules($request_data)
     {
         global $error_msg;
@@ -174,32 +239,12 @@ class ConfigureDefenderModule extends Module
         $error_msg = $msg;
    }
 
+    /** !!
+    * Set the template for the page
+    * @param string $template_fname name of the template to be used for the page
+    */
     function set_inner_template($template_fname)
     {
         $this->inner_template = PA::$blockmodule_path .'/'. get_class($this) . "/$template_fname";
-    }
-
-    function render()
-    {
-        $content = parent::render();
-        return $content;
-    }
-
-    function generate_inner_html($template_vars = array())
-    {
-        $inner_html_gen = & new Template($this->inner_template);
-        foreach ($template_vars as $name => $value)
-        {
-            if (is_object($value))
-            {
-                $inner_html_gen->set_object($name, $value);
-            }
-            else
-            {
-                $inner_html_gen->set($name, $value);
-            }
-        }
-        $inner_html = $inner_html_gen->fetch();
-        return $inner_html;
     }
 }
