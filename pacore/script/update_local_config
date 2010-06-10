@@ -1,0 +1,45 @@
+#!/usr/bin/python
+
+import re, sys, os, os.path
+
+class UpdateConfig:
+    def main(self):
+        replacements = {}
+        for arg in sys.argv[1:]:
+            m = re.search("^--([a-z\_]+)\=(.*?)$", arg)
+            if not m:
+                raise "Can't parse arg: %s" % arg
+            k, v = m.groups()
+            replacements[k] = v
+
+        local_config_php = os.path.join(os.path.split(os.path.abspath(__file__))[0], '..', 'local_config.php')
+        lines = open(local_config_php).readlines()
+
+        output = []
+        in_php = 0
+        for line in lines:
+            if not in_php:
+                if line.startswith("<?"):
+                    in_php = 1
+            else:
+                m = re.search(r"^\s*\$([a-z\_]+)\s*\=", line)
+                if m:
+                    var, = m.groups()
+                    if replacements.has_key(var):
+                        line = "$%s = %s;\n" % (var, `replacements[var]`)
+                        del replacements[var]
+
+            if line.startswith("?>"):
+                for k,v in replacements.items():
+                    output.append("$%s = %s;\n" % (k, `v`))
+                    del replacements[k]
+
+            output.append(line)
+
+        open("%s.new" % local_config_php, "wt").writelines(output)
+        os.rename(local_config_php, "%s.last" % local_config_php)
+        os.rename("%s.new" % local_config_php, local_config_php)
+            
+
+if __name__ == '__main__':
+    UpdateConfig().main()
