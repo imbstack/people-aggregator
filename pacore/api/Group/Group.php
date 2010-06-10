@@ -22,7 +22,7 @@ require_once "db/Dal/Dal.php";
 require_once "api/Category/Category.php";
 require_once "api/Invitation/Invitation.php";
 require_once "api/MessageBoard/MessageBoard.php";
-require_once "ext/Access/Access.php";
+require_once "api/Access/Access.php";
 require_once "api/Tag/Tag.php";
 require_once "api/api_constants.php";
 require_once "api/Permissions/PermissionsHandler.class.php";
