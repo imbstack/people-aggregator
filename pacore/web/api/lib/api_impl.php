@@ -13,7 +13,7 @@
 <?php
 
 // actual implementation of api functions goes here
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/User/User.php";
 require_once "api/User/Registration.php";
 require_once "api/Category/Category.php";

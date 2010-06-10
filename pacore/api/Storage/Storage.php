@@ -491,7 +491,7 @@ class Storage {
   public function migrateLegacyFiles($dry_run=TRUE) {
     $this->dry_run = $dry_run;
 
-    require_once "db/Dal/DbUpdate.php";
+    require_once "api/DB/Dal/DbUpdate.php";
 
     echo "Migrating legacy files to new storage system\n";
 

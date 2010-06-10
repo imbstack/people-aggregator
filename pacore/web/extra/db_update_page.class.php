@@ -23,8 +23,8 @@ $here = dirname(__FILE__);
 require_once "$here/../../../project_config.php";
 require_once 'web/includes/functions/functions.php';
 require_once 'api/Content/Content.php';
-require_once 'db/Dal/Dal.php';
-require_once 'db/Dal/DbUpdate.php';
+require_once 'api/DB/Dal/Dal.php';
+require_once 'api/DB/Dal/DbUpdate.php';
 require_once 'web/extra/net_extra.php';
 class db_update_page
 {

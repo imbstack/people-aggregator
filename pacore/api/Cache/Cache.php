@@ -12,7 +12,7 @@
 ?>
 <?php
 
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 
 /* Local cache for DB rows, shared values, etc, and ext_cache to access the ext_cache DB table.
  * Author: Phil

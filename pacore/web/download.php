@@ -15,7 +15,7 @@
 //require_once "../config.inc";
 $login_required = TRUE;
 include_once("web/includes/page.php");
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/Storage/Storage.php";
 
 $filename_raw = $_GET['file'];
