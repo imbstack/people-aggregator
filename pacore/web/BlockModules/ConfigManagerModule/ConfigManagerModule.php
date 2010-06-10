@@ -1,13 +1,13 @@
 <?php
-/** !
+/** i!
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 * ConfigManagerModule.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author Zhoron Hron, [Owen Bell: 2 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @todo: what kind of configuration does this file govern?
 * [description including history]
-* @example  [optional]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author Zhoron Hron
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */

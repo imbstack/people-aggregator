@@ -1,16 +1,15 @@
 <?php
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
+* ConfigureEmailModule.php is a part of PeopleAggregator.
+* Create the html for all emails that are sent by PA
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
-?>
-<?php
+
 require_once "api/EmailMessages/EmailMessages.php";
 require_once "web/includes/classes/TinyMCE.class.php";
 
@@ -26,12 +25,25 @@ class ConfigureEmailModule extends Module {
     $this->html_block_id = 'ConfigureEmailModule';
   }
 
+  /** !!
+  * Generate all content that will be displayed
+  * @return string $content html to be displayed
+  */
   function render() {
     $this->inner_HTML = $this->generate_inner_html ();
     $content = parent::render();
     return $content;
   }
 
+  /** !!
+  * Get the template that will be used for the email. Get list of containers
+  * that will be used for the email by calling { @link getEmailContainers() }
+  * and placing it in { @link $template_list }. Take all data about the email 
+  * such as message and author as well as the template to be used from
+  * { @link $template_list } and place it into ( @link $obj_inner_template }.
+  * @return string $inner_html all the html to be displayed in the email,
+  *		gathered by setting this equal to { @link $obj_inner_template }
+  */
   function generate_inner_html () {
     if(!empty($_GET['template'])) {
       $this->template = $_GET['template'];
@@ -56,6 +68,12 @@ class ConfigureEmailModule extends Module {
     return $inner_html;
   }
 
+  /** !!
+  * Compile a list of all email containers in a specific location
+  * dicated by { @link $path }
+  * @param string $path the path to a collection of email containers
+  * @return string $email_containers all containers in the location
+  */
   private function getEmailContainers($path) {
     $paths = array(PA::$core_dir . "/$path", PA::$project_dir . "/$path"); // core templates will be overwritten with project templates
     $email_containers = array('None (Plain Text)' => 'text_only' );
