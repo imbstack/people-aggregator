@@ -145,7 +145,7 @@ function exception_handler($exception) {
 
     <h1>Database not populated</h1>
 
-    <p>Before you can run PeopleAggregator, you need to populate the database by running the script <code><?php echo PA::$path; ?>/db/PeepAgg.mysql</code> on your database.  You can do it in the MySQL console like this:</p>
+    <p>Before you can run PeopleAggregator, you need to populate the database by running the script <code><?php echo PA::$path; ?>/api/DB/PeepAgg.mysql</code> on your database.  You can do it in the MySQL console like this:</p>
 
     <pre><i>user</i>@<i>server</i>:<?php echo PA::$path ?>$ <b>mysql -u <i>username</i> -p</b>
 Enter password: <b><i>password</i></b>
@@ -157,7 +157,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 
 mysql> <b>use paalpha</b>
 Database changed
-mysql> <b>source <?php echo PA::$path ?>/db/PeepAgg.mysql</b></pre>
+mysql> <b>source <?php echo PA::$path ?>/api/DB/PeepAgg.mysql</b></pre>
 
       <?php
 

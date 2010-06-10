@@ -18,7 +18,7 @@ It creates three basic folders ie Inbox, Sent, Draft.-->
 require_once '../config.inc';
 require_once '../api/User/User.php';
 require_once '../api/Message/Message.php';
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 
 $db = Dal::get_connection();
 

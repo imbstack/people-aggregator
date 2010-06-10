@@ -35,7 +35,7 @@
    'contents' => 'myotherdatabase.othercontents',
   );
 
- See db/Dal/Dal.php for the code that uses $db_table_mappings (and
+ See api/DB/Dal/Dal.php for the code that uses $db_table_mappings (and
  $user_table_mappings).
 
 */

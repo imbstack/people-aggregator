@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once dirname(__FILE__).'/../../../config.inc';
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 
 /** Class for handling the number of views of a page.

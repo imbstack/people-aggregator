@@ -12,7 +12,7 @@
 ?>
 <?php
 
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/Forum/PaForumThread.class.php";
 require_once "api/Forum/PaForumPost.class.php";
 require_once "api/Forum/PaForumCategory.class.php";
