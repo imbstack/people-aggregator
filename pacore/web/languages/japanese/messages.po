@@ -8255,17 +8255,17 @@ msgid ""
 "The password must be longer than %d characters."
 msgstr ""
 
-#: ../../ext/RssFeedHelper.php:41
+#: ../../api/RssFeedHelper/RssFeedHelper.php:41
 #, php-format
 msgid "Latest posts from %s"
 msgstr ""
 
-#: ../../ext/RssFeedHelper.php:45
+#: ../../api/RssFeedHelper/RssFeedHelper.php:45
 #, php-format
 msgid "Newest posts from everyone on %s"
 msgstr ""
 
-#: ../../ext/RssFeedHelper.php:62
+#: ../../api/RssFeedHelper/RssFeedHelper.php:62
 #, php-format
 msgid "%s: %s blog"
 msgstr ""
