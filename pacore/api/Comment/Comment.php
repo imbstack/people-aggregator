@@ -30,7 +30,7 @@ require_once "api/Comment/SpamDomain.php";
   error if it returns TRUE.  If it returns FALSE, the comment is
   posted, then $this->spam_analyze() is called by $this->save().
 
-* script/analyze_all_comments.php
+* tools/script/analyze_all_comments.php
 
 - For each comment, $comment->index_spam_domains() is called.
 
