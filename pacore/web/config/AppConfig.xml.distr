@@ -690,7 +690,7 @@
     </database>
     <site_related description="WEB Site settings">
       <value>
-        <PA_VERSION category="constant" type="string" readonly="true" section="site_related" description="The PA version number. Please also update that info in script/version.sh when bumping the version number.">
+        <PA_VERSION category="constant" type="string" readonly="true" section="site_related" description="The PA version number. Please also update that info in tools/script/version.sh when bumping the version number.">
           <value>v2.1.4_30-Jan-2010</value>
         </PA_VERSION>
         <SUPER_USER_ID category="constant" readonly="true" type="int" section="site_related" description="Super user has all available privileges to all networks and groups. Do not chnage if you are not PA developer - only user with this ID can access site when 'Site under maintenace' mode is ON!">
