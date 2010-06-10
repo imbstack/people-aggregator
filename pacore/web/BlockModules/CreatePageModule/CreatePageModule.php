@@ -1,12 +1,12 @@
 <?php
 /** !
 * CreatePageModule.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author Martin Spernau, [Owen Bell: 2 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * Creates the html for the page as a whole, excepting the individual modules
 * being displayed.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author Martin Spernau
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
@@ -29,6 +29,10 @@ class CreatePageModule extends Module {
         $this->page->initialize();
     }
 
+    /** !!
+    * Get the template to be used for the page
+    * @param string $template name of the template to be used
+    */
     function set_inner_template($template_fname) {
 
         $this->inner_template = PA::$blockmodule_path.'/'.get_class($this)."/$template_fname";
@@ -55,8 +59,14 @@ class CreatePageModule extends Module {
     }
 
     /** !!
-    * Set up the entire page
-    * @param string $request_method gets the information from the server with GET
+    * Sets up the html for the entire page. It starts by creating an array of all
+    * modules that are present on the page and updates the array with the data for
+    * the modules including name, type and placement.  It then reviews settings for
+    * the page based on page name and id. It then checks for administrator
+    * permission.  Finally it gets server data and calls { @link set_inner_template() }
+    * and { @link generate_inner_html() } to create the page.
+    * @param string $request_method if this is GET, get server information and
+    *		initialize the page
     * @param array $request_data contains information on what to display on the page
     */
     function initializeModule($request_method, $request_data) {
@@ -134,7 +144,7 @@ class CreatePageModule extends Module {
     }
 
     /** !!
-    * handles submit data requests to server
+    * Handles submitting data requests to the server to change the page.
     * @param string $request_method POST/GET/AJAX
     * @param array @request_data holder for the data from the server
     */
@@ -166,7 +176,11 @@ class CreatePageModule extends Module {
     }
 
     /** !!
-    * get the different parts of the page (left, right, middle, javascript and css)
+    * After submitting page changes fill out the array 
+    * { @link $new_page_settings } with the different pages elements: 
+    * left, right, middle, javascripts and css.  Afterwards call
+    * { @link set_inner_template() } and { @link generate_inner_html() } to
+    * update the page html.
     * @param array $request_data data from the server to configure the page with
     */
     function handlePOSTPageSubmit($request_data) {

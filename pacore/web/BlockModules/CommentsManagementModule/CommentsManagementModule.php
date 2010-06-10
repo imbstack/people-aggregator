@@ -1,12 +1,13 @@
 <?php
 /** !
-* CommentsManagamentModule.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author Martin Spernau, [Owen Bell: 2 June 2010>
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* CommentsManagamentModule.php is a part of PeopleAggregator.
 * Controls all aspects of commenting such as comment title, the comment itself,
 * the author, etc.  This module also tracks abuse within the comments.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author Martin Spernau
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
@@ -29,7 +30,7 @@ class CommentsManagementModule extends Module {
 
     /** !!
     * Takes all comments on a page and feeds them through manage_links
-    * @return array $links the output of managelinks() 
+    * @return array $links the output of { @link manage_links() }
     *		all commments and their various attributes
     */
     private function get_links() {
@@ -42,8 +43,8 @@ class CommentsManagementModule extends Module {
     }
 
     /** !!
-    * Calls generate_inner_html and returns the output to be displayed
-    * @return string $content the output of generate_inner_html()
+    * Calls { @link generate_inner_html() } and returns the output to be displayed
+    * @return string $content html created by the function
     */
     function render() {
         $this->links = $this->get_links();
@@ -82,8 +83,9 @@ class CommentsManagementModule extends Module {
     * Manages the contents of comments such as user id, title, links, etc.
     * @param array $contents_list contains information about each comment
     *		such as title and contents
-    * @return array $link_array contains all the information from $contents_list
-    *		in addition to other data such as comment abuse
+    * @return array $link_array contains all the information from 
+    * 		{ @link $contents_list } in addition to other data
+    *		such as abuse in the comments
     */
     function manage_links($contents_list) {
         // global var $_base_url has been removed - please, use PA::$url static variable

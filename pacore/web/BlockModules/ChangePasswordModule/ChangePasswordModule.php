@@ -1,10 +1,11 @@
 <?php
 /** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * ChangePasswordModule.php is a part of PeopleAggregator.
 * Allows the user to update there password, also handles authenticating that
 * the user as well as checking that all information they entered is correct.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author Martin Spernau, [Owen Bell: 2 June 2010]
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -26,9 +27,35 @@ class ChangePasswordModule extends Module {
     }
 
     /** !!
+    * Handles rendering of the page
+    * This calls { @link generate_inner_html }() and then packages up the 
+    * data to be displayed and returns it in ( @link $content }
+    * @return string $content html created by the function
+    */
+    function render() {
+
+        $this->inner_HTML = $this->generate_inner_html();
+        $content = parent::render();
+        return $content;
+    }
+
+    /** !!
+    * Called by { @link render() } to create the html for the page
+    * @return string $inner_html the html for the module
+    */
+    function generate_inner_html() {
+
+        $tmp_file = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
+        $inner_html_gen = &new Template($tmp_file);
+        $inner_html_gen->set('forgot_password_id', $this->forgot_password_id);
+        $inner_html = $inner_html_gen->fetch();
+        return $inner_html;
+    }
+
+    /** !!
     * Checks to see if the appropriate data to create the module is available
-    * If the data is available then the forgot_password_id value in $request_data
-    * is passed into the forgot_password_id object in the class
+    * If the data is available then the forgot_password_id value in
+    * { @link $request_data } is passed into the forgot_password_id object in the class
     * @todo these parameters do nothing: $request_method
     * @param array $request_data contains user id
     * @return string returns 'skip' if the user id is not available
@@ -93,31 +120,6 @@ class ChangePasswordModule extends Module {
                 @set_web_variables($msg_array, $redirect_url, $query_str);
                 break;
         }
-    }
-
-    /** !!
-    * Handles rendering of the page
-    * This calls generate_inner_html() and then packages up the data to be displayed and returns it
-    * @return string $content the data created by render() to be displayed
-    */
-    function render() {
-
-        $this->inner_HTML = $this->generate_inner_html();
-        $content = parent::render();
-        return $content;
-    }
-
-    /** !!
-    * Called by render() to create the html for the page
-    * @return string $inner_html the html for the module
-    */
-    function generate_inner_html() {
-
-        $tmp_file = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
-        $inner_html_gen = &new Template($tmp_file);
-        $inner_html_gen->set('forgot_password_id', $this->forgot_password_id);
-        $inner_html = $inner_html_gen->fetch();
-        return $inner_html;
     }
 }
 ?>
