@@ -22,7 +22,7 @@
 *
 */
 
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "Subversion/Common.php";
 
 class Subversion_PAStateStore {

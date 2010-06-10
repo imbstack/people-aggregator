@@ -14,7 +14,7 @@
 
 require_once "web/includes/classes/XmlConfig.class.php";
 require_once "web/extra/db_update_page.class.php";
-require_once 'db/Dal/Dal.php';
+require_once 'api/DB/Dal/Dal.php';
 
 if(!defined('XML_UPDATES_FILE')) define('XML_UPDATES_FILE', dirname(__FILE__).'/XmlUpdates.xml');
 

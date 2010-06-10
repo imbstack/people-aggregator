@@ -18,7 +18,7 @@
  */
 include_once dirname(__FILE__)."/../../config.inc";
 require_once "api/api_constants.php";
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/Tag/Tag.php";

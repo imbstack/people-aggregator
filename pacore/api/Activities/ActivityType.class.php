@@ -12,7 +12,7 @@
 ?>
 <?php
 
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 
