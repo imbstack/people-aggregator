@@ -131,7 +131,7 @@ class PAInstaller {
 
    private function POST_step_2($params) {
       $_SESSION['installer'] = serialize($this);
-      $nav = "
+      $navid
               <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
               <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
       ";
@@ -167,11 +167,14 @@ class PAInstaller {
       $form->addInputField('text', __('Admin username'),
                              array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : trim($adm_data[1], "'\t ")))
       );
-      $form->addInputField('text', __('Admin password'),
+      $form->addInputField('password', __('Admin password'),
                              array('id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
       );
       $form->addInputField('text', __('Admin email'),
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
+       );
+      $form->addInputField('checkbox', __('Network Spawning'),
+                             array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked', "'\t ")))
       );
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
@@ -223,6 +226,7 @@ class PAInstaller {
      $adm_login = $form_data['admin_username'];
      $adm_pass  = $form_data['admin_password'];
      $adm_mail  = $form_data['admin_email'];
+     $allow_network_spawning = $form_data['network_spawning'];
 
      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
      $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
@@ -339,7 +343,8 @@ class PAInstaller {
          $app->configData['configuration']['database']['value'][$key]['value'] = $value;
        }
        $app->configData['configuration']['database']['value']['peepagg_dsn']['value'] = $this->config['peepagg_dsn'];
-       $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $this->config['allow_network_spawning'];
+       $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $allow_network_spawning;
+
        $app->configData['configuration']['site_related']['value']['pa_installed']['value'] = 1;
 
        unlink(PA::$project_dir . APPLICATION_CONFIG_FILE);
