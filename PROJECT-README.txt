@@ -45,7 +45,7 @@ configuring your project.
 
 -------------
 LOCAL CONFIGURATION
-paproject/web/config/AppConfig.xml
+paproject/config/AppConfig.xml
 Automatically generated in the PA install process - NOT in a repository.  
 It defines elements of a specific site, including DB and other
 information distinct form other instances of this project.  
@@ -70,7 +70,7 @@ Developers ordinarily do not modify these files unless instructed by BBM.
 -------------
 BASIC PROJECT SETTINGS
 To configure basic project settings, see:
-paproject/web/config/AppConfig.xml 
+paproject/config/AppConfig.xml 
  and other files in that directory
 
 -------------

@@ -1,4 +1,4 @@
 web/cache/
 web/files/rsz/
 log/pa.log
-web/config/AppConfig.xml
+config/AppConfig.xml
