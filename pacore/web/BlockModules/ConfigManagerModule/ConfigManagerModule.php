@@ -1,5 +1,5 @@
 <?php
-/** i!
+/** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 * ConfigManagerModule.php is a part of PeopleAggregator.
 * @todo: what kind of configuration does this file govern?

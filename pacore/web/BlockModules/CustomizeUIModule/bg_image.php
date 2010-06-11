@@ -1,37 +1,20 @@
 <?php
 /** !
-<<<<<<< HEAD
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 * bg_image.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author [original author], [Owen Bell: 3 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * HTML for displaying the background image
-* @example  [optional]
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @package PeopleAggregator
-*/
-
-include "center_inner_private.tpl";
-?>
-
-=======
-* <filename> is a part of PeopleAggregator.
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
-* @author <creator> , <last modified : date>
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* <description including history>
-* @example  <optional>
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
-?>
-<?php
+
 include "center_inner_private.tpl";
+
 ?>
 
->>>>>>> a003e71079b6490b904d0d418a45ee9925ab10e8
 <div id="background">
   <h1><?=__("Background Image")?></h1>
   <form action="" enctype="multipart/form-data" method="post">
