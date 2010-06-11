@@ -19,7 +19,7 @@ It currently runs:
 
 - database update (web/extra/db_update.php)
 
-- default module settings (db/script_module_settings_data.php)
+- default module settings (api/DB/script_module_settings_data.php)
 
 */
 
@@ -50,7 +50,7 @@ function run_update_scripts($silent = false) {
 
     upd_write("Installing default module settings ...");
 
-    if (!include("db/script_module_settings_data.php"))
+    if (!include("api/DB/script_module_settings_data.php"))
         throw new PAException(GENERAL_SOME_ERROR, "Unable to install default module settings");
 */
 }

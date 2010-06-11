@@ -74,7 +74,7 @@ class ConfigureDefenderModule extends Module
     */
     function initializeModule($request_method, $request_data)
     {
-       $defendObj = new XmlConfig(PA::$project_dir . '/web/config/defend_rules.xml', 'rules');
+       $defendObj = new XmlConfig(PA::$project_dir . '/config/defend_rules.xml', 'rules');
        $this->defend_rules = $defendObj->asArray();
 
         switch($request_method) {
@@ -223,8 +223,8 @@ class ConfigureDefenderModule extends Module
         }
 
         try {
-          unlink(PA::$project_dir . '/web/config/defend_rules.xml');
-          $conf = new XmlConfig(PA::$project_dir . '/web/config/defend_rules.xml', 'rules');
+          unlink(PA::$project_dir . '/config/defend_rules.xml');
+          $conf = new XmlConfig(PA::$project_dir . '/config/defend_rules.xml', 'rules');
           $conf->loadFromArray($this->defend_rules, $conf->root_node);
           $conf->saveToFile();
           $this->defend_rules = $conf->asArray();

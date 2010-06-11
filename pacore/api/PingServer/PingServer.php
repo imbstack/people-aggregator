@@ -17,7 +17,7 @@
     // global var $path_prefix has been removed - please, use PA::$path static variable    
     require_once "api/Logger/Logger.php";
     require_once "api/PAException/PAException.php";
-    require_once "db/Dal/Dal.php";
+    require_once "api/DB/Dal/Dal.php";
 
     class PingServer extends DomDocument {
     

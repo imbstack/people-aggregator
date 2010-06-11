@@ -13,7 +13,7 @@
 <?php
 require_once dirname(__FILE__).'/../../config.inc';
 // global var $path_prefix has been removed - please, use PA::$path static variable
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/User/User.php";
 require_once "api/Relation/Relation.php";

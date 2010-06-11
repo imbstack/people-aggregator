@@ -29,7 +29,7 @@ echo "checking out the update repository"
 svn checkout $REV $REPOS repos.tmp
 
 echo "now making distribution."
-repos.tmp/pacore/script/make_dist.sh $1 || die "make_dist.sh failed"
+repos.tmp/pacore/tools/script/make_dist.sh $1 || die "make_dist.sh failed"
 
 echo "pulling out the dist files"
 ls -al

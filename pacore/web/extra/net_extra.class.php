@@ -27,7 +27,7 @@ ini_set('max_execution_time', 1200);
 ini_set('max_input_time', 1200);
 
 require_once dirname(__FILE__).'/../../config.inc';
-require_once 'db/Dal/Dal.php';
+require_once 'api/DB/Dal/Dal.php';
 require_once "web/includes/network.inc.php";
 require_once 'api/User/User.php';
 require_once "api/Forum/PaForumBoard.class.php";

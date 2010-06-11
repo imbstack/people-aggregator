@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once 'db/Dal/Dal.php';
+require_once 'api/DB/Dal/Dal.php';
 
 // This is the Entity bas class
 // all entities should extend this one

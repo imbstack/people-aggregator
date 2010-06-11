@@ -32,7 +32,7 @@ echo "* exporting everything from subversion"
 svn export $SVN_URL $PA_PATH
 
 echo "* building dist_files.txt"
-../pacore/script/build_dist_files_txt.py || die "couldn't build dist_files.txt!";
+../pacore/tools/script/build_dist_files_txt.py || die "couldn't build dist_files.txt!";
 
 cp ../pacore/db/dist_files.txt $PA_PATH/pacore/db/dist_files.txt
 

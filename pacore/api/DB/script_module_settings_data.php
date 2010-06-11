@@ -12,8 +12,8 @@
 ?>
 <?php
 require_once dirname(__FILE__).'/../config.inc';
-require_once "db/Dal/Dal.php";
-require_once "db/Dal/DbUpdate.php";
+require_once "api/DB/Dal/Dal.php";
+require_once "api/DB/Dal/DbUpdate.php";
 require_once "api/Network/Network.php";
 
 // Re-include constants.php to make sure we have the most up to date

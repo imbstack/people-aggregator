@@ -18,7 +18,7 @@ require_once "api/Content/Content.php";
 require_once "api/User/User.php";
 require_once "api/Logger/Logger.php";
 require_once "api/PAException/PAException.php";
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/Category/Category.php";
 require_once "api/Invitation/Invitation.php";
 require_once "api/MessageBoard/MessageBoard.php";

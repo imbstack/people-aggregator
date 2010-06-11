@@ -17,7 +17,7 @@ require_once "api/Logger/Logger.php";
 require_once "api/PAException/PAException.php";
 
 // to figure out the table name to get to network data
-require_once "db/table_mappings.php";
+require_once "api/DB/table_mappings.php";
 
 class Dal {
 
@@ -268,7 +268,7 @@ class Dal {
      database is 'peopleaggregator' and you are using the 'foo'
      network.
 
-     By default, the mappings in db/table_mappings.php are used.  If
+     By default, the mappings in api/DB/table_mappings.php are used.  If
      you want to override a particular table, you can do this creating
      a local_config.php file inside the appropriate network directory,
      and by putting that table in $user_table_mappings like this:

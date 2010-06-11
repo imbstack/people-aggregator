@@ -161,12 +161,12 @@ class User_Registration {
       }
 
       // Calculating Allowed Domains
-      if (file_exists(PA::$project_dir . "/web/config/domain_names.txt")) {
-        $domain_names_file = PA::$project_dir . "/web/config/domain_names.txt";
-      } elseif (file_exists(PA::$core_dir . "/web/config/domain_names.txt")) {
-        $domain_names_file = PA::$core_dir . "/web/config/domain_names.txt";
+      if (file_exists(PA::$project_dir . "/config/domain_names.txt")) {
+        $domain_names_file = PA::$project_dir . "/config/domain_names.txt";
+      } elseif (file_exists(PA::$core_dir . "/config/domain_names.txt")) {
+        $domain_names_file = PA::$core_dir . "/config/domain_names.txt";
       } else {
-         throw new Exception("Allowed Domains configuration file \"/web/config/domain_names.txt\" not found");
+         throw new Exception("Allowed Domains configuration file \"/config/domain_names.txt\" not found");
       }
       $allowed_domains = preg_split("/\s+/", file_get_contents($domain_names_file));
 

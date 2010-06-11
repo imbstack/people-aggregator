@@ -11,7 +11,7 @@
 */
 ?>
 <?php
-require_once 'web/config/logger.conf';
+require_once 'config/logger.conf';
 
 class Logger {
   

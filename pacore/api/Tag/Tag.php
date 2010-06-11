@@ -12,7 +12,7 @@
 ?>
 <?php
 include_once dirname(__FILE__)."/../../config.inc";
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/User/User.php";
 require_once "api/Content/Content.php";
 require_once "api/ContentCollection/ContentCollection.php";

@@ -23,8 +23,8 @@ $authorization_required = TRUE;
 
 if(!empty($_POST)) {
   $error = false;
-  if(!$handle = fopen(PA::$project_dir . "/web/config/profanity_words.txt", 'w+')) {
-    if(!$handle = fopen(PA::$core_dir . "/web/config/profanity_words.txt", 'w+')) {
+  if(!$handle = fopen(PA::$project_dir . "/config/profanity_words.txt", 'w+')) {
+    if(!$handle = fopen(PA::$core_dir . "/config/profanity_words.txt", 'w+')) {
       $msg = 5040;
       $error = TRUE;
     }  

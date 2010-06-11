@@ -12,7 +12,7 @@
 ?>
 <?php
 define("CONTENT_CONTENT",1);
-include_once dirname(__FILE__).'/../../../db/Dal/Dal.php';
+include_once dirname(__FILE__).'/../../../api/DB/Dal/Dal.php';
 //require_once "api/LoginCookie/LoginCookie.php";
 require_once "api/InputSanitizer/InputSanitizer.php";
 require_once "api/ReportAbuse/ReportAbuse.php";

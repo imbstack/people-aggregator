@@ -15,7 +15,7 @@
  * @author Tekriti Software (www.TekritiSoftware.com)
  */
 include_once dirname(__FILE__)."/../../config.inc";
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/User/User.php";
@@ -30,7 +30,7 @@ require_once "api/Comment/SpamDomain.php";
   error if it returns TRUE.  If it returns FALSE, the comment is
   posted, then $this->spam_analyze() is called by $this->save().
 
-* script/analyze_all_comments.php
+* tools/script/analyze_all_comments.php
 
 - For each comment, $comment->index_spam_domains() is called.
 

@@ -23,14 +23,14 @@
 
 // global var $path_prefix has been removed - please, use PA::$path static variable
 require_once dirname(__FILE__)."/../../config.inc";
-require_once "db/Dal/Dal.php";
+require_once "api/DB/Dal/Dal.php";
 require_once "api/ContentCollection/ContentCollection.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/Tag/Tag.php";
 require_once "api/Comment/Comment.php";
 require_once "api/Validation/Validation.php";
-require_once "ext/RssFeedHelper.php";
+require_once "api/RssFeedHelper/RssFeedHelper.php";
 require_once "api/User/User.php";
 require_once "api/api_constants.php";
 
