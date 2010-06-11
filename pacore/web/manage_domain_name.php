@@ -41,8 +41,8 @@ $error = FALSE;
 if(!empty($_POST)) {
   
 //  if(!$handle = fopen("web/includes/domain_names.txt", 'w+')) {  changed by Z.Hron: "/web/includes" is not writable directory
-  if(!$handle = fopen(PA::$project_dir . "/web/config/domain_names.txt", 'w+')) {
-    if(!$handle = fopen(PA::$core_dir . "/web/config/domain_names.txt", 'w+')) {
+  if(!$handle = fopen(PA::$project_dir . "/config/domain_names.txt", 'w+')) {
+    if(!$handle = fopen(PA::$core_dir . "/config/domain_names.txt", 'w+')) {
       $msg = 5040;
       $error = TRUE;
     }  

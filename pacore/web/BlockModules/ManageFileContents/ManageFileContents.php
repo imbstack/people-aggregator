@@ -45,8 +45,8 @@ class ManageFileContents extends Module {
   function get_links() {
     // changed by Z.Hron: "/web/includes" is not writable directory
     // $content = file_get_contents("web/includes/domain_names.txt");
-    if(!$content = file_get_contents(PA::$project_dir . "/web/config/domain_names.txt")) {
-        $content = file_get_contents(PA::$core_dir . "/web/config/domain_names.txt");
+    if(!$content = file_get_contents(PA::$project_dir . "/config/domain_names.txt")) {
+        $content = file_get_contents(PA::$core_dir . "/config/domain_names.txt");
     }
     return $content;
   }

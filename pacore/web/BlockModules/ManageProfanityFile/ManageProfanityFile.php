@@ -43,10 +43,10 @@ class ManageProfanityFile extends Module {
   }
   
   function get_links() {
-    if(file_exists(PA::$project_dir . "/web/config/profanity_words.txt")) {
-      $content = file_get_contents(PA::$project_dir . "/web/config/profanity_words.txt");
-    } else if(file_exists(PA::$core_dir . "/web/config/profanity_words.txt")) {
-      $content = file_get_contents(PA::$core_dir ."/web/config/profanity_words.txt");
+    if(file_exists(PA::$project_dir . "/config/profanity_words.txt")) {
+      $content = file_get_contents(PA::$project_dir . "/config/profanity_words.txt");
+    } else if(file_exists(PA::$core_dir . "/config/profanity_words.txt")) {
+      $content = file_get_contents(PA::$core_dir ."/config/profanity_words.txt");
     } else {
       $content = join("\r\n", PA::$config->profanity); //If no file yet, use defaults
     }

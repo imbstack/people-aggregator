@@ -121,7 +121,7 @@ if (!empty($_POST)) {
 			$subject = $_POST['title'];
 			$bull_message = nl2br($_POST['bulletin_body']);
 			$container_html = 'default_email_container.tpl';
-			$email_container = & new Template('web/config/email_containers/'.$container_html);
+			$email_container = & new Template('config/email_containers/'.$container_html);
 			$email_container->set('subject', $subject);
 			$email_container->set('message', $bull_message);
 			$preview_msg = $email_container->fetch();

@@ -66,7 +66,7 @@ class BootStrap {
     $this->debug = false;
     $this->install_dir = $install_dir;
     $this->killSlashes();
-    $defendObj = new XmlConfig(getShadowedPath('web/config/defend_rules.xml'), 'rules');
+    $defendObj = new XmlConfig(getShadowedPath('config/defend_rules.xml'), 'rules');
     $this->defend_rules = $defendObj->asArray();
     $this->collectSystemData();
     if($this->debug) {
@@ -529,7 +529,7 @@ class BootStrap {
     // load profanity words list from file - merge with list from XML
     $profanity_file = getShadowedPath(PA::$config_path .'/profanity_words.txt');
     if($profanity_file) {
-      $prof_arr = explode("\r\n", file_get_contents(PA::$project_dir . "/web/config/profanity_words.txt"));
+      $prof_arr = explode("\r\n", file_get_contents(PA::$project_dir . "/config/profanity_words.txt"));
       $prof_arr = array_merge((array)PA::$config->profanity, (array)$prof_arr);
       PA::$config->profanity = array_unique($prof_arr);
     }

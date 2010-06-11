@@ -321,7 +321,7 @@ class PAInstaller {
              "Administrator user name: <b>" . $this->adm_data['login_name'] . "</b><br />".
              "Administrator password: <b>" . $this->adm_data['password'] . "</b><br /><br />".
              "<b>For security reasons, change your initially assigned administrator password and be sure to delete your installation directory: \"pacore/web/install\"</b>. ".
-             "If you want to re-install People Aggregator application, make backup of your \"pacore/web/config/AppConfig.xml\" ".
+             "If you want to re-install People Aggregator application, make backup of your \"pacore/config/AppConfig.xml\" ".
              "configuration file and delete it. Then reload page in your browser and installation process will run again.<br /><br />" .
              "<center>Click <a href=\"". PA_BASE_URL . PA_ROUTE_HOME_PAGE . "\"><b>here</b></a> to continue.</center></p>";
 
