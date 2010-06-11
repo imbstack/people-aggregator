@@ -739,7 +739,7 @@
           <value>PA::$theme_path = "web/" . PA::$theme_rel</value>
         </theme_path>
         <config_path category="static_var" type="string" readonly="true" section="site_related" description="The PA main configuration folder.">
-          <value>web/config</value>
+          <value>config</value>
         </config_path>
         <SITE_UNDER_MAINTAINENCE category="constant" type="bool" readonly="false" section="site_related" description="Set '1' to display Site under Maitenance page.">
           <value>0</value>

@@ -75,6 +75,6 @@ ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PA_PROJECT_PR
                                                 . PATH_SEPARATOR . PA_PROJECT_CORE_DIR
                                                 . PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext');
 
-define('APPLICATION_CONFIG_FILE', '/web/config/AppConfig.xml');
+define('APPLICATION_CONFIG_FILE', '/config/AppConfig.xml');
 
 ?>

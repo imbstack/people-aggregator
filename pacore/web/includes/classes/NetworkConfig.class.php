@@ -324,9 +324,9 @@ class NetworkConfig {
   }
 
   public function getDefaultMessages($cdata = false) {
-    $EmailMessageFile = PA::resolveRelativePath("web/config/email_messages.xml");
+    $EmailMessageFile = PA::resolveRelativePath("config/email_messages.xml");
     if(!$EmailMessageFile) {
-      throw new Exception("NetworkConfig::getDefaultMessages() - Message template file: 'web/config/email_messages.xml' missing!");
+      throw new Exception("NetworkConfig::getDefaultMessages() - Message template file: 'config/email_messages.xml' missing!");
     }
     $emails = new EmailMessagesConfig($EmailMessageFile);
 
