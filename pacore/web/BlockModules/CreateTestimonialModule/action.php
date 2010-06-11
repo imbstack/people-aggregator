@@ -1,13 +1,12 @@
 <?php
 /** !
 * action.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author [original author], [Owen Bell: 2 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * Action.php is part of CreateTestimonialModule. It is responsible for dealing
 * with creating the Testimonials object.
-* @example  [optional]
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author Tekriti Software
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */

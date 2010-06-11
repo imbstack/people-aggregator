@@ -1,30 +1,15 @@
 <?php
 /** !
-<<<<<<< HEAD
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * theme_selecter.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author [original author], [Owen Bell: 3 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * HTML for selecting the theme
-* @example  [optional]
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @package PeopleAggregator
-*/
-=======
-* <filename> is a part of PeopleAggregator.
+* @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
 * @copyright Copyright (c) 2010 Broadband Mechanics
-* @author <creator> , <last modified : date>
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* <description including history>
-* @example  <optional>
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
-?>
-<?php
->>>>>>> a003e71079b6490b904d0d418a45ee9925ab10e8
 include "center_inner_private.tpl";
 ?>
 

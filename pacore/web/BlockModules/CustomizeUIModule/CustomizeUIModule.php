@@ -1,17 +1,19 @@
 <?php
 /** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 * CustomizeUIModule.php is a part of PeopleAggregator.
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @author [original author], [Owen Bell: 2 June 2010]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * This Module is multi-purpose and contains five different sections:
 * -Style Editor
 * -Theme Selector
 * -Background Image
 * -Header Image
 * -Enable Module
-* @example  [optional]
+* It both creates the UI for users to updated the settings for the five parts
+* as well as updating PA to include those changes.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* @author Martin Spernau
+* @license http://bit.ly/aVWqRV PayAsYouGo License
+* @copyright Copyright (c) 2010 Broadband Mechanics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @todo: many functions are quite similar and could possibly be consolidated
 * @package PeopleAggregator
@@ -39,12 +41,21 @@ class CustomizeUIModule extends Module {
         parent::__construct();
     }
 
+    /** !!
+    * Should be used to render the page content but in this instance is not used
+    */
     function render() {
 
         $content = parent::render();
         return $content;
     }
 
+    /** !!
+    * Create the page html, in this case just render a collection of objects
+    * passed to the function in { @link $template_vars }
+    * @param array $template_vars a ciollection of objects to be rendered
+    * @return string $inner_html html for the module
+    */
     function generate_inner_html($template_vars = array()) {
         $inner_html_gen = &new Template($this->inner_template);
         foreach($template_vars as $name=>$value) {
@@ -61,7 +72,9 @@ class CustomizeUIModule extends Module {
 
     /** !!
     * Create a a different set of instruction for what to display/functions to use
-    * based on what part of the UI the user is modifying.
+    * based on what part of the UI the user is modifying. IE if they are modifying
+    * a user, group or network and if they are modifiying theme, bg_image, module,
+    * desktop image or style.
     * @param string $request_method method of request to the server
     * @param array $request_data data form the server, contained information varies
     * 		depending on which UI the user is changing
@@ -134,9 +147,10 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Send information to generate_inner_html about user changes to Theme
-    * @todo: @$request_data is never used
-    * @param array $request_data information for how to adjust the theme
+    * Determine what kind of theme the user is editng (user, group or network)
+    * and send appropriate information to { @link generate_inner_html() } to
+    * create the interface.
+    * @todo: parameter $request_data is never used
     */
     private function setupCustomizeTheme($request_data) {
         switch($this->settings_type) {
@@ -169,8 +183,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Asses user input and send information to generate_inner_html about user
-    * changes to Modules
+    * Gather all modules and their current status (active/inactive and where).
+    * Also check to see if { @link restore_module_settings } is true in which
+    * case return to the past settings by setting values to null. Once all the
+    * data for the different objects to be displayed on the page has been
+    * gathered pass the information into { @link generate_inner_html() }.
     * @param array $request_data contains the different selected Modules
     */
     private function setupCustomizeModuleSettings($request_data) {
@@ -303,10 +320,10 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Asses user changes and send information to generate_inner_html 
-    * about the new Desktop Image settings
-    * @todo: @$request_data is never used
-    * @param array $request_data information for how to adjust desktop image
+    * Determine if the user is editng user, group or network desktop images
+    * and send appropriate information to { @link generate_inner_html() } to
+    * create the interface.
+    * @todo: parameter $request_data is never used
     */
     private function setupCustomizeDesktopImage($request_data) {
         $desktop_image_settings = array();
@@ -354,11 +371,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Asses user changes and send information to generate_inner_html 
-    * about the new Background Image settings
-    * @todo: @$request_data is never used
-    * @param array $request_data information for how to adjust background image
-    */
+    * Create the UI for editing a background image.  User and group in the
+    * switch statement are left empty because a background image is a 
+    * feature of neither. Call { @link generate_inner_html() } with the
+    * information to create the interface.
+    */  
     private function setupCustomizeBackgroundImage($request_data) {
         $desktop_image_settings = array();
         $desktop_image_settings['background_image'] = null;
@@ -379,10 +396,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Asses user changes and send information to generate_inner_html 
-    * about the new Style settings
-    * @todo: @$request_data is never used
-    * @param array $request_data information for how to adjust the style
+    * Assemble all data to create the interface for editing stlyes.  Determine
+    * if the user is editing a user, group or network style and include that
+    * information as well. Send all information to { @link generate_inner_html() }
+    * create the interface.
+    * @todo: parameter $request_data is never used
     */
     private function setupCustomizeStyle($request_data) {
         $css_path = PA::$theme_url.'/';
@@ -472,7 +490,9 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Save the selected theme for feature use as the user/group/network theme
+    * Apply the user selected theme.  Check if this is a user, group, or network
+    * theme being edited and change the settings appropriately. Refresh the
+    * end to display the changed theme.
     * @param array $request_data form contain the theme
     */
     private function handlePOST_applyTheme($request_data) {
@@ -515,6 +535,8 @@ class CustomizeUIModule extends Module {
         unset($request_data['form_data']);
         $this->controller->redirect($this->url);
     }
+
+    // @todo: there is very little different between { @link handlePOST_saveModuleSettings() } and { @link handlePost_exportModuleSettings() }
 
     /** !!
     * Save the selected modules as the future defaults
@@ -588,7 +610,7 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * Export the selected modules so that they will be displayed be default
+    * Export the selected modules so that they will be displayed by default
     * @param array $request_data form contain the modules
     */
     private function handlePOST_exportModuleSettings($request_data) {
@@ -682,9 +704,10 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * resets the module settings to there prior values
-    * @param array $request_data stores the module information
-    */
+    * Set { @link $restore_module_settings } to true and pass the modified
+    * { @link $request_data } into { @link setupCustomizedModuleSettings() }.
+    * This will return the settings to default.
+    */ 
     private function handlePOST_restoreModuleSettings($request_data) {
 
         $this->restore_module_settings = true;
@@ -692,7 +715,9 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * apply the desktop image to the page
+    * Get the uploaded image and give an error if it is empty.  Then check to
+    * see if it is a user, group or network image. Apply it as the desktop 
+    * image of the appropriate type. Finally refresh the page.
     * @param array $request_data contains a from with the desktop image data
     */
     private function handlePOST_applyDesktopImage($request_data) {
@@ -756,7 +781,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * restore the default Desktop image
+    * Set all values in { @link $form_data } to null.  Then change the 
+    * appropriate settings for group or network.  If the change is for a user 
+    * do nothing.  Finally pass the modified { @link $request_data } into 
+    * { @link handlePOST_applyDesktopImage }, because the values are null PA 
+    * will use the defaul settings.
     * @param array $request_data contains the form whose values need to be adjusted
     *		By setting the values to null the default image will be used
     */
@@ -784,7 +813,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * set the user selected background image as the background
+    * Get the uploaded image, giving an error if it is empty.  The switch
+    * statement is left empty for user and group as background image is a
+    * feature of neither.  Redirect to the same url at the end to refresh
+    * the page.
+    * Finally redirct the page to the same url to refresh it with the changes.
     * @param string $request_data contains the from with the image information
     */
     private function handlePOST_applyBackgroundImage($request_data) {
@@ -837,9 +870,13 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * restore the default Background image
-    * @param array $request_data contains the form whose values need to be adjusted
-    *		By setting the values to null the default image will be used
+    * Restore the default background image.  Set appropriate part of 
+    * { @link $request_data } to null which will cause 
+    * { @link handlePOST_applyBackgrondImage() } to use the default
+    * image when it is called. User and group are left blank in the swithc
+    * statement because they do not have background images.
+    * @param array $request_data carries the data telling the server
+    *		reset the style
     */
     private function handlePOST_restoreBackgroundImage($request_data) {
 
@@ -857,7 +894,11 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * set the user selected style
+    * Apply the user selected style.  If { @link $restore_style } is set to null
+    * by { @link handlePOST_restoreStyle() } then PA will default to the old 
+    * style.  After determining what style things are being updated too determine
+    * what style is getting updated (user, group or network) and change the
+    * appropriate settings.  Redirect to the same url to refresh the page when done.
     * @param string $request_data contains the from with the style information
     */
     private function handlePOST_applyStyle($request_data) {
@@ -909,7 +950,9 @@ class CustomizeUIModule extends Module {
     }
 
     /** !!
-    * reset to the default style
+    * Reset to the default style.  Set { @link $restore_style } to true which
+    * will cause { @link handlePOST_applyStyle() } to use the default style
+    * when it is called.
     * @param array $request_data carries the data telling the server
     *		reset the style
     */

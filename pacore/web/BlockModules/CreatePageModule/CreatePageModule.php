@@ -1,5 +1,6 @@
 <?php
 /** !
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 * CreatePageModule.php is a part of PeopleAggregator.
 * Creates the html for the page as a whole, excepting the individual modules
 * being displayed.
