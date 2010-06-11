@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<page>
+  <page_id>32</page_id>
+  <data>
+    <left/>
+    <middle>
+      <item>MediaFullViewModule</item>
+    </middle>
+    <right/>
+    <javascripts/>
+    <page_css/>
+    <page_theme>Default</page_theme>
+    <body_attributes/>
+    <access_permission/>
+    <navigation_code/>
+    <boot_code><![CDATA[
+      if($uid = $app->getRequestParam('uid')) {
+        $user = new User();
+        try {
+          $user->load((int)$uid);
+          $module_shared_data['user_info'] = $user;
+        } catch(Exception $e) {
+          $module_shared_data['user_info'] = null;
+        }
+      }
+      if($gid = $app->getRequestParam('gid')) {
+        try {
+          $group = ContentCollection::load_collection((int)$gid);
+          $module_shared_data['group_info'] = $group;
+        } catch(Exception $e) {
+          $module_shared_data['group_info'] = null;
+        }
+      }
+      if($nid = $app->getRequestParam('nid')) {
+        try {
+          $network = Network::get_by_id((int)$nid);
+          $module_shared_data['network_info'] = $network;
+          $extra = unserialize($network->extra);
+          $module_shared_data['extra'] = $extra;
+        } catch(Exception $e) {
+          $module_shared_data['network_info'] = null;
+          $module_shared_data['extra'] = null;
+        }
+      } else if(!empty(PA::$network_info)) {
+        $module_shared_data['network_info'] = PA::$network_info;
+        $extra = unserialize(PA::$network_info->extra);
+        $module_shared_data['extra'] = $extra;
+      } else {
+        $module_shared_data['network_info'] = null;
+        $module_shared_data['extra'] = null;
+      }
+      if($cid = $app->getRequestParam('cid')) {
+        try {
+          $content = Content::load_content((int)$cid, PA::$login_uid);
+          $module_shared_data['content_info'] = $content;
+          if($content && $content->parent_collection_id!= -1 ) {
+            $ccid = $content->parent_collection_id;
+            $collection = ContentCollection::load_collection((int)$ccid, PA::$login_uid);
+            $module_shared_data['collection'] = $collection;
+            if($collection->type == GROUP_COLLECTION_TYPE) {
+              $module_shared_data['group_info'] = $collection;
+              $is_member = Group::member_exists((int)$ccid, PA::$login_uid);
+              $is_admin = Group::is_admin((int)$ccid, PA::$login_uid);
+              $is_group_content = TRUE;
+              $module_shared_data['is_member'] = $is_member;
+              $module_shared_data['is_admin']  = $is_admin;
+              $module_shared_data['is_group_content'] = $is_group_content;
+              $this->header_template = 'header_group.tpl';  // group header will be user in this case.
+                                                            //its group so lets load group details and group modules
+              $gid = $content->parent_collection_id;
+              $member_type = Group::get_user_type(PA::$login_uid, (int)$gid);
+              $module_shared_data['member_type'] = $member_type;
+              $module_shared_data['members'] = Group::get_member_count($gid);
+              $owner = new User();
+              $owner->load((int)$module_shared_data['group_info']->author_id);
+              $module_shared_data['author_picture'] = $owner->picture;
+              $module_shared_data['author_name'] = $owner->login_name;
+              $module_shared_data['access_type'] = ($module_shared_data['group_info']->reg_type == $module_shared_data['group_info']->REG_OPEN) ? ' Open': ' Moderated';
+              $setting_group_data = ModuleSetting::load_setting(PAGE_GROUP, PA::$login_uid);
+              // $this->setting_data['left'] = $setting_group_data['left'];
+              // $this->setting_data['right'] = $setting_group_data['right'];
+            } else if($collection->type == ALBUM_COLLECTION_TYPE) { 
+              $uid = $content->author_id;
+            }
+          } 
+        } catch(Exception $e) {
+          $module_shared_data['content_info'] = null;
+        }
+      }
+      if(isset($uid)) {
+        uihelper_set_user_heading($this, true, $uid);
+      } else if(isset($gid)) {
+        uihelper_get_group_style($gid);
+      } else {  
+        uihelper_get_network_style();
+      }
+      ]]></boot_code>
+    <page_template>container_one_column_media_gallery.tpl</page_template>
+    <header_template>header_user.tpl</header_template>
+    <page_mode>public</page_mode>
+    <block_type>Homepage</block_type>
+    <page_type>group|user</page_type>
+  </data>
+  <is_configurable>1</is_configurable>
+  <page_name>media_full_view</page_name>
+</page>

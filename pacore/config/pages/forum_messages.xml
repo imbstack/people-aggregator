@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<page>
+  <page_id>20</page_id>
+  <data>
+    <left>
+    </left>
+    <middle>
+      <item>GroupForumPermalinkModule</item>
+    </middle>
+    <right>
+    </right>
+    <javascripts/>
+    <page_css/>
+    <page_theme>Default</page_theme>
+    <body_attributes/>
+    <access_permission/>
+    <navigation_code/>
+    <boot_code><![CDATA[
+      if($uid = $app->getRequestParam('uid')) {
+        $user = new User();
+        try {
+          $user->load((int)$uid);
+          $module_shared_data['user_info'] = $user;
+        } catch(Exception $e) {
+          $module_shared_data['user_info'] = null;
+        }
+      }
+      if($gid = $app->getRequestParam('gid')) {
+        try {
+          $group = ContentCollection::load_collection((int)$gid);
+          $module_shared_data['group_info'] = $group;
+        } catch(Exception $e) {
+          $module_shared_data['group_info'] = null;
+        }
+      }
+      if($nid = $app->getRequestParam('nid')) {
+        try {
+          $network = Network::get_by_id((int)$nid);
+          $module_shared_data['network_info'] = $network;
+          $extra = unserialize($network->extra);
+          $module_shared_data['extra'] = $extra;
+        } catch(Exception $e) {
+          $module_shared_data['network_info'] = null;
+          $module_shared_data['extra'] = null;
+        }
+      } else if(!empty(PA::$network_info)) {
+        $module_shared_data['network_info'] = PA::$network_info;
+        $extra = unserialize(PA::$network_info->extra);
+        $module_shared_data['extra'] = $extra;
+      } else {
+        $module_shared_data['network_info'] = null;
+        $module_shared_data['extra'] = null;
+      }
+      if($cid = $app->getRequestParam('cid')) {
+        try {
+          $content = Content::load_content((int)$cid, PA::$login_uid);
+          $module_shared_data['content_info'] = $content;
+        } catch(Exception $e) {
+          $module_shared_data['content_info'] = null;
+        }
+      }
+      if($uid = $app->getRequestParam('uid')) {
+        uihelper_set_user_heading($this, true, $uid);
+      } else if($gid = $app->getRequestParam('gid')) {
+        uihelper_get_group_style($gid);
+      } else {  
+        uihelper_get_network_style();
+      }
+      ]]></boot_code>
+    <page_template>container_three_column.tpl</page_template>
+    <header_template>header_group.tpl</header_template>
+    <page_mode>public</page_mode>
+    <block_type>Homepage</block_type>
+    <page_type>group</page_type>
+  </data>
+  <page_name>Forum Messages</page_name>
+  <is_configurable>0</is_configurable>
+</page>

@@ -700,7 +700,7 @@
           <value>web/languages</value>
         </PA_LANGUAGES_DIR>
         <DYNAMIC_PAGES_DIR category="constant" type="string" readonly="true" section="site_related" description="Relative path to the configuration XML files for dynamic pages.">
-          <value>web/config/pages</value>
+          <value>config/pages</value>
         </DYNAMIC_PAGES_DIR>
         <server_id category="static_var" type="string" readonly="true" section="site_related" description="server ID (used in 'files/file_sync_state' tables, for file replication).">
           <value>main</value>
