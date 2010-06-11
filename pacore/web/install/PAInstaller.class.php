@@ -167,7 +167,7 @@ class PAInstaller {
       $form->addInputField('text', __('Admin username'),
                              array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : trim($adm_data[1], "'\t ")))
       );
-      $form->addInputField('text', __('Admin password'),
+      $form->addInputField('password', __('Admin password'),
                              array('id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
       );
       $form->addInputField('text', __('Admin email'),
@@ -264,17 +264,31 @@ class PAInstaller {
       $form->openTag('fieldset');
       $form->addContentTag('legend', array('value' => $info['description']));
       $form->addHtml('<div>');
-      $form->addHtml('<p class="inst_info">'.__('Please complete the following information if you have already created a database for People Aggregator application.').'</p>');
+      $form->addHtml('<p class="inst_info">'.__('Please complete the following information so PeopleAggregator can access your database.').'</p>');
+      $form->addInputField('text', __('Database name'),
+                             array('id' => 'db_name', 'required' => true, 'value' => '')
+      );
+      $form->addInputField('text', __('Database host'),
+                             array('id' => 'db_host', 'required' => true, 'value' => '')
+      );
+	/*
       foreach($results as $key => $data) {
         $form->addInputField('text', $data['attributes']['description'],
                              array('id' => $key, 'required' => true, 'value' => $data['value'])
         );
-      }
-      $form->addHtml('<p class="inst_info">'.__('or you can provide bellow MySQL root username/password and People Aggregator will create a database for you.').'</p>');
+      }*/
+      $form->addHtml('<p class="inst_info">'.__('Please provide PeopleAggregator with a MySQL username and password for the database.').'</p>');
+      $form->addInputField('text', __('Database User Name'),
+                             array('id' => 'db_user', 'required' => false, 'value' => '')
+      );
+      $form->addInputField('password', __('Database password'),
+                             array('id' => 'db_password', 'required' => false, 'value' => '')
+      );
+      $form->addHtml('<p class="inst_info">'.__('If you would like PeopleAggregator to create this user for you, please provide your MySQL root password.').'</p>');
       $form->addInputField('text', __('MySQL root username'),
                              array('id' => 'mysql_root_username', 'required' => false, 'value' => '')
       );
-      $form->addInputField('text', __('MySQL root password'),
+      $form->addInputField('password', __('MySQL root password'),
                              array('id' => 'mysql_root_password', 'required' => false, 'value' => '')
       );
       $form->addInputTag('hidden', array('id' => 'section_name', 'value' => $section_name));
