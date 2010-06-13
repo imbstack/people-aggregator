@@ -131,7 +131,7 @@ class PAInstaller {
 
    private function POST_step_2($params) {
       $_SESSION['installer'] = serialize($this);
-      $navid
+      $navid="
               <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
               <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
       ";
@@ -174,7 +174,7 @@ class PAInstaller {
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
        );
       $form->addInputField('checkbox', __('Network Spawning'),
-                             array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked', "'\t ")))
+                             array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
       );
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
@@ -452,3 +452,4 @@ class PAInstaller {
    private function formData($varname) {
       return ((isset($this->form_data[$varname])) ? $this->form_data[$varname] : null);
    }
+}
