@@ -21,7 +21,7 @@ require_once "api/PAException/PAException.php";
 require_once "api/DB/Dal/Dal.php";
 require_once "api/Category/Category.php";
 require_once "api/Invitation/Invitation.php";
-require_once "api/MessageBoard/MessageBoard.php";
+//require_once "api/MessageBoard/MessageBoard.php";
 require_once "api/Access/Access.php";
 require_once "api/Tag/Tag.php";
 require_once "api/api_constants.php";
