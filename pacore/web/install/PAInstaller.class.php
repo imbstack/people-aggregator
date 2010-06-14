@@ -173,8 +173,11 @@ class PAInstaller {
       $form->addInputField('text', __('Admin email'),
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
        );
-      $form->addInputField('checkbox', __('Enable Networks'),
+      $form->addInputField('checkbox', __('Enable Multiple Networks'),
                              array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
+      );
+      $form->addInputField('text', __('Root Subdomain'),
+                             array('id' => 'subdomain', 'required' => true, 'value' => (($is_post) ? $this->form_data['subdomain'] : trim($adm_data[6], "'\t ")))
       );
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
