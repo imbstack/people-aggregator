@@ -131,7 +131,7 @@ class PAInstaller {
 
    private function POST_step_2($params) {
       $_SESSION['installer'] = serialize($this);
-      $navid="
+      $nav ="
               <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
               <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
       ";
@@ -173,7 +173,7 @@ class PAInstaller {
       $form->addInputField('text', __('Admin email'),
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
        );
-      $form->addInputField('checkbox', __('Network Spawning'),
+      $form->addInputField('checkbox', __('Enable Networks'),
                              array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
       );
       $form->addHtml('</div>');
@@ -226,7 +226,7 @@ class PAInstaller {
      $adm_login = $form_data['admin_username'];
      $adm_pass  = $form_data['admin_password'];
      $adm_mail  = $form_data['admin_email'];
-     $allow_network_spawning = $form_data['network_spawning'];
+     $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
 
      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
      $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
@@ -282,10 +282,10 @@ class PAInstaller {
       }*/
       $form->addHtml('<p class="inst_info">'.__('Please provide PeopleAggregator with a MySQL username and password for the database.').'</p>');
       $form->addInputField('text', __('Database User Name'),
-                             array('id' => 'db_user', 'required' => false, 'value' => '')
+                             array('id' => 'db_user', 'required' => true, 'value' => '')
       );
       $form->addInputField('password', __('Database password'),
-                             array('id' => 'db_password', 'required' => false, 'value' => '')
+                             array('id' => 'db_password', 'required' => true, 'value' => '')
       );
       $form->addHtml('<p class="inst_info">'.__('If you would like PeopleAggregator to create this user for you, please provide your MySQL root password.').'</p>');
       $form->addInputField('text', __('MySQL root username'),
@@ -356,8 +356,7 @@ class PAInstaller {
          $app->configData['configuration']['database']['value'][$key]['value'] = $value;
        }
        $app->configData['configuration']['database']['value']['peepagg_dsn']['value'] = $this->config['peepagg_dsn'];
-       $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $allow_network_spawning;
-
+       $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $this->allow_network_spawning;
        $app->configData['configuration']['site_related']['value']['pa_installed']['value'] = 1;
 
        unlink(PA::$project_dir . APPLICATION_CONFIG_FILE);
