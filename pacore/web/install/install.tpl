@@ -5,6 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
   <link rel="stylesheet" type="text/css" href="/install/install.css" media="screen" />
+  <script type="text/javascript" src="<?php echo PA::$theme_url;?>javascript/jquery.js"</script> 
+  <script type="text/javascript" src="<?php echo PA::$theme_url;?>javascript/password_strength/password_stregth_plugin.js"</script> 
+  <link type="text/css" href="<?php echo PA::$theme_url;?>javascript/password_strength/style.css"/>
+  <script> 
+	$(document).ready( function() {
+		$("#admin_password").passStrength({
+			userid:	"#admin_username"
+		});
+	});	
+  </script>
 </head>
 
 <body>
