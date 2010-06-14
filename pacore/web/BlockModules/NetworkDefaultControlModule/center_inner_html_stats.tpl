@@ -126,7 +126,7 @@ $extra = unserialize($mother_network_info->extra);
   <div class="field">
     <input type="checkbox" name="network_content_moderation" value="<?php echo NET_YES;?>"
     <?php if (!empty($form_data) && @$form_data['network_content_moderation'] == NET_YES) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if content moderation is required.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("Content moderation is required.") ?>
   </div>
   <?php if (@$form_data['type'] != MOTHER_NETWORK_TYPE) { ?>
   <div class="field_big">
@@ -142,32 +142,32 @@ $extra = unserialize($mother_network_info->extra);
   <div class="field">
     <input type="checkbox" name="show_people_with_photo" value="<?php echo NET_YES;?>"
     <?php if (@$form_data['show_people_with_photo'] == NET_YES) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if People page should only show users with a profile photo.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("People page should only show users with a profile photo.") ?>
   </div>
   <div class="field">
     <input type="checkbox" name="language_bar_enabled" value="<?= NET_YES ?>" <?php if (@$form_data['language_bar_enabled'] == NET_YES) { echo 'checked="checked"'; }?> />
-    <?= __("Check if you want to enable the languages menu bar.") ?>
+    <?= __("You want to enable the languages menu bar.") ?>
   </div>
  <?php if ($meta_network_reci_relation) {?>    
   <div class="field">
     <input type="checkbox" name="top_navigation_bar" value="<?php echo NET_YES;?>"
     <?php if ($form_data['top_navigation_bar'] == NET_NO) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if top menu bar is not required.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("Top menu bar is not required.") ?>
   </div>
   <div class="field">
     <input type="checkbox" name="reciprocated_relationship" value="<?php echo NET_YES;?>"
     <?php if ($form_data['reciprocated_relationship'] == NET_YES) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if reciprocated relationships are required.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("Reciprocated relationships are required.") ?>
   </div>
   <div class="field">
     <input type="checkbox" name="email_validation" value="<?php echo NET_YES;?>"
     <?php if ($form_data['email_validation'] == NET_YES) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if email address validation is required.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("Email address validation is required.") ?>
   </div>
   <div class="field">
     <input type="checkbox" name="captcha_required" value="<?php echo NET_YES;?>"
     <?php if (@$form_data['captcha_required'] == NET_YES) {
-    echo 'checked="checked"'; }?> /> <?= __("Check if CAPTCHA is required during registration.") ?>
+    echo 'checked="checked"'; }?> /> <?= __("CAPTCHA is required during registration.") ?>
   </div>
   <? } else { ?>
   <div class="field">
