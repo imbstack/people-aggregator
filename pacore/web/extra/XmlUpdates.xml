@@ -60,7 +60,7 @@
             </user_send_message>
     </node_value> 
   </add>
-
+<!--
   <replace>
     <node_value path="//notify_members" descr="2010-05-21 martin: bulk update of user notification settings, also adding in the user2user">
       <invitation_accept>
@@ -115,5 +115,5 @@
       </user_send_message>
     </node_value> 
   </replace>
-
+-->
 </updates>
