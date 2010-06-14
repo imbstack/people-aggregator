@@ -20,6 +20,7 @@ class PAInstaller {
    public  $form_data;
    public  $config;
    public  $allow_network_spawning;
+   public  $subdomain;
    private $steps = array(1 => array('title' => 'License arrangement', 'conf_section' => null, 'curr_status' => false),
                           2 => array('title' => 'Installation requirements test', 'conf_section' => null, 'curr_status' => false),
                           3 => array('title' => 'Setup Administrator account', 'conf_section' => null, 'curr_status' => false),
@@ -163,7 +164,12 @@ class PAInstaller {
       $form->openTag('fieldset');
       $form->addContentTag('legend', array('value' => 'Admin account details'));
       $form->addHtml('<div>');
-      $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account.').'</p>');
+      $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
+      $form->addInputField('text', __('First Name'),
+                             array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : trim($adm_data[3], "'\t ")))
+      );$form->addInputField('text', __('Last Name'),
+                             array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : trim($adm_data[4], "'\t ")))
+      );
       $form->addInputField('text', __('Admin username'),
                              array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : trim($adm_data[1], "'\t ")))
       );
@@ -172,12 +178,16 @@ class PAInstaller {
       );
       $form->addInputField('text', __('Admin email'),
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : trim($adm_data[5], "'\t ")))
-       );
+		     );
+
+      $form->addHtml('<p class="inst_info">'.__('Enable multiple networks should be checked if you want users to be able to create sub-networks').'</p>');
       $form->addInputField('checkbox', __('Enable Multiple Networks'),
                              array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
-      );
+		     );
+
+      $form->addHtml('<p class="inst_info">'.__('Your root network will be accessed through this subdomain ex. <code> subdomain.example.com </code>').'</p>');
       $form->addInputField('text', __('Root Subdomain'),
-                             array('id' => 'subdomain', 'required' => true, 'value' => (($is_post) ? $this->form_data['subdomain'] : trim($adm_data[6], "'\t ")))
+                             array('id' => 'subdomain', 'required' => true, 'value' => (($is_post) ? $this->form_data['subdomain'] : ''))
       );
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
@@ -204,6 +214,12 @@ class PAInstaller {
      $error = false;
      $errors = array();
 
+     if(empty($form_data['admin_first'])) {
+	     $form_data['admin_first'] = "Admin";
+     }
+     if(empty($form_data['admin_last'])) {
+	     $form_data['admin_last'] = "Peepagg";
+     }
      if(!Validation::validate_auth_id($form_data['admin_username']) || empty($form_data['admin_username'])) {
        $error = true;
        $errors[] = __("Invalid or empty user name.");
@@ -227,13 +243,16 @@ class PAInstaller {
      }
 
      $adm_login = $form_data['admin_username'];
+     $adm_first = $form_data['admin_first'];
+     $adm_last = $form_data['admin_last'];
      $adm_pass  = $form_data['admin_password'];
      $adm_mail  = $form_data['admin_email'];
      $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
+     $this->subdomain = $form_data['subdomain'];
 
      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
      $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
-     $newLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '$adm_login', '".md5($adm_pass)."', 'Admin', 'PeepAgg', '$adm_mail', 1, NULL, ".time().", ".time().", ".time().", NULL);";
+     $newLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '$adm_login', '".md5($adm_pass)."', '$adm_first', '$adm_last', '$adm_mail', 1, NULL, ".time().", ".time().", ".time().", NULL);";
 
      if($this->replaceLine($fileName, $oldLine, $newLine)) {
       $params['message']['msg'] = __("Administrator account data sucessfully stored. Click 'Next' please...");
@@ -359,6 +378,7 @@ class PAInstaller {
          $app->configData['configuration']['database']['value'][$key]['value'] = $value;
        }
        $app->configData['configuration']['database']['value']['peepagg_dsn']['value'] = $this->config['peepagg_dsn'];
+       $app->configData['configuration']['basic_network_settings']['value']['domain_prefix']['value'] = $this->subdomain;
        $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $this->allow_network_spawning;
        $app->configData['configuration']['site_related']['value']['pa_installed']['value'] = 1;
 
@@ -440,7 +460,6 @@ class PAInstaller {
 
    private function findLine($fileName, $rexp) {
      $lines = @file($fileName);
-//echo "$fileName, $rexp<pre>" . print_r($lines,1) . "</pre>"; die();
      $matches = array();
      if(count($lines) <= 1) return array(false, null, null);
      for($i = 0; $i < count($lines); ++$i) {

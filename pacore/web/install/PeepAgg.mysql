@@ -169,24 +169,24 @@ KEY `user_badges` (`is_active`,`user_id`,`badge_tag`)
 -- Last update: Jul 13, 2009 at 05:30 PM
 --
 
- CREATE TABLE IF NOT EXISTS `boardmessages` (
-  `boardmessage_id` int(11) NOT NULL auto_increment,
-  `title` varchar(255) NOT NULL default '',
-  `body` longtext,
-  `created` int(11) default '0',
-  `changed` int(11) default '0',
-  `user_id` int(11) default '0',
-  `allow_anonymous` tinyint(1) default '1',
-  `user_name` varchar(100) default NULL,
-  `email` varchar(100) default NULL,
-  `homepage` varchar(255) default NULL,
-  `parent_id` int(11) default '0',
-  `parent_type` varchar(50) default NULL,
-  PRIMARY KEY  (`boardmessage_id`),
-  KEY `parent_id` (`parent_id`),
-  KEY `parent_type` (`parent_type`),
-  KEY `user_id` (`user_id`)
- ) TYPE=MyISAM AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `boardmessages` (
+`boardmessage_id` int(11) NOT NULL auto_increment,
+`title` varchar(255) NOT NULL default '',
+`body` longtext,
+`created` int(11) default '0',
+`changed` int(11) default '0',
+`user_id` int(11) default '0',
+`allow_anonymous` tinyint(1) default '1',
+`user_name` varchar(100) default NULL,
+`email` varchar(100) default NULL,
+`homepage` varchar(255) default NULL,
+`parent_id` int(11) default '0',
+`parent_type` varchar(50) default NULL,
+PRIMARY KEY  (`boardmessage_id`),
+KEY `parent_id` (`parent_id`),
+KEY `parent_type` (`parent_type`),
+KEY `user_id` (`user_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `boardmessages`
@@ -2986,7 +2986,7 @@ KEY `email` (`email`)
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'brian', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'PeepAgg', 'admin@admin.admin', 1, NULL, 1276468424, 1276468424, 1276468424, NULL);
+INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'brian', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'Peepagg', 'admin@admin.admin', 1, NULL, 1276497588, 1276497588, 1276497588, NULL);
 
 -- --------------------------------------------------------
 
