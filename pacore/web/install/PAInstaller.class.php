@@ -175,7 +175,7 @@ class PAInstaller {
       );
       $form->addInputField('password', __('Admin password'),
                              array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
-      );
+		     );
       $form->addInputField('text', __('Admin email'),
                              array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : ""))
 		     );
@@ -185,10 +185,10 @@ class PAInstaller {
                              array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
 		     );
 
-      $form->addHtml('<p class="inst_info">'.__('Your root network will be accessed through this subdomain ex. <code> subdomain.example.com </code>').'</p>');
+      $form->addHtml('<p class="inst_info">'.__('Your root network will be accessed through this subdomain. It comes before the first "." in  <code>'.$_SERVER['SERVER_NAME'].'</code>').'</p>');
       $form->addInputField('text', __('Root Subdomain'),
                              array('id' => 'subdomain', 'required' => true, 'value' => (($is_post) ? $this->form_data['subdomain'] : ''))
-      );
+		     );
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
       $html = $form->getHtml();

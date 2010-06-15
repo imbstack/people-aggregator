@@ -2986,7 +2986,7 @@ KEY `email` (`email`)
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'brian', '29685a76e91450d0092d9acc717dc272', 'Admin', 'Peepagg', 'admin@admin.admin', 1, NULL, 1276550539, 1276550539, 1276550539, NULL);
+INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'Peepagg', 'admin@admin.admin', 1, NULL, 1276571798, 1276571798, 1276571798, NULL);
 
 -- --------------------------------------------------------
 
