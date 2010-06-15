@@ -46,6 +46,7 @@ fieldset input {
   border: 1px solid #aaa;
   padding: 1px;
   margin-bottom: 2px;
+  float: left;
 }
 
 fieldset label {
@@ -73,6 +74,7 @@ h3 {
 .inst_info {
   color: #005ebd;
   padding: 0px;
+  float: left;
 }
 
 #inst_top {
@@ -217,3 +219,5 @@ h3 {
 .clear {
   clear: both
 }
+
+

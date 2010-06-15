@@ -1,3 +1,4 @@
+/*
 td label{
 	font-size:14px;
 	font-weight:bold;
@@ -12,7 +13,9 @@ input{
 	font-weight: bold;
 	color:#666;
 	padding:7px 0 0 4px;
+	float: left;
 }
+*/
 
 /*  ADVANCED STYLES */
 .top_testresult{
@@ -66,15 +69,15 @@ input{
 	font-weight: bold;
 	font-size:13px;
 	font-family: arial,helvetica,san-serif;
-	color:#666;
+	color:#555;
 	padding:0px 0px 12px 10px;
-	margin-left:10px;
+	margin-left:0px;
 	display: block;
-	height:28px;
+	height:10px;
 	float:left;
 }
 .testresult span{
-	padding:10px 20px 12px 10px;
+	padding:3px 20px 12px 10px;
 	margin: 0px 0px 0px 20px;
 	display:block;
 	float:right;

@@ -35,7 +35,7 @@
 	$.fn.badPass = 'Weak';
 	$.fn.goodPass = 'Good';
 	$.fn.strongPass = 'Strong';
-	$.fn.samePassword = 'Username and Password identical.';
+	$.fn.samePassword = 'Username is Password';
 	$.fn.resultStyle = "";
 	
 	 $.fn.passStrength = function(options) {  
