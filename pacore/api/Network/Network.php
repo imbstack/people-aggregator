@@ -780,10 +780,10 @@ class Network {
     //2. (deleted)
 
     //3. make PeepAgg.mysql for network and copy it here
-    if(file_exists(PA::$project_dir . '/db/PeepAgg_tmpl.mysql')) {
-       $source = PA::$project_dir . '/db/PeepAgg_tmpl.mysql';
-    } else if(file_exists(PA::$core_dir . '/db/PeepAgg_tmpl.mysql')) {
-       $source = PA::$core_dir . '/db/PeepAgg_tmpl.mysql';
+    if(file_exists(PA::$project_dir . 'api/DB/PeepAgg_tmpl.mysql')) {
+       $source = PA::$project_dir . 'api/DB/PeepAgg_tmpl.mysql';
+    } else if(file_exists(PA::$core_dir . 'api/DB/PeepAgg_tmpl.mysql')) {
+       $source = PA::$core_dir . 'api/DB/PeepAgg_tmpl.mysql';
     }
     $destination = $network_dir.'/PeepAgg.mysql';
     if($handle = @fopen($source, "r")) {
