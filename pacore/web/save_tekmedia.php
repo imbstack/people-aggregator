@@ -15,7 +15,7 @@ $login_required = TRUE;
 $use_theme = 'Beta';//TODO : Remove this when new UI is completely implemented.
 include "includes/page.php";
 //require_once PA::$path.'';
-require_once 'ext/TekVideo/TekVideo.php';
+require_once 'api/TekVideo/TekVideo.php';
 require_once 'api/Activities/Activities.php';
 require_once 'web/includes/functions/auto_email_notify.php';
 global $network_prefix, $domain_suffix, $activities_array;

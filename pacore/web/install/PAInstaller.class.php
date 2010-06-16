@@ -374,6 +374,9 @@ class PAInstaller {
 
    private function updateSettings() {
     global $app;
+       // We don't need to store the MySQL root un/pw, so un-set it from the config array.
+       unset($this->config['database']['mysql_root_password'], $this->config['database']['mysql_root_username']);
+       
        foreach($this->config['database'] as $key => $value) {
          $app->configData['configuration']['database']['value'][$key]['value'] = $value;
        }
