@@ -116,4 +116,11 @@
     </node_value> 
   </replace>
 -->
+
+  <add>
+    <node_value path="//configuration/site_related/value/simple/value" descr="2010-06-16 martin adding in the BOOL for show/hide of Family feature">
+            <use_families>0</use_families>
+    </node_value> 
+  </add>
+
 </updates>
