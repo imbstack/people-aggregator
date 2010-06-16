@@ -1322,51 +1322,56 @@
         </notify_owner>
         <notify_members category="item" type="array" readonly="false" section="network_defaults" description="Default member notification settings.">
           <value>
-            <invitation_accept>
-              <caption>join network invitations have been accepted.</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </invitation_accept>
-            <invite_accept_group>
-              <caption>join group invitations have been accepted.</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </invite_accept_group>
-            <relationship_created_with_other_member>
-              <caption>someone has made them a friend or other kind of relation</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </relationship_created_with_other_member>
-            <someone_join_their_group>
-              <caption>someone has joined a group they created</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </someone_join_their_group>
-            <friend_request_sent>
-              <caption>someone has sent them a friend request</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </friend_request_sent>
-            <friend_request_approved>
-              <caption>someone has approve your friend request</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </friend_request_approved>
-            <friend_request_denial>
-              <caption>someone has denied to be their friend</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </friend_request_denial>
-            <bulletin_sent>
-              <caption>network operator has sent a bulletin</caption>
-              <value>0</value>
-              <user_settable>1</user_settable>
-            </bulletin_sent>
-            <welcome_message>
-              <caption>Welcome message</caption>
-              <value>1</value>
-              <user_settable>0</user_settable>
-            </welcome_message>
+      <invitation_accept>
+        <caption>their invitation to join the network has been accepted</caption>
+        <value>2</value>
+        <user_settable>1</user_settable>
+      </invitation_accept>
+      <relationship_created_with_other_member>
+        <caption>someone has made them a friend or other kind of relation</caption>
+        <value>0</value>
+        <user_settable>0</user_settable>
+      </relationship_created_with_other_member>
+      <someone_join_their_group>
+        <caption>someone has joined a group they created</caption>
+        <value>2</value>
+        <user_settable>1</user_settable>
+      </someone_join_their_group>
+      <friend_request_sent>
+        <caption>someone has sent them a friend request</caption>
+        <value>3</value>
+        <user_settable>1</user_settable>
+      </friend_request_sent>
+      <friend_request_denial>
+        <caption>someone has denied to be their friend</caption>
+        <value>0</value>
+        <user_settable>1</user_settable>
+      </friend_request_denial>
+      <bulletin_sent>
+        <caption>network operator has sent a bulletin</caption>
+        <value>3</value>
+        <user_settable>1</user_settable>
+      </bulletin_sent>
+      <welcome_message>
+        <caption>Welcome message</caption>
+        <value>1</value>
+        <user_settable>0</user_settable>
+      </welcome_message>
+      <invite_accept_group>
+        <caption>their invitation to join a group has been accepted</caption>
+        <value>2</value>
+        <user_settable>1</user_settable>
+      </invite_accept_group>
+      <friend_request_approved>
+        <caption>someone has approved their friend request</caption>
+        <value>2</value>
+        <user_settable>1</user_settable>
+      </friend_request_approved>
+      <user_send_message>
+        <caption>another user sends a message</caption>
+        <value>2</value>
+        <user_settable>1</user_settable>
+      </user_send_message>
           </value>
         </notify_members>
         <user_defaults category="item" type="array" readonly="false" section="network_defaults" description="User defaults.">
