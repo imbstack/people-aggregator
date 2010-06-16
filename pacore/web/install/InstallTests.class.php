@@ -15,7 +15,7 @@ require_once "HTTP/Client.php";
 
 class InstallTests
 {
-    private $writable_dirs = array('log', 'networks', 'web/files', 'web/cache', 'web/sb-files', 'config');
+    private $writable_dirs = array('log', 'networks', 'config', 'web/files', 'web/cache');
     private $writable_files = array('web/install/PeepAgg.mysql');
     private $test_type;
     private $test_data;
