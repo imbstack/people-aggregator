@@ -14,7 +14,7 @@
 
 require_once "api/Image/Image.php";
 require_once "api/Audio/Audio.php";
-require_once "ext/TekVideo/TekVideo.php";
+require_once "api/TekVideo/TekVideo.php";
 
 
 class ImagesModule extends Module {

@@ -44,15 +44,14 @@ class ConfigManagerModule extends Module {
 
         global $app, $error_msg;
         if(!isset($this->sections[$config_sect])) {
-            $error_msg = __('Section does not exists!');
+            $error_msg = __('Section does not exist!');
             return "skip";
         }
         $section = $this->sections[$config_sect];
         $condition = '@readonly=\'false\'';
-        if($manage_mode == 1) {
-            // super user mode
-                $condition = null;
-            }
+        if ($manage_mode == 1) {
+        	// super user mode
+        	$condition = null;
         }
         list($info, $data) = $app->configObj->getConfigSection($section, $condition);
         //echo "<pre>" . print_r($data,1) . "</pre>";
@@ -189,19 +188,17 @@ class ConfigManagerModule extends Module {
                             $inp_type += 1;
                             $tag_name = "form_data[$this->section]".implode('', $keys);
                             $tag_id = preg_replace('/[\[\]]+/', '_', implode('', $keys));
-                            if(is_numeric($item)) {
-                                // override length for numeric values {
-                                    $len = 72;
-                                }
+                            if (is_numeric($item)) {
+                            	// override length for numeric values {
+                              $len = 72;
                             }
                             $form->addContentTag('label', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name))), 'style'=>'display: block; color: #35558c'));
-                            if($type == 'bool') {
+                            if ($type == 'bool') {
                                 $form->addContentTag('label', array('value'=>'On', 'style'=>'display: inline; color: #f00'));
                                 $form->addHtml("<input type='radio' value='1' name='$tag_name' id='{$tag_id}on' ".(($item == 1) ? 'checked' : '')." />");
                                 $form->addContentTag('label', array('value'=>'Off', 'style'=>'display: inline; color: #f00'));
                                 $form->addHtml("<input type='radio' value='0' name='$tag_name' id='{$tag_id}off' ".(($item == 0) ? 'checked' : '')." />");
-                            }
-                            else {
+                            } else {
                                 $form->addInputTag($input_types[$inp_type], array('name'=>$tag_name, 'id'=>$tag_id, 'value'=>$item, 'style'=>"width: {$len}px; border: 1px solid silver"));
                             }
                             $form->addHtml('<br />');

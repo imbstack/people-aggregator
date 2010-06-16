@@ -304,11 +304,13 @@ class Navigation {
                                   'url'=>$this->base_url.PA_ROUTE_TYPED_DIRECTORY
                               ),
     										);
-    	$level_2 = $level_2 + array(
+			if (!empty(PA::$config->simple['use_families'])) {
+    		$level_2 = $level_2 + array(
                        'families' => array('caption'=>__('Neighbors'),
                                   'url'=>$this->base_url.PA_ROUTE_FAMILY_DIRECTORY
                               ),
     										);
+			}
 
     }
     
@@ -364,6 +366,7 @@ class Navigation {
                                   ),
                                   );
 
+			if (!empty(PA::$config->simple['use_families'])) {
 		// get this users Family or Families
 		require_once "api/Entity/TypedGroupEntityRelation.php";
 		$userfamilyRelations = TypedGroupEntityRelation::get_relation_for_user($uid, 'family');
@@ -376,7 +379,6 @@ class Navigation {
 			$html = "<ul>";
 			foreach($userfamilyRelations as $i=>$relation) {
 				$group = ContentCollection::load_collection((int)$relation->object_id, PA::$login_uid);
-// echo "<pre>".print_r($group, 1)."</pre>";exit;
 				$html .= "<li>";
 				$html .= "<a href=\"".
 					$this->base_url. PA_ROUTE_FAMILY . "?gid=" . $relation->object_id
@@ -389,6 +391,7 @@ class Navigation {
     	'html' => $html
     	));
 		}
+	} // end of !empty(PA::$config->simple['use_families'])
 
     $user_children = $user_children + array(
                        'settings' => array('caption'=>__('Edit My Account'),

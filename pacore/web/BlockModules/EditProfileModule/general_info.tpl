@@ -48,7 +48,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
       }
     }
 
-    // here we can define fields which has permission to everybody
+    // here we can define fields which have permission for everybody
     $copy_over = Array('user_caption_image', 'desktop_image_action', 'desktop_image_display');
     foreach($copy_over as $f) {
       $_POST[$f] = $user_data_general[$f];
@@ -75,6 +75,9 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
 ?>
 
   <h1><?= __("General Info") ?></h1>
+  <?php
+  if (!empty(PA::$config->simple['use_families'])) {
+  ?>
 <div>
 		<form action="<?=PA::$url.PA_ROUTE_FAMILY_EDIT?>">
 <fieldset>	<div style="float:right;">
@@ -91,7 +94,7 @@ if (isset($_POST['submit']) && ($_POST['profile_type'] == 'general')) {
 </fieldset>
 		</form>
 </div>
-
+<?php } ?>
       <form enctype="multipart/form-data" name="drop_list" action="" method="post">
         <fieldset>
           <div class="field">

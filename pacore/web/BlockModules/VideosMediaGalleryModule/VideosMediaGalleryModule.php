@@ -25,7 +25,7 @@
  *
  */
 require_once PA::$blockmodule_path."/MediaGalleryModule/MediaGalleryModule.php";
-require_once "ext/TekVideo/TekVideo.php";
+require_once "api/TekVideo/TekVideo.php";
 
 class VideosMediaGalleryModule extends MediaGalleryModule {
 

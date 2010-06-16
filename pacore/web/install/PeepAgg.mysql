@@ -2986,7 +2986,11 @@ KEY `email` (`email`)
 -- Dumping data for table `users`
 --
 
+<<<<<<< HEAD
 INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'owenbell', 'db9a47fc531d3d6ee38707d7ca448f9a', 'Owen', 'Bell', 'admin@admin.admin', 1, NULL, 1276548590, 1276548590, 1276548590, NULL);
+=======
+INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'Peepagg', 'admin@admin.admin', 1, NULL, 1276571798, 1276571798, 1276571798, NULL);
+>>>>>>> 739659026d198f3755d4fdab9d8486e156207149
 
 -- --------------------------------------------------------
 

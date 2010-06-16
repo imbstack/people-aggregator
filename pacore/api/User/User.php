@@ -1416,22 +1416,13 @@ class User {
       $status = 0;
       $forgot_password_id = md5(uniqid(rand()));
 
-      //print "FORGOT::".$forgot_password_id; exit;
       // insert data into the database
       $sql = 'INSERT into {forgot_password} (user_id, forgot_password_id, status) values (?, ?, ?)';
       $data = array($user_id, $forgot_password_id, $status);
       $res = Dal::query($sql, $data);
-      //print "FORGOT after::".$forgot_password_id; print_r($sql); exit;
-//      $change_password_url = PA::$url.'/'.FILE_CHANGE_PASSWORD.'?log_nam='.$user_name.'&amp;uid='.$user_id.'&amp;forgot_password_id='.$forgot_password_id;
       $chng_psw_url = PA::$url.'/'.FILE_CHANGE_PASSWORD.'?log_nam='.$user_name.'&amp;uid='.$user_id.'&amp;forgot_password_id='.$forgot_password_id;
       $change_password_url = "<a href=\"$chng_psw_url\">$chng_psw_url</a>";
 
-/*
-      $array_of_data = array('first_name'=> $first_name, 'last_name'=> $last_name, 'config_site_name'=> PA::$site_name, 'user_name'=> $user_name, 'user_id'=> $user_id, 'change_password_url'=>$change_password_url);
-
-      // calling common mailing method using flag (type=forgot_password)
-      $check = pa_mail($email, 'forgot_password', $array_of_data);
-*/
       $forg_user = new User();
       $forg_user->load((int)$user_id);
       $check = PAMail::send('forgot_password', $forg_user, PA::$network_info, array('change_password_url'=>$change_password_url));

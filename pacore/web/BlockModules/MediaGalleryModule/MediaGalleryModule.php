@@ -31,7 +31,7 @@
  * @package BlockModules
  * @subpackage MediaGalleryModule
  */
-require_once "ext/TekVideo/TekVideo.php";
+require_once "api/TekVideo/TekVideo.php";
 class MediaGalleryModule extends Module {
 
   public $module_type = 'user|group|network';

@@ -536,11 +536,12 @@ To view or listen to %content.author.display_name%'s media item, go to:<br />
 <br />
 To moderate this %content.author.display_name%'s media, go to the %content.moderation_link%<br />
 <br />
-Regards,<br />
-The %config_site_name% Team  <br />
 <br />
-<br /> Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
+Best regards,
+<br />
+<br />
+The %config_site_name% Team
+<br /><br />
 ]]></message>
     <description>Media Uploaded Notification Mail</description>
     <configurable_variables>
@@ -582,12 +583,12 @@ To moderate this %content.author.display_name%'s media, go to the %content.moder
 <br />
 To view Group where media uploaded click here %group.link%<br />
 <br />
-
-Regards,<br />
-The %config_site_name% Team  <br />
 <br />
-<br /> Everyone at %config_site_name% respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-
+Best regards,
+<br />
+<br />
+The %config_site_name% Team
+<br /><br />
 ]]></message>
     <description>Group Media Uploaded Notification Mail</description>
     <configurable_variables>
@@ -1260,7 +1261,6 @@ Activate your %config_site_name% account by clicking the following link:
 Regards,<br />
 The %config_site_name% Team
 <br />
-
 ]]></message>
      <description>Account Activation Email</description>
     <configurable_variables>
