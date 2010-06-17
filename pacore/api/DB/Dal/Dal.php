@@ -305,8 +305,12 @@ class Dal {
     if (!$pattern) {
       $new_table = $table;
     } else {
-      // expand /%...%/ strings in pattern to generate the table name.
-      $new_table = str_replace("/%db%/", CURRENT_DB,
+	    // expand /%...%/ strings in pattern to generate the table name.
+	    // this wasnt working before with CURRENT_DB, but it now checks in 
+	    // AppConfig.xml everytime. This is not an optimal method in terms 
+	    // of performance, but it will work for now.
+	    // @todo figure out why CURRENT_DB isn't set here
+      $new_table = str_replace("/%db%/", PA::$config->db_name,
 			       str_replace("/%network_name_%/", $net_name_, $pattern));
     }
 
