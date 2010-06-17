@@ -15,7 +15,7 @@ $login_required = TRUE;
 $use_theme = 'Beta';//TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 
-require_once 'ext/TekVideo/TekVideo.php';
+require_once 'api/TekVideo/TekVideo.php';
 
 if($_GET['status'] == 'TRUE') {
   $network_extra = unserialize(PA::$network_info->extra);
