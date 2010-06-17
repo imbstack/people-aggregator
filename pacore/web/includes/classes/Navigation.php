@@ -269,7 +269,6 @@ class Navigation {
     } else if ((Network::is_admin($this->network_info->network_id, (int)$user_id)) ||
                 // fix by Z.Hron - on David's suggestion: User with any administration task should be able to access to Configure Network.
 	    (($user_id > 0) and Roles::check_administration_permissions((int)$user_id))) {
-			 echo $user_id;
      			 $level_1['configure_network'] = array('caption'=>__('Configure'),
                                                 'url'=>$this->base_url . PA_ROUTE_CONFIGURE_NETWORK
                                               );
