@@ -24,7 +24,6 @@ include dirname(__FILE__) . "/../autoload.inc.php";
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PA.class.php";
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/BootStrap.class.php";
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PADispatcher.class.php";
-require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PADefender.class.php";
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PADownloadManager.class.php";
 require_once dirname(__FILE__) . "/../pacore/api/Profiler/PAProfiler.class.php";
 

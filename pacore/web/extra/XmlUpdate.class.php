@@ -109,7 +109,10 @@ class XmlUpdate extends XmlConfig {
        }
        else
        {
-          throw new XmlConfigException("Can't resolve XPath: '$path'", 'delete', $this);
+          // throw new XmlConfigException("Can't resolve XPath: '$path'", 'delete', $this);
+          $this->db_update_obj->note("XML config data patch - '$descr' - FAILED: Can't resolve XPath: '$path' - maybe it was already applied once?");
+          Dal::query('INSERT INTO mc_db_status SET stmt_key=?', Array($descr));
+          return false;
        }
        
        $node->parentNode->removeChild($node);

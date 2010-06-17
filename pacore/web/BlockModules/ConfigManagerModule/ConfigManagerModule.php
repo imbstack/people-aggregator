@@ -14,7 +14,6 @@
 
 error_reporting(E_ALL);
 require_once 'web/includes/classes/PAForm.class.php';
-require_once 'web/includes/classes/PADefender.class.php';
 require_once 'api/PAException/PAException.php';
 
 class ConfigManagerModule extends Module {
@@ -376,7 +375,6 @@ class ConfigManagerModule extends Module {
     */
     function initializeModule($request_method, $request_data) {
 
-        PADefender::setMode(PADefender::suspended);
         $this->manage_mode = (isset($request_data['mmode'])) ? $request_data['mmode'] : 0;
         $this->config_sect = (isset($request_data['sect'])) ? $request_data['sect'] : 0;
         $this->mode_tag = xHtml::selectTag(array('normal'=>'0', 'expert'=>'1'), array('id'=>'mmode', 'name'=>'mmode'), $this->manage_mode);
