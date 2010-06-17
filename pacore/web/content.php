@@ -9,8 +9,6 @@
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
-?>
-<?php
 
 $login_required = FALSE;
 
