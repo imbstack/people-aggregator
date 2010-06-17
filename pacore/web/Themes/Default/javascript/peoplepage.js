@@ -10,7 +10,7 @@ element = element.offsetParent;
 return coords;
 }
 
-    $("div[@id^='imgcontainer_']").hover(
+    /* $("div[@id^='imgcontainer_']").hover(
       function(){
         var obj_id     = "#"+this.getAttribute('id');
         var oid = this.getAttribute('id').replace(/imgcontainer_/,'');
@@ -40,7 +40,7 @@ return coords;
         var tooltip_id = "#tooltip_" + this.getAttribute('id').replace(/imgcontainer_/,'');
         $(tooltip_id).hide();
       }
-    );
+    );*/
 
     $("#chbox_no_photo_ok").click(
       function() {
