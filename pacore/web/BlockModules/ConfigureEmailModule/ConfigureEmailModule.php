@@ -2,7 +2,7 @@
 /** !
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * ConfigureEmailModule.php is a part of PeopleAggregator.
-* Create the html for all emails that are sent by PA
+* Create the Configure Email page that will be used by the admin
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @author Martin Spernau
 * @license http://bit.ly/aVWqRV PayAsYouGo License
@@ -36,11 +36,11 @@ class ConfigureEmailModule extends Module {
   }
 
   /** !!
-  * Get the template that will be used for the email. Get list of containers
-  * that will be used for the email by calling { @link getEmailContainers() }
-  * and placing it in { @link $template_list }. Take all data about the email 
-  * such as message and author as well as the template to be used from
-  * { @link $template_list } and place it into ( @link $obj_inner_template }.
+  * Gather the list of all email templates to be displayed on the drop down
+  * menu by calling { @link getEmailContainers() } and placing it in 
+  * { @link $template_list }. Once a template has been selected create objects
+  * to store all information for the email such as author and subject and place
+  * them into ( @link $obj_inner_template }.
   * @return string $inner_html all the html to be displayed in the email,
   *		gathered by setting this equal to { @link $obj_inner_template }
   */
@@ -70,7 +70,7 @@ class ConfigureEmailModule extends Module {
 
   /** !!
   * Compile a list of all email containers in a specific location
-  * dicated by { @link $path }
+  * dicated by { @link $path }.
   * @param string $path the path to a collection of email containers
   * @return string $email_containers all containers in the location
   */
