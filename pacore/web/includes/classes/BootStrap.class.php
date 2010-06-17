@@ -13,7 +13,6 @@
 <?php
 require_once "api/Logger/Logger.php";
 require_once "web/includes/classes/XmlConfig.class.php";
-require_once "web/includes/classes/PADefender.class.php";
 
 /**
  * @class BootStrap
@@ -57,8 +56,6 @@ class BootStrap {
  public  $configData;
  public  $upload_max_filesize;
 
- private $defend_rules;
-
    public function __construct($install_dir, $current_route, $route_query_str) {
 
     $this->current_route = $current_route;
@@ -66,8 +63,6 @@ class BootStrap {
     $this->debug = false;
     $this->install_dir = $install_dir;
     $this->killSlashes();
-    $defendObj = new XmlConfig(getShadowedPath('config/defend_rules.xml'), 'rules');
-    $this->defend_rules = $defendObj->asArray();
     $this->collectSystemData();
     if($this->debug) {
       echo "<pre>" . print_r($this,1) . "</pre>";
@@ -496,19 +491,12 @@ class BootStrap {
   **/
   private function afterParse() {
     require_once "web/includes/functions/functions.php";
-      if(PA::$profiler) PA::$profiler->startTimer('PADefender');
 //
 // QUESTION: Whether "post" and "get" data should be filtered here for all requests?
 //
 //      filter_all_post($_GET);
 //      filter_all_post($_POST);
 //      filter_all_post($_REQUEST);
-
-      PADefender::testArrayRecursive($_GET, $this->defend_rules);
-      PADefender::testArrayRecursive($_POST, $this->defend_rules);
-      PADefender::testArrayRecursive($_REQUEST, $this->defend_rules);
-
-      if(PA::$profiler) PA::$profiler->stopTimer('PADefender');
 
     // Path to performance log file for detailed performance logging - for spam debugging.
     if(isset(PA::$config->perf_log) && (!empty(PA::$config->perf_log))) {

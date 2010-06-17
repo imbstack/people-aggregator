@@ -232,13 +232,6 @@
     **/
     "^/configure/system[/]?(.*)$" => "/dynamic.php?page_id=737&%s",
 
-    /**
-    *
-    *  /configure/defender* -> dynamic.php?page_id=738&*
-    *
-    *
-    **/
-    "^/configure/defender[/]?(.*)$" => "/dynamic.php?page_id=738&%s",
 
     /**
     *
@@ -398,7 +391,6 @@ define("PA_ROUTE_CUSTOMIZE_GROUP_GUI", "/group/customize");
 define("PA_ROUTE_CUSTOMIZE_NETWORK_GUI", "/configure/network");
 define("PA_ROUTE_CONFIGURE_NETWORK", "/configure/network");     // refactoring for this page not finished!
 define("PA_ROUTE_CONFIGURE_SYSTEM", "/configure/system");       // ConfigManager page
-define("PA_ROUTE_CONFIGURE_DEFENDER", "/configure/defender");   // Configure PADefender page
 
 define("PA_ROUTE_LEADER_BOARD", "/leaderboard");
 define("PA_ROUTE_HOME_PAGE", "/home");

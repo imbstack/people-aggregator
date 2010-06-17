@@ -171,7 +171,6 @@
        $app->detectDBSettings();
        $app->getCurrentUser();
 
-       PADefender::setMode(PA::$config->pa_defender_mode);       // restore PADefender mode if changed within a script or module
 
        if (($script != 'web/dologin.php') && (PA::$login_uid != SUPER_USER_ID) && (SITE_UNDER_MAINTAINENCE == 1))
        {
