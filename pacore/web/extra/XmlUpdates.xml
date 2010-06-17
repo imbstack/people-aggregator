@@ -123,4 +123,11 @@
     </node_value> 
   </add>
 
+  <remove>
+    <node_value path="//configuration/site_related/value/pa_defender_mode" descr="2010-06-17 martin: removing PaDefender related things, py_defender_mode."/>
+  </remove>
+  <remove>
+    <node_value path="//configuration/pages/value/PAGE_CONFIGURE_DEFENDER" descr="2010-06-17 martin: removing PaDefender related things, PAGE_CONFIGURE_DEFENDER."/>
+  </remove>
+
 </updates>

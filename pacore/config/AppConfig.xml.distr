@@ -327,9 +327,6 @@
         <PAGE_CONFIG_MANAGER category="constant" type="int" readonly="true" section="pages" page_name="PA Configruation Manager" page_type="network">
           <value>737</value>
         </PAGE_CONFIG_MANAGER>
-        <PAGE_CONFIGURE_DEFENDER category="constant" type="int" readonly="true" section="pages" page_name="PADefender Configruation Manager" page_type="network">
-          <value>738</value>
-        </PAGE_CONFIGURE_DEFENDER>
 
         <PAGE_POLL_ARCHIVE category="constant" type="int" readonly="true" section="pages" page_name="Poll Archive" page_type="network">
           <value>799</value>
@@ -714,9 +711,6 @@
         <pa_installed category="dynamic_var" type="bool" readonly="true" section="site_related" description="Is PeopleAggregator installed flag">
           <value>0</value>
         </pa_installed>
-        <pa_defender_mode category="dynamic_var" type="int" readonly="true" section="site_related" description="PADefender (the web attacks shield) default working mode (1 - off, 2 - permissive, 3 - restrictive).">
-          <value>3</value>
-        </pa_defender_mode>
         <storage_backend category="dynamic_var" type="string" readonly="true" section="site_related" description="File storage backend.">
           <value>local</value>
         </storage_backend>
