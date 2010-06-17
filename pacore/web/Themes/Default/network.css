@@ -832,6 +832,10 @@ html[xmlns*=""] body:last-child .module_tagcloud ul li span { margin-top: 0px; }
     width:expression(((document.compatMode && document.compatMode == 'CSS1Compat') ? document.documentElement.clientWidth : document.body.clientWidth) > 421 ? "420px" : "auto");
 }
 
+.blog p{
+	margin: 0px;
+}
+
 .post_info {
 	margin-top: 20px;
 	color: #7B7B7B; }
