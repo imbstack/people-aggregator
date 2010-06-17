@@ -195,8 +195,7 @@
   <?php if ($task_perms['manage_settings'] == TRUE) { ?>
   <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('System Settings') ?></a>
     <ul>
-      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('Configuration manager') ?></a></li>
-      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_DEFENDER;?>"><?= __('PA Defender') ?></a></li>
+      <li><a href="<?php echo PA::$url . PA_ROUTE_CONFIGURE_SYSTEM;?>"><?= __('Configuration Manager') ?></a></li>
      </ul>
   </li>
   <?}?>
