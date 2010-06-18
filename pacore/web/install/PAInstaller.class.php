@@ -160,7 +160,6 @@ class PAInstaller {
         return $this->msg_unable_to_continue($params);
       }
       $adm_data = explode(",", $adm_data);
-      if (!$is_post){
       $form = new PAForm('pa_inst');
       $form->openTag('fieldset');
       $form->addContentTag('legend', array('value' => 'Admin account details'));
@@ -193,11 +192,6 @@ class PAInstaller {
       $form->addHtml('</div>');
       $form->closeTag('fieldset');
       $html = $form->getHtml();
-      }
-      else{
-	      //@todo Should we add a printout of the information here? At the moment it just confirms that the data has been entered and moves on.
-	      $html = "";
-      }
       $nav  = "<a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>";
       if(!$is_post) {
          $nav .= "<a class='bt submit' href='#' alt='submit' onclick='document.forms[\"pa_inst\"].submit();'></a>";
