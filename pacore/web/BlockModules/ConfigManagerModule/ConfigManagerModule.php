@@ -11,7 +11,6 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
-
 error_reporting(E_ALL);
 require_once 'web/includes/classes/PAForm.class.php';
 require_once 'api/PAException/PAException.php';
@@ -19,19 +18,34 @@ require_once 'api/PAException/PAException.php';
 class ConfigManagerModule extends Module {
 
     public $module_type = 'system|network';
+
     public $module_placement = 'middle';
+
     private $section;
-    private $sections = array('system_strings', 'blogging', 'basic_group_settings', 'basic_family_settings', 'typedgroups', 'basic_network_settings', 'network_defaults', 'site_related', 'ad_center', 'api_keys', 'database', 'debug');
+
+    private $sections = array(
+        'system_strings',
+        'blogging',
+        'basic_group_settings',
+        'basic_family_settings',
+        'typedgroups',
+        'basic_network_settings',
+        'network_defaults',
+        'site_related',
+        'ad_center',
+        'api_keys',
+        'database',
+        'debug',
+    );
 
     function __construct() {
-
         parent::__construct();
         $this->title = __('ConfigManager');
         $this->outer_template = 'outer_public_group_center_module.tpl';
     }
 
     function __destruct() {
-    } 
+    }
 
     /** !!
     * Determins the config of the user, 
@@ -40,7 +54,6 @@ class ConfigManagerModule extends Module {
     * @return PAForm $form returns the form to be used
     */
     public function getConfigSection($config_sect, $manage_mode) {
-
         global $app, $error_msg;
         if(!isset($this->sections[$config_sect])) {
             $error_msg = __('Section does not exist!');
@@ -48,25 +61,25 @@ class ConfigManagerModule extends Module {
         }
         $section = $this->sections[$config_sect];
         $condition = '@readonly=\'false\'';
-        if ($manage_mode == 1) {
-        	// super user mode
-        	$condition = null;
+        if($manage_mode == 1) {
+            // super user mode
+            $condition = null;
         }
         list($info, $data) = $app->configObj->getConfigSection($section, $condition);
         //echo "<pre>" . print_r($data,1) . "</pre>";
         $this->section = $section;
         $form = new PAForm("form_data[$section]");
-        $form->addContentTag('h1', array('value'=>$info['description']));
-        $form->openTag('div', array('class'=>'field'));
+        $form->addContentTag('h1', array('value' => $info['description']));
+        $form->openTag('div', array('class' => 'field'));
         $form->closeTag('div');
-        $form->openTag('fieldset', array('class'=>'center_box'));
-        foreach($data as $name=>$item) {
+        $form->openTag('fieldset', array('class' => 'center_box'));
+        foreach($data as $name => $item) {
             $this->populate_data($item, $name, $form);
             //echo "<pre>" . print_r($item,1) . "</pre>";
         }
-        $form->addInputTag('hidden', array('name'=>'action', 'value'=>'saveConfSection'));
-        $form->addInputTag('hidden', array('name'=>'section', 'value'=>"{$this->section}"));
-        $form->addInputTag('submit', array('name'=>'submit', 'value'=>"Save changes"));
+        $form->addInputTag('hidden', array('name' => 'action', 'value' => 'saveConfSection'));
+        $form->addInputTag('hidden', array('name' => 'section', 'value' => "{$this->section}"));
+        $form->addInputTag('submit', array('name' => 'submit', 'value' => "Save changes"));
         $form->closeTag('fieldset');
         return $form;
     }
@@ -78,12 +91,17 @@ class ConfigManagerModule extends Module {
     * @param PAForm &$form the form used for the page
     */
     private function populate_data($item, $name, &$form) {
-
         static $keys = array();
         static $parent_type = null;
-        $input_types = array('', 'radio', 'text', 'text', 'text');
+        $input_types = array(
+            '',
+            'radio',
+            'text',
+            'text',
+            'text',
+        );
         array_push($keys, "[$name]");
-        if(is_array($item)&&!empty($item['attributes'])) {
+        if(is_array($item) && !empty($item['attributes'])) {
             array_push($keys, "[value]");
             $len = 0;
             $inp_type = 0;
@@ -106,21 +124,21 @@ class ConfigManagerModule extends Module {
                         $len = 72;
                     }
                     // override length for numeric values
-                    $form->openTag('div', array('class'=>'field'));
-                    $form->addContentTag('h2', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name)))));
+                    $form->openTag('div', array('class' => 'field'));
+                    $form->addContentTag('h2', array('value' => ucwords(strtolower(str_replace('_', ' ', $name)))));
                     $tag_name = "form_data[$this->section]".implode('', $keys);
                     $tag_id = preg_replace('/[\[\]]+/', '_', implode('', $keys));
                     if($type == 'bool') {
-                        $form->addContentTag('label', array('value'=>'On', 'style'=>'display: inline; color: #f00'));
+                        $form->addContentTag('label', array('value' => 'On', 'style' => 'display: inline; color: #f00'));
                         $form->addHtml("<input type='radio' value='1' name='$tag_name' id='{$tag_id}on' ".(($item['value'] == 1) ? 'checked' : '')." />");
-                        $form->addContentTag('label', array('value'=>'Off', 'style'=>'display: inline; color: #f00'));
+                        $form->addContentTag('label', array('value' => 'Off', 'style' => 'display: inline; color: #f00'));
                         $form->addHtml("<input type='radio' value='0' name='$tag_name' id='{$tag_id}off' ".(($item['value'] == 0) ? 'checked' : '')." />");
                     }
                     else {
-                        $form->addInputTag($input_types[$inp_type], array('name'=>$tag_name, 'id'=>$tag_id, 'value'=>$item['value'], 'style'=>"width: {$len}px; border: 1px solid silver"));
+                        $form->addInputTag($input_types[$inp_type], array('name' => $tag_name, 'id' => $tag_id, 'value' => $item['value'], 'style' => "width: {$len}px; border: 1px solid silver"));
                     }
                     if(isset($item['attributes']['description'])) {
-                        $form->openTag('div', array('class'=>'text', 'style'=>'padding: 4px; margin-top: 4px; background-color: #ddd'));
+                        $form->openTag('div', array('class' => 'text', 'style' => 'padding: 4px; margin-top: 4px; background-color: #ddd'));
                         $form->addHtml($item['attributes']['description']);
                         $form->closeTag('div');
                     }
@@ -128,22 +146,22 @@ class ConfigManagerModule extends Module {
                     break;
                 case 'array':
                 case 'multi_array':
-                    $form->openTag('div', array('class'=>'field'));
-                    $form->addContentTag('h2', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name)))));
+                    $form->openTag('div', array('class' => 'field'));
+                    $form->addContentTag('h2', array('value' => ucwords(strtolower(str_replace('_', ' ', $name)))));
                     if(is_array($item['value'])) {
                         $arr_keys = array_keys($item['value']);
                         $arr_vals = array_values($item['value']);
-                        if(is_numeric($arr_keys[0])&&!(is_array($arr_vals[0]))||($parent_type == 'string')) {
+                        if(is_numeric($arr_keys[0]) && !(is_array($arr_vals[0])) || ($parent_type == 'string')) {
                             $_val = implode("\n", $item['value']);
                             $tag_name = "form_data[$this->section]".implode('', $keys);
                             $tag_id = preg_replace('/[\[\]]+/', '_', implode('', $keys));
-                            $form->addInputTag('textarea', array('name'=>$tag_name, 'id'=>$tag_id.'value', 'value'=>$_val, 'style'=>'border: 1px solid silver'));
+                            $form->addInputTag('textarea', array('name' => $tag_name, 'id' => $tag_id.'value', 'value' => $_val, 'style' => 'border: 1px solid silver'));
                         }
                         else {
                             array_walk($item['value'], array($this, 'populate_data'), $form);
                         }
                         if(isset($item['attributes']['description'])) {
-                            $form->openTag('div', array('class'=>'text', 'style'=>'padding: 4px; margin-top: 4px; background-color: #ddd'));
+                            $form->openTag('div', array('class' => 'text', 'style' => 'padding: 4px; margin-top: 4px; background-color: #ddd'));
                             $form->addHtml($item['attributes']['description']);
                             $form->closeTag('div');
                         }
@@ -159,10 +177,10 @@ class ConfigManagerModule extends Module {
             if(is_array($item)) {
                 $_keys = array_keys($item);
                 $_values = array_values($item);
-                $form->addContentTag('h3', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name)))));
+                $form->addContentTag('h3', array('value' => ucwords(strtolower(str_replace('_', ' ', $name)))));
                 array_walk($item, array($this, 'populate_data'), $form);
                 if(isset($item['attributes']['description'])) {
-                    $form->openTag('div', array('class'=>'text small'));
+                    $form->openTag('div', array('class' => 'text small'));
                     $form->addHtml($item['attributes']['description']);
                     $form->closeTag('div');
                 }
@@ -187,18 +205,19 @@ class ConfigManagerModule extends Module {
                             $inp_type += 1;
                             $tag_name = "form_data[$this->section]".implode('', $keys);
                             $tag_id = preg_replace('/[\[\]]+/', '_', implode('', $keys));
-                            if (is_numeric($item)) {
-                            	// override length for numeric values {
-                              $len = 72;
+                            if(is_numeric($item)) {
+                                // override length for numeric values {
+                                $len = 72;
                             }
-                            $form->addContentTag('label', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name))), 'style'=>'display: block; color: #35558c'));
-                            if ($type == 'bool') {
-                                $form->addContentTag('label', array('value'=>'On', 'style'=>'display: inline; color: #f00'));
+                            $form->addContentTag('label', array('value' => ucwords(strtolower(str_replace('_', ' ', $name))), 'style' => 'display: block; color: #35558c'));
+                            if($type == 'bool') {
+                                $form->addContentTag('label', array('value' => 'On', 'style' => 'display: inline; color: #f00'));
                                 $form->addHtml("<input type='radio' value='1' name='$tag_name' id='{$tag_id}on' ".(($item == 1) ? 'checked' : '')." />");
-                                $form->addContentTag('label', array('value'=>'Off', 'style'=>'display: inline; color: #f00'));
+                                $form->addContentTag('label', array('value' => 'Off', 'style' => 'display: inline; color: #f00'));
                                 $form->addHtml("<input type='radio' value='0' name='$tag_name' id='{$tag_id}off' ".(($item == 0) ? 'checked' : '')." />");
-                            } else {
-                                $form->addInputTag($input_types[$inp_type], array('name'=>$tag_name, 'id'=>$tag_id, 'value'=>$item, 'style'=>"width: {$len}px; border: 1px solid silver"));
+                            }
+                            else {
+                                $form->addInputTag($input_types[$inp_type], array('name' => $tag_name, 'id' => $tag_id, 'value' => $item, 'style' => "width: {$len}px; border: 1px solid silver"));
                             }
                             $form->addHtml('<br />');
                             break;
@@ -210,8 +229,8 @@ class ConfigManagerModule extends Module {
                     $tag_id = preg_replace('/[\[\]]+/', '_', implode('', $keys));
                     $len = (is_numeric($item)) ? 72 : 400;
                     // override length for numeric values
-                    $form->addContentTag('label', array('value'=>ucwords(strtolower(str_replace('_', ' ', $name))), 'style'=>'display: block; color: #35558c'));
-                    $form->addInputTag('text', array('name'=>$tag_name, 'id'=>$tag_id, 'value'=>$item, 'style'=>"width: {$len}px; border: 1px solid silver"));
+                    $form->addContentTag('label', array('value' => ucwords(strtolower(str_replace('_', ' ', $name))), 'style' => 'display: block; color: #35558c'));
+                    $form->addInputTag('text', array('name' => $tag_name, 'id' => $tag_id, 'value' => $item, 'style' => "width: {$len}px; border: 1px solid silver"));
                     $form->addHtml('<br />');
                 }
             }
@@ -225,7 +244,6 @@ class ConfigManagerModule extends Module {
     * @param array $request_data holder for the data requested from the server
     */
     function handleRequest($request_method, $request_data) {
-
         if(!empty($request_data['action'])) {
             $action = $request_data['action'];
             $class_name = get_class($this);
@@ -273,7 +291,6 @@ class ConfigManagerModule extends Module {
     * @param array $key keys to be updates
     */
     private function recursive_update_data_object(&$value, $key) {
-
         global $app;
         static $keys = array();
         $configData = &$app->configData['configuration'];
@@ -291,7 +308,7 @@ class ConfigManagerModule extends Module {
                 $var_value = $value;
                 $attr_path = implode("", $node_path)."['@attributes']";
                 $attribs = eval("return ((isset(\$configData$attr_path)) ? \$configData$attr_path : null);");
-                if($attribs&&isset($attribs['sub-type'])) {
+                if($attribs && isset($attribs['sub-type'])) {
                     // check for array of strings
                     $var_value = explode("\n", $value);
                     foreach($var_value as &$v_val) {
@@ -314,7 +331,6 @@ class ConfigManagerModule extends Module {
     * @param array $request_data information to be saved
     */
     private function handlePOST_saveConfSection($request_data) {
-
         global $app, $error_msg;
         $msg = __("Configuration data sucessfully stored.");
         $this->section = $request_data['section'];
@@ -333,7 +349,7 @@ class ConfigManagerModule extends Module {
         }
         $form = $this->getConfigSection($this->config_sect, $this->manage_mode);
         $this->set_inner_template('show_config_section.tpl.php');
-        $this->inner_HTML = $this->generate_inner_html(array('data'=>$form, 'mode_tag'=>$this->mode_tag, 'sect_tag'=>$this->sect_tag, 'message'=>null));
+        $this->inner_HTML = $this->generate_inner_html(array('data' => $form, 'mode_tag' => $this->mode_tag, 'sect_tag' => $this->sect_tag, 'message' => null));
         $error_msg = $msg;
     }
 
@@ -342,20 +358,17 @@ class ConfigManagerModule extends Module {
     * @param string $template_fname name for the template to be used
     */
     function set_inner_template($template_fname) {
-
         $this->inner_template = PA::$blockmodule_path.'/'.get_class($this)."/$template_fname";
     }
 
     function render() {
-
         $content = parent::render();
         return $content;
     }
 
     function generate_inner_html($template_vars = array()) {
-
         $inner_html_gen = &new Template($this->inner_template);
-        foreach($template_vars as $name=>$value) {
+        foreach($template_vars as $name => $value) {
             if(is_object($value)) {
                 $inner_html_gen->set_object($name, $value);
             }
@@ -374,16 +387,15 @@ class ConfigManagerModule extends Module {
     * @return string returns 'skip' is $request_method is neither GET nor POST
     */
     function initializeModule($request_method, $request_data) {
-
         $this->manage_mode = (isset($request_data['mmode'])) ? $request_data['mmode'] : 0;
         $this->config_sect = (isset($request_data['sect'])) ? $request_data['sect'] : 0;
-        $this->mode_tag = xHtml::selectTag(array('normal'=>'0', 'expert'=>'1'), array('id'=>'mmode', 'name'=>'mmode'), $this->manage_mode);
-        $this->sect_tag = xHtml::selectTag(array_flip($this->sections), array('id'=>'sect', 'name'=>'sect'), $this->config_sect);
+        $this->mode_tag = xHtml::selectTag(array('normal' => '0', 'expert' => '1'), array('id' => 'mmode', 'name' => 'mmode'), $this->manage_mode);
+        $this->sect_tag = xHtml::selectTag(array_flip($this->sections), array('id' => 'sect', 'name' => 'sect'), $this->config_sect);
         switch($request_method) {
             case 'GET':
                 $form = $this->getConfigSection($this->config_sect, $this->manage_mode);
                 $this->set_inner_template('show_config_section.tpl.php');
-                $this->inner_HTML = $this->generate_inner_html(array('data'=>$form, 'mode_tag'=>$this->mode_tag, 'sect_tag'=>$this->sect_tag, 'message'=>null));
+                $this->inner_HTML = $this->generate_inner_html(array('data' => $form, 'mode_tag' => $this->mode_tag, 'sect_tag' => $this->sect_tag, 'message' => null));
                 break;
             case 'POST':
                 break;

@@ -11,7 +11,6 @@
 */
 ?>
 <?php
-
 /**
  * This file specifies the interface for PHP OpenID store implementations.
  *
@@ -36,6 +35,7 @@
  * @author JanRain, Inc. <openid@janrain.com>
  */
 class Auth_OpenID_OpenIDStore {
+
     /**
      * @var integer The length of the auth key that should be returned
      * by the getAuthKey method.
@@ -55,10 +55,8 @@ class Auth_OpenID_OpenIDStore {
      *
      * @param Association $association The Association to store.
      */
-    function storeAssociation($server_url, $association)
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::storeAssociation ".
-                      "not implemented", E_USER_ERROR);
+    function storeAssociation($server_url, $association) {
+        trigger_error("Auth_OpenID_OpenIDStore::storeAssociation "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -91,10 +89,8 @@ class Auth_OpenID_OpenIDStore {
      * @return Association The Association for the given identity
      * server.
      */
-    function getAssociation($server_url, $handle = null)
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::getAssociation ".
-                      "not implemented", E_USER_ERROR);
+    function getAssociation($server_url, $handle = null) {
+        trigger_error("Auth_OpenID_OpenIDStore::getAssociation "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -115,10 +111,8 @@ class Auth_OpenID_OpenIDStore {
      *
      * @return mixed Returns whether or not the given association existed.
      */
-    function removeAssociation($server_url, $handle)
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::removeAssociation ".
-                      "not implemented", E_USER_ERROR);
+    function removeAssociation($server_url, $handle) {
+        trigger_error("Auth_OpenID_OpenIDStore::removeAssociation "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -129,10 +123,8 @@ class Auth_OpenID_OpenIDStore {
      *
      * @return null
      */
-    function storeNonce($nonce)
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::storeNonce ".
-                      "not implemented", E_USER_ERROR);
+    function storeNonce($nonce) {
+        trigger_error("Auth_OpenID_OpenIDStore::storeNonce "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -150,10 +142,8 @@ class Auth_OpenID_OpenIDStore {
      *
      * @return bool Whether or not the nonce was valid.
      */
-    function useNonce($nonce)
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::useNonce ".
-                      "not implemented", E_USER_ERROR);
+    function useNonce($nonce) {
+        trigger_error("Auth_OpenID_OpenIDStore::useNonce "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -166,10 +156,8 @@ class Auth_OpenID_OpenIDStore {
      * length, and use the full range of byte values. That is, it
      * should be treated as a lump of binary data stored in a string.
      */
-    function getAuthKey()
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::getAuthKey ".
-                      "not implemented", E_USER_ERROR);
+    function getAuthKey() {
+        trigger_error("Auth_OpenID_OpenIDStore::getAuthKey "."not implemented", E_USER_ERROR);
     }
 
     /**
@@ -184,17 +172,14 @@ class Auth_OpenID_OpenIDStore {
      * @return bool true if the store works fully, false if the
      * consumer will have to use dumb mode to use this store.
      */
-    function isDumb()
-    {
+    function isDumb() {
         return false;
     }
 
     /**
      * Removes all entries from the store; implementation is optional.
      */
-    function reset()
-    {
+    function reset() {
     }
-
 }
 ?>

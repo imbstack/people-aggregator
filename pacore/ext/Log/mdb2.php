@@ -43,8 +43,7 @@ MDB2::loadFile('Date');
  * @since   Log 1.9.0
  * @package Log
  */
-class Log_mdb2 extends Log
-{
+class Log_mdb2 extends Log {
     /**
      * Variable containing the DSN information.
      * @var mixed
@@ -57,7 +56,9 @@ class Log_mdb2 extends Log
      * @var array
      * @access private
      */
-    var $_options = array('persistent' => true);
+    var $_options = array(
+        'persistent' => true,
+    );
 
     /**
      * Object holding the database handle.
@@ -108,11 +109,11 @@ class Log_mdb2 extends Log
      * @access private
      */
     var $_types = array(
-        'id'        => 'integer',
-        'logtime'   => 'timestamp',
-        'ident'     => 'text',
-        'priority'  => 'text',
-        'message'   => 'clob'
+        'id' => 'integer',
+        'logtime' => 'timestamp',
+        'ident' => 'text',
+        'priority' => 'text',
+        'message' => 'clob',
     );
 
     /**
@@ -124,25 +125,23 @@ class Log_mdb2 extends Log
      * @param int $level           Log messages up to and including this level.
      * @access public
      */
-    function Log_mdb2($name, $ident = '', $conf = array(),
-                     $level = PEAR_LOG_DEBUG)
-    {
+    function Log_mdb2($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_table = $name;
         $this->_mask = Log::UPTO($level);
 
         /* If an options array was provided, use it. */
-        if (isset($conf['options']) && is_array($conf['options'])) {
+        if(isset($conf['options']) && is_array($conf['options'])) {
             $this->_options = $conf['options'];
         }
 
         /* If a specific sequence name was provided, use it. */
-        if (!empty($conf['sequence'])) {
+        if(!empty($conf['sequence'])) {
             $this->_sequence = $conf['sequence'];
         }
 
         /* If a specific sequence name was provided, use it. */
-        if (isset($conf['identLimit'])) {
+        if(isset($conf['identLimit'])) {
             $this->_identLimit = $conf['identLimit'];
         }
 
@@ -150,15 +149,17 @@ class Log_mdb2 extends Log
         $this->setIdent($ident);
 
         /* If an existing database connection was provided, use it. */
-        if (isset($conf['db'])) {
+        if(isset($conf['db'])) {
             $this->_db = &$conf['db'];
             $this->_existingConnection = true;
             $this->_opened = true;
-        } elseif (isset($conf['singleton'])) {
+        }
+        elseif(isset($conf['singleton'])) {
             $this->_db = &MDB2::singleton($conf['singleton'], $this->_options);
             $this->_existingConnection = true;
             $this->_opened = true;
-        } else {
+        }
+        else {
             $this->_dsn = $conf['dsn'];
         }
     }
@@ -170,24 +171,23 @@ class Log_mdb2 extends Log
      * @return boolean   True on success, false on failure.
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
+    function open() {
+        if(!$this->_opened) {
+
             /* Use the DSN and options to create a database connection. */
             $this->_db = &MDB2::connect($this->_dsn, $this->_options);
-            if (PEAR::isError($this->_db)) {
+            if(PEAR::isError($this->_db)) {
                 return false;
             }
 
             /* Create a prepared statement for repeated use in log(). */
-            if (!$this->_prepareStatement()) {
+            if(!$this->_prepareStatement()) {
                 return false;
             }
 
             /* We now consider out connection open. */
             $this->_opened = true;
         }
-
         return $this->_opened;
     }
 
@@ -199,21 +199,19 @@ class Log_mdb2 extends Log
      * @return boolean   True on success, false on failure.
      * @access public
      */
-    function close()
-    {
+    function close() {
         /* If we have a statement object, free it. */
-        if (is_object($this->_statement)) {
+        if(is_object($this->_statement)) {
             $this->_statement->free();
             $this->_statement = null;
         }
 
         /* If we opened the database connection, disconnect it. */
-        if ($this->_opened && !$this->_existingConnection) {
+        if($this->_opened && !$this->_existingConnection) {
             $this->_opened = false;
             return $this->_db->disconnect();
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -226,8 +224,7 @@ class Log_mdb2 extends Log
      * @access  public
      * @since   Log 1.8.5
      */
-    function setIdent($ident)
-    {
+    function setIdent($ident) {
         $this->_ident = substr($ident, 0, $this->_identLimit);
     }
 
@@ -244,25 +241,24 @@ class Log_mdb2 extends Log
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the connection isn't open and can't be opened, return failure. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* If we don't already have a statement object, create one. */
-        if (!is_object($this->_statement) && !$this->_prepareStatement()) {
+        if(!is_object($this->_statement) && !$this->_prepareStatement()) {
             return false;
         }
 
@@ -271,11 +267,11 @@ class Log_mdb2 extends Log
 
         /* Build our set of values for this log entry. */
         $values = array(
-            'id'       => $this->_db->nextId($this->_sequence),
-            'logtime'  => MDB2_Date::mdbNow(),
-            'ident'    => $this->_ident,
+            'id' => $this->_db->nextId($this->_sequence),
+            'logtime' => MDB2_Date::mdbNow(),
+            'ident' => $this->_ident,
             'priority' => $priority,
-            'message'  => $message
+            'message' => $message,
         );
 
         /* Execute the SQL query for this log entry insertion. */
@@ -284,32 +280,31 @@ class Log_mdb2 extends Log
         $this->_db->popExpect();
 
         /* Attempt to handle any errors. */
-        if (PEAR::isError($result)) {
+        if(PEAR::isError($result)) {
+
             /* We can only handle MDB2_ERROR_NOSUCHTABLE errors. */
-            if ($result->getCode() != MDB2_ERROR_NOSUCHTABLE) {
+            if($result->getCode() != MDB2_ERROR_NOSUCHTABLE) {
                 return false;
             }
 
             /* Attempt to create the target table. */
-            if (!$this->_createTable()) {
+            if(!$this->_createTable()) {
                 return false;
             }
 
             /* Recreate our prepared statement resource. */
             $this->_statement->free();
-            if (!$this->_prepareStatement()) {
+            if(!$this->_prepareStatement()) {
                 return false;
             }
 
             /* Attempt to re-execute the insertion query. */
             $result = $this->_statement->execute($values);
-            if (PEAR::isError($result)) {
+            if(PEAR::isError($result)) {
                 return false;
             }
         }
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
 
@@ -319,32 +314,28 @@ class Log_mdb2 extends Log
      * @return boolean  True on success or false on failure.
      * @access private
      */
-    function _createTable()
-    {
+    function _createTable() {
         $this->_db->loadModule('Manager');
-        $result = $this->_db->manager->createTable(
-            $this->_table,
-            array(
-                'id'        => array('type' => $this->_types['id']),
-                'logtime'   => array('type' => $this->_types['logtime']),
-                'ident'     => array('type' => $this->_types['ident']),
-                'priority'  => array('type' => $this->_types['priority']),
-                'message'   => array('type' => $this->_types['message'])
-            )
-        );
-        if (PEAR::isError($result)) {
+        $result = $this->_db->manager->createTable($this->_table, array('id' => array(
+            'type' => $this->_types['id'],
+        ), 'logtime' => array(
+            'type' => $this->_types['logtime'],
+        ), 'ident' => array(
+            'type' => $this->_types['ident'],
+        ), 'priority' => array(
+            'type' => $this->_types['priority'],
+        ), 'message' => array(
+            'type' => $this->_types['message'],
+        )));
+        if(PEAR::isError($result)) {
             return false;
         }
-
-        $result = $this->_db->manager->createIndex(
-            $this->_table,
-            'unique_id',
-            array('fields' => array('id' => true), 'unique' => true)
-        );
-        if (PEAR::isError($result)) {
+        $result = $this->_db->manager->createIndex($this->_table, 'unique_id', array('fields' => array(
+            'id' => true,
+        ), 'unique' => true));
+        if(PEAR::isError($result)) {
             return false;
         }
-
         return true;
     }
 
@@ -356,15 +347,10 @@ class Log_mdb2 extends Log
      * @access  private
      * @since   Log 1.9.0
      */
-    function _prepareStatement()
-    {
-        $this->_statement = &$this->_db->prepare(
-                'INSERT INTO ' . $this->_table .
-                ' (id, logtime, ident, priority, message)' .
-                ' VALUES(:id, :logtime, :ident, :priority, :message)',
-                $this->_types);
+    function _prepareStatement() {
+        $this->_statement = &$this->_db->prepare('INSERT INTO '.$this->_table.' (id, logtime, ident, priority, message)'.' VALUES(:id, :logtime, :ident, :priority, :message)', $this->_types);
 
         /* Return success if we didn't generate an error. */
-        return (PEAR::isError($this->_statement) === false);
+        return(PEAR::isError($this->_statement) === false);
     }
 }

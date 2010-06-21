@@ -15,13 +15,11 @@ require_once dirname(__FILE__).'/../config.inc';
 require_once "api/DB/Dal/Dal.php";
 require_once "api/DB/Dal/DbUpdate.php";
 require_once "api/Network/Network.php";
-
 // Re-include constants.php to make sure we have the most up to date
 // constants.  If we are in the middle of an update and this script is
 // being included by web/update/run_scripts.php, we might not have all
 // the constants.
 include "web/includes/constants.php";
-
 // NOTE: this script is obsolete now and should be removed!!!
 //
 // $settings_new contains the mapping of page names to modules they contain.
@@ -40,8 +38,8 @@ foreach (DbUpdate::get_valid_networks() as $net_address) {
     $sql = ' TRUNCATE TABLE '. $table_name;
     $res = Dal::query($sql);
     foreach ($settings_new as $page_id => $v1) {
-        $page_name = $v1['page_name'];
-        $data = $v1['data'];
+        $page_name     = $v1['page_name'];
+        $data          = $v1['data'];
         $settings_data = serialize($data);
         $is_configurable = (isset($v1['is_configurable'])) ? $v1['is_configurable'] : FALSE;//default value will be false is not specified
 

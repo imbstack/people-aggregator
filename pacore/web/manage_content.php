@@ -22,91 +22,73 @@ include_once "api/ModuleSetting/ModuleSetting.php";
 require_once "api/Group/Group.php";
 include_once "api/Theme/Template.php";
 require_once "api/Category/Category.php";
- 
-$parameter = '<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/base_javascript.js"></script></script>
-<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/prototype.js"></script>
-<script type="text/javascript" language="javascript" src="'.PA::$theme_url . '/javascript/scriptaculous.js"></script>';
+$parameter = '<script type="text/javascript" language="javascript" src="'.PA::$theme_url.'/base_javascript.js"></script></script>
+<script type="text/javascript" language="javascript" src="'.PA::$theme_url.'/javascript/prototype.js"></script>
+<script type="text/javascript" language="javascript" src="'.PA::$theme_url.'/javascript/scriptaculous.js"></script>';
 html_header("Group Home", $parameter);
-
-
-$setting_data = ModuleSetting::load_setting(PAGE_MANAGECONTENT, $uid);
-$leftModulesFromDB = $setting_data['left'];
+$setting_data        = ModuleSetting::load_setting(PAGE_MANAGECONTENT, $uid);
+$leftModulesFromDB   = $setting_data['left'];
 $middleModulesFromDB = $setting_data['middle'];
-$rightModulesFromDB = $setting_data['right'];
-
-$page = & new Template(CURRENT_THEME_FSPATH."/groups.tpl");
-
+$rightModulesFromDB  = $setting_data['right'];
+$page                = &new Template(CURRENT_THEME_FSPATH."/groups.tpl");
 $page->set('current_theme_path', PA::$theme_url);
-
 //header of group page
-if ($_GET['tier_one']) {
-  $main_tier = $_GET['tier_one'];
-  //$tmp = $_GET['tier_one'].'pagedemo.php';
+if($_GET['tier_one']) {
+    $main_tier = $_GET['tier_one'];
+    //$tmp = $_GET['tier_one'].'pagedemo.php';
 }
 else {
-  $main_tier = 'group';
+    $main_tier = 'group';
 }
-
-if ($_GET['tier_two']) {
-  $second_tier = $_GET['tier_two'];
+if($_GET['tier_two']) {
+    $second_tier = $_GET['tier_two'];
 }
-if ($_GET['tier_three']) {
-  $third_tier = $_GET['tier_three'];
+if($_GET['tier_three']) {
+    $third_tier = $_GET['tier_three'];
 }
-
 $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
-
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
-if (PA::$network_info) {
-  $header->set_object('network_info', PA::$network_info);
+$header = &new Template(CURRENT_THEME_FSPATH."/header.tpl");
+if(PA::$network_info) {
+    $header->set_object('network_info', PA::$network_info);
 }
 $header->set('current_theme_path', PA::$theme_url);
 $header->set('onload', $onload);
-
-$header->tier_one_tab = $main_tier;
-$header->tier_two_tab = $second_tier;
+$header->tier_one_tab   = $main_tier;
+$header->tier_two_tab   = $second_tier;
 $header->tier_three_tab = $third_tier;
-
-
-
 //left of group page
-foreach ( $leftModulesFromDB as $leftModule)
-{
-  $file = "BlockModules/$leftModule/$leftModule.php";
-  require_once $file;
-  $obj = new $leftModule;
-  if ($leftModule=='RecentCommentsModule') {
-    $obj->cid = $_REQUEST['cid'];
-    $obj->block_type = HOMEPAGE;
-    $obj->mode = PRI;
-  }
-  $array_left_modules[] = $obj->render();
+foreach($leftModulesFromDB as $leftModule) {
+    $file = "BlockModules/$leftModule/$leftModule.php";
+    require_once $file;
+    $obj = new $leftModule;
+    if($leftModule == 'RecentCommentsModule') {
+        $obj->cid        = $_REQUEST['cid'];
+        $obj->block_type = HOMEPAGE;
+        $obj->mode       = PRI;
+    }
+    $array_left_modules[] = $obj->render();
 }
-
 //middle of group page
-foreach ( $middleModulesFromDB as $middleModule)
-{
-  $file = "BlockModules/$middleModule/$middleModule.php";
-  require_once $file;
-  $obj = new $middleModule;
-  $obj->content_id = $_REQUEST['cid'];
-  $array_middle_modules[] = $obj->render();
+foreach($middleModulesFromDB as $middleModule) {
+    $file = "BlockModules/$middleModule/$middleModule.php";
+    require_once $file;
+    $obj                    = new $middleModule;
+    $obj->content_id        = $_REQUEST['cid'];
+    $array_middle_modules[] = $obj->render();
 }
-
 //right of group page
-foreach ( $rightModulesFromDB as $rightModule)
-{
-  $file = "BlockModules/$rightModule/$rightModule.php";
-  require_once $file;
-  $obj = new $rightModule;
-  $obj->mode = PRI;
-  if ($rightModule != 'AdsByGoogleModule') {
-    $obj->block_type = HOMEPAGE;
-  }
-  $array_right_modules[] = $obj->render();
+foreach($rightModulesFromDB as $rightModule) {
+    $file = "BlockModules/$rightModule/$rightModule.php";
+    require_once $file;
+    $obj = new $rightModule;
+    $obj->mode = PRI;
+    if($rightModule != 'AdsByGoogleModule') {
+        $obj->block_type = HOMEPAGE;
+    }
+    $array_right_modules[] = $obj->render();
 }
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = &new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_url);
 //page settings
 $page->set('header', $header);

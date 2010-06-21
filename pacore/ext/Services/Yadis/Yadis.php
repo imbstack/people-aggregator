@@ -11,7 +11,6 @@
 */
 ?>
 <?php
-
 /**
  * The core PHP Yadis implementation.
  *
@@ -131,43 +130,39 @@ class Services_Yadis_Yadis {
      * is returned.  If not, an instance of
      * {@link Services_Yadis_PlainHTTPFetcher} is returned.
      */
-    function getHTTPFetcher($timeout = 20)
-    {
-        if (Services_Yadis_Yadis::curlPresent()) {
+    function getHTTPFetcher($timeout = 20) {
+        if(Services_Yadis_Yadis::curlPresent()) {
             $fetcher = new Services_Yadis_ParanoidHTTPFetcher($timeout);
-        } else {
+        }
+        else {
             $fetcher = new Services_Yadis_PlainHTTPFetcher($timeout);
         }
         return $fetcher;
     }
 
-    function curlPresent()
-    {
+    function curlPresent() {
         return function_exists('curl_init');
     }
 
     /**
      * @access private
      */
-    function _getHeader($header_list, $names)
-    {
-        foreach ($header_list as $name => $value) {
-            foreach ($names as $n) {
-                if (strtolower($name) == strtolower($n)) {
+    function _getHeader($header_list, $names) {
+        foreach($header_list as $name => $value) {
+            foreach($names as $n) {
+                if(strtolower($name) == strtolower($n)) {
                     return $value;
                 }
             }
         }
-
         return null;
     }
 
     /**
      * @access private
      */
-    function _getContentType($content_type_header)
-    {
-        if ($content_type_header) {
+    function _getContentType($content_type_header) {
+        if($content_type_header) {
             $parts = explode(";", $content_type_header);
             return strtolower($parts[0]);
         }
@@ -197,91 +192,71 @@ class Services_Yadis_Yadis {
      * Services_Yadis_Yadis, depending on whether the discovery
      * succeeded.
      */
-    function discover($uri, &$http_response, &$fetcher,
-                      $extra_ns_map = null, $timeout = 20)
-    {
-        if (!$uri) {
+    function discover($uri, &$http_response, &$fetcher, $extra_ns_map = null, $timeout = 20) {
+        if(!$uri) {
             return null;
         }
-
         $request_uri = $uri;
-        $headers = array("Accept: application/xrds+xml");
-
-        if (!$fetcher) {
+        $headers = array(
+            "Accept: application/xrds+xml",
+        );
+        if(!$fetcher) {
             $fetcher = Services_Yadis_Yadis::getHTTPFetcher($timeout);
         }
-
         $response = $fetcher->get($uri, $headers);
         $http_response = $response;
-
-        if (!$response) {
+        if(!$response) {
             return null;
         }
-
-        if ($response->status != 200) {
-          return null;
+        if($response->status != 200) {
+            return null;
         }
-
-        $xrds_uri = $response->final_url;
-        $uri = $response->final_url;
-        $body = $response->body;
-
-        $xrds_header_uri = Services_Yadis_Yadis::_getHeader(
-                                                    $response->headers,
-                                                    array('x-xrds-location',
-                                                          'x-yadis-location'));
-
-        $content_type = Services_Yadis_Yadis::_getHeader($response->headers,
-                                                         array('content-type'));
-
-        if ($xrds_header_uri) {
-            $xrds_uri = $xrds_header_uri;
-            $response = $fetcher->get($xrds_uri);
+        $xrds_uri        = $response->final_url;
+        $uri             = $response->final_url;
+        $body            = $response->body;
+        $xrds_header_uri = Services_Yadis_Yadis::_getHeader($response->headers, array('x-xrds-location', 'x-yadis-location'));
+        $content_type    = Services_Yadis_Yadis::_getHeader($response->headers, array('content-type'));
+        if($xrds_header_uri) {
+            $xrds_uri      = $xrds_header_uri;
+            $response      = $fetcher->get($xrds_uri);
             $http_response = $response;
-            if (!$response) {
+            if(!$response) {
                 return null;
-            } else {
-                $body = $response->body;
-                $headers = $response->headers;
-                $content_type = Services_Yadis_Yadis::_getHeader($headers,
-                                                       array('content-type'));
+            }
+            else {
+                $body         = $response->body;
+                $headers      = $response->headers;
+                $content_type = Services_Yadis_Yadis::_getHeader($headers, array('content-type'));
             }
         }
-
-        if (Services_Yadis_Yadis::_getContentType($content_type) !=
-            'application/xrds+xml') {
+        if(Services_Yadis_Yadis::_getContentType($content_type) != 'application/xrds+xml') {
             // Treat the body as HTML and look for a META tag.
-            $parser = new Services_Yadis_ParseHTML();
-            $new_uri = $parser->getHTTPEquiv($body);
+            $parser   = new Services_Yadis_ParseHTML();
+            $new_uri  = $parser->getHTTPEquiv($body);
             $xrds_uri = null;
-            if ($new_uri) {
+            if($new_uri) {
                 $response = $fetcher->get($new_uri);
-                if ($response->status != 200) {
-                  return null;
+                if($response->status != 200) {
+                    return null;
                 }
                 $http_response = $response;
-                $body = $response->body;
-                $xrds_uri = $new_uri;
-                $content_type = Services_Yadis_Yadis::_getHeader(
-                                                         $response->headers,
-                                                         array('content-type'));
+                $body          = $response->body;
+                $xrds_uri      = $new_uri;
+                $content_type  = Services_Yadis_Yadis::_getHeader($response->headers, array('content-type'));
             }
         }
-
         $xrds = Services_Yadis_XRDS::parseXRDS($body, $extra_ns_map);
-
-        if ($xrds !== null) {
-            $y = new Services_Yadis_Yadis();
-
-            $y->request_uri = $request_uri;
-            $y->xrds = $xrds;
-            $y->uri = $uri;
-            $y->xrds_uri = $xrds_uri;
-            $y->body = $body;
+        if($xrds !== null) {
+            $y               = new Services_Yadis_Yadis();
+            $y->request_uri  = $request_uri;
+            $y->xrds         = $xrds;
+            $y->uri          = $uri;
+            $y->xrds_uri     = $xrds_uri;
+            $y->body         = $body;
             $y->content_type = $content_type;
-
             return $y;
-        } else {
+        }
+        else {
             return null;
         }
     }
@@ -294,13 +269,12 @@ class Services_Yadis_Yadis {
      * using this constructor, call
      * Services_Yadis_Yadis::discover($uri).
      */
-    function Services_Yadis_Yadis()
-    {
-        $this->request_uri = null;
-        $this->uri = null;
-        $this->xrds = null;
-        $this->xrds_uri = null;
-        $this->body = null;
+    function Services_Yadis_Yadis() {
+        $this->request_uri  = null;
+        $this->uri          = null;
+        $this->xrds         = null;
+        $this->xrds_uri     = null;
+        $this->body         = null;
         $this->content_type = null;
     }
 
@@ -312,14 +286,11 @@ class Services_Yadis_Yadis {
      * @return array $services An array of {@link Services_Yadis_Service}
      * objects
      */
-    function services()
-    {
-        if ($this->xrds) {
+    function services() {
+        if($this->xrds) {
             return $this->xrds->services();
         }
-
         return null;
     }
 }
-
 ?>

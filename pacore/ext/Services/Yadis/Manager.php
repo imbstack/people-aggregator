@@ -11,7 +11,6 @@
 */
 ?>
 <?php
-
 /**
  * Yadis service manager to be used during yadis-driven authentication
  * attempts.
@@ -27,14 +26,14 @@
  * @package Yadis
  */
 class Services_Yadis_PHPSession {
+
     /**
      * Set a session key/value pair.
      *
      * @param string $name The name of the session key to add.
      * @param string $value The value to add to the session.
      */
-    function set($name, $value)
-    {
+    function set($name, $value) {
         $_SESSION[$name] = $value;
     }
 
@@ -47,11 +46,11 @@ class Services_Yadis_PHPSession {
      * @return string $result The key's value in the session or
      * $default if it isn't found.
      */
-    function get($name, $default=null)
-    {
-        if (array_key_exists($name, $_SESSION)) {
+    function get($name, $default = null) {
+        if(array_key_exists($name, $_SESSION)) {
             return $_SESSION[$name];
-        } else {
+        }
+        else {
             return $default;
         }
     }
@@ -61,16 +60,14 @@ class Services_Yadis_PHPSession {
      *
      * @param string $name The name of the key to remove.
      */
-    function del($name)
-    {
+    function del($name) {
         unset($_SESSION[$name]);
     }
 
     /**
      * Return the contents of the session in array form.
      */
-    function contents()
-    {
+    function contents() {
         return $_SESSION;
     }
 }
@@ -84,11 +81,11 @@ class Services_Yadis_PHPSession {
  * bool to implement your own session data validation.
  */
 class Services_Yadis_SessionLoader {
+
     /**
      * Override this.
      */
-    function check($data)
-    {
+    function check($data) {
         return true;
     }
 
@@ -100,35 +97,27 @@ class Services_Yadis_SessionLoader {
      * evaluates to false.  Returns null if $this->newObject()
      * evaluates to false.
      */
-    function fromSession($data)
-    {
-        if (!$data) {
+    function fromSession($data) {
+        if(!$data) {
             return null;
         }
-
         $required = $this->requiredKeys();
-
-        foreach ($required as $k) {
-            if (!array_key_exists($k, $data)) {
+        foreach($required as $k) {
+            if(!array_key_exists($k, $data)) {
                 return null;
             }
         }
-
-        if (!$this->check($data)) {
+        if(!$this->check($data)) {
             return null;
         }
-
         $data = array_merge($data, $this->prepareForLoad($data));
         $obj = $this->newObject($data);
-
-        if (!$obj) {
+        if(!$obj) {
             return null;
         }
-
-        foreach ($required as $k) {
+        foreach($required as $k) {
             $obj->$k = $data[$k];
         }
-
         return $obj;
     }
 
@@ -137,8 +126,7 @@ class Services_Yadis_SessionLoader {
      * Returns an array whose keys and values will be used to update
      * the original data array before calling $this->newObject($data).
      */
-    function prepareForLoad($data)
-    {
+    function prepareForLoad($data) {
         return array();
     }
 
@@ -148,8 +136,7 @@ class Services_Yadis_SessionLoader {
      * only be created; $this->fromSession() will take care of setting
      * the object's attributes.
      */
-    function newObject($data)
-    {
+    function newObject($data) {
         return null;
     }
 
@@ -159,94 +146,75 @@ class Services_Yadis_SessionLoader {
      * and values are used to update the $data array of attributes
      * from $obj.
      */
-    function toSession($obj)
-    {
+    function toSession($obj) {
         $data = array();
-        foreach ($obj as $k => $v) {
+        foreach($obj as $k => $v) {
             $data[$k] = $v;
         }
-
         $extra = $this->prepareForSave($obj);
-
-        if ($extra && is_array($extra)) {
-            foreach ($extra as $k => $v) {
+        if($extra && is_array($extra)) {
+            foreach($extra as $k => $v) {
                 $data[$k] = $v;
             }
         }
-
         return $data;
     }
 
     /**
      * Override this.
      */
-    function prepareForSave($obj)
-    {
+    function prepareForSave($obj) {
         return array();
     }
 }
 
 class Auth_OpenID_ServiceEndpointLoader extends Services_Yadis_SessionLoader {
-    function newObject($data)
-    {
+
+    function newObject($data) {
         return new Auth_OpenID_ServiceEndpoint();
     }
 
-    function requiredKeys()
-    {
+    function requiredKeys() {
         $obj = new Auth_OpenID_ServiceEndpoint();
         $data = array();
-        foreach ($obj as $k => $v) {
+        foreach($obj as $k => $v) {
             $data[] = $k;
         }
         return $data;
     }
 
-    function check($data)
-    {
+    function check($data) {
         return is_array($data['type_uris']);
     }
 }
 
 class Services_Yadis_ManagerLoader extends Services_Yadis_SessionLoader {
-    function requiredKeys()
-    {
-        return array('starting_url',
-                     'yadis_url',
-                     'services',
-                     'session_key',
-                     '_current',
-                     'stale');
+
+    function requiredKeys() {
+        return array('starting_url', 'yadis_url', 'services', 'session_key', '_current', 'stale');
     }
 
-    function newObject($data)
-    {
-        return new Services_Yadis_Manager($data['starting_url'],
-                                          $data['yadis_url'],
-                                          $data['services'],
-                                          $data['session_key']);
+    function newObject($data) {
+        return new Services_Yadis_Manager($data['starting_url'], $data['yadis_url'], $data['services'], $data['session_key']);
     }
 
-    function check($data)
-    {
+    function check($data) {
         return is_array($data['services']);
     }
 
-    function prepareForLoad($data)
-    {
+    function prepareForLoad($data) {
         $loader = new Auth_OpenID_ServiceEndpointLoader();
         $services = array();
-        foreach ($data['services'] as $s) {
+        foreach($data['services'] as $s) {
             $services[] = $loader->fromSession($s);
         }
         return array('services' => $services);
     }
 
-    function prepareForSave($obj)
-    {
+    function prepareForSave($obj) {
         $loader = new Auth_OpenID_ServiceEndpointLoader();
         $services = array();
-        foreach ($obj->services as $s) {
+        foreach($obj->services as $s) {
             $services[] = $loader->toSession($s);
         }
         return array('services' => $services);
@@ -268,23 +236,16 @@ class Services_Yadis_Manager {
      *
      * @access private
      */
-    function Services_Yadis_Manager($starting_url, $yadis_url,
-                                    $services, $session_key)
-    {
+    function Services_Yadis_Manager($starting_url, $yadis_url, $services, $session_key) {
         // The URL that was used to initiate the Yadis protocol
         $this->starting_url = $starting_url;
-
         // The URL after following redirects (the identifier)
         $this->yadis_url = $yadis_url;
-
         // List of service elements
         $this->services = $services;
-
         $this->session_key = $session_key;
-
         // Reference to the current service object
         $this->_current = null;
-
         // Stale flag for cleanup if PHP lib has trouble.
         $this->stale = false;
     }
@@ -292,8 +253,7 @@ class Services_Yadis_Manager {
     /**
      * @access private
      */
-    function length()
-    {
+    function length() {
         // How many untried services remain?
         return count($this->services);
     }
@@ -304,23 +264,20 @@ class Services_Yadis_Manager {
      * $this->current() will continue to return that service until the
      * next call to this method.
      */
-    function nextService()
-    {
-
-        if ($this->services) {
+    function nextService() {
+        if($this->services) {
             $this->_current = array_shift($this->services);
-        } else {
+        }
+        else {
             $this->_current = null;
         }
-
         return $this->_current;
     }
 
     /**
      * @access private
      */
-    function current()
-    {
+    function current() {
         // Return the current service.
         // Returns None if there are no services left.
         return $this->_current;
@@ -329,16 +286,14 @@ class Services_Yadis_Manager {
     /**
      * @access private
      */
-    function forURL($url)
-    {
+    function forURL($url) {
         return in_array($url, array($this->starting_url, $this->yadis_url));
     }
 
     /**
      * @access private
      */
-    function started()
-    {
+    function started() {
         // Has the first service been returned?
         return $this->_current !== null;
     }
@@ -375,46 +330,37 @@ class Services_Yadis_Discovery {
      * @param string $session_key_suffix The optional session key
      * suffix override.
      */
-    function Services_Yadis_Discovery(&$session, $url,
-                                      $session_key_suffix = null)
-    {
+    function Services_Yadis_Discovery(&$session, $url, $session_key_suffix = null) {
         /// Initialize a discovery object
-        $this->session =& $session;
+        $this->session = &$session;
         $this->url = $url;
-        if ($session_key_suffix === null) {
+        if($session_key_suffix === null) {
             $session_key_suffix = $this->DEFAULT_SUFFIX;
         }
-
         $this->session_key_suffix = $session_key_suffix;
-        $this->session_key = $this->PREFIX . $this->session_key_suffix;
+        $this->session_key = $this->PREFIX.$this->session_key_suffix;
     }
 
     /**
      * Return the next authentication service for the pair of
      * user_input and session. This function handles fallback.
      */
-    function getNextService($discover_cb, &$fetcher)
-    {
+    function getNextService($discover_cb, &$fetcher) {
         $manager = $this->getManager();
-        if (!$manager || (!$manager->services)) {
+        if(!$manager || (!$manager->services)) {
             $this->destroyManager();
             $http_response = array();
-
-            $services = call_user_func($discover_cb, $this->url,
-                                       $fetcher);
-
-            $manager = $this->createManager($services, $this->url);
+            $services      = call_user_func($discover_cb, $this->url, $fetcher);
+            $manager       = $this->createManager($services, $this->url);
         }
-
-        if ($manager) {
+        if($manager) {
             $loader = new Services_Yadis_ManagerLoader();
             $service = $manager->nextService();
-            $this->session->set($this->session_key,
-                                serialize($loader->toSession($manager)));
-        } else {
+            $this->session->set($this->session_key, serialize($loader->toSession($manager)));
+        }
+        else {
             $service = null;
         }
-
         return $service;
     }
 
@@ -423,47 +369,42 @@ class Services_Yadis_Discovery {
      * most-recently-attempted service from the manager, if one
      * exists.
      */
-    function cleanup()
-    {
+    function cleanup() {
         $manager = $this->getManager();
-        if ($manager) {
+        if($manager) {
             $service = $manager->current();
             $this->destroyManager();
-        } else {
+        }
+        else {
             $service = null;
         }
-
         return $service;
     }
 
     /**
      * @access private
      */
-    function getSessionKey()
-    {
+    function getSessionKey() {
         // Get the session key for this starting URL and suffix
-        return $this->PREFIX . $this->session_key_suffix;
+        return $this->PREFIX.$this->session_key_suffix;
     }
 
     /**
      * @access private
      */
-    function &getManager()
-    {
+    function &getManager() {
         // Extract the YadisServiceManager for this object's URL and
         // suffix from the session.
-
         $manager_str = $this->session->get($this->getSessionKey());
         $manager = null;
-
-        if ($manager_str !== null) {
+        if($manager_str !== null) {
             $loader = new Services_Yadis_ManagerLoader();
             $manager = $loader->fromSession(unserialize($manager_str));
         }
-
-        if ($manager && $manager->forURL($this->url)) {
+        if($manager && $manager->forURL($this->url)) {
             return $manager;
-        } else {
+        }
+        else {
             $unused = null;
             return $unused;
         }
@@ -472,21 +413,18 @@ class Services_Yadis_Discovery {
     /**
      * @access private
      */
-    function &createManager($services, $yadis_url = null)
-    {
+    function &createManager($services, $yadis_url = null) {
         $key = $this->getSessionKey();
-        if ($this->getManager()) {
+        if($this->getManager()) {
             return $this->getManager();
         }
-
-        if ($services) {
+        if($services) {
             $loader = new Services_Yadis_ManagerLoader();
-            $manager = new Services_Yadis_Manager($this->url, $yadis_url,
-                                              $services, $key);
-            $this->session->set($this->session_key,
-                                serialize($loader->toSession($manager)));
+            $manager = new Services_Yadis_Manager($this->url, $yadis_url, $services, $key);
+            $this->session->set($this->session_key, serialize($loader->toSession($manager)));
             return $manager;
-        } else {
+        }
+        else {
             // Oh, PHP.
             $unused = null;
             return $unused;
@@ -496,13 +434,11 @@ class Services_Yadis_Discovery {
     /**
      * @access private
      */
-    function destroyManager()
-    {
-        if ($this->getManager() !== null) {
+    function destroyManager() {
+        if($this->getManager() !== null) {
             $key = $this->getSessionKey();
             $this->session->del($key);
         }
     }
 }
-
 ?>

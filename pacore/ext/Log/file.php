@@ -29,8 +29,7 @@
  *
  * @example file.php    Using the file handler.
  */
-class Log_file extends Log
-{
+class Log_file extends Log {
     /**
      * String containing the name of the log file.
      * @var string
@@ -97,11 +96,13 @@ class Log_file extends Log
      * @var array
      * @access private
      */
-    var $_formatMap = array('%{timestamp}'  => '%1$s',
-                            '%{ident}'      => '%2$s',
-                            '%{priority}'   => '%3$s',
-                            '%{message}'    => '%4$s',
-                            '%\{'           => '%%{');
+    var $_formatMap = array(
+        '%{timestamp}' => '%1$s',
+        '%{ident}' => '%2$s',
+        '%{priority}' => '%3$s',
+        '%{message}' => '%4$s',
+        '%\{' => '%%{',
+    );
 
     /**
      * String containing the end-on-line character sequence.
@@ -119,63 +120,53 @@ class Log_file extends Log
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_file($name, $ident = '', $conf = array(),
-                      $level = PEAR_LOG_DEBUG)
-    {
+    function Log_file($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_filename = $name;
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
-
-        if (isset($conf['append'])) {
+        if(isset($conf['append'])) {
             $this->_append = $conf['append'];
         }
-
-        if (isset($conf['locking'])) {
+        if(isset($conf['locking'])) {
             $this->_locking = $conf['locking'];
         }
-
-        if (!empty($conf['mode'])) {
-            if (is_string($conf['mode'])) {
+        if(!empty($conf['mode'])) {
+            if(is_string($conf['mode'])) {
                 $this->_mode = octdec($conf['mode']);
-            } else {
+            }
+            else {
                 $this->_mode = $conf['mode'];
             }
         }
-
-        if (!empty($conf['dirmode'])) {
-            if (is_string($conf['dirmode'])) {
+        if(!empty($conf['dirmode'])) {
+            if(is_string($conf['dirmode'])) {
                 $this->_dirmode = octdec($conf['dirmode']);
-            } else {
+            }
+            else {
                 $this->_dirmode = $conf['dirmode'];
             }
         }
-
-        if (!empty($conf['lineFormat'])) {
-            $this->_lineFormat = str_replace(array_keys($this->_formatMap),
-                                             array_values($this->_formatMap),
-                                             $conf['lineFormat']);
+        if(!empty($conf['lineFormat'])) {
+            $this->_lineFormat = str_replace(array_keys($this->_formatMap), array_values($this->_formatMap), $conf['lineFormat']);
         }
-
-        if (!empty($conf['timeFormat'])) {
+        if(!empty($conf['timeFormat'])) {
             $this->_timeFormat = $conf['timeFormat'];
         }
-
-        if (!empty($conf['eol'])) {
+        if(!empty($conf['eol'])) {
             $this->_eol = $conf['eol'];
-        } else {
+        }
+        else {
             $this->_eol = (strstr(PHP_OS, 'WIN')) ? "\r\n" : "\n";
         }
-
         register_shutdown_function(array(&$this, '_Log_file'));
     }
 
     /**
      * Destructor
      */
-    function _Log_file()
-    {
-        if ($this->_opened) {
+    function _Log_file() {
+        if($this->_opened) {
             $this->close();
         }
     }
@@ -195,20 +186,19 @@ class Log_file extends Log
      *
      * @access  private
      */
-    function _mkpath($path, $mode = 0700)
-    {
+    function _mkpath($path, $mode = 0700) {
         /* Separate the last pathname component from the rest of the path. */
         $head = dirname($path);
         $tail = basename($path);
 
         /* Make sure we've split the path into two complete components. */
-        if (empty($tail)) {
+        if(empty($tail)) {
             $head = dirname($path);
             $tail = basename($path);
         }
 
         /* Recurse up the path if our current segment does not exist. */
-        if (!empty($head) && !empty($tail) && !is_dir($head)) {
+        if(!empty($head) && !empty($tail) && !is_dir($head)) {
             $this->_mkpath($head, $mode);
         }
 
@@ -225,11 +215,11 @@ class Log_file extends Log
      *
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
+    function open() {
+        if(!$this->_opened) {
+
             /* If the log file's directory doesn't exist, create it. */
-            if (!is_dir(dirname($this->_filename))) {
+            if(!is_dir(dirname($this->_filename))) {
                 $this->_mkpath($this->_filename, $this->_dirmode);
             }
 
@@ -243,11 +233,10 @@ class Log_file extends Log
             $this->_opened = ($this->_fp !== false);
 
             /* Attempt to set the file's permissions if we just created it. */
-            if ($creating && $this->_opened) {
+            if($creating && $this->_opened) {
                 chmod($this->_filename, $this->_mode);
             }
         }
-
         return $this->_opened;
     }
 
@@ -256,14 +245,12 @@ class Log_file extends Log
      *
      * @access public
      */
-    function close()
-    {
+    function close() {
         /* If the log file is open, close it. */
-        if ($this->_opened && fclose($this->_fp)) {
+        if($this->_opened && fclose($this->_fp)) {
             $this->_opened = false;
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -272,8 +259,7 @@ class Log_file extends Log
      * @access public
      * @since Log 1.8.2
      */
-    function flush()
-    {
+    function flush() {
         return fflush($this->_fp);
     }
 
@@ -289,20 +275,19 @@ class Log_file extends Log
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the log file isn't already open, open it now. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
@@ -310,27 +295,23 @@ class Log_file extends Log
         $message = $this->_extractMessage($message);
 
         /* Build the string containing the complete log line. */
-        $line = sprintf($this->_lineFormat, strftime($this->_timeFormat),
-                $this->_ident, $this->priorityToString($priority),
-                $message) . $this->_eol;
+        $line = sprintf($this->_lineFormat, strftime($this->_timeFormat), $this->_ident, $this->priorityToString($priority), $message).$this->_eol;
 
         /* If locking is enabled, acquire an exclusive lock on the file. */
-        if ($this->_locking) {
+        if($this->_locking) {
             flock($this->_fp, LOCK_EX);
         }
 
         /* Write the log line to the log file. */
         $success = (fwrite($this->_fp, $line) !== false);
 
-        /* Unlock the file now that we're finished writing to it. */ 
-        if ($this->_locking) {
+        /* Unlock the file now that we're finished writing to it. */
+        if($this->_locking) {
             flock($this->_fp, LOCK_UN);
         }
 
         /* Notify observers about this log message. */
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return $success;
     }
-
 }

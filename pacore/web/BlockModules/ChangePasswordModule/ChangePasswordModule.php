@@ -11,16 +11,17 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
-
 class ChangePasswordModule extends Module {
 
     public $module_type = 'network';
+
     public $module_placement = 'middle';
+
     public $outer_template = 'outer_public_center_module.tpl';
+
     public $forgot_password_id;
 
     function __construct() {
-
         parent::__construct();
         $this->title = __('Change Password');
         $this->main_block_id = "mod_change_pass";
@@ -33,7 +34,6 @@ class ChangePasswordModule extends Module {
     * @return string $content html created by the function
     */
     function render() {
-
         $this->inner_HTML = $this->generate_inner_html();
         $content = parent::render();
         return $content;
@@ -44,7 +44,6 @@ class ChangePasswordModule extends Module {
     * @return string $inner_html the html for the module
     */
     function generate_inner_html() {
-
         $tmp_file = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
         $inner_html_gen = &new Template($tmp_file);
         $inner_html_gen->set('forgot_password_id', $this->forgot_password_id);
@@ -61,12 +60,11 @@ class ChangePasswordModule extends Module {
     * @return string returns 'skip' if the user id is not available
     */
     public function initializeModule($request_method, $request_data) {
-
-        if(empty($request_data['log_nam'])||empty($request_data['forgot_password_id'])) {
+        if(empty($request_data['log_nam']) || empty($request_data['forgot_password_id'])) {
             return 'skip';
         }
         //login name given in the url, should be same as of the page user.
-        if(empty(PA::$page_uid)||PA::$page_user->login_name != $request_data['log_nam']) {
+        if(empty(PA::$page_uid) || PA::$page_user->login_name != $request_data['log_nam']) {
             return 'skip';
         }
         $this->forgot_password_id = $request_data['forgot_password_id'];
@@ -80,7 +78,6 @@ class ChangePasswordModule extends Module {
     * @param array $request_method must be POST or will the entire function is skipped
     */
     public function handleChangePassword($request_method, $request_data) {
-
         switch($request_method) {
             case 'POST':
                 $message = NULL;
@@ -106,16 +103,25 @@ class ChangePasswordModule extends Module {
                     //inputs are valid, try changing the password
                     try {
                         User::change_password($request_data['password'], $this->forgot_password_id);
-                        $msg_array = array('failure_msg'=>NULL, 'success_msg'=>$message);
+                        $msg_array = array(
+                            'failure_msg' => NULL,
+                            'success_msg' => $message,
+                        );
                         $redirect_url = PA::$url.'/'.FILE_LOGIN;
                         $query_str = '?msg_id=7004';
                     }
                     catch(PAException$e) {
-                        $msg_array = array('failure_msg'=>$e->message, 'success_msg'=>NULL);
+                        $msg_array = array(
+                            'failure_msg' => $e->message,
+                            'success_msg' => NULL,
+                        );
                     }
                 }
                 else {
-                    $msg_array = array('failure_msg'=>$message, 'success_msg'=>NULL);
+                    $msg_array = array(
+                        'failure_msg' => $message,
+                        'success_msg' => NULL,
+                    );
                 }
                 @set_web_variables($msg_array, $redirect_url, $query_str);
                 break;

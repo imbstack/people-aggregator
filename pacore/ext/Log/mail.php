@@ -37,8 +37,7 @@
  *
  * @example mail.php    Using the mail handler.
  */
-class Log_mail extends Log
-{
+class Log_mail extends Log {
     /**
      * String holding the recipient's email address.
      * @var string
@@ -74,7 +73,6 @@ class Log_mail extends Log
      */
     var $_message = '';
 
-
     /**
      * Constructs a new Log_mail object.
      *
@@ -88,25 +86,21 @@ class Log_mail extends Log
      * @param int    $level     Log messages up to and including this level.
      * @access public
      */
-    function Log_mail($name, $ident = '', $conf = array(),
-                      $level = PEAR_LOG_DEBUG)
-    {
+    function Log_mail($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_recipient = $name;
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
-
-        if (!empty($conf['from'])) {
+        if(!empty($conf['from'])) {
             $this->_from = $conf['from'];
-        } else {
+        }
+        else {
             $this->_from = ini_get('sendmail_from');
         }
-
-        if (!empty($conf['subject'])) {
+        if(!empty($conf['subject'])) {
             $this->_subject = $conf['subject'];
         }
-
-        if (!empty($conf['preamble'])) {
+        if(!empty($conf['preamble'])) {
             $this->_preamble = $conf['preamble'];
         }
 
@@ -119,8 +113,7 @@ class Log_mail extends Log
      *
      * @access private
      */
-    function _Log_mail()
-    {
+    function _Log_mail() {
         $this->close();
     }
 
@@ -130,15 +123,13 @@ class Log_mail extends Log
      *
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
-            if (!empty($this->_preamble)) {
-                $this->_message = $this->_preamble . "\r\n\r\n";
+    function open() {
+        if(!$this->_opened) {
+            if(!empty($this->_preamble)) {
+                $this->_message = $this->_preamble."\r\n\r\n";
             }
             $this->_opened = true;
         }
-
         return $this->_opened;
     }
 
@@ -148,15 +139,12 @@ class Log_mail extends Log
      *
      * @access public
      */
-    function close()
-    {
-        if ($this->_opened) {
-            if (!empty($this->_message)) {
+    function close() {
+        if($this->_opened) {
+            if(!empty($this->_message)) {
                 $headers = "From: $this->_from\r\n";
                 $headers .= "User-Agent: Log_mail";
-
-                if (mail($this->_recipient, $this->_subject, $this->_message,
-                         $headers) == false) {
+                if(mail($this->_recipient, $this->_subject, $this->_message, $headers) == false) {
                     error_log("Log_mail: Failure executing mail()", 0);
                     return false;
                 }
@@ -166,8 +154,7 @@ class Log_mail extends Log
             }
             $this->_opened = false;
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -178,8 +165,7 @@ class Log_mail extends Log
      * @access public
      * @since Log 1.8.2
      */
-    function flush()
-    {
+    function flush() {
         /*
          * It's sufficient to simply call close() to flush the output.
          * The next call to log() will cause the handler to be reopened.
@@ -199,34 +185,27 @@ class Log_mail extends Log
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the message isn't open and can't be opened, return failure. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
-
-        $entry = sprintf("%s %s [%s] %s\r\n", strftime('%b %d %H:%M:%S'),
-                         $this->_ident, Log::priorityToString($priority),
-                         $message);
-
+        $entry = sprintf("%s %s [%s] %s\r\n", strftime('%b %d %H:%M:%S'), $this->_ident, Log::priorityToString($priority), $message);
         $this->_message .= $entry;
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
 }

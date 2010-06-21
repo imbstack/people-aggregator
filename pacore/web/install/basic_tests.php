@@ -13,10 +13,8 @@
 <?php
 error_reporting(E_ALL);
 require_once "InstallTests.class.php";
-
 global $installer;
 $installer->error = 0;
-
 $tester = new InstallTests('baseTests');
 ?>
 
@@ -28,9 +26,9 @@ $tester = new InstallTests('baseTests');
      <table>
         <?php
            $tester->run();
-           echo $tester->showStatus($installer);
-           $installer->config['allow_network_spawning'] = $tester->allow_spawning;
-        ?>
+echo $tester->showStatus($installer);
+$installer->config['allow_network_spawning'] = $tester->allow_spawning;
+?>
      </table>
   </body>
 </html>

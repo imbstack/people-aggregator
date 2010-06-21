@@ -13,10 +13,8 @@
 <?php
 error_reporting(E_ALL);
 require_once "InstallTests.class.php";
-
 global $installer;
 $installer->error = 0;
-
 $tester = new InstallTests('dbTest', $installer->form_data);
 ?>
 
@@ -28,9 +26,9 @@ $tester = new InstallTests('dbTest', $installer->form_data);
      <table>
         <?php
            $tester->run();
-           echo $tester->showStatus($installer);
-           $installer->config['peepagg_dsn'] = $tester->peepagg_dsn;
-        ?>
+echo $tester->showStatus($installer);
+$installer->config['peepagg_dsn'] = $tester->peepagg_dsn;
+?>
      </table>
   </body>
 </html>

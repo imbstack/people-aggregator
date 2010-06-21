@@ -11,9 +11,7 @@
 */
 ?>
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * The PEAR DB driver for PHP's dbase extension
  * for interacting with dBase databases
@@ -56,10 +54,8 @@ require_once 'DB/common.php';
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/DB
  */
-class DB_dbase extends DB_common
-{
+class DB_dbase extends DB_common {
     // {{{ properties
-
     /**
      * The DB driver type (mysql, oci8, odbc, etc.)
      * @var string
@@ -86,21 +82,20 @@ class DB_dbase extends DB_common
      * @var array
      */
     var $features = array(
-        'limit'         => false,
-        'new_link'      => false,
-        'numrows'       => true,
-        'pconnect'      => false,
-        'prepare'       => false,
-        'ssl'           => false,
-        'transactions'  => false,
+        'limit'        => false,
+        'new_link'     => false,
+        'numrows'      => true,
+        'pconnect'     => false,
+        'prepare'      => false,
+        'ssl'          => false,
+        'transactions' => false,
     );
 
     /**
      * A mapping of native error codes to DB error codes
      * @var array
      */
-    var $errorcode_map = array(
-    );
+    var $errorcode_map = array();
 
     /**
      * The raw database connection created by PHP
@@ -113,7 +108,6 @@ class DB_dbase extends DB_common
      * @var array
      */
     var $dsn = array();
-
 
     /**
      * A means of emulating result resources
@@ -146,24 +140,18 @@ class DB_dbase extends DB_common
         'M' => 'memo',
         'N' => 'number',
     );
-
-
     // }}}
     // {{{ constructor
-
     /**
      * This constructor calls <kbd>$this->DB_common()</kbd>
      *
      * @return void
      */
-    function DB_dbase()
-    {
+    function DB_dbase() {
         $this->DB_common();
     }
-
     // }}}
     // {{{ connect()
-
     /**
      * Connect to the database and create it if it doesn't exist
      *
@@ -211,14 +199,12 @@ class DB_dbase extends DB_common
      *
      * @return int  DB_OK on success. A DB_Error object on failure.
      */
-    function connect($dsn, $persistent = false)
-    {
-        if (!PEAR::loadExtension('dbase')) {
+    function connect($dsn, $persistent = false) {
+        if(!PEAR::loadExtension('dbase')) {
             return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
-
         $this->dsn = $dsn;
-        if ($dsn['dbsyntax']) {
+        if($dsn['dbsyntax']) {
             $this->dbsyntax = $dsn['dbsyntax'];
         }
 
@@ -228,70 +214,49 @@ class DB_dbase extends DB_common
          */
         ini_set('track_errors', 1);
         $php_errormsg = '';
-
-        if (!file_exists($dsn['database'])) {
+        if(!file_exists($dsn['database'])) {
             $this->dsn['mode'] = 2;
-            if (empty($dsn['fields']) || !is_array($dsn['fields'])) {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
-                                         null, null, null,
-                                         'the dbase file does not exist and '
-                                         . 'it could not be created because '
-                                         . 'the "fields" element of the DSN '
-                                         . 'is not properly set');
+            if(empty($dsn['fields']) || !is_array($dsn['fields'])) {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, 'the dbase file does not exist and '.'it could not be created because '.'the "fields" element of the DSN '.'is not properly set');
             }
-            $this->connection = @dbase_create($dsn['database'],
-                                              $dsn['fields']);
-            if (!$this->connection) {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
-                                         null, null, null,
-                                         'the dbase file does not exist and '
-                                         . 'the attempt to create it failed: '
-                                         . $php_errormsg);
+            $this->connection = @dbase_create($dsn['database'], $dsn['fields']);
+            if(!$this->connection) {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, 'the dbase file does not exist and '.'the attempt to create it failed: '.$php_errormsg);
             }
-        } else {
-            if (!isset($this->dsn['mode'])) {
+        }
+        else {
+            if(!isset($this->dsn['mode'])) {
                 $this->dsn['mode'] = 0;
             }
-            $this->connection = @dbase_open($dsn['database'],
-                                            $this->dsn['mode']);
-            if (!$this->connection) {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
-                                         null, null, null,
-                                         $php_errormsg);
+            $this->connection = @dbase_open($dsn['database'], $this->dsn['mode']);
+            if(!$this->connection) {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, $php_errormsg);
             }
         }
         return DB_OK;
     }
-
     // }}}
     // {{{ disconnect()
-
     /**
      * Disconnects from the database server
      *
      * @return bool  TRUE on success, FALSE on failure
      */
-    function disconnect()
-    {
+    function disconnect() {
         $ret = @dbase_close($this->connection);
         $this->connection = null;
         return $ret;
     }
-
     // }}}
     // {{{ &query()
-
-    function &query($query = null)
-    {
+    function &query($query = null) {
         // emulate result resources
-        $this->res_row[(int)$this->result] = 0;
-        $tmp =& new DB_result($this, $this->result++);
+        $this->res_row[(int) $this->result] = 0;
+        $tmp = &new DB_result($this, $this->result++);
         return $tmp;
     }
-
     // }}}
     // {{{ fetchInto()
-
     /**
      * Places a row from the result set into the given array
      *
@@ -312,34 +277,32 @@ class DB_dbase extends DB_common
      *
      * @see DB_result::fetchInto()
      */
-    function fetchInto($result, &$arr, $fetchmode, $rownum = null)
-    {
-        if ($rownum === null) {
-            $rownum = $this->res_row[(int)$result]++;
+    function fetchInto($result, &$arr, $fetchmode, $rownum = null) {
+        if($rownum === null) {
+            $rownum = $this->res_row[(int) $result]++;
         }
-        if ($fetchmode & DB_FETCHMODE_ASSOC) {
+        if($fetchmode&DB_FETCHMODE_ASSOC) {
             $arr = @dbase_get_record_with_names($this->connection, $rownum);
-            if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE && $arr) {
+            if($this->options['portability']&DB_PORTABILITY_LOWERCASE && $arr) {
                 $arr = array_change_key_case($arr, CASE_LOWER);
             }
-        } else {
+        }
+        else {
             $arr = @dbase_get_record($this->connection, $rownum);
         }
-        if (!$arr) {
+        if(!$arr) {
             return null;
         }
-        if ($this->options['portability'] & DB_PORTABILITY_RTRIM) {
+        if($this->options['portability']&DB_PORTABILITY_RTRIM) {
             $this->_rtrimArrayValues($arr);
         }
-        if ($this->options['portability'] & DB_PORTABILITY_NULL_TO_EMPTY) {
+        if($this->options['portability']&DB_PORTABILITY_NULL_TO_EMPTY) {
             $this->_convertNullArrayValuesToEmpty($arr);
         }
         return DB_OK;
     }
-
     // }}}
     // {{{ freeResult()
-
     /**
      * Deletes the result set and frees the memory occupied by the result set.
      *
@@ -352,14 +315,11 @@ class DB_dbase extends DB_common
      *
      * @see DB_result::free()
      */
-    function freeResult($result)
-    {
+    function freeResult($result) {
         return true;
     }
-
     // }}}
     // {{{ numCols()
-
     /**
      * Gets the number of columns in a result set
      *
@@ -373,14 +333,11 @@ class DB_dbase extends DB_common
      *
      * @see DB_result::numCols()
      */
-    function numCols($foo)
-    {
+    function numCols($foo) {
         return @dbase_numfields($this->connection);
     }
-
     // }}}
     // {{{ numRows()
-
     /**
      * Gets the number of rows in a result set
      *
@@ -394,14 +351,11 @@ class DB_dbase extends DB_common
      *
      * @see DB_result::numRows()
      */
-    function numRows($foo)
-    {
+    function numRows($foo) {
         return @dbase_numrecords($this->connection);
     }
-
     // }}}
     // {{{ quoteSmart()
-
     /**
      * Formats input so it can be safely used in a query
      *
@@ -422,22 +376,22 @@ class DB_dbase extends DB_common
      * @see DB_common::quoteSmart()
      * @since Method available since Release 1.6.0
      */
-    function quoteSmart($in)
-    {
-        if (is_int($in) || is_double($in)) {
+    function quoteSmart($in) {
+        if(is_int($in) || is_double($in)) {
             return $in;
-        } elseif (is_bool($in)) {
+        }
+        elseif(is_bool($in)) {
             return $in ? 'T' : 'F';
-        } elseif (is_null($in)) {
+        }
+        elseif(is_null($in)) {
             return 'NULL';
-        } else {
-            return "'" . $this->escapeSimple($in) . "'";
+        }
+        else {
+            return "'".$this->escapeSimple($in)."'";
         }
     }
-
     // }}}
     // {{{ tableInfo()
-
     /**
      * Returns information about the current database
      *
@@ -451,84 +405,79 @@ class DB_dbase extends DB_common
      * @see DB_common::tableInfo()
      * @since Method available since Release 1.7.0
      */
-    function tableInfo($result = null, $mode = null)
-    {
-        if (function_exists('dbase_get_header_info')) {
+    function tableInfo($result = null, $mode = null) {
+        if(function_exists('dbase_get_header_info')) {
             $id = @dbase_get_header_info($this->connection);
-            if (!$id && $php_errormsg) {
-                return $this->raiseError(DB_ERROR,
-                                         null, null, null,
-                                         $php_errormsg);
+            if(!$id && $php_errormsg) {
+                return $this->raiseError(DB_ERROR, null, null, null, $php_errormsg);
             }
-        } else {
+        }
+        else {
+
             /*
              * This segment for PHP 4 is loosely based on code by
              * Hadi Rusiah <deegos@yahoo.com> in the comments on
              * the dBase reference page in the PHP manual.
              */
             $db = @fopen($this->dsn['database'], 'r');
-            if (!$db) {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
-                                         null, null, null,
-                                         $php_errormsg);
+            if(!$db) {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, $php_errormsg);
             }
-
-            $id = array();
-            $i  = 0;
-
+            $id   = array();
+            $i    = 0;
             $line = fread($db, 32);
-            while (!feof($db)) {
+            while(!feof($db)) {
                 $line = fread($db, 32);
-                if (substr($line, 0, 1) == chr(13)) {
+                if(substr($line, 0, 1) == chr(13)) {
                     break;
-                } else {
+                }
+                else {
                     $pos = strpos(substr($line, 0, 10), chr(0));
                     $pos = ($pos == 0 ? 10 : $pos);
                     $id[$i] = array(
-                        'name'   => substr($line, 0, $pos),
-                        'type'   => $this->types[substr($line, 11, 1)],
-                        'length' => ord(substr($line, 16, 1)),
-                        'precision' => ord(substr($line, 17, 1)),
+                        'name' => substr($line,
+                        0,
+                        $pos),
+                        'type' => $this->types[substr($line,
+                        11,
+                        1)],
+                        'length' => ord(substr($line,
+                        16,
+                        1)),
+                        'precision' => ord(substr($line,
+                        17,
+                        1)),
                     );
                 }
                 $i++;
             }
-
             fclose($db);
         }
-
-        if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
+        if($this->options['portability']&DB_PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
-        } else {
+        }
+        else {
             $case_func = 'strval';
         }
-
-        $res   = array();
+        $res = array();
         $count = count($id);
-
-        if ($mode) {
+        if($mode) {
             $res['num_fields'] = $count;
         }
-
-        for ($i = 0; $i < $count; $i++) {
+        for($i = 0; $i < $count; $i++) {
             $res[$i] = array(
                 'table' => $this->dsn['database'],
-                'name'  => $case_func($id[$i]['name']),
-                'type'  => $id[$i]['type'],
-                'len'   => $id[$i]['length'],
-                'flags' => ''
-            );
-            if ($mode & DB_TABLEINFO_ORDER) {
+                'name'  => $case_func($id[$i]['name']), 'type' => $id[$i]['type'], 'len' => $id[$i]['length'],
+                'flags' => '',
+            ); if($mode&DB_TABLEINFO_ORDER) {
                 $res['order'][$res[$i]['name']] = $i;
             }
-            if ($mode & DB_TABLEINFO_ORDERTABLE) {
+            if($mode&DB_TABLEINFO_ORDERTABLE) {
                 $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
             }
         }
-
         return $res;
     }
-
     // }}}
 }
 
@@ -538,5 +487,4 @@ class DB_dbase extends DB_common
  * c-basic-offset: 4
  * End:
  */
-
 ?>

@@ -45,8 +45,7 @@ require_once 'DB.php';
  *
  * @example sql.php     Using the SQL handler.
  */
-class Log_sql extends Log
-{
+class Log_sql extends Log {
     /**
      * Variable containing the DSN information.
      * @var mixed
@@ -67,7 +66,9 @@ class Log_sql extends Log
      * @var array
      * @access private
      */
-    var $_options = array('persistent' => true);
+    var $_options = array(
+        'persistent' => true,
+    );
 
     /**
      * Object holding the database handle.
@@ -112,7 +113,6 @@ class Log_sql extends Log
      */
     var $_identLimit = 16;
 
-
     /**
      * Constructs a new sql logging object.
      *
@@ -122,34 +122,31 @@ class Log_sql extends Log
      * @param int $level           Log messages up to and including this level.
      * @access public
      */
-    function Log_sql($name, $ident = '', $conf = array(),
-                     $level = PEAR_LOG_DEBUG)
-    {
+    function Log_sql($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_table = $name;
         $this->_mask = Log::UPTO($level);
 
         /* Now that we have a table name, assign our SQL statement. */
-        if (!empty($this->_sql)) {
+        if(!empty($this->_sql)) {
             $this->_sql = $conf['sql'];
-        } else {
-            $this->_sql = 'INSERT INTO ' . $this->_table .
-                          ' (id, logtime, ident, priority, message)' .
-                          ' VALUES(?, CURRENT_TIMESTAMP, ?, ?, ?)';
+        }
+        else {
+            $this->_sql = 'INSERT INTO '.$this->_table.' (id, logtime, ident, priority, message)'.' VALUES(?, CURRENT_TIMESTAMP, ?, ?, ?)';
         }
 
         /* If an options array was provided, use it. */
-        if (isset($conf['options']) && is_array($conf['options'])) {
+        if(isset($conf['options']) && is_array($conf['options'])) {
             $this->_options = $conf['options'];
         }
 
         /* If a specific sequence name was provided, use it. */
-        if (!empty($conf['sequence'])) {
+        if(!empty($conf['sequence'])) {
             $this->_sequence = $conf['sequence'];
         }
 
         /* If a specific sequence name was provided, use it. */
-        if (isset($conf['identLimit'])) {
+        if(isset($conf['identLimit'])) {
             $this->_identLimit = $conf['identLimit'];
         }
 
@@ -157,11 +154,12 @@ class Log_sql extends Log
         $this->setIdent($ident);
 
         /* If an existing database connection was provided, use it. */
-        if (isset($conf['db'])) {
+        if(isset($conf['db'])) {
             $this->_db = &$conf['db'];
             $this->_existingConnection = true;
             $this->_opened = true;
-        } else {
+        }
+        else {
             $this->_dsn = $conf['dsn'];
         }
     }
@@ -173,24 +171,23 @@ class Log_sql extends Log
      * @return boolean   True on success, false on failure.
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
+    function open() {
+        if(!$this->_opened) {
+
             /* Use the DSN and options to create a database connection. */
             $this->_db = &DB::connect($this->_dsn, $this->_options);
-            if (DB::isError($this->_db)) {
+            if(DB::isError($this->_db)) {
                 return false;
             }
 
             /* Create a prepared statement for repeated use in log(). */
-            if (!$this->_prepareStatement()) {
+            if(!$this->_prepareStatement()) {
                 return false;
             }
 
             /* We now consider out connection open. */
             $this->_opened = true;
         }
-
         return $this->_opened;
     }
 
@@ -202,15 +199,13 @@ class Log_sql extends Log
      * @return boolean   True on success, false on failure.
      * @access public
      */
-    function close()
-    {
-        if ($this->_opened && !$this->_existingConnection) {
+    function close() {
+        if($this->_opened && !$this->_existingConnection) {
             $this->_opened = false;
             $this->_db->freePrepared($this->_statement);
             return $this->_db->disconnect();
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -223,8 +218,7 @@ class Log_sql extends Log
      * @access  public
      * @since   Log 1.8.5
      */
-    function setIdent($ident)
-    {
+    function setIdent($ident) {
         $this->_ident = substr($ident, 0, $this->_identLimit);
     }
 
@@ -241,25 +235,24 @@ class Log_sql extends Log
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the connection isn't open and can't be opened, return failure. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* If we don't already have our statement object yet, create it. */
-        if (!is_object($this->_statement) && !$this->_prepareStatement()) {
+        if(!is_object($this->_statement) && !$this->_prepareStatement()) {
             return false;
         }
 
@@ -268,16 +261,19 @@ class Log_sql extends Log
 
         /* Build our set of values for this log entry. */
         $id = $this->_db->nextId($this->_sequence);
-        $values = array($id, $this->_ident, $priority, $message);
+        $values = array(
+            $id,
+            $this->_ident,
+            $priority,
+            $message,
+        );
 
         /* Execute the SQL query for this log entry insertion. */
-        $result =& $this->_db->execute($this->_statement, $values);
-        if (DB::isError($result)) {
+        $result = &$this->_db->execute($this->_statement, $values);
+        if(DB::isError($result)) {
             return false;
         }
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
 
@@ -289,11 +285,10 @@ class Log_sql extends Log
      * @access  private
      * @since   Log 1.9.1
      */
-    function _prepareStatement()
-    {
+    function _prepareStatement() {
         $this->_statement = $this->_db->prepare($this->_sql);
 
         /* Return success if we didn't generate an error. */
-        return (DB::isError($this->_statement) === false);
+        return(DB::isError($this->_statement) === false);
     }
 }

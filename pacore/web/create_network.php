@@ -24,15 +24,13 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
-
 $login_required = TRUE;
 //including necessary files
-$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+$use_theme = 'Beta';
+//TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
-
 require_once "api/Validation/Validation.php";
 require_once "web/includes/network.inc.php";
-
 global $global_form_data, $global_form_error;
 $permission_denied_msg = NULL;
 
@@ -48,32 +46,32 @@ $permission_denied_msg = NULL;
  *  @return   type string - returns skip means skip the block module
  *            returns rendered html code of block module
  */
-
 function setup_module($column, $module, $obj) {
- global $form_data, $error, $error_msg, $global_form_data;  
-  switch ($module) {
-    case 'NetworkDefaultControlModule':
-    $obj->tpl_to_load = "stats";
-    $obj->title = 'Create your network';
-    $obj->control_type = "basic";
-    $obj->form_data = $global_form_data;
-    $obj->error = $error;
-    $obj->error_msg = $error_msg;
-    //add variables to BlockModule 
-    break;
-  }
+    global $form_data, $error, $error_msg, $global_form_data;
+    switch($module) {
+        case 'NetworkDefaultControlModule':
+            $obj->tpl_to_load  = "stats";
+            $obj->title        = 'Create your network';
+            $obj->control_type = "basic";
+            $obj->form_data    = $global_form_data;
+            $obj->error        = $error;
+            $obj->error_msg    = $error_msg;
+            //add variables to BlockModule
+            break;
+    }
 }
-
-if (!PA::$network_capable) die(__("Networks are disabled."));
-if (!PA::$config->enable_network_spawning) die(__("Network spawning disabled."));
-
-$page = new PageRenderer("setup_module", PAGE_CREATE_NETWORK, sprintf(__("Create Network - %s"),  PA::$network_info->name), 'container_three_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
-
-
+if(!PA::$network_capable) {
+    die(__("Networks are disabled."));
+}
+if(!PA::$config->enable_network_spawning) {
+    die(__("Network spawning disabled."));
+}
+$page                       = new PageRenderer("setup_module", PAGE_CREATE_NETWORK, sprintf(__("Create Network - %s"), PA::$network_info->name), 'container_three_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 $page->html_body_attributes = 'class="no_second_tier"';
-$permission_denied_msg = (empty($global_form_error))?$permission_denied_msg :$global_form_error ;
-if (@$permission_denied_msg) uihelper_error_msg($permission_denied_msg);
+$permission_denied_msg      = (empty($global_form_error)) ? $permission_denied_msg : $global_form_error;
+if(@$permission_denied_msg) {
+    uihelper_error_msg($permission_denied_msg);
+}
 uihelper_get_network_style();
-
 echo $page->render();
 ?>

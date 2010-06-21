@@ -26,11 +26,9 @@
  */
 // SITE NAME
 require_once dirname(__FILE__)."/../../../config.inc";
-
-$site_name = PA::$site_name;
-$page_url  = PA::$url;
-
-$mail_footer_message =   "<TR>
+$site_name           = PA::$site_name;
+$page_url            = PA::$url;
+$mail_footer_message = "<TR>
     <TD colspan=\"2\"><DIV style=\" width: auto; margin: 0px 0px 5px 0px; border-top:#FF9900 1px dashed\"></DIV><CENTER>
       <FONT face=\"Arial, Helvetica, sans-serif\" size=\"1\" color=\"#0099FF\">$site_name
         is an open social network service by Broadband Mechanics Inc. &copy;2008</FONT><br>
@@ -43,12 +41,10 @@ $mail_footer_message =   "<TR>
       </FONT>
     </CENTER></TD>
   </TR>";
-  
 // FOR MAILING SUBJECT AND MESSAGES
 // invite mail subject and message
-$invite_pa_subject = "%first_name% %last_name% has invited you to join %network_name% network!";
-
-$invite_pa_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$invite_pa_subject  = "%first_name% %last_name% has invited you to join %network_name% network!";
+$invite_pa_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -60,7 +56,7 @@ $invite_pa_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpad
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"\><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%invitee_image%</A>Hey
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"\><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%invitee_image%</A>Hey
       %invited_user_name%,<br>
       <br>
     I've
@@ -123,14 +119,11 @@ $invite_pa_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpad
     be shared with third parties unless specifically requested by you.</FONT> </TD>
 
   </TR>";
-  
 $invite_pa_message .= $mail_footer_message;
-$invite_pa_message .="</TABLE>";
-
+$invite_pa_message .= "</TABLE>";
 // invite acceptance mail subject and message
-
-$invite_accept_pa_subject = "%first_name% has accepted your invitation to join %network_name% network in %site_name%";
-$invite_accept_pa_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$invite_accept_pa_subject  = "%first_name% has accepted your invitation to join %network_name% network in %site_name%";
+$invite_accept_pa_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -170,12 +163,11 @@ $invite_accept_pa_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" 
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$invite_accept_pa_message .= $mail_footer_message;  
-$invite_accept_pa_message.="</TABLE>";
-
+$invite_accept_pa_message .= $mail_footer_message;
+$invite_accept_pa_message .= "</TABLE>";
 // forgot password mail subject and message
-$forgot_password_subject = "Your $site_name username/password information";
-$forgot_password_message =" <TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$forgot_password_subject  = "Your $site_name username/password information";
+$forgot_password_message  = " <TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -215,14 +207,11 @@ $forgot_password_message =" <TABLE width=\"675\" border=\"0\" align=\"center\" c
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-  
 $forgot_password_message .= $mail_footer_message;
 $forgot_password_message .= "</TABLE>";
-
 // Friend request mail subject and message
-$friend_request_subject = "%first_name% %last_name% has requested to add you as a friend";
-
-$friend_request_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$friend_request_subject          = "%first_name% %last_name% has requested to add you as a friend";
+$friend_request_message          = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -234,7 +223,7 @@ $friend_request_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%requestor_image%</A>Hey
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%requestor_image%</A>Hey
           %requested_user%, <br>
         <br>
       %first_name% has requested to establish a relationship with you.  They wish
@@ -272,11 +261,10 @@ $friend_request_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$friend_request_message .= $mail_footer_message;
-$friend_request_message .= "</TABLE>";
-
-$friend_response_subject = "%first_name% %last_name% has accepted your invitation to connect";
-$friend_response_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$friend_request_message         .= $mail_footer_message;
+$friend_request_message         .= "</TABLE>";
+$friend_response_subject         = "%first_name% %last_name% has accepted your invitation to connect";
+$friend_response_message         = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -315,12 +303,10 @@ $friend_response_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" c
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$friend_response_message .= $mail_footer_message;
-$friend_response_message .= "</TABLE>";
-
-
-$friend_denied_subject = "%first_name% %last_name% has denied your request to be your 'friend'";
-$friend_denied_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$friend_response_message        .= $mail_footer_message;
+$friend_response_message        .= "</TABLE>";
+$friend_denied_subject           = "%first_name% %last_name% has denied your request to be your 'friend'";
+$friend_denied_message           = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -350,11 +336,10 @@ $friend_denied_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cel
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$friend_denied_message .= $mail_footer_message;
-$friend_denied_message .= "</TABLE>";
-
-$network_owner_bulletin_subject = "%subject%";
-$network_owner_bulletin_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$friend_denied_message          .= $mail_footer_message;
+$friend_denied_message          .= "</TABLE>";
+$network_owner_bulletin_subject  = "%subject%";
+$network_owner_bulletin_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -365,7 +350,7 @@ $network_owner_bulletin_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%owner_image%</A><br>
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%owner_image%</A><br>
       %message%<br>
         <br>
 
@@ -380,9 +365,8 @@ $network_owner_bulletin_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
   </TR>";
 $network_owner_bulletin_message .= $mail_footer_message;
 $network_owner_bulletin_message .= "</TABLE>";
-
-$group_created_subject = "%group_owner% has created a Group in your network %network_name%";
-$group_created_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$group_created_subject           = "%group_owner% has created a Group in your network %network_name%";
+$group_created_message           = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -402,10 +386,10 @@ $group_created_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cel
       <A href=\"%network_url%\" style=\"color:#666666\">%network_url%</A><br>
 
       <br>
-      To view the %group_name% group go to <A href=\"$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%\" style=\"color:#666666\">%group_name%</A> <br>
+      To view the %group_name% group go to <A href=\"$page_url".PA_ROUTE_GROUP."/gid=%group_id%\" style=\"color:#666666\">%group_name%</A> <br>
       <br>
       To moderate the %group_name% group, go to: <br>
-      <A href=\"$page_url" . PA_ROUTE_GROUP_MODERATION . "/gid=%group_id%\" style=\"color:#666666\">$page_url" . PA_ROUTE_GROUP_MODERATION . "/gid=%group_id%</A><br>
+      <A href=\"$page_url".PA_ROUTE_GROUP_MODERATION."/gid=%group_id%\" style=\"color:#666666\">$page_url".PA_ROUTE_GROUP_MODERATION."/gid=%group_id%</A><br>
       <br>
 
       Regards,</FONT></P>
@@ -421,14 +405,11 @@ $group_created_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cel
     be shared with third parties unless specifically requested by you.</FONT> </TD>
 
   </TR>";
-$group_created_message .= $mail_footer_message;
-$group_created_message .= "</TABLE>";
-
-
+$group_created_message          .= $mail_footer_message;
+$group_created_message          .= "</TABLE>";
 // network join mail subject & message
-$network_join_subject = "%joinee% has joined your network %network_name%";
-
-$network_join_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$network_join_subject    = "%joinee% has joined your network %network_name%";
+$network_join_message    = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -468,11 +449,10 @@ $network_join_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cell
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$network_join_message .= $mail_footer_message;
-$network_join_message .= "</TABLE>";
-
-$media_uploaded_subject = "%first_name% has uploaded media into your network %network_name%";
-$media_uploaded_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$network_join_message   .= $mail_footer_message;
+$network_join_message   .= "</TABLE>";
+$media_uploaded_subject  = "%first_name% has uploaded media into your network %network_name%";
+$media_uploaded_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -484,7 +464,7 @@ $media_uploaded_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%user_image%</A>Dear
+    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%user_image%</A>Dear
       %network_owner_name%,<br>
       <br>
       %first_name% has uploaded a media item into your network, %network_name%
@@ -515,11 +495,9 @@ $media_uploaded_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
   </TR>";
 $media_uploaded_message .= $mail_footer_message;
 $media_uploaded_message .= "</TABLE>";
-
 // content post to community blog mail subject and message
-
-$content_posted_to_comm_blog_subject = "%first_name% has posted something to the %network_name% Community Blog";
-$content_posted_to_comm_blog_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$content_posted_to_comm_blog_subject  = "%first_name% has posted something to the %network_name% Community Blog";
+$content_posted_to_comm_blog_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -531,7 +509,7 @@ $content_posted_to_comm_blog_message = "<TABLE width=\"675\" border=\"0\" align=
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%user_image%</A>Dear
+    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%user_image%</A>Dear
       %network_owner_name%,<br>
       <br>
       %first_name% has posted a blog post (of some form) into
@@ -562,14 +540,11 @@ $content_posted_to_comm_blog_message = "<TABLE width=\"675\" border=\"0\" align=
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-  
 $content_posted_to_comm_blog_message .= $mail_footer_message;
 $content_posted_to_comm_blog_message .= "</TABLE>";
-
-
 // content posted
-$content_posted_subject = "%first_name% has posted content in your network %network_name%";
-$content_posted_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$content_posted_subject  = "%first_name% has posted content in your network %network_name%";
+$content_posted_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -581,7 +556,7 @@ $content_posted_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%user_image%</A>Dear
+    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%user_image%</A>Dear
       %network_owner_name%,<br>
       <br>
       %first_name% has posted some content into your network,
@@ -611,15 +586,11 @@ $content_posted_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-
 $content_posted_message .= $mail_footer_message;
 $content_posted_message .= "</TABLE>";
-
-
-
 // reciprocated relation established mail subject and message
-$reciprocated_relation_estab_subject = "2 Members of your Network have established a reciprocated relationship.";
-$reciprocated_relation_estab_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$reciprocated_relation_estab_subject  = "2 Members of your Network have established a reciprocated relationship.";
+$reciprocated_relation_estab_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -662,9 +633,8 @@ $reciprocated_relation_estab_message = "<TABLE width=\"675\" border=\"0\" align=
   </TR>";
 $reciprocated_relation_estab_message .= $mail_footer_message;
 $reciprocated_relation_estab_message .= "</TABLE>";
-
-$relation_estab_subject = "%user_name% has established a relation with you";
-$relation_estab_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$relation_estab_subject               = "%user_name% has established a relation with you";
+$relation_estab_message               = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -675,7 +645,7 @@ $relation_estab_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" alt=\"People\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%user_image%</A>Dear
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%user_image%</A>Dear
       %related_user%, <br>
         <br>
       %user_name% has established a relationship with you.<br>
@@ -721,12 +691,11 @@ $relation_estab_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" ce
     be shared with third parties unless specifically requested by you.</FONT> </TD>
 
   </TR>";
-$relation_estab_message .= $mail_footer_message;
-$relation_estab_message .= "</TABLE>";
+$relation_estab_message              .= $mail_footer_message;
+$relation_estab_message              .= "</TABLE>";
 // invite group mail and message
-$invite_group_subject = "%first_name% has invited you to join the %group_name% group in the %network_name% network";
-
-$invite_group_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$invite_group_subject         = "%first_name% has invited you to join the %group_name% group in the %network_name% network";
+$invite_group_message         = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%group_icon_image%<br>
       <br>
@@ -739,7 +708,7 @@ $invite_group_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cell
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%invitee_image%</A>Dear
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%invitee_image%</A>Dear
         %invited_user_name%,<br>
       <br>      
       I have created my own group called %group_name% Group on the %network_name% network and  I'd like you to come and <STRONG>join us!</STRONG><br>
@@ -768,8 +737,8 @@ $invite_group_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cell
       <P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\">
         <br>
         If you want an overview of this group, click here: <br>
-        <A href=\"$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%\" style=\"color:#666666\">
-        $page_url" . PA_ROUTE_GROUP . "/gid=%group_id%
+        <A href=\"$page_url".PA_ROUTE_GROUP."/gid=%group_id%\" style=\"color:#666666\">
+        $page_url".PA_ROUTE_GROUP."/gid=%group_id%
         </A><br>
         <br>
         If you are already a registered member of $site_name, click here
@@ -795,12 +764,10 @@ $invite_group_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cell
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$invite_group_message .= $mail_footer_message;
-$invite_group_message .= "</TABLE>";
-
-
-$invite_accept_group_subject= "%first_name% has accepted your invitation to join the %group_name% Group";
-$invite_accept_group_message ="
+$invite_group_message        .= $mail_footer_message;
+$invite_group_message        .= "</TABLE>";
+$invite_accept_group_subject  = "%first_name% has accepted your invitation to join the %group_name% Group";
+$invite_accept_group_message  = "
 <TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
@@ -813,7 +780,7 @@ $invite_accept_group_message ="
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%invited_user_image%</A>Congratulations!<br>
+    <TD valign=\"top\"><P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%invited_user_image%</A>Congratulations!<br>
         <br>
       %first_name% &nbsp; has accepted your invitation to join the %group_name% Group.<br>
 
@@ -821,7 +788,7 @@ $invite_accept_group_message ="
       To view the %group_name% Group, click on the following link (or copy
       and </FONT><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\">paste
           the URL into your browser):<br>
-        <A href=\"$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%\" style=\"color:#666666\">$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%<br>
+        <A href=\"$page_url".PA_ROUTE_GROUP."/gid=%group_id%\" style=\"color:#666666\">$page_url".PA_ROUTE_GROUP."/gid=%group_id%<br>
         </A><br>
         There are now %group_member_count% members in the %group_name% &nbsp; Group.
         <br>
@@ -839,11 +806,9 @@ $invite_accept_group_message ="
   </TR>";
 $invite_accept_group_message .= $mail_footer_message;
 $invite_accept_group_message .= "</TABLE>";
-
 //group join mail subject and message
-$group_join_subject = "%group_joinee% has joined your Group %group_name% in the %network_name% network";
-
-$group_join_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$group_join_subject  = "%group_joinee% has joined your Group %group_name% in the %network_name% network";
+$group_join_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -860,10 +825,10 @@ $group_join_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpa
       <br>
 
     To view the %group_name% Group go to:<br>
-    <A href=\"$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%\" style=\"color:#666666\">$page_url" . PA_ROUTE_GROUP . "/gid=%group_id%</A> <br>
+    <A href=\"$page_url".PA_ROUTE_GROUP."/gid=%group_id%\" style=\"color:#666666\">$page_url".PA_ROUTE_GROUP."/gid=%group_id%</A> <br>
     <br>
     To moderate the %group_name% Group, go to:<br>
-    <A href=\"$page_url" . PA_ROUTE_GROUP_MODERATION . "/gid=%group_id%\" style=\"color:#666666\">$page_url" . PA_ROUTE_GROUP_MODERATION . "/gid=%group_id%</A></FONT></P>
+    <A href=\"$page_url".PA_ROUTE_GROUP_MODERATION."/gid=%group_id%\" style=\"color:#666666\">$page_url".PA_ROUTE_GROUP_MODERATION."/gid=%group_id%</A></FONT></P>
       <P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\">Very
         best regards,<br>
 
@@ -878,12 +843,11 @@ $group_join_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpa
     be shared with third parties unless specifically requested by you.</FONT> </TD>
 
   </TR>";
-$group_join_message .= $mail_footer_message;  
+$group_join_message .= $mail_footer_message;
 $group_join_message .= "</TABLE>";
-
-//Message to a newly created user 
-$create_new_user_by_admin_subject = "Hi,\n\n%first_name% Welcome to %network_name%!";
-$create_new_user_by_admin_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+//Message to a newly created user
+$create_new_user_by_admin_subject  = "Hi,\n\n%first_name% Welcome to %network_name%!";
+$create_new_user_by_admin_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -916,8 +880,8 @@ Or <br><br>Follow this %edit_url% to Edit your profile.<br>
 $create_new_user_by_admin_message .= $mail_footer_message;
 $create_new_user_by_admin_message .= "</TABLE>";
 // blink message waiting
-$msg_waiting_subject = "%first_name_sender% has sent you a message in %network_name% network on %site_name%";
-$msg_waiting_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$msg_waiting_subject            = "%first_name_sender% has sent you a message in %network_name% network on %site_name%";
+$msg_waiting_message            = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -937,7 +901,7 @@ $msg_waiting_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellp
     <A href=\"$page_url/user_blog.php?uid=%sender_id%\" style=\"color:#666666\">$page_url/user_blog.php?uid=%sender_id%</A> <br>
     <br>
     To view the message sent, go to:<br>
-    <A href=\"$page_url" . PA_ROUTE_MYMESSAGE . "\" style=\"color:#666666\">$page_url" . PA_ROUTE_MYMESSAGE . "</A></FONT></P>
+    <A href=\"$page_url".PA_ROUTE_MYMESSAGE."\" style=\"color:#666666\">$page_url".PA_ROUTE_MYMESSAGE."</A></FONT></P>
       <P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\">Very
         best regards,<br>
 
@@ -952,12 +916,10 @@ $msg_waiting_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellp
     be shared with third parties unless specifically requested by you.</FONT> </TD>
 
   </TR>";
-$msg_waiting_message .= $mail_footer_message;
-$msg_waiting_message .= "</TABLE>";
-
-$normal_relation_estab_subject = "Hi %network_owner%,A relation is added in your network %network_name%";
-$normal_relation_estab_message = 
-"<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$msg_waiting_message           .= $mail_footer_message;
+$msg_waiting_message           .= "</TABLE>";
+$normal_relation_estab_subject  = "Hi %network_owner%,A relation is added in your network %network_name%";
+$normal_relation_estab_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -1000,8 +962,8 @@ $normal_relation_estab_message =
 $normal_relation_estab_message .= $mail_footer_message;
 $normal_relation_estab_message .= "</TABLE>";
 // adding HTML subject and message, when a group member sends an invitation
-$invite_group_by_member_subject = "%first_name% has invited you to join the %group_name% group in the %network_name% network";
-$invite_group_by_member_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$invite_group_by_member_subject  = "%first_name% has invited you to join the %group_name% group in the %network_name% network";
+$invite_group_by_member_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%group_icon_image%<br>
       <br>
@@ -1014,7 +976,7 @@ $invite_group_by_member_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
   </TR>
   <TR>
     <TD valign=\"top\"><IMG src=\"$page_url/images/people2.gif\" width=\"150\" height=\"268\"></TD>
-    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url". PA_ROUTE_USER_PUBLIC ."/%user_id%\">%invitee_image%</A>Dear
+    <TD valign=\"top\"><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\"><A href=\"$page_url".PA_ROUTE_USER_PUBLIC."/%user_id%\">%invitee_image%</A>Dear
         %invited_user_name%,<br>
       <br>
       I am a member of group called %group_name% Group on the %network_name% network and  I'd like you to come and <STRONG>join us!</STRONG><br>
@@ -1043,8 +1005,8 @@ $invite_group_by_member_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
       <P><FONT face=\"Arial, Helvetica, sans-serif\" size=\"2\" color=\"#767676\">
         <br>
         If you want an overview of this group, click here: <br>
-        <A href=\"$page_url" . PA_ROUTE_GROUP. "/gid=%group_id%\" style=\"color:#666666\">
-        $page_url" . PA_ROUTE_GROUP . "/gid=%group_id%
+        <A href=\"$page_url".PA_ROUTE_GROUP."/gid=%group_id%\" style=\"color:#666666\">
+        $page_url".PA_ROUTE_GROUP."/gid=%group_id%
         </A><br>
         <br>
         If you are already a registered member of $site_name, click here
@@ -1072,9 +1034,8 @@ $invite_group_by_member_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
   </TR>";
 $invite_group_by_member_message .= $mail_footer_message;
 $invite_group_by_member_message .= "</TABLE>";
-
-$report_abuse_subject = " $site_name %visitor_name% has reported an abuse about some content in your network %network_name%";
-$report_abuse_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$report_abuse_subject            = " $site_name %visitor_name% has reported an abuse about some content in your network %network_name%";
+$report_abuse_message            = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -1109,12 +1070,11 @@ $report_abuse_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cell
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$report_abuse_message .= $mail_footer_message;
-$report_abuse_message .= "</TABLE>";
-
+$report_abuse_message           .= $mail_footer_message;
+$report_abuse_message           .= "</TABLE>";
 // Report abuse message for group owner
-$report_abuse_grp_owner_subject = " $site_name %visitor_name% has reported an abuse about some content in your group %group_name% in network %network_name%";
-$report_abuse_grp_owner_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+$report_abuse_grp_owner_subject  = " $site_name %visitor_name% has reported an abuse about some content in your group %group_name% in network %network_name%";
+$report_abuse_grp_owner_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -1154,11 +1114,9 @@ $report_abuse_grp_owner_message = "<TABLE width=\"675\" border=\"0\" align=\"cen
   </TR>";
 $report_abuse_grp_owner_message .= $mail_footer_message;
 $report_abuse_grp_owner_message .= "</TABLE>";
-
-// .. Changed on 27 april 2007 .. for comments 
-
-$report_abuse_on_comment_subject = " $site_name %visitor_name% has reported an abuse about some comment in your network %network_name%";
-$report_abuse_on_comment_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
+// .. Changed on 27 april 2007 .. for comments
+$report_abuse_on_comment_subject  = " $site_name %visitor_name% has reported an abuse about some comment in your network %network_name%";
+$report_abuse_on_comment_message  = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
   <TR>
     <TD colspan=\"2\">%network_icon_image%<br>
       <br>
@@ -1195,8 +1153,6 @@ $report_abuse_on_comment_message = "<TABLE width=\"675\" border=\"0\" align=\"ce
   </TR>";
 $report_abuse_on_comment_message .= $mail_footer_message;
 $report_abuse_on_comment_message .= "</TABLE>";
-
-
 // Report abuse for comment message for group owner
 $report_abuse_on_comment_grp_owner_subject = " $site_name %visitor_name% has reported an abuse about some comment in your group %group_name% in network %network_name%";
 $report_abuse_on_comment_grp_owner_message = "<TABLE width=\"675\" border=\"0\" align=\"center\" cellpadding=\"8\">
@@ -1237,7 +1193,6 @@ $report_abuse_on_comment_grp_owner_message = "<TABLE width=\"675\" border=\"0\" 
           Everyone at $site_name respects your privacy. Your information will never
     be shared with third parties unless specifically requested by you.</FONT> </TD>
   </TR>";
-$report_abuse_grp_owner_message .= $mail_footer_message;
-$report_abuse_grp_owner_message .= "</TABLE>";
-
+$report_abuse_grp_owner_message           .= $mail_footer_message;
+$report_abuse_grp_owner_message           .= "</TABLE>";
 ?>

@@ -24,33 +24,39 @@
  * 
  */
 $login_required = FALSE;
-$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+$use_theme = 'Beta';
+//TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require_once "api/Group/Group.php";
-require PA::$blockmodule_path . "/NewestGroupsModule/NewestGroupsModule.php";
-
+require PA::$blockmodule_path."/NewestGroupsModule/NewestGroupsModule.php";
 $uid = @$_GET['uid'];
 $selected_option = @$_GET['sort_by'];
-
-$sorting_options[] = array('caption'=> __('Recently Created'), 'value'=> 'created');
-$sorting_options[] = array('caption'=> __('Recently Modified'), 'value'=> 'changed');
-$sorting_options[] = array('caption'=> __('Largest Group'), 'value'=> 'members');
-
-if ($selected_option == 'members') {
-  $links = Group::get_largest_groups(5);
+$sorting_options[] = array(
+    'caption' => __('Recently Created'),
+    'value' => 'created',
+);
+$sorting_options[] = array(
+    'caption' => __('Recently Modified'),
+    'value' => 'changed',
+);
+$sorting_options[] = array(
+    'caption' => __('Largest Group'),
+    'value' => 'members',
+);
+if($selected_option == 'members') {
+    $links = Group::get_largest_groups(5);
 }
-else if ($selected_option == 'created') {
-  $obj_group = new Group();
-  $links = $obj_group->get_all('', 5, FALSE, 5, 1 );
+elseif($selected_option == 'created') {
+    $obj_group = new Group();
+    $links = $obj_group->get_all('', 5, FALSE, 5, 1);
 }
-else if ($selected_option == 'changed') {
-  $obj_group = new Group();
-  $links = $obj_group->get_all('', 5, FALSE, 5, 1,'changed');
+elseif($selected_option == 'changed') {
+    $obj_group = new Group();
+    $links = $obj_group->get_all('', 5, FALSE, 5, 1, 'changed');
 }
-
-$obj = new NewestGroupsModule;
-$obj->mode = $obj->sort_by = SORT_BY;
-$obj->links = $links;
+$obj                  = new NewestGroupsModule;
+$obj->mode            = $obj->sort_by = SORT_BY;
+$obj->links           = $links;
 $obj->sorting_options = $sorting_options;
 $obj->selected_option = $selected_option;
 echo $obj->render();
