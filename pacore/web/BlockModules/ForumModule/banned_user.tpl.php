@@ -49,17 +49,17 @@
                   <table class="board_inner" align="center">
                   <thead>
                     <tr align="center">
-                      <td class="thead" width="30%"><?php echo __('Banned User'); ?></td>
-                      <td class="thead" width="70%"><?php echo __('Administrator message'); ?></td>
+                      <td class="thead" width="30%"><?php echo __('Banned User');?></td>
+                      <td class="thead" width="70%"><?php echo __('Administrator message');?></td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td class="alt1">
-                        <?= $login_user->first_name . ' ' . $login_user->last_name ?>
+                        <?=$login_user->first_name.' '.$login_user->last_name?>
                       </td>
                       <td class="alt1">
-                        <?= $board_settings['banned_message'] ?>
+                        <?=$board_settings['banned_message']?>
                       </td>
                     </tr>
                   </tbody>

@@ -12,48 +12,47 @@
 ?>
 <?php
 $login_required = TRUE;
-$use_theme = 'Beta';//TODO : Remove this when new UI is completely implemented.
+$use_theme = 'Beta';
+//TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
-
 require_once 'api/TekVideo/TekVideo.php';
-
 if($_GET['status'] == 'TRUE') {
-  $network_extra = unserialize(PA::$network_info->extra);
-  $new_video = new TekVideo();
-  $new_video->file_name = $_GET['video_id'];
-  $new_video->author_id = PA::$login_uid;
-  $new_video->title = (!empty($_GET['title'])) ? $_GET['title'] : '';
-  $new_video->body = (!empty($_GET['description'])) ? $_GET['description'] : '';
-  $new_video->email_id = PA::$user->email;
-  $new_video->allow_comments = 1;
-  if (!empty($_GET['group_id'])) {
-  	$perm = 1;
-  	$album = $_GET['group_id'];
-  } else {
-  	$perm = (!empty($_GET['video_perm'])) ? $_GET['video_perm'] : 1;
-  	// get the actual album for this user!!!
-    $video_albums = Album::load_all(PA::$login_uid, VIDEO_ALBUM);
-    if (!empty($video_albums[0])) {
-    	$album = $video_albums[0]['collection_id'];
-    } else {
-    	// we need to create one
-	    $new_al = new Album(VIDEO_ALBUM);
-  	  $new_al->author_id = PA::$login_uid;
-  	  $new_al->type = 2;
-  	   
-  	  $new_al->description = $new_im_al->name = $new_al->title =
-    	PA::$config->default_album_titles[VIDEO_ALBUM];
-    	$new_al->save();
-  	  $album = $new_al->collection_id;
-		}
-  }
-  $new_video->video_perm = $new_video->file_perm =  $perm;
-  $new_video->parent_collection_id = $album;
-  $new_video->save();
-  $default_icon = uihelper_resize_mk_img(null, 86, 92, 'images/default_video.png', "", RESIZE_CROP);
-  $content_url = PA::$url . "/" . FILE_MEDIA_FULL_VIEW . "?cid=$new_video->content_id";
-// echo "<pre>".print_r($new_video,1)."</pre>";
-?>
+    $network_extra             = unserialize(PA::$network_info->extra);
+    $new_video                 = new TekVideo();
+    $new_video->file_name      = $_GET['video_id'];
+    $new_video->author_id      = PA::$login_uid;
+    $new_video->title          = (!empty($_GET['title'])) ? $_GET['title'] : '';
+    $new_video->body           = (!empty($_GET['description'])) ? $_GET['description'] : '';
+    $new_video->email_id       = PA::$user->email;
+    $new_video->allow_comments = 1;
+    if(!empty($_GET['group_id'])) {
+        $perm = 1;
+        $album = $_GET['group_id'];
+    }
+    else {
+        $perm = (!empty($_GET['video_perm'])) ? $_GET['video_perm'] : 1;
+        // get the actual album for this user!!!
+        $video_albums = Album::load_all(PA::$login_uid, VIDEO_ALBUM);
+        if(!empty($video_albums[0])) {
+            $album = $video_albums[0]['collection_id'];
+        }
+        else {
+            // we need to create one
+            $new_al              = new Album(VIDEO_ALBUM);
+            $new_al->author_id   = PA::$login_uid;
+            $new_al->type        = 2;
+            $new_al->description = $new_im_al->name = $new_al->title = PA::$config->default_album_titles[VIDEO_ALBUM];
+            $new_al->save();
+            $album = $new_al->collection_id;
+        }
+    }
+    $new_video->video_perm = $new_video->file_perm = $perm;
+    $new_video->parent_collection_id = $album;
+    $new_video->save();
+    $default_icon = uihelper_resize_mk_img(null, 86, 92, 'images/default_video.png', "", RESIZE_CROP);
+    $content_url = PA::$url."/".FILE_MEDIA_FULL_VIEW."?cid=$new_video->content_id";
+    // echo "<pre>".print_r($new_video,1)."</pre>";
+    ?>
 <p><b>Video was uploaded successfully.</p>
 <script>
 /*
@@ -112,8 +111,10 @@ if(typeof parent.video_success == 'function') {
   parent.video_success('<?=$_GET['video_id']?>');
 }
 </script>
-<?php } else {
-?>
+<?php
+}
+else {
+    ?>
 <p><b>There was an error uploading your video, please try again later.</b></p>
 <script>
 if(typeof parent.video_failure == 'function') {
@@ -121,5 +122,5 @@ if(typeof parent.video_failure == 'function') {
 }
 </script>
 <?php
- }
+}
 ?>

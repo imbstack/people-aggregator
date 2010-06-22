@@ -33,8 +33,7 @@
  *
  * @example win.php     Using the window handler.
  */
-class Log_win extends Log
-{
+class Log_win extends Log {
     /**
      * The name of the output window.
      * @var string
@@ -55,15 +54,15 @@ class Log_win extends Log
      * @access private
      */
     var $_colors = array(
-                        PEAR_LOG_EMERG   => 'red',
-                        PEAR_LOG_ALERT   => 'orange',
-                        PEAR_LOG_CRIT    => 'yellow',
-                        PEAR_LOG_ERR     => 'green',
-                        PEAR_LOG_WARNING => 'blue',
-                        PEAR_LOG_NOTICE  => 'indigo',
-                        PEAR_LOG_INFO    => 'violet',
-                        PEAR_LOG_DEBUG   => 'black'
-                    );
+        PEAR_LOG_EMERG => 'red',
+        PEAR_LOG_ALERT => 'orange',
+        PEAR_LOG_CRIT => 'yellow',
+        PEAR_LOG_ERR => 'green',
+        PEAR_LOG_WARNING => 'blue',
+        PEAR_LOG_NOTICE => 'indigo',
+        PEAR_LOG_INFO => 'violet',
+        PEAR_LOG_DEBUG => 'black',
+    );
 
     /**
      * String buffer that holds line that are pending output.
@@ -81,30 +80,25 @@ class Log_win extends Log
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_win($name, $ident = '', $conf = array(),
-                          $level = PEAR_LOG_DEBUG)
-    {
+    function Log_win($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_name = $name;
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
-
-        if (isset($conf['title'])) {
+        if(isset($conf['title'])) {
             $this->_title = $conf['title'];
         }
-        if (isset($conf['colors']) && is_array($conf['colors'])) {
+        if(isset($conf['colors']) && is_array($conf['colors'])) {
             $this->_colors = $conf['colors'];
         }
-
         register_shutdown_function(array(&$this, '_Log_win'));
     }
 
     /**
      * Destructor
      */
-    function _Log_win()
-    {
-        if ($this->_opened || (count($this->_buffer) > 0)) {
+    function _Log_win() {
+        if($this->_opened || (count($this->_buffer) > 0)) {
             $this->close();
         }
     }
@@ -117,17 +111,15 @@ class Log_win extends Log
      *
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
+    function open() {
+        if(!$this->_opened) {
             $win = $this->_name;
-
-            if (!empty($this->_ident)) {
+            if(!empty($this->_ident)) {
                 $identHeader = "$win.document.writeln('<th>Ident</th>')";
-            } else {
+            }
+            else {
                 $identHeader = '';
             }
-
             echo <<< END_OF_SCRIPT
 <script language="JavaScript">
 $win = window.open('', '{$this->_name}', 'toolbar=no,scrollbars,width=600,height=400');
@@ -150,7 +142,6 @@ $win.document.writeln('<th>Priority</th><th width="100%">Message</th></tr>');
 END_OF_SCRIPT;
             $this->_opened = true;
         }
-
         return $this->_opened;
     }
 
@@ -161,23 +152,20 @@ END_OF_SCRIPT;
      *
      * @access public
      */
-    function close()
-    {
+    function close() {
         /*
          * If there are still lines waiting to be written, open the output
          * window so that we can drain the buffer.
          */
-        if (!$this->_opened && (count($this->_buffer) > 0)) {
+        if(!$this->_opened && (count($this->_buffer) > 0)) {
             $this->open();
         }
-
-        if ($this->_opened) {
+        if($this->_opened) {
             $this->_writeln('</table>');
             $this->_writeln('</body></html>');
             $this->_opened = false;
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -187,26 +175,25 @@ END_OF_SCRIPT;
      *
      * @access private
      */
-    function _writeln($line)
-    {
+    function _writeln($line) {
         /* Add this line to our output buffer. */
         $this->_buffer[] = $line;
 
         /* Buffer the output until this page's headers have been sent. */
-        if (!headers_sent()) {
+        if(!headers_sent()) {
             return;
         }
 
         /* If we haven't already opened the output window, do so now. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* Drain the buffer to the output window. */
         $win = $this->_name;
-        foreach ($this->_buffer as $line) {
+        foreach($this->_buffer as $line) {
             echo "<script language='JavaScript'>\n";
-            echo "$win.document.writeln('" . addslashes($line) . "');\n";
+            echo "$win.document.writeln('".addslashes($line)."');\n";
             echo "self.focus();\n";
             echo "</script>\n";
         }
@@ -227,41 +214,32 @@ END_OF_SCRIPT;
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
-
         list($usec, $sec) = explode(' ', microtime());
 
         /* Build the output line that contains the log entry row. */
-        $line  = '<tr align="left" valign="top">';
-        $line .= sprintf('<td>%s.%s</td>',
-                         strftime('%T', $sec), substr($usec, 2, 2));
-        if (!empty($this->_ident)) {
-            $line .= '<td>' . $this->_ident . '</td>';
+        $line = '<tr align="left" valign="top">';
+        $line .= sprintf('<td>%s.%s</td>', strftime('%T', $sec), substr($usec, 2, 2));
+        if(!empty($this->_ident)) {
+            $line .= '<td>'.$this->_ident.'</td>';
         }
-        $line .= '<td>' . ucfirst($this->priorityToString($priority)) . '</td>';
-        $line .= sprintf('<td style="color: %s">%s</td>',
-                         $this->_colors[$priority],
-                         preg_replace('/\r\n|\n|\r/', '<br />', $message));
+        $line .= '<td>'.ucfirst($this->priorityToString($priority)).'</td>';
+        $line .= sprintf('<td style="color: %s">%s</td>', $this->_colors[$priority], preg_replace('/\r\n|\n|\r/', '<br />', $message));
         $line .= '</tr>';
-
         $this->_writeln($line);
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
-
 }

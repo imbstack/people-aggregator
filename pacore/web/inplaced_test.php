@@ -11,7 +11,6 @@
 */
 ?>
 <?php
-
 /***************************************************************************
  *   Copyright (C) 2009 by Zoran Hron   *
  *   zhron@broadbandmechanics.com   *
@@ -31,15 +30,13 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
 require_once "web/includes/classes/InPlaceEdit.class.php";
-
 printHeader();
 //echo "<h1>Hello World!</h1>\n";
 printFooter();
 
-function printHeader(){
-	echo <<<EOF
+function printHeader() {
+    echo <<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -98,15 +95,10 @@ function printHeader(){
     <hr/>
     <h3>Edit List element example</h3>
 EOF;
-echo '<ul style="width: 180px; list-style-image: none; list-style-type: none">' . 
-       '<li>First element</li>' .
-        InPlaceEdit::li('li_elem2', '/ajax/edinplace_test.php', 'Editable element', 'border-bottom: 1px solid silver') .
-       '<li>Last element</li>' .
-     '</ul>';
+    echo '<ul style="width: 180px; list-style-image: none; list-style-type: none">'.'<li>First element</li>'.InPlaceEdit::li('li_elem2', '/ajax/edinplace_test.php', 'Editable element', 'border-bottom: 1px solid silver').'<li>Last element</li>'.'</ul>';
 }
 
-function printFooter(){
-	echo "</body>\n</html>";
+function printFooter() {
+    echo "</body>\n</html>";
 }
-
 ?>

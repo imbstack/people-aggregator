@@ -11,7 +11,7 @@
 */
 ?>
 <fieldset id='media'>
-  <legend><a><b><?= __('Attach Media')?></b></a></legend>
+  <legend><a><b><?=__('Attach Media')?></b></a></legend>
   <div id="buttonbar">
   <ul>
   <li><a href="#" onclick="return show_upload('Images');"><?=__('Image')?></a></li>
@@ -75,10 +75,11 @@ function show_upload(typeStr) {
 	$.post(
 		'<?=PA::$url?>/ajax/upload_media_form.php?t='+now,
 		{'type': typeStr<?php 
-			if ($ccid > 0) { 
-			?>,
+			if($ccid > 0) {
+    ?>,
 			'gid':<?=$ccid?>
-			<? } ?>
+			<?
+}?>
 			},
 			function(data) {
 				modal_show('Attach '+typeStr, data);

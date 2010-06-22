@@ -32,15 +32,16 @@
                   <tbody>
                     <tr>
                       <td class="" align="center">
-                        <?php echo $user_msg ?>
-                        <?php if($allowed) : ?>
+                        <?php echo $user_msg?>
+                        <?php if($allowed) { :?>
                           <div class="center">
-                          <?php echo __('Click here to create it') . ": " ?>&nbsp;&nbsp;
-                          <a href="<?= $url_src ?>">
-                             <img STYLE="vertical-align: middle" src="<?php echo $theme_url . "/images/buttons/" . PA::$language . "/new_board.gif" ?>" alt="new_board"  class="forum_buttons"/>
+                          <?php echo __('Click here to create it').": "?>&nbsp;&nbsp;
+                          <a href="<?=$url_src?>">
+                             <img STYLE="vertical-align: middle" src="<?php echo $theme_url."/images/buttons/".PA::$language."/new_board.gif"?>" alt="new_board"  class="forum_buttons"/>
                           </a>
                           </div>
-                        <?php endif; ?>
+                        <?php endif;
+}?>
                       </td>
                     </tr>
                   </tbody>

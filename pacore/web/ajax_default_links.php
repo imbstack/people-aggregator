@@ -24,26 +24,31 @@
  * http://wiki.peopleaggregator.org/index.php
  * TODO:      Need to call here link module to generate inner html
  */
-  $login_required = TRUE;
-  require_once dirname(__FILE__)."/includes/page.php";
-  require_once "api/NetworkLinks/NetworkLinks.php";
-  
-  if(!empty($_GET['category_id'])) {      
-      $condition = array('category_id'=> $_GET['category_id'], 'is_active'=> 1);
-      if( Network::is_mother_network(PA::$network_info->network_id) ){
+$login_required = TRUE;
+require_once dirname(__FILE__)."/includes/page.php";
+require_once "api/NetworkLinks/NetworkLinks.php";
+if(!empty($_GET['category_id'])) {
+    $condition = array(
+        'category_id' => $_GET['category_id'],
+        'is_active' => 1,
+    );
+    if(Network::is_mother_network(PA::$network_info->network_id)) {
         $uid = SUPER_USER_ID;
-      } else {
+    }
+    else {
         $uid = Network::get_network_owner(PA::$network_info->network_id);
-      }
-      $params_array = array('user_id'=> $uid);
-      $Links = new NetworkLinks();      
-      $Links->set_params ($params_array);
-      $result_array = $Links->network_owner_link($condition);
-      $return_string = "";
-      if(count($result_array) > 0) {
-           $return_string .= "<table width='100%' cellspacing='0' cellpadding='0'>";
-          for($counter =0; $counter < count($result_array); $counter++) {
-              $return_string .= "
+    }
+    $params_array = array(
+        'user_id' => $uid,
+    );
+    $Links = new NetworkLinks();
+    $Links->set_params($params_array);
+    $result_array = $Links->network_owner_link($condition);
+    $return_string = "";
+    if(count($result_array) > 0) {
+        $return_string .= "<table width='100%' cellspacing='0' cellpadding='0'>";
+        for($counter = 0; $counter < count($result_array); $counter++) {
+            $return_string .= "
               <tr>
                 <td width='6%' rowspan='2'>
                   <input type='checkbox' name='link_id[]' id='link_id_".$result_array[$counter]->link_id."' value='link_id:".$result_array[$counter]->link_id."' />
@@ -57,12 +62,12 @@
                    <input type='text' size=65 value='".$result_array[$counter]->url."' id='link_id_".$result_array[$counter]->link_id."_url' style='border:0px;'/>
                  </td>  
                </tr><br /> ";
-           } 
-           $return_string .="</table>";
-      }  
-      else {
-            $return_string = "<center>There are no links under this category</center> ";
-      }
-      print $return_string;
-  }
+        }
+        $return_string .= "</table>";
+    }
+    else {
+        $return_string = "<center>There are no links under this category</center> ";
+    }
+    print $return_string;
+}
 ?>

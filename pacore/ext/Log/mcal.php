@@ -29,8 +29,7 @@
  * @since Log 1.0
  * @package Log
  */
-class Log_mcal extends Log
-{
+class Log_mcal extends Log {
     /**
      * holding the calendar specification to connect to.
      * @var string
@@ -73,7 +72,6 @@ class Log_mcal extends Log
      */
     var $_name = LOG_SYSLOG;
 
-
     /**
      * Constructs a new Log_mcal object.
      *
@@ -83,9 +81,7 @@ class Log_mcal extends Log
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_mcal($name, $ident = '', $conf = array(),
-                      $level = PEAR_LOG_DEBUG)
-    {
+    function Log_mcal($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_id = md5(microtime());
         $this->_name = $name;
         $this->_ident = $ident;
@@ -101,14 +97,11 @@ class Log_mcal extends Log
      * opened. This is implicitly called by log(), if necessary.
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
-            $this->_stream = mcal_open($this->_calendar, $this->_username,
-                $this->_password, $this->_options);
+    function open() {
+        if(!$this->_opened) {
+            $this->_stream = mcal_open($this->_calendar, $this->_username, $this->_password, $this->_options);
             $this->_opened = true;
         }
-
         return $this->_opened;
     }
 
@@ -116,14 +109,12 @@ class Log_mcal extends Log
      * Closes the calendar stream, if it is open.
      * @access public
      */
-    function close()
-    {
-        if ($this->_opened) {
+    function close() {
+        if($this->_opened) {
             mcal_close($this->_stream);
             $this->_opened = false;
         }
-
-        return ($this->_opened === false);
+        return($this->_opened === false);
     }
 
     /**
@@ -140,43 +131,35 @@ class Log_mcal extends Log
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if (!$this->_isMasked($priority)) {
+        if(!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the connection isn't open and can't be opened, return failure. */
-        if (!$this->_opened && !$this->open()) {
+        if(!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
-
         $date_str = date('Y:n:j:G:i:s');
         $dates = explode(':', $date_str);
-
         mcal_event_init($this->_stream);
         mcal_event_set_title($this->_stream, $this->_ident);
         mcal_event_set_category($this->_stream, $this->_name);
         mcal_event_set_description($this->_stream, $message);
         mcal_event_add_attribute($this->_stream, 'priority', $priority);
-        mcal_event_set_start($this->_stream, $dates[0], $dates[1], $dates[2],
-            $dates[3], $dates[4], $dates[5]);
-        mcal_event_set_end($this->_stream, $dates[0], $dates[1], $dates[2],
-            $dates[3], $dates[4], $dates[5]);
+        mcal_event_set_start($this->_stream, $dates[0], $dates[1], $dates[2], $dates[3], $dates[4], $dates[5]);
+        mcal_event_set_end($this->_stream, $dates[0], $dates[1], $dates[2], $dates[3], $dates[4], $dates[5]);
         mcal_append_event($this->_stream);
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
-
 }

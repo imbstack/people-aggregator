@@ -11,9 +11,7 @@
 */
 ?>
 <?php
-
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Contains the DB_common base class
  *
@@ -57,10 +55,8 @@ require_once 'PEAR.php';
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/DB
  */
-class DB_common extends PEAR
-{
+class DB_common extends PEAR {
     // {{{ properties
-
     /**
      * The current default fetch mode
      * @var integer
@@ -99,13 +95,14 @@ class DB_common extends PEAR
      */
     var $options = array(
         'result_buffering' => 500,
-        'persistent' => false,
-        'ssl' => false,
-        'debug' => 0,
-        'seqname_format' => '%s_seq',
-        'autofree' => false,
-        'portability' => DB_PORTABILITY_NONE,
-        'optimize' => 'performance',  // Deprecated.  Use 'portability'.
+        'persistent'       => false,
+        'ssl'              => false,
+        'debug'            => 0,
+        'seqname_format'   => '%s_seq',
+        'autofree'         => false,
+        'portability'      => DB_PORTABILITY_NONE,
+        'optimize'         => 'performance',
+        // Deprecated.  Use 'portability'.,
     );
 
     /**
@@ -132,63 +129,41 @@ class DB_common extends PEAR
      * @var array
      */
     var $prepared_queries = array();
-
-
     // }}}
     // {{{ DB_common
-
     /**
      * This constructor calls <kbd>$this->PEAR('DB_Error')</kbd>
      *
      * @return void
      */
-    function DB_common()
-    {
+    function DB_common() {
         $this->PEAR('DB_Error');
     }
-
     // }}}
     // {{{ __sleep()
-
     /**
      * Automatically indicates which properties should be saved
      * when PHP's serialize() function is called
      *
      * @return array  the array of properties names that should be saved
      */
-    function __sleep()
-    {
-        if ($this->connection) {
+    function __sleep() {
+        if($this->connection) {
             // Don't disconnect(), people use serialize() for many reasons
             $this->was_connected = true;
-        } else {
+        }
+        else {
             $this->was_connected = false;
         }
-        if (isset($this->autocommit)) {
-            return array('autocommit',
-                         'dbsyntax',
-                         'dsn',
-                         'features',
-                         'fetchmode',
-                         'fetchmode_object_class',
-                         'options',
-                         'was_connected',
-                   );
-        } else {
-            return array('dbsyntax',
-                         'dsn',
-                         'features',
-                         'fetchmode',
-                         'fetchmode_object_class',
-                         'options',
-                         'was_connected',
-                   );
+        if(isset($this->autocommit)) {
+            return array('autocommit', 'dbsyntax', 'dsn', 'features', 'fetchmode', 'fetchmode_object_class', 'options', 'was_connected',);
+        }
+        else {
+            return array('dbsyntax', 'dsn', 'features', 'fetchmode', 'fetchmode_object_class', 'options', 'was_connected',);
         }
     }
-
     // }}}
     // {{{ __wakeup()
-
     /**
      * Automatically reconnects to the database when PHP's unserialize()
      * function is called
@@ -198,16 +173,13 @@ class DB_common extends PEAR
      *
      * @return void
      */
-    function __wakeup()
-    {
-        if ($this->was_connected) {
+    function __wakeup() {
+        if($this->was_connected) {
             $this->connect($this->dsn, $this->options);
         }
     }
-
     // }}}
     // {{{ __toString()
-
     /**
      * Automatic string conversion for PHP 5
      *
@@ -215,21 +187,16 @@ class DB_common extends PEAR
      *
      * @since Method available since Release 1.7.0
      */
-    function __toString()
-    {
+    function __toString() {
         $info = strtolower(get_class($this));
-        $info .=  ': (phptype=' . $this->phptype .
-                  ', dbsyntax=' . $this->dbsyntax .
-                  ')';
-        if ($this->connection) {
+        $info .= ': (phptype='.$this->phptype.', dbsyntax='.$this->dbsyntax.')';
+        if($this->connection) {
             $info .= ' [connected]';
         }
         return $info;
     }
-
     // }}}
     // {{{ toString()
-
     /**
      * DEPRECATED:  String conversion method
      *
@@ -237,14 +204,11 @@ class DB_common extends PEAR
      *
      * @deprecated Method deprecated in Release 1.7.0
      */
-    function toString()
-    {
+    function toString() {
         return $this->__toString();
     }
-
     // }}}
     // {{{ quoteString()
-
     /**
      * DEPRECATED: Quotes a string so it can be safely used within string
      * delimiters in a query
@@ -256,18 +220,17 @@ class DB_common extends PEAR
      * @see DB_common::quoteSmart(), DB_common::escapeSimple()
      * @deprecated Method deprecated some time before Release 1.2
      */
-    function quoteString($string)
-    {
+    function quoteString($string) {
         $string = $this->quote($string);
-        if ($string{0} == "'") {
-            return substr($string, 1, -1);
+        if($string {
+            0
+        } == "'") {
+            return substr($string, 1,-1);
         }
         return $string;
     }
-
     // }}}
     // {{{ quote()
-
     /**
      * DEPRECATED: Quotes a string so it can be safely used in a query
      *
@@ -279,15 +242,11 @@ class DB_common extends PEAR
      * @see DB_common::quoteSmart(), DB_common::escapeSimple()
      * @deprecated Deprecated in release 1.6.0
      */
-    function quote($string = null)
-    {
-        return ($string === null) ? 'NULL'
-                                  : "'" . str_replace("'", "''", $string) . "'";
+    function quote($string = null) {
+        return($string === null) ? 'NULL' : "'".str_replace("'", "''", $string)."'";
     }
-
     // }}}
     // {{{ quoteIdentifier()
-
     /**
      * Quotes a string so it can be safely used as a table or column name
      *
@@ -325,14 +284,11 @@ class DB_common extends PEAR
      *
      * @since Method available since Release 1.6.0
      */
-    function quoteIdentifier($str)
-    {
-        return '"' . str_replace('"', '""', $str) . '"';
+    function quoteIdentifier($str) {
+        return '"'.str_replace('"', '""', $str).'"';
     }
-
     // }}}
     // {{{ quoteSmart()
-
     /**
      * Formats input so it can be safely used in a query
      *
@@ -434,27 +390,25 @@ class DB_common extends PEAR
      * @see DB_common::escapeSimple()
      * @since Method available since Release 1.6.0
      */
-    function quoteSmart($in)
-    {
-        if (is_int($in) || is_double($in)) {
+    function quoteSmart($in) {
+        if(is_int($in) || is_double($in)) {
             return $in;
-        } elseif (is_bool($in)) {
+        }
+        elseif(is_bool($in)) {
             return $in ? 1 : 0;
-        } elseif (is_null($in)) {
+        }
+        elseif(is_null($in)) {
             return 'NULL';
-        } else {
-            if ($this->dbsyntax == 'access'
-                && preg_match('/^#.+#$/', $in))
-            {
+        }
+        else {
+            if($this->dbsyntax == 'access' && preg_match('/^#.+#$/', $in)) {
                 return $this->escapeSimple($in);
             }
-            return "'" . $this->escapeSimple($in) . "'";
+            return "'".$this->escapeSimple($in)."'";
         }
     }
-
     // }}}
     // {{{ escapeSimple()
-
     /**
      * Escapes a string according to the current DBMS's standards
      *
@@ -470,14 +424,11 @@ class DB_common extends PEAR
      * @see DB_common::quoteSmart()
      * @since Method available since Release 1.6.0
      */
-    function escapeSimple($str)
-    {
+    function escapeSimple($str) {
         return str_replace("'", "''", $str);
     }
-
     // }}}
     // {{{ provides()
-
     /**
      * Tells whether the present driver supports a given feature
      *
@@ -485,14 +436,11 @@ class DB_common extends PEAR
      *
      * @return bool  whether this driver supports $feature
      */
-    function provides($feature)
-    {
+    function provides($feature) {
         return $this->features[$feature];
     }
-
     // }}}
     // {{{ setFetchMode()
-
     /**
      * Sets the fetch mode that should be used by default for query results
      *
@@ -508,9 +456,8 @@ class DB_common extends PEAR
      *
      * @see DB_FETCHMODE_ORDERED, DB_FETCHMODE_ASSOC, DB_FETCHMODE_OBJECT
      */
-    function setFetchMode($fetchmode, $object_class = 'stdClass')
-    {
-        switch ($fetchmode) {
+    function setFetchMode($fetchmode, $object_class = 'stdClass') {
+        switch($fetchmode) {
             case DB_FETCHMODE_OBJECT:
                 $this->fetchmode_object_class = $object_class;
             case DB_FETCHMODE_ORDERED:
@@ -521,10 +468,8 @@ class DB_common extends PEAR
                 return $this->raiseError('invalid fetchmode mode');
         }
     }
-
     // }}}
     // {{{ setOption()
-
     /**
      * Sets run-time configuration options for PEAR DB
      *
@@ -663,44 +608,38 @@ class DB_common extends PEAR
      *
      * @see DB_common::$options
      */
-    function setOption($option, $value)
-    {
-        if (isset($this->options[$option])) {
+    function setOption($option, $value) {
+        if(isset($this->options[$option])) {
             $this->options[$option] = $value;
 
             /*
              * Backwards compatibility check for the deprecated 'optimize'
              * option.  Done here in case settings change after connecting.
              */
-            if ($option == 'optimize') {
-                if ($value == 'portability') {
-                    switch ($this->phptype) {
+            if($option == 'optimize') {
+                if($value == 'portability') {
+                    switch($this->phptype) {
                         case 'oci8':
-                            $this->options['portability'] =
-                                    DB_PORTABILITY_LOWERCASE |
-                                    DB_PORTABILITY_NUMROWS;
+                            $this->options['portability'] = DB_PORTABILITY_LOWERCASE| DB_PORTABILITY_NUMROWS;
                             break;
                         case 'fbsql':
                         case 'mysql':
                         case 'mysqli':
                         case 'sqlite':
-                            $this->options['portability'] =
-                                    DB_PORTABILITY_DELETE_COUNT;
+                            $this->options['portability'] = DB_PORTABILITY_DELETE_COUNT;
                             break;
                     }
-                } else {
+                }
+                else {
                     $this->options['portability'] = DB_PORTABILITY_NONE;
                 }
             }
-
             return DB_OK;
         }
         return $this->raiseError("unknown option $option");
     }
-
     // }}}
     // {{{ getOption()
-
     /**
      * Returns the value of an option
      *
@@ -708,17 +647,14 @@ class DB_common extends PEAR
      *
      * @return mixed  the option's value
      */
-    function getOption($option)
-    {
-        if (isset($this->options[$option])) {
+    function getOption($option) {
+        if(isset($this->options[$option])) {
             return $this->options[$option];
         }
         return $this->raiseError("unknown option $option");
     }
-
     // }}}
     // {{{ prepare()
-
     /**
      * Prepares a query for multiple execution with execute()
      *
@@ -762,16 +698,13 @@ class DB_common extends PEAR
      *
      * @see DB_common::execute()
      */
-    function prepare($query)
-    {
-        $tokens   = preg_split('/((?<!\\\)[&?!])/', $query, -1,
-                               PREG_SPLIT_DELIM_CAPTURE);
+    function prepare($query) {
+        $tokens    = preg_split('/((?<!\\\)[&?!])/', $query,-1, PREG_SPLIT_DELIM_CAPTURE);
         $token     = 0;
         $types     = array();
         $newtokens = array();
-
-        foreach ($tokens as $val) {
-            switch ($val) {
+        foreach($tokens as $val) {
+            switch($val) {
                 case '?':
                     $types[$token++] = DB_PARAM_SCALAR;
                     break;
@@ -785,20 +718,15 @@ class DB_common extends PEAR
                     $newtokens[] = preg_replace('/\\\([&?!])/', "\\1", $val);
             }
         }
-
         $this->prepare_tokens[] = &$newtokens;
         end($this->prepare_tokens);
-
-        $k = key($this->prepare_tokens);
-        $this->prepare_types[$k] = $types;
+        $k                          = key($this->prepare_tokens);
+        $this->prepare_types[$k]    = $types;
         $this->prepared_queries[$k] = implode(' ', $newtokens);
-
         return $k;
     }
-
     // }}}
     // {{{ autoPrepare()
-
     /**
      * Automaticaly generates an insert or update query and pass it to prepare()
      *
@@ -814,19 +742,15 @@ class DB_common extends PEAR
      *
      * @uses DB_common::prepare(), DB_common::buildManipSQL()
      */
-    function autoPrepare($table, $table_fields, $mode = DB_AUTOQUERY_INSERT,
-                         $where = false)
-    {
+    function autoPrepare($table, $table_fields, $mode = DB_AUTOQUERY_INSERT, $where = false) {
         $query = $this->buildManipSQL($table, $table_fields, $mode, $where);
-        if (DB::isError($query)) {
+        if(DB::isError($query)) {
             return $query;
         }
         return $this->prepare($query);
     }
-
     // }}}
     // {{{ autoExecute()
-
     /**
      * Automaticaly generates an insert or update query and call prepare()
      * and execute() with it
@@ -846,23 +770,17 @@ class DB_common extends PEAR
      *
      * @uses DB_common::autoPrepare(), DB_common::execute()
      */
-    function autoExecute($table, $fields_values, $mode = DB_AUTOQUERY_INSERT,
-                         $where = false)
-    {
-        $sth = $this->autoPrepare($table, array_keys($fields_values), $mode,
-                                  $where);
-        if (DB::isError($sth)) {
+    function autoExecute($table, $fields_values, $mode = DB_AUTOQUERY_INSERT, $where = false) {
+        $sth = $this->autoPrepare($table, array_keys($fields_values), $mode, $where);
+        if(DB::isError($sth)) {
             return $sth;
         }
-        $ret =& $this->execute($sth, array_values($fields_values));
+        $ret = &$this->execute($sth, array_values($fields_values));
         $this->freePrepared($sth);
         return $ret;
-
     }
-
     // }}}
     // {{{ buildManipSQL()
-
     /**
      * Produces an SQL query string for autoPrepare()
      *
@@ -893,20 +811,20 @@ class DB_common extends PEAR
      *
      * @return string  the sql query for autoPrepare()
      */
-    function buildManipSQL($table, $table_fields, $mode, $where = false)
-    {
-        if (count($table_fields) == 0) {
+    function buildManipSQL($table, $table_fields, $mode, $where = false) {
+        if(count($table_fields) == 0) {
             return $this->raiseError(DB_ERROR_NEED_MORE_DATA);
         }
         $first = true;
-        switch ($mode) {
+        switch($mode) {
             case DB_AUTOQUERY_INSERT:
                 $values = '';
                 $names = '';
-                foreach ($table_fields as $value) {
-                    if ($first) {
+                foreach($table_fields as $value) {
+                    if($first) {
                         $first = false;
-                    } else {
+                    }
+                    else {
                         $names .= ',';
                         $values .= ',';
                     }
@@ -916,16 +834,17 @@ class DB_common extends PEAR
                 return "INSERT INTO $table ($names) VALUES ($values)";
             case DB_AUTOQUERY_UPDATE:
                 $set = '';
-                foreach ($table_fields as $value) {
-                    if ($first) {
+                foreach($table_fields as $value) {
+                    if($first) {
                         $first = false;
-                    } else {
+                    }
+                    else {
                         $set .= ',';
                     }
                     $set .= "$value = ?";
                 }
                 $sql = "UPDATE $table SET $set";
-                if ($where) {
+                if($where) {
                     $sql .= " WHERE $where";
                 }
                 return $sql;
@@ -933,10 +852,8 @@ class DB_common extends PEAR
                 return $this->raiseError(DB_ERROR_SYNTAX);
         }
     }
-
     // }}}
     // {{{ execute()
-
     /**
      * Executes a DB statement prepared with prepare()
      *
@@ -966,25 +883,22 @@ class DB_common extends PEAR
      *
      * @see DB_common::prepare()
      */
-    function &execute($stmt, $data = array())
-    {
+    function &execute($stmt, $data = array()) {
         $realquery = $this->executeEmulateQuery($stmt, $data);
-        if (DB::isError($realquery)) {
+        if(DB::isError($realquery)) {
             return $realquery;
         }
         $result = $this->simpleQuery($realquery);
-
-        if ($result === DB_OK || DB::isError($result)) {
+        if($result === DB_OK || DB::isError($result)) {
             return $result;
-        } else {
-            $tmp =& new DB_result($this, $result);
+        }
+        else {
+            $tmp = &new DB_result($this, $result);
             return $tmp;
         }
     }
-
     // }}}
     // {{{ executeEmulateQuery()
-
     /**
      * Emulates executing prepared statements if the DBMS not support them
      *
@@ -1001,43 +915,37 @@ class DB_common extends PEAR
      * @access protected
      * @see DB_common::execute()
      */
-    function executeEmulateQuery($stmt, $data = array())
-    {
-        $stmt = (int)$stmt;
-        $data = (array)$data;
+    function executeEmulateQuery($stmt, $data = array()) {
+        $stmt                  = (int) $stmt;
+        $data                  = (array) $data;
         $this->last_parameters = $data;
-
-        if (count($this->prepare_types[$stmt]) != count($data)) {
+        if(count($this->prepare_types[$stmt]) != count($data)) {
             $this->last_query = $this->prepared_queries[$stmt];
             return $this->raiseError(DB_ERROR_MISMATCH);
         }
-
         $realquery = $this->prepare_tokens[$stmt][0];
-
         $i = 0;
-        foreach ($data as $value) {
-            if ($this->prepare_types[$stmt][$i] == DB_PARAM_SCALAR) {
+        foreach($data as $value) {
+            if($this->prepare_types[$stmt][$i] == DB_PARAM_SCALAR) {
                 $realquery .= $this->quoteSmart($value);
-            } elseif ($this->prepare_types[$stmt][$i] == DB_PARAM_OPAQUE) {
+            }
+            elseif($this->prepare_types[$stmt][$i] == DB_PARAM_OPAQUE) {
                 $fp = @fopen($value, 'rb');
-                if (!$fp) {
+                if(!$fp) {
                     return $this->raiseError(DB_ERROR_ACCESS_VIOLATION);
                 }
                 $realquery .= $this->quoteSmart(fread($fp, filesize($value)));
                 fclose($fp);
-            } else {
+            }
+            else {
                 $realquery .= $value;
             }
-
             $realquery .= $this->prepare_tokens[$stmt][++$i];
         }
-
         return $realquery;
     }
-
     // }}}
     // {{{ executeMultiple()
-
     /**
      * Performs several execute() calls on the same statement handle
      *
@@ -1055,20 +963,17 @@ class DB_common extends PEAR
      *
      * @see DB_common::prepare(), DB_common::execute()
      */
-    function executeMultiple($stmt, $data)
-    {
-        foreach ($data as $value) {
-            $res =& $this->execute($stmt, $value);
-            if (DB::isError($res)) {
+    function executeMultiple($stmt, $data) {
+        foreach($data as $value) {
+            $res = &$this->execute($stmt, $value);
+            if(DB::isError($res)) {
                 return $res;
             }
         }
         return DB_OK;
     }
-
     // }}}
     // {{{ freePrepared()
-
     /**
      * Frees the internal resources associated with a prepared query
      *
@@ -1081,10 +986,9 @@ class DB_common extends PEAR
      *
      * @see DB_common::prepare()
      */
-    function freePrepared($stmt, $free_resource = true)
-    {
-        $stmt = (int)$stmt;
-        if (isset($this->prepare_tokens[$stmt])) {
+    function freePrepared($stmt, $free_resource = true) {
+        $stmt = (int) $stmt;
+        if(isset($this->prepare_tokens[$stmt])) {
             unset($this->prepare_tokens[$stmt]);
             unset($this->prepare_types[$stmt]);
             unset($this->prepared_queries[$stmt]);
@@ -1092,10 +996,8 @@ class DB_common extends PEAR
         }
         return false;
     }
-
     // }}}
     // {{{ modifyQuery()
-
     /**
      * Changes a query string for various DBMS specific reasons
      *
@@ -1109,14 +1011,11 @@ class DB_common extends PEAR
      * @see DB_mysql::modifyQuery(), DB_oci8::modifyQuery(),
      *      DB_sqlite::modifyQuery()
      */
-    function modifyQuery($query)
-    {
+    function modifyQuery($query) {
         return $query;
     }
-
     // }}}
     // {{{ modifyLimitQuery()
-
     /**
      * Adds LIMIT clauses to a query string according to current DBMS standards
      *
@@ -1136,14 +1035,11 @@ class DB_common extends PEAR
      *
      * @access protected
      */
-    function modifyLimitQuery($query, $from, $count, $params = array())
-    {
+    function modifyLimitQuery($query, $from, $count, $params = array()) {
         return $query;
     }
-
     // }}}
     // {{{ query()
-
     /**
      * Sends a query to the database server
      *
@@ -1164,31 +1060,30 @@ class DB_common extends PEAR
      *
      * @see DB_result, DB_common::prepare(), DB_common::execute()
      */
-    function &query($query, $params = array())
-    {
-        if (sizeof($params) > 0) {
+    function &query($query, $params = array()) {
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-            $ret =& $this->execute($sth, $params);
+            $ret = &$this->execute($sth, $params);
             $this->freePrepared($sth, false);
             return $ret;
-        } else {
+        }
+        else {
             $this->last_parameters = array();
             $result = $this->simpleQuery($query);
-            if ($result === DB_OK || DB::isError($result)) {
+            if($result === DB_OK || DB::isError($result)) {
                 return $result;
-            } else {
-                $tmp =& new DB_result($this, $result);
+            }
+            else {
+                $tmp = &new DB_result($this, $result);
                 return $tmp;
             }
         }
     }
-
     // }}}
     // {{{ limitQuery()
-
     /**
      * Generates and executes a LIMIT query
      *
@@ -1205,23 +1100,20 @@ class DB_common extends PEAR
      *                 or DB_OK for successul data manipulation queries.
      *                 A DB_Error object on failure.
      */
-    function &limitQuery($query, $from, $count, $params = array())
-    {
+    function &limitQuery($query, $from, $count, $params = array()) {
         $query = $this->modifyLimitQuery($query, $from, $count, $params);
-        if (DB::isError($query)){
+        if(DB::isError($query)) {
             return $query;
         }
-        $result =& $this->query($query, $params);
-        if (is_a($result, 'DB_result')) {
+        $result = &$this->query($query, $params);
+        if(is_a($result, 'DB_result')) {
             $result->setOption('limit_from', $from);
             $result->setOption('limit_count', $count);
         }
         return $result;
     }
-
     // }}}
     // {{{ getOne()
-
     /**
      * Fetches the first column of the first row from a query result
      *
@@ -1237,38 +1129,32 @@ class DB_common extends PEAR
      * @return mixed  the returned value of the query.
      *                 A DB_Error object on failure.
      */
-    function &getOne($query, $params = array())
-    {
-        $params = (array)$params;
+    function &getOne($query, $params = array()) {
+        $params = (array) $params;
         // modifyLimitQuery() would be nice here, but it causes BC issues
-        if (sizeof($params) > 0) {
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-            $res =& $this->execute($sth, $params);
+            $res = &$this->execute($sth, $params);
             $this->freePrepared($sth);
-        } else {
-            $res =& $this->query($query);
         }
-
-        if (DB::isError($res)) {
+        else {
+            $res = &$this->query($query);
+        }
+        if(DB::isError($res)) {
             return $res;
         }
-
         $err = $res->fetchInto($row, DB_FETCHMODE_ORDERED);
         $res->free();
-
-        if ($err !== DB_OK) {
+        if($err !== DB_OK) {
             return $err;
         }
-
         return $row[0];
     }
-
     // }}}
     // {{{ getRow()
-
     /**
      * Fetches the first row of data returned from a query result
      *
@@ -1285,55 +1171,49 @@ class DB_common extends PEAR
      * @return array  the first row of results as an array.
      *                 A DB_Error object on failure.
      */
-    function &getRow($query, $params = array(),
-                     $fetchmode = DB_FETCHMODE_DEFAULT)
-    {
+    function &getRow($query, $params = array(), $fetchmode = DB_FETCHMODE_DEFAULT) {
         // compat check, the params and fetchmode parameters used to
         // have the opposite order
-        if (!is_array($params)) {
-            if (is_array($fetchmode)) {
-                if ($params === null) {
+        if(!is_array($params)) {
+            if(is_array($fetchmode)) {
+                if($params === null) {
                     $tmp = DB_FETCHMODE_DEFAULT;
-                } else {
+                }
+                else {
                     $tmp = $params;
                 }
                 $params = $fetchmode;
                 $fetchmode = $tmp;
-            } elseif ($params !== null) {
+            }
+            elseif($params !== null) {
                 $fetchmode = $params;
                 $params = array();
             }
         }
         // modifyLimitQuery() would be nice here, but it causes BC issues
-        if (sizeof($params) > 0) {
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-            $res =& $this->execute($sth, $params);
+            $res = &$this->execute($sth, $params);
             $this->freePrepared($sth);
-        } else {
-            $res =& $this->query($query);
         }
-
-        if (DB::isError($res)) {
+        else {
+            $res = &$this->query($query);
+        }
+        if(DB::isError($res)) {
             return $res;
         }
-
         $err = $res->fetchInto($row, $fetchmode);
-
         $res->free();
-
-        if ($err !== DB_OK) {
+        if($err !== DB_OK) {
             return $err;
         }
-
         return $row;
     }
-
     // }}}
     // {{{ getCol()
-
     /**
      * Fetches a single column from a query result and returns it as an
      * indexed array
@@ -1351,53 +1231,47 @@ class DB_common extends PEAR
      *
      * @see DB_common::query()
      */
-    function &getCol($query, $col = 0, $params = array())
-    {
-        $params = (array)$params;
-        if (sizeof($params) > 0) {
+    function &getCol($query, $col = 0, $params = array()) {
+        $params = (array) $params;
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-
-            $res =& $this->execute($sth, $params);
+            $res = &$this->execute($sth, $params);
             $this->freePrepared($sth);
-        } else {
-            $res =& $this->query($query);
         }
-
-        if (DB::isError($res)) {
+        else {
+            $res = &$this->query($query);
+        }
+        if(DB::isError($res)) {
             return $res;
         }
-
         $fetchmode = is_int($col) ? DB_FETCHMODE_ORDERED : DB_FETCHMODE_ASSOC;
-
-        if (!is_array($row = $res->fetchRow($fetchmode))) {
+        if(!is_array($row = $res->fetchRow($fetchmode))) {
             $ret = array();
-        } else {
-            if (!array_key_exists($col, $row)) {
-                $ret =& $this->raiseError(DB_ERROR_NOSUCHFIELD);
-            } else {
-                $ret = array($row[$col]);
-                while (is_array($row = $res->fetchRow($fetchmode))) {
+        }
+        else {
+            if(!array_key_exists($col, $row)) {
+                $ret = &$this->raiseError(DB_ERROR_NOSUCHFIELD);
+            }
+            else {
+                $ret = array(
+                    $row[$col],
+                );
+                while(is_array($row = $res->fetchRow($fetchmode))) {
                     $ret[] = $row[$col];
                 }
             }
         }
-
         $res->free();
-
-        if (DB::isError($row)) {
+        if(DB::isError($row)) {
             $ret = $row;
         }
-
         return $ret;
     }
-
     // }}}
     // {{{ getAssoc()
-
     /**
      * Fetches an entire query result and returns it as an
      * associative array using the first column as the key
@@ -1482,99 +1356,95 @@ class DB_common extends PEAR
      * @return array  the associative array containing the query results.
      *                A DB_Error object on failure.
      */
-    function &getAssoc($query, $force_array = false, $params = array(),
-                       $fetchmode = DB_FETCHMODE_DEFAULT, $group = false)
-    {
-        $params = (array)$params;
-        if (sizeof($params) > 0) {
+    function &getAssoc($query, $force_array = false, $params = array(), $fetchmode = DB_FETCHMODE_DEFAULT, $group = false) {
+        $params = (array) $params;
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-
-            $res =& $this->execute($sth, $params);
+            $res = &$this->execute($sth, $params);
             $this->freePrepared($sth);
-        } else {
-            $res =& $this->query($query);
         }
-
-        if (DB::isError($res)) {
+        else {
+            $res = &$this->query($query);
+        }
+        if(DB::isError($res)) {
             return $res;
         }
-        if ($fetchmode == DB_FETCHMODE_DEFAULT) {
+        if($fetchmode == DB_FETCHMODE_DEFAULT) {
             $fetchmode = $this->fetchmode;
         }
         $cols = $res->numCols();
-
-        if ($cols < 2) {
-            $tmp =& $this->raiseError(DB_ERROR_TRUNCATED);
+        if($cols < 2) {
+            $tmp = &$this->raiseError(DB_ERROR_TRUNCATED);
             return $tmp;
         }
-
         $results = array();
-
-        if ($cols > 2 || $force_array) {
+        if($cols > 2 || $force_array) {
             // return array values
             // XXX this part can be optimized
-            if ($fetchmode == DB_FETCHMODE_ASSOC) {
-                while (is_array($row = $res->fetchRow(DB_FETCHMODE_ASSOC))) {
+            if($fetchmode == DB_FETCHMODE_ASSOC) {
+                while(is_array($row = $res->fetchRow(DB_FETCHMODE_ASSOC))) {
                     reset($row);
                     $key = current($row);
                     unset($row[key($row)]);
-                    if ($group) {
+                    if($group) {
                         $results[$key][] = $row;
-                    } else {
+                    }
+                    else {
                         $results[$key] = $row;
                     }
                 }
-            } elseif ($fetchmode == DB_FETCHMODE_OBJECT) {
-                while ($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
+            }
+            elseif($fetchmode == DB_FETCHMODE_OBJECT) {
+                while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
                     $arr = get_object_vars($row);
                     $key = current($arr);
-                    if ($group) {
+                    if($group) {
                         $results[$key][] = $row;
-                    } else {
+                    }
+                    else {
                         $results[$key] = $row;
                     }
                 }
-            } else {
-                while (is_array($row = $res->fetchRow(DB_FETCHMODE_ORDERED))) {
+            }
+            else {
+                while(is_array($row = $res->fetchRow(DB_FETCHMODE_ORDERED))) {
                     // we shift away the first element to get
                     // indices running from 0 again
                     $key = array_shift($row);
-                    if ($group) {
+                    if($group) {
                         $results[$key][] = $row;
-                    } else {
+                    }
+                    else {
                         $results[$key] = $row;
                     }
                 }
             }
-            if (DB::isError($row)) {
-                $results = $row;
-            }
-        } else {
-            // return scalar values
-            while (is_array($row = $res->fetchRow(DB_FETCHMODE_ORDERED))) {
-                if ($group) {
-                    $results[$row[0]][] = $row[1];
-                } else {
-                    $results[$row[0]] = $row[1];
-                }
-            }
-            if (DB::isError($row)) {
+            if(DB::isError($row)) {
                 $results = $row;
             }
         }
-
+        else {
+            // return scalar values
+            while(is_array($row = $res->fetchRow(DB_FETCHMODE_ORDERED))) {
+                if($group) {
+                    $results[$row[0]][] = $row[1];
+                }
+                else {
+                    $results[$row[0]] = $row[1];
+                }
+            }
+            if(DB::isError($row)) {
+                $results = $row;
+            }
+        }
         $res->free();
-
         return $results;
     }
-
     // }}}
     // {{{ getAll()
-
     /**
      * Fetches all of the rows from a query result
      *
@@ -1593,66 +1463,59 @@ class DB_common extends PEAR
      *
      * @return array  the nested array.  A DB_Error object on failure.
      */
-    function &getAll($query, $params = array(),
-                     $fetchmode = DB_FETCHMODE_DEFAULT)
-    {
+    function &getAll($query, $params = array(), $fetchmode = DB_FETCHMODE_DEFAULT) {
         // compat check, the params and fetchmode parameters used to
         // have the opposite order
-        if (!is_array($params)) {
-            if (is_array($fetchmode)) {
-                if ($params === null) {
+        if(!is_array($params)) {
+            if(is_array($fetchmode)) {
+                if($params === null) {
                     $tmp = DB_FETCHMODE_DEFAULT;
-                } else {
+                }
+                else {
                     $tmp = $params;
                 }
                 $params = $fetchmode;
                 $fetchmode = $tmp;
-            } elseif ($params !== null) {
+            }
+            elseif($params !== null) {
                 $fetchmode = $params;
                 $params = array();
             }
         }
-
-        if (sizeof($params) > 0) {
+        if(sizeof($params) > 0) {
             $sth = $this->prepare($query);
-
-            if (DB::isError($sth)) {
+            if(DB::isError($sth)) {
                 return $sth;
             }
-
-            $res =& $this->execute($sth, $params);
+            $res = &$this->execute($sth, $params);
             $this->freePrepared($sth);
-        } else {
-            $res =& $this->query($query);
         }
-
-        if ($res === DB_OK || DB::isError($res)) {
+        else {
+            $res = &$this->query($query);
+        }
+        if($res === DB_OK || DB::isError($res)) {
             return $res;
         }
-
         $results = array();
-        while (DB_OK === $res->fetchInto($row, $fetchmode)) {
-            if ($fetchmode & DB_FETCHMODE_FLIPPED) {
-                foreach ($row as $key => $val) {
+        while(DB_OK === $res->fetchInto($row, $fetchmode)) {
+            if($fetchmode&DB_FETCHMODE_FLIPPED) {
+                foreach($row as $key => $val) {
                     $results[$key][] = $val;
                 }
-            } else {
+            }
+            else {
                 $results[] = $row;
             }
         }
-
         $res->free();
-
-        if (DB::isError($row)) {
-            $tmp =& $this->raiseError($row);
+        if(DB::isError($row)) {
+            $tmp = &$this->raiseError($row);
             return $tmp;
         }
         return $results;
     }
-
     // }}}
     // {{{ autoCommit()
-
     /**
      * Enables or disables automatic commits
      *
@@ -1661,40 +1524,31 @@ class DB_common extends PEAR
      * @return int  DB_OK on success.  A DB_Error object if the driver
      *               doesn't support auto-committing transactions.
      */
-    function autoCommit($onoff = false)
-    {
+    function autoCommit($onoff = false) {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ commit()
-
     /**
      * Commits the current transaction
      *
      * @return int  DB_OK on success.  A DB_Error object on failure.
      */
-    function commit()
-    {
+    function commit() {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ rollback()
-
     /**
      * Reverts the current transaction
      *
      * @return int  DB_OK on success.  A DB_Error object on failure.
      */
-    function rollback()
-    {
+    function rollback() {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ numRows()
-
     /**
      * Determines the number of rows in a query result
      *
@@ -1702,14 +1556,11 @@ class DB_common extends PEAR
      *
      * @return int  the number of rows.  A DB_Error object on failure.
      */
-    function numRows($result)
-    {
+    function numRows($result) {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ affectedRows()
-
     /**
      * Determines the number of rows affected by a data maniuplation query
      *
@@ -1717,14 +1568,11 @@ class DB_common extends PEAR
      *
      * @return int  the number of rows.  A DB_Error object on failure.
      */
-    function affectedRows()
-    {
+    function affectedRows() {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ getSequenceName()
-
     /**
      * Generates the name used inside the database for a sequence
      *
@@ -1739,15 +1587,11 @@ class DB_common extends PEAR
      * @see DB_common::createSequence(), DB_common::dropSequence(),
      *      DB_common::nextID(), DB_common::setOption()
      */
-    function getSequenceName($sqn)
-    {
-        return sprintf($this->getOption('seqname_format'),
-                       preg_replace('/[^a-z0-9_.]/i', '_', $sqn));
+    function getSequenceName($sqn) {
+        return sprintf($this->getOption('seqname_format'), preg_replace('/[^a-z0-9_.]/i', '_', $sqn));
     }
-
     // }}}
     // {{{ nextId()
-
     /**
      * Returns the next free id in a sequence
      *
@@ -1761,14 +1605,11 @@ class DB_common extends PEAR
      * @see DB_common::createSequence(), DB_common::dropSequence(),
      *      DB_common::getSequenceName()
      */
-    function nextId($seq_name, $ondemand = true)
-    {
+    function nextId($seq_name, $ondemand = true) {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ createSequence()
-
     /**
      * Creates a new sequence
      *
@@ -1786,14 +1627,11 @@ class DB_common extends PEAR
      * @see DB_common::dropSequence(), DB_common::getSequenceName(),
      *      DB_common::nextID()
      */
-    function createSequence($seq_name)
-    {
+    function createSequence($seq_name) {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ dropSequence()
-
     /**
      * Deletes a sequence
      *
@@ -1804,14 +1642,11 @@ class DB_common extends PEAR
      * @see DB_common::createSequence(), DB_common::getSequenceName(),
      *      DB_common::nextID()
      */
-    function dropSequence($seq_name)
-    {
+    function dropSequence($seq_name) {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ raiseError()
-
     /**
      * Communicates an error and invoke error callbacks, etc
      *
@@ -1836,53 +1671,42 @@ class DB_common extends PEAR
      *
      * @see PEAR_Error
      */
-    function &raiseError($code = DB_ERROR, $mode = null, $options = null,
-                         $userinfo = null, $nativecode = null)
-    {
+    function &raiseError($code = DB_ERROR, $mode = null, $options = null, $userinfo = null, $nativecode = null) {
         // The error is yet a DB error object
-        if (is_object($code)) {
+        if(is_object($code)) {
             // because we the static PEAR::raiseError, our global
             // handler should be used if it is set
-            if ($mode === null && !empty($this->_default_error_mode)) {
-                $mode    = $this->_default_error_mode;
+            if($mode === null && !empty($this->_default_error_mode)) {
+                $mode = $this->_default_error_mode;
                 $options = $this->_default_error_options;
             }
-            $tmp = PEAR::raiseError($code, null, $mode, $options,
-                                    null, null, true);
+            $tmp = PEAR::raiseError($code, null, $mode, $options, null, null, true);
             return $tmp;
         }
-
-        if ($userinfo === null) {
+        if($userinfo === null) {
             $userinfo = $this->last_query;
         }
-
-        if ($nativecode) {
-            $userinfo .= ' [nativecode=' . trim($nativecode) . ']';
-        } else {
-            $userinfo .= ' [DB Error: ' . DB::errorMessage($code) . ']';
+        if($nativecode) {
+            $userinfo .= ' [nativecode='.trim($nativecode).']';
         }
-
-        $tmp = PEAR::raiseError(null, $code, $mode, $options, $userinfo,
-                                'DB_Error', true);
+        else {
+            $userinfo .= ' [DB Error: '.DB::errorMessage($code).']';
+        }
+        $tmp = PEAR::raiseError(null, $code, $mode, $options, $userinfo, 'DB_Error', true);
         return $tmp;
     }
-
     // }}}
     // {{{ errorNative()
-
     /**
      * Gets the DBMS' native error code produced by the last query
      *
      * @return mixed  the DBMS' error code.  A DB_Error object on failure.
      */
-    function errorNative()
-    {
+    function errorNative() {
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ errorCode()
-
     /**
      * Maps native error codes to DB's portable ones
      *
@@ -1894,18 +1718,15 @@ class DB_common extends PEAR
      *               current driver doesn't have a mapping for the
      *               $nativecode submitted.
      */
-    function errorCode($nativecode)
-    {
-        if (isset($this->errorcode_map[$nativecode])) {
+    function errorCode($nativecode) {
+        if(isset($this->errorcode_map[$nativecode])) {
             return $this->errorcode_map[$nativecode];
         }
         // Fall back to DB_ERROR if there was no mapping.
         return DB_ERROR;
     }
-
     // }}}
     // {{{ errorMessage()
-
     /**
      * Maps a DB error code to a textual message
      *
@@ -1916,14 +1737,11 @@ class DB_common extends PEAR
      *
      * @see DB::errorMessage()
      */
-    function errorMessage($dbcode)
-    {
+    function errorMessage($dbcode) {
         return DB::errorMessage($this->errorcode_map[$dbcode]);
     }
-
     // }}}
     // {{{ tableInfo()
-
     /**
      * Returns information about a table or a result set
      *
@@ -2044,8 +1862,7 @@ class DB_common extends PEAR
      *
      * @see DB_common::setOption()
      */
-    function tableInfo($result, $mode = null)
-    {
+    function tableInfo($result, $mode = null) {
         /*
          * If the DB_<driver> class has a tableInfo() method, that one
          * overrides this one.  But, if the driver doesn't have one,
@@ -2053,10 +1870,8 @@ class DB_common extends PEAR
          */
         return $this->raiseError(DB_ERROR_NOT_CAPABLE);
     }
-
     // }}}
     // {{{ getTables()
-
     /**
      * Lists the tables in the current database
      *
@@ -2064,14 +1879,11 @@ class DB_common extends PEAR
      *
      * @deprecated Method deprecated some time before Release 1.2
      */
-    function getTables()
-    {
+    function getTables() {
         return $this->getListOf('tables');
     }
-
     // }}}
     // {{{ getListOf()
-
     /**
      * Lists internal database information
      *
@@ -2083,26 +1895,25 @@ class DB_common extends PEAR
      * @return array  an array listing the items sought.
      *                 A DB DB_Error object on failure.
      */
-    function getListOf($type)
-    {
+    function getListOf($type) {
         $sql = $this->getSpecialQuery($type);
-        if ($sql === null) {
+        if($sql === null) {
             $this->last_query = '';
             return $this->raiseError(DB_ERROR_UNSUPPORTED);
-        } elseif (is_int($sql) || DB::isError($sql)) {
+        }
+        elseif(is_int($sql) || DB::isError($sql)) {
             // Previous error
             return $this->raiseError($sql);
-        } elseif (is_array($sql)) {
+        }
+        elseif(is_array($sql)) {
             // Already the result
             return $sql;
         }
         // Launch this query
         return $this->getCol($sql);
     }
-
     // }}}
     // {{{ getSpecialQuery()
-
     /**
      * Obtains the query string needed for listing a given type of objects
      *
@@ -2114,14 +1925,11 @@ class DB_common extends PEAR
      * @access protected
      * @see DB_common::getListOf()
      */
-    function getSpecialQuery($type)
-    {
+    function getSpecialQuery($type) {
         return $this->raiseError(DB_ERROR_UNSUPPORTED);
     }
-
     // }}}
     // {{{ _rtrimArrayValues()
-
     /**
      * Right-trims all strings in an array
      *
@@ -2131,18 +1939,15 @@ class DB_common extends PEAR
      *
      * @access protected
      */
-    function _rtrimArrayValues(&$array)
-    {
-        foreach ($array as $key => $value) {
-            if (is_string($value)) {
+    function _rtrimArrayValues(&$array) {
+        foreach($array as $key => $value) {
+            if(is_string($value)) {
                 $array[$key] = rtrim($value);
             }
         }
     }
-
     // }}}
     // {{{ _convertNullArrayValuesToEmpty()
-
     /**
      * Converts all null values in an array to empty strings
      *
@@ -2152,15 +1957,13 @@ class DB_common extends PEAR
      *
      * @access protected
      */
-    function _convertNullArrayValuesToEmpty(&$array)
-    {
-        foreach ($array as $key => $value) {
-            if (is_null($value)) {
+    function _convertNullArrayValuesToEmpty(&$array) {
+        foreach($array as $key => $value) {
+            if(is_null($value)) {
                 $array[$key] = '';
             }
         }
     }
-
     // }}}
 }
 
@@ -2170,5 +1973,4 @@ class DB_common extends PEAR
  * c-basic-offset: 4
  * End:
  */
-
 ?>

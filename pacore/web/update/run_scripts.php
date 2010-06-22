@@ -11,7 +11,6 @@
 */
 ?>
 <?php
-
 /*
 
 Call run_update_scripts() after doing an update or a fresh install.
@@ -22,38 +21,39 @@ It currently runs:
 - default module settings (api/DB/script_module_settings_data.php)
 
 */
-
 error_reporting(E_ALL);
-
 require_once "web/extra/db_update.php";
 require_once "api/PAException/PAException.php";
 
 function upd_write($s) {
-    if (isset($_SERVER['REQUEST_METHOD'])) {
-	echo "<tr><td>".htmlspecialchars($s)."</td><td style='color: blue'>INFO</td></tr>\n";
-    } else {
-	echo "$s\n";
+    if(isset($_SERVER['REQUEST_METHOD'])) {
+        echo "<tr><td>".htmlspecialchars($s)."</td><td style='color: blue'>INFO</td></tr>\n";
+    }
+    else {
+        echo "$s\n";
     }
     flush();
 }
 
 function run_update_scripts($silent = false) {
-
-    if (!defined("PEEPAGG_UPDATING")) define("PEEPAGG_UPDATING", 1);
+    if(!defined("PEEPAGG_UPDATING")) {
+        define("PEEPAGG_UPDATING", 1);
+    }
     if(!$silent) {
-      upd_write("Running database upgrade script ...");
+        upd_write("Running database upgrade script ...");
     }
     $upd = new db_update_page();
     $upd->main();
 
-/* No longer used
-
-    upd_write("Installing default module settings ...");
-
-    if (!include("api/DB/script_module_settings_data.php"))
-        throw new PAException(GENERAL_SOME_ERROR, "Unable to install default module settings");
-*/
+    /* No longer used
+    
+        upd_write("Installing default module settings ...");
+    
+        if (!include("api/DB/script_module_settings_data.php"))
+            throw new PAException(GENERAL_SOME_ERROR, "Unable to install default module settings");
+    */
 }
+
 /*
 if (realpath(@$_SERVER['SCRIPT_FILENAME']) == realpath(__FILE__)) {
     upd_write("Running all scripts to update the system to the latest version.");

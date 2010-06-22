@@ -13,7 +13,6 @@
 <?php
 require_once "web/includes/classes/XmlConfig.class.php";
 
-
 /**
  *
  * @class EmailMessagesConfig
@@ -23,45 +22,41 @@ require_once "web/includes/classes/XmlConfig.class.php";
  */
 class EmailMessagesConfig extends XmlConfig {
 
-  public $messages;
-  
-  public function __construct($filename = null, $default_root = 'email_messages') {
-    parent::__construct($filename, $default_root);
-    $this->messages = array();
-    if($this->docLoaded) { 
-      $this->messages = parent::asArray();
+    public $messages;
+
+    public function __construct($filename = null, $default_root = 'email_messages') {
+        parent::__construct($filename, $default_root);
+        $this->messages = array();
+        if($this->docLoaded) {
+            $this->messages = parent::asArray();
+        }
     }
-  }
-  
-  public function exportMessages($file_name) {
-    $obj = new XmlConfig($file_name, "email_messages");
-    $obj->loadFromArray($this->messages, $obj->root_node);
-    $obj->saveToFile();
-  }
 
-  public function asArray() {
-    $messages = $this->messages;
-    foreach($messages as $type => &$data) {
-      $maches = array();
-      if(preg_match("#\<\!\[CDATA\[(.*)\]\]\>#s", trim($data['subject']), $matches)) {
-        $data['subject'] = $matches[1];
-      }  
-      if(preg_match("#\<\!\[CDATA\[(.*)\]\]\>#s", trim($data['message']), $matches)) {
-        $data['message'] = $matches[1];
-      }  
+    public function exportMessages($file_name) {
+        $obj = new XmlConfig($file_name, "email_messages");
+        $obj->loadFromArray($this->messages, $obj->root_node);
+        $obj->saveToFile();
     }
-    return $messages;
-  }
 
-  
-  
-  public function getAllMessages() {
-    return $this->messages;
-  }
+    public function asArray() {
+        $messages = $this->messages;
+        foreach($messages as $type => &$data) {
+            $maches = array();
+            if(preg_match("#\<\!\[CDATA\[(.*)\]\]\>#s", trim($data['subject']), $matches)) {
+                $data['subject'] = $matches[1];
+            }
+            if(preg_match("#\<\!\[CDATA\[(.*)\]\]\>#s", trim($data['message']), $matches)) {
+                $data['message'] = $matches[1];
+            }
+        }
+        return $messages;
+    }
 
-  public function __destruct() {
-  }
-  
+    public function getAllMessages() {
+        return $this->messages;
+    }
+
+    public function __destruct() {
+    }
 }
-
 ?>

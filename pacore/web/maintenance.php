@@ -17,14 +17,11 @@
 //require_once "web/includes/functions/validations.php";
 //require_once "api/User/User.php";
 require_once "api/Theme/Template.php";
-
-$theme_url = PA::$theme_url;
-$uname = ((empty($_SESSION['user']['name'])) ? '' : htmlspecialchars($_SESSION['user']['name']));
-
-  $template_file = getShadowedPath('web/Themes/Default/maintenance.tpl');
-  $template = & new Template($template_file);
-  $template->set('theme_url', $theme_url);
-  $template->set('uname', $uname);
-  echo $template->fetch();
-
+$theme_url     = PA::$theme_url;
+$uname         = ((empty($_SESSION['user']['name'])) ? '' : htmlspecialchars($_SESSION['user']['name']));
+$template_file = getShadowedPath('web/Themes/Default/maintenance.tpl');
+$template      = &new Template($template_file);
+$template->set('theme_url', $theme_url);
+$template->set('uname', $uname);
+echo $template->fetch();
 ?>

@@ -32,8 +32,7 @@
  *
  * @example composite.php   Using the composite handler.
  */
-class Log_composite extends Log
-{
+class Log_composite extends Log {
     /**
      * Array holding all of the Log instances to which log events should be
      * sent.
@@ -42,7 +41,6 @@ class Log_composite extends Log
      * @access private
      */
     var $_children = array();
-
 
     /**
      * Constructs a new composite Log object.
@@ -54,9 +52,7 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function Log_composite($name, $ident = '', $conf = array(),
-                           $level = PEAR_LOG_DEBUG)
-    {
+    function Log_composite($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
         $this->_ident = $ident;
     }
 
@@ -65,10 +61,9 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function open()
-    {
-        if (!$this->_opened) {
-            foreach ($this->_children as $id => $child) {
+    function open() {
+        if(!$this->_opened) {
+            foreach($this->_children as $id => $child) {
                 $this->_children[$id]->open();
             }
             $this->_opened = true;
@@ -80,10 +75,9 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function close()
-    {
-        if ($this->_opened) {
-            foreach ($this->_children as $id => $child) {
+    function close() {
+        if($this->_opened) {
+            foreach($this->_children as $id => $child) {
                 $this->_children[$id]->close();
             }
             $this->_opened = false;
@@ -96,10 +90,9 @@ class Log_composite extends Log
      * @access public
      * @since Log 1.8.2
      */
-    function flush()
-    {
-        if ($this->_opened) {
-            foreach ($this->_children as $id => $child) {
+    function flush() {
+        if($this->_opened) {
+            foreach($this->_children as $id => $child) {
                 $this->_children[$id]->flush();
             }
         }
@@ -121,19 +114,15 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function log($message, $priority = null)
-    {
+    function log($message, $priority = null) {
         /* If a priority hasn't been specified, use the default value. */
-        if ($priority === null) {
+        if($priority === null) {
             $priority = $this->_priority;
         }
-
-        foreach ($this->_children as $id => $child) {
+        foreach($this->_children as $id => $child) {
             $this->_children[$id]->log($message, $priority);
         }
-
         $this->_announce(array('priority' => $priority, 'message' => $message));
-
         return true;
     }
 
@@ -144,8 +133,7 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function isComposite()
-    {
+    function isComposite() {
         return true;
     }
 
@@ -157,13 +145,12 @@ class Log_composite extends Log
      * @access public
      * @since  Log 1.6.7
      */
-    function setIdent($ident)
-    {
+    function setIdent($ident) {
         /* Call our base class's setIdent() method. */
         parent::setIdent($ident);
 
         /* ... and then call setIdent() on all of our children. */
-        foreach ($this->_children as $id => $child) {
+        foreach($this->_children as $id => $child) {
             $this->_children[$id]->setIdent($ident);
         }
     }
@@ -177,15 +164,12 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function addChild(&$child)
-    {
+    function addChild(&$child) {
         /* Make sure this is a Log instance. */
-        if (!is_a($child, 'Log')) {
+        if(!is_a($child, 'Log')) {
             return false;
         }
-
         $this->_children[$child->_id] = &$child;
-
         return true;
     }
 
@@ -198,15 +182,11 @@ class Log_composite extends Log
      *
      * @access public
      */
-    function removeChild($child)
-    {
-        if (!is_a($child, 'Log') || !isset($this->_children[$child->_id])) {
+    function removeChild($child) {
+        if(!is_a($child, 'Log') || !isset($this->_children[$child->_id])) {
             return false;
         }
-
         unset($this->_children[$child->_id]);
-
         return true;
     }
-
 }

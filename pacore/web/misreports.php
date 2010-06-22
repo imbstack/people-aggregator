@@ -23,34 +23,32 @@
  */
 $login_required = TRUE;
 //including necessary files
-$use_theme = 'Beta'; //TODO : Remove this when new UI is completely implemented.
+$use_theme = 'Beta';
+//TODO : Remove this when new UI is completely implemented.
 include_once("web/includes/page.php");
 require_once "web/includes/network.inc.php";
-
-
 $msg = @$_REQUEST['msg'];
 
 function setup_module($column, $module, $obj) {
-  global $msg, $error, $paging;
-  if($msg) return 'skip';
-  switch ($module) {
-    case 'MISReportModule':
-    $obj->market_report = FALSE;
-    if (@$_GET['mis_type'] == 'mkt_rpt') {
-      $obj->market_report = TRUE;
-      $obj->email_sorting = (!empty($_GET['sort_by'])) ? $_GET['sort_by'] : NULL;
+    global $msg, $error, $paging;
+    if($msg) {
+        return 'skip';
     }
-    $obj->Paging["page"] = $paging["page"];
-    $obj->Paging["show"] = 10;
-    break;
-  }
+    switch($module) {
+        case 'MISReportModule':
+            $obj->market_report = FALSE;
+            if(@$_GET['mis_type'] == 'mkt_rpt') {
+                $obj->market_report = TRUE;
+                $obj->email_sorting = (!empty($_GET['sort_by'])) ? $_GET['sort_by'] : NULL;
+            }
+            $obj->Paging["page"] = $paging["page"];
+            $obj->Paging["show"] = 10;
+            break;
+    }
 }
-
 $page = new PageRenderer("setup_module", PAGE_MIS_REPORT, __("MIS Reports"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
 $page->html_body_attributes = 'class="no_second_tier network_config"';
-
 uihelper_error_msg($msg);;
 uihelper_get_network_style();
-
 echo $page->render();
 ?>

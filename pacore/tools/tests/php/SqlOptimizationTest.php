@@ -17,6 +17,7 @@
  */
 // {{{ SqlOptimizationTest extends PHPUnit_Framework_Test
 class SqlOptimizationTest implements PHPUnit_Framework_Test {
+
     private $queries;
     // {{{ __construct($queriesData)
     public function __construct($queriesData) {
@@ -29,46 +30,48 @@ class SqlOptimizationTest implements PHPUnit_Framework_Test {
     }
     // }}}
     // {{{ run(PHPUnit_Framework_TestResult $result = NULL)
-    public function run(PHPUnit_Framework_TestResult $result = NULL) {
-        if ($result === NULL) {
+    public function run(PHPUnit_Framework_TestResult$result = NULL) {
+        if($result === NULL) {
             $result = new PHPUnit_Framework_TestResult;
             $result->startTest($this);
-	    $t_start = microtime(TRUE);
+            $t_start = microtime(TRUE);
             $counter = 0;
-            foreach ($this->queries as $query_data) {
-                $query = 'EXPLAIN '.$query_data['query'];
-                $parameters = $query_data['parameters'];
+            foreach($this->queries as $query_data) {
+                $query            = 'EXPLAIN '.$query_data['query'];
+                $parameters       = $query_data['parameters'];
                 $parameters_print = '';
                 try {
-                    if (!empty($parameters)) {
+                    if(!empty($parameters)) {
                         $res = Dal::query($query, $parameters);
                         $parameters_print = 'PARAMETERS:'."\n";
-                        foreach ($parameters as $param) {
+                        foreach($parameters as $param) {
                             $parameters_print .= '- '.$param."\n";
                         }
-                    } else {
+                    }
+                    else {
                         $res = Dal::query($query);
                     }
-                } catch (PAException $e) {
+                }
+                catch(PAException$e) {
                     try {
                         PHPUnit_Framework_Assert::assertEquals($e->getCode(), DB_QUERY_FAILED);
                     }
-                    catch (PHPUnit_Framework_AssertionFailedError $e) {
+                    catch(PHPUnit_Framework_AssertionFailedError$e) {
                         $result->addFailure($this, $e);
                     }
-                    catch (Exception $e) {
+                    catch(Exception$e) {
                         $result->addError($this, $e);
                     }
                 }
-		        $tables = array();
-		        print "{{{ ==================================================================\n";
-		        $query_row = wordwrap($explain."QUERY: \"$query\"", 70);
-		        print $query_row."\n";
-		        if (!empty($parameters_print)) {
-		            print "----------------------------------------------------------------------\n";
-		            print $parameters_print;
-		        }
-		        while ($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
+                $tables = array();
+                print "{{{ ==================================================================\n";
+                $query_row = wordwrap($explain."QUERY: \"$query\"", 70);
+                print $query_row."\n";
+                if(!empty($parameters_print)) {
+                    print "----------------------------------------------------------------------\n";
+                    print $parameters_print;
+                }
+                while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
                     print "----------------------------------------------------------------------\n";
                     print 'ID: '.$row->id."\n";
                     print 'SELECT TYPE: '.$row->select_type."\n";
@@ -80,33 +83,34 @@ class SqlOptimizationTest implements PHPUnit_Framework_Test {
                     print 'REFERENCE: '.$row->ref."\n";
                     print 'ROWS: '.$row->rows."\n";
                     print 'EXTRA: '.$row->Extra."\n";
-		            if (!empty($row->table)) {
+                    if(!empty($row->table)) {
                         $tables[] = $row->table;
                     }
                     $counter++;
                 }
-		        // Now show all the tables used in the query.
-		        foreach ($tables as $table) {
-		            print "----------------------------------------------------------------------\n";
-		            try {
-			            $create_table = Dal::query_one("SHOW CREATE TABLE $table");
-		            } catch (PAException $e) {
-			            if ($e->getCode() != DB_QUERY_FAILED) {
+                // Now show all the tables used in the query.
+                foreach($tables as $table) {
+                    print "----------------------------------------------------------------------\n";
+                    try {
+                        $create_table = Dal::query_one("SHOW CREATE TABLE $table");
+                    }
+                    catch(PAException$e) {
+                        if($e->getCode() != DB_QUERY_FAILED) {
                             throw $e;
                         }
-			            $bits = preg_split("/(\s+|,)/", $query);
-			            $pos = array_search($table, $bits);
-			            if ($pos === NULL) {
+                        $bits = preg_split("/(\s+|,)/", $query);
+                        $pos = array_search($table, $bits);
+                        if($pos === NULL) {
                             throw new PAException(GENERAL_SOME_ERROR, "Failed to find real name for table $table in query $sql");
                         }
-			            $table = (strtolower($bits[$pos-1]) == 'as') ? $bits[$pos-2] : $bits[$pos-1];
-			            $create_table = Dal::query_one("SHOW CREATE TABLE $table");
-		            }
-		            echo $create_table[1]."\n";
-		        }
-		        print "================================================================== }}}\n";
+                        $table = (strtolower($bits[$pos-1]) == 'as') ? $bits[$pos-2] : $bits[$pos-1];
+                        $create_table = Dal::query_one("SHOW CREATE TABLE $table");
+                    }
+                    echo $create_table[1]."\n";
+                }
+                print "================================================================== }}}\n";
             }
-            $result->endTest($this, microtime(TRUE) - $t_start);
+            $result->endTest($this, microtime(TRUE)-$t_start);
             return $result;
         }
     }
