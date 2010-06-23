@@ -230,6 +230,7 @@ class CreatePageModule extends Module {
             catch(DynamicPageException$e) {
                 $error_msg = $e->getMessage();
             }
-        } 
+	}
+    }	
 }
 ?>
