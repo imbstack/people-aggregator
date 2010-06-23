@@ -24,9 +24,7 @@
     <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=professional" id="show-professional"><?= __("Professional Info") ?></a>
   </li>
 
-  <li <?php isActiveNav('blogs_rss', $type) ?>>
-    <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=blogs_rss" id="show-blogs_rss"><?= __("Blogs/RSS") ?></a>
-  </li>
+    </li>
   <li <?php isActiveNav('notifications', $type) ?>>
     <a href="<?=PA::$url.PA_ROUTE_EDIT_PROFILE?>?type=notifications" id="show-notifications"><?= __("Notifications") ?></a>
   </li>

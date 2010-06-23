@@ -24,7 +24,7 @@ class EditProfileModule extends Module {
   public $blogsetting_status;
 
   //All the valid profile types. If we have to add new profile type, then profile type should be entered here also.
-  public $valid_profile_types = array('basic', 'general', 'personal', 'professional', 'blogs_rss', 'notifications', 'delete_account');
+  public $valid_profile_types = array('basic', 'general', 'personal', 'professional', 'notifications', 'delete_account');
 
   //Profile type currently under view
   public $profile_type;
