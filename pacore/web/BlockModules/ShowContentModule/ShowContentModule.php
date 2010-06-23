@@ -432,10 +432,10 @@ class ShowContentModule extends Module {
     return $inner_html;
   }
 
-  function get_caption ($caption, $lenght) {
-    //FIXME: use the proper html truncation code
-    if(strlen($caption) > $lenght) {
-      $start =  substr ($caption, 0, ($lenght - 5));
+  function get_caption ($caption, $length) {
+    // @todo use the proper html truncation code
+    if(strlen($caption) > $length) {
+      $start =  substr ($caption, 0, ($length - 5));
       $caption = $start.'....';
     }
     return $caption;

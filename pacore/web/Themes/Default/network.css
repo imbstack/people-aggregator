@@ -839,6 +839,11 @@ html[xmlns*=""] body:last-child .module_tagcloud ul li span { margin-top: 0px; }
 	margin: 0px;
 }
 
+.blog_inner{
+	padding: 0px 0px 0px 40px;
+	margin-bottom: -20px;
+}
+
 .post_info {
 	margin-top: 20px;
 	color: #7B7B7B; }
