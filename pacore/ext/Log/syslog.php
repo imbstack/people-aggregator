@@ -31,7 +31,8 @@
  *
  * @example syslog.php      Using the syslog handler.
  */
-class Log_syslog extends Log {
+class Log_syslog extends Log
+{
     /**
     * Integer holding the log facility to use.
     * @var string
@@ -48,11 +49,14 @@ class Log_syslog extends Log {
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_syslog($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
+    function Log_syslog($name, $ident = '', $conf = array(),
+                        $level = PEAR_LOG_DEBUG)
+    {
         /* Ensure we have a valid integer value for $name. */
-        if(empty($name) || !is_int($name)) {
+        if (empty($name) || !is_int($name)) {
             $name = LOG_SYSLOG;
         }
+
         $this->_id = md5(microtime());
         $this->_name = $name;
         $this->_ident = $ident;
@@ -64,11 +68,13 @@ class Log_syslog extends Log {
      * been opened.  This is implicitly called by log(), if necessary.
      * @access public
      */
-    function open() {
-        if(!$this->_opened) {
+    function open()
+    {
+        if (!$this->_opened) {
             openlog($this->_ident, LOG_PID, $this->_name);
             $this->_opened = true;
         }
+
         return $this->_opened;
     }
 
@@ -76,12 +82,14 @@ class Log_syslog extends Log {
      * Closes the connection to the system logger, if it is open.
      * @access public
      */
-    function close() {
-        if($this->_opened) {
+    function close()
+    {
+        if ($this->_opened) {
             closelog();
             $this->_opened = false;
         }
-        return($this->_opened === false);
+
+        return ($this->_opened === false);
     }
 
     /**
@@ -97,28 +105,32 @@ class Log_syslog extends Log {
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null) {
+    function log($message, $priority = null)
+    {
         /* If a priority hasn't been specified, use the default value. */
-        if($priority === null) {
+        if ($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if(!$this->_isMasked($priority)) {
+        if (!$this->_isMasked($priority)) {
             return false;
         }
 
         /* If the connection isn't open and can't be opened, return failure. */
-        if(!$this->_opened && !$this->open()) {
+        if (!$this->_opened && !$this->open()) {
             return false;
         }
 
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
-        if(!syslog($this->_toSyslog($priority), $message)) {
+
+        if (!syslog($this->_toSyslog($priority), $message)) {
             return false;
         }
+
         $this->_announce(array('priority' => $priority, 'message' => $message));
+
         return true;
     }
 
@@ -136,22 +148,25 @@ class Log_syslog extends Log {
      *
      * @access private
      */
-    function _toSyslog($priority) {
+    function _toSyslog($priority)
+    {
         static $priorities = array(
-            PEAR_LOG_EMERG => LOG_EMERG,
-            PEAR_LOG_ALERT => LOG_ALERT,
-            PEAR_LOG_CRIT => LOG_CRIT,
-            PEAR_LOG_ERR => LOG_ERR,
+            PEAR_LOG_EMERG   => LOG_EMERG,
+            PEAR_LOG_ALERT   => LOG_ALERT,
+            PEAR_LOG_CRIT    => LOG_CRIT,
+            PEAR_LOG_ERR     => LOG_ERR,
             PEAR_LOG_WARNING => LOG_WARNING,
-            PEAR_LOG_NOTICE => LOG_NOTICE,
-            PEAR_LOG_INFO => LOG_INFO,
-            PEAR_LOG_DEBUG => LOG_DEBUG,
+            PEAR_LOG_NOTICE  => LOG_NOTICE,
+            PEAR_LOG_INFO    => LOG_INFO,
+            PEAR_LOG_DEBUG   => LOG_DEBUG
         );
 
         /* If we're passed an unknown priority, default to LOG_INFO. */
-        if(!is_int($priority) || !in_array($priority, $priorities)) {
+        if (!is_int($priority) || !in_array($priority, $priorities)) {
             return LOG_INFO;
         }
+
         return $priorities[$priority];
     }
+
 }

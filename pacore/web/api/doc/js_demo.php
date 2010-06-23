@@ -11,31 +11,39 @@
 */
 ?>
 <?php
-require_once dirname(__FILE__).'/../../../config.inc';
+require_once dirname(__FILE__) . '/../../../config.inc';
 // global var $path_prefix has been removed - please, use PA::$path static variable
 require_once "web/includes/functions/functions.php";
 require_once "web/includes/uihelper.php";
+
 check_session(1);
+
 include_once "api/Theme/Template.php";
 require_once "api/Content/Content.php";
 require_once "web/includes/functions/html_generate.php";
-$parameter = js_includes("all").'
+
+$parameter = js_includes("all") . '
 <script src="peopleaggregator_api_desc.js" language="javascript" type="text/javascript"></script>
 <script src="pa_api.js" language="javascript" type="text/javascript"></script>';
 html_header("Javascript API access demo - PeopleAggregator", $parameter);
 default_exception();
-$page = &new Template(CURRENT_THEME_FSPATH."/homepage_pa.tpl");
+
+$page = & new Template(CURRENT_THEME_FSPATH."/homepage_pa.tpl");
+
 $page->set('current_theme_path', PA::$theme_path);
 $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
+
 // header
-$header = &new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('current_theme_path', PA::$theme_path);
 $header->set('error', $_GET['error']);
+
 // get user info and auth token for api
 $login_user = new User();
-$login_user->load((int) $_SESSION['user']['id']);
+$login_user->load((int)$_SESSION['user']['id']);
 $auth_token = $login_user->get_auth_token(3600*24);
+
 $array_middle_modules[] = <<<END
 
 <script language="javascript">
@@ -159,10 +167,13 @@ var demo = {
 <script language="javascript">
 demo.start();
 </script>
+
 END;
+
 // footer
-$footer = &new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_path);
+
 //page settings
 $page->set('header', $header);
 $page->set('array_left_modules', $array_left_modules);

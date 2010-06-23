@@ -28,7 +28,8 @@
  *
  * @example error_log.php   Using the error_log handler.
  */
-class Log_error_log extends Log {
+class Log_error_log extends Log
+{
     /**
      * The error_log() log type.
      * @var integer
@@ -60,15 +61,18 @@ class Log_error_log extends Log {
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_error_log($name, $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
+    function Log_error_log($name, $ident = '', $conf = array(),
+                           $level = PEAR_LOG_DEBUG)
+    {
         $this->_id = md5(microtime());
         $this->_type = $name;
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
-        if(!empty($conf['destination'])) {
+
+        if (!empty($conf['destination'])) {
             $this->_destination = $conf['destination'];
         }
-        if(!empty($conf['extra_headers'])) {
+        if (!empty($conf['extra_headers'])) {
             $this->_extra_headers = $conf['extra_headers'];
         }
     }
@@ -85,21 +89,27 @@ class Log_error_log extends Log {
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null) {
+    function log($message, $priority = null)
+    {
         /* If a priority hasn't been specified, use the default value. */
-        if($priority === null) {
+        if ($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if(!$this->_isMasked($priority)) {
+        if (!$this->_isMasked($priority)) {
             return false;
         }
 
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
-        $success = error_log($this->_ident.': '.$message, $this->_type, $this->_destination, $this->_extra_headers);
+
+        $success = error_log($this->_ident . ': ' . $message, $this->_type,
+                             $this->_destination, $this->_extra_headers);
+
         $this->_announce(array('priority' => $priority, 'message' => $message));
+
         return $success;
     }
+
 }

@@ -13,8 +13,10 @@
 <?php
 
 // Hacked version of SeleniumTestCase.php from PHPUnit.
+
 // Modified by Phil to let you change the browserUrl and restart
 // Selenium in the middle of a test.
+
 /**
  * PHPUnit
  *
@@ -59,9 +61,11 @@
  * @link       http://www.phpunit.de/
  * @since      File available since Release 3.0.0
  */
+
 require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/Util/Filter.php';
 @include_once 'Testing/Selenium.php';
+
 PHPUnit_Util_Filter::addFileToFilter(__FILE__, 'PHPUNIT');
 
 /**
@@ -77,7 +81,8 @@ PHPUnit_Util_Filter::addFileToFilter(__FILE__, 'PHPUNIT');
  * @link       http://www.phpunit.de/
  * @since      Class available since Release 3.0.0
  */
-abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_TestCase {
+abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_TestCase
+{
     /**
      * @var    Testing_Selenium
      * @access private
@@ -117,24 +122,33 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
     /**
      * @access protected
      */
-    protected function runTest() {
-        $this->setupSelenium();
+    protected function runTest()
+    {
+	$this->setupSelenium();
+
         $this->start();
+
         parent::runTest();
+
         try {
             $this->stop();
         }
-        catch(Selenium_Exception$e) {
+
+        catch (Selenium_Exception $e) {
         }
+
         $this->selenium = NULL;
     }
 
-    protected function tearDown() {
+    protected function tearDown()
+    {
         try {
             $this->stop();
         }
-        catch(Selenium_Exception$e) {
+
+        catch (Selenium_Exception $e) {
         }
+
         $this->selenium = NULL;
     }
 
@@ -143,10 +157,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @throws InvalidArgumentException
      * @access public
      */
-    public function setBrowser($browser) {
-        if(!is_string($browser)) {
+    public function setBrowser($browser)
+    {
+        if (!is_string($browser)) {
             throw new InvalidArgumentException;
         }
+
         $this->browser = $browser;
     }
 
@@ -155,10 +171,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @throws InvalidArgumentException
      * @access public
      */
-    public function setBrowserUrl($browserUrl) {
-        if(!is_string($browserUrl)) {
+    public function setBrowserUrl($browserUrl)
+    {
+        if (!is_string($browserUrl)) {
             throw new InvalidArgumentException;
         }
+
         $this->browserUrl = $browserUrl;
     }
 
@@ -167,10 +185,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @throws InvalidArgumentException
      * @access public
      */
-    public function setHost($host) {
-        if(!is_string($host)) {
+    public function setHost($host)
+    {
+        if (!is_string($host)) {
             throw new InvalidArgumentException;
         }
+
         $this->host = $host;
     }
 
@@ -179,10 +199,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @throws InvalidArgumentException
      * @access public
      */
-    public function setPort($port) {
-        if(!is_int($port)) {
+    public function setPort($port)
+    {
+        if (!is_int($port)) {
             throw new InvalidArgumentException;
         }
+
         $this->port = $port;
     }
 
@@ -191,10 +213,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @throws InvalidArgumentException
      * @access public
      */
-    public function setTimeout($timeout) {
-        if(!is_int($timeout)) {
+    public function setTimeout($timeout)
+    {
+        if (!is_int($timeout)) {
             throw new InvalidArgumentException;
         }
+
         $this->timeout = $timeout;
     }
 
@@ -203,8 +227,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertAlertPresent() {
-        $this->assertTrue($this->isAlertPresent(), 'No alert present.');
+    public function assertAlertPresent()
+    {
+        $this->assertTrue(
+          $this->isAlertPresent(),
+          'No alert present.'
+        );
     }
 
     /**
@@ -212,8 +240,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertNoAlertPresent() {
-        $this->assertFalse($this->isAlertPresent(), 'Alert present.');
+    public function assertNoAlertPresent()
+    {
+        $this->assertFalse(
+          $this->isAlertPresent(),
+          'Alert present.'
+        );
     }
 
     /**
@@ -222,8 +254,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertChecked($locator) {
-        $this->assertTrue($this->isChecked($locator), sprintf('"%s" not checked.', $locator));
+    public function assertChecked($locator)
+    {
+        $this->assertTrue(
+          $this->isChecked($locator),
+          sprintf(
+            '"%s" not checked.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -232,8 +271,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertNotChecked($locator) {
-        $this->assertFalse($this->isChecked($locator), sprintf('"%s" checked.', $locator));
+    public function assertNotChecked($locator)
+    {
+        $this->assertFalse(
+          $this->isChecked($locator),
+          sprintf(
+            '"%s" checked.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -241,8 +287,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertConfirmationPresent() {
-        $this->assertTrue($this->isConfirmationPresent(), 'No confirmation present.');
+    public function assertConfirmationPresent()
+    {
+        $this->assertTrue(
+          $this->isConfirmationPresent(),
+          'No confirmation present.'
+        );
     }
 
     /**
@@ -250,8 +300,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertNoConfirmationPresent() {
-        $this->assertFalse($this->isConfirmationPresent(), 'Confirmation present.');
+    public function assertNoConfirmationPresent()
+    {
+        $this->assertFalse(
+          $this->isConfirmationPresent(),
+          'Confirmation present.'
+        );
     }
 
     /**
@@ -260,8 +314,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertEditable($locator) {
-        $this->assertTrue($this->isEditable($locator), sprintf('"%s" not editable.', $locator));
+    public function assertEditable($locator)
+    {
+        $this->assertTrue(
+          $this->isEditable($locator),
+          sprintf(
+            '"%s" not editable.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -270,8 +331,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertNotEditable($locator) {
-        $this->assertFalse($this->isEditable($locator), sprintf('"%s" editable.', $locator));
+    public function assertNotEditable($locator)
+    {
+        $this->assertFalse(
+          $this->isEditable($locator),
+          sprintf(
+            '"%s" editable.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -281,7 +349,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $text
      * @access public
      */
-    public function assertElementValueEquals($locator, $text) {
+    public function assertElementValueEquals($locator, $text)
+    {
         $this->assertEquals($text, $this->getValue($locator));
     }
 
@@ -292,7 +361,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $text
      * @access public
      */
-    public function assertElementValueNotEquals($locator, $text) {
+    public function assertElementValueNotEquals($locator, $text)
+    {
         $this->assertNotEquals($text, $this->getValue($locator));
     }
 
@@ -303,7 +373,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $text
      * @access public
      */
-    public function assertElementContainsText($locator, $text) {
+    public function assertElementContainsText($locator, $text)
+    {
         $this->assertContains($text, $this->getText($locator));
     }
 
@@ -314,7 +385,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $text
      * @access public
      */
-    public function assertElementNotContainsText($locator, $text) {
+    public function assertElementNotContainsText($locator, $text)
+    {
         $this->assertNotContains($text, $this->getText($locator));
     }
 
@@ -324,8 +396,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertElementPresent($locator) {
-        $this->assertTrue($this->isElementPresent($locator), sprintf('Element "%s" not present.', $locator));
+    public function assertElementPresent($locator)
+    {
+        $this->assertTrue(
+          $this->isElementPresent($locator),
+          sprintf(
+            'Element "%s" not present.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -334,8 +413,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertElementNotPresent($locator) {
-        $this->assertFalse($this->isElementPresent($locator), sprintf('Element "%s" present.', $locator));
+    public function assertElementNotPresent($locator)
+    {
+        $this->assertFalse(
+          $this->isElementPresent($locator),
+          sprintf(
+            'Element "%s" present.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -344,7 +430,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $location
      * @access public
      */
-    public function assertLocationEquals($location) {
+    public function assertLocationEquals($location)
+    {
         $this->assertEquals($location, $this->getLocation());
     }
 
@@ -354,7 +441,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $location
      * @access public
      */
-    public function assertLocationNotEquals($location) {
+    public function assertLocationNotEquals($location)
+    {
         $this->assertNotEquals($location, $this->getLocation());
     }
 
@@ -363,8 +451,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertPromptPresent() {
-        $this->assertTrue($this->isPromptPresent(), 'No prompt present.');
+    public function assertPromptPresent()
+    {
+        $this->assertTrue(
+          $this->isPromptPresent(),
+          'No prompt present.'
+        );
     }
 
     /**
@@ -372,8 +464,12 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      *
      * @access public
      */
-    public function assertNoPromptPresent() {
-        $this->assertFalse($this->isPromptPresent(), 'Prompt present.');
+    public function assertNoPromptPresent()
+    {
+        $this->assertFalse(
+          $this->isPromptPresent(),
+          'Prompt present.'
+        );
     }
 
     /**
@@ -382,8 +478,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $selectLocator
      * @access public
      */
-    public function assertSomethingSelected($selectLocator) {
-        $this->assertTrue($this->isSomethingSelected($selectLocator), sprintf('Nothing selected from "%s".', $selectLocator));
+    public function assertSomethingSelected($selectLocator)
+    {
+        $this->assertTrue(
+          $this->isSomethingSelected($selectLocator),
+          sprintf(
+            'Nothing selected from "%s".',
+            $selectLocator
+          )
+        );
     }
 
     /**
@@ -392,8 +495,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $selectLocator
      * @access public
      */
-    public function assertNothingSelected($selectLocator) {
-        $this->assertFalse($this->isSomethingSelected($selectLocator), sprintf('Something selected from "%s".', $selectLocator));
+    public function assertNothingSelected($selectLocator)
+    {
+        $this->assertFalse(
+          $this->isSomethingSelected($selectLocator),
+          sprintf(
+            'Something selected from "%s".',
+            $selectLocator
+          )
+        );
     }
 
     /**
@@ -402,8 +512,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $pattern
      * @access public
      */
-    public function assertTextPresent($pattern) {
-        $this->assertTrue($this->isTextPresent($pattern), sprintf('"%s" not present.', $pattern));
+    public function assertTextPresent($pattern)
+    {
+        $this->assertTrue(
+          $this->isTextPresent($pattern),
+          sprintf(
+            '"%s" not present.',
+            $pattern
+          )
+        );
     }
 
     /**
@@ -412,8 +529,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $pattern
      * @access public
      */
-    public function assertTextNotPresent($pattern) {
-        $this->assertFalse($this->isTextPresent($pattern), sprintf('"%s" present.', $pattern));
+    public function assertTextNotPresent($pattern)
+    {
+        $this->assertFalse(
+          $this->isTextPresent($pattern),
+          sprintf(
+            '"%s" present.',
+            $pattern
+          )
+        );
     }
 
     /**
@@ -422,7 +546,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $title
      * @access public
      */
-    public function assertTitleEquals($title) {
+    public function assertTitleEquals($title)
+    {
         $this->assertEquals($title, $this->getTitle());
     }
 
@@ -432,7 +557,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $title
      * @access public
      */
-    public function assertTitleNotEquals($title) {
+    public function assertTitleNotEquals($title)
+    {
         $this->assertNotEquals($title, $this->getTitle());
     }
 
@@ -442,8 +568,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertVisible($locator) {
-        $this->assertTrue($this->isVisible($locator), sprintf('"%s" not visible.', $locator));
+    public function assertVisible($locator)
+    {
+        $this->assertTrue(
+          $this->isVisible($locator),
+          sprintf(
+            '"%s" not visible.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -452,8 +585,15 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @param  string  $locator
      * @access public
      */
-    public function assertNotVisible($locator) {
-        $this->assertFalse($this->isVisible($locator), sprintf('"%s" visible.', $locator));
+    public function assertNotVisible($locator)
+    {
+        $this->assertFalse(
+          $this->isVisible($locator),
+          sprintf(
+            '"%s" visible.',
+            $locator
+          )
+        );
     }
 
     /**
@@ -463,7 +603,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getAlert() {
+    public function getAlert()
+    {
         return $this->selenium->getAlert();
     }
 
@@ -473,7 +614,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getAllButtons() {
+    public function getAllButtons()
+    {
         return $this->selenium->getAllButtons();
     }
 
@@ -483,7 +625,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getAllFields() {
+    public function getAllFields()
+    {
         return $this->selenium->getAllFields();
     }
 
@@ -493,7 +636,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getAllLinks() {
+    public function getAllLinks()
+    {
         return $this->selenium->getAllLinks();
     }
 
@@ -503,7 +647,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getBodyText() {
+    public function getBodyText()
+    {
         return $this->selenium->getBodyText();
     }
 
@@ -514,7 +659,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getConfirmation() {
+    public function getConfirmation()
+    {
         return $this->selenium->getConfirmation();
     }
 
@@ -526,7 +672,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return integer
      * @access public
      */
-    public function getCursorPosition($locator) {
+    public function getCursorPosition($locator)
+    {
         return $this->selenium->getCursorPosition($locator);
     }
 
@@ -539,7 +686,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function setCursorPosition($locator, $position) {
+    public function setCursorPosition($locator, $position)
+    {
         return $this->selenium->setCursorPosition($locator, $position);
     }
 
@@ -553,7 +701,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getElementAttribute($attributeLocator) {
+    public function getElementAttribute($attributeLocator)
+    {
         return $this->selenium->getAttribute($attributeLocator);
     }
 
@@ -564,7 +713,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getEval($script) {
+    public function getEval($script)
+    {
         return $this->selenium->getEval($script);
     }
 
@@ -575,7 +725,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getExpression($expression) {
+    public function getExpression($expression)
+    {
         return $this->selenium->getExpression($expression);
     }
 
@@ -586,7 +737,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getHtmlSource() {
+    public function getHtmlSource()
+    {
         return $this->selenium->getHtmlSource();
     }
 
@@ -596,7 +748,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getLocation() {
+    public function getLocation()
+    {
         return $this->selenium->getLocation();
     }
 
@@ -607,7 +760,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getPrompt() {
+    public function getPrompt()
+    {
         return $this->selenium->getPrompt();
     }
 
@@ -619,7 +773,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getSelectedId($selectLocator) {
+    public function getSelectedId($selectLocator)
+    {
         return $this->selenium->getSelectedId($selectLocator);
     }
 
@@ -631,7 +786,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getSelectedIds($selectLocator) {
+    public function getSelectedIds($selectLocator)
+    {
         return $this->selenium->getSelectedIds($selectLocator);
     }
 
@@ -643,7 +799,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getSelectedIndex($selectLocator) {
+    public function getSelectedIndex($selectLocator)
+    {
         return $this->selenium->getSelectedIndex($selectLocator);
     }
 
@@ -655,7 +812,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getSelectedIndexes($selectLocator) {
+    public function getSelectedIndexes($selectLocator)
+    {
         return $this->selenium->getSelectedIndexes($selectLocator);
     }
 
@@ -667,7 +825,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getSelectedLabel($selectLocator) {
+    public function getSelectedLabel($selectLocator)
+    {
         return $this->selenium->getSelectedLabel($selectLocator);
     }
 
@@ -679,7 +838,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getSelectedLabels($selectLocator) {
+    public function getSelectedLabels($selectLocator)
+    {
         return $this->selenium->getSelectedLabels($selectLocator);
     }
 
@@ -691,7 +851,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getSelectedValue($selectLocator) {
+    public function getSelectedValue($selectLocator)
+    {
         return $this->selenium->getSelectedValue($selectLocator);
     }
 
@@ -703,7 +864,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getSelectedValues($selectLocator) {
+    public function getSelectedValues($selectLocator)
+    {
         return $this->selenium->getSelectedValues($selectLocator);
     }
 
@@ -714,7 +876,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return array
      * @access public
      */
-    public function getSelectOptions($selectLocator) {
+    public function getSelectOptions($selectLocator)
+    {
         return $this->selenium->getSelectOptions($selectLocator);
     }
 
@@ -725,7 +888,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getTable($tableCellAddress) {
+    public function getTable($tableCellAddress)
+    {
         return $this->selenium->getTable($tableCellAddress);
     }
 
@@ -736,7 +900,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getText($locator) {
+    public function getText($locator)
+    {
         return $this->selenium->getText($locator);
     }
 
@@ -746,7 +911,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->selenium->getTitle();
     }
 
@@ -758,7 +924,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function getValue($locator) {
+    public function getValue($locator)
+    {
         return $this->selenium->getValue($locator);
     }
 
@@ -768,7 +935,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isAlertPresent() {
+    public function isAlertPresent()
+    {
         return $this->selenium->isAlertPresent();
     }
 
@@ -779,7 +947,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isChecked($locator) {
+    public function isChecked($locator)
+    {
         return $this->selenium->isChecked($locator);
     }
 
@@ -789,7 +958,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isConfirmationPresent() {
+    public function isConfirmationPresent()
+    {
         return $this->selenium->isConfirmationPresent();
     }
 
@@ -800,7 +970,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isEditable($locator) {
+    public function isEditable($locator)
+    {
         return $this->selenium->isEditable($locator);
     }
 
@@ -811,7 +982,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isElementPresent($locator) {
+    public function isElementPresent($locator)
+    {
         return $this->selenium->isElementPresent($locator);
     }
 
@@ -821,7 +993,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isPromptPresent() {
+    public function isPromptPresent()
+    {
         return $this->selenium->isPromptPresent();
     }
 
@@ -832,7 +1005,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isSomethingSelected($selectLocator) {
+    public function isSomethingSelected($selectLocator)
+    {
         return $this->selenium->isSomethingSelected($selectLocator);
     }
 
@@ -844,7 +1018,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return boolean
      * @access public
      */
-    public function isTextPresent($pattern) {
+    public function isTextPresent($pattern)
+    {
         return $this->selenium->isTextPresent($pattern);
     }
 
@@ -855,22 +1030,32 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function isVisible($locator) {
+    public function isVisible($locator)
+    {
         return $this->selenium->isVisible($locator);
     }
 
     /** Instantiate Testing_Selenium object */
-    public function setupSelenium() {
-        if(extension_loaded('curl')) {
+    public function setupSelenium()
+    {
+        if (extension_loaded('curl')) {
             $driver = 'curl';
-        }
-        else {
+        } else {
             $driver = 'native';
         }
-        if(!class_exists('Testing_Selenium', FALSE)) {
+	
+        if (!class_exists('Testing_Selenium', FALSE)) {
             throw new RuntimeException('The Testing_Selenium package is not installed.');
         }
-        $this->selenium = new Testing_Selenium($this->browser, $this->browserUrl, $this->host, $this->port, $this->timeout, $driver);
+	
+	$this->selenium = new Testing_Selenium(
+	    $this->browser,
+	    $this->browserUrl,
+	    $this->host,
+	    $this->port,
+	    $this->timeout,
+	    $driver
+	    );
     }
 
     /**
@@ -879,7 +1064,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function start() {
+    public function start()
+    {
         return $this->selenium->start();
     }
 
@@ -889,8 +1075,9 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function stop() {
-        if($this->selenium !== NULL) {
+    public function stop()
+    {
+        if ($this->selenium !== NULL) {
             return $this->selenium->stop();
         }
     }
@@ -902,7 +1089,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function open($url) {
+    public function open($url)
+    {
         return $this->selenium->open($url);
     }
 
@@ -913,7 +1101,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function close() {
+    public function close()
+    {
         return $this->selenium->close();
     }
 
@@ -923,7 +1112,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function goBack() {
+    public function goBack()
+    {
         return $this->selenium->goBack();
     }
 
@@ -933,7 +1123,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function refresh() {
+    public function refresh()
+    {
         return $this->selenium->refresh();
     }
 
@@ -946,7 +1137,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function click($locator) {
+    public function click($locator)
+    {
         return $this->selenium->click($locator);
     }
 
@@ -958,7 +1150,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function clickAndWait($locator) {
+    public function clickAndWait($locator)
+    {
         $click = $this->selenium->click($locator);
         $this->waitForPageToLoad();
         return $click;
@@ -972,7 +1165,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function fireEvent($locator, $eventName) {
+    public function fireEvent($locator, $eventName)
+    {
         return $this->selenium->fireEvent($locator, $eventName);
     }
 
@@ -984,7 +1178,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function keyDown($locator, $keycode) {
+    public function keyDown($locator, $keycode)
+    {
         return $this->selenium->keyDown($locator, $keycode);
     }
 
@@ -996,7 +1191,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function keyPress($locator, $keycode) {
+    public function keyPress($locator, $keycode)
+    {
         return $this->selenium->keyPress($locator, $keycode);
     }
 
@@ -1008,7 +1204,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function keyUp($locator, $keycode) {
+    public function keyUp($locator, $keycode)
+    {
         return $this->selenium->keyUp($locator, $keycode);
     }
 
@@ -1020,7 +1217,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function mouseDown($locator) {
+    public function mouseDown($locator)
+    {
         return $this->selenium->mouseDown($locator);
     }
 
@@ -1031,7 +1229,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function mouseOver($locator) {
+    public function mouseOver($locator)
+    {
         return $this->selenium->mouseOver($locator);
     }
 
@@ -1042,7 +1241,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function check($locator) {
+    public function check($locator)
+    {
         return $this->selenium->check($locator);
     }
 
@@ -1053,7 +1253,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function uncheck($locator) {
+    public function uncheck($locator)
+    {
         return $this->selenium->uncheck($locator);
     }
 
@@ -1065,7 +1266,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function addSelection($locator, $optionLocator) {
+    public function addSelection($locator, $optionLocator)
+    {
         return $this->selenium->addSelection($locator, $optionLocator);
     }
 
@@ -1077,7 +1279,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function removeSelection($locator, $optionLocator) {
+    public function removeSelection($locator, $optionLocator)
+    {
         return $this->selenium->removeSelection($locator, $optionLocator);
     }
 
@@ -1088,7 +1291,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function select($selectLocator, $optionLocator) {
+    public function select($selectLocator, $optionLocator)
+    {
         return $this->selenium->select($selectLocator, $optionLocator);
     }
 
@@ -1099,7 +1303,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function submit($locator) {
+    public function submit($locator)
+    {
         return $this->selenium->submit($locator);
     }
 
@@ -1111,7 +1316,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function type($locator, $value) {
+    public function type($locator, $value)
+    {
         return $this->selenium->type($locator, $value);
     }
 
@@ -1124,7 +1330,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function selectWindow($windowId) {
+    public function selectWindow($windowId)
+    {
         return $this->selenium->selectWindow($windowId);
     }
 
@@ -1137,7 +1344,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function setContext($context, $logLevelThreshold) {
+    public function setContext($context, $logLevelThreshold)
+    {
         return $this->selenium->setContext($context, $logLevelThreshold);
     }
 
@@ -1149,7 +1357,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function answerOnNextPrompt($answer) {
+    public function answerOnNextPrompt($answer)
+    {
         return $this->selenium->answerOnNextPrompt($answer);
     }
 
@@ -1162,7 +1371,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function chooseCancelOnNextConfirmation() {
+    public function chooseCancelOnNextConfirmation()
+    {
         return $this->selenium->chooseCancelOnNextConfirmation();
     }
 
@@ -1175,7 +1385,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function waitForCondition($script, $timeout = NULL) {
+    public function waitForCondition($script, $timeout = NULL)
+    {
         return $this->selenium->waitForCondition($script, $timeout);
     }
 
@@ -1186,7 +1397,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return string
      * @access public
      */
-    public function waitForPageToLoad($timeout = NULL) {
+    public function waitForPageToLoad($timeout = NULL)
+    {
         return $this->selenium->waitForPageToLoad($timeout);
     }
 
@@ -1198,7 +1410,8 @@ abstract class PHPUnit_Extensions_SeleniumTestCase extends PHPUnit_Framework_Tes
      * @return 
      * @access public
      */
-    public function waitForPopUp($windowId, $timeout = NULL) {
+    public function waitForPopUp($windowId, $timeout = NULL)
+    {
         return $this->selenium->waitForPopUp($windowId, $timeout);
     }
 }

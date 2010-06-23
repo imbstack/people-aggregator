@@ -13,10 +13,12 @@
 <?php
 
 // Template engine for PeopleAggregator.
+
 // Derived from code in the public domain: http://www.massassi.com/php/articles/template_engines/
+
 class Template {
-    var $vars;
-    /// Holds all the template variables
+    var $vars; /// Holds all the template variables
+
     /**
      * Constructor
      *
@@ -41,31 +43,26 @@ class Template {
         $this->vars[$name] = $value;
     }
 
+
     /**
      * Open, parse, and return the template file.
      *
      * @param $file string the template file name
      */
     function fetch($file = null) {
-        if(!$file) {
-            $file = $this->file;
-        }
-        @extract($this->vars);
-        // Extract the vars to local namespace
-        ob_start();
-        // Start output buffering
-        include($file);
-        // Include the file
-        $contents = ob_get_contents();
-        // Get the contents of the buffer
-        ob_end_clean();
-        // End buffering and discard
+        if(!$file) $file = $this->file;
+        @extract($this->vars);          // Extract the vars to local namespace
+        ob_start();                    // Start output buffering
+        include($file);                // Include the file
+        $contents = ob_get_contents(); // Get the contents of the buffer
+        ob_end_clean();                // End buffering and discard
+        
         global $debug_annotate_templates;
-        if($debug_annotate_templates && isset($_GET['debug'])) {
+        if ($debug_annotate_templates && isset($_GET['debug'])) {
             $contents .= '&larr; tpl=<abbr title="'.$file.'">'.basename($file).'</abbr>';
         }
-        return $contents;
-        // Return the contents
+
+        return $contents;              // Return the contents
     }
 }
 
@@ -85,10 +82,10 @@ class CachedTemplate extends Template {
      * @param $expire int number of seconds the cache will live
      */
     function CachedTemplate($cache_id = null, $expire = 60) {
-        // reduced default expires time frim 900 to 60
+    	// reduced default expires time frim 900 to 60
         $this->Template();
-        $this->cache_id = $cache_id ? (PA::$project_dir."/web/cache/".md5($cache_id)) : $cache_id;
-        $this->expire = $expire;
+        $this->cache_id = $cache_id ? (PA::$project_dir."/web/cache/" . md5($cache_id)) : $cache_id;
+        $this->expire   = $expire;
     }
 
     /**
@@ -97,31 +94,25 @@ class CachedTemplate extends Template {
      */
     function is_cached() {
         global $debug_disable_template_caching;
-        if($debug_disable_template_caching) {
-            return false;
-        }
-        if($this->cached) {
-            return true;
-        }
+        if ($debug_disable_template_caching) return false;
+
+        if($this->cached) return true;
+
         // Passed a cache_id?
-        if(!$this->cache_id) {
-            return false;
-        }
+        if(!$this->cache_id) return false;
+
         // Cache file exists?
-        if(!file_exists($this->cache_id)) {
-            return false;
-        }
+        if(!file_exists($this->cache_id)) return false;
+
         // Can get the time of the file?
-        if(!($mtime = filemtime($this->cache_id))) {
-            return false;
-        }
+        if(!($mtime = filemtime($this->cache_id))) return false;
+
         // Cache expired?
-        if(($mtime+$this->expire) < time()) {
+        if(($mtime + $this->expire) < time()) {
             @unlink($this->cache_id);
             return false;
         }
         else {
-
             /**
              * Cache the results of this is_cached() call.  Why?  So
              * we don't have to double the overhead for each template.
@@ -139,21 +130,23 @@ class CachedTemplate extends Template {
      *
      * @param $file string the template file
      */
-    function fetch_cache($file = NULL) {
+    function fetch_cache($file=NULL) {
+
         if($this->is_cached()) {
             $fp = @fopen($this->cache_id, 'r');
             $contents = fread($fp, filesize($this->cache_id));
             fclose($fp);
             global $debug_annotate_templates;
-            if($debug_annotate_templates && isset($_GET['debug'])) {
-                $contents .= "<br/>loaded from cache: ".$this->cache_id;
+            if ($debug_annotate_templates && isset($_GET['debug'])) {
+            	$contents .= "<br/>loaded from cache: ".$this->cache_id;
             }
             return $contents;
         }
         else {
             $contents = $this->fetch($file);
+
             global $debug_disable_template_caching;
-            if(!$debug_disable_template_caching) {
+            if (!$debug_disable_template_caching) {
                 // Write the cache
                 if($fp = fopen($this->cache_id, 'w')) {
                     fwrite($fp, $contents);
@@ -163,15 +156,18 @@ class CachedTemplate extends Template {
                     die('Unable to write cache '.$this->cache_id);
                 }
             }
+
             return $contents;
         }
     }
 
     public static function invalidate_cache($file) {
-        $file_path = PA::$project_dir."/web/cache/".md5($file);
-        if(file_exists($file_path)) {
-            unlink($file_path);
-        }
+      $file_path = PA::$project_dir . "/web/cache/" . md5($file);
+      if (file_exists($file_path)) {
+        unlink($file_path);
+      }
+      
     }
 }
+
 ?>

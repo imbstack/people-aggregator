@@ -13,6 +13,7 @@
 <?php
 
 header("Content-Type: text/html; charset=UTF-8");
+
 ?><h1>PA API - character encoding considerations</h1>
 
 <h2>Input</h2>

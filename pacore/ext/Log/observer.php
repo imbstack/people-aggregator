@@ -30,7 +30,8 @@
  *
  * @example observer_mail.php   An example Log_observer implementation.
  */
-class Log_observer {
+class Log_observer
+{
     /**
      * Instance-specific unique identification number.
      *
@@ -58,7 +59,8 @@ class Log_observer {
      *
      * @access public
      */
-    function Log_observer($priority = PEAR_LOG_INFO) {
+    function Log_observer($priority = PEAR_LOG_INFO)
+    {
         $this->_id = md5(microtime());
         $this->_priority = $priority;
     }
@@ -77,23 +79,25 @@ class Log_observer {
      * @return object               The newly created concrete Log_observer
      *                              instance, or null on an error.
      */
-    function &factory($type, $priority = PEAR_LOG_INFO, $conf = array()) {
+    function &factory($type, $priority = PEAR_LOG_INFO, $conf = array())
+    {
         $type = strtolower($type);
-        $class = 'Log_observer_'.$type;
+        $class = 'Log_observer_' . $type;
 
         /* Support both the new-style and old-style file naming conventions. */
-        if(file_exists(dirname(__FILE__).'/observer_'.$type.'.php')) {
-            $classfile = 'Log/observer_'.$type.'.php';
+        if (file_exists(dirname(__FILE__) . '/observer_' . $type . '.php')) {
+            $classfile = 'Log/observer_' . $type . '.php';
             $newstyle = true;
-        }
-        else {
-            $classfile = 'Log/'.$type.'.php';
+        } else {
+            $classfile = 'Log/' . $type . '.php';
             $newstyle = false;
         }
 
         /* Issue a warning if the old-style conventions are being used. */
-        if(!$newstyle) {
-            trigger_error('Using old-style Log_observer conventions', E_USER_WARNING);
+        if (!$newstyle)
+        {
+            trigger_error('Using old-style Log_observer conventions',
+                          E_USER_WARNING);
         }
 
         /*
@@ -104,17 +108,16 @@ class Log_observer {
         @include_once $classfile;
 
         /* If the class exists, return a new instance of it. */
-        if(class_exists($class)) {
-
+        if (class_exists($class)) {
             /* Support both new-style and old-style construction. */
-            if($newstyle) {
-                $object = &new $class($priority, $conf);
-            }
-            else {
-                $object = &new $class($priority);
+            if ($newstyle) {
+                $object =& new $class($priority, $conf);
+            } else {
+                $object =& new $class($priority);
             }
             return $object;
         }
+
         return null;
     }
 
@@ -127,7 +130,8 @@ class Log_observer {
      *
      * @param array     $event      A hash describing the log event.
      */
-    function notify($event) {
+    function notify($event)
+    {
         print_r($event);
     }
 }

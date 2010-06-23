@@ -25,33 +25,34 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
+ 
+
 class AddUserComment extends Module {
+  
+  public $module_type = 'user';
+  public $module_placement = 'middle';
+  public $outer_template = 'outer_public_center_module.tpl';
+  
+  function __construct() {
+    parent::__construct();
+    $this->title = __("Write Comment for ");
+    $this->html_block_id = 'AddUserComment';
+  }
 
-    public $module_type = 'user';
+   function render() { 
+    $r = get_page_user();
+    $this->title .= ucfirst($r->login_name);
+    $this->inner_HTML = $this->generate_inner_html ();
+    $content = parent::render();
+    return $content;
+  }
 
-    public $module_placement = 'middle';
-
-    public $outer_template = 'outer_public_center_module.tpl';
-
-    function __construct() {
-        parent::__construct();
-        $this->title = __("Write Comment for ");
-        $this->html_block_id = 'AddUserComment';
-    }
-
-    function render() {
-        $r                = get_page_user();
-        $this->title     .= ucfirst($r->login_name);
-        $this->inner_HTML = $this->generate_inner_html();
-        $content          = parent::render();
-        return $content;
-    }
-
-    function generate_inner_html() {
-        $tmp_file          = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
-        $user_comment_form = &new Template($tmp_file);
-        $inner_html        = $user_comment_form->fetch();
-        return $inner_html;
-    }
+  function generate_inner_html () {
+    
+    $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
+    $user_comment_form = & new Template($tmp_file);
+    $inner_html = $user_comment_form->fetch();
+    return $inner_html;
+  }
 }
 ?>

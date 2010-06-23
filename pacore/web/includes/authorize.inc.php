@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /*
    this script used by:
      /opt/lampp/htdocs/pa/pacore/web/assign_tasks.php
@@ -41,6 +42,7 @@
      /opt/lampp/htdocs/pa/pacore/web/post_content.php
      /opt/lampp/htdocs/pa/pacore/web/roles.php
 */
+
 /*
 
     function current_user_can() used by:
@@ -81,12 +83,15 @@
       /opt/lampp/htdocs/pa/pacore/web/ranking.php                 ** obsolete page??
       /opt/lampp/htdocs/pa/pacore/web/roles.php                   ** not used - obsolete!  
 */
+
+
+
 /*
 //$authorization_required variable should be set to TRUE or FALSE before
 //including this file
 //this file is used to check the roles - tasks permissions 
 if (!isset($authorization_required)) {
-    throw new PAException("", "The $authorization_required variable must be set before include()ing page.php!");
+    throw new PAException("", "The \$authorization_required variable must be set before include()ing page.php!");
 }
 require_once "api/Roles/Roles.php";
 require_once "api/Tasks/Tasks.php";

@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  * This module contains the XRDS parsing code.
  *
@@ -40,23 +41,26 @@ define('SERVICES_YADIS_MATCH_ALL', 101);
  * least one) passed to the Services_Yadis_XRDS::services() call.
  */
 define('SERVICES_YADIS_MATCH_ANY', 102);
+
 global $_Services_Yadis_ns_map;
-$_Services_Yadis_ns_map = array(
-    'xrds' => 'xri://$xrds',
-    'xrd' => 'xri://$xrd*($v*2.0)',
-);
+$_Services_Yadis_ns_map = array('xrds' => 'xri://$xrds',
+                                'xrd' => 'xri://$xrd*($v*2.0)');
+
 define('SERVICES_YADIS_MAX_PRIORITY', pow(2, 30));
 
 /**
  * @access private
  */
-function Services_Yadis_array_scramble($arr) {
+function Services_Yadis_array_scramble($arr)
+{
     $result = array();
-    while(count($arr)) {
+
+    while (count($arr)) {
         $index = array_rand($arr, 1);
         $result[] = $arr[$index];
         unset($arr[$index]);
     }
+
     return $result;
 }
 
@@ -77,7 +81,8 @@ class Services_Yadis_Service {
     /**
      * Creates an empty service object.
      */
-    function Services_Yadis_Service() {
+    function Services_Yadis_Service()
+    {
         $this->element = null;
         $this->parser = null;
     }
@@ -88,11 +93,12 @@ class Services_Yadis_Service {
      *
      * @return array $type_uris An array of Type URI strings.
      */
-    function getTypes() {
+    function getTypes()
+    {
         $t = array();
-        foreach($this->getElements('xrd:Type') as $elem) {
+        foreach ($this->getElements('xrd:Type') as $elem) {
             $c = $this->parser->content($elem);
-            if($c) {
+            if ($c) {
                 $t[] = $c;
             }
         }
@@ -105,32 +111,40 @@ class Services_Yadis_Service {
      *
      * @return array $uris An array of URI strings.
      */
-    function getURIs() {
+    function getURIs()
+    {
         $uris = array();
         $last = array();
-        foreach($this->getElements('xrd:URI') as $elem) {
+
+        foreach ($this->getElements('xrd:URI') as $elem) {
             $uri_string = $this->parser->content($elem);
             $attrs = $this->parser->attributes($elem);
-            if($attrs && array_key_exists('priority', $attrs)) {
+            if ($attrs &&
+                array_key_exists('priority', $attrs)) {
                 $priority = intval($attrs['priority']);
-                if(!array_key_exists($priority, $uris)) {
+                if (!array_key_exists($priority, $uris)) {
                     $uris[$priority] = array();
                 }
+
                 $uris[$priority][] = $uri_string;
-            }
-            else {
+            } else {
                 $last[] = $uri_string;
             }
         }
+
         $keys = array_keys($uris);
         sort($keys);
+
         // Rebuild array of URIs.
         $result = array();
-        foreach($keys as $k) {
+        foreach ($keys as $k) {
             $new_uris = Services_Yadis_array_scramble($uris[$k]);
             $result = array_merge($result, $new_uris);
         }
-        $result = array_merge($result, Services_Yadis_array_scramble($last));
+
+        $result = array_merge($result,
+                              Services_Yadis_array_scramble($last));
+
         return $result;
     }
 
@@ -141,11 +155,14 @@ class Services_Yadis_Service {
      * @return mixed $result Null or integer, depending on whether
      * this Service element has a 'priority' attribute.
      */
-    function getPriority() {
+    function getPriority()
+    {
         $attributes = $this->parser->attributes($this->element);
-        if(array_key_exists('priority', $attributes)) {
+
+        if (array_key_exists('priority', $attributes)) {
             return intval($attributes['priority']);
         }
+
         return null;
     }
 
@@ -164,7 +181,8 @@ class Services_Yadis_Service {
      * nodes returned by this function can be passed to $this->parser
      * methods (see {@link Services_Yadis_XMLParser}).
      */
-    function getElements($name) {
+    function getElements($name)
+    {
         return $this->parser->evalXPath($name, $this->element);
     }
 }
@@ -190,10 +208,11 @@ class Services_Yadis_XRDS {
      * Instantiate a Services_Yadis_XRDS object.  Requires an XPath
      * instance which has been used to parse a valid XRDS document.
      */
-    function Services_Yadis_XRDS(&$xmlParser, &$xrdNodes) {
-        $this->parser      = &$xmlParser;
-        $this->xrdNode     = $xrdNodes[count($xrdNodes)-1];
-        $this->allXrdNodes = &$xrdNodes;
+    function Services_Yadis_XRDS(&$xmlParser, &$xrdNodes)
+    {
+        $this->parser =& $xmlParser;
+        $this->xrdNode = $xrdNodes[count($xrdNodes) - 1];
+        $this->allXrdNodes =& $xrdNodes;
         $this->serviceList = array();
         $this->_parse();
     }
@@ -207,39 +226,54 @@ class Services_Yadis_XRDS {
      * @return mixed $xrds An instance of Services_Yadis_XRDS or null,
      * depending on the validity of $xml_string
      */
-    function parseXRDS($xml_string, $extra_ns_map = null) {
+    function parseXRDS($xml_string, $extra_ns_map = null)
+    {
         global $_Services_Yadis_ns_map;
-        if(!$xml_string) {
+
+        if (!$xml_string) {
             return null;
         }
+
         $parser = Services_Yadis_getXMLParser();
+
         $ns_map = $_Services_Yadis_ns_map;
-        if($extra_ns_map && is_array($extra_ns_map)) {
+
+        if ($extra_ns_map && is_array($extra_ns_map)) {
             $ns_map = array_merge($ns_map, $extra_ns_map);
         }
-        if(!($parser && $parser->init($xml_string, $ns_map))) {
+
+        if (!($parser && $parser->init($xml_string, $ns_map))) {
             return null;
         }
+
         // Try to get root element.
         $root = $parser->evalXPath('/xrds:XRDS[1]');
-        if(!$root) {
+        if (!$root) {
             return null;
         }
-        if(is_array($root)) {
+
+        if (is_array($root)) {
             $root = $root[0];
         }
+
         $attrs = $parser->attributes($root);
-        if(array_key_exists('xmlns:xrd', $attrs) && $attrs['xmlns:xrd'] != 'xri://$xrd*($v*2.0)') {
+
+        if (array_key_exists('xmlns:xrd', $attrs) &&
+            $attrs['xmlns:xrd'] != 'xri://$xrd*($v*2.0)') {
+            return null;
+        } else if (array_key_exists('xmlns', $attrs) &&
+                   preg_match('/xri/', $attrs['xmlns']) &&
+                   $attrs['xmlns'] != 'xri://$xrd*($v*2.0)') {
             return null;
         }
-        elseif(array_key_exists('xmlns', $attrs) && preg_match('/xri/', $attrs['xmlns']) && $attrs['xmlns'] != 'xri://$xrd*($v*2.0)') {
-            return null;
-        }
+
         // Get the last XRD node.
         $xrd_nodes = $parser->evalXPath('/xrds:XRDS[1]/xrd:XRD');
-        if(!$xrd_nodes) {
+
+        if (!$xrd_nodes) {
             return null;
         }
+
         $xrds = new Services_Yadis_XRDS($parser, $xrd_nodes);
         return $xrds;
     }
@@ -247,11 +281,14 @@ class Services_Yadis_XRDS {
     /**
      * @access private
      */
-    function _addService($priority, $service) {
+    function _addService($priority, $service)
+    {
         $priority = intval($priority);
-        if(!array_key_exists($priority, $this->serviceList)) {
+
+        if (!array_key_exists($priority, $this->serviceList)) {
             $this->serviceList[$priority] = array();
         }
+
         $this->serviceList[$priority][] = $service;
     }
 
@@ -261,17 +298,23 @@ class Services_Yadis_XRDS {
      *
      * @access private
      */
-    function _parse() {
+    function _parse()
+    {
         $this->serviceList = array();
+
         $services = $this->parser->evalXPath('xrd:Service', $this->xrdNode);
-        foreach($services as $node) {
-            $s          = &new Services_Yadis_Service();
+
+        foreach ($services as $node) {
+            $s =& new Services_Yadis_Service();
             $s->element = $node;
-            $s->parser  = &$this->parser;
-            $priority   = $s->getPriority();
-            if($priority === null) {
+            $s->parser =& $this->parser;
+
+            $priority = $s->getPriority();
+
+            if ($priority === null) {
                 $priority = SERVICES_YADIS_MAX_PRIORITY;
             }
+
             $this->_addService($priority, $s);
         }
     }
@@ -300,64 +343,89 @@ class Services_Yadis_XRDS {
      * mode; null if $filter_mode is an invalid mode (i.e., not
      * SERVICES_YADIS_MATCH_ANY or SERVICES_YADIS_MATCH_ALL).
      */
-    function services($filters = null, $filter_mode = SERVICES_YADIS_MATCH_ANY) {
+    function services($filters = null,
+                      $filter_mode = SERVICES_YADIS_MATCH_ANY)
+    {
+
         $pri_keys = array_keys($this->serviceList);
         sort($pri_keys, SORT_NUMERIC);
+
         // If no filters are specified, return the entire service
         // list, ordered by priority.
-        if(!$filters || (!is_array($filters))) {
+        if (!$filters ||
+            (!is_array($filters))) {
+
             $result = array();
-            foreach($pri_keys as $pri) {
+            foreach ($pri_keys as $pri) {
                 $result = array_merge($result, $this->serviceList[$pri]);
             }
+
             return $result;
         }
+
         // If a bad filter mode is specified, return null.
-        if(!in_array($filter_mode, array(SERVICES_YADIS_MATCH_ANY, SERVICES_YADIS_MATCH_ALL))) {
+        if (!in_array($filter_mode, array(SERVICES_YADIS_MATCH_ANY,
+                                          SERVICES_YADIS_MATCH_ALL))) {
             return null;
         }
+
         // Otherwise, use the callbacks in the filter list to
         // determine which services are returned.
         $filtered = array();
-        foreach($pri_keys as $priority_value) {
+
+        foreach ($pri_keys as $priority_value) {
             $service_obj_list = $this->serviceList[$priority_value];
-            foreach($service_obj_list as $service) {
+
+            foreach ($service_obj_list as $service) {
+
                 $matches = 0;
-                foreach($filters as $filter) {
-                    if(call_user_func_array($filter, array($service))) {
+
+                foreach ($filters as $filter) {
+                    if (call_user_func_array($filter, array($service))) {
                         $matches++;
-                        if($filter_mode == SERVICES_YADIS_MATCH_ANY) {
+
+                        if ($filter_mode == SERVICES_YADIS_MATCH_ANY) {
                             $pri = $service->getPriority();
-                            if($pri === null) {
+                            if ($pri === null) {
                                 $pri = SERVICES_YADIS_MAX_PRIORITY;
                             }
-                            if(!array_key_exists($pri, $filtered)) {
+
+                            if (!array_key_exists($pri, $filtered)) {
                                 $filtered[$pri] = array();
                             }
+
                             $filtered[$pri][] = $service;
                             break;
                         }
                     }
                 }
-                if(($filter_mode == SERVICES_YADIS_MATCH_ALL) && ($matches == count($filters))) {
+
+                if (($filter_mode == SERVICES_YADIS_MATCH_ALL) &&
+                    ($matches == count($filters))) {
+
                     $pri = $service->getPriority();
-                    if($pri === null) {
+                    if ($pri === null) {
                         $pri = SERVICES_YADIS_MAX_PRIORITY;
                     }
-                    if(!array_key_exists($pri, $filtered)) {
+
+                    if (!array_key_exists($pri, $filtered)) {
                         $filtered[$pri] = array();
                     }
                     $filtered[$pri][] = $service;
                 }
             }
         }
+
         $pri_keys = array_keys($filtered);
         sort($pri_keys, SORT_NUMERIC);
+
         $result = array();
-        foreach($pri_keys as $pri) {
+        foreach ($pri_keys as $pri) {
             $result = array_merge($result, $filtered[$pri]);
         }
+
         return $result;
     }
 }
+
 ?>

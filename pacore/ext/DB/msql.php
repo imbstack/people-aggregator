@@ -11,7 +11,9 @@
 */
 ?>
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
 /**
  * The PEAR DB driver for PHP's msql extension
  * for interacting with Mini SQL databases
@@ -61,8 +63,10 @@ require_once 'DB/common.php';
  * @link       http://pear.php.net/package/DB
  * @since      Class not functional until Release 1.7.0
  */
-class DB_msql extends DB_common {
+class DB_msql extends DB_common
+{
     // {{{ properties
+
     /**
      * The DB driver type (mysql, oci8, odbc, etc.)
      * @var string
@@ -89,20 +93,21 @@ class DB_msql extends DB_common {
      * @var array
      */
     var $features = array(
-        'limit'        => 'emulate',
-        'new_link'     => false,
-        'numrows'      => true,
-        'pconnect'     => true,
-        'prepare'      => false,
-        'ssl'          => false,
-        'transactions' => false,
+        'limit'         => 'emulate',
+        'new_link'      => false,
+        'numrows'       => true,
+        'pconnect'      => true,
+        'prepare'       => false,
+        'ssl'           => false,
+        'transactions'  => false,
     );
 
     /**
      * A mapping of native error codes to DB error codes
      * @var array
      */
-    var $errorcode_map = array();
+    var $errorcode_map = array(
+    );
 
     /**
      * The raw database connection created by PHP
@@ -116,6 +121,7 @@ class DB_msql extends DB_common {
      */
     var $dsn = array();
 
+
     /**
      * The query result resource created by PHP
      *
@@ -126,18 +132,24 @@ class DB_msql extends DB_common {
      * @access private
      */
     var $_result;
+
+
     // }}}
     // {{{ constructor
+
     /**
      * This constructor calls <kbd>$this->DB_common()</kbd>
      *
      * @return void
      */
-    function DB_msql() {
+    function DB_msql()
+    {
         $this->DB_common();
     }
+
     // }}}
     // {{{ connect()
+
     /**
      * Connect to the database server, log in and open the database
      *
@@ -164,56 +176,74 @@ class DB_msql extends DB_common {
      *
      * @return int  DB_OK on success. A DB_Error object on failure.
      */
-    function connect($dsn, $persistent = false) {
-        if(!PEAR::loadExtension('msql')) {
+    function connect($dsn, $persistent = false)
+    {
+        if (!PEAR::loadExtension('msql')) {
             return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
+
         $this->dsn = $dsn;
-        if($dsn['dbsyntax']) {
+        if ($dsn['dbsyntax']) {
             $this->dbsyntax = $dsn['dbsyntax'];
         }
+
         $params = array();
-        if($dsn['hostspec']) {
-            $params[] = $dsn['port'] ? $dsn['hostspec'].','.$dsn['port'] : $dsn['hostspec'];
+        if ($dsn['hostspec']) {
+            $params[] = $dsn['port']
+                        ? $dsn['hostspec'] . ',' . $dsn['port']
+                        : $dsn['hostspec'];
         }
+
         $connect_function = $persistent ? 'msql_pconnect' : 'msql_connect';
-        $ini              = ini_get('track_errors');
-        $php_errormsg     = '';
-        if($ini) {
-            $this->connection = @call_user_func_array($connect_function, $params);
-        }
-        else {
+
+        $ini = ini_get('track_errors');
+        $php_errormsg = '';
+        if ($ini) {
+            $this->connection = @call_user_func_array($connect_function,
+                                                      $params);
+        } else {
             ini_set('track_errors', 1);
-            $this->connection = @call_user_func_array($connect_function, $params);
+            $this->connection = @call_user_func_array($connect_function,
+                                                      $params);
             ini_set('track_errors', $ini);
         }
-        if(!$this->connection) {
-            if(($err = @msql_error()) != '') {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, $err);
-            }
-            else {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED, null, null, null, $php_errormsg);
+
+        if (!$this->connection) {
+            if (($err = @msql_error()) != '') {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+                                         null, null, null,
+                                         $err);
+            } else {
+                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+                                         null, null, null,
+                                         $php_errormsg);
             }
         }
-        if(!@msql_select_db($dsn['database'], $this->connection)) {
+
+        if (!@msql_select_db($dsn['database'], $this->connection)) {
             return $this->msqlRaiseError();
         }
         return DB_OK;
     }
+
     // }}}
     // {{{ disconnect()
+
     /**
      * Disconnects from the database server
      *
      * @return bool  TRUE on success, FALSE on failure
      */
-    function disconnect() {
+    function disconnect()
+    {
         $ret = @msql_close($this->connection);
         $this->connection = null;
         return $ret;
     }
+
     // }}}
     // {{{ simpleQuery()
+
     /**
      * Sends a query to the database server
      *
@@ -223,26 +253,29 @@ class DB_msql extends DB_common {
      *                + the DB_OK constant for other successful queries
      *                + a DB_Error object on failure
      */
-    function simpleQuery($query) {
+    function simpleQuery($query)
+    {
         $this->last_query = $query;
-        $query            = $this->modifyQuery($query);
-        $result           = @msql_query($query, $this->connection);
-        if(!$result) {
+        $query = $this->modifyQuery($query);
+        $result = @msql_query($query, $this->connection);
+        if (!$result) {
             return $this->msqlRaiseError();
         }
         // Determine which queries that should return data, and which
         // should return an error code only.
-        if(DB::isManip($query)) {
+        if (DB::isManip($query)) {
             $this->_result = $result;
             return DB_OK;
-        }
-        else {
+        } else {
             $this->_result = false;
             return $result;
         }
     }
+
+
     // }}}
     // {{{ nextResult()
+
     /**
      * Move the internal msql result pointer to the next available result
      *
@@ -252,11 +285,14 @@ class DB_msql extends DB_common {
      *
      * @return true if a result is available otherwise return false
      */
-    function nextResult($result) {
+    function nextResult($result)
+    {
         return false;
     }
+
     // }}}
     // {{{ fetchInto()
+
     /**
      * Places a row from the result set into the given array
      *
@@ -281,34 +317,36 @@ class DB_msql extends DB_common {
      *
      * @see DB_result::fetchInto()
      */
-    function fetchInto($result, &$arr, $fetchmode, $rownum = null) {
-        if($rownum !== null) {
-            if(!@msql_data_seek($result, $rownum)) {
+    function fetchInto($result, &$arr, $fetchmode, $rownum = null)
+    {
+        if ($rownum !== null) {
+            if (!@msql_data_seek($result, $rownum)) {
                 return null;
             }
         }
-        if($fetchmode&DB_FETCHMODE_ASSOC) {
+        if ($fetchmode & DB_FETCHMODE_ASSOC) {
             $arr = @msql_fetch_array($result, MSQL_ASSOC);
-            if($this->options['portability']&DB_PORTABILITY_LOWERCASE && $arr) {
+            if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE && $arr) {
                 $arr = array_change_key_case($arr, CASE_LOWER);
             }
-        }
-        else {
+        } else {
             $arr = @msql_fetch_row($result);
         }
-        if(!$arr) {
+        if (!$arr) {
             return null;
         }
-        if($this->options['portability']&DB_PORTABILITY_RTRIM) {
+        if ($this->options['portability'] & DB_PORTABILITY_RTRIM) {
             $this->_rtrimArrayValues($arr);
         }
-        if($this->options['portability']&DB_PORTABILITY_NULL_TO_EMPTY) {
+        if ($this->options['portability'] & DB_PORTABILITY_NULL_TO_EMPTY) {
             $this->_convertNullArrayValuesToEmpty($arr);
         }
         return DB_OK;
     }
+
     // }}}
     // {{{ freeResult()
+
     /**
      * Deletes the result set and frees the memory occupied by the result set
      *
@@ -322,11 +360,14 @@ class DB_msql extends DB_common {
      *
      * @see DB_result::free()
      */
-    function freeResult($result) {
+    function freeResult($result)
+    {
         return @msql_free_result($result);
     }
+
     // }}}
     // {{{ numCols()
+
     /**
      * Gets the number of columns in a result set
      *
@@ -340,15 +381,18 @@ class DB_msql extends DB_common {
      *
      * @see DB_result::numCols()
      */
-    function numCols($result) {
+    function numCols($result)
+    {
         $cols = @msql_num_fields($result);
-        if(!$cols) {
+        if (!$cols) {
             return $this->msqlRaiseError();
         }
         return $cols;
     }
+
     // }}}
     // {{{ numRows()
+
     /**
      * Gets the number of rows in a result set
      *
@@ -362,15 +406,18 @@ class DB_msql extends DB_common {
      *
      * @see DB_result::numRows()
      */
-    function numRows($result) {
+    function numRows($result)
+    {
         $rows = @msql_num_rows($result);
-        if($rows === false) {
+        if ($rows === false) {
             return $this->msqlRaiseError();
         }
         return $rows;
     }
+
     // }}}
     // {{{ affected()
+
     /**
      * Determines the number of rows affected by a data maniuplation query
      *
@@ -378,14 +425,17 @@ class DB_msql extends DB_common {
      *
      * @return int  the number of rows.  A DB_Error object on failure.
      */
-    function affectedRows() {
-        if(!$this->_result) {
+    function affectedRows()
+    {
+        if (!$this->_result) {
             return 0;
         }
         return msql_affected_rows($this->_result);
     }
+
     // }}}
     // {{{ nextId()
+
     /**
      * Returns the next free id in a sequence
      *
@@ -399,36 +449,38 @@ class DB_msql extends DB_common {
      * @see DB_common::nextID(), DB_common::getSequenceName(),
      *      DB_msql::createSequence(), DB_msql::dropSequence()
      */
-    function nextId($seq_name, $ondemand = true) {
+    function nextId($seq_name, $ondemand = true)
+    {
         $seqname = $this->getSequenceName($seq_name);
         $repeat = false;
         do {
             $this->pushErrorHandling(PEAR_ERROR_RETURN);
-            $result = &$this->query("SELECT _seq FROM ${seqname}");
+            $result =& $this->query("SELECT _seq FROM ${seqname}");
             $this->popErrorHandling();
-            if($ondemand && DB::isError($result) && $result->getCode() == DB_ERROR_NOSUCHTABLE) {
+            if ($ondemand && DB::isError($result) &&
+                $result->getCode() == DB_ERROR_NOSUCHTABLE) {
                 $repeat = true;
                 $this->pushErrorHandling(PEAR_ERROR_RETURN);
                 $result = $this->createSequence($seq_name);
                 $this->popErrorHandling();
-                if(DB::isError($result)) {
+                if (DB::isError($result)) {
                     return $this->raiseError($result);
                 }
-            }
-            else {
+            } else {
                 $repeat = false;
             }
-        }
-        while($repeat);
-        if(DB::isError($result)) {
+        } while ($repeat);
+        if (DB::isError($result)) {
             return $this->raiseError($result);
         }
         $arr = $result->fetchRow(DB_FETCHMODE_ORDERED);
         $result->free();
         return $arr[0];
     }
+
     // }}}
     // {{{ createSequence()
+
     /**
      * Creates a new sequence
      *
@@ -442,17 +494,21 @@ class DB_msql extends DB_common {
      * @see DB_common::createSequence(), DB_common::getSequenceName(),
      *      DB_msql::nextID(), DB_msql::dropSequence()
      */
-    function createSequence($seq_name) {
+    function createSequence($seq_name)
+    {
         $seqname = $this->getSequenceName($seq_name);
-        $res = $this->query('CREATE TABLE '.$seqname.' (id INTEGER NOT NULL)');
-        if(DB::isError($res)) {
+        $res = $this->query('CREATE TABLE ' . $seqname
+                            . ' (id INTEGER NOT NULL)');
+        if (DB::isError($res)) {
             return $res;
         }
         $res = $this->query("CREATE SEQUENCE ON ${seqname}");
         return $res;
     }
+
     // }}}
     // {{{ dropSequence()
+
     /**
      * Deletes a sequence
      *
@@ -463,11 +519,14 @@ class DB_msql extends DB_common {
      * @see DB_common::dropSequence(), DB_common::getSequenceName(),
      *      DB_msql::nextID(), DB_msql::createSequence()
      */
-    function dropSequence($seq_name) {
-        return $this->query('DROP TABLE '.$this->getSequenceName($seq_name));
+    function dropSequence($seq_name)
+    {
+        return $this->query('DROP TABLE ' . $this->getSequenceName($seq_name));
     }
+
     // }}}
     // {{{ quoteIdentifier()
+
     /**
      * mSQL does not support delimited identifiers
      *
@@ -478,11 +537,14 @@ class DB_msql extends DB_common {
      * @see DB_common::quoteIdentifier()
      * @since Method available since Release 1.7.0
      */
-    function quoteIdentifier($str) {
+    function quoteIdentifier($str)
+    {
         return $this->raiseError(DB_ERROR_UNSUPPORTED);
     }
+
     // }}}
     // {{{ escapeSimple()
+
     /**
      * Escapes a string according to the current DBMS's standards
      *
@@ -493,11 +555,14 @@ class DB_msql extends DB_common {
      * @see DB_common::quoteSmart()
      * @since Method available since Release 1.7.0
      */
-    function escapeSimple($str) {
+    function escapeSimple($str)
+    {
         return addslashes($str);
     }
+
     // }}}
     // {{{ msqlRaiseError()
+
     /**
      * Produces a DB_Error object regarding the current problem
      *
@@ -510,25 +575,31 @@ class DB_msql extends DB_common {
      * @see DB_common::raiseError(),
      *      DB_msql::errorNative(), DB_msql::errorCode()
      */
-    function msqlRaiseError($errno = null) {
+    function msqlRaiseError($errno = null)
+    {
         $native = $this->errorNative();
-        if($errno === null) {
+        if ($errno === null) {
             $errno = $this->errorCode($native);
         }
         return $this->raiseError($errno, null, null, null, $native);
     }
+
     // }}}
     // {{{ errorNative()
+
     /**
      * Gets the DBMS' native error message produced by the last query
      *
      * @return string  the DBMS' error message
      */
-    function errorNative() {
+    function errorNative()
+    {
         return @msql_error();
     }
+
     // }}}
     // {{{ errorCode()
+
     /**
      * Determines PEAR::DB error code from the database's text error message
      *
@@ -536,50 +607,82 @@ class DB_msql extends DB_common {
      *
      * @return integer  the error number from a DB_ERROR* constant
      */
-    function errorCode($errormsg) {
+    function errorCode($errormsg)
+    {
         static $error_regexps;
+        
         // PHP 5.2+ prepends the function name to $php_errormsg, so we need
         // this hack to work around it, per bug #9599.
         $errormsg = preg_replace('/^msql[a-z_]+\(\): /', '', $errormsg);
-        if(!isset($error_regexps)) {
+
+        if (!isset($error_regexps)) {
             $error_regexps = array(
-                '/^Access to database denied/i'                  => DB_ERROR_ACCESS_VIOLATION,
-                '/^Bad index name/i'                             => DB_ERROR_ALREADY_EXISTS,
-                '/^Bad order field/i'                            => DB_ERROR_SYNTAX,
-                '/^Bad type for comparison/i'                    => DB_ERROR_SYNTAX,
-                '/^Can\'t perform LIKE on/i'                     => DB_ERROR_SYNTAX,
-                '/^Can\'t use TEXT fields in LIKE comparison/i'  => DB_ERROR_SYNTAX,
-                '/^Couldn\'t create temporary table/i'           => DB_ERROR_CANNOT_CREATE,
-                '/^Error creating table file/i'                  => DB_ERROR_CANNOT_CREATE,
-                '/^Field .* cannot be null$/i'                   => DB_ERROR_CONSTRAINT_NOT_NULL,
-                '/^Index (field|condition) .* cannot be null$/i' => DB_ERROR_SYNTAX,
-                '/^Invalid date format/i'                        => DB_ERROR_INVALID_DATE,
-                '/^Invalid time format/i'                        => DB_ERROR_INVALID,
-                '/^Literal value for .* is wrong type$/i'        => DB_ERROR_INVALID_NUMBER,
-                '/^No Database Selected/i'                       => DB_ERROR_NODBSELECTED,
-                '/^No value specified for field/i'               => DB_ERROR_VALUE_COUNT_ON_ROW,
-                '/^Non unique value for unique index/i'          => DB_ERROR_CONSTRAINT,
-                '/^Out of memory for temporary table/i'          => DB_ERROR_CANNOT_CREATE,
-                '/^Permission denied/i'                          => DB_ERROR_ACCESS_VIOLATION,
-                '/^Reference to un-selected table/i'             => DB_ERROR_SYNTAX,
-                '/^syntax error/i'                               => DB_ERROR_SYNTAX,
-                '/^Table .* exists$/i'                           => DB_ERROR_ALREADY_EXISTS,
-                '/^Unknown database/i'                           => DB_ERROR_NOSUCHDB,
-                '/^Unknown field/i'                              => DB_ERROR_NOSUCHFIELD,
-                '/^Unknown (index|system variable)/i'            => DB_ERROR_NOT_FOUND,
-                '/^Unknown table/i'                              => DB_ERROR_NOSUCHTABLE,
-                '/^Unqualified field/i'                          => DB_ERROR_SYNTAX,
+                '/^Access to database denied/i'
+                    => DB_ERROR_ACCESS_VIOLATION,
+                '/^Bad index name/i'
+                    => DB_ERROR_ALREADY_EXISTS,
+                '/^Bad order field/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Bad type for comparison/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Can\'t perform LIKE on/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Can\'t use TEXT fields in LIKE comparison/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Couldn\'t create temporary table/i'
+                    => DB_ERROR_CANNOT_CREATE,
+                '/^Error creating table file/i'
+                    => DB_ERROR_CANNOT_CREATE,
+                '/^Field .* cannot be null$/i'
+                    => DB_ERROR_CONSTRAINT_NOT_NULL,
+                '/^Index (field|condition) .* cannot be null$/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Invalid date format/i'
+                    => DB_ERROR_INVALID_DATE,
+                '/^Invalid time format/i'
+                    => DB_ERROR_INVALID,
+                '/^Literal value for .* is wrong type$/i'
+                    => DB_ERROR_INVALID_NUMBER,
+                '/^No Database Selected/i'
+                    => DB_ERROR_NODBSELECTED,
+                '/^No value specified for field/i'
+                    => DB_ERROR_VALUE_COUNT_ON_ROW,
+                '/^Non unique value for unique index/i'
+                    => DB_ERROR_CONSTRAINT,
+                '/^Out of memory for temporary table/i'
+                    => DB_ERROR_CANNOT_CREATE,
+                '/^Permission denied/i'
+                    => DB_ERROR_ACCESS_VIOLATION,
+                '/^Reference to un-selected table/i'
+                    => DB_ERROR_SYNTAX,
+                '/^syntax error/i'
+                    => DB_ERROR_SYNTAX,
+                '/^Table .* exists$/i'
+                    => DB_ERROR_ALREADY_EXISTS,
+                '/^Unknown database/i'
+                    => DB_ERROR_NOSUCHDB,
+                '/^Unknown field/i'
+                    => DB_ERROR_NOSUCHFIELD,
+                '/^Unknown (index|system variable)/i'
+                    => DB_ERROR_NOT_FOUND,
+                '/^Unknown table/i'
+                    => DB_ERROR_NOSUCHTABLE,
+                '/^Unqualified field/i'
+                    => DB_ERROR_SYNTAX,
             );
         }
-        foreach($error_regexps as $regexp => $code) {
-            if(preg_match($regexp, $errormsg)) {
+
+        foreach ($error_regexps as $regexp => $code) {
+            if (preg_match($regexp, $errormsg)) {
                 return $code;
             }
         }
         return DB_ERROR;
     }
+
     // }}}
     // {{{ tableInfo()
+
     /**
      * Returns information about a table or a result set
      *
@@ -595,27 +698,24 @@ class DB_msql extends DB_common {
      *
      * @see DB_common::setOption()
      */
-    function tableInfo($result, $mode = null) {
-        if(is_string($result)) {
-
+    function tableInfo($result, $mode = null)
+    {
+        if (is_string($result)) {
             /*
              * Probably received a table name.
              * Create a result resource identifier.
              */
-            $id = @msql_query("SELECT * FROM $result", $this->connection);
+            $id = @msql_query("SELECT * FROM $result",
+                              $this->connection);
             $got_string = true;
-        }
-        elseif(isset($result->result)) {
-
+        } elseif (isset($result->result)) {
             /*
              * Probably received a result object.
              * Extract the result resource identifier.
              */
             $id = $result->result;
             $got_string = false;
-        }
-        else {
-
+        } else {
             /*
              * Probably received a result resource identifier.
              * Copy it.
@@ -624,53 +724,62 @@ class DB_msql extends DB_common {
             $id = $result;
             $got_string = false;
         }
-        if(!is_resource($id)) {
+
+        if (!is_resource($id)) {
             return $this->raiseError(DB_ERROR_NEED_MORE_DATA);
         }
-        if($this->options['portability']&DB_PORTABILITY_LOWERCASE) {
+
+        if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {
             $case_func = 'strtolower';
-        }
-        else {
+        } else {
             $case_func = 'strval';
         }
+
         $count = @msql_num_fields($id);
-        $res = array();
-        if($mode) {
+        $res   = array();
+
+        if ($mode) {
             $res['num_fields'] = $count;
         }
-        for($i = 0; $i < $count; $i++) {
+
+        for ($i = 0; $i < $count; $i++) {
             $tmp = @msql_fetch_field($id);
+
             $flags = '';
-            if($tmp->not_null) {
+            if ($tmp->not_null) {
                 $flags .= 'not_null ';
             }
-            if($tmp->unique) {
+            if ($tmp->unique) {
                 $flags .= 'unique_key ';
             }
             $flags = trim($flags);
+
             $res[$i] = array(
                 'table' => $case_func($tmp->table),
                 'name'  => $case_func($tmp->name),
                 'type'  => $tmp->type,
-                'len'   => msql_field_len($id,
-                $i),
+                'len'   => msql_field_len($id, $i),
                 'flags' => $flags,
             );
-            if($mode&DB_TABLEINFO_ORDER) {
+
+            if ($mode & DB_TABLEINFO_ORDER) {
                 $res['order'][$res[$i]['name']] = $i;
             }
-            if($mode&DB_TABLEINFO_ORDERTABLE) {
+            if ($mode & DB_TABLEINFO_ORDERTABLE) {
                 $res['ordertable'][$res[$i]['table']][$res[$i]['name']] = $i;
             }
         }
+
         // free the result only if we were called on a table
-        if($got_string) {
+        if ($got_string) {
             @msql_free_result($id);
         }
         return $res;
     }
+
     // }}}
     // {{{ getSpecialQuery()
+
     /**
      * Obtain a list of a given type of objects
      *
@@ -681,27 +790,31 @@ class DB_msql extends DB_common {
      * @access protected
      * @see DB_common::getListOf()
      */
-    function getSpecialQuery($type) {
-        switch($type) {
+    function getSpecialQuery($type)
+    {
+        switch ($type) {
             case 'databases':
                 $id = @msql_list_dbs($this->connection);
                 break;
             case 'tables':
-                $id = @msql_list_tables($this->dsn['database'], $this->connection);
+                $id = @msql_list_tables($this->dsn['database'],
+                                        $this->connection);
                 break;
             default:
                 return null;
         }
-        if(!$id) {
+        if (!$id) {
             return $this->msqlRaiseError();
         }
         $out = array();
-        while($row = @msql_fetch_row($id)) {
+        while ($row = @msql_fetch_row($id)) {
             $out[] = $row[0];
         }
         return $out;
     }
+
     // }}}
+
 }
 
 /*
@@ -710,4 +823,5 @@ class DB_msql extends DB_common {
  * c-basic-offset: 4
  * End:
  */
+
 ?>

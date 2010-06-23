@@ -13,12 +13,11 @@
       </form>
     </div>
     <div class="message">
-      <?php if(!empty($message)) {?>
+      <?php if (!empty($message)) { ?>
         <?=$message?>
-      <?php
-}?>
+      <?php } ?>
     </div>
     <div class="section">
-      <?php echo $data->getHtml();?>
+      <?php echo $data->getHtml(); ?>
     </div>
   </div>

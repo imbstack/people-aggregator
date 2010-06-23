@@ -38,31 +38,43 @@
 //   ** = settings data stored in PA class or data that
 //        need raw PHP code in the initialization process
 //
+
+
 error_reporting(E_ALL);
-$path_separator = ":";
-$dir_separator  = "/";
-$line_break     = "\n";
-if(substr(PHP_OS, 0, 3) == "WIN") {
+
+  $path_separator = ":";
+  $dir_separator  = "/";
+  $line_break     = "\n";
+
+  if(substr(PHP_OS, 0, 3) == "WIN") {
     $path_separator = ";";
     $dir_separator  = "\\";
     $line_break     = "\r\n";
-}
-if(!defined('PATH_SEPARATOR')) {
+  }
+
+  if(!defined('PATH_SEPARATOR')) {
     define('PATH_SEPARATOR', $path_separator);
-}
-if(!defined('DIRECTORY_SEPARATOR')) {
+  }
+  if(!defined('DIRECTORY_SEPARATOR')) {
     define('DIRECTORY_SEPARATOR', $dir_separator);
-}
-if(!defined('LINE_BREAK')) {
+  }
+  if(!defined('LINE_BREAK')) {
     define('LINE_BREAK', $line_break);
-}
+  }
+
 define('PA_CORE_NAME', 'pacore');
 define('PA_PROJECT_NAME', 'paproject');
 define('DEFAULT_INSTALL_SCRIPT', 'web/install/install.php');
+
 define('PA_PROJECT_ROOT_DIR', realpath(dirname(__FILE__)));
-define('PA_PROJECT_CORE_DIR', realpath(PA_PROJECT_ROOT_DIR.DIRECTORY_SEPARATOR.PA_CORE_NAME));
+define('PA_PROJECT_CORE_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR . PA_CORE_NAME));
 define('PA_PROJECT_PROJECT_DIR', PA_PROJECT_CORE_DIR);
+
 // define include paths
-ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.PA_PROJECT_PROJECT_DIR.PATH_SEPARATOR.PA_PROJECT_CORE_DIR.PATH_SEPARATOR.PA_PROJECT_CORE_DIR.DIRECTORY_SEPARATOR.'ext');
+ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PA_PROJECT_PROJECT_DIR
+                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR
+                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext');
+
 define('APPLICATION_CONFIG_FILE', '/config/AppConfig.xml');
+
 ?>

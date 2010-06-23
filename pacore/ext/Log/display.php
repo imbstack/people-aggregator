@@ -31,7 +31,8 @@
  *
  * @example display.php     Using the display handler.
  */
-class Log_display extends Log {
+class Log_display extends Log
+{
     /**
      * String to output before an error message
      * @var string
@@ -62,23 +63,26 @@ class Log_display extends Log {
      * @param int    $level    Log messages up to and including this level.
      * @access public
      */
-    function Log_display($name = '', $ident = '', $conf = array(), $level = PEAR_LOG_DEBUG) {
+    function Log_display($name = '', $ident = '', $conf = array(),
+                         $level = PEAR_LOG_DEBUG)
+    {
         $this->_id = md5(microtime());
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
-        if(isset($conf['error_prepend'])) {
+
+        if (isset($conf['error_prepend'])) {
             $this->_error_prepend = $conf['error_prepend'];
-        }
-        else {
+        } else {
             $this->_error_prepend = ini_get('error_prepend_string');
         }
-        if(isset($conf['error_append'])) {
+
+        if (isset($conf['error_append'])) {
             $this->_error_append = $conf['error_append'];
-        }
-        else {
+        } else {
             $this->_error_append = ini_get('error_append_string');
         }
-        if(isset($conf['linebreak'])) {
+
+        if (isset($conf['linebreak'])) {
             $this->_linebreak = $conf['linebreak'];
         }
     }
@@ -95,14 +99,15 @@ class Log_display extends Log {
      * @return boolean  True on success or false on failure.
      * @access public
      */
-    function log($message, $priority = null) {
+    function log($message, $priority = null)
+    {
         /* If a priority hasn't been specified, use the default value. */
-        if($priority === null) {
+        if ($priority === null) {
             $priority = $this->_priority;
         }
 
         /* Abort early if the priority is above the maximum logging level. */
-        if(!$this->_isMasked($priority)) {
+        if (!$this->_isMasked($priority)) {
             return false;
         }
 
@@ -110,10 +115,15 @@ class Log_display extends Log {
         $message = $this->_extractMessage($message);
 
         /* Build and output the complete log line. */
-        echo $this->_error_prepend.'<b>'.ucfirst($this->priorityToString($priority)).'</b>: '.nl2br(htmlspecialchars($message)).$this->_error_append.$this->_linebreak;
+        echo $this->_error_prepend .
+             '<b>' . ucfirst($this->priorityToString($priority)) . '</b>: '.
+             nl2br(htmlspecialchars($message)) .
+             $this->_error_append . $this->_linebreak;
 
         /* Notify observers about this log message. */
         $this->_announce(array('priority' => $priority, 'message' => $message));
+
         return true;
     }
+
 }

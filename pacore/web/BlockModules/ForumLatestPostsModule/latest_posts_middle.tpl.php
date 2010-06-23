@@ -26,33 +26,29 @@
       <tr>
     </thead>
     <tbody>
-    <?php foreach($threads as $thread) { : $user = $thread->statistics['user']?>
+    <?php foreach($threads as $thread) : $user = $thread->statistics['user'] ?>
       <tr>
-        <td ><?=PA::datetime(strtotime($thread->get_created_at()), 'long', 'short')?></td>
+        <td ><?= PA::datetime(strtotime($thread->get_created_at()), 'long', 'short') ?></td>
         <td >
-          <a href="<?=$forums_url."&forum_id=".$thread->forum->get_id()?>"><?php echo $thread->forum->get_title()?></a>        </td>
+          <a href="<?= $forums_url . "&forum_id=" . $thread->forum->get_id()?>"><?php echo $thread->forum->get_title() ?></a>        </td>
         <td >
-          <a href="<?=$forums_url."&thread_id=".$thread->get_id()?>"><?php echo $thread->get_title()?></a>
+          <a href="<?= $forums_url . "&thread_id=" . $thread->get_id()?>"><?php echo $thread->get_title() ?></a>
         </td>
         <td >
-           <a href="<?=PA::$url.PA_ROUTE_USER_PUBLIC.'/'.$user->login_name?>"><?=$user->login_name?></a>
+           <a href="<?= PA::$url . PA_ROUTE_USER_PUBLIC . '/' . $user->login_name ?>"><?= $user->login_name ?></a>
         </td>
         <td >
-          <?php if(!empty($thread->statistics['last_post'])) { : $post = $thread->statistics['last_post'];
-    }
-}
-$post_id = $post->get_id()?>
-          <a href="<?=$forums_url."&thread_id=".$post->get_thread_id()."&post_id=$post_id#p_$post_id"?>">
-             <?=$post->get_title(24)?>
+          <?php if(!empty($thread->statistics['last_post'])) : $post = $thread->statistics['last_post']; $post_id = $post->get_id() ?>
+          <a href="<?= $forums_url."&thread_id=".$post->get_thread_id()."&post_id=$post_id#p_$post_id"?>">
+             <?= $post->get_title(24) ?>
           </a>
-          <?php else { :?>
-            <?=__('No posts')?>
-          <?php endif;
-}?>
+          <?php else: ?>
+            <?= __('No posts') ?>
+          <?php endif; ?>
         </td>
         <td style="text-align: center;"><?=$thread->statistics['posts']?></td>
       </tr>
-    <?php endforeach;?>
+    <?php endforeach; ?>
     </tbody>
   </table>
  </div>

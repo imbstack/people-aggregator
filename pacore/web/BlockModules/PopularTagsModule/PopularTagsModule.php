@@ -30,45 +30,47 @@ require_once "api/Tag/Tag.php";
  * This class generates inner html of Popular tags across the site
  * @package BlockModules
  * @subpackage PopularTagsModule
- */
+ */ 
+
 class PopularTagsModule extends Module {
 
-    public $module_type = 'user|group|network';
+  public $module_type = 'user|group|network';
+  public $module_placement = 'left|right';
+  public $outer_template = 'outer_public_side_module.tpl';
+  
+  public $links;
 
-    public $module_placement = 'left|right';
-
-    public $outer_template = 'outer_public_side_module.tpl';
-
-    public $links;
-
-    function __construct() {
-        parent::__construct();
-        $this->title = __("Most Popular Tags");
-        $this->html_block_id = "tagcloud";
+  function __construct() {
+    parent::__construct();
+    $this->title = __("Most Popular Tags");
+    $this->html_block_id = "tagcloud";
+  }
+  
+  function render() {
+    $tags = Tag::load_tag_soup(10);
+    if (!empty($tags)) {
+      $sorted_tags = asort($tags, @$tags['occurence']);
+      $this->links = $tags;
     }
-
-    function render() {
-        $tags = Tag::load_tag_soup(10);
-        if(!empty($tags)) {
-            $sorted_tags = asort($tags, @$tags['occurence']);
-            $this->links = $tags;
-        }
-        $this->inner_HTML = $this->generate_inner_html($this->links);
-        $content = parent::render();
-        return $content;
+         
+    $this->inner_HTML = $this->generate_inner_html ($this->links);
+    $content = parent::render();
+    return $content;
+  }
+  
+  function generate_inner_html ($links) {
+    
+    $inner_template = NULL;
+    switch ( $this->mode ) {
+      default:
+        $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
-
-    function generate_inner_html($links) {
-        $inner_template = NULL;
-        switch($this->mode) {
-            default:
-                $inner_template = PA::$blockmodule_path.'/'.get_class($this).'/side_inner_public.tpl';
-        }
-        $obj_inner_template = &new Template($inner_template);
-        $obj_inner_template->set('links', $links);
-        $obj_inner_template->set('current_theme_path', PA::$theme_url);
-        $inner_html = $obj_inner_template->fetch();
-        return $inner_html;
-    }
+    
+    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template->set('links', $links);
+    $obj_inner_template->set('current_theme_path', PA::$theme_url);
+    $inner_html = $obj_inner_template->fetch();
+    return $inner_html;
+  }
 }
 ?>

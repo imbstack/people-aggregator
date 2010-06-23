@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  * This module contains the HTTP fetcher interface
  *
@@ -23,13 +24,15 @@
  * @copyright 2005 Janrain, Inc.
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  */
-class Services_Yadis_HTTPResponse {
 
-    function Services_Yadis_HTTPResponse($final_url = null, $status = null, $headers = null, $body = null) {
+class Services_Yadis_HTTPResponse {
+    function Services_Yadis_HTTPResponse($final_url = null, $status = null,
+                                         $headers = null, $body = null)
+    {
         $this->final_url = $final_url;
-        $this->status    = $status;
-        $this->headers   = $headers;
-        $this->body      = $body;
+        $this->status = $status;
+        $this->headers = $headers;
+        $this->body = $body;
     }
 }
 
@@ -42,15 +45,17 @@ class Services_Yadis_HTTPResponse {
  * @package Yadis
  */
 class Services_Yadis_HTTPFetcher {
-    var $timeout = 20;
-    // timeout in seconds.
+
+    var $timeout = 20; // timeout in seconds.
+
     /**
      * Return whether a URL should be allowed. Override this method to
      * conform to your local policy.
      *
      * By default, will attempt to fetch any http or https URL.
      */
-    function allowedURL($url) {
+    function allowedURL($url)
+    {
         return $this->URLHasAllowedScheme($url);
     }
 
@@ -59,16 +64,18 @@ class Services_Yadis_HTTPFetcher {
      *
      * @access private
      */
-    function URLHasAllowedScheme($url) {
-        return (bool) preg_match('/^https?:\/\//i', $url);
+    function URLHasAllowedScheme($url)
+    {
+        return (bool)preg_match('/^https?:\/\//i', $url);
     }
 
     /**
      * @access private
      */
-    function _findRedirect($headers) {
-        foreach($headers as $line) {
-            if(strpos($line, "Location: ") === 0) {
+    function _findRedirect($headers)
+    {
+        foreach ($headers as $line) {
+            if (strpos($line, "Location: ") === 0) {
                 $parts = explode(" ", $line, 2);
                 return $parts[1];
             }
@@ -88,8 +95,10 @@ class Services_Yadis_HTTPFetcher {
      * pass the URLHasAllowedScheme check or if the server's response
      * is malformed.
      */
-    function get($url, $headers) {
+    function get($url, $headers)
+    {
         trigger_error("not implemented", E_USER_ERROR);
     }
 }
+
 ?>

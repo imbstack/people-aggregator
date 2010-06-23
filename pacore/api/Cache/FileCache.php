@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  *
  * @class FileCache
@@ -35,17 +36,15 @@ class FileCache {
      * corrosponding cache file.
      */
     public static function is_cached($cache_id, $expire = 120) {
-        $cache_file = PA::$project_dir."/web/cache/".md5($cache_id);
+        $cache_file = PA::$project_dir . "/web/cache/" . md5($cache_id);
         // Cache file exists?
-        if(!file_exists($cache_file)) {
-            return false;
-        }
+        if(!file_exists($cache_file)) return false;
+
         // Can get the time of the file?
-        if(!($mtime = filemtime($cache_file))) {
-            return false;
-        }
+        if(!($mtime = filemtime($cache_file))) return false;
+
         // Cache expired?
-        if(($mtime+$expire) < time()) {
+        if(($mtime + $expire) < time()) {
             @unlink($cache_file);
             return false;
         }
@@ -61,7 +60,8 @@ class FileCache {
      * @param $file string the template file
      */
     public static function fetch($cache_id, $content = null, $expire = 120) {
-        $cache_file = PA::$project_dir."/web/cache/".md5($cache_id);
+
+        $cache_file = PA::$project_dir . "/web/cache/" . md5($cache_id);
         if(self::is_cached($cache_id, $expire)) {
             $fp = @fopen($cache_file, 'r');
             $content = unserialize(fread($fp, filesize($cache_file)));
@@ -71,21 +71,23 @@ class FileCache {
         else {
             // Write the cache
             if($fp = fopen($cache_file, 'w')) {
-                fwrite($fp, serialize($content));
-                fclose($fp);
+               fwrite($fp, serialize($content));
+               fclose($fp);
             }
             else {
-                die("Unable to write cache ".$cache_file);
+               die("Unable to write cache ".$cache_file);
             }
             return $content;
         }
     }
 
     public static function invalidate_cache($cache_id) {
-        $cache_file = PA::$project_dir."/web/cache/".md5($cache_id);
-        if(file_exists($cache_file)) {
-            unlink($cache_file);
-        }
+      $cache_file = PA::$project_dir . "/web/cache/" . md5($cache_id);
+      if (file_exists($cache_file)) {
+        unlink($cache_file);
+      }
+      
     }
 }
+
 ?>

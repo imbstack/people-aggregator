@@ -13,8 +13,9 @@
 <?php
 
 if(is_object($tiny_mce)) {
-    echo $tiny_mce->installTinyMCE();
+  echo $tiny_mce->installTinyMCE();
 }
+
 ?>
 
   <div class="forums">
@@ -31,7 +32,7 @@ if(is_object($tiny_mce)) {
       <tr>
         <td></td>
         <td colspan="1" class="spacer">
-          <?php include("forum_header.tpl.php");?>
+          <?php include("forum_header.tpl.php"); ?>
         </td>
         <td></td>
       </tr>
@@ -61,13 +62,11 @@ if(is_object($tiny_mce)) {
                   <thead>
                     <tr align="center">
                       <td class="thead" width="100%">
-                      <?php if($edit_type == 'post') { :?>
-                        <?php echo "<b>".__('Edit post')."</b> "?>
-                      <?php else { :?>  
-                        <?php echo "<b>".__('Edit thread')."</b> "?>
-                      <?php endif;
-    }
-}?>
+                      <?php if($edit_type == 'post') : ?>
+                        <?php echo "<b>".__('Edit post') ."</b> " ?>
+                      <?php else : ?>  
+                        <?php echo "<b>".__('Edit thread') ."</b> " ?>
+                      <?php endif; ?>
                       </td>
                     </tr>
                   </thead>
@@ -76,33 +75,32 @@ if(is_object($tiny_mce)) {
                       <td class="alt1">
                         <div class="edit_reply">
 <!--                          
-                          <form name="edit_form" action="<?="$forums_url/action=".(($edit_type == 'post') ? "updatePost" : "updateThread")?>" method="POST" id="edit_form" class="reply_form">
+                          <form name="edit_form" action="<?= "$forums_url/action=".(($edit_type == 'post') ? "updatePost" : "updateThread") ?>" method="POST" id="edit_form" class="reply_form">
 -->                          
-                          <form name="edit_form" action="<?=$forums_url?>" method="POST" id="edit_form" class="reply_form">
+                          <form name="edit_form" action="<?= $forums_url ?>" method="POST" id="edit_form" class="reply_form">
                             <div class="reply_title">
-                              <label for="form_data_edit_title"><span class="required">*</span><?=($edit_type == 'post') ? __("Post title") : __("Thread title")?>: </label>
-                              <input type="text" name="form_data[edit_title]" id="form_data_edit_title" value="<?=($edit_type == 'post') ? $post->get_title() : $thread->get_title()?>" />
+                              <label for="form_data_edit_title"><span class="required">*</span><?= ($edit_type == 'post') ? __("Post title") : __("Thread title") ?>: </label>
+                              <input type="text" name="form_data[edit_title]" id="form_data_edit_title" value="<?= ($edit_type == 'post') ? $post->get_title() : $thread->get_title() ?>" />
                             </div>
                             <div class="reply_content">
-                              <label for="form_data_edit_content"><span class="required">*</span><?=($edit_type == 'post') ? __("Post content") : __("Thread content")?>: </label>
+                              <label for="form_data_edit_content"><span class="required">*</span><?= ($edit_type == 'post') ? __("Post content") : __("Thread content") ?>: </label>
                               <textarea class="reply_content" name="form_data[edit_content]" id="form_data_edit_content" >
-                                <?=($edit_type == 'post') ? $post->get_content() : $thread->get_content()?><br />
+                                <?= ($edit_type == 'post') ? $post->get_content() : $thread->get_content() ?><br />
                               </textarea>
                             </div>
-                            <?php if($edit_type == 'post') { :?>
-                              <input name="post_id" id="post_id" type="hidden" value="<?=$post->get_id()?>" />
-                            <?php endif;
-}?>
-                            <input name="thread_id" id="thread_id" type="hidden" value="<?=$thread->get_id()?>" />
-                            <input name="page" id="page" type="hidden" value="<?=$current_page?>" />
-                            <input name="mode" id="mode" type="hidden" value="<?=$edit_type?>" />
-                            <input name="action" id="action" type="hidden" value="<?=(($edit_type == 'post') ? "updatePost" : "updateThread")?>" />
+                            <?php if($edit_type == 'post') : ?>
+                              <input name="post_id" id="post_id" type="hidden" value="<?= $post->get_id() ?>" />
+                            <?php endif; ?>
+                            <input name="thread_id" id="thread_id" type="hidden" value="<?= $thread->get_id() ?>" />
+                            <input name="page" id="page" type="hidden" value="<?= $current_page ?>" />
+                            <input name="mode" id="mode" type="hidden" value="<?= $edit_type ?>" />
+                            <input name="action" id="action" type="hidden" value="<?= (($edit_type == 'post') ? "updatePost" : "updateThread") ?>" />
                             <div class="buttons_panel">
-                            <a href="<?=$back_url?>">
-                              <img src="<?php echo $theme_url."/images/buttons/".PA::$language."/cancel.gif"?>" alt="cancel" class="forum_buttons"/>
+                            <a href="<?= $back_url ?>">
+                              <img src="<?php echo $theme_url . "/images/buttons/" . PA::$language . "/cancel.gif" ?>" alt="cancel" class="forum_buttons"/>
                             </a>&nbsp;
                             <a href="#" onclick="javascript: document.forms['edit_form'].submit(); return false;">
-                              <img src="<?php echo $theme_url."/images/buttons/".PA::$language."/send.gif"?>" alt="send" class="forum_buttons"/>
+                              <img src="<?php echo $theme_url . "/images/buttons/" . PA::$language . "/send.gif" ?>" alt="send" class="forum_buttons"/>
                             </a>
                             </div>
                           </form>

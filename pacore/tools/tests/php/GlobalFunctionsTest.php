@@ -13,11 +13,12 @@
 <?php
 
 // Test various system functions.
+
 // Author: phil
+
 require_once dirname(__FILE__)."/lib/common.php";
 
 class GlobalFunctionsTest extends PHPUnit_Framework_TestCase {
-
     function testParseFileSizeString() {
         $this->assertEquals(parse_file_size_string("1234"), 1234);
         $this->assertEquals(parse_file_size_string("0b"), 0);
@@ -29,4 +30,5 @@ class GlobalFunctionsTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(parse_file_size_string("2G"), 2*1024*1024*1024);
     }
 }
+
 ?>

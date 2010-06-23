@@ -10,7 +10,7 @@
 * @package PeopleAggregator
 */
 ?>
-<?php
+<?php 
 /**
  * Project:     PeopleAggregator: a social network developement platform
  * File:        user_comment.php, web file to write comments on users
@@ -24,11 +24,11 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
-$login_required = TRUE;
-//for session protection pages
+$login_required = TRUE;//for session protection pages 
 $use_theme = 'Beta';
 include_once("web/includes/page.php");
 $parameter = '';
+
 $parameter .= js_includes('common.js');
 global $query_count_on_page, $page_uid;
 $query_count_on_page = 0;
@@ -45,14 +45,21 @@ $query_count_on_page = 0;
  *  @return   type string - returns skip means skip the block module
  *            returns rendered html code of block module
  */
+
 function setup_module($column, $moduleName, $obj) {
-}
+}   
+
 $page = new PageRenderer("setup_module", PAGE_USER_COMMENT, 'Write comment', "container_three_column.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
+
 if(isset($error_message)) {
-    uihelper_error_msg($error_message);
-}
+  uihelper_error_msg($error_message);
+}  
+
 $page->add_header_html($parameter);
+
 $page->html_body_attributes = 'class="no_second_tier" id="pg_homepage"';
+
 uihelper_set_user_heading($page);
 echo $page->render();
+
 ?>

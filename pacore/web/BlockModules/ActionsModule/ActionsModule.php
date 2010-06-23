@@ -42,24 +42,23 @@
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
+
 require_once "api/Network/Network.php";
 
 class ActionsModule extends Module {
 
-    public $module_type = 'user|group|network';
+  public $module_type = 'user|group|network';
+  public $module_placement = 'left|right';
+  public  $uid;
+  public $outer_template = 'outer_public_side_module.tpl';
+  function __construct() {
 
-    public $module_placement = 'left|right';
+  parent::__construct();
+    parent::__construct();
+    $this->title = __('Actions');
+    $this->html_block_id = 'ActionsModule';
 
-    public $uid;
-
-    public $outer_template = 'outer_public_side_module.tpl';
-
-    function __construct() {
-        parent::__construct();
-        parent::__construct();
-        $this->title = __('Actions');
-        $this->html_block_id = 'ActionsModule';
-    }
+  }
 
     /** !!
      * This handles the situation that there has been no inner_HTML generated
@@ -67,37 +66,44 @@ class ActionsModule extends Module {
      *
      * @return string $content  The html code specific to this module, and its outer html
     */
-    function render() {
-        $this->inner_HTML = $this->generate_inner_html();
-        if(!$this->inner_HTML) {
-            return "";
-        }
-        $content = parent::render();
-        return $content;
+ function render() {
+    $this->inner_HTML = $this->generate_inner_html();
+    if (! $this->inner_HTML) {
+      return "";
     }
+    $content = parent::render();
+    return $content;
+  }
 
-    /** !!
-       * This figures out what page the module is being used on and generates 
-       * the specific links that are needed for this page.  It implies that
-       * this is to be used as a "tier 3" navigation bar.
-       *
-       * @todo do something about unused parameters
-       */
-    public function initializeModule($request_method, $request_data) {
-        $this->navigation_links = $this->renderer->top_navigation_bar->vars['navigation_links'];
-        $ac                     = (array) @$this->navigation_links['level_3']+(array) @$this->navigation_links['left_user_public_links'];
-        $actions                = array();
-        foreach($ac as $k => $action) {
-            if($k == 'highlight') {
-                continue;
-            }
-            $actions[$k] = $action;
-        }
-        if(empty($actions)) {
-            return 'skip';
-        }
-        $this->actions = $actions;
+  /** !!
+     * This figures out what page the module is being used on and generates 
+     * the specific links that are needed for this page.  It implies that
+     * this is to be used as a "tier 3" navigation bar.
+     *
+     * @todo do something about unused parameters
+     */
+  public function initializeModule($request_method, $request_data) {
+
+     
+    $this->navigation_links =
+    	$this->renderer->top_navigation_bar->vars['navigation_links'];
+
+    $ac =
+	  	(array)@$this->navigation_links['level_3']
+	  	+ (array)@$this->navigation_links['left_user_public_links']
+		  ;
+		  $actions = array();
+		  foreach($ac as $k=>$action) {
+		  	if ($k=='highlight') continue;
+		  	$actions[$k] = $action;
+		  }
+
+
+    if (empty($actions)) {
+      return 'skip';
     }
+    $this->actions = $actions;
+  }
 
     /** !!
      * This generates the page specific html to be passed on to the render function.
@@ -105,13 +111,15 @@ class ActionsModule extends Module {
      *
      * @return string $inner_html  The aforementioned page specific html
      */
-    function generate_inner_html() {
-        // $this->title .= "$page_name";
-        $inner_template = PA::$blockmodule_path.'/'.get_class($this).'/side_inner_public.tpl';
-        $inner_html_gen = &new Template($inner_template, $this);
-        $inner_html_gen->set('actions', $this->actions);
-        $inner_html = $inner_html_gen->fetch();
-        return $inner_html;
-    }
+  function generate_inner_html() {
+
+    // $this->title .= "$page_name";
+    $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
+    $inner_html_gen = & new Template($inner_template, $this);
+    $inner_html_gen->set('actions', $this->actions);
+    $inner_html = $inner_html_gen->fetch();
+    return $inner_html;
+  }
+
 }
 ?>

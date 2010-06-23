@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  * XML-parsing classes to wrap the domxml and DOM extensions for PHP 4
  * and 5, respectively.
@@ -30,7 +31,6 @@
  * @package Yadis
  */
 class Services_Yadis_XMLParser {
-
     /**
      * Initialize an instance of Services_Yadis_XMLParser with some
      * XML and namespaces.  This SHOULD NOT be overridden by
@@ -42,15 +42,18 @@ class Services_Yadis_XMLParser {
      * @return boolean $result True if the initialization and
      * namespace registration(s) succeeded; false otherwise.
      */
-    function init($xml_string, $namespace_map) {
-        if(!$this->setXML($xml_string)) {
+    function init($xml_string, $namespace_map)
+    {
+        if (!$this->setXML($xml_string)) {
             return false;
         }
-        foreach($namespace_map as $prefix => $uri) {
-            if(!$this->registerNamespace($prefix, $uri)) {
+
+        foreach ($namespace_map as $prefix => $uri) {
+            if (!$this->registerNamespace($prefix, $uri)) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -67,7 +70,8 @@ class Services_Yadis_XMLParser {
      * @return boolean $result True if the registration succeeded;
      * false otherwise.
      */
-    function registerNamespace($prefix, $uri) {
+    function registerNamespace($prefix, $uri)
+    {
         // Not implemented.
     }
 
@@ -81,7 +85,8 @@ class Services_Yadis_XMLParser {
      * @return boolean $result True if the initialization succeeded;
      * false otherwise.
      */
-    function setXML($xml_string) {
+    function setXML($xml_string)
+    {
         // Not implemented.
     }
 
@@ -98,7 +103,8 @@ class Services_Yadis_XMLParser {
      * @return array $node_list An array of matching opaque node
      * objects to be used with other methods of this parser class.
      */
-    function evalXPath($xpath, $node = null) {
+    function evalXPath($xpath, $node = null)
+    {
         // Not implemented.
     }
 
@@ -110,7 +116,8 @@ class Services_Yadis_XMLParser {
      *
      * @return string $content The content of this node.
      */
-    function content($node) {
+    function content($node)
+    {
         // Not implemented.
     }
 
@@ -123,7 +130,8 @@ class Services_Yadis_XMLParser {
      * @return array $attrs An array mapping attribute names to
      * values.
      */
-    function attributes($node) {
+    function attributes($node)
+    {
         // Not implemented.
     }
 }
@@ -138,57 +146,69 @@ class Services_Yadis_XMLParser {
  * @package Yadis
  */
 class Services_Yadis_domxml extends Services_Yadis_XMLParser {
-
-    function Services_Yadis_domxml() {
-        $this->xml    = null;
-        $this->doc    = null;
-        $this->xpath  = null;
+    function Services_Yadis_domxml()
+    {
+        $this->xml = null;
+        $this->doc = null;
+        $this->xpath = null;
         $this->errors = array();
     }
 
-    function setXML($xml_string) {
+    function setXML($xml_string)
+    {
         $this->xml = $xml_string;
-        $this->doc = @domxml_open_mem($xml_string, DOMXML_LOAD_PARSING, $this->errors);
-        if(!$this->doc) {
+        $this->doc = @domxml_open_mem($xml_string, DOMXML_LOAD_PARSING,
+                                      $this->errors);
+
+        if (!$this->doc) {
             return false;
         }
+
         $this->xpath = $this->doc->xpath_new_context();
+
         return true;
     }
 
-    function registerNamespace($prefix, $uri) {
+    function registerNamespace($prefix, $uri)
+    {
         return xpath_register_ns($this->xpath, $prefix, $uri);
     }
 
-    function &evalXPath($xpath, $node = null) {
-        if($node) {
+    function &evalXPath($xpath, $node = null)
+    {
+        if ($node) {
             $result = @$this->xpath->xpath_eval($xpath, $node);
-        }
-        else {
+        } else {
             $result = @$this->xpath->xpath_eval($xpath);
         }
-        if(!$result->nodeset) {
+
+        if (!$result->nodeset) {
             $n = array();
             return $n;
         }
+
         return $result->nodeset;
     }
 
-    function content($node) {
-        if($node) {
+    function content($node)
+    {
+        if ($node) {
             return $node->get_content();
         }
     }
 
-    function attributes($node) {
-        if($node) {
+    function attributes($node)
+    {
+        if ($node) {
             $arr = $node->attributes();
             $result = array();
-            if($arr) {
-                foreach($arr as $attrnode) {
+
+            if ($arr) {
+                foreach ($arr as $attrnode) {
                     $result[$attrnode->name] = $attrnode->value;
                 }
             }
+
             return $result;
         }
     }
@@ -204,70 +224,83 @@ class Services_Yadis_domxml extends Services_Yadis_XMLParser {
  * @package Yadis
  */
 class Services_Yadis_dom extends Services_Yadis_XMLParser {
-
-    function Services_Yadis_dom() {
-        $this->xml    = null;
-        $this->doc    = null;
-        $this->xpath  = null;
+    function Services_Yadis_dom()
+    {
+        $this->xml = null;
+        $this->doc = null;
+        $this->xpath = null;
         $this->errors = array();
     }
 
-    function setXML($xml_string) {
+    function setXML($xml_string)
+    {
         $this->xml = $xml_string;
         $this->doc = new DOMDocument;
-        if(!$this->doc) {
+
+        if (!$this->doc) {
             return false;
         }
-        if(!@$this->doc->loadXML($xml_string)) {
+
+        if (!@$this->doc->loadXML($xml_string)) {
             return false;
         }
+
         $this->xpath = new DOMXPath($this->doc);
-        if($this->xpath) {
+
+        if ($this->xpath) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function registerNamespace($prefix, $uri) {
+    function registerNamespace($prefix, $uri)
+    {
         return $this->xpath->registerNamespace($prefix, $uri);
     }
 
-    function &evalXPath($xpath, $node = null) {
-        if($node) {
+    function &evalXPath($xpath, $node = null)
+    {
+        if ($node) {
             $result = @$this->xpath->query($xpath, $node);
-        }
-        else {
+        } else {
             $result = @$this->xpath->query($xpath);
         }
+
         $n = array();
-        for($i = 0; $i < $result->length; $i++) {
+
+        for ($i = 0; $i < $result->length; $i++) {
             $n[] = $result->item($i);
         }
+
         return $n;
     }
 
-    function content($node) {
-        if($node) {
+    function content($node)
+    {
+        if ($node) {
             return $node->textContent;
         }
     }
 
-    function attributes($node) {
-        if($node) {
+    function attributes($node)
+    {
+        if ($node) {
             $arr = $node->attributes;
             $result = array();
-            if($arr) {
-                for($i = 0; $i < $arr->length; $i++) {
+
+            if ($arr) {
+                for ($i = 0; $i < $arr->length; $i++) {
                     $node = $arr->item($i);
                     $result[$node->nodeName] = $node->nodeValue;
                 }
             }
+
             return $result;
         }
     }
 }
+
 $__Services_Yadis_defaultParser = null;
 
 /**
@@ -279,27 +312,19 @@ $__Services_Yadis_defaultParser = null;
  * @param Services_Yadis_XMLParser $parser An instance of a
  * Services_Yadis_XMLParser subclass.
  */
-function Services_Yadis_setDefaultParser(&$parser) {
+function Services_Yadis_setDefaultParser(&$parser)
+{
     global $__Services_Yadis_defaultParser;
-    $__Services_Yadis_defaultParser = &$parser;
+    $__Services_Yadis_defaultParser =& $parser;
 }
+
 global $__Services_Yadis_xml_extensions;
 $__Services_Yadis_xml_extensions = array(
-    'dom' => array(
-        'classname' => 'Services_Yadis_dom',
-        'libname' => array(
-            'dom.so',
-            'dom.dll',
-        ),
-    ),
-    'domxml' => array(
-        'classname' => 'Services_Yadis_domxml',
-        'libname' => array(
-            'domxml.so',
-            'php_domxml.dll',
-        ),
-    ),
-);
+    'dom' => array('classname' => 'Services_Yadis_dom',
+                   'libname' => array('dom.so', 'dom.dll')),
+    'domxml' => array('classname' => 'Services_Yadis_domxml',
+                      'libname' => array('domxml.so', 'php_domxml.dll')),
+    );
 
 /**
  * Returns an instance of a Services_Yadis_XMLParser subclass based on
@@ -307,36 +332,42 @@ $__Services_Yadis_xml_extensions = array(
  * Services_Yadis_setDefaultParser has been called, the parser used in
  * that call will be returned instead.
  */
-function &Services_Yadis_getXMLParser() {
-    global $__Services_Yadis_defaultParser, $__Services_Yadis_xml_extensions;
-    if(isset($__Services_Yadis_defaultParser)) {
+function &Services_Yadis_getXMLParser()
+{
+    global $__Services_Yadis_defaultParser,
+        $__Services_Yadis_xml_extensions;
+
+    if (isset($__Services_Yadis_defaultParser)) {
         return $__Services_Yadis_defaultParser;
     }
+
     $p = null;
     $classname = null;
+
     // Return a wrapper for the resident implementation, if any.
-    foreach($__Services_Yadis_xml_extensions as $name => $params) {
-        if(!extension_loaded($name)) {
-            foreach($params['libname'] as $libname) {
-                if(@dl($libname)) {
+    foreach ($__Services_Yadis_xml_extensions as $name => $params) {
+        if (!extension_loaded($name)) {
+            foreach ($params['libname'] as $libname) {
+                if (@dl($libname)) {
                     $classname = $params['classname'];
                 }
             }
-        }
-        else {
+        } else {
             $classname = $params['classname'];
         }
-        if(isset($classname)) {
+        if (isset($classname)) {
             $p = new $classname();
             return $p;
         }
     }
-    if(!isset($p)) {
+
+    if (!isset($p)) {
         trigger_error('No XML parser was found', E_USER_ERROR);
-    }
-    else {
+    } else {
         Services_Yadis_setDefaultParser($p);
     }
+
     return $p;
 }
+
 ?>

@@ -32,24 +32,18 @@ if(!empty($_GET['check_address'])) {
     $address = trim($_GET['check_address']);
     if(strlen($address) < 3) {
         print '<span class="required">Network address can not have less than 3 characters.</span>';
-    }
-    elseif(strlen($address) > 10) {
+    } else if (strlen($address) > 10) {
         print '<span class="required">Network address can not have more than 10 characters.</span>';
-    }
-    elseif(!Validation::validate_alpha_numeric($address)) {
-        print '<span class="required">Network address can not contain non alpha numeric characters.</span>';
-    }
-    elseif(in_array($address, $invalid_network_address)) {
-        print '<span class="required"> Special subdomain names like ftp, mail, smtp, pop etc. and Special keywords are not allowed in network address.</span>';
-    }
-    elseif(Network::check_already($address)) {
-        print '<span class="required">Network address '.stripslashes($address).' is not available.</span>';
-    }
-    else {
+    } else if ( !Validation::validate_alpha_numeric($address) ) {
+            print '<span class="required">Network address can not contain non alpha numeric characters.</span>';
+    } else if (in_array($address,$invalid_network_address)) {
+          print '<span class="required"> Special subdomain names like ftp, mail, smtp, pop etc. and Special keywords are not allowed in network address.</span>';
+    } else if(Network::check_already ($address)) {
+        print '<span class="required">Network address '. stripslashes($address).' is not available.</span>';
+    } else {
         print '<span class="required">Network address '.stripslashes($address).' is available.</span>';
     }
-}
-else {
+  } else {
     print '<span class="required">Please enter the network address.</span>';
 }
 ?>

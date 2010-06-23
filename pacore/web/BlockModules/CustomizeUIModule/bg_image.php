@@ -10,7 +10,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * @package PeopleAggregator
 */
+
 include "center_inner_private.tpl";
+
 ?>
 
 <div id="background">

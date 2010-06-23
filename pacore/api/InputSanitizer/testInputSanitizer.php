@@ -53,30 +53,48 @@ $input[] = "Title with <b>bold long test that should be truncated. Is it? HELLO?
 $input[] = "Long JP title: ぶいぶいぶいぶいぶいぶいぶいぶい ぶいいいいいいいいいいいいい　いいいいいいいいいいいいいぶいいいいいいいいいいい　ぼぼぼぼぼぼぼぼぼぼぼぼぼぼぼぼぼぼぼ　ととととととととととととっとととととととととととっととと";
 
 */
-$input[] = "<H1>Hallo <p>One test</p> This is <b>a test <img src=blah.gif name=test /><br>
+$input[] = 
+  "<H1>Hallo <p>One test</p> This is <b>a test <img src=blah.gif name=test /><br>
 <div>And another</div>
 <a href='test.html'>A normal Link</a>
 <a href='javascript:alert(date())'>An illegal Link</a>
 ";
-$input[] = "<b>ThisIsOneExtremlyLongStringThatNeedsToBeBrokenIntoSmallerChunks";
-$sDom    = new InputSanitizer(array('h1', 'p', 'b', 'a'), array('href'));
+$input[] = 
+  "<b>ThisIsOneExtremlyLongStringThatNeedsToBeBrokenIntoSmallerChunks";
+
+
+$sDom = new InputSanitizer(
+  array('h1','p','b','a'),
+  array('href')
+);
+
+
 print "\nStripping all HTML:\n";
 run_tests();
+
 print "\nPassing through HTML\n";
 $sDom->htmlAllowedEverywhere = TRUE;
 $sDom->wbr = 15;
 run_tests();
 
 function run_tests() {
-    global $sDom, $input;
-    $rea = $sDom->process($input);
-    foreach($rea as $key => $value) {
-        print "[$key]: ".($value)."\n";
-    }
-    print "\nTruncating:\n";
-    $rea = $sDom->process($input, 20);
-    foreach($rea as $key => $value) {
-        print "[$key]: ".strlen($value)."\n".($value)."\n";
-    }
+  global $sDom, $input;
+
+  $rea =
+    $sDom->process($input);
+  foreach($rea as $key=>$value) {
+    print "[$key]: ".($value)."\n";
+  }
+  
+  print "\nTruncating:\n";
+  
+  $rea =
+    $sDom->process($input, 20);
+  foreach($rea as $key=>$value) {
+    print "[$key]: " . strlen($value) . "\n" . ($value)."\n";
+  }
 }
+
+
+
 ?>

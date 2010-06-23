@@ -11,9 +11,9 @@
 */
 ?>
 <?php
-foreach($mod->availTypes as $type => $label) {
-    $label = $mod->availTypes[$type];
-    ?>
+foreach ($mod->availTypes as $type=>$label) {
+	$label = $mod->availTypes[$type];
+?>
 
 <div class="blog">
 <h1><a href="<?=PA::$url.PA_ROUTE_TYPED_DIRECTORY.$type?>"><?=$label?></a></h1>
@@ -21,7 +21,9 @@ foreach($mod->availTypes as $type => $label) {
 		<div style="float:right;">
 			<form action="<?=PA::$url.'/'.FILE_ADDGROUP?>">
 				<input type="hidden" name="entityType" value="<?=$type?>" />
-				<input type="submit" name="submit" value="<?=sprintf(__("Create new %s"), $label)?>" />
+				<input type="submit" name="submit" value="<?=
+					sprintf(__("Create new %s"), $label)
+					?>" />
 			</form>
 		</div>
 	
@@ -29,5 +31,4 @@ foreach($mod->availTypes as $type => $label) {
 	
 	</div>
 </div>
-<?
-}?>
+<? } ?>

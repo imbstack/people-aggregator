@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  * This is the PHP OpenID library by JanRain, Inc.
  *
@@ -97,19 +98,22 @@ define('Auth_OpenID_DO_ABOUT', 'do_about');
 /**
  * Defines for regexes and format checking.
  */
-define('Auth_OpenID_letters', "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-define('Auth_OpenID_digits', "0123456789");
-define('Auth_OpenID_punct', "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
+define('Auth_OpenID_letters',
+       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+define('Auth_OpenID_digits',
+       "0123456789");
+
+define('Auth_OpenID_punct',
+       "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 
 /**
  * These namespaces are automatically fixed in query arguments by
  * Auth_OpenID::fixArgs.
  */
 global $_Auth_OpenID_namespaces;
-$_Auth_OpenID_namespaces = array(
-    'openid',
-    'sreg',
-);
+$_Auth_OpenID_namespaces = array('openid',
+                                 'sreg');
 
 /**
  * The OpenID utility function class.
@@ -125,23 +129,26 @@ class Auth_OpenID {
      * @access private
      * @param array $args An associative array of URL query arguments
      */
-    function fixArgs($args) {
+    function fixArgs($args)
+    {
         global $_Auth_OpenID_namespaces;
-        foreach(array_keys($args) as $key) {
+        foreach (array_keys($args) as $key) {
             $fixed = $key;
-            if(preg_match('/^openid/', $key)) {
-                foreach($_Auth_OpenID_namespaces as $ns) {
-                    if(preg_match('/'.$ns.'_/', $key)) {
+            if (preg_match('/^openid/', $key)) {
+                foreach ($_Auth_OpenID_namespaces as $ns) {
+                    if (preg_match('/'.$ns.'_/', $key)) {
                         $fixed = preg_replace('/'.$ns.'_/', $ns.'.', $fixed);
                     }
                 }
-                if($fixed != $key) {
+
+                if ($fixed != $key) {
                     $val = $args[$key];
                     unset($args[$key]);
                     $args[$fixed] = $val;
                 }
             }
         }
+
         return $args;
     }
 
@@ -152,15 +159,14 @@ class Auth_OpenID {
      *
      * @access private
      */
-    function ensureDir($dir_name) {
-        if(is_dir($dir_name) || @mkdir($dir_name)) {
+    function ensureDir($dir_name)
+    {
+        if (is_dir($dir_name) || @mkdir($dir_name)) {
             return true;
-        }
-        else {
-            if(Auth_OpenID::ensureDir(dirname($dir_name))) {
+        } else {
+            if (Auth_OpenID::ensureDir(dirname($dir_name))) {
                 return is_dir($dir_name) || @mkdir($dir_name);
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -171,17 +177,17 @@ class Auth_OpenID {
      *
      * @access private
      */
-    function arrayGet($arr, $key, $fallback = null) {
-        if(is_array($arr)) {
-            if(array_key_exists($key, $arr)) {
+    function arrayGet($arr, $key, $fallback = null)
+    {
+        if (is_array($arr)) {
+            if (array_key_exists($key, $arr)) {
                 return $arr[$key];
-            }
-            else {
+            } else {
                 return $fallback;
             }
-        }
-        else {
-            trigger_error("Auth_OpenID::arrayGet expected "."array as first parameter", E_USER_WARNING);
+        } else {
+            trigger_error("Auth_OpenID::arrayGet expected " .
+                          "array as first parameter", E_USER_WARNING);
             return false;
         }
     }
@@ -197,13 +203,13 @@ class Auth_OpenID {
      * pairs from $data into a URL query string
      * (e.g. "username=bob&id=56").
      */
-    function httpBuildQuery($data) {
+    function httpBuildQuery($data)
+    {
         $pairs = array();
-        foreach($data as $key => $value) {
-            if(is_array($value)) {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
                 $pairs[] = urlencode($value[0])."=".urlencode($value[1]);
-            }
-            else {
+            } else {
                 $pairs[] = urlencode($key)."=".urlencode($value);
             }
         }
@@ -224,32 +230,33 @@ class Auth_OpenID {
      * @return string $url The original URL with the new parameters added.
      *
      */
-    function appendArgs($url, $args) {
-        if(count($args) == 0) {
+    function appendArgs($url, $args)
+    {
+        if (count($args) == 0) {
             return $url;
         }
+
         // Non-empty array; if it is an array of arrays, use
         // multisort; otherwise use sort.
-        if(array_key_exists(0, $args) && is_array($args[0])) {
+        if (array_key_exists(0, $args) &&
+            is_array($args[0])) {
             // Do nothing here.
-        }
-        else {
+        } else {
             $keys = array_keys($args);
             sort($keys);
             $new_args = array();
-            foreach($keys as $key) {
-                $new_args[] = array(
-                    $key,
-                    $args[$key],
-                );
+            foreach ($keys as $key) {
+                $new_args[] = array($key, $args[$key]);
             }
             $args = $new_args;
         }
+
         $sep = '?';
-        if(strpos($url, '?') !== false) {
+        if (strpos($url, '?') !== false) {
             $sep = '&';
         }
-        return $url.$sep.Auth_OpenID::httpBuildQuery($args);
+
+        return $url . $sep . Auth_OpenID::httpBuildQuery($args);
     }
 
     /**
@@ -267,19 +274,20 @@ class Auth_OpenID {
      *
      * @access private
      */
-    function quoteMinimal($s) {
+    function quoteMinimal($s)
+    {
         $res = array();
-        for($i = 0; $i < strlen($s); $i++) {
+        for ($i = 0; $i < strlen($s); $i++) {
             $c = $s[$i];
-            if($c >= "\x80") {
-                for($j = 0; $j < count(utf8_encode($c)); $j++) {
+            if ($c >= "\x80") {
+                for ($j = 0; $j < count(utf8_encode($c)); $j++) {
                     array_push($res, sprintf("%02X", ord($c[$j])));
                 }
-            }
-            else {
+            } else {
                 array_push($res, $c);
             }
         }
+    
         return implode('', $res);
     }
 
@@ -298,27 +306,38 @@ class Auth_OpenID {
      * @return string $url The URL resulting from assembling the
      * specified components.
      */
-    function urlunparse($scheme, $host, $port = null, $path = '/', $query = '', $fragment = '') {
-        if(!$scheme) {
+    function urlunparse($scheme, $host, $port = null, $path = '/',
+                                    $query = '', $fragment = '')
+    {
+
+        if (!$scheme) {
             $scheme = 'http';
         }
-        if(!$host) {
+
+        if (!$host) {
             return false;
         }
-        if(!$path) {
+
+        if (!$path) {
             $path = '/';
         }
-        $result = $scheme."://".$host;
-        if($port) {
-            $result .= ":".$port;
+
+        $result = $scheme . "://" . $host;
+
+        if ($port) {
+            $result .= ":" . $port;
         }
+
         $result .= $path;
-        if($query) {
-            $result .= "?".$query;
+
+        if ($query) {
+            $result .= "?" . $query;
         }
-        if($fragment) {
-            $result .= "#".$fragment;
+
+        if ($fragment) {
+            $result .= "#" . $fragment;
         }
+
         return $result;
     }
 
@@ -332,44 +351,68 @@ class Auth_OpenID {
      * @return mixed $new_url The URL after normalization, or null if
      * $url was malformed.
      */
-    function normalizeUrl($url) {
-        if($url === null) {
+    function normalizeUrl($url)
+    {
+        if ($url === null) {
             return null;
         }
+
         assert(is_string($url));
+
         $old_url = $url;
         $url = trim($url);
-        if(strpos($url, "://") === false) {
-            $url = "http://".$url;
+
+        if (strpos($url, "://") === false) {
+            $url = "http://" . $url;
         }
+
         $parsed = @parse_url($url);
-        if($parsed === false) {
+
+        if ($parsed === false) {
             return null;
         }
+
         $defaults = array(
-            'scheme'   => '',
-            'host'     => '',
-            'path'     => '',
-            'query'    => '',
-            'fragment' => '',
-            'port'     => '',
-        );
+                          'scheme' => '',
+                          'host' => '',
+                          'path' => '',
+                          'query' => '',
+                          'fragment' => '',
+                          'port' => ''
+                          );
+
         $parsed = array_merge($defaults, $parsed);
-        if(($parsed['scheme'] == '') || ($parsed['host'] == '')) {
-            if($parsed['path'] == '' && $parsed['query'] == '' && $parsed['fragment'] == '') {
+
+        if (($parsed['scheme'] == '') ||
+            ($parsed['host'] == '')) {
+            if ($parsed['path'] == '' &&
+                $parsed['query'] == '' &&
+                $parsed['fragment'] == '') {
                 return null;
             }
-            $url    = 'http://'+$url;
+
+            $url = 'http://' + $url;
             $parsed = parse_url($url);
+
             $parsed = array_merge($defaults, $parsed);
         }
-        $tail = array_map(array('Auth_OpenID', 'quoteMinimal'), array($parsed['path'], $parsed['query'], $parsed['fragment']));
-        if($tail[0] == '') {
+
+        $tail = array_map(array('Auth_OpenID', 'quoteMinimal'),
+                          array($parsed['path'],
+                                $parsed['query'],
+                                $parsed['fragment']));
+        if ($tail[0] == '') {
             $tail[0] = '/';
         }
-        $url = Auth_OpenID::urlunparse($parsed['scheme'], $parsed['host'], $parsed['port'], $tail[0], $tail[1], $tail[2]);
+
+        $url = Auth_OpenID::urlunparse($parsed['scheme'], $parsed['host'],
+                                       $parsed['port'], $tail[0], $tail[1],
+                                       $tail[2]);
+
         assert(is_string($url));
+
         return $url;
     }
 }
+
 ?>

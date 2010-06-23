@@ -26,29 +26,34 @@ class DbUpdate {
      * database errors.)
      */
     public static function get_valid_networks() {
-        $sth = Dal::query("SHOW TABLES");
-        $tables = array();
-        while($r = Dal::row($sth)) {
-            $tables[$r[0]] = 1;
-        }
-        $sth = Dal::query("SELECT address FROM networks WHERE is_active=1");
-        $networks = array();
-        while($r = Dal::row($sth)) {
-            $address = $r[0];
-            if($address == 'default' || isset($tables[$address."_comments"])) {
-                // comments table available - assume network has been initialised
-                $networks[] = $address;
-            }
-        }
-        // if we haven't run net_extra yet, the default network won't have an entry, so we add it in manually now.
-        if(!in_array("default", $networks)) {
-            $networks[] = "default";
-        }
-        return $networks;
+	$sth = Dal::query("SHOW TABLES");
+	$tables = array();
+	while ($r = Dal::row($sth)) {
+	    $tables[$r[0]] = 1;
+	}
+
+	$sth = Dal::query("SELECT address FROM networks WHERE is_active=1");
+	$networks = array();
+	while ($r = Dal::row($sth)) {
+	    $address = $r[0];
+	    if ($address == 'default' || isset($tables[$address."_comments"])) {
+		// comments table available - assume network has been initialised
+		$networks[] = $address;
+	    }
+	}
+
+	// if we haven't run net_extra yet, the default network won't have an entry, so we add it in manually now.
+	if (!in_array("default", $networks)) {
+	    $networks[] = "default";
+	}
+	return $networks;
     }
+
     // Check for the <net name>_comments table - to ensure that a network exists
     public static function is_network_valid($network_name) {
-        return Dal::query_first("SHOW TABLES LIKE '".Dal::quote($network_name)."_comments'") ? TRUE : FALSE;
+	return Dal::query_first("SHOW TABLES LIKE '".Dal::quote($network_name)."_comments'") ? TRUE : FALSE;
     }
+
 }
+
 ?>

@@ -13,8 +13,9 @@
 <?php
  
 if(is_object($tiny_mce)) {
-    echo $tiny_mce->installTinyMCE();
+  echo $tiny_mce->installTinyMCE();
 }
+
 ?>
 
   <div class="forums">
@@ -31,7 +32,7 @@ if(is_object($tiny_mce)) {
       <tr>
         <td></td>
         <td colspan="1" class="spacer">
-          <?php include("forum_header.tpl.php");?>
+          <?php include("forum_header.tpl.php"); ?>
         </td>
         <td></td>
       </tr>
@@ -61,7 +62,7 @@ if(is_object($tiny_mce)) {
                   <thead>
                     <tr>
                       <th class="thead align_center" width="100%">
-                        <?php echo "<b>".__($title)."</b> "?>
+                        <?php echo "<b>".__($title) ."</b> " ?>
                       </th>
                     </tr>
                   </thead>
@@ -70,52 +71,44 @@ if(is_object($tiny_mce)) {
                       <td class="alt1">
                         <div class="edit_reply">
 <!--                        
-                          <form name="edit_form" action="<?="$forums_url/action=".$action?>" method="POST" id="edit_form" class="reply_form">
+                          <form name="edit_form" action="<?= "$forums_url/action=". $action ?>" method="POST" id="edit_form" class="reply_form">
 -->                          
-                          <form name="edit_form" action="<?=$forums_url?>" method="POST" id="edit_form" class="reply_form">
-                            <?php foreach($fields['fields'] as $field) { :?>
-                            <div class="<?=$field['class']?>">
-                              <label for="form_data_<?=$field['name']?>">
-                                <?php if($field['required']) { :?>
+                          <form name="edit_form" action="<?= $forums_url ?>" method="POST" id="edit_form" class="reply_form">
+                            <?php foreach($fields['fields'] as $field) : ?>
+                            <div class="<?= $field['class'] ?>">
+                              <label for="form_data_<?= $field['name'] ?>">
+                                <?php if($field['required']) : ?>
                                   <span class="required">*</span>
-                                <?php endif;
-    }
-}?>  
-                                <?=__($field['label'])?>:
+                                <?php endif; ?>  
+                                <?= __($field['label']) ?>:
                               </label>
-                              <?php if($field['type'] == 'text') { :?>
-                                <input type="text" name="form_data[<?=$field['name']?>]" id="form_data_<?=$field['name']?>" value="<?=(!empty($field['content'])) ? $field['content'] : null?>" />
-                              <?php elseif($field['type'] == 'textarea') { :?>
-                                <textarea name="form_data[<?=$field['name']?>]" id="form_data_<?=$field['name']?>" >
-                                  <?=(!empty($field['content'])) ? $field['content'] : null?>
+                              <?php if($field['type'] == 'text') : ?>
+                                <input type="text" name="form_data[<?= $field['name'] ?>]" id="form_data_<?= $field['name'] ?>" value="<?= (!empty($field['content'])) ? $field['content'] : null ?>" />
+                              <?php elseif($field['type'] == 'textarea') : ?>
+                                <textarea name="form_data[<?= $field['name'] ?>]" id="form_data_<?= $field['name'] ?>" >
+                                  <?= (!empty($field['content'])) ? $field['content'] : null ?>
                                 </textarea>
-                              <?php elseif($field['type'] == 'checkbox') { :?>
-                                <input type="checkbox" name="form_data[<?=$field['name']?>]" id="form_data_<?=$field['name']?>" <?=(($field['content']) == 'checked') ? "checked" : null?> />
-                              <?php elseif($field['type'] == 'select') { : $selected = (isset($field['content']['selected'])) ? $field['content']['selected'] : null?>
-                                <select name="form_data[<?=$field['name']?>]" id="form_data_<?=$field['name']?>" >
-                                <?php foreach($field['content']['options'] as $value => $name) { :?>
-                                  <option value="<?=$value?>" <?=(($value == $selected) ? "selected=\"selected\"" : null)?> ><?=$name?></option>
-                                <?php endforeach;
-                }
-            }
-        }
-    }
-}?>
+                              <?php elseif($field['type'] == 'checkbox') : ?>
+                                <input type="checkbox" name="form_data[<?= $field['name'] ?>]" id="form_data_<?= $field['name'] ?>" <?= (($field['content']) == 'checked') ? "checked" : null ?> />
+                              <?php elseif($field['type'] == 'select') : $selected = (isset($field['content']['selected'])) ? $field['content']['selected'] : null ?>
+                                <select name="form_data[<?= $field['name'] ?>]" id="form_data_<?= $field['name'] ?>" >
+                                <?php foreach($field['content']['options'] as $value => $name) : ?>
+                                  <option value="<?=$value ?>" <?=(($value == $selected) ? "selected=\"selected\"" : null)?> ><?=$name?></option>
+                                <?php endforeach; ?>
                                 </select>  
-                              <?php endif;?>
+                              <?php endif; ?>
                             </div>
-                            <?php endforeach;?>
-                            <?php foreach($fields['hidden_fields'] as $h_field_name => $h_field_value) { :?>
-                              <input name="<?=$h_field_name?>" id="<?=$h_field_name?>" type="hidden" value="<?=(!empty($h_field_value)) ? $h_field_value : null?>" />
-                            <?php endforeach;
-}?>
-                            <input name="action" id="action" type="hidden" value="<?=$action?>" />
+                            <?php endforeach; ?>
+                            <?php foreach($fields['hidden_fields'] as $h_field_name => $h_field_value) : ?>
+                              <input name="<?= $h_field_name ?>" id="<?= $h_field_name ?>" type="hidden" value="<?= (!empty($h_field_value)) ? $h_field_value : null ?>" />
+                            <?php endforeach; ?>
+                            <input name="action" id="action" type="hidden" value="<?= $action ?>" />
                             <div class="buttons_panel">
-                            <a href="<?=$back_url?>">
-                              <img src="<?php echo $theme_url."/images/buttons/".PA::$language."/cancel.gif"?>" alt="cancel" class="forum_buttons"/>
+                            <a href="<?= $back_url ?>">
+                              <img src="<?php echo $theme_url . "/images/buttons/" . PA::$language . "/cancel.gif" ?>" alt="cancel" class="forum_buttons"/>
                             </a>&nbsp;
                             <a href="#" onclick="javascript: document.forms['edit_form'].submit(); return false;">
-                              <img src="<?php echo $theme_url."/images/buttons/".PA::$language."/send.gif"?>" alt="send" class="forum_buttons"/>
+                              <img src="<?php echo $theme_url . "/images/buttons/" . PA::$language . "/send.gif" ?>" alt="send" class="forum_buttons"/>
                             </a>
                             </div>
                           </form>

@@ -11,6 +11,7 @@
 */
 ?>
 <?php
+
 /**
  * CryptUtil: A suite of wrapper utility functions for the OpenID
  * library.
@@ -25,8 +26,8 @@
  * @copyright 2005 Janrain, Inc.
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  */
-if(!defined('Auth_OpenID_RAND_SOURCE')) {
 
+if (!defined('Auth_OpenID_RAND_SOURCE')) {
     /**
      * The filename for a source of random bytes. Define this yourself
      * if you have a different source of randomness.
@@ -35,7 +36,6 @@ if(!defined('Auth_OpenID_RAND_SOURCE')) {
 }
 
 class Auth_OpenID_CryptUtil {
-
     /**
      * Get the specified number of random bytes.
      *
@@ -49,30 +49,30 @@ class Auth_OpenID_CryptUtil {
      * @param int $num_bytes The length of the return value
      * @return string $bytes random bytes
      */
-    function getBytes($num_bytes) {
+    function getBytes($num_bytes)
+    {
         static $f = null;
         $bytes = '';
-        if($f === null) {
-            if(Auth_OpenID_RAND_SOURCE === null) {
+        if ($f === null) {
+            if (Auth_OpenID_RAND_SOURCE === null) {
                 $f = false;
-            }
-            else {
+            } else {
                 $f = @fopen(Auth_OpenID_RAND_SOURCE, "r");
-                if($f === false) {
-                    $msg = 'Define Auth_OpenID_RAND_SOURCE as null to '.' continue with an insecure random number generator.';
+                if ($f === false) {
+                    $msg = 'Define Auth_OpenID_RAND_SOURCE as null to ' .
+                        ' continue with an insecure random number generator.';
                     trigger_error($msg, E_USER_ERROR);
                 }
             }
         }
-        if($f === false) {
+        if ($f === false) {
             // pseudorandom used
             $bytes = '';
-            for($i = 0; $i < $num_bytes; $i += 4) {
+            for ($i = 0; $i < $num_bytes; $i += 4) {
                 $bytes .= pack('L', mt_rand());
             }
             $bytes = substr($bytes, 0, $num_bytes);
-        }
-        else {
+        } else {
             $bytes = fread($f, $num_bytes);
         }
         return $bytes;
@@ -89,26 +89,33 @@ class Auth_OpenID_CryptUtil {
      * @return string $result A string of randomly-chosen characters
      * from $chrs
      */
-    function randomString($length, $population = null) {
-        if($population === null) {
+    function randomString($length, $population = null)
+    {
+        if ($population === null) {
             return Auth_OpenID_CryptUtil::getBytes($length);
         }
+
         $popsize = strlen($population);
-        if($popsize > 256) {
-            $msg = 'More than 256 characters supplied to '.__FUNCTION__;
+
+        if ($popsize > 256) {
+            $msg = 'More than 256 characters supplied to ' . __FUNCTION__;
             trigger_error($msg, E_USER_ERROR);
         }
-        $duplicate = 256%$popsize;
+
+        $duplicate = 256 % $popsize;
+
         $str = "";
-        for($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             do {
                 $n = ord(Auth_OpenID_CryptUtil::getBytes(1));
-            }
-            while($n < $duplicate);
+            } while ($n < $duplicate);
+
             $n %= $popsize;
             $str .= $population[$n];
         }
+
         return $str;
     }
 }
+
 ?>

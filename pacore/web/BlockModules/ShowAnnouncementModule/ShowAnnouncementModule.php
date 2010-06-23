@@ -33,38 +33,37 @@ require_once "api/Announcement/Announcement.php";
  */
 class ShowAnnouncementModule extends Module {
 
-    public $module_type = 'network';
+  public $module_type = 'network';
+  public $module_placement = 'middle';
+  public $outer_template = 'outer_public_center_module.tpl';
 
-    public $module_placement = 'middle';
+   function __construct() {
+    parent::__construct();
+    $this->html_block_id = "ShowAnnouncementModule";
+    $this->main_block_id = "mod_announcement";
+    $this->title = __('Announcements');
+  }
 
-    public $outer_template = 'outer_public_center_module.tpl';
+  function render() {
+    $condition['live'] = ANNOUNCE_LIVE; //live announcements having status = '1'
+    $param = array();
+    $this->announcement = Announcement::load_announcements_array($param, $condition);
+    $this->inner_HTML = $this->generate_inner_html($this->announcement); 
+    $announcement = parent::render();
+    return $announcement;
+  }
 
-    function __construct() {
-        parent::__construct();
-        $this->html_block_id = "ShowAnnouncementModule";
-        $this->main_block_id = "mod_announcement";
-        $this->title = __('Announcements');
+  function generate_inner_html ($announcement) {
+     
+    // global var $_base_url has been removed - please, use PA::$url static variable
+
+    $inner_html = '';    
+    if ($announcement) {
+      //generating tpl for each announcement
+      for ($i = 0; $i < count($announcement); $i++) {
+          $inner_html .= uihelper_generate_center_content($announcement[$i]['content_id']);
+      }
     }
-
-    function render() {
-        $condition['live'] = ANNOUNCE_LIVE;
-        //live announcements having status = '1'
-        $param = array();
-        $this->announcement = Announcement::load_announcements_array($param, $condition);
-        $this->inner_HTML = $this->generate_inner_html($this->announcement);
-        $announcement = parent::render();
-        return $announcement;
-    }
-
-    function generate_inner_html($announcement) {
-        // global var $_base_url has been removed - please, use PA::$url static variable
-        $inner_html = '';
-        if($announcement) {
-            //generating tpl for each announcement
-            for($i = 0; $i < count($announcement); $i++) {
-                $inner_html .= uihelper_generate_center_content($announcement[$i]['content_id']);
-            }
-        }
-        return $inner_html;
-    }
+    return $inner_html;
+  }
 }
