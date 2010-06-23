@@ -1440,7 +1440,7 @@
           <value>english</value>
         </default_language>
         <network_skin category="item" section="network_defaults" readonly="false" type="string">
-          <value>dream_place</value>
+          <value>defaults</value>
         </network_skin>
       </value>
     </network_defaults>
