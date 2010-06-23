@@ -112,12 +112,12 @@ if (($action == 'save' || $action == 'store_as_defaults' || $action == 'update_u
     $form_data['extra']['notify_owner'][$k]['value']=$s;
   }
   foreach ($notify_members as $k => $v) {
-    if($v['value'] <> -1) {
+    if(!isset($v['value']) || $v['value'] <> -1) {
       $emailVal = (empty($_POST[$k.'_email']))?0:1;
       $msgVal = (empty($_POST[$k.'_msg']))?0:1;
       $settableVal = (empty($_POST[$k.'_settable']))?0:1;
       $s = find_sum($emailVal, $msgVal);
-      $form_data['extra']['notify_members'][$k]['caption'] = $v['caption'];
+      $form_data['extra']['notify_members'][$k]['caption'] = (isset($v['caption'])) ? $v['caption'] : "";
       $form_data['extra']['notify_members'][$k]['value'] = $s;
       $form_data['extra']['notify_members'][$k]['user_settable'] = $settableVal;
     }
