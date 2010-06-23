@@ -80,7 +80,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
         }
           } else {
             //image hidden
-            $header_image = $network_image = trim($_form['header_image']);
+            $header_image = $network_image = $temp_data['header_image'];
           }
           //code to upload the icon image
           if (!empty($_FILES['inner_logo_image']['name'])) {
