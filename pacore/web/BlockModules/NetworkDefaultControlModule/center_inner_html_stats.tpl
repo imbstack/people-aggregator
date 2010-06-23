@@ -148,7 +148,6 @@ $extra = unserialize($mother_network_info->extra);
     <input type="checkbox" name="language_bar_enabled" value="<?= NET_YES ?>" <?php if (@$form_data['language_bar_enabled'] == NET_YES) { echo 'checked="checked"'; }?> />
     <?= __("You want to enable the languages menu bar.") ?>
   </div>
- <?php if ($meta_network_reci_relation) {?>    
   <div class="field">
     <input type="checkbox" name="top_navigation_bar" value="<?php echo NET_YES;?>"
     <?php if ($form_data['top_navigation_bar'] == NET_NO) {
@@ -169,21 +168,7 @@ $extra = unserialize($mother_network_info->extra);
     <?php if (@$form_data['captcha_required'] == NET_YES) {
     echo 'checked="checked"'; }?> /> <?= __("CAPTCHA is required during registration.") ?>
   </div>
-  <? } else { ?>
-  <div class="field">
-    <?php echo (@$extra['reciprocated_relationship'] == NET_YES) ? __("Reciprocated relationships are required.")
-                                                                 : __("Reciprocated relationships are not required."); ?>
-  </div>
-  <div class="field">
-    <?php echo (@$extra['email_validation'] == NET_YES) ? __("Email address validation is required.")
-                                                        : __("Email address validation is not required."); ?>
-  </div>
-  <div class="field">
-    <?php echo (@$extra['captcha_required'] == NET_YES) ? __("CAPTCHA is required during registration.")
-                                                        : __("CAPTCHA is not required during registration."); ?>
-  </div>
-  <? } ?>
-   <div class="button_position">
+     <div class="button_position">
      <input type="hidden" name="action" id="action_1" value="<? echo @$form_data['action'];?>" />
      <input type="hidden" name="nid" value="<? echo PA::$network_info->network_id; ?>" />
      <input type="hidden" name="config_action" id="config_action_1" value="" />
