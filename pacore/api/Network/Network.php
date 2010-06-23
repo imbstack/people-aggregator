@@ -1170,6 +1170,8 @@ class Network {
   *            $params['direction']=> DESC - order by clause
   *            $params['page']=> 2 - page number 2
   *            $params['show']=> 5 - show 5 records
+  *	       $params['also_search_fullname'] => true - will match against user's
+  *	        first, last, and full (combined) name as well as their username
   *  @return   type array
   *            returns array of members of n/w
   */
@@ -1187,13 +1189,13 @@ class Network {
     $data = array();
     $notshow = UNVERIFIED;
     if(isset($params['show_waiting_users']) && ($params['show_waiting_users'] == true)){
-       $sql = "SELECT NU.user_id, NU.network_id, NU.user_type, U.*
+       $sql = "SELECT DISTINCT U.user_id, NU.user_id, NU.network_id, NU.user_type, U.*
                FROM {networks_users} AS NU, {users} AS U
                WHERE NU.network_id = ?
                AND NU.user_id = U.user_id
                AND U.is_active <> ? ";
        //count query to find total members
-       $sql_count = "SELECT count(*) AS CNT
+       $sql_count = "SELECT count(DISTINCT U.user_id) AS CNT
                FROM {networks_users} AS NU, {users} AS U
                WHERE NU.network_id = ?
                AND NU.user_id = U.user_id
@@ -1221,8 +1223,19 @@ class Network {
     }
     //we have search criteria
     if (!empty($params['search_keyword'])) {
-      $sql.=" AND U.login_name LIKE '%". $params['search_keyword'] ."%' ";
-      $sql_count.=" AND U.login_name LIKE '%". $params['search_keyword'] ."%' ";
+      $sql.=" AND ( U.login_name LIKE '%". $params['search_keyword'] ."%' ";
+      $sql_count.=" AND ( U.login_name LIKE '%". $params['search_keyword'] ."%' ";
+        // If we want to search for the full name, not just username
+        if(isset($params['also_search_fullname']) && ($params['also_search_fullname'] == true)) {
+                $sql .= "OR U.first_name LIKE '%" . $params['search_keyword'] . "%'    
+                         OR U.last_name LIKE '%" . $params['search_keyword'] . "%'
+                         OR CONCAT(U.first_name, ' ',U.last_name) LIKE '%" . $params['search_keyword'] . "%'";
+                $sql_count .=  "OR U.first_name LIKE '%" . $params['search_keyword'] . "%'
+                                OR U.last_name LIKE '%" . $params['search_keyword'] . "%'
+                                OR CONCAT(U.first_name, ' ',U.last_name) LIKE '%" . $params['search_keyword'] . "%'";
+      }
+      $sql .= ")";
+      $sql_count .= ")";
     }
     // if we are intersted in getting total records only then return count
     if ((!empty($params['cnt'])) && ($params['cnt'] == TRUE)) {
