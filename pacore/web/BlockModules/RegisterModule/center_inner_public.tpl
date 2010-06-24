@@ -142,7 +142,7 @@
         </div>
 
           <div class="field_medium">
-            <input type="checkbox" name="chkbox_agree" id="chkbox_agree" checked="checked" value="1"/><?= sprintf(__("I have read and agree to the %s <a href='%s/terms.php' target='_blank'>Terms and Conditions</a>"), PA::$site_name, PA::$url) ?>.
+            <input type="checkbox" name="chkbox_agree" id="chkbox_agree" checked="checked" value="1"/><?= sprintf(__("I have read and agree to the %s <a href='%s/terms.php' target='_blank'><b>Terms and Conditions</b></a>"), PA::$site_name, PA::$url) ?>.
           </div>
           <?php if (@$extra['captcha_required'] == NET_YES) { // added by Z.Hron - if captcha is required ?>
           <div class="capcha_image" style="margin-left:36px;">

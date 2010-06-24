@@ -9,8 +9,7 @@
 * @copyright Copyright (c) 2010 Broadband Mechanics
 * @package PeopleAggregator
 */
-?>
-<?php
+
 $login_required = TRUE;
 define("ROUTE_TO_ALL", -1);
 define("ROUTE_TO_NONE", -2);
@@ -412,7 +411,7 @@ function setup_module($column, $moduleName, $obj) {
 
 $page = new PageRenderer("setup_module", PAGE_POSTCONTENT, "Create content", "container_one_column_postcontent.tpl", "header.tpl", PRI, HOMEPAGE, PA::$network_info);
 
-// load JQzery forms Plugin
+// load JQuery forms Plugin
 $page->add_header_html(js_includes('forms.js'));
 // and the modal overlay functions
 $page->add_header_html(js_includes('attach_media_modal.js'));
