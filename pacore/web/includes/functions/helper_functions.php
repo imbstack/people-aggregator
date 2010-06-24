@@ -37,31 +37,33 @@ function get_svn_version() {
 		$f = fopen($entries_fn, "rt");
 		$line = trim(fgets($f));
 		if (preg_match("/^<"."\?xml/", $line)) {
-// pre v1.4 svn entries file
-$dom = new DOMDocument;
-@$dom->load($entries_fn);
-$xp = new DOMXPath($dom);
-$xp->registerNamespace("svn", "svn:");
-$entries = $xp->query("//svn:entry[1]");
-if ($entries->length) {
-	$entry = $entries->item(0);
-	$url = $xp->query("@url", $entry)->item(0)->nodeValue;
-	$rev = $xp->query("@revision", $entry)->item(0)->nodeValue;
-	$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
-} else {
-	$svn_text = 'svn xml?';
-}
+			// pre v1.4 svn entries file
+			$dom = new DOMDocument;
+			@$dom->load($entries_fn);
+			$xp = new DOMXPath($dom);
+			$xp->registerNamespace("svn", "svn:");
+			$entries = $xp->query("//svn:entry[1]");
+			if ($entries->length) {
+				$entry = $entries->item(0);
+				$url = $xp->query("@url", $entry)->item(0)->nodeValue;
+				$rev = $xp->query("@revision", $entry)->item(0)->nodeValue;
+				$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
+			} else {
+				$svn_text = 'svn xml?';
+			}
 		} elseif (is_numeric($line)) {
-// post v1.4 entries file?
-fgets($f); fgets($f);
-$rev = trim(fgets($f));
-$url = trim(fgets($f));
-if (is_numeric($rev) && preg_match("/^http/", $url)) {
-	$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
-} else $svn_text = 'svn new?';
+			// post v1.4 entries file?
+			fgets($f); fgets($f);
+			$rev = trim(fgets($f));
+			$url = trim(fgets($f));
+			if (is_numeric($rev) && preg_match("/^http/", $url)) {
+				$svn_text = "<a target='_blank' href='$url'>svn r$rev</a>";
+			} else $svn_text = 'svn new?';
 		} else {
-$svn_text = "svn fmt?";
+			$svn_text = "svn fmt?";
 		}
+	} else if (file_exists("config/VERSION.txt")) {
+		$svn_text = file_get_contents("config/VERSION.txt");
 	}
 	return $svn_text;
 }
