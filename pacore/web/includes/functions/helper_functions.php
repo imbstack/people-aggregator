@@ -62,8 +62,8 @@ function get_svn_version() {
 		} else {
 			$svn_text = "svn fmt?";
 		}
-	} else if (file_exists("config/VERSION.txt")) {
-		$svn_text = file_get_contents("config/VERSION.txt");
+	} else if (file_exists(PA::$core_dir."/".PA::$config_path."/VERSION.txt")) {
+		$svn_text = file_get_contents(PA::$core_dir."/".PA::$config_path."/VERSION.txt");
 	}
 	return $svn_text;
 }
