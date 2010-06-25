@@ -214,6 +214,9 @@ class NetworkConfig {
   }
 
   public function parseSettingsData($vars_arr, $var_names) {
+    if (!is_array($vars_arr)) {
+    	return $vars_arr;
+    }
     foreach($vars_arr as $key => $value) {
       if(!in_array($key, $var_names) && !array_key_exists($key, $var_names)) {
         unset($vars_arr[$key]);
