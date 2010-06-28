@@ -6,7 +6,6 @@ updated for V2.1 19 August 2009
 updated for V2.2 10 June 2010
 </h3>
 
-THIS IS OLD!!! NEEDS TO BE UPDATED BEFORE RELEASE!!!
 
 Where to find INstallation Guide, and Documentation:
 * General Info etc: http://wiki.peopleaggregator.org
