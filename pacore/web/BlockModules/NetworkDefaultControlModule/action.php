@@ -26,7 +26,7 @@ if ($_form['operation'] == 'create_network') {
 $msg_array = array();
 $msg_array['failure_msg'] = $failure_msg;
 $msg_array['success_msg'] = $succss_msg;
-set_web_variables($msg_array, $redirect_url, $query_str);
+@set_web_variables($msg_array, $redirect_url, $query_str);
 
 
 // Here we made a function for creating the network  ;)
@@ -80,7 +80,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
         }
           } else {
             //image hidden
-            $header_image = $network_image = $temp_data['header_image'];
+            $header_image = $network_image = @$temp_data['header_image'];
           }
           //code to upload the icon image
           if (!empty($_FILES['inner_logo_image']['name'])) {
@@ -102,11 +102,11 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
           //...code to upload the icon image
               $network_basic_controls = PA::$network_defaults;
               $network_basic_controls['basic']['header_image']['name'] = $header_image;
-              $network_basic_controls['basic']['header_image']['option'] = ($_form['header_image_option'])?($_form['header_image_option']):DESKTOP_IMAGE_ACTION_STRETCH;
+              $network_basic_controls['basic']['header_image']['option'] = @($_form['header_image_option'])?($_form['header_image_option']):DESKTOP_IMAGE_ACTION_STRETCH;
               // for title of network group
               $network_basic_controls['network_group_title'] = '';
               $network_basic_controls['network_group_title'] = $_form['network_group_title'];
-              $network_basic_controls['network_content_moderation'] = $_form['network_content_moderation'];
+              $network_basic_controls['network_content_moderation'] = @$_form['network_content_moderation'];
               $temp_data['address'] = strtolower( $temp_data['address'] );
               $data = array(
                 'user_id' => $_SESSION['user']['id'],
@@ -122,7 +122,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
 
               );
         //add icon image
-        if (is_array($data_icon_image) && !empty($data_icon_image['inner_logo_image'])) {
+        if (!empty($data_icon_image['inner_logo_image'])) {
           $data = array_merge($data, $data_icon_image);
           $temp_data['inner_logo_image'] = $data_icon_image['inner_logo_image'];
         }
@@ -145,9 +145,9 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
       }
     }
     $msg_array = array();
-    $msg_array['failure_msg'] = $error_msg;
+    $msg_array['failure_msg'] = @$error_msg;
     $msg_array['success_msg'] = 7006;
-    $return_array = array('msg' => $msg_array, 'redirection_url' => $location, 'query_str' =>$query_str);
+    $return_array = @array('msg' => $msg_array, 'redirection_url' => $location, 'query_str' =>$query_str);
 
   }
 
