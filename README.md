@@ -1,23 +1,25 @@
-DEVELOPER NOTES DRAFT
-20 August 2008
-updated for V2 19 March 2009
-updated for V2.1 19 August 2009
+<h1>DEVELOPER NOTES DRAFT</h1>
+<h2>PeopleAggregator Social Networking Platform</h2>
+<h5>
+updated for V2 19 March 2009<br>
+updated for V2.1 19 August 2009<br>
+updated for V2.2 10 June 2010<br>
+</h5>
 
-THIS IS OLD!!! NEEDS TO BE UPDATED BEFORE RELEASE!!!
+THIS STILL NEEDS MORE UPDATING!
 
-Where to find INstallation Guide, and Documentation:
-* General Info etc: http://wiki.peopleaggregator.org
-* Install Guide: http://wiki.peopleaggregator.org/Installation_guide
-* Documentation: pacore/docs/ and pacore/docs/draft_docs
+<h3>Installation Guide, and Documentation:</h3>
+<li> General Info etc: The wiki on our github page
 
-Where to find this code:
-* Tarball download: http://update.peopleaggregator.org
+<h3>Official Release of PeopleAggregator:</h3>
+<li> Tarball download: http://update.peopleaggregator.org
 
-About this code repository:
+<h3>Unofficial Release:</h3>
+<li> The downloads section at the top of our github page.
+
+<h3>About this code repository:</h3>
 This repository currently provides basic structure for the
 paproject/pacore system implemented in PeopleAggregator V2.
-
-/!\ Please note that the tarball download version is configured as a 'stabdalone' PeopleAggregator, so it has no 'paproject' folder. All references to paproject/web/config/ shoulde be read as pacore/web/config/ if you are using the downloaded tarball release.
 
 To configure this PeopleAggregator, edit the files in 
 the directory paproject/web/config/
@@ -46,7 +48,8 @@ The configuration files outlined below are the basic ones for
 configuring your project.
 
 -------------
-LOCAL CONFIGURATION
+
+<h3>LOCAL CONFIGURATION</h3>
 paproject/config/AppConfig.xml
 Automatically generated in the PA install process - NOT in a repository.  
 It defines elements of a specific site, including DB and other
@@ -55,7 +58,8 @@ Distinctions between dev, staging, and live versions of
 the same project can be captured in this file.
 
 -------------
-STARTUP FILES
+
+<h3>STARTUP FILES</h3>
 The following two files are typically copied from the core system:
 web/dispatcher.php 	-- top level dispatcher for the system.
 project_config.php	-- This top level configuration file is loaded before any other file.
@@ -69,14 +73,17 @@ Also, project specific settings data and variables required by
 the project that should not be overridden by other configuration files.
 
 Developers ordinarily do not modify these files unless instructed by BBM.
+
 -------------
-BASIC PROJECT SETTINGS
+
+<h3>BASIC PROJECT SETTINGS</h3>
 To configure basic project settings, see:
 paproject/config/AppConfig.xml 
  and other files in that directory
 
 -------------
-BASIC SHADOWING
+
+<h3>BASIC SHADOWING<h3>
 To use a different template from the one defined in pacore/web/Themes/Beta/
  - create a file with the same name in paproject/web/Themes/Default/
 
@@ -90,7 +97,8 @@ To create a new module for this project, simply add it
  as paproject/web/BlockModules/MyNewModule
 
 -------------
-ADDING API FUNCTIONS
+
+<h3>ADDING API FUNCTIONS</h3>
 To add project-specific API functions:
 1) Add API extensions in a file named paproject/tools/webapiwrappergen/project_api.api.
 Follow the example provided at:
@@ -105,8 +113,10 @@ a combined descriptor in web/api/lib/api_desc.php.
 
 See the build example at:
  paproject/tools/build_test_api.sh
+
 -------------
-ADD PROJECT-SPECIFIC DB UPDATES
+<h3>ADD PROJECT-SPECIFIC DB UPDATES</h3>
+
 To add project-specific database updates:
 
 Add QUP database update code to:
@@ -115,5 +125,6 @@ Add QUP database update code to:
 See pacore/web/extra/db_update.php for examples of QUP code.
 
 NOTE: Now DB updates are performed from the browser, by visiting:
-<WEB URL>/update/run_scripts.php
+/update/run_scripts.phpi
+
 ------------
