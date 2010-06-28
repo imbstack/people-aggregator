@@ -1,5 +1,5 @@
 <?php
-/** !
+/** ! 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * [filename] is a part of PeopleAggregator.
 * [description including history]
@@ -32,9 +32,10 @@ class NetworkResultUserModule extends Module {
   private function get_links() {
     //get total count
     $param = array( 'network_id'=>PA::$network_info->network_id, 'cnt'=>TRUE,'neglect_owner' =>TRUE );
-    //search by login name
+    //search by login name, including full names also
     if ( !empty($this->keyword) ) {
     	$param['search_keyword'] = $this->keyword;
+	$param['also_search_fullname'] = true;
     }
     $param['sort_by'] = $this->sort_by;
     $param['direction'] = $this->direction;

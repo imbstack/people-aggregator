@@ -779,7 +779,10 @@ html[xmlns*=""] body:last-child .module_tagcloud ul li span { margin-top: 0px; }
 	clear: both;
 	}
 
-.blog { background-image: url(images/bkpost_blog.jpg); }
+.blog {
+       	background-image: url(images/bkpost_blog.jpg); 
+	overflow: auto;
+}
 
 .events { background-image: url(images/bkpost_event.jpg); }
 

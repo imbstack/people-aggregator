@@ -1333,7 +1333,7 @@
       </someone_join_their_group>
       <friend_request_sent>
         <caption>someone has sent them a friend request</caption>
-        <value>3</value>
+        <value>1</value>
         <user_settable>1</user_settable>
       </friend_request_sent>
       <friend_request_denial>
@@ -1348,7 +1348,7 @@
       </bulletin_sent>
       <welcome_message>
         <caption>Welcome message</caption>
-        <value>1</value>
+        <value>0</value>
         <user_settable>0</user_settable>
       </welcome_message>
       <invite_accept_group>
@@ -1440,7 +1440,7 @@
           <value>english</value>
         </default_language>
         <network_skin category="item" section="network_defaults" readonly="false" type="string">
-          <value>dream_place</value>
+          <value>defaults</value>
         </network_skin>
       </value>
     </network_defaults>
