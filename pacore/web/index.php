@@ -140,8 +140,8 @@ echo $message;
 <span class="caption"> <?php echo $info_boxes[4]['caption']?>  </span>
 
          <a href=<?php echo $info_boxes[4]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[4]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-      </div> -->
-</div>
+      </div>
+</div> -->
     </div>
 
 <!-- <div id="survey" class="wide_content">
