@@ -107,7 +107,7 @@ echo $message;
           <h3 class="<?php echo $server_announcement['importance']?>"><?php echo $server_announcement['description']?></h3><hr></div>
         <div id="infocontainer">
 <div style="padding: 20px;">
-      <div id="news" class="infobox">
+      <! -- <div id="news" class="infobox">
       <span class="caption"><?php echo $info_boxes[0]['caption']?> </span>
       <a href=<?php echo $info_boxes[0]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[0]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
           </div>
@@ -140,7 +140,7 @@ echo $message;
 <span class="caption"> <?php echo $info_boxes[4]['caption']?>  </span>
 
          <a href=<?php echo $info_boxes[4]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[4]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-      </div>
+      </div> -->
 </div>
     </div>
 
