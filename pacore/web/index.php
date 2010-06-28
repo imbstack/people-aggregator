@@ -144,13 +144,13 @@ echo $message;
 </div>
     </div>
 
-<div id="survey" class="wide_content">
-<?php
+<! --<div id="survey" class="wide_content">
+<?php/*
 require_once("BlockModules/PollModule/PollModule.php");
 $p = new PollModule();
-echo $p->render();
+echo $p->render();*/
 ?>
-</div>
+</div> -->
  </div>
       <div class="footer">
         <div class="footer_text">copyright 2006 Broadband Mechanics <a href="http://www.broadbandmechanics.com/" target="_blank">About Us</a> | <a href="<?= PA::$url?>/features.php" target="_blank">Features</a>| <a href="<?= PA::$url?>/faq.php" target="_blank">FAQ</a> | <a href="<?php echo PA::$url .'/roadmap.php';?>" target="_blank">Roadmap</a> | <a href="http://wiki.peopleaggregator.org/Main_Page" target="_blank">Developer Wiki</a></div>
