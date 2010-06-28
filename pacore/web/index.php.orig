@@ -144,7 +144,11 @@ echo $message;
 </div>
     </div>
 
+<<<<<<< HEAD
+<! --<div id="survey" class="wide_content">
+=======
 <!-- <div id="survey" class="wide_content">
+>>>>>>> 19ee5d408972ef8e375bc36fb0702e6311906523
 <?php/*
 require_once("BlockModules/PollModule/PollModule.php");
 $p = new PollModule();
