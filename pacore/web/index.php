@@ -86,18 +86,28 @@ $mothership_info = mothership_info();
     ?>
   </head>
   <body>
+<div id="body_shadow"></div>
+<div id="shadow"></div>
 <div id="everythingIsInHere">
     <div id="header">
+        <div class="title_box">
+	    <h1><?=PA::$site_name?></h1>
+    	    <h2><?=PA::$network_info->tagline?></h2>
+	</div>
+	<div id="login_bar">
+		<?php echo $message; ?>
+	</div>
+        <div id="header_navbar_back"></div>
       <!-- <div id="titlebox">
        <img border="none" src="images/title.png">
-          </div> -->
+          </div> 
       <div id="login" class="centerbox">
 
           <?php
 echo $message;
             ?>
         </form>   
-          </div>
+          </div>-->
         </div>
       <div id="mainbody">
       <div id="announcement">
@@ -160,11 +170,11 @@ $p = new PollModule();
 echo $p->render();*/
 ?>
 </div> -->
- </div>
       <div class="footer">
-        <div class="footer_text">copyright 2006 Broadband Mechanics <a href="http://www.broadbandmechanics.com/" target="_blank">About Us</a> | <a href="<?= PA::$url?>/features.php" target="_blank">Features</a>| <a href="<?= PA::$url?>/faq.php" target="_blank">FAQ</a> | <a href="<?php echo PA::$url .'/roadmap.php';?>" target="_blank">Roadmap</a> | <a href="http://wiki.peopleaggregator.org/Main_Page" target="_blank">Developer Wiki</a></div>
+	<div class="footer_text">Copyright <?=date("Y");?> Broadband Mechanics <a href="http://www.broadbandmechanics.com/" target="_blank">About Us</a> | <a href="<?= PA::$url?>/features.php" target="_blank">Features</a>| <a href="<?= PA::$url?>/faq.php" target="_blank">FAQ</a> | <a href="<?php echo PA::$url .'/roadmap.php';?>" target="_blank">Roadmap</a> | <a href="http://wiki.peopleaggregator.org/Main_Page" target="_blank">Developer Wiki</a></div>
       </div>
     </div>
+   </div>
   </body>
 
 </html>
