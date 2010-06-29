@@ -77,12 +77,10 @@ h3.normal{
 }
 
 div.infobox{
-  border: solid;
-  border-color: #6D808B;
-  border-size: 2px;
-  border-style: double;
   width: 145px;
   height: 145px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #survey{
@@ -99,7 +97,19 @@ h1{
 h5{
   color: #2d404B;
 }
-
+td, tr
+{
+	border: 10px solid white;
+}
+table#ninebox{
+	margin-left: auto;
+	margin-right: auto;
+}
+table#ninebox td.caption{
+	border: 5px;
+	height: 1px;
+	text-align: center;
+}
 
 
 #news{

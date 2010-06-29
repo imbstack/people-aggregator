@@ -1,16 +1,4 @@
 <?php
-/** !
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* [filename] is a part of PeopleAggregator.
-* [description including history]
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* @author [creator, or "Original Author"]
-* @license http://bit.ly/aVWqRV PayAsYouGo License
-* @copyright Copyright (c) 2010 Broadband Mechanics
-* @package PeopleAggregator
-*/
-?>
-<?php
   /**
  * Project:     PeopleAggregator: a social network developement platform
  * File:        configure_splash_page.php, web file to set the three showcase Networks on the Splash Page
@@ -42,13 +30,14 @@
   $msg = null;
   $message = array();//array of messages and will be used to display messages.
 
-  $showcased_networks = 3; //number of showcased networks.
+  $info_boxes = 9; //number of showcased networks.
+  $announcements = 3;
 
-  $configurable_sections = array('showcased_networks', 'network_of_moment', 'video_tours', 'register_today', 'configure','server_announcement');
-  $section = 'showcased_networks';
+  $configurable_sections = array('info_boxes','network_of_moment', 'video_tours', 'register_today', 'configure','server_announcement', 'showcase', 'survey');
+  $section = 'info_boxes';
   if (!empty($_GET['section'])) {
     if (!in_array($_GET['section'], $configurable_sections)) {
-      $section = 'showcased_networks';
+      $section = 'info_boxes';
     } else {
       $section = $_GET['section'];
     }
@@ -65,8 +54,8 @@
   }
 
   if (!empty($_POST)) {
-    if ($section == 'showcased_networks') {
-      for ($counter = 0; $counter < $showcased_networks; $counter++) {
+    if ($section == 'info_boxes') {
+      for ($counter = 0; $counter < $info_boxes; $counter++) {
 
         if (empty($_POST['network_url'][$counter])) {
           $message[] = __('Network URL cannot be left empty for showcased network ').($counter + 1);
@@ -93,7 +82,7 @@
           }
           else {
             $networks_data[$counter]['network_image'] = $file;
-	    Storage::link($file, array("role" => "showcased_net"));
+            Storage::link($file, array("role" => "showcased_net"));
           }
         } else if (!empty($_POST['current_network_image'][$counter])) {
         //getting the previously added image from the hidden form field.
@@ -104,6 +93,7 @@
         }
 
       }//end for
+
 
     } else if ($section == 'network_of_moment') {
       if (empty($_POST['network_caption'])) {
@@ -118,17 +108,121 @@
         $networks_data['network_url'] = Validation::validate_url($_POST['network_url']);
       }
 
-    } else if ($section == 'video_tours') {
+    } else if ($section == 'survey') {
+      if (empty($_POST['question'])) {
+$message[] = __('Please give a question to use.');
+} else {
+$networks_data['question'] = $_POST['question'];
+}
 
-      if (empty($_POST['video_url'])) {
-        $message[] = __('No video URL provided for video tours');
-      } else {
-        $networks_data['video_url'] = $_POST['video_url'];
-      }
+if (empty($_POST['answer1'])) {
+$message[] = __('Please provide at least 2 answers.');
+} else {
+$networks_data['answer1'] = ($_POST['answer1']);
+}
+if (empty($_POST['answer2'])) {
+$message[] = __('Please provide at least 2 answers.');
+} else {
+$networks_data['answer2'] = ($_POST['answer2']);
+}
+if (empty($_POST['a1'])) {
+//$message[] = __('Nothing Wrong');
+} else {
+$networks_data['a1'] = ($_POST['a1']);
+}
+if (empty($_POST['a2'])) {
+//$message[] = __('Nothing wrong 2');
+} else {
+$networks_data['a2'] = ($_POST['a2']);
+}
+}else if ($section == 'showcase') {
+if (empty($_POST['featured_user_name'])) {
+$message[] = __('No Featured User!');
+} else {
+if (User::user_exist($_POST['featured_user_name'])) {
+  $thisUser = new User();
+  $thisUser->load($_POST['featured_user_name']);
+  $networks_data['featured_user_name'] = $thisUser->login_name;
+$networks_data['auto_user_id'] = $thisUser->user_id;
+$networks_data['auto_user_picture_url'] = $thisUser->picture;
+            } else {
+                        $message[] = __("Featured User Not Found!");
+            }
+}
 
-    }
-    else if ($section == 'server_announcement') {
-           $networks_data['announcement_image_url'] = @$_POST['video_url'];
+if (empty($_POST['featured_group_id'])) {
+$message[] = __('No Featured Group!');
+} else {
+$networks_data['featured_group_id'] = $_POST['featured_group_id'];
+}
+  if (empty($_POST['featured_video_id'])) {
+$message[] = __('No Featured Video!');
+} else {
+$networks_data['featured_video_id'] = $_POST['featured_video_id'];
+}
+  if (empty($_POST['featured_business_id'])) {
+$message[] = __('No Featured Business!');
+} else {
+$networks_data['featured_business_id'] = $_POST['featured_business_id'];
+}
+  // So that this works in the common code section below
+  $_POST['description'] = "Showcase Module Links";
+} else if ($section == 'video_tours') {
+
+if (empty($_POST['video_url'])) {
+$message[] = __('No video URL provided for video tours');
+} else {
+$networks_data['video_url'] = $_POST['video_url'];
+}
+}
+else if ($section == 'server_announcement') {
+    /*
+$networks_data['announcement_image_url'] = @$_POST['video_url'];
+$networks_data['importance'] = $_POST['importance'];
+$networks_data['description1'] = $_POST['description1'];
+$networks_data['description2'] = $_POST['description2'];
+$networks_data['description3'] = $_POST['description3'];
+*/
+for ($counter = 0; $counter < $announcements; $counter++) {
+
+if (empty($_POST['network_url'][$counter])) {
+  $message[] = __('Network URL cannot be left empty for showcased network ').($counter + 1);
+  $networks_data[$counter]['network_url'] = null;
+} else {
+  $networks_data[$counter]['network_url'] = Validation::validate_url($_POST['network_url'][$counter]);
+}
+
+if (!empty($_POST['caption'][$counter])) {
+  $networks_data[$counter]['caption'] = $_POST['caption'][$counter];
+} else {
+  $networks_data[$counter]['caption'] = null;
+}
+
+$image_file = 'network_image_'.$counter;
+
+if (!empty($_FILES[$image_file]['name'])) {
+//validating and then uploading the network image.
+  $uploader = new FileUploader; //creating instance of file.
+  $file = $uploader->upload_file(PA::$upload_path,$image_file,true,true,'image');
+  if( $file == false) {
+    $message[] = __(' For showcased network ').($counter + 1).', '.$uploader->error;
+    $networks_data[$counter]['network_image'] = null;
+  }
+  else {
+    $networks_data[$counter]['network_image'] = $file;
+    Storage::link($file, array("role" => "showcased_net"));
+  }
+} else if (!empty($_POST['current_network_image'][$counter])) {
+//getting the previously added image from the hidden form field.
+  $networks_data[$counter]['network_image'] = $_POST['current_network_image'][$counter];
+} else {
+//setting the image to null.
+  $networks_data[$counter]['network_image'] = null;
+}
+
+}//end for
+
+
     }
     else if ($section == 'configure') {
       if (!empty($_POST['show_splash_page']) && $_POST['show_splash_page'] == ACTIVE) {
@@ -139,7 +233,7 @@
     }
 
     //code for fields which are common to some sections like description, image
-    if ($section == 'video_tours' || $section == 'register_today' || $section == 'network_of_moment'|| $section == 'server_announcement') {
+    if ($section == 'video_tours' || $section == 'register_today' || $section == 'network_of_moment'|| $section == 'server_announcement'|| $section == 'showcase') {
 
       if (empty($_POST['description'])) {
         $message[] = __('No description provided for network of moment');
@@ -183,12 +277,12 @@
   }//end if
 
   function setup_module($column, $module, $obj) {
-    global $featured_network, $showcased_networks, $networks_data, $section,$perm;
+    global $featured_network, $info_boxes, $networks_data, $section,$perm;
     $obj->perm = $perm;
     switch ($module) {
       default:
         $obj->mode = $section;
-        $obj->showcased_networks = $showcased_networks;
+        $obj->info_boxes = $info_boxes;
         $obj->networks_data = $networks_data;
 
     }
@@ -212,4 +306,4 @@
 
   uihelper_error_msg($message);
   echo $page->render();
-?>
+?>                                                                                                                                                                                                                                      
