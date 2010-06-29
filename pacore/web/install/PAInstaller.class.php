@@ -220,8 +220,14 @@ class PAInstaller {
 	      $form->addInputField('text', __('Autodetected domain_prefix as <b>'.$domain[0].'</b> (<a href="javascript:void(document.getElementById(\'domain_prefix\').style.display = \'block\');">change</a>)'),
                                  array('style' => 'display:none', 'id' => 'domain_prefix', 'required' => false, 'value' => (($is_post) ? $this->form_data['domain_prefix'] : $domain[0]))
 			 ); 
-          } else {
-        	  $form->addHtml("<p style='background-color:#edabab'>Oh dear. Network spawning disabled.</p>
+	  } else {
+	          $domain = explode(".",$_SERVER["SERVER_NAME"]);
+          	  $form->addHtml('<p class="inst_info">'.__('The domain_prefix is the first part of the domain you can control. For example, if your site should be accessible at www.example.com, fill in "www". For people.example.com, fill in "people". <b>Note:</b> Simply leaving this blank is not supported. You <b>must</b> have this part of the domain.').'</p>');
+		  $form->addInputField('text', __('Autodetected domain_prefix as <b>'.$domain[0].'</b> (<a href="javascript:void(document.getElementById(\'domain_prefix\').style.display = \'block\');">change</a>)'),
+                                 array('style' => 'display:none', 'id' => 'domain_prefix', 'required' => false, 'value' => (($is_post) ? $this->form_data['domain_prefix'] : $domain[0]))
+			 ); 
+		  $form->addHtml("<p style='clear:both; height:1px; '>&nbsp;</p>");
+		  $form->addHtml("<p style='background-color:#edabab; clear:both;'>Oh dear. Network spawning disabled.</p>
                       <p>Network spawning has been automatically disabled. This means that PeopleAggregator will create a default network for users to exist within, but users will not be able to create their own networks to contain their own groups. If you wish to enable this functionality (on example.org, for instance), we recommend reading the following:
                       <ul>
                         <li>Ensure your PA install is not running on a subdomain. For example, creating subnetworks on a base install of people.example.com is not currently supported.</li>
