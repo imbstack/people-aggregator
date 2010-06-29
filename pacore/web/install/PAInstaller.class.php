@@ -30,6 +30,7 @@ class PAInstaller {
 
    private $curr_step = 0;
    private $adm_data;
+   private $keys;
 
    public function __construct() {
       $this->config = array();
@@ -236,7 +237,12 @@ class PAInstaller {
                   ");
           }
           $form->addHtml('</div>');
-          $form->closeTag('fieldset');
+	  $form->closeTag('fieldset');
+	  $form->openTag('fieldset');
+	  $form->addContentTag('legend', array('value' => 'Service Hooks'));
+	  $form->addHtml("<p class='inst_info'>Add API keys to your PeopleAggregator install so that users can invite Facebook contacts into your service.</p>");
+	  $form->addInputField('text', __('Facebook API Key'), array('id' => 'fb_key', 'required' => false));
+	  $form->addInputField('text', __('Facebook API Secret'), array('id' => 'fb_secret', 'required' => false));
           $html = $form->getHtml();
       }
       else{
@@ -301,6 +307,7 @@ class PAInstaller {
      $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
      $domain = explode(".", $_SERVER['SERVER_NAME']);
      $this->subdomain = (isset($form_data['domain_prefix'])) ? $form_data['domain_prefix'] : $domain[0];
+     $this->keys = array('key'=>$form_data['fb_key'],'secret'=>$form_data['fb_secret']);
 
      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
      $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
@@ -436,6 +443,8 @@ class PAInstaller {
        $app->configData['configuration']['basic_network_settings']['value']['domain_prefix']['value'] = $this->subdomain;
        $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $this->allow_network_spawning;
        $app->configData['configuration']['site_related']['value']['pa_installed']['value'] = 1;
+       $app->configData['configuration']['api_keys']['value']['facebook_api_key']['value'] = $this->keys['key'];
+       $app->configData['configuration']['api_keys']['value']['facebook_api_secret']['value'] = $this->keys['secret'];
 
        unlink(PA::$project_dir . APPLICATION_CONFIG_FILE);
        $confObj  = new XmlConfig(null, 'application');
