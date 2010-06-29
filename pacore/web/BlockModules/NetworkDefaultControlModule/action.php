@@ -26,7 +26,7 @@ if ($_form['operation'] == 'create_network') {
 $msg_array = array();
 $msg_array['failure_msg'] = $failure_msg;
 $msg_array['success_msg'] = $succss_msg;
-@set_web_variables($msg_array, $redirect_url, $query_str);
+set_web_variables($msg_array, $redirection_url, $query_str);
 
 
 // Here we made a function for creating the network  ;)
@@ -130,8 +130,8 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
       $network = new Network;
       $network->set_params($data);
       try {
-        $nid = $network->save();
-        default_page_setting($network->address); // populate page_default setting
+	      $nid = $network->save();
+        //default_page_setting($network->address); // populate page_default setting
       }
       catch (PAException $e) {
         $error = TRUE;
@@ -141,7 +141,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
       if (!empty($nid)) {
         $_extra = serialize(array('user' => false, 'network' => true, 'groups' => array()));
         Roles::set_user_role_for_network($network->user_id, ADMINISTRATOR_ROLE, $network->address, $_extra);
-        $location = "http://" . $temp_data['address'] . '.' . PA::$domain_suffix . BASE_URL_REL . PA_ROUTE_CONFIGURE_NETWORK;
+	$location = "http://" . $temp_data['address'] . '.' . PA::$domain_suffix . BASE_URL_REL . PA_ROUTE_CONFIGURE_NETWORK;
       }
     }
     $msg_array = array();

@@ -783,10 +783,10 @@ class Network {
     //2. (deleted)
 
     //3. make PeepAgg.mysql for network and copy it here
-    if(file_exists(PA::$project_dir . 'api/DB/PeepAgg_tmpl.mysql')) {
-       $source = PA::$project_dir . 'api/DB/PeepAgg_tmpl.mysql';
-    } else if(file_exists(PA::$core_dir . 'api/DB/PeepAgg_tmpl.mysql')) {
-       $source = PA::$core_dir . 'api/DB/PeepAgg_tmpl.mysql';
+    if(file_exists(PA::$project_dir . '/api/DB/PeepAgg_tmpl.mysql')) {
+	    $source = PA::$project_dir . '/api/DB/PeepAgg_tmpl.mysql';
+    } else if(file_exists(PA::$core_dir . '/api/DB/PeepAgg_tmpl.mysql')) {
+	    $source = PA::$core_dir . '/api/DB/PeepAgg_tmpl.mysql';
     }
     $destination = $network_dir.'/PeepAgg.mysql';
     if($handle = @fopen($source, "r")) {
@@ -804,12 +804,12 @@ class Network {
     //4. open PeepAgg.mysql and create tables for network
     # if we have come this far then all went well and we can create new tables
 
-    $file_content = file(PA::$project_dir.'/networks/'.$this->address.'/PeepAgg.mysql');
+    $file_content = file($network_dir.'/PeepAgg.mysql');
 
     $query = "";
     if ( !$file_content ) {
       Logger::log("Thowing Exception NETWORK_MYSQL_FILE");
-      throw new PAException(NETWORK_MYSQL_FILE,"Database cant be configured");
+      throw new PAException(NETWORK_MYSQL_FILE,"Database cant be configured".PA::$project_dir);
     }
     foreach($file_content as $sql_line) {
       $tsl = trim($sql_line);
@@ -851,6 +851,7 @@ class Network {
     Logger::log("Exit: Network::get_threads_count_of_category() | Return: ");
     return $row->cnt;
   }
+
   /**
   * get number of networks in the system
   * @access public
@@ -862,6 +863,7 @@ class Network {
     Logger::log("Exit: Network::get_total_networks() | Return: $row->cnt");
     return $row->cnt;
   }
+
   /**
   * get total members of the network
   * @access public

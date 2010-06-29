@@ -342,7 +342,7 @@ function network_config_navigation($config_navigation)
 function default_page_setting($network_address)
 {
     global $settings_new;
-
+	
     foreach ($settings_new as $page_id => $v1)
     {
         $page_name = $v1['page_name'];
@@ -352,5 +352,6 @@ function default_page_setting($network_address)
         $data = array($page_id, $page_name, $settings_data);
         $res = Dal::query($sql, $data);
     }
+	 
 }
 ?>
