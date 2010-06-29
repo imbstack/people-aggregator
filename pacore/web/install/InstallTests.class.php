@@ -232,7 +232,7 @@ class InstallTests
             if ($this->can_get_peepagg_txt(PA_CURRENT_SCHEME . "://some-random-domain.$page_url_suffix/peopleaggregator.txt"))
             {
                 $this->note("It looks like the server is set up to host <code>*.$page_url_suffix</code>, so network spawning is possible.", 'ok');
-                $this->allow_spawning = TRUE;
+		$this->allow_spawning = TRUE;
             }
             else
             {

@@ -160,39 +160,78 @@ class PAInstaller {
         return $this->msg_unable_to_continue($params);
       }
       $adm_data = explode(",", $adm_data);
+      /*
+      * If the user posted Admin un/pw/etc. but it didn't validate, replace
+      * as much as possible into the form.
+      */
+      $show_form = array("admin_first" => trim($adm_data[3], "'\t "), "admin_last" => trim($adm_data[4], "'\t "), "network_spawning" => "checked");
+      foreach($this->form_data as $field => $value) {
+      	$show_form[$field] = $value;
+      }
+      /*
+      * If the setup process hasn't yet been submitted (it is posted after the first time for validation and verification.
+      */
       if (!$is_post){
-      $form = new PAForm('pa_inst');
-      $form->openTag('fieldset');
-      $form->addContentTag('legend', array('value' => 'Admin account details'));
-      $form->addHtml('<div>');
-      $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
-      $form->addInputField('text', __('First Name'),
-                             array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : trim($adm_data[3], "'\t ")))
-      );$form->addInputField('text', __('Last Name'),
-                             array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : trim($adm_data[4], "'\t ")))
+          $form = new PAForm('pa_inst');
+          $form->openTag('fieldset');
+          $form->addContentTag('legend', array('value' => 'Admin account details'));
+          $form->addHtml('<div>');
+          $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
+          $form->addInputField('text', __('First Name'),
+                             array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : $show_form["admin_first"]))
       );
-      $form->addInputField('text', __('Admin username'),
-                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : ""))
+          $form->addInputField('text', __('Last Name'),
+                             array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : $show_form["admin_last"]))
       );
-      $form->addInputField('password', __('Admin password'),
-                             array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
+          $form->addInputField('text', __('Admin username'),
+                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : $show_form["admin_username"]))
+      );
+          $form->addInputField('password', __('Admin password'),
+                             array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : $show_form["admin_password"]))
 		     );
-      $form->addInputField('text', __('Admin email'),
-                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : ""))
+          $form->addInputField('text', __('Admin email'),
+                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : $show_form["admin_email"]))
 		     );
-
-      $form->addHtml('<p class="inst_info">'.__('Enable multiple networks should be checked if you want users to be able to create sub-networks').'</p>');
-      $form->addInputField('checkbox', __('Enable Multiple Networks'),
-                             array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : 'checked'), "'\t ")
-		     );
-
-      $form->addHtml('<p class="inst_info">'.__('Your root network will be accessed through this subdomain. It comes before the first "." in  <code>'.$_SERVER['SERVER_NAME'].'</code>').'</p>');
-      $form->addInputField('text', __('Root Subdomain'),
-                             array('id' => 'subdomain', 'required' => true, 'value' => (($is_post) ? $this->form_data['subdomain'] : ''))
-		     );
-      $form->addHtml('</div>');
-      $form->closeTag('fieldset');
-      $html = $form->getHtml();
+          $form->addHtml('</div>');
+          $form->closeTag('fieldset');
+          /*
+          * Detect if the PA install is already on a subdomain, and, if so, disable the ability
+          *  to create other networks.
+          *
+          * This is tested by looking for the segment of the hostname (as determined by PHP) before
+          *  the first period.
+          *
+          * Note: This may cause grief to users who wish to omit the www (simply use http://example.com),
+          *  but, as PA will default to sandwiching in the www, this behavior is permissible.
+          *
+          * Double note: Ideally, this will be fixed eventually, as we add support for metanetworking with
+          *  subdomains.
+          */
+          $form->openTag('fieldset');
+          $form->addContentTag('legend', array('value' => 'Meta-Networking Configuration'));
+          $form->addHtml('<div>');
+	  if ($this->config['allow_network_spawning']) {
+	      $domain = explode(".",$_SERVER["SERVER_NAME"]);
+	      $form->addHtml("<p style='background-color:#d3edab'>Meta-Networking can be enabled on your domain.</p><p>If enabled, users will be able to create their own networks -- sites which share a domain and user accounts with the default network, but have an entirely different collection of groups, organizations, and content than the default network. Meta-networking allows your users to securely and completely control their own content.</p>");
+              $form->addInputField('checkbox', __('Enable Multiple Networks'),
+                                 array('id' => 'network_spawning', 'required' => true, 'value' => (($is_post) ? $this->form_data['network_spawning'] : $show_form["network_spawning"]))
+			 );
+      	      $form->addHtml("<br><br>");
+	      $form->addInputField('text', __('Autodetected domain_prefix as <b>'.$domain[0].'</b> (<a href="javascript:void(document.getElementById(\'domain_prefix\').style.display = \'block\');">change</a>)'),
+                                 array('style' => 'display:none', 'id' => 'domain_prefix', 'required' => false, 'value' => (($is_post) ? $this->form_data['domain_prefix'] : $domain[0]))
+			 ); 
+          } else {
+        	  $form->addHtml("<p style='background-color:#edabab'>Oh dear. Network spawning disabled.</p>
+                      <p>Network spawning has been automatically disabled. This means that PeopleAggregator will create a default network for users to exist within, but users will not be able to create their own networks to contain their own groups. If you wish to enable this functionality (on example.org, for instance), we recommend reading the following:
+                      <ul>
+                        <li>Ensure your PA install is not running on a subdomain. For example, creating subnetworks on a base install of people.example.com is not currently supported.</li>
+                        <li>If you are running your PA install from the root of your domain, ensure you are installing from the URL <code>http://<b>www.</b>example.com</li>
+                      </ul>
+                  ");
+          }
+          $form->addHtml('</div>');
+          $form->closeTag('fieldset');
+          $html = $form->getHtml();
       }
       else{
 	      //@todo Should we add a printout of the information here? At the moment it just confirms that the data has been entered and moves on.
@@ -254,7 +293,8 @@ class PAInstaller {
      $adm_pass  = $form_data['admin_password'];
      $adm_mail  = $form_data['admin_email'];
      $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
-     $this->subdomain = $form_data['subdomain'];
+     $domain = explode(".", $_SERVER['SERVER_NAME']);
+     $this->subdomain = (isset($form_data['domain_prefix'])) ? $form_data['domain_prefix'] : $domain[0];
 
      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
      $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
