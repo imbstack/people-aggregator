@@ -88,9 +88,9 @@ $mothership_info = mothership_info();
   <body>
 <div id="everythingIsInHere">
     <div id="header">
-      <div id="titlebox">
-       <img border="none" src="/Themes/Default/images/title.png">
-          </div>
+      <!-- <div id="titlebox">
+       <img border="none" src="images/title.png">
+          </div> -->
       <div id="login" class="centerbox">
 
           <?php
@@ -105,43 +105,52 @@ echo $message;
           <!--THIS CANT BE TURNED OFF FROM THE INTERFACE YET, IMPLEMENT LATER!!!
           <?php echo uihelper_resize_mk_img($server_announcement['network_image'], 185, 100, 'images/default.png', 'alt="PeopleAggregator"')?>  -->
           <h3 class="<?php echo $server_announcement['importance']?>"><?php echo $server_announcement['description']?></h3><hr></div>
-        <div id="infocontainer">
-<div style="padding: 20px;">
-      <! -- <div id="news" class="infobox">
-      <span class="caption"><?php echo $info_boxes[0]['caption']?> </span>
-      <a href=<?php echo $info_boxes[0]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[0]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-          </div>
-      <div id="safety" class="infobox">
-<span class="caption"> <?php echo $info_boxes[2]['caption']?></span>
-
-         <a href=<?php echo $info_boxes[2]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[2]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-
-          </div>
-      <div id="health" class="infobox">
-<span class="caption"> <?php echo $info_boxes[1]['caption']?>  </span>
-
-         <a href=<?php echo $info_boxes[1]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[1]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-
-</div>
-</div><div style="padding: 20px;">
-      <div id="energy" class="infobox">
-<span class="caption"> <?php echo $info_boxes[3]['caption']?>  </span>
-
-         <a href=<?php echo $info_boxes[3]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[3]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-
-      </div>
-      <div id="me" class="infobox">
-<span class="caption"> <?php echo $info_boxes[5]['caption']?>  </span>
-
-         <a href=<?php echo $info_boxes[5]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[5]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-
-      </div>
-      <div id="education" class="infobox">
-<span class="caption"> <?php echo $info_boxes[4]['caption']?>  </span>
-
-         <a href=<?php echo $info_boxes[4]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[4]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
-      </div>
-</div> -->
+	<div id="infocontainer">
+	<table id="ninebox">
+	<tr>
+	<td class="caption"><?php echo $info_boxes[0]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[1]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[2]['caption']?></td>
+	</tr><tr>
+	<td class="image">
+	<a href=<?php echo $info_boxes[0]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[0]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+        <a href=<?php echo $info_boxes[1]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[1]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+	<a href=<?php echo $info_boxes[2]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[2]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	</tr><tr>
+	<td class="caption"><?php echo $info_boxes[3]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[4]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[5]['caption']?></td>
+	</tr><tr>
+	<td class="image">
+	<a href=<?php echo $info_boxes[3]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[3]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+        <a href=<?php echo $info_boxes[4]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[4]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+        <a href=<?php echo $info_boxes[5]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[5]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	</tr><tr>
+	<td class="caption"><?php echo $info_boxes[6]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[7]['caption']?></td>
+	<td class="caption"><?php echo $info_boxes[8]['caption']?></td>
+	</tr><tr>
+	<td class="image">
+        <a href=<?php echo $info_boxes[6]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[6]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+        <a href=<?php echo $info_boxes[7]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[7]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	<td class="image">
+        <a href=<?php echo $info_boxes[8]['network_url']?>><?php echo uihelper_resize_mk_img($info_boxes[8]['network_image'], 145, 145, 'images/default.png', 'alt="PeopleAggregator"')?></a>
+        </td>
+	</tr>	
+	</table>
     </div>
 
 <!-- <div id="survey" class="wide_content">
