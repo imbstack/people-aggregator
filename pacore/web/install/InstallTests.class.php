@@ -227,17 +227,21 @@ class InstallTests
             $this->note('Running with an IP address rather than a domain name - not possible to run multiple networks.', 'warn');
         }
         else
-        {
-            $this->can_get_peepagg_txt(PA_CURRENT_SCHEME . "://$page_url_suffix/peopleaggregator.txt");
-            if ($this->can_get_peepagg_txt(PA_CURRENT_SCHEME . "://some-random-domain.$page_url_suffix/peopleaggregator.txt"))
-            {
-                $this->note("It looks like the server is set up to host <code>*.$page_url_suffix</code>, so network spawning is possible.", 'ok');
-		$this->allow_spawning = TRUE;
-            }
-            else
-            {
-                $this->note('Wildcard domains do not appear to be enabled, so network spawning will be disabled.', 'warn');
-            }
+	{
+		if (strpos($page_url_suffix,".") !== false && strlen($page_url_suffix) > 5) { //Tests for validity: com (no), co.uk (no), aa.com (yes)
+			$this->can_get_peepagg_txt(PA_CURRENT_SCHEME . "://$page_url_suffix/peopleaggregator.txt");
+			if ($this->can_get_peepagg_txt(PA_CURRENT_SCHEME . "://some-random-domain.$page_url_suffix/peopleaggregator.txt"))
+			{
+				$this->note("It looks like the server is set up to host <code>*.$page_url_suffix</code>, so network spawning is possible.", 'ok');
+				$this->allow_spawning = TRUE;
+			}
+			else
+			{
+				$this->note('Wildcard domains do not appear to be enabled, so network spawning will be disabled.', 'warn');
+			}
+		} else {
+			$this->note("Domain contains too few parts. Configure your domain so <code><b>www.</b>".$page_url_bare."</code> points to your install and then install with that domain.", "warn");
+		}
         }
     }
 
