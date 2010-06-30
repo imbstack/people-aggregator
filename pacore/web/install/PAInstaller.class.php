@@ -442,6 +442,7 @@ class PAInstaller {
        $app->configData['configuration']['database']['value']['peepagg_dsn']['value'] = $this->config['peepagg_dsn'];
        $app->configData['configuration']['basic_network_settings']['value']['domain_prefix']['value'] = $this->subdomain;
        $app->configData['configuration']['basic_network_settings']['value']['enable_networks']['value'] = $this->allow_network_spawning;
+       $app->configData['configuration']['basic_network_settings']['value']['enable_network_spawning']['value'] = $this->allow_network_spawning;      
        $app->configData['configuration']['site_related']['value']['pa_installed']['value'] = 1;
        $app->configData['configuration']['api_keys']['value']['facebook_api_key']['value'] = $this->keys['key'];
        $app->configData['configuration']['api_keys']['value']['facebook_api_secret']['value'] = $this->keys['secret'];
