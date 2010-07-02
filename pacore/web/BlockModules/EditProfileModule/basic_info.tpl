@@ -65,6 +65,7 @@
       <h4><label for="upload_user_image"><?= __("Upload Photo") ?></label></h4>
       <input name="userfile" type="file" class="text short" id="upload_user_image"/>
       <input type="hidden" name="uid" value="<?php echo $uid?>" />
+      <input type="hidden" name="deletepicture" value="false" id="deletepicture" />
       <input type="hidden" name="profile_type" value="basic" /><br />
     </div>
 
@@ -75,7 +76,7 @@
         <span class="remove_picture">
           <?php
             if (!empty($user_info->picture)) {
-              echo '<a href="'. PA::$url . PA_ROUTE_EDIT_PROFILE . '/type=basic&action=DeleteUserPic" >'.__("Remove Picture").'</a>';
+              echo '<a onClick=\'javascript:document.getElementById("deletepicture").value="true";this.innerHTML="Press Apply Changes to confirm."\' >'.__("Remove Picture").'</a>';
             }
           ?>
         </span>

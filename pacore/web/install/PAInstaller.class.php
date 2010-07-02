@@ -419,7 +419,7 @@ class PAInstaller {
 
       $msg = "<p class='msg_info'>Congratulations. You have successfully installed People Aggregator.<br /><br />".
              "Administrator user name: <b>" . $this->adm_data['login_name'] . "</b><br />".
-             "Administrator password: <b>" . $this->adm_data['password'] . "</b><br /><br />".
+             "Administrator password: <span id=\"hiddenPassword\" style=\"display:none;\"><b>" . $this->adm_data['password'] . "</b></span><a href='#' onClick=\"javascript:document.getElementById('hiddenPassword').style.display='inline'; this.style.display='none'\">Hidden - Click to display.</a><br /><br />".
              "<b>For security reasons, change your initially assigned administrator password and be sure to delete your installation directory: \"pacore/web/install\"</b>. ".
              "If you want to re-install People Aggregator application, make backup of your \"pacore/config/AppConfig.xml\" ".
              "configuration file and delete it. Then reload page in your browser and installation process will run again.<br /><br />" .
