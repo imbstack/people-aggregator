@@ -3,3 +3,4 @@ pacore/web/files/
 pacore/web/files/rsz/
 pacore/log/pa.log
 pacore/config/AppConfig.xml
+*.swp
