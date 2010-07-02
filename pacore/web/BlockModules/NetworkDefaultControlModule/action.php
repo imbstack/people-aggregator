@@ -139,7 +139,7 @@ for ($i = 0; $i < count($vartoset); $i += 1) {
       }
 
       if (!empty($nid)) {
-        $_extra = serialize(array('user' => false, 'network' => true, 'groups' => array()));
+        $_extra = serialize(array('user' => true, 'network' => true, 'groups' => array()));
         Roles::set_user_role_for_network($network->user_id, ADMINISTRATOR_ROLE, $network->address, $_extra);
 	$location = "http://" . $temp_data['address'] . '.' . PA::$domain_suffix . BASE_URL_REL . PA_ROUTE_CONFIGURE_NETWORK;
       }
