@@ -166,8 +166,10 @@ class PAInstaller {
       * as much as possible into the form.
       */
       $show_form = array("admin_first" => trim($adm_data[3], "'\t "), "admin_last" => trim($adm_data[4], "'\t "), "network_spawning" => "checked");
-      foreach($this->form_data as $field => $value) {
-      	$show_form[$field] = $value;
+      if (!empty($this->form_data)){
+	      foreach($this->form_data as $field => $value) {
+		      $show_form[$field] = $value;
+	      }
       }
       /*
       * If the setup process hasn't yet been submitted (it is posted after the first time for validation and verification.
@@ -185,13 +187,13 @@ class PAInstaller {
                              array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : $show_form["admin_last"]))
       );
           $form->addInputField('text', __('Admin username'),
-                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : $show_form["admin_username"]))
+                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : ''))
       );
           $form->addInputField('password', __('Admin password'),
-                             array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : $show_form["admin_password"]))
+                             array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
 		     );
           $form->addInputField('text', __('Admin email'),
-                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : $show_form["admin_email"]))
+                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : ''))
 		     );
           $form->addHtml('</div>');
           $form->closeTag('fieldset');
