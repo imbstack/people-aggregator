@@ -306,7 +306,7 @@ class Dal {
       $new_table = $table;
     } else {
 	    // @todo figure out why CURRENT_DB isn't set here
-      if(! defined( 'CURRENT_DB' )) {
+      if (! defined( 'CURRENT_DB' )) {
       	throw new PAException(DB_QUERY_FAILED, "CURRENT_DB not yet defined");
       }
       // expand /%...%/ strings in pattern to generate the table name.
