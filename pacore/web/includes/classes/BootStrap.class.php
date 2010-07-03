@@ -385,20 +385,19 @@ class BootStrap {
 
   public function detectDBSettings() {
     global $peepagg_dsn;
+    if(empty(PA::$config->db_user) || empty(PA::$config->db_password) || empty(PA::$config->db_host) || empty(PA::$config->db_name)) {
+      throw new BootStrapException("Invalid DB connection string. Value: " . $peepagg_dsn, 1);
+    }
+
+    if(defined( 'CURRENT_DB' )) {
+      throw new BootStrapException("CURRENT_DB already defined but CURRENT_DB should not be defined outside BootStrap class!", 1);
+    }
     // figure out CURRENT_DB.
     $peepagg_dsn = "mysql://". PA::$config->db_user .
                           ":". PA::$config->db_password .
                           "@". PA::$config->db_host .
                           "/". PA::$config->db_name;
 
-    if(empty(PA::$config->db_user) || empty(PA::$config->db_password) || empty(PA::$config->db_host) || empty(PA::$config->db_name)) {
-      throw new BootStrapException("Invalid DB connection string. Value: " . $peepagg_dsn, 1);
-    }
-
-    if(defined( 'CURRENT_DB' ))
-    {
-      throw new BootStrapException("CURRENT_DB already defined but CURRENT_DB should not be defined outside BootStrap class!", 1);
-    }
     define('CURRENT_DB', PA::$config->db_name);
   }
 

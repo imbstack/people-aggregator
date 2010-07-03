@@ -305,6 +305,10 @@ class Dal {
     if (!$pattern) {
       $new_table = $table;
     } else {
+      if(! defined( 'CURRENT_DB' )) {
+      	throw new PAException(DB_QUERY_FAILED, "CURRENT_DB not yet defined");
+      }
+    
       // expand /%...%/ strings in pattern to generate the table name.
       $new_table = str_replace("/%db%/", CURRENT_DB,
 			       str_replace("/%network_name_%/", $net_name_, $pattern));
