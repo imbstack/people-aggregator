@@ -349,6 +349,17 @@ class PAInstaller {
       $form = new PAForm('pa_inst');
       $form->openTag('fieldset');
       $form->addContentTag('legend', array('value' => $info['description']));
+      $form->addHtml('<p class="inst_info">'.__('If you are upgrading from an existing PeopleAggregator install, you can choose to use an existing database. Otherwise, a new database should be created.').'</p>');
+      $form->addHtml('<div>');
+      $form->addHtml('<ol style="list-style:none; line-height:20px;"><li>Create New Database');
+      $form->addInputTag('radio',
+	      		    array('id' => 'create_db', 'name'=>'pa_inst[create_db]', 'value' => 'true', 'checked' => 'true')
+      );
+      $form->addHtml('</li><li>Use Existing Database');
+      $form->addInputTag('radio',
+	      		    array('id' => 'use_existing_db','name'=>'pa_inst[create_db]', 'value' => 'false')
+      );
+      $form->addHtml('</div>');
       $form->addHtml('<div>');
       $form->addHtml('<p class="inst_info">'.__('Please complete the following information so PeopleAggregator can access your database.').'</p>');
       $form->addInputField('text', __('Database name'),
