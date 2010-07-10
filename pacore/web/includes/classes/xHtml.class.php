@@ -138,7 +138,7 @@ class xHtml {
   {
     if (!isset($name) || empty($name))  return '';
 
-    return "<input type=\"radio\" name=\"$name\" value=\"$is_checked\" "
+    return "<input type=\"radio\" name=\"$name\" "
                . ((count($tag_attr) > 0) ? $this->attrsToString($tag_attr) : '')
                . (($is_checked) ? " checked" : " ")
                . "/>\n";
