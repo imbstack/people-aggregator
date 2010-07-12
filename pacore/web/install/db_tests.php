@@ -29,7 +29,8 @@ $tester = new InstallTests('dbTest', $installer->form_data);
         <?php
            $tester->run();
            echo $tester->showStatus($installer);
-           $installer->config['peepagg_dsn'] = $tester->peepagg_dsn;
+	   $installer->config['peepagg_dsn'] = $tester->peepagg_dsn;
+	   $installer->admin_exists = $tester->admin_exists;
         ?>
      </table>
   </body>

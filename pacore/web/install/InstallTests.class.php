@@ -22,6 +22,7 @@ class InstallTests
     public $error;
     public $allow_spawning;
     public $peepaggdsn;
+    public $admin_exists;
 
     public function __construct($test_type, $test_data = null)
     {
@@ -373,6 +374,7 @@ class InstallTests
 				      "@". $params['db_host'] .
 				      "/". $params['db_name'];
 			      $this->peepagg_dsn = $peepagg_dsn;
+			      $this->admin_exsts = false;
 		      } else {
 			      $this->note("The installer is unable to execute MySQL queries.", 'error');
 			      return false;
@@ -388,6 +390,12 @@ class InstallTests
 		      "@". $params['db_host'] .
 		      "/". $params['db_name'];
 	      $this->peepagg_dsn = $peepagg_dsn;
+	      $sql = "SELECT COUNT(*) FROM `users` WHERE `user_id` = '1'";
+	      if (mysql_num_rows($this->run_query($sql, $user_link)) > 0) {
+		      $this->note("Found existing admin user. Disabling install admin user setup...", "ok");
+		      $this->admin_exists = true;
+	      }
+	      
       }
      // now run upgrade scripts
       $this->note("Running database upgrade script.", 'info');
