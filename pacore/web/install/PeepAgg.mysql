@@ -2982,12 +2982,6 @@ KEY `count_active` (`is_active`),
 KEY `email` (`email`)
 ) TYPE=MyISAM;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, 'brian', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'Peepagg', 'bstack01@gmail.com', 1, NULL, 1277839624, 1277839624, 1277839624, NULL);
-
 -- --------------------------------------------------------
 
 --

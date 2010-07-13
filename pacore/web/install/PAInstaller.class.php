@@ -31,6 +31,7 @@ class PAInstaller {
    private $curr_step = 0;
    private $adm_data;
    private $keys;
+   public $admin_exists;
 
    public function __construct() {
       $this->config = array();
@@ -145,31 +146,100 @@ class PAInstaller {
       return $data;
    }
 
-   private function GET_step_3($params, $is_post = false) {
+   private function GET_step_3($params) {
      global $app;
 
       if($this->error)
          return $this->msg_unable_to_continue($params);
 
-      $fileName = getShadowedPath("web/install/PeepAgg.mysql");
-      $rexp = "INSERT\sINTO\s\`users\`\s\([^\)]+\)\sVALUES\s\(([^\)]+)\)";
-      list($succ, $txt_line, $adm_data) = $this->findLine($fileName, $rexp);
-      if(!$succ) {
-        $this->error = true;
-        $params['message']['msg'] = __("Installer is unable to read \"$fileName\" file.");
-        $params['message']['class'] = 'msg_err';
-        return $this->msg_unable_to_continue($params);
-      }
-      $adm_data = explode(",", $adm_data);
-      /*
-      * If the user posted Admin un/pw/etc. but it didn't validate, replace
-      * as much as possible into the form.
-      */
-      $show_form = array("admin_first" => trim($adm_data[3], "'\t "), "admin_last" => trim($adm_data[4], "'\t "), "network_spawning" => "checked");
-      if (!empty($this->form_data)){
-	      foreach($this->form_data as $field => $value) {
-		      $show_form[$field] = $value;
-	      }
+      list($info, $results) = $this->get_config_section('database', "@readonly='false'");
+      $section_name = $info['name'];
+      $form = new PAForm('pa_inst');
+      $form->openTag('fieldset');
+      $form->addContentTag('legend', array('value' => $info['description']));
+      $form->addHtml('<p class="inst_info">'.__('If you are upgrading from an existing PeopleAggregator install, you can choose to use an existing database. Otherwise, a new database should be created.').'</p>');
+      $form->addHtml('<div>');
+      $form->addHtml('<ol style="list-style:none; line-height:20px;"><li>Create New Database');
+      $form->addInputTag('radio',
+	      		    array('id' => 'create_db', 'name'=>'pa_inst[create_db]', 'value' => 'true', 'checked' => 'true')
+      );
+      $form->addHtml('</li><li>Use Existing Database');
+      $form->addInputTag('radio',
+	      		    array('id' => 'use_existing_db','name'=>'pa_inst[create_db]', 'value' => 'false')
+      );
+      $form->addHtml('</div>');
+      $form->addHtml('<div>');
+      $form->addHtml('<p class="inst_info">'.__('Please complete the following information so PeopleAggregator can access your database.').'</p>');
+      $form->addInputField('text', __('Database name'),
+                             array('id' => 'db_name', 'required' => true, 'value' => '')
+      );
+      $form->addInputField('text', __('Database host'),
+                             array('id' => 'db_host', 'required' => true, 'value' => '')
+      );
+	/*
+      foreach($results as $key => $data) {
+        $form->addInputField('text', $data['attributes']['description'],
+                             array('id' => $key, 'required' => true, 'value' => $data['value'])
+        );
+      }*/
+      $form->addHtml('<p class="inst_info">'.__('Please provide PeopleAggregator with a MySQL username and password for the database.').'</p>');
+      $form->addInputField('text', __('Database User Name'),
+                             array('id' => 'db_user', 'required' => true, 'value' => '')
+      );
+      $form->addInputField('password', __('Database password'),
+                             array('id' => 'db_password', 'required' => true, 'value' => '')
+      );
+      $form->addHtml('<p class="inst_info">'.__('If you would like PeopleAggregator to create this user for you, please provide your MySQL root password.').'</p>');
+      $form->addInputField('text', __('MySQL root username'),
+                             array('id' => 'mysql_root_username', 'required' => false, 'value' => '')
+      );
+      $form->addInputField('password', __('MySQL root password'),
+                             array('id' => 'mysql_root_password', 'required' => false, 'value' => '')
+      );
+      $form->addInputTag('hidden', array('id' => 'section_name', 'value' => $section_name));
+      $form->addHtml('</div>');
+      $form->closeTag('fieldset');
+      $html = $form->getHtml();
+      $nav  = "
+              <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
+              <a class='bt submit' href='#' alt='submit' onclick='document.forms[\"pa_inst\"].submit();'></a>
+      ";
+      $data = array('message' => (!empty($params['message'])) ? $params['message'] :'',
+                    'title' => $params['title'],
+                    'step'  => $this->curr_step,
+                    'navig' => $nav,
+                    'content' => $html);
+      return $data;
+   }
+
+   private function POST_step_3($params) {
+      $db_data = $this->form_data;
+      $db_sect = $this->form_data['section_name'];
+      unset($db_data['section_name']);
+      $this->config[$db_sect] = $db_data;
+      $_SESSION['installer'] = serialize($this);
+
+      $nav = "
+              <a class='bt back' href='?step=" . $this->curr_step . "' alt='previous'></a>
+              <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
+      ";
+      $data = array('message' => array('msg' => __('Please wait, trying to connect to the database.'), 'class' => 'msg_warn'),
+                    'title' => __('Creating the Database'),
+                    'step'  => $this->curr_step,
+                    'navig' => $nav,
+                    'content' => "<iframe src='/install/db_tests.php' frameborder='0' style='width: 100%; height: 380px'></iframe>");
+      return $data;
+   }
+
+   private function GET_step_4($params, $is_post = false) {
+     global $app;
+
+      if($this->error)
+         return $this->msg_unable_to_continue($params);
+
+      $show_form = array("network_spawning" => "checked");
+      foreach($this->form_data as $field => $value) {
+      	$show_form[$field] = $value;
       }
       /*
       * If the setup process hasn't yet been submitted (it is posted after the first time for validation and verification.
@@ -177,25 +247,29 @@ class PAInstaller {
       if (!$is_post){
           $form = new PAForm('pa_inst');
           $form->openTag('fieldset');
-          $form->addContentTag('legend', array('value' => 'Admin account details'));
-          $form->addHtml('<div>');
-          $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
-          $form->addInputField('text', __('First Name'),
-                             array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : $show_form["admin_first"]))
-      );
-          $form->addInputField('text', __('Last Name'),
-                             array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : $show_form["admin_last"]))
-      );
-          $form->addInputField('text', __('Admin username'),
-                             array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : ''))
-      );
-          $form->addInputField('password', __('Admin password'),
-                             array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : ''))
-		     );
-          $form->addInputField('text', __('Admin email'),
-                             array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : ''))
-		     );
-          $form->addHtml('</div>');
+	  $form->addContentTag('legend', array('value' => 'Admin account details'));
+	  if ($this->admin_exists == false) {
+		  $form->addHtml('<div>');
+		  $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
+		  $form->addInputField('text', __('First Name'),
+			  array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : $show_form["admin_first"]))
+		  );
+		  $form->addInputField('text', __('Last Name'),
+			  array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : $show_form["admin_last"]))
+		  );
+		  $form->addInputField('text', __('Admin username'),
+			  array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : $show_form["admin_username"]))
+		  );
+		  $form->addInputField('password', __('Admin password'),
+			  array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : $show_form["admin_password"]))
+		  );
+		  $form->addInputField('text', __('Admin email'),
+			  array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : $show_form["admin_email"]))
+		  );
+		  $form->addHtml('</div>');
+	  } else {
+		  $form->addHtml("<p style='background-color:#d3edab; clear:both;'>Admin user already exists from a previous install.</p>");
+	  }
           $form->closeTag('fieldset');
           /*
           * Detect if the PA install is already on a subdomain, and, if so, disable the ability
@@ -265,151 +339,95 @@ class PAInstaller {
       return $data;
    }
 
-   private function POST_step_3($params) {
-     global $app;
-     require_once "api/Validation/Validation.php";
-
-     $form_data = $this->form_data;
-     $error = false;
-     $errors = array();
-
-     if(empty($form_data['admin_first'])) {
-	     $form_data['admin_first'] = "Admin";
-     }
-     if(empty($form_data['admin_last'])) {
-	     $form_data['admin_last'] = "Peepagg";
-     }
-     if(!Validation::validate_auth_id($form_data['admin_username']) || empty($form_data['admin_username'])) {
-       $error = true;
-       $errors[] = __("Invalid or empty user name.");
-     }
-     if(strlen($form_data['admin_password']) < MIN_PASSWORD_LENGTH) {
-       $error = true;
-       $errors[] = sprintf(__("Your password must be at least %d characters long."), MIN_PASSWORD_LENGTH);
-     }
-     if(strlen($form_data['admin_password']) > MAX_PASSWORD_LENGTH) {
-       $error = true;
-       $errors[] = sprintf(__("Your password can not be longer than %d characters."), MAX_PASSWORD_LENGTH);
-     }
-     if(!Validation::validate_email($form_data['admin_email']) || empty($form_data['admin_email'])) {
-       $error = true;
-       $errors[] = __("Invalid or empty email field.");
-     }
-     if($error) {
-      $params['message']['msg'] = implode("<br />", $errors);
-      $params['message']['class'] = 'msg_err';
-      return $this->GET_step_3($params);
-     }
-
-     $adm_login = $form_data['admin_username'];
-     $adm_first = $form_data['admin_first'];
-     $adm_last = $form_data['admin_last'];
-     $adm_pass  = $form_data['admin_password'];
-     $adm_mail  = $form_data['admin_email'];
-     $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
-     $domain = explode(".", $_SERVER['SERVER_NAME']);
-     $this->subdomain = (isset($form_data['domain_prefix'])) ? $form_data['domain_prefix'] : $domain[0];
-     $this->keys = array('key'=>$form_data['fb_key'],'secret'=>$form_data['fb_secret']);
-
-     $fileName = getShadowedPath("web/install/PeepAgg.mysql");
-     $oldLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`)";
-     $newLine  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '$adm_login', '".md5($adm_pass)."', '$adm_first', '$adm_last', '$adm_mail', 1, NULL, ".time().", ".time().", ".time().", NULL);";
-
-     if($this->replaceLine($fileName, $oldLine, $newLine)) {
-      $params['message']['msg'] = __("Administrator account data sucessfully stored. Click 'Next' please...");
-      $params['message']['class'] = 'msg_info';
-      $this->adm_data['login_name'] = $adm_login;
-      $this->adm_data['password'] = $adm_pass;
-      $_SESSION['installer'] = serialize($this);
-      return $this->GET_step_3($params, true);
-     } else {
-      $params['message']['msg'] = __("Installer is unable to store administrator account data...Please, check file permissions for \"$fileName\" file.");
-      $params['message']['class'] = 'msg_err';
-      $this->error = true;
-      return $this->GET_step_3($params);
-     }
-
-/*
-      $data = array('message' => $params['message'],
-                    'title' => $params['title'],
-                    'step'  => $this->curr_step,
-                    'navig' => $nav,
-                    'content' => $html);
-*/
-
-   }
-   private function GET_step_4($params) {
-     global $app;
-
-      if($this->error)
-         return $this->msg_unable_to_continue($params);
-
-      list($info, $results) = $this->get_config_section('database', "@readonly='false'");
-      $section_name = $info['name'];
-      $form = new PAForm('pa_inst');
-      $form->openTag('fieldset');
-      $form->addContentTag('legend', array('value' => $info['description']));
-      $form->addHtml('<div>');
-      $form->addHtml('<p class="inst_info">'.__('Please complete the following information so PeopleAggregator can access your database.').'</p>');
-      $form->addInputField('text', __('Database name'),
-                             array('id' => 'db_name', 'required' => true, 'value' => '')
-      );
-      $form->addInputField('text', __('Database host'),
-                             array('id' => 'db_host', 'required' => true, 'value' => '')
-      );
-	/*
-      foreach($results as $key => $data) {
-        $form->addInputField('text', $data['attributes']['description'],
-                             array('id' => $key, 'required' => true, 'value' => $data['value'])
-        );
-      }*/
-      $form->addHtml('<p class="inst_info">'.__('Please provide PeopleAggregator with a MySQL username and password for the database.').'</p>');
-      $form->addInputField('text', __('Database User Name'),
-                             array('id' => 'db_user', 'required' => true, 'value' => '')
-      );
-      $form->addInputField('password', __('Database password'),
-                             array('id' => 'db_password', 'required' => true, 'value' => '')
-      );
-      $form->addHtml('<p class="inst_info">'.__('If you would like PeopleAggregator to create this user for you, please provide your MySQL root password.').'</p>');
-      $form->addInputField('text', __('MySQL root username'),
-                             array('id' => 'mysql_root_username', 'required' => false, 'value' => '')
-      );
-      $form->addInputField('password', __('MySQL root password'),
-                             array('id' => 'mysql_root_password', 'required' => false, 'value' => '')
-      );
-      $form->addInputTag('hidden', array('id' => 'section_name', 'value' => $section_name));
-      $form->addHtml('</div>');
-      $form->closeTag('fieldset');
-      $html = $form->getHtml();
-      $nav  = "
-              <a class='bt back' href='?step=" . (($this->curr_step > 1) ? $this->curr_step-1 : 1) . "' alt='previous'></a>
-              <a class='bt submit' href='#' alt='submit' onclick='document.forms[\"pa_inst\"].submit();'></a>
-      ";
-      $data = array('message' => (!empty($params['message'])) ? $params['message'] :'',
-                    'title' => $params['title'],
-                    'step'  => $this->curr_step,
-                    'navig' => $nav,
-                    'content' => $html);
-      return $data;
-   }
-
    private function POST_step_4($params) {
-      $db_data = $this->form_data;
-      $db_sect = $this->form_data['section_name'];
-      unset($db_data['section_name']);
-      $this->config[$db_sect] = $db_data;
-      $_SESSION['installer'] = serialize($this);
+	   global $app;
+	   require_once "api/Validation/Validation.php";
 
-      $nav = "
-              <a class='bt back' href='?step=" . $this->curr_step . "' alt='previous'></a>
-              <a class='bt next' href='?step=" . (($this->curr_step < 5) ? $this->curr_step+1 : $step) . "' alt='next'></a>
-      ";
-      $data = array('message' => array('msg' => __('Please wait, trying to connect to the database.'), 'class' => 'msg_warn'),
-                    'title' => __('Creating the Database'),
-                    'step'  => $this->curr_step,
-                    'navig' => $nav,
-                    'content' => "<iframe src='/install/db_tests.php' frameborder='0' style='width: 100%; height: 380px'></iframe>");
-      return $data;
+	   $form_data = $this->form_data;
+	   $this->allow_network_spawning = (isset($form_data['network_spawning']) && $form_data['network_spawning'] == 'checked') ? 1 : 0;
+	   $domain = explode(".", $_SERVER['SERVER_NAME']);
+	   $this->subdomain = (isset($form_data['domain_prefix'])) ? $form_data['domain_prefix'] : $domain[0];
+	   $this->keys = array('key'=>$form_data['fb_key'],'secret'=>$form_data['fb_secret']);
+
+	   if (!$this->admin_exists) { 
+		   $error = false;
+		   $errors = array();
+
+		   if(empty($form_data['admin_first'])) {
+			   $form_data['admin_first'] = "Admin";
+		   }
+		   if(empty($form_data['admin_last'])) {
+			   $form_data['admin_last'] = "Peepagg";
+		   }
+		   if(!Validation::validate_auth_id($form_data['admin_username']) || empty($form_data['admin_username'])) {
+			   $error = true;
+			   $errors[] = __("Invalid or empty user name.");
+		   }
+		   if(strlen($form_data['admin_password']) < MIN_PASSWORD_LENGTH) {
+			   $error = true;
+			   $errors[] = sprintf(__("Your password must be at least %d characters long."), MIN_PASSWORD_LENGTH);
+		   }
+		   if(strlen($form_data['admin_password']) > MAX_PASSWORD_LENGTH) {
+			   $error = true;
+			   $errors[] = sprintf(__("Your password can not be longer than %d characters."), MAX_PASSWORD_LENGTH);
+		   }
+		   if(!Validation::validate_email($form_data['admin_email']) || empty($form_data['admin_email'])) {
+			   $error = true;
+			   $errors[] = __("Invalid or empty email field.");
+		   }
+		   if($error) {
+			   $params['message']['msg'] = implode("<br />", $errors);
+			   $params['message']['class'] = 'msg_err';
+			   return $this->GET_step_3($params);
+		   }
+
+		   $adm_login = $form_data['admin_username'];
+		   $adm_first = $form_data['admin_first'];
+		   $adm_last = $form_data['admin_last'];
+		   $adm_pass  = $form_data['admin_password'];
+		   $adm_mail  = $form_data['admin_email'];
+
+		   $sql  = "INSERT INTO `users` (`user_id`, `login_name`, `password`, `first_name`, `last_name`, `email`, `is_active`, `picture`, `created`, `changed`, `last_login`, `zipcode`) VALUES (1, '$adm_login', '".md5($adm_pass)."', '$adm_first', '$adm_last', '$adm_mail', 1, NULL, ".time().", ".time().", ".time().", NULL);";    
+		   $sql_link = @mysql_connect($this->config['database']['db_host'], $this->config['database']['db_user'], $this->config['database']['db_password']);
+		   if ($sql_link && @mysql_select_db($this->config['database']['db_name'], $sql_link)) {
+			   if (mysql_query($sql, $sql_link)) {
+				   $params['message']['msg'] = __("Administrator account data sucessfully stored. Click 'Next' please...");
+				   $params['message']['class'] = 'msg_info';
+				   $this->adm_data['login_name'] = $adm_login;
+				   $this->adm_data['password'] = $adm_pass;
+			   } else {
+				   $params['message']['msg'] = __("Installer is unable to store administrator account data...Please, ensure previous database credentials are correct. 1");
+				   $params['message']['class'] = 'msg_err';
+				   $this->error = true;
+			   }
+		   } else {
+			   $sql_link = @mysql_connect($this->config['database']['db_host'], $this->config['database']['mysql_root_username'], $this->config['database']['mysql_root_password']);
+			   if ($sql_link && @mysql_select_db($this->config['database']['db_name'], $sql_link)) {
+				   if (mysql_query($sql, $sql_link)) {
+					   $params['message']['msg'] = __("Administrator account data sucessfully stored. Click 'Next' please...");
+					   $params['message']['class'] = 'msg_info';
+					   $this->adm_data['login_name'] = $adm_login;
+					   $this->adm_data['password'] = $adm_pass;
+				   } else {
+					   $params['message']['msg'] = __("Installer is unable to store administrator account data...Please, ensure previous database credentials are correct. 2");
+					   $params['message']['class'] = 'msg_err';
+					   $this->error = true;
+				   }
+			   } else {
+				   $params['message']['msg'] = __("Installer is unable to store administrator account data...Please, ensure previous database credentials are correct. 3");
+				   $params['message']['class'] = 'msg_err';
+				   $this->error = true;
+			   }
+		   }
+	   } else { // If the user installed to an existing PA database...
+		   $params['message']['msg'] = __("Information successfully stored. Admin data remains in database from previous install.");
+		   $params['message']['class'] = 'msg_info';
+		   $this->adm_data['login_name'] = "[ unavailable ]";
+		   $this->adm_data['password'] = "[ unavailable ]";
+	   }
+
+	   $_SESSION['installer'] = serialize($this);
+	   return $this->GET_step_4($params, true);
    }
 
    private function GET_step_5($params) {
