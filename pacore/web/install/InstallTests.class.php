@@ -21,7 +21,7 @@ class InstallTests
     private $test_data;
     public $error;
     public $allow_spawning;
-    public $peepagg_dsn;
+    public $peepaggdsn;
 
     public function __construct($test_type, $test_data = null)
     {
@@ -271,6 +271,8 @@ class InstallTests
       }
 
       $user_link = @mysql_connect($params['db_host'], $params['db_user'], $params['db_password']);
+      // If the installer wishes to use an existing db instead of creating one.
+      $user_db = FALSE;
       if($user_link) {
          $this->note("Able to connect to the MySQL server at <code>{$params['db_host']}</code> with supplied login details.", 'ok');
 
@@ -287,9 +289,14 @@ class InstallTests
            }
          } else {
            $sth = $this->run_query("SHOW TABLES", $user_link);
-           if(mysql_num_rows($sth)) {
+	   if(mysql_num_rows($sth)) {
+	     if ($params['create_db'] == "true") {   
              $this->note("The database <code>{$params['db_name']}</code> already contains data.  Please wipe it out or recreate the database before installing PeopleAggregator.", 'error');
-             return false;
+	     return false;
+	     } else {
+		     $this->note("Found database with data. Assuming it is an existing PA install...", "ok");
+		     $user_db = TRUE;
+	     }
            }
          }
       } else {
@@ -302,7 +309,7 @@ class InstallTests
          }
       }
 
-      if(!$user_link && (!empty($params['mysql_root_username'])) && (!empty($params['mysql_root_password']))) {
+      if(!$user_link && !$user_db && (!empty($params['mysql_root_username'])) && (!empty($params['mysql_root_password']))) {
         $this->note("Trying administrator login...");
         $admin_link = @mysql_connect($params['db_host'], $params['mysql_root_username'], $params['mysql_root_password']);
 
@@ -353,28 +360,35 @@ class InstallTests
         $this->note("Something went wrong - we should have successfully connected to the DB by now", 'error');
         return false;
       }
-      $this->note("The database was successfully created.", 'ok');
-
-      // now set up databases
-      $this->note("Initializing database ... ", 'info');
-      if($sql_file = getShadowedPath("web/install/PeepAgg.mysql")) {
-        if($this->run_query_file($sql_file, $user_link)) {
-           $this->note("The database was successfully populated.", 'ok');
-           define("CURRENT_DB", $params['db_name']);
-           $peepagg_dsn = "mysql://". $params['db_user'] .
-                                 ":". $params['db_password'] .
-                                 "@". $params['db_host'] .
-                                 "/". $params['db_name'];
-           $this->peepagg_dsn = $peepagg_dsn;
-        } else {
-          $this->note("The installer is unable to execute MySQL queries.", 'error');
-          return false;
-        }
+      if(!$user_db) {
+	      $this->note("The database was successfully created.", 'ok');
+	      // now set up databases
+	      $this->note("Initializing database ... ", 'info');
+	      if($sql_file = getShadowedPath("web/install/PeepAgg.mysql")) {
+		      if($this->run_query_file($sql_file, $user_link)) {
+			      $this->note("The database was successfully populated.", 'ok');
+			      define("CURRENT_DB", $params['db_name']);
+			      $peepagg_dsn = "mysql://". $params['db_user'] .
+				      ":". $params['db_password'] .
+				      "@". $params['db_host'] .
+				      "/". $params['db_name'];
+			      $this->peepagg_dsn = $peepagg_dsn;
+		      } else {
+			      $this->note("The installer is unable to execute MySQL queries.", 'error');
+			      return false;
+		      }
+	      } else {
+		      $this->note("File <code>$fn</code> does not exists.", 'error');
+		      return false;
+	      }
       } else {
-        $this->note("File <code>$fn</code> does not exists.", 'error');
-        return false;
+	      define("CURRENT_DB", $params['db_name']);
+	      $peepagg_dsn = "mysql://". $params['db_user'] .
+		      ":". $params['db_password'] .
+		      "@". $params['db_host'] .
+		      "/". $params['db_name'];
+	      $this->peepagg_dsn = $peepagg_dsn;
       }
-
      // now run upgrade scripts
       $this->note("Running database upgrade script.", 'info');
       try {

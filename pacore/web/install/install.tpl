@@ -14,7 +14,16 @@
 			userid:	"#admin_username",
 			messageloc: 1	
 		});
+		$("#create_db").click(function(){
+			$("#mysql_root_username").attr("disabled", false);
+			$("#mysql_root_password").attr("disabled", false);
+		});
+		$("#use_existing_db").click(function(){
+			$("#mysql_root_username").attr("disabled", true);
+			$("#mysql_root_password").attr("disabled", true);
+		});
 	});	
+	
   </script>
 </head>
 

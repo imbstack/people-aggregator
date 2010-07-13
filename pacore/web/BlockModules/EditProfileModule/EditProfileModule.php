@@ -169,7 +169,7 @@ class EditProfileModule extends Module {
       }
     }
     if ($request_data['deletepicture'] == "true") {
-	    $this->handleDeleteUserPic($request_method, $request_data);
+	    $this->handleDeleteUserPic($request_data);
     }
     if (empty($this->message) && !empty($_FILES['userfile']['name'])) {
       $uploadfile = PA::$upload_path.basename($_FILES['userfile']['name']);
@@ -205,7 +205,7 @@ class EditProfileModule extends Module {
     $error_msg = $this->message;
   }
 
-  public function handleDeleteUserPic($request_method, $request_data) {
+  public function handleDeleteUserPic($request_data) {
 	  $this->user_info->picture = NULL;
 	  $this->user_info->save();
 	  //        $this->message = 16019;

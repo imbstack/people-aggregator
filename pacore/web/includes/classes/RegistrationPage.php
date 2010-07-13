@@ -66,6 +66,11 @@ class RegistrationPage {
       return;
     }
 
+    // If the user is joining a network other than the 
+    if ($mother_network_info->network_id != PA::$network_info->network_id) {
+	    Network::join(1, $this->reg_user->newuser->user_id, NETWORK_MEMBER);
+    }
+
     if (($extra['email_validation'] == NET_NO) || $this->silent) {  // silent registration - no email validation!
       // Success!
       if(!$this->silent) {
