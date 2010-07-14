@@ -12,7 +12,7 @@
 ?>
 <?php
 require_once "api/User/UserPopularity.class.php";
-
+require_once "api/Activities/Activities.php";
 class LeaderBoardModule extends Module {
 
   public $module_type = 'network';
@@ -42,6 +42,7 @@ class LeaderBoardModule extends Module {
 
      $pagination_links = null;
      $users_ranking = array();
+     $act = array();
      $users_counter_increment = 0;
      
      $nb_items = UserPopularity::countUserPopularity();
@@ -59,7 +60,9 @@ class LeaderBoardModule extends Module {
            $user->ranking_points = $item->get_popularity();
            $user->ranking_stars = intval(($user->ranking_points * 5) / $max_rank);
            $user->last_activity = $item->get_time();
-           $users_ranking[$idx] = $user;
+	   $users_ranking[$idx] = $user;
+	   // Grab the recent activities of the user
+	   $act[$idx] = Activities::get_activities(array("limit"=>3),array("subject"=>$item->get_user_id(),"status"=>"new"));
          } catch (Exception $e) {
            $error_msg = "Exception in LeaderBoardModule, message: <br />" . $e->getMessage();
            return 'skip';
@@ -71,7 +74,8 @@ class LeaderBoardModule extends Module {
      $this->inner_HTML = $this->generate_inner_html(array('page_id'           => $this->page_id,
                                                           'users_ranking'     => $users_ranking,
                                                           'pagination_links'  => $pagination_links,
-                                                          'increment'         => $users_counter_increment 
+							  'increment'         => $users_counter_increment,
+							  'activities'	      => $act
                                                    ));
   }
   
