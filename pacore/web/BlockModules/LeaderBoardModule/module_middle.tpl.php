@@ -31,8 +31,8 @@
       <tbody>
       <?php
        $i = 0; // echo '<pre>'.print_r($users_ranking,1).'</pre>';
-       foreach($users_ranking as $ranked_user) { $even_odd = (++$i % 2) ? "even" : "odd"; ?>
-        <tr class="activities_ranking_row activities_ranking_<?=$even_odd?>">
+       foreach($users_ranking as $idx => $ranked_user) { $even_odd = (++$i % 2) ? "even" : "odd"; ?>
+        <tr class="activities_ranking_row activities_ranking_<?=$even_odd?>" id="activities_<?=$idx?>" onclick="$('.activities_actions#'+this.id).toggle();" style="cursor:pointer;">
           <td class="ranking_position">
             <?= $i + $increment ?>
           </td>
@@ -51,7 +51,28 @@
           <td class="ranking_stars">
             <img src="<?= PA::$theme_url . '/images/'.$ranked_user->ranking_stars.'_star.gif' ?>" alt="star" />
           </td>
-        </tr>
+	</tr>
+	<tr class="activities_ranking_row activities_ranking_<?=$even_odd?> activities_actions" id="activities_<?=$idx?>" style="display:none;">
+	<td>&nbsp;</td>
+		<td colspan="5">
+			<div align="left">Recent Actions:
+				<ul style="list-style:none; padding:0px 0px 0px 15px">
+				    <?php if(!empty($activities[$idx])) { 
+				    foreach($activities[$idx] as $element ) { 
+				      $msg = activities_message($element->subject, $element->object,
+					$element->type, $element->extra);
+					    ?>        
+					    <li>
+					      <?php echo $msg; ?>
+					    </li>
+					    <?php
+				   }
+				}
+				?>
+				</ul>  
+			</div>
+		</td>
+	</tr>
       </tbody>
       <?php } ?>
     </table>
