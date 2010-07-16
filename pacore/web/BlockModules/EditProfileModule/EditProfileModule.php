@@ -180,7 +180,7 @@ class EditProfileModule extends Module {
         $error = TRUE;
       } else {
         $this->user_info->picture = $file;
-        Storage::link($file, array("role" => "avatar", "user" => $this->uid));
+        Storage::link($file, array("role" => "avatar", "user" => $user->user_id));
       }
     }
 

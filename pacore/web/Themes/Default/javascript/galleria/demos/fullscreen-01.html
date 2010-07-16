@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <title>Galleria Fullscreen Theme Demo 01</title>
+        <script src="../src/jquery-1.4.2.js"></script>
+        <script src="../src/galleria.js"></script>
+        <script src="../src/plugins/galleria.flickr.js"></script>
+        <style>
+        /* any custom CSS will override the theme. Here I will enlarge the thumbnails: */
+        .galleria-thumbnails .galleria-image{width:90px;height:60px;}
+        .galleria-thumbnails-list{height:60px;}
+        .galleria-thumb-nav-left,
+        .galleria-thumb-nav-right{height:55px;}
+        .galleria-info,
+        .galleria-counter{bottom:80px;}
+        </style>
+    </head>
+<body>
+    <div id="galleria"></div>
+    <script>
+    // Load theme
+    Galleria.loadTheme('../src/themes/fullscreen/galleria.fullscreen.js');
+    
+    // initialize flickr plugin
+    var flickr = new Galleria.Flickr('fddd7bc223fe37295faace93a4f2d8fc');
+    
+    // search for photos tagged 'sail' and apply galleria
+    flickr.getTags('sail', { 
+        size: 'big'
+    }, function(data) {
+        $('#galleria').galleria({
+            data_source:data,
+            thumb_crop:'height',
+            image_position: '50% 0', // will position the images on top
+            carousel_steps: 3 // will advance the carousel 3 steps when clicking the arrow
+        });
+    });
+    
+    </script>
+    </body>
+</html>
