@@ -10,7 +10,7 @@
   <li <?= (@$_GET['sort_by'] == 'created') ? $active:'' ;?>><a href="<?= PA::$url . PA_ROUTE_GROUPS . '/sort_by=created'.$other_args?>"><?= __("Date Created") ?></a></li>
 </ul>
     
-<h1><?= __("Group Directory") ?></h1>
+<h1><?php echo $title; ?></h1>
 <div class="description"><?= sprintf(__("There are %d groups"), $total);?> </div>
 <div id="buttonbar">
   <ul>

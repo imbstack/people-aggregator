@@ -24,6 +24,7 @@ class GroupsDirectoryModule extends Module {
   public $cid , $tag_id, $Paging;
   public $page_links, $page_prev, $page_next, $page_count,$name_string, $links;
   public $keyword, $sort_by, $total_groups;
+  public $title = "Groups";
 
   function __construct() {
     parent::__construct();
@@ -118,7 +119,10 @@ class GroupsDirectoryModule extends Module {
     return $content;
   }
 
-  function group_info_with_uid($uid, $sort_by) {
+function group_info_with_uid($uid, $sort_by) {
+    $u = new User();
+    $u->load($uid);
+    $this->title = $u->display_name."'s groups";
     $group = new group();
      if ( $this->name_string ) {
        if($this->name_string !='tags') {
