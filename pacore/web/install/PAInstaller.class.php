@@ -379,7 +379,7 @@ class PAInstaller {
 		   if($error) {
 			   $params['message']['msg'] = implode("<br />", $errors);
 			   $params['message']['class'] = 'msg_err';
-			   return $this->GET_step_3($params);
+			   return $this->GET_step_4($params);
 		   }
 
 		   $adm_login = $form_data['admin_username'];
