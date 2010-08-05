@@ -234,8 +234,9 @@ class PAInstaller {
    private function GET_step_4($params, $is_post = false) {
      global $app;
 
-      if($this->error)
+      if ($this->error) {
          return $this->msg_unable_to_continue($params);
+      }
 
       $show_form = array("network_spawning" => "checked");
       foreach($this->form_data as $field => $value) {
@@ -244,27 +245,27 @@ class PAInstaller {
       /*
       * If the setup process hasn't yet been submitted (it is posted after the first time for validation and verification.
       */
-      if (!$is_post){
+      if (!$is_post) {
           $form = new PAForm('pa_inst');
           $form->openTag('fieldset');
-	  $form->addContentTag('legend', array('value' => 'Admin account details'));
+	  $form->addContentTag('legend', array('value' => __('Admin account details')));
 	  if ($this->admin_exists == false) {
 		  $form->addHtml('<div>');
 		  $form->addHtml('<p class="inst_info">'.__('Please complete the following information to create an admin account. The first and last names default to Admin Peepagg if left blank').'</p>');
 		  $form->addInputField('text', __('First Name'),
-			  array('id' => 'admin_first', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_first'] : $show_form["admin_first"]))
+			  array('id' => 'admin_first', 'required' => false, 'value' => @$show_form["admin_first"])
 		  );
 		  $form->addInputField('text', __('Last Name'),
-			  array('id' => 'admin_last', 'required' => false, 'value' => (($is_post) ? $this->form_data['admin_last'] : $show_form["admin_last"]))
+			  array('id' => 'admin_last', 'required' => false, 'value' => @$show_form["admin_last"])
 		  );
 		  $form->addInputField('text', __('Admin username'),
-			  array('id' => 'admin_username', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_username'] : $show_form["admin_username"]))
+			  array('id' => 'admin_username', 'required' => true, 'value' => @$show_form["admin_username"])
 		  );
 		  $form->addInputField('password', __('Admin password'),
-			  array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_password'] : $show_form["admin_password"]))
+			  array('class' => 'admin_password','id' => 'admin_password', 'required' => true, 'value' => @$show_form["admin_password"])
 		  );
 		  $form->addInputField('text', __('Admin email'),
-			  array('id' => 'admin_email', 'required' => true, 'value' => (($is_post) ? $this->form_data['admin_email'] : $show_form["admin_email"]))
+			  array('id' => 'admin_email', 'required' => true, 'value' => @$show_form["admin_email"])
 		  );
 		  $form->addHtml('</div>');
 	  } else {

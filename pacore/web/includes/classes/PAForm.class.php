@@ -60,13 +60,13 @@ require_once "web/includes/classes/xHtml.class.php";
                break;
            case 'radio':
                $name = $params['name'];
-               $checked = $params['checked'];
+               $checked = (!empty($params['checked'])) ? $params['checked'] : '';
                unset($params['name'],$params['checked']);
                $this->xform .= xHtml::radioButtTag($name, $params, $checked);
                break;
            case 'checkbox':
                $name = $params['name'];
-               $checked = $params['value'];
+               $checked = (!empty($params['value'])) ? $params['value'] : '';
                unset($params['name']);
                $this->xform .= xHtml::checkboxTag($name, $params, $checked);
                break;
