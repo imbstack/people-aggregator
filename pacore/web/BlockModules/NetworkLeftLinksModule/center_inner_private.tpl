@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="/Themes/Default/jquery-ui.css" type="text/css" media="all" /> 
-<link rel="stylesheet" href="/Themes/Default/ui.theme.css" type="text/css" media="all" /> 
-<script src="/Themes/Default/javascript/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/Themes/Default/javascript/jquery.bgiframe-2.1.1.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.1.js" type="text/javascript"></script> 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(function() {
 		$("#accordion").accordion({autoHeight: false,collapsible: true});
 	});
 	</script>

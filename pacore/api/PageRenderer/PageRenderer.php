@@ -681,7 +681,7 @@ class PageRenderer {
         // Load JQuery
         $extra_head_html .= '<script type="text/javascript" ';
         $extra_head_html .= 'language="javascript" src="'.$combinator_url_js_prefix.$default_path;
-        $extra_head_html .= '/javascript/jquery.min.js'.$cssjs_tag_prefix.$cssjs_tag.'"></script>'."\n";
+        $extra_head_html .= '/javascript/jquery.lite.js'.$cssjs_tag_prefix.$cssjs_tag.'"></script>'."\n";
         // Load base_javascript
         $extra_head_html .= '<script type="text/javascript" ';
         $extra_head_html .= 'language="javascript" src="'.$combinator_url_js_prefix.$default_path;
