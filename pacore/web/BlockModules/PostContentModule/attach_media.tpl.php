@@ -27,7 +27,7 @@ $video_height = '300';
 ?>
 <script>
 function showRequest(formData, jqForm, options) { 
-	$(':input[@name=submit]', jqForm).remove();
+	$(':input[name=submitbtn]', jqForm).remove();
 	return true; 
 }
 function showResponse(responseText, statusText)  { 
