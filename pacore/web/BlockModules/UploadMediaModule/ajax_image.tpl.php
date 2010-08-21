@@ -38,7 +38,7 @@ if (!empty($_REQUEST['gid'])) echo '&amp;gid='.$_REQUEST['gid'] ?>" method="POST
    <input type="hidden" name="group_id" value="<?=$_REQUEST['gid'];?>" />
    <? } ?>
    
-   <input type="submit" class="button-submit" name="submit" value="<?= __("Upload image") ?>" />
+   <input type="submit" class="button-submit" name="submitbtn" value="<?= __("Upload image") ?>" />
    </fieldset>
   
  </form>
