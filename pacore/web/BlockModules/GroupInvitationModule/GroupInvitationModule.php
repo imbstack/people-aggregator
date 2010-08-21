@@ -87,16 +87,7 @@ class GroupInvitationModule extends Module {
             }
         }
     }
-/*
-  public function handleGroupInvitationSubmit($request_method, $request_data) {
-    switch($request_method) {
-      case 'POST':
-        if(method_exists($this, 'handlePOSTPageSubmit')) {  // function handlePOSTPageSubmit implemented?
-           $this->handlePOSTPageSubmit($request_data);      // yes, use this function to handle POST data!
-        }
-    }
-  }
-*/
+
   public function handlePOST_GroupInvitationSubmit($request_data) {
     if (isset($request_data['submit'])) {
       filter_all_post($request_data);
@@ -269,26 +260,48 @@ class GroupInvitationModule extends Module {
   }
 
   public function render() {
-    $groups = Group::get_user_groups (PA::$login_uid, FALSE, 'ALL');
+    $groups = Group::get_user_groups(PA::$login_uid, FALSE, 'ALL');
     $groups_count = count($groups);
     for ( $i=0; $i < $groups_count; $i++ ) {
         $this->user_groups[] = array('gid'=>$groups[$i]['gid'],'name'=>stripslashes($groups[$i]['name']));
     }
-    $this->inner_HTML = $this->generate_inner_html ();
+    //getting the relations of user.
+    $relations = Relation::get_relations(PA::$login_uid, APPROVED, PA::$network_info->network_id);
+    $friends = array();
+    if (count($relations)) {
+      foreach ($relations as $relation) {
+        $User = new User();
+        $relation = (int)$relation;
+        $User->load($relation);        
+        //$friends[] = array('id'=>$relation, 'login_name'=>$User->login_name);
+        $friends[$User->display_name] = $User->login_name;
+      }      
+      //key of the array will the login_name and value will be the login_id
+      //sorting the array on the basis of login_name
+      ksort($friends);
+    }
+    $this->user_friends = $friends;
+
+    $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;
   }
 
-  public function generate_inner_html () {
+  public function generate_inner_html() {
     switch ($this->mode) {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
+    
+    $js_path = PA::$theme_url.'/'."javascript".'/';
+    $this->renderer->add_page_js($js_path.'group_invite.js');
+    
     $register = & new Template($tmp_file);
     $register->set('message_type', $this->message_type);
     $register->set('group', $this->group);
     $register->set('group_title', $this->group_title);
     $register->set('user_groups', $this->user_groups);
+    $register->set('user_friends', $this->user_friends);
     $inner_html = $register->fetch();
     return $inner_html;
   }
