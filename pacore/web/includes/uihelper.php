@@ -315,7 +315,13 @@ function uihelper_generate_center_content($cid, $permalink=0, $show=0) {
     $image_media_gallery = $audio_media_gallery = $video_media_gallery = FALSE;
     $back_page = PA::$url . $app->current_route;
     $content = Content::load_content((int)$cid, (int)@PA::$login_uid);
-    // filter content filedls for output
+    // sanity rulez
+    if (empty($content)) {
+    	// echo "<hr>cid $cid doesn't exist<hr>"; 
+    	return '';
+    }
+
+    // filter content filelds for output
     $content->title = _out($content->title);
     $content->body = _out($content->body);
 
