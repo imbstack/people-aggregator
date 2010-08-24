@@ -163,7 +163,7 @@ function blog_add() {
   // is stored in last_blog variable
   // so we count up one
   // grab the HTML for last blog on form
-  var blogs = $('div[@id^="blog_"]');
+  var blogs = $('div[id^="blog_"]');
   // update the last_blog var
   last_blog++;
 
@@ -201,7 +201,7 @@ function blog_remove(btn, seq) {
   var feed    = document.getElementById("blog_feed["+ seq +"][value]").value;
   // check if this would be the last visible form
 
-  var blogs = $('div[@id^="blog_"]');
+  var blogs = $('div[id^="blog_"]');
   if (blogs.length > 1) {
     // remove the div
     $('#blog_'+seq).remove();
@@ -261,7 +261,7 @@ $(document).ready(
        }
     });
 
-    $("a[@id^='hcard_by_']").click(                    // call hCardXFN parser trough AJAX
+    $("a[id^='hcard_by_']").click(                    // call hCardXFN parser trough AJAX
       function() {
         var p_mode    = this.getAttribute('id').replace(/hcard_by_/,'');
         var caption   = $(this).text();
@@ -290,7 +290,7 @@ $(document).ready(
 
 
     // add "You are leaving this section" alerts
-    $("a[@id^='show-']").click(
+    $("a[id^='show-']").click(
       function() {
         if (window.dirtyBit) {
           // only do the are you sure if there have been changes to the form
@@ -307,7 +307,7 @@ $(document).ready(
     );
 
     // configure overlays
-    $("a[@id^='showconfig-']").click(
+    $("a[id^='showconfig-']").click(
       function() {
         // get the HTML to display
         var id = this.getAttribute('id').replace(/showconfig-/,'#');
@@ -328,7 +328,7 @@ $(document).ready(
         return false;
       }
     );
-    $("a[@id^='details_']").click(
+    $("a[id^='details_']").click(
       function() {
         // get the HTML to display
         var service = this.getAttribute('id').replace(/details_/,'');
@@ -433,7 +433,7 @@ $(document).ready(
           {},
           function() {
             // click the appropriate Status link
-            $('a[@href*="p=' + id + '"]').not('.refresh')
+            $('a[href*="p=' + id + '"]').not('.refresh')
             .click();
           }
         );

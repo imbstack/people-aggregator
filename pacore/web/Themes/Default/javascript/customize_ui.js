@@ -282,7 +282,7 @@ var moduleNames = {
 var serialize = function() {
   var ser = {};
   ser['collapsed'] = [];
-  $('div[@id^="col_"]').not('#col_b').each( // any div who's id starts with 'col_'
+  $('div[id^="col_"]').not('#col_b').each( // any div who's id starts with 'col_'
     function() {
       var col = $(this).attr('id'); 
       var id;
@@ -346,7 +346,7 @@ $(document).ready(
     initFC();
     init(); 
   // init sortable modules
-    $('div[@id^="col_"]').not('#col_b').Sortable(
+    $('div[id^="col_"]').not('#col_b').Sortable(
         {
         accept : 'module',
         handle: 'h1',

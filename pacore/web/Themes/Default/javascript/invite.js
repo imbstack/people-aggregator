@@ -11,7 +11,7 @@ $(document).ready(
        return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
     };
 
-    $("img[@id^='get_contacts_']").click(                    // trigger import contacts
+    $("img[id^='get_contacts_']").click(                    // trigger import contacts
       function() {
         var service = this.getAttribute('id').replace(/get_contacts_/,'');
         var caption = service;
@@ -35,7 +35,7 @@ $(document).ready(
       }
     );
 
-    $("div[@id^='button_invite_']").hover(function() {
+    $("div[id^='button_invite_']").hover(function() {
        $(this).removeClass("invite_out");
        $(this).addClass("invite_over");
     },function(){
@@ -53,10 +53,10 @@ $(document).ready(
     };
 
     var xfbml_initialized = false;
-    $("div[@id^='button_invite_']").click(
+    $("div[id^='button_invite_']").click(
       function() {
         var service = $(this).attr('id').replace(/button_invite_/,'');
-        $("div[@class^='signin_']").each(function() {
+        $("div[class^='signin_']").each(function() {
           elemname = $(this).attr('class').replace(/signin_/,'');
           if(elemname == service) {
             this.style.display = (this.style.display == "block") ? "none" : "block";
@@ -86,7 +86,7 @@ $(document).ready(
 
     $("#select_all").click(
       function() {
-        $("input[@id^='inv_selected_']").each(function() {
+        $("input[id^='inv_selected_']").each(function() {
           this.checked = "checked";
         });
       }
@@ -103,7 +103,7 @@ $(document).ready(
       });
     });
 
-    $("img[@id^='linkedin_contacts']").click( function() {
+    $("img[id^='linkedin_contacts']").click( function() {
         modal_show(
           "Loading LinkedIn CSV file... ",
           "<img style='margin-top:18px; margin-left:68px' src='"+CURRENT_THEME_PATH+"/images/ajaxload.gif' />",
@@ -133,7 +133,7 @@ $(document).ready(
           return false;
         });
 
-    $("img[@id^='outlook_contacts']").click( function() {
+    $("img[id^='outlook_contacts']").click( function() {
         modal_show(
           "Loading Outlook CSV file... ",
           "<img style='margin-top:18px; margin-left:68px' src='"+CURRENT_THEME_PATH+"/images/ajaxload.gif' />",

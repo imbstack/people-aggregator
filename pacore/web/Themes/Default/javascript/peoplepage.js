@@ -10,7 +10,7 @@ element = element.offsetParent;
 return coords;
 }
 
-    /* $("div[@id^='imgcontainer_']").hover(
+    /* $("div[id^='imgcontainer_']").hover(
       function(){
         var obj_id     = "#"+this.getAttribute('id');
         var oid = this.getAttribute('id').replace(/imgcontainer_/,'');
@@ -46,16 +46,16 @@ return coords;
       function() {
         var is_checked = $("#chbox_no_photo_ok").attr('checked');
         if(is_checked)  {
-          $("input[@id^='no_photo_ok_']").val('1');
+          $("input[id^='no_photo_ok_']").val('1');
         } else {
-          $("input[@id^='no_photo_ok_']").val('0');
+          $("input[id^='no_photo_ok_']").val('0');
         }
         document.forms['myform_show_mode'].submit();
       }
     );
 
 /*
-    $("div[@id^='tooltip_']").hover(
+    $("div[id^='tooltip_']").hover(
       function(){
         $(this).show();
         $(this).fadeTo(500, 1.00);
