@@ -41,7 +41,7 @@ class ManageAdCenterModule extends Module {
 		$edit = false;
 		$message = NULL;
 		
-		// check oermissions!
+		// check permissions!
 		$user_may = false;
 		$user_may = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
 		
