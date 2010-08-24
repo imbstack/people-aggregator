@@ -29,11 +29,30 @@
     </div>
     <div class="field_big">
       <h4><label for="email pa_user"><span class="required"> * </span><?php echo PA::$site_name; ?> <?= __("Login Name") ?>:</label></h4>
+      <!--
       <input type="text" id="email_user_name"  class="text longer" name="email_user_name" value="<?=@$global_form_data['email_user_name']?>" />
+      -->
+      <select name="friend" id="sel_friend" onchange="javascript: invite.add_recipient();">
+        <option value="select friend"><?= __("select friend") ?></option>
+        <?php
+          if ($user_friends) {
+            foreach ($user_friends as $display_name => $login_name) {
+              $display_name=chop_string($display_name,19);
+        ?>
+        <option id="<?php echo $login_name?>" value="<?php echo $login_name?>"  > <?php echo $display_name?></option>
+        <?php
+            }
+          }
+        ?>
+      </select>
+      <br />
+      <input type="hidden" name="email_user_name" id="email_user_name" value="<?=@$global_form_data['email_user_name']?>"/>
+      <span class="text" id="to_display_box"><?php echo field_value(@$to_display, field_value(@$to_display, null))?></span>
       <div class="field_text">
-        <?= __("(separated by comma)") ?>
+        <?= __("Choose 'select friend' tp clear this list and start over.") ?>
       </div>
     </div> 
+
     <?php
       if ($global_form_data) {
         $message = $global_form_data['message'];
