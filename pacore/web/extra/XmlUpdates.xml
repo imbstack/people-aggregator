@@ -130,4 +130,14 @@
     <node_value path="//configuration/pages/value/PAGE_CONFIGURE_DEFENDER" descr="2010-06-17 martin: removing PaDefender related things, PAGE_CONFIGURE_DEFENDER."/>
   </remove>
 
+  <add>
+    <node_value path="//notify_members/value" descr="2010-08-24 martin: adding Notification settings for group bulletin">
+              <group_bulletin_sent>
+              <caption>a group moderator sent a bulletin</caption>
+              <value>1</value>
+              <user_settable>1</user_settable>
+            </group_bulletin_sent>
+    </node_value> 
+  </add>
+
 </updates>
