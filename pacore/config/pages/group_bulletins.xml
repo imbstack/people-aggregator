@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <page>
   <page_id>92</page_id>
+  <is_configurable>0</is_configurable>
+  <page_name>Group Bulletins</page_name>
   <data>
     <left>
     </left>
@@ -16,7 +18,7 @@
     <page_mode>private</page_mode>
     <block_type>Homepage</block_type>
     <body_attributes></body_attributes>
-    <access_permission>notifications</access_permission>
+    <access_permission></access_permission>
     <navigation_code><![CDATA[
     ]]></navigation_code>
     <boot_code><![CDATA[
@@ -67,6 +69,4 @@
       ]]></boot_code>
     <page_type>network</page_type>
   </data>
-  <is_configurable>0</is_configurable>
-  <page_name>network_bulletins</page_name>
 </page>

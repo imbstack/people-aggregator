@@ -402,6 +402,25 @@ Thanks
     </configurable_variables>
   </bulletin_sent>
 
+  <group_bulletin_sent>
+    <category>group_bulletin</category>
+    <template>default_email_container.tpl</template>
+    <subject><![CDATA[%group.name% Group bulletin: %bulletin.subject%]]></subject>
+    <message><![CDATA[
+<br />%group.owner.image% %group.owner.display_name% has sent you a bulletin:
+<br />
+%bulletin.message%
+<br />
+<br />
+Thanks
+]]></message>
+    <description>Group Bulletin</description>
+    <configurable_variables>
+      <bulletin_subject>%bulletin.subject%</bulletin_subject>
+      <bulletin_message>%bulletin.message%</bulletin_message>
+    </configurable_variables>
+  </group_bulletin_sent>
+
   <group_created>
     <category>notify_network_owner</category>
     <template>default_email_container.tpl</template>

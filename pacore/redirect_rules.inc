@@ -83,6 +83,14 @@
 
     /**
     *
+    *  /group/bulletins* -> dynamic.php?page_id=92&*
+    *
+    *
+    **/
+    "^/group/bulletins[/]?(.*)$" => "/dynamic.php?page_id=92&%s",
+
+    /**
+    *
     *  /group/moderation/* -> dynamic.php?page_id=8&*
     *
     *
@@ -370,7 +378,8 @@ define("PA_ROUTE_GROUP", "/group");
 define("PA_ROUTE_GROUPS", "/groups");
 define("PA_ROUTE_GROUP_MODERATION", "/group/moderation");
 define("PA_ROUTE_GROUP_AD_CENTER", "/group/ad_center");
-// define("PA_ROUTE_GROUP_THEMES", "/group/customize/themes"); // refactoring for this page not finished!  all links that points to this page should be replaced in whole PA application
+define("PA_ROUTE_GROUP_BULLETINS", "/group/bulletins");
+
 define("PA_ROUTE_EDIT_RELATIONS", "/relations/edit");
 define("PA_ROUTE_INVITE", "/invitation");
 define("PA_ROUTE_USER_PUBLIC", "/user");
