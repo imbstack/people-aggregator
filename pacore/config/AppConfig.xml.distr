@@ -1361,11 +1361,6 @@
         <value>2</value>
         <user_settable>1</user_settable>
       </friend_request_approved>
-      <user_send_message>
-        <caption>another user sends a message</caption>
-        <value>2</value>
-        <user_settable>1</user_settable>
-      </user_send_message>
           </value>
         </notify_members>
         <user_defaults category="item" type="array" readonly="false" section="network_defaults" description="User defaults.">
