@@ -25,7 +25,7 @@ class GroupBulletinsModule extends Module {
   }
   
   function initializeModule($request_method, $request_data) {
-		if (empty(request_data['gid'])) return 'skip'; // sanity check
+		if (empty($request_data['gid'])) return 'skip'; // sanity check
 		
 		// we do this checl only if the user is not already permitted to manage ads
 		$gp_access = PermissionsHandler::can_group_user(PA::$login_uid, $request_data['gid'], array('permissions' => 'manage_groups'));
@@ -51,7 +51,7 @@ class GroupBulletinsModule extends Module {
 							$gms = $group->get_members();
 							foreach ($gms as $i=>$m) {
 								$u = new User();
-								$u->load((int)$m{'user_id']);
+								$u->load((int)$m['user_id']);
 								$to_members[] = $u;
 							} 
 						}
@@ -79,10 +79,11 @@ class GroupBulletinsModule extends Module {
 						$email_container = & new Template('config/email_containers/'.$container_html);
 						$email_container->set('subject', $subject);
 						$email_container->set('message', $bull_message);
-						$preview_msg = $email_container->fetch();
+						$this->preview_msg = $email_container->fetch();
 					}
 				}
-			}  }
+			}
+	}
   
    function render() {    
     $this->inner_HTML = $this->generate_inner_html();
@@ -93,7 +94,7 @@ class GroupBulletinsModule extends Module {
   function generate_inner_html() {
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     $group_bulletin = & new Template($tmp_file, $this);
-    $group_bulletin->set('preview_msg', $this->preview_msg);
+    $group_bulletin->set('preview_msg', @$this->preview_msg);
     $inner_html = $group_bulletin->fetch();
     return $inner_html;
   }

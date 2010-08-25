@@ -4,6 +4,7 @@
 
 <div class="description"><?= __("Use this tool to send announcements to all registered network members") ?>. </div>
 <div id="div_epm1">
+
   <form method="post" action="">
   <fieldset class="center_box">
   <div class="field">
@@ -24,5 +25,4 @@
    </fieldset>
    <div><?php echo $preview_msg;?></div>
   </form>
-  <?php echo $config_navigation_url; ?>
 </div>
