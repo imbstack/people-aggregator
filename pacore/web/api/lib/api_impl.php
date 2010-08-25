@@ -434,6 +434,32 @@ function peopleaggregator_getUserProfile($args)
       );
 }
 
+function getUserImage($args)
+{
+
+    
+    $login = $args['login'];
+
+    $user = new User();
+    $user->load($login); 
+    if ($args['width'] == null || $args['height'] == null){
+	    $p = $user->picture;
+	    $pic = (!empty($p)) ? $p : 'default.png';
+	    return array(
+		    'success' => TRUE,
+		    'url' => PA::$url.'/files/'.$pic
+		    );
+    }
+    else{
+	    $pic = uihelper_resize_mk_user_img($user, $args['width'],$args['height']);
+	    $pic = explode("\"", $pic);
+	    $pic = $pic[3];
+	    return array(
+        	'success' => TRUE,
+		'url' => $pic    );
+    }
+}
+
 function peopleaggregator_newUser($args)
 {
     // check admin password

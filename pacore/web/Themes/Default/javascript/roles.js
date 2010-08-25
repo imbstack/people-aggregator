@@ -1,6 +1,6 @@
 var roles = {
   update_role_extra : function (uid) {
-    var role_extra = $("input[@id^='role_extra_']").serialize();
+    var role_extra = $("input[id^='role_extra_']").serialize();
     get_data = "uid="+uid+"&"+role_extra;
     $.ajax({
       type: "POST",
@@ -26,7 +26,7 @@ var roles = {
       alert("Nothing selected.");
       return false;
     }
-    var role_extra = $("input[@id^='role_extra_']").serialize();
+    var role_extra = $("input[id^='role_extra_']").serialize();
     get_data = "rid="+role_id+"&uid="+uid+"&"+role_extra;
     if (gid != '-1') get_data += '&gid='+gid;
     if(dest == 'associated_roles') {
@@ -55,7 +55,7 @@ var roles = {
                }
              } else {
                alert("Role has been successfully removed.");
-               $("div[@id^='extra_info_']").css({ display: "none" });
+               $("div[id^='extra_info_']").css({ display: "none" });
              }
 
           }
@@ -114,7 +114,7 @@ var roles = {
 
     var selecttag = document.getElementById(elm_id);
     var role_id = selecttag[selecttag.selectedIndex].value;
-      $("div[@id^='extra_info_']").css({ display: "none" });
+      $("div[id^='extra_info_']").css({ display: "none" });
       $('#extra_info_'+role_id).css({ display: "block" });
   },
 

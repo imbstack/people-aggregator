@@ -1,6 +1,6 @@
 function edit_list() {
   var category_id = '';
-  $("input[@type=radio]").each(
+  $("input[type=radio]").each(
     function () {
       if (this.checked == true) {
         category_id =  this.value;
@@ -14,7 +14,7 @@ function edit_list() {
 var list = {
   selected_list : function () {
       var category_id = '';
-      $("input[@type=radio]").each(
+      $("input[type=radio]").each(
         function () {
           if (this.checked == true) {
             category_id =  this.value;
@@ -52,8 +52,8 @@ var list = {
         return false;
       }
       $('#form_action').attr('value', 'create_list');
-      var post_data = $("input[@type=text]").serialize();
-      post_data += '&'+$("input[@type=hidden]").serialize();
+      var post_data = $("input[type=text]").serialize();
+      post_data += '&'+$("input[type=hidden]").serialize();
       $.ajax({
         type: "POST",
         url: "ajax_links.php",
@@ -88,8 +88,8 @@ var list = {
         return false;
       }
       $('#form_action').attr('value', 'edit_list');
-      var post_data = $("input[@type=text]").serialize();
-      post_data += '&'+$("input[@type=hidden]").serialize();      
+      var post_data = $("input[type=text]").serialize();
+      post_data += '&'+$("input[type=hidden]").serialize();      
       $.ajax({
         type: "POST",
         url: "ajax_links.php",
@@ -117,7 +117,7 @@ var list = {
     }
   },
   highlight : function (cat_id) {
-    $("input[@type='radio']").each(
+    $("input[type='radio']").each(
       function () {
         if (this.value == cat_id) {
           this.checked = true;
@@ -131,7 +131,7 @@ var list = {
 var list_links = {
   checked_boxes : function () {
     var list_link_ids = new Array();
-    $("input[@type=checkbox]").each(
+    $("input[type=checkbox]").each(
       function () {
         if (this.checked == true) {
           list_link_ids.push(this.value);
@@ -201,7 +201,7 @@ var list_links = {
   edit_action : function () {
     $('#form_action').attr('value', 'update_links');
     var error_mesg = '', counter = 1;
-    $('input[@name^="title_updated"]').each(
+    $('input[name^="title_updated"]').each(
       function () {
         if (trim(this.value) == '') {
           error_mesg += 'Link caption can not have empty value for link '+counter+'<br />';
@@ -213,7 +213,7 @@ var list_links = {
     );
     
     counter = 1;
-    $('input[@name^="url_updated"]').each(
+    $('input[name^="url_updated"]').each(
       function () {
         if (trim(this.value) == '') {
           error_mesg += 'URL can not be empty for link '+counter+'<br />';
@@ -228,9 +228,9 @@ var list_links = {
       return false;
     }
     
-    var post_data = $('input[@name^="title_updated"]').serialize();
-    post_data += '&'+$('input[@name^="url_updated"]').serialize();
-    post_data += '&'+$('input[@name^="link_id_updated"]').serialize();
+    var post_data = $('input[name^="title_updated"]').serialize();
+    post_data += '&'+$('input[name^="url_updated"]').serialize();
+    post_data += '&'+$('input[name^="link_id_updated"]').serialize();
     post_data += '&category_id='+list.selected_list();
     post_data += '&form_action=update_links';        
     

@@ -1,5 +1,5 @@
 var switchStylestyle = function(styleName) {
-  $('link[@rel*=style][@title]').each(function(i) {
+  $('link[rel*=style][title]').each(function(i) {
 	 this.disabled = true;
 	 if (this.getAttribute('title') == styleName) this.disabled = false;
   });
@@ -25,7 +25,7 @@ var moduleNames = {
 var serialize = function() {
   var ser = {};
   ser['collapsed'] = [];
-  $('div[@id^="col_"]').not('#col_b').each( // any div who's id starts with 'col_'
+  $('div[id^="col_"]').not('#col_b').each( // any div who's id starts with 'col_'
     function() {
       var col = $(this).attr('id');
       var id;
@@ -95,7 +95,7 @@ $(document).ready(
     });
 
     // init sortable modules
-    $('div[@id^="col_"]').not('#col_b').Sortable(
+    $('div[id^="col_"]').not('#col_b').Sortable(
         {
         accept : 'module',
         handle: 'h1',

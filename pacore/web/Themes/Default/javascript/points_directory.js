@@ -1,11 +1,11 @@
 /**
- * @script user_register.js
+ * script user_register.js
  *
- * @brief: Validation and user avatar AJAX upload
+ * brief: Validation and user avatar AJAX upload
  *
  * NOTE: This script require JQuery and ajaxfileupload.js plugin
  *
- * @author     Zoran Hron, 2008-11-14 <zhron@broadbandmechanics.com>
+ * author     Zoran Hron, 2008-11-14 <zhronbroadbandmechanics.com>
  *
  */
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 
 function showRequest(formData, jqForm, options) {
-    $(':input[@name=submit]', jqForm).remove();
+    $(':input[name=submit]', jqForm).remove();
     return true;
 }
 function showResponse(responseText, statusText)  {
