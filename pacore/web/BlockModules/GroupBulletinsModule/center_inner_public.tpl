@@ -4,7 +4,14 @@
 
 <div class="description"><?= __("Use this tool to send announcements to all registered network members") ?>. </div>
 <div id="div_epm1">
-
+<?php
+	if (!empty($mod->sent_to)) {
+		echo "<h4>".__("This Bulletin was sent to:")."</h4>";
+		echo "<ul>";
+		foreach ($mod->sent_to as $name) echo "<li>$name</li>";
+		echo "<Zul>";
+	}
+?>
   <form method="post" action="">
   <fieldset class="center_box">
   <div class="field">
