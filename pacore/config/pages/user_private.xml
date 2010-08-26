@@ -134,7 +134,7 @@
     <header_template>header_user.tpl</header_template>
     <page_mode>private</page_mode>
     <block_type>Homepage</block_type>
-    <page_type>user</page_type>
+    <page_type>user|network</page_type>
   </data>
   <page_name>User Private Page</page_name>
   <is_configurable>1</is_configurable>
