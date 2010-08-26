@@ -105,34 +105,9 @@ if (!empty($_SESSION['user']['id']) && (isset($_GET['action']) && $_GET['action'
           $new_invite->inv_relation_type = $relation_type;
           PANotify::send("invitation_accept", $user_obj, $user_accepting_inv_obj, $new_invite);
 
-/*  - Replaced with new PANotify code       
-
-          $invited_user_url = url_for('user_blog', array('login'=>$user_obj->login_name));
-          // data for passing in common mail method
-          $array_of_data  = array('first_name' => $user_accepting_inv_obj->first_name,
-                                  'last_name' => $user_accepting_inv_obj->last_name,
-                                  'user_name' => $user_accepting_inv_obj->login_name,
-                                  'user_id' => $user_accepting_inv_obj->user_id,
-                                  'invited_user_id' => $inv_obj->user_id,
-                                  'invited_user_name' => $user_obj->login_name,
-                                  'recipient_username' => $user_obj->login_name, 
-                                  'recipient_firstname' => $user_obj->first_name, 
-                                  'recipient_lastname' => $user_obj->last_name, 
-                                  'mail_type' => 'invite_accept_pa',
-                                  'to' => $user_obj->email,
-                                  'network_name' => PA::$network_info->name,
-                                  'relation_type' => $relation_type,
-                                  'config_site_name'=>PA::$site_name,
-                                  'invited_user_url'=>"<a href=\"$invited_user_url\">$invited_user_url</a>");
-        auto_email_notification_members('invitation_accept', $array_of_data);
-*/        
         if (!Network::member_exists(PA::$network_info->network_id, (int)$_SESSION['user']['id'])) {
           Network::join(PA::$network_info->network_id, $_SESSION['user']['id']);
           PANotify::send("network_join", PA::$network_info, $user_accepting_inv_obj, array());
-/*  - Replaced with new PANotify code  
-          $params['uid'] = $u;
-          auto_email_notification('some_joins_a_network', $params );
-*/          
         }
           header("Location: " . PA::$url . PA_ROUTE_USER_PRIVATE . '/' . "msg_id=7016");
           exit;

@@ -170,32 +170,6 @@ if (isset($_POST['publish']) && $content_type == 'BlogPost') {
     if(PA::is_moderated_content()) {
       $login_required_str = '&login_required=true';
     }
-/* - Replaced with new PANotify code
-
-    $content_author_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-    $network_owner = new User();
-    $network_owner->load((int)PA::$network_info->owner_id);
-    $network_owner_name = User::map_ids_to_logins(PA::$network_info->owner_id);
-    $params['recipient_username'] = $network_owner->login_name;
-    $params['recipient_firstname'] = $network_owner->first_name;
-    $params['recipient_lastname'] = $network_owner->last_name;
-    $params['cid'] = $permalink_cid;
-    $params['first_name'] = $user->first_name;
-    $params['user_id'] = $user->user_id;
-    $params['user_image'] = $content_author_image;
-    $params['content_title'] = $_POST["blog_title"];
-    $params['network_name'] = PA::$network_info->name;
-    $_content_url = PA::$url . PA_ROUTE_CONTENT . '/cid='.$permalink_cid.$login_required_str;
-    $params['content_url'] = "<a href=\"$_content_url\">$_content_url</a>";
-    $_content_moderation_url = PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT;
-    $params['content_moderation_url'] = "<a href=\"$_content_moderation_url\">$_content_moderation_url</a>";
-    $params['config_site_name'] = PA::$site_name;
-    $params['network_owner_name'] = $network_owner_name[PA::$network_info->owner_id];
-    auto_email_notification('content_posted', $params);
-    if ($display_on_homepage == DISPLAY_ON_HOMEPAGE) {
-      auto_email_notification('content_posted_to_comm_blog', $params);
-    }
-*/
     $content_obj = Content::load_content((int)$permalink_cid);
     PANotify::send("content_posted", PA::$network_info, $user, $content_obj);
     if ($display_on_homepage == DISPLAY_ON_HOMEPAGE) {

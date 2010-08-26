@@ -293,36 +293,8 @@ class UserContactsModule extends Module {
             $msg = "Sorry: you are unable to invite a friend. <br /> Reason: " . $msg;
           } else {
             // invitation has been sent, now send mail
-
-/*    - Replaced with new PANotify code
-
-            $invitee_image = uihelper_resize_mk_user_img($user->picture, 80, 80,'alt="'.$user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-            $network_icon_image = uihelper_resize_mk_img(PA::$network_info->inner_logo_image, 219, 35, DEFAULT_NETWORK_ICON,  'alt="'.PA::$network_info->name.'"');
-            $invitee_url = url_for('user_blog', array('login'=>$user->login_name));
-            $mail_type= "invite_pa";
-            $array_of_data =
-            array(
-            'first_name'          => $user->first_name,
-            'last_name'           => $user->last_name,
-            'user_name'           => $user->login_name,
-            'user_id'             => $user->user_id,
-            'message'             => $inv->inv_message,
-            'accept_url'          => $inv->accept_url,
-            'register_url'        => $inv->register_url,
-            'invited_user_name'   => $inv->inv_user_first_name,
-            'invitee_image'       => $invitee_image,
-            'network_name'        => PA::$network_info->name,
-            'network_description' => PA::$network_info->description,
-            'network_icon_image'  => $network_icon_image,
-            'invitee_url'         => $invitee_url,
-            'config_site_name'    => PA::$site_name
-            );
-            $check = pa_mail($inv->inv_email, $mail_type, $array_of_data, $user->email);
-*/
             PAMail::send('invite_pa', $inv->inv_email, PA::$login_user, $inv);
-
             $msg .= "<br />" . $contact['name'] . ", " . $contact['email'];
-          }
         } // end for : invitation to multiple email
         $msg  = "<br />Invitation message has been sent to: " . $msg;
       } else {

@@ -53,11 +53,6 @@ if ( $_GET['action'] == 'join' ) {
         $requester->load((int)$_SESSION['user']['id']);
         $recipient = type_cast($netinfo, 'Network');           // defined in helper_functions.php
         PANotify::send("network_join", $recipient, $requester, array());
-
-/*  - Replaced with new PANotify code  
-        $params['uid'] = $_SESSION['user']['id'];
-        auto_email_notification('some_joins_a_network', $params );
-*/        
        } else {
          //$msg = "Please login first to join the network.";
          header("Location: ". PA::$url ."/login.php?error=1&return=".urlencode($_SERVER['REQUEST_URI']));

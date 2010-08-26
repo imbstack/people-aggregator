@@ -56,19 +56,6 @@ if ( $_GET['action'] == 'join' ) {
       $recipient = type_cast($netinfo, 'Network');           // defined in helper_functions.php
       PANotify::send("network_join", $recipient, $requester, array());
 
-/*  - Replaced with new PANotify code  
-
-      $net_own = new User();
-      $net_own->load((int)$netinfo->owner_id);
-
-      $params['recipient_username'] = $net_own->login_name; 
-      $params['recipient_firstname'] = $net_own->first_name; 
-      $params['recipient_lastname'] = $net_own->last_name; 
-
-      $params['uid'] = $_SESSION['user']['id'];
-      $result = auto_email_notification('some_joins_a_network',$params);
-*/
-
       $redirect_url = "http://".$netinfo->address.".".PA::$domain_suffix.BASE_URL_REL.PA_ROUTE_HOME_PAGE."/msg=7001";
       header("Location:$redirect_url");
       exit;

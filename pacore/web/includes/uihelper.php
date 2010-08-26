@@ -261,27 +261,6 @@ function uihelper_upload_gallery($uid, $_POST, $_FILES, $type, $k=0) {
           $mail_type = "media_uploaded";
         }
         PANotify::send($mail_type, PA::$network_info, PA::$login_user, $new_img);
-
-/*  - Replaced with new PANotify code
-
-        $_content_url = PA::$url . PA_ROUTE_CONTENT . '/cid='.$new_img->content_id .'&login_required=true';
-        $_media_full_view_url = PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'&login_required=true';
-        if(isset($_REQUEST['gid'])) {
-          $_content_url .= '&gid='.$_REQUEST['gid'];
-          $_media_full_view_url .= '&gid='.$_REQUEST['gid'];
-        }
-        $media_owner_image = uihelper_resize_mk_user_img($logged_in_user->picture, 80, 80,'alt="'.$logged_in_user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-        $params['first_name'] = $logged_in_user->first_name;
-        $params['user_id'] = $logged_in_user->user_id;
-        $params['user_image'] = $media_owner_image;
-        $params['cid'] = $new_img->content_id;
-        $params['media_title'] = $new_img->title;
-        $params['content_url'] = '<a href="' . PA::$url . PA_ROUTE_CONTENT . '/cid='.$new_img->content_id . '">' . $new_img->title .'</a>';
-        $params['config_site_name'] = PA::$site_name;
-        $params['media_full_view_url'] = '<a href="' . PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'&login_required=true">' . PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'</a>';
-        $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT .'</a>';
-        auto_email_notification('media_uploaded', $params );
-*/
       }
     }
     catch (PAException $e) {
@@ -790,25 +769,6 @@ function uihelper_upload_gallery_for_group($uid, $_POST, $_FILES, $type, $k=0) {
           $mail_type = "media_uploaded";
         }
         PANotify::send($mail_type, PA::$network_info, PA::$login_user, $new_img);
-
-/*  - Replaced with new PANotify code
-
-        $_media_full_view_url = PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'&login_required=true';
-        if(isset($_REQUEST['gid'])) {
-          $_content_url .= '&gid='.$_REQUEST['gid'];
-          $_media_full_view_url .= '&gid='.$_REQUEST['gid'];
-        }
-        $media_owner_image = uihelper_resize_mk_user_img($logged_in_user->picture, 80, 80,'alt="'.$logged_in_user->first_name.'" align="left" style="padding: 0px 12px 12px 0px;"');
-        $params['first_name'] = $logged_in_user->first_name;
-        $params['user_id'] = $logged_in_user->user_id;
-        $params['user_image'] = $media_owner_image;
-        $params['cid'] = $new_img->content_id;
-        $params['media_title'] = $new_img->title;
-        //Z.Hron  - fix for Group Media Upload notifications - missing links
-        $params['media_full_view_url'] = '<a href="' . PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'&login_required=true">' . PA::$url.'/'.FILE_MEDIA_FULL_VIEW.'?cid='.$new_img->content_id .'</a>';
-        $params['content_moderation_url'] = '<a href="' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT . '">' . PA::$url.'/'.FILE_NETWORK_MANAGE_CONTENT .'</a>';
-        auto_email_notification('media_uploaded', $params );
-*/
       }
     }
     catch (PAException $e) {
