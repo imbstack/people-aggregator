@@ -237,41 +237,8 @@ class ShowContentModule extends Module {
         $this->Paging["count"] = $this->links =  $this->group->get_contents_for_collection($type = 'all',$cnt=TRUE,'all' , 0, $sort_by='created', $direction='DESC');
         $this->contents = $this->group->get_contents_for_collection($type = 'all', $cnt=FALSE, $this->Paging["show"], $this->Paging["page"],'created','DESC');
       }
-
-      $this->group_owner = FALSE;
-      $this->group_member = FALSE;
-      $this->group_moderator = FALSE;
-      $this->ad_manager = FALSE;
-      if (PA::$login_uid) {
-      	// all permission tests only make sense if we HAVE a user
-				$perm_params = array('permissions' => 'manage_groups, manage_roles');
-				$has_adm_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
-				if ($has_adm_permission || Group::is_admin($this->group->collection_id, PA::$login_uid)) {
-					$this->group_owner = TRUE;
-				}
-				$this->group_member = FALSE;
-				if (Group::member_exists($this->group->collection_id, PA::$login_uid)) {
-					$this->group_member = TRUE;
-				}
-
-				$perm_params = array('permissions' => 'manage_groups');
-				$has_mod_permission  = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, $perm_params);
-				$this->group_moderator = FALSE;
-				if($has_mod_permission || ($this->shared_data['member_type'] == 'moderator')) {
-					$this->group_moderator = TRUE;
-				}
-
-				$this->ad_manager = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
-				// check for manageads of group permissions
-				if (!$this->ad_manager) {
-					// we do this checl only if the user is not already permitted to manage ads
-					$this->ad_manager = PermissionsHandler::can_group_user(PA::$login_uid, $this->group->collection_id, array('permissions' => 'manage_ads'));
-				}
-      }
-
       $this->title = chop_string(sprintf(__("%s's Group Blog"), $this->group->title,32));
-
-    }  else if($this->type == "tag") {
+    } else if ($this->type == "tag") {
          $this->Paging["count"] = Tag::get_associated_content_ids((int)$this->tag_id, $cnt=TRUE);
          $this->contents = Tag::get_associated_content_ids((int)$this->tag_id, $cnt=FALSE, $this->Paging["show"], $this->Paging["page"]);
          if(!empty($this->contents)) {
@@ -364,32 +331,8 @@ class ShowContentModule extends Module {
       $inner_html .= "<h1>".sprintf(__("Showing results for tag %s."), $tag_name)."</h1>";
     }
     
-    if ($this->type == 'group') {
-        $inner_html .= '<div id="buttonbar">
-        <ul>';
-        if ($this->group_member) {
-          $inner_html .= '<li><a href="'.PA::$url . '/post_content.php?ccid='.$request_data['gid'].'">'.__("Create post").'</a></li>';
-          $inner_html .= '<li><a href="'.PA::$url . PA_ROUTE_GROUP_INVITE . '/gid='.$request_data['gid'].'">'.__("Invite").'</a></li>';
-        }
-        if ($this->group_owner) {
-          $inner_html .= '<li><a href="'.PA::$url .'/addgroup.php?gid='.$request_data['gid'].'">'.__("Group Settings").'</a></li>';
-          $inner_html .= '<li><a href="'.PA::$url . PA_ROUTE_GROUP_MODERATION . '/view=members&amp;gid='.$request_data['gid'].'">'.__("Moderate").'</a></li>';
-          $inner_html .= '<li><a href="'.PA::$url .'/manage_group_content.php?gid='.$request_data['gid'].'">'.__("Manage content").'</a></li>';
-        } else if($this->group_moderator) {
-          $inner_html .= '<li><a href="'.PA::$url . PA_ROUTE_GROUP_MODERATION . '/view=members&amp;gid='.$request_data['gid'].'">'.__("Moderate").'</a></li>';
-        }
-        if (!empty($this->ad_manager)) {
-        	$inner_html .= '<li><a href="'.PA::$url.PA_ROUTE_GROUP_AD_CENTER .'?gid='.$request_data['gid'].'">'.__("Manage Ads").'</a></li>';
-        }
-        if ((empty($this->group_member) && empty($this->group_owner)) && !empty(PA::$login_uid)) {
-          if (!empty($this->join_this_group_string)) {
-              $inner_html .= '<li><a href="'. PA::$url . PA_ROUTE_GROUP . '/action=join&amp;gid='.$request_data['gid'].'">'. $this->join_this_group_string.'</a></li>';
-          } else {
-          $inner_html .= '<li><a href="'. PA::$url . PA_ROUTE_GROUP . '/action=join&amp;gid='.$request_data['gid'].'">'.__("Join this group").'</a></li>';
-        }
-       }
-       $inner_html.='</ul></div>';
-     }
+    // if ($this->type == 'group') 
+    
     if ($contents) {
 // echo "<pre>".print_r($contents, 1)."</pre>";
       //foreach ($contents as $content) {

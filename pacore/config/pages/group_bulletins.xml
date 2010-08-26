@@ -65,8 +65,8 @@
           $module_shared_data['content_info'] = null;
         }
       }
-      uihelper_get_network_style();
+      uihelper_get_group_style($gid);
       ]]></boot_code>
-    <page_type>network</page_type>
+    <page_type>group</page_type>
   </data>
 </page>
