@@ -306,7 +306,7 @@ class Network {
   public static function get_network_by_address($network_name) {
     if ($network_name == 'www' || empty($network_name)) return self::get_mothership_info();
     $sth = Dal::query("SELECT * FROM {networks} WHERE is_active=1 AND address=?", array($network_name));
-    return Network::from_array(Dal::row_assoc($sth));
+    return self::from_array(Dal::row_assoc($sth));
   }
 
   /**
@@ -369,7 +369,7 @@ class Network {
   }
 
   // populate new Network object from DB row $info
-  private function from_array($info) {
+  private static function from_array($info) {
     $net = new Network();
     if (!is_array($info)) {
     	return $net;
@@ -1298,7 +1298,7 @@ class Network {
       $network['owner_id'] = 1;
     }
 
-    return Network::from_array($network);
+    return self::from_array($network);
     Logger::log("[ Exit: function Network::get_mothership_info] \n");
   }
 
