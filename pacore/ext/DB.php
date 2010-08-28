@@ -456,7 +456,7 @@ class DB
      *
      * @see DB_common::setOption()
      */
-    function &factory($type, $options = false)
+    public static function factory($type, $options = false)
     {
         if (!is_array($options)) {
             $options = array('persistent' => $options);
@@ -527,7 +527,7 @@ class DB
      *
      * @uses DB::parseDSN(), DB_common::setOption(), PEAR::isError()
      */
-    function &connect($dsn, $options = array())
+    public static function connect($dsn, $options = array())
     {
         $dsninfo = DB::parseDSN($dsn);
         $type = $dsninfo['phptype'];
@@ -582,7 +582,7 @@ class DB
      *
      * @return string  the DB API version number
      */
-    function apiVersion()
+    public static function apiVersion()
     {
         return '@package_version@';
     }
@@ -597,7 +597,7 @@ class DB
      *
      * @return bool  whether $value is DB_Error object
      */
-    function isError($value)
+    public static function isError($value)
     {
         return is_a($value, 'DB_Error');
     }
@@ -612,7 +612,7 @@ class DB
      *
      * @return bool  whether $value is a DB_<driver> object
      */
-    function isConnection($value)
+    public static function isConnection($value)
     {
         return (is_object($value) &&
                 is_subclass_of($value, 'db_common') &&
@@ -633,7 +633,7 @@ class DB
      *
      * @return boolean  whether $query is a data manipulation query
      */
-    function isManip($query)
+    public static function isManip($query)
     {
         $manips = 'INSERT|UPDATE|DELETE|REPLACE|'
                 . 'CREATE|DROP|'
@@ -657,7 +657,7 @@ class DB
      * @return string  the error message or false if the error code was
      *                  not recognized
      */
-    function errorMessage($value)
+    public static function errorMessage($value)
     {
         static $errorMessages;
         if (!isset($errorMessages)) {
@@ -738,7 +738,7 @@ class DB
      *  + username: User name for login
      *  + password: Password for login
      */
-    function parseDSN($dsn)
+    public static function parseDSN($dsn)
     {
         $parsed = array(
             'phptype'  => false,
