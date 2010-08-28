@@ -40,7 +40,7 @@ class ManageTakeTourModule extends Module {
   function generate_inner_html () {
     $links = $this->get_links();
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('links', $links);
     $inner_html_gen->set('config_navigation_url',
                       network_config_navigation('manage_persionalized_video'));

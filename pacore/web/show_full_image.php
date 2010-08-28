@@ -49,7 +49,7 @@ $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
 
 // header
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('current_theme_path', PA::$theme_url);
 if (PA::$network_info) {
   $header->set_object('network_info', PA::$network_info);
@@ -60,14 +60,14 @@ print '<div class="body"><div class="left-body">';
 print $header->fetch();
 
 // middle
-$content = & new Template(CURRENT_THEME_FSPATH."/show_full_image.tpl");
+$content = new Template(CURRENT_THEME_FSPATH."/show_full_image.tpl");
 if ($error == TRUE) {
   $content->set('msg', $msg);
 }
 print $content->fetch();
 
 // footer
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_url);
 print $footer->fetch();
 

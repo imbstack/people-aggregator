@@ -77,7 +77,7 @@ class NetworkResultUserModule extends Module {
     $this->page_links = $Pagination->getPageLinks();
     $role = new Roles();
     $this->role_links = $role->get_multiple(null, DB_FETCHMODE_ASSOC);
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('links', $this->links);
     $inner_html_gen->set('link_role', $this->role_links);
     $inner_html_gen->set('page_first', $this->page_first);

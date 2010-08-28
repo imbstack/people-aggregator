@@ -78,7 +78,7 @@
 			# create the http request
 			#
 
-			$req =& new HTTP_Request($this->_cfg['endpoint'], array('timeout' => $this->_cfg['conn_timeout']));
+			$req = new HTTP_Request($this->_cfg['endpoint'], array('timeout' => $this->_cfg['conn_timeout']));
 
 			$req->_readTimeout = array($this->_cfg['io_timeout'], 0);
 

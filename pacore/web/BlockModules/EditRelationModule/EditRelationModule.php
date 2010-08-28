@@ -223,7 +223,7 @@ class EditRelationModule extends Module {
       default:
         $template_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $template_obj = & new Template($template_file);
+    $template_obj = new Template($template_file);
     $template_obj->set('uid', $this->uid);
     $template_obj->set('title', $this->title);
     $template_obj->set('login_name', $this->login_name);

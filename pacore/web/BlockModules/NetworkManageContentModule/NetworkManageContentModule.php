@@ -37,7 +37,7 @@ class NetworkManageContentModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
     }
-    $net_details = & new Template($inner_template);
+    $net_details = new Template($inner_template);
     $inner_html = $net_details->fetch();
     return $inner_html;
   }

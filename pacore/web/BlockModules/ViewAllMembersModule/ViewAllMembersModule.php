@@ -139,7 +139,7 @@ class ViewAllMembersModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public_relation.tpl';
     }
 
-    $obj_inner_template = & new Template($inner_template, $this);
+    $obj_inner_template = new Template($inner_template, $this);
     $obj_inner_template->set_object('links', $this->links);
     $obj_inner_template->set_object('gid', @$this->gid);
     $obj_inner_template->set('sub_title', @$this->sub_title);

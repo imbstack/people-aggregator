@@ -113,7 +113,7 @@ class ProfileFeedModule extends Module {
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
       break;  
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('profile_feeds', $this->profile_feeds);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

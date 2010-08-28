@@ -131,7 +131,7 @@ class VideosMediaGalleryModule extends MediaGalleryModule {
           $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
       }
     
-      $obj_inner_template = & new Template($inner_template);
+      $obj_inner_template = new Template($inner_template);
       $obj_inner_template->set('links', $video_data); 
       $obj_inner_template->set('album_data', $album_data);   
       $obj_inner_template->set('uid', $this->uid);
@@ -169,7 +169,7 @@ class VideosMediaGalleryModule extends MediaGalleryModule {
           default:
             $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public_groups.tpl';
         }
-        $obj_inner_template = & new Template($inner_template);
+        $obj_inner_template = new Template($inner_template);
         $obj_inner_template->set('links', $video_data);
         $obj_inner_template->set('album_data', $album_data);
         $obj_inner_template->set('show_view', $this->show_view);

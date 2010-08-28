@@ -57,7 +57,7 @@ class EchoTestModule extends Module {
   * @return A string used by {@see render()} which is passed for display.
   */
   function generate_inner_html() {
-    $tpl = & new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_public.tpl", $this);
+    $tpl = new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_public.tpl", $this);
     $tpl->set("test_blob", PA::$login_user->get_profile_field("echo_test_module", "test_blob"));
     $inner_html = $tpl->fetch();
     return $inner_html;

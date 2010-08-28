@@ -188,7 +188,7 @@ class GroupModerateUserModule extends Module {
         $tmp_file = PA::$blockmodule_path . "/GroupModerateUserModule/center_inner_public.tpl";
     }
 
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $this->get_moderation_queue();
     $Pagination = new Pagination;
 

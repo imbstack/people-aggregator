@@ -59,7 +59,7 @@ class MyLinksModule extends Module {
     // global var $_base_url has been removed - please, use PA::$url static variable
 
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
 
     $links_data_array = $this->get_user_links();
     $inner_html_gen->set('links_data_array', $links_data_array);

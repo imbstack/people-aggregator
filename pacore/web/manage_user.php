@@ -164,7 +164,7 @@
   }
 
   if ( @$message ) {
-    $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+    $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
     $msg_tpl->set('message', $message);
     $m = $msg_tpl->fetch();
     $page->add_module("middle", "top", $m);

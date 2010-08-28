@@ -108,7 +108,7 @@ class MyGroupsModule extends Module {
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
       break;  
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('links', $this->links);
     $inner_html_gen->set('mode', $this->mode);
     $inner_html_gen->set('user_name', $this->user_name);

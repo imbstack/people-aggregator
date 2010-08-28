@@ -68,7 +68,7 @@ class MediaFullViewModule extends Module {
     }
     
     
-    $info = & new Template($inner_template);
+    $info = new Template($inner_template);
     $info->set_object('param', $param);
     $info->set_object('uid', $this->uid);
     $info->set_object('links', $links);

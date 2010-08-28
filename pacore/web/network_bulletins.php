@@ -121,7 +121,7 @@ if (!empty($_POST)) {
 			$subject = $_POST['title'];
 			$bull_message = nl2br($_POST['bulletin_body']);
 			$container_html = 'default_email_container.tpl';
-			$email_container = & new Template('config/email_containers/'.$container_html);
+			$email_container = new Template('config/email_containers/'.$container_html);
 			$email_container->set('subject', $subject);
 			$email_container->set('message', $bull_message);
 			$preview_msg = $email_container->fetch();
@@ -141,7 +141,7 @@ function setup_module($column, $module, $obj) {
 $page = new PageRenderer("setup_module", PAGE_NETWORK_BULLETINS, "Network Bulletins", 'container_two_column.tpl','header.tpl',PRI,HOMEPAGE, PA::$network_info);
 
 if (!empty($error_msg)) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $error_msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

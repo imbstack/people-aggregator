@@ -53,7 +53,7 @@ class ConfigureEmailModule extends Module {
     $template_list = $this->getEmailContainers(PA::$config_path . "/email_containers");
     $inner_template = NULL;
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html.tpl';
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('email_list', $email_list);
     $obj_inner_template->set('template_list', $template_list);
     $obj_inner_template->set('subject', $this->subject);

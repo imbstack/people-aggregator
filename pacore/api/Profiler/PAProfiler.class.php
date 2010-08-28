@@ -112,7 +112,7 @@ class PAProfiler {
     }
 
     public function getProfilerHtml() {
-       $html = & new Template(dirname(__FILE__) . '/profiler.tpl.php');
+       $html = new Template(dirname(__FILE__) . '/profiler.tpl.php');
        $html->set('timers', $this->timers);
        return $html->fetch();
     }

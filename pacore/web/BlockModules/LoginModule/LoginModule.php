@@ -35,7 +35,7 @@ class LoginModule extends Module {
 
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . "/inner_html.tpl";
 
-    $info = & new Template($tmp_file, $this);
+    $info = new Template($tmp_file, $this);
     $info->set_object('uid', @$this->uid);    
     $info->set('msg', @$this->msg);
     $info->set('array_of_errors', @$this->array_of_errors);

@@ -174,7 +174,7 @@ class UserContactsModule extends Module {
             if(!$contacts) $error = $csv_parser->lastError;
             $this->deleteWithoutEmail($contacts, $csv_parser->mapped_contacts);
             $templ = PA::$blockmodule_path .'/'. get_class($this) . "/linkedin_list.tpl";
-            $html_gen = & new Template($templ);
+            $html_gen = new Template($templ);
             $html_gen->set('contacts', $contacts);
             $html_gen->set('mapped_contacts', $csv_parser->mapped_contacts);
             $html = $html_gen->fetch();
@@ -212,7 +212,7 @@ class UserContactsModule extends Module {
             if(!$contacts) $error = $csv_parser->lastError;
             $this->deleteWithoutEmail($contacts, $csv_parser->mapped_contacts);
             $templ = PA::$blockmodule_path .'/'. get_class($this) . "/outlook_list.tpl";
-            $html_gen = & new Template($templ);
+            $html_gen = new Template($templ);
             $html_gen->set('contacts', $contacts);
             $html_gen->set('mapped_contacts', $csv_parser->mapped_contacts);
             $html = $html_gen->fetch();
@@ -461,7 +461,7 @@ class UserContactsModule extends Module {
 
   function generate_inner_html($template_vars = array()) {
 
-    $inner_html_gen = & new Template($this->inner_template);
+    $inner_html_gen = new Template($this->inner_template);
     foreach($template_vars as $name => $value) {
       if(is_object($value)) {
         $inner_html_gen->set_object($name, $value);

@@ -265,7 +265,7 @@
      global $routing_scheme;
      if(false == preg_match($this->PCRE_MATCH_STRING, $url, $matches)) {
        foreach($routes as $expr_arr => $_route) {
-         $expr_tmp = split(' ', $expr_arr);
+         $expr_tmp = explode(' ', $expr_arr);
          $_expr = $expr_tmp[0];
          $_matches = array();
          if(true == preg_match('!'.$_expr.'!i', $url, $_matches)) {
@@ -379,7 +379,7 @@ if(!function_exists('out_error404')) {  // global function
   require_once "api/Theme/Template.php";
   header("HTTP/1.0 404 Not Found");
   $template_file = getShadowedPath('web/Themes/Default/error404.tpl');
-  $template = & new Template($template_file);
+  $template = new Template($template_file);
   $template->set('message', $message);
   $template->set('file_name', $file_path);
   echo $template->fetch();

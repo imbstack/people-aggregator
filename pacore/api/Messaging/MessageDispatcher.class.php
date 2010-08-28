@@ -106,7 +106,7 @@ class MessageDispatcher {
     $container_html  = $this->message_obj->message['template'];
     if ($container_html != 'text_only') {
       // patching up message and subject in the email container
-      $email_container = & new Template(PA::$config_path . "/email_containers/$container_html");
+      $email_container = new Template(PA::$config_path . "/email_containers/$container_html");
       $email_container->set('subject', $subject);
       $email_container->set('message', $message);
 
@@ -222,7 +222,7 @@ class MessageDispatcher {
     if ($container_html != 'text_only') {
       // patching up message and subject in the email container
       $message = nl2br($message);
-      $email_container = & new Template(PA::$config_path . "/email_containers/$container_html");
+      $email_container = new Template(PA::$config_path . "/email_containers/$container_html");
       $email_container ->set('subject', $subject);
       $email_container ->set('message', $message);
       // actual message to be sent through the mail

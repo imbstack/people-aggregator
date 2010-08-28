@@ -45,18 +45,18 @@ print html_header();
 ?>
 
 <?php
-$content = & new Template(CURRENT_THEME_FSPATH."/album_zoom.tpl");
+$content = new Template(CURRENT_THEME_FSPATH."/album_zoom.tpl");
 if ($error == TRUE) {
   $content->set('msg', $msg);
 }
 $content->set('users', $users);
 
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('user_name', $first_name." ".$last_name);
 $content->set('header', $header);
 echo $content->fetch();
 
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 echo $footer->fetch();
 
 ?>

@@ -288,7 +288,7 @@ function uihelper_generate_center_content($cid, $permalink=0, $show=0) {
   }
   //unique name
   $cache_id = 'content_'.$cid.$nid.PA::$language;
-  $middle_content = & new CachedTemplate($cache_id);
+  $middle_content = new CachedTemplate($cache_id);
   //if this file is not cached then generate one for this
   if (!$middle_content->is_cached()) {
     $image_media_gallery = $audio_media_gallery = $video_media_gallery = FALSE;
@@ -506,7 +506,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
   $type =  $content->type;
   $type=$type.'Permalink';
   // comments
-  $comments_list_tpl = & new Template(CURRENT_THEME_FSPATH."/center_comments.tpl");
+  $comments_list_tpl = new Template(CURRENT_THEME_FSPATH."/center_comments.tpl");
   $comments_list_tpl->set('current_theme_path', PA::$theme_url);
   $comments_list_tpl->set('comments', $comments);
   $comments_list_tpl->set('author_id', $content->author_id);
@@ -515,7 +515,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
   $comments_list = $comments_list_tpl->fetch();
 
   //comment form
-  $comment_form_tpl = & new Template(CURRENT_THEME_FSPATH."/comment_form.tpl");
+  $comment_form_tpl = new Template(CURRENT_THEME_FSPATH."/comment_form.tpl");
   $comment_form_tpl->set('current_theme_path', PA::$theme_url);
   if (isset(PA::$login_uid)) {
     $user = new User();
@@ -529,7 +529,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
     $comment_form_tpl->set('ccid', $content->parent_collection_id);
   }
   // abuse form
-  $abuse_form_tpl = & new Template(CURRENT_THEME_FSPATH."/abuse_form.tpl");
+  $abuse_form_tpl = new Template(CURRENT_THEME_FSPATH."/abuse_form.tpl");
   /* Permalink and edit links for content */
   if ( $content->parent_collection_id != -1 ) {
     $perma_link = PA::$url . PA_ROUTE_PERMALINK . "/cid=" .$content->content_id.'&ccid='.$content->parent_collection_id;
@@ -584,7 +584,7 @@ function uihelper_generate_center_content_permalink($cid, $show=0) {
   } else {
     $comment_form = $abuse_form = NULL;
   }
-  $middle_content = & new Template(CURRENT_THEME_FSPATH."/$type.tpl");
+  $middle_content = new Template(CURRENT_THEME_FSPATH."/$type.tpl");
   $middle_content->set_object('contents', $content);
   $middle_content->set('editable', $editable);
   $middle_content->set('picture_name', $content_user->picture); //  to set picture name for diplaying in contets
@@ -1429,7 +1429,7 @@ function uihelper_error_msg($msg) {
     $msg = $msg_obj->get_message($msg);
   }
 
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg);
   $page->add_module("middle", "top", $msg_tpl->fetch());
 }
@@ -1490,7 +1490,7 @@ function authenticate_invitation_token($token) {
 // this function is used when we display the abuse report form ..
 function uihelper_create_abuse_from($param) {
   //such as type = comment and id = comment id ;)
-  $abuse_form_tpl = & new Template(CURRENT_THEME_FSPATH."/abuse_form.tpl");
+  $abuse_form_tpl = new Template(CURRENT_THEME_FSPATH."/abuse_form.tpl");
   $abuse_form_tpl->set('div_id', $param['div_id']);
   $abuse_form_tpl->set('id', $param['id']);
   $abuse_form_tpl->set('type', $param['type']);
@@ -1501,7 +1501,7 @@ function uihelper_create_abuse_from($param) {
 // this function is used when user click on comments
 function uihelper_create_comment_form($param) {
   //such as type = comment and id = comment id ;)
-  $comment_form_tpl = & new Template(CURRENT_THEME_FSPATH."/comment_form_all.tpl");
+  $comment_form_tpl = new Template(CURRENT_THEME_FSPATH."/comment_form_all.tpl");
   $comment_form_tpl->set('div_id', $param['div_id']);
   $comment_form_tpl->set('id', $param['id']);
   $comment_form_tpl->set('type', $param['type']);

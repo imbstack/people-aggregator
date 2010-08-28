@@ -122,7 +122,7 @@ class BlogSettingsModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html.tpl';
     }
-    $inner_html_gen = & new Template($inner_template);    
+    $inner_html_gen = new Template($inner_template);    
     $inner_html_gen->set('status', $this->status);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

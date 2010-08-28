@@ -142,7 +142,7 @@ class AudiosMediaGalleryModule extends MediaGalleryModule {
           $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
       }
     
-      $obj_inner_template = & new Template($inner_template);
+      $obj_inner_template = new Template($inner_template);
       $obj_inner_template->set('links', $audio_data);    
       $obj_inner_template->set('uid', $this->uid);
       $obj_inner_template->set('frnd_list', $frnd_list); 
@@ -174,7 +174,7 @@ class AudiosMediaGalleryModule extends MediaGalleryModule {
           default:
             $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public_groups.tpl';
         }
-        $obj_inner_template = & new Template($inner_template);
+        $obj_inner_template = new Template($inner_template);
         $obj_inner_template->set('links', $audio_data);
         $obj_inner_template->set('show_view', $this->show_view);
         $obj_inner_template->set('my_all_groups', $this->group_ids);

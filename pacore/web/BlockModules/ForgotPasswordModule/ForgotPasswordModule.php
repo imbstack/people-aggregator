@@ -145,7 +145,7 @@ class ForgotPasswordModule extends Module {
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }    
     
-    $info = & new Template($tmp_file);
+    $info = new Template($tmp_file);
     global $global_form_error;
     
     $info->set('error', $global_form_error);

@@ -46,7 +46,7 @@ class NetworkDefaultLinksModule extends Module {
 
     }
     
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $links_data_array = $this->get_user_links();
     $inner_html_gen->set('links_data_array', $links_data_array);
     $inner_html = $inner_html_gen->fetch();

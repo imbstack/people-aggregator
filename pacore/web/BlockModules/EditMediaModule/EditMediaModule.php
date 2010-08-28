@@ -91,7 +91,7 @@ class EditMediaModule extends Module {
         $template_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
        
-    $template_file_obj = & new Template($template_file);
+    $template_file_obj = new Template($template_file);
     $template_file_obj->set_object('uid', $this->uid);
     $template_file_obj->set_object('links', $this->links);
     $template_file_obj->set_object('media_data', $this->media_data);
@@ -113,7 +113,7 @@ class EditMediaModule extends Module {
       default:
         $template_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_group.tpl';
     }  
-    $template_file_obj = & new Template($template_file);
+    $template_file_obj = new Template($template_file);
     $template_file_obj->set_object('uid', $this->uid);
     $template_file_obj->set_object('media_data', $this->media_data);
     $template_file_obj->set_object('contentcollection_type', $this->contentcollection_type);

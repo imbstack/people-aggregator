@@ -43,7 +43,7 @@ class NetworkLinkModule extends Module {
   function generate_inner_html () {
      
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/public_center_inner_html.tpl';
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('link_categories_array', $this->get_link_categories());
     $inner_html_gen->set('config_navigation_url',
                           network_config_navigation( 'manage_link' ) );

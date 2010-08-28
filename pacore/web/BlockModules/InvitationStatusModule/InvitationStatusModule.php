@@ -92,7 +92,7 @@ class InvitationStatusModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . "/side_inner_public.tpl";
     }
-    $invite_status = & new Template($tmp_file);
+    $invite_status = new Template($tmp_file);
     $invite_status->set('accepted_invitation', $this->accepted_invitation);
     $invite_status->set('pending_invitation', $this->pending_invitation);
     $inner_html = $invite_status->fetch();

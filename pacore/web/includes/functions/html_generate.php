@@ -168,14 +168,14 @@ mysql> <b>source <?php echo PA::$path ?>/api/DB/PeepAgg.mysql</b></pre>
     $msg_esc = htmlspecialchars($exception->getMessage());
     $traceback = $exception->getTraceAsString();
     $template_file = getShadowedPath(PA::$theme_path . '/exception.tpl');
-    $template = & new Template($template_file);
+    $template = new Template($template_file);
     $template->set('code_esc', $code_esc);
     $template->set('msg_esc', $msg_esc);
     $template->set('traceback', $traceback);
     echo $template->fetch();
 /*
     $page = new PageRenderer(NULL, NULL, "Error $code_esc: $msg_esc", "container_one_column.tpl");
-    $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/error_middle.tpl");
+    $msg_tpl = new Template(CURRENT_THEME_FSPATH."/error_middle.tpl");
     $msg_tpl->set('code', $code_esc);
     $msg_tpl->set('msg', $msg_esc);
     $page->add_module("middle", "top", $msg_tpl->fetch());

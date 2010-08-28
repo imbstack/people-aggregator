@@ -120,7 +120,7 @@ if(!isset($_GET['msg_rep'])) {
     $dynamic_msg = ($msg_id == 2007)?substr ($type,0,5):NULL;
     $msg = $msg_obj->get_message($msg_id,$dynamic_msg);
     if ($msg) {
-      $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+      $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
       $msg_tpl->set('message', $msg);
       $page->add_module("middle", "top", $msg_tpl->fetch());
     }

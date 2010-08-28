@@ -408,7 +408,7 @@ class RoleManageModule extends Module {
 
   function generate_inner_html($template_vars = array()) {
 
-    $inner_html_gen = & new Template($this->inner_template);
+    $inner_html_gen = new Template($this->inner_template);
     foreach($template_vars as $name => $value) {
       if(is_object($value)) {
         $inner_html_gen->set_object($name, $value);
@@ -433,7 +433,7 @@ class RoleManageModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
     }
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $role = new Roles();
     $params = array('sort_by' => 'id', 'direction' => 'ASC', 'cnt' => false);
     $this->links = $role->get_multiple($params);

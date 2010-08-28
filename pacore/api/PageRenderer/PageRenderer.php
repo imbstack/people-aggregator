@@ -172,18 +172,18 @@ class PageRenderer {
         }
     }
 
-    $this->page = & new Template(CURRENT_THEME_FSPATH."/".$this->page_template);
+    $this->page = new Template(CURRENT_THEME_FSPATH."/".$this->page_template);
     $this->page->set('current_theme_path', PA::$theme_url);
     $this->page->set('current_theme_rel_path', PA::$theme_rel);
 
     // Loading the templates variables for the Outer templates files
     $this->page->set('outer_class', get_class_name(PA::$config->page_type));
-    $this->top_navigation_bar = & new Template(CURRENT_THEME_FSPATH."/".$this->top_navigation_template);
+    $this->top_navigation_bar = new Template(CURRENT_THEME_FSPATH."/".$this->top_navigation_template);
     $this->top_navigation_bar->set('current_theme_path', PA::$theme_url);
     $this->top_navigation_bar->set('current_theme_rel_path', PA::$theme_rel);
     $this->top_navigation_bar->set('navigation_links', $this->navigation_links);
     $this->setHeader($this->header_template);
-    $this->footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+    $this->footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
     $this->footer->set('current_theme_path', PA::$theme_url);
     $this->footer->set('page_name', $title);
 
@@ -208,7 +208,7 @@ class PageRenderer {
   }//end of constructor
 
   public function setHeader($header_tpl) {
-    $this->header = & new Template(CURRENT_THEME_FSPATH."/".$header_tpl);
+    $this->header = new Template(CURRENT_THEME_FSPATH."/".$header_tpl);
     $this->header->set('current_theme_path', PA::$theme_url);
     $this->header->set('current_theme_rel_path', PA::$theme_rel);
     $this->header->set_object('network_info', $this->network_info);
@@ -816,7 +816,7 @@ class PageRenderer {
     $this->module_arrays['left'] = null;
     $this->module_arrays['right'] = null;
     $this->page_template = 'container_one_column_full_width.tpl';
-    $this->page = & new Template(CURRENT_THEME_FSPATH."/".$this->page_template);
+    $this->page = new Template(CURRENT_THEME_FSPATH."/".$this->page_template);
     $this->page->set('current_theme_path', PA::$theme_url);
     $this->page->set('current_theme_rel_path', PA::$theme_rel);
     $this->add_module("middle", "top", $html);

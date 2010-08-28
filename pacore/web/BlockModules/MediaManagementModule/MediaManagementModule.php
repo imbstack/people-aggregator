@@ -72,7 +72,7 @@ class MediaManagementModule extends Module {
      default:
         $tmp_file = PA::$blockmodule_path . "/MediaManagementModule/center_inner_public.tpl";
     }
-    $info = & new Template($tmp_file);
+    $info = new Template($tmp_file);
     $info->set_object('uid', $this->uid);
     $info->set_object('links', $links);
     $info->set_object('type_image', $this->type_image);

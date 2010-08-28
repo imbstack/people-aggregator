@@ -305,7 +305,7 @@ class Services_Yadis_XRDS {
         $services = $this->parser->evalXPath('xrd:Service', $this->xrdNode);
 
         foreach ($services as $node) {
-            $s =& new Services_Yadis_Service();
+            $s = new Services_Yadis_Service();
             $s->element = $node;
             $s->parser =& $this->parser;
 

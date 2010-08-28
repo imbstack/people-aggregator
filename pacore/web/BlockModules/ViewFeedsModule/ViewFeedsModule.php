@@ -75,7 +75,7 @@ class ViewFeedsModule extends Module {
       }
     }
 
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('profile_feeds', @$this->profile_feeds);
     $inner_html_gen->set('feed_id', $this->feed_id);
     $inner_html = $inner_html_gen->fetch();

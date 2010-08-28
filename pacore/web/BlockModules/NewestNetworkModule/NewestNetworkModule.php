@@ -53,7 +53,7 @@ class NewestNetworkModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';      
     }
 
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('links', $links);
     $obj_inner_template->set('block_name', $this->html_block_id);
     if ($this->sort_by) {

@@ -77,7 +77,7 @@ class GroupBulletinsModule extends Module {
 				// wannt a preview with that?
 				if (!empty($request_data['preview'])) { // if preview is selected.
 					$container_html = 'default_email_container.tpl';
-					$email_container = & new Template('config/email_containers/'.$container_html);
+					$email_container = new Template('config/email_containers/'.$container_html);
 					$email_container->set('subject', $subject);
 					$email_container->set('message', $bull_message);
 					$this->preview_msg = $email_container->fetch();
@@ -94,7 +94,7 @@ class GroupBulletinsModule extends Module {
 
   function generate_inner_html() {
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
-    $group_bulletin = & new Template($tmp_file, $this);
+    $group_bulletin = new Template($tmp_file, $this);
     $group_bulletin->set('preview_msg', @$this->preview_msg);
     $inner_html = $group_bulletin->fetch();
     return $inner_html;

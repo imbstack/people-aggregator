@@ -84,7 +84,7 @@ class ReviewModule extends Module {
   }
   
   function generate_inner_html() {
-    $tpl = & new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_".$this->view.".tpl", $this);
+    $tpl = new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_".$this->view.".tpl", $this);
     $inner_html = $tpl->fetch();
     return $inner_html;
   }

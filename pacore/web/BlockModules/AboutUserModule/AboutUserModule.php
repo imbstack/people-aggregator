@@ -106,7 +106,7 @@ class AboutUserModule extends Module {
       break;        
     }
     
-    $user_profile_info = & new Template($inner_template);
+    $user_profile_info = new Template($inner_template);
     $user_profile_info->set('user_data_general', $this->general_info);
     $user_profile_info->set('user_data_personal', $this->personal_info);
     $user_profile_info->set('user_data_professional',$this->professional_info);

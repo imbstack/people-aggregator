@@ -68,7 +68,7 @@ class ModuleSelectorModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html.tpl';
     }
-    $inner_html_generate = & new Template($tmp_file);
+    $inner_html_generate = new Template($tmp_file);
     $inner_html_generate->set('module_settings', $this->module_settings);
     $inner_html_generate->set('page_id', $this->page_id);
     $inner_html_generate->set('config_navigation_url',
