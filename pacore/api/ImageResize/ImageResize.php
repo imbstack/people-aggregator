@@ -806,7 +806,7 @@ class ImageResize {
   /**
     Creating a Function which take an Animated Gif Image and Convert into Still image 
   */
-  public function create_frame_from_animated_pic ($img_input_path,$picture,$img_output_path,$max_x,$max_y ,$new_image_name = False) {
+  public static function create_frame_from_animated_pic ($img_input_path,$picture,$img_output_path,$max_x,$max_y ,$new_image_name = False) {
     // global var $_base_url has been removed - please, use PA::$url static variable
 
     Logger::log("create_frame_from_animated_pic($img_input_path, $picture, $img_output_path, $max_x, $max_y, $new_image_name)");
