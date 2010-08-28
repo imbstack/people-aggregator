@@ -23,7 +23,7 @@ class TermsModule extends Module {
   }
 
   function render() {
-    $tpl =& new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_public.tpl");
+    $tpl = new Template(PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_public.tpl");
     $this->inner_HTML = $tpl->fetch();
     return parent::render();
   }

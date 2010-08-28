@@ -101,7 +101,7 @@ class MISReportModule extends Module {
       $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
       $next_prev_navigation = 'mis_count';
     } 
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('links', $links);
     $obj_inner_template->set('email_domain_array', $this->email_domain_array);
     $obj_inner_template->set('blog_post', $this->blog_post);

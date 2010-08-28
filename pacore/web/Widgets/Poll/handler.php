@@ -58,7 +58,7 @@ if (!empty($poll_data)) {
     }
   }
   $template_file = 'web/Widgets/'.$widget_name.'/widget.tpl';
-  $template = & new Template($template_file);
+  $template = new Template($template_file);
   $template->set('url_param', $url_param);
   $template->set('login_uid', PA::$login_uid);
   $template->set('flag',$flag);

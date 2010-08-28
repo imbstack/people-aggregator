@@ -36,7 +36,7 @@ class NetworkBulletinsModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $net_details = & new Template($tmp_file);
+    $net_details = new Template($tmp_file);
     $net_details->set('config_navigation_url',
                        network_config_navigation('bulletins'));
     

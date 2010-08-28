@@ -22,7 +22,7 @@ $theme_url = PA::$theme_url;
 $uname = ((empty($_SESSION['user']['name'])) ? '' : htmlspecialchars($_SESSION['user']['name']));
 
   $template_file = getShadowedPath('web/Themes/Default/maintenance.tpl');
-  $template = & new Template($template_file);
+  $template = new Template($template_file);
   $template->set('theme_url', $theme_url);
   $template->set('uname', $uname);
   echo $template->fetch();

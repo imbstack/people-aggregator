@@ -345,7 +345,7 @@ class Module {
 
     //if ($this->title == 'Contents') { print "$template_file"; print "HHH::$this->height"." MMM::$this->max_height"; }
 
-    $block = & new Template($template_file);
+    $block = new Template($template_file);
     $block->set('current_theme_path', PA::$theme_url);
     $block->set('title', $title);
     $block->set('is_configurable', $is_configurable);

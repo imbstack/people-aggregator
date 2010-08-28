@@ -201,7 +201,7 @@ class AddGroupModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
 
     $inner_html_gen->set('categories', $this->categories);
     $inner_html_gen->set('groupname', $this->groupname);

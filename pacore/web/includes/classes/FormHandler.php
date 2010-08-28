@@ -106,7 +106,7 @@
       if(file_exists(PA::$project_dir . '/' .$action_file)  ||
          file_exists(PA::$core_dir . '/' .$action_file)) {
         // Setting the data for the file
-        $obj_inner_template = & new Template($action_file);
+        $obj_inner_template = new Template($action_file);
         $obj_inner_template->set('_form', $this->_form);
         $obj_inner_template->set('path_prefix', PA::$path);
         $obj_inner_template->fetch();

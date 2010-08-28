@@ -121,7 +121,7 @@ $page->add_header_css($css_path);
 
 if ( @$_GET['updated'] == 1) {
   $uploaded_msg = " Profile updated successfully";
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $uploaded_msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);
@@ -129,7 +129,7 @@ if ( @$_GET['updated'] == 1) {
 
 if ( !empty($msg) || !empty($msg1) || !empty($msg2)) {
   $uploaded_msg = " Profile updated successfully";
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg.$msg1.$msg2);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

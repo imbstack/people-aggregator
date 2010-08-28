@@ -206,7 +206,7 @@ function group_info_with_uid($uid, $sort_by) {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';   
     }
 
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     
     $this->links = objtoarray($this->links);
     $inner_html_gen->set('title', NULL); // $this->title

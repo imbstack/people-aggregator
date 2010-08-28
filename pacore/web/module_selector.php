@@ -139,7 +139,7 @@
   
   if (!empty($msg) || !empty($error_msg)) {
     $msg_alert = ($error_msg)? $error_msg: $msg;
-    $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+    $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
     $msg_tpl->set('message', $msg_alert);
     $m = $msg_tpl->fetch();
     $page->add_module("middle", "top", $m);

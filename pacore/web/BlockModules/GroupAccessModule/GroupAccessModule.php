@@ -46,7 +46,7 @@ class GroupAccessModule extends Module {
     $this->generate_group_links();
     $this->title = chop_string(stripslashes((!empty($this->group_details) ? $this->group_details->title : NULL)), GROUP_TITLE_LENGTH);
     
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set_object('group_details', $this->group_details);    
     $inner_html_gen->set('join_this_group_string', $this->join_this_group_string);
     $inner_html_gen->set('is_member', $this->is_member);

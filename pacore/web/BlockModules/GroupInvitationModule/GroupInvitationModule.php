@@ -296,7 +296,7 @@ class GroupInvitationModule extends Module {
     $js_path = PA::$theme_url.'/'."javascript".'/';
     $this->renderer->add_page_js($js_path.'group_invite.js');
     
-    $register = & new Template($tmp_file);
+    $register = new Template($tmp_file);
     $register->set('message_type', $this->message_type);
     $register->set('group', $this->group);
     $register->set('group_title', $this->group_title);

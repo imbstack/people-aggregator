@@ -43,7 +43,7 @@ class CreateTestimonialModule extends Module {
     */
     function generate_inner_html() {
         $tmp_file = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
-        $net_details = &new Template($tmp_file);
+        $net_details = new Template($tmp_file);
         $inner_html = $net_details->fetch();
         return $inner_html;
     }

@@ -68,7 +68,7 @@
           $this->title = 'Info Boxes';
       }
       $config_navigation_url = network_config_navigation($_GET['section']);
-      $inner_html_gen = & new Template($tmp_file);
+      $inner_html_gen = new Template($tmp_file);
       $inner_html_gen->set('network_links', $this->network_links);
       //$inner_html_gen->set ('featured_network', @$this->featured_network);     
       $inner_html_gen->set ('showcase', @$this->showcase); 

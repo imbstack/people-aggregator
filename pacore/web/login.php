@@ -168,7 +168,7 @@ if(isset($_GET['msg_id'])){
   $msg = MessagesHandler::get_message($_GET['msg_id']);
 }
 if (isset($msg)) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg);
   $page->add_module("middle", "top", $msg_tpl->fetch());
 }

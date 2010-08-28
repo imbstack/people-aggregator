@@ -170,7 +170,7 @@ if (empty($msg)) {
   // if setting has been done successfully.  
 }  
 if (!empty($msg)) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

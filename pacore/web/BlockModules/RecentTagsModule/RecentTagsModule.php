@@ -50,7 +50,7 @@ class RecentTagsModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('tags_id_name', $this->tags_id_name);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

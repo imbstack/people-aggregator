@@ -36,7 +36,7 @@ $leftModulesFromDB = $setting_data['left'];
 $middleModulesFromDB = $setting_data['middle'];
 $rightModulesFromDB = $setting_data['right'];
 
-$page = & new Template(CURRENT_THEME_FSPATH."/groups.tpl");
+$page = new Template(CURRENT_THEME_FSPATH."/groups.tpl");
 
 $page->set('current_theme_path', PA::$theme_url);
 
@@ -46,7 +46,7 @@ $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
 
 //header of group page
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('current_theme_path', PA::$theme_url);
 $header->set('current_theme_rel_path', PA::$theme_rel);
 // find navigation link for header
@@ -63,7 +63,7 @@ if (PA::$network_info) {
 }
 
 // This block of code has to be removed when this page will be rendered using PageRenderer.
-$top_navigation_bar = & new Template(CURRENT_THEME_FSPATH."/top_navigation_bar.tpl");
+$top_navigation_bar = new Template(CURRENT_THEME_FSPATH."/top_navigation_bar.tpl");
 $top_navigation_bar->set('navigation_links', $navigation_links);
 
 //left of group page
@@ -120,7 +120,7 @@ foreach ( $rightModulesFromDB as $rightModule)
   $array_right_modules[] = $obj->render();
 }
 //right of group page
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_url);
 
 //page settings

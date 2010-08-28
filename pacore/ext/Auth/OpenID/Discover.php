@@ -232,7 +232,7 @@ function Auth_OpenID_discoverWithoutYadis($uri, &$fetcher)
 
     // Try to parse the response as HTML to get OpenID 1.0/1.1 <link
     // rel="...">
-    $endpoint =& new Auth_OpenID_ServiceEndpoint();
+    $endpoint = new Auth_OpenID_ServiceEndpoint();
     $service = $endpoint->fromHTML($identity_url, $http_resp->body);
     if ($service === null) {
         $openid_services = array();

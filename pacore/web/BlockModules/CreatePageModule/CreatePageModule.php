@@ -46,7 +46,7 @@ class CreatePageModule extends Module {
     }
 
     function generate_inner_html($template_vars = array()) {
-        $inner_html_gen = &new Template($this->inner_template);
+        $inner_html_gen = new Template($this->inner_template);
         foreach($template_vars as $name=>$value) {
             if(is_object($value)) {
                 $inner_html_gen->set_object($name, $value);

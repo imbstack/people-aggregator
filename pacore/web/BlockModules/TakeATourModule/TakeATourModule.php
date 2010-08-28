@@ -49,7 +49,7 @@ class TakeATourModule extends Module {
       $this->do_skip = TRUE;
       return;
     }
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('links', $links);
     $inner_html = $obj_inner_template->fetch();
     return $inner_html;

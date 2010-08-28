@@ -65,7 +65,7 @@ class PostContentModule extends Module {
 		}
 		$inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_blog.tpl';
     
-    $inner_html_blog = & new Template($inner_template);
+    $inner_html_blog = new Template($inner_template);
     $inner_html_blog->set_object('network_info', PA::$network_info);
     $inner_html_blog->set('current_theme_path', PA::$theme_url);
     // $inner_html_blog->set('links', $this->links);
@@ -84,7 +84,7 @@ class PostContentModule extends Module {
 
 	    $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private_simple.tpl';
 
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set_object('network_info', PA::$network_info);
     $inner_html_gen->set('current_theme_path', PA::$theme_url);
     /*$inner_html_gen->set('title', $this->title);*/

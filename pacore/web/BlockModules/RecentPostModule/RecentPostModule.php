@@ -93,7 +93,7 @@ class RecentPostModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('links', $links);
     $obj_inner_template->set('gid', $this->gid);
     $obj_inner_template->set('limit', $this->limit);

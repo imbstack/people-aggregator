@@ -115,7 +115,7 @@ class ActionsModule extends Module {
 
     // $this->title .= "$page_name";
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
-    $inner_html_gen = & new Template($inner_template, $this);
+    $inner_html_gen = new Template($inner_template, $this);
     $inner_html_gen->set('actions', $this->actions);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

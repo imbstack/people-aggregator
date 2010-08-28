@@ -69,7 +69,7 @@ class CommentsManagementModule extends Module {
         $this->page_first = $Pagination->getFirstPage();
         $this->page_last = $Pagination->getLastPage();
         $this->page_links = $Pagination->getPageLinks();
-        $inner_html_gen = &new Template($inner_template);
+        $inner_html_gen = new Template($inner_template);
         $inner_html_gen->set('links', $this->links);
         $inner_html_gen->set('page_first', $this->page_first);
         $inner_html_gen->set('page_last', $this->page_last);

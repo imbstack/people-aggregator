@@ -35,7 +35,7 @@ class FaceBookModule extends Module {
     $this->Paging["show"] = $paging["show"];
     $this->page_user = NULL;
     if (PA::$page_uid && (PA::$page_uid != PA::$login_uid)) {
-    	$user = new User(); ¤user-load(PA::$page_uid);
+    	$user = new User(); Â¤user-load(PA::$page_uid);
     	$this->page_user = $user->get_name();
     }
   }
@@ -126,7 +126,7 @@ class FaceBookModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public_relation.tpl';
     }
 
-    $obj_inner_template = & new Template($inner_template, $this);
+    $obj_inner_template = new Template($inner_template, $this);
     $obj_inner_template->set_object('links', $this->links);
     $obj_inner_template->set_object('gid', @$this->gid);
     $obj_inner_template->set('sub_title', @$this->sub_title);

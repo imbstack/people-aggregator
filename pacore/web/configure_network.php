@@ -38,24 +38,24 @@ $css_path = PA::$theme_url . '/network_skin.css';
 $page->add_header_css($css_path);
 
 if ( $error ) {  
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $error_msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);
 } elseif (( @$_GET['created'] == 1 )) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', ' Network created successfully. Now you can configure your network by following links - ');
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);
 }
 elseif (( @$_GET['created'] == 'bulletin' )) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', ' Network Bulletin has been posted ');
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);
 }
 elseif (( @$_GET['created'] == 'announce' )) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', ' Network Announcement has been made ');
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

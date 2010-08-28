@@ -537,7 +537,7 @@ ENS;
     }
 
     private function _render_template($template) {
-	$tpl =& new Template(CURRENT_THEME_FSPATH."/widget_$template.tpl");
+	$tpl = new Template(CURRENT_THEME_FSPATH."/widget_$template.tpl");
 	return $tpl->fetch();
     }
 

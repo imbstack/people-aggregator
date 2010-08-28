@@ -138,7 +138,7 @@ class SelectPollModule extends Module {
         $this->title = 'Create Poll';
       break;  
     }
-    $inner_html_gen= & new Template($inner_template);
+    $inner_html_gen= new Template($inner_template);
     $inner_html_gen->set('topic',$this->topic);
     $inner_html_gen->set('poll_id',$this->poll_id);
     $inner_html_gen->set('content_id',$this->content_id);

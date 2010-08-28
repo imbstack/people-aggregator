@@ -69,7 +69,7 @@ class ViewPollModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $inner_html_gen= & new Template($inner_template);
+    $inner_html_gen= new Template($inner_template);
     $inner_html_gen->set('prev_poll',$this->prev_poll);
     $inner_html_gen->set('per_prev_poll',$this->per_prev_poll);
     $inner_html_gen->set('prev_options', $this->prev_options);

@@ -77,7 +77,7 @@ class EventCalendarSidebarModule extends Module {
   function generate_inner_html() {
     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
     
     $inner_html_gen->set('assoc_id', $this->assoc_id);
     $inner_html_gen->set('assoc_type', $this->assoc_type);

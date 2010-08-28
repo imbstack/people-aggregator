@@ -72,7 +72,7 @@ class EventCalendarModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
     }
     
-    $info = & new Template($inner_template);
+    $info = new Template($inner_template);
 
     $info->set('assoc_id', $this->assoc_id);
     $info->set('assoc_type', $this->assoc_type);

@@ -78,7 +78,7 @@
   $page = new PageRenderer("setup_module", PAGE_NETWORK_FEATURE, __("Featured Network"), 'container_two_column.tpl', 'header.tpl', PRI, HOMEPAGE, PA::$network_info);
   
 if ( !empty($msg) ) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

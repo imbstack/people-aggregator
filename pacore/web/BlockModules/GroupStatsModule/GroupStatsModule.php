@@ -73,7 +73,7 @@ class GroupStatsModule extends Module {
       default:
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set_object('group_details', $this->group_details);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

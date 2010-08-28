@@ -35,7 +35,7 @@ Class NetworkFeatureModule extends Module {
   
   function generate_inner_html() {
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('network_links', $this->network_links);
     $inner_html_gen->set ('featured_network', $this->featured_network);$inner_html_gen->set('config_navigation_url',
                       network_config_navigation('set_featured_network'));

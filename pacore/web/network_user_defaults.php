@@ -256,7 +256,7 @@ $page = new PageRenderer("setup_module", PAGE_NETWORK_USER_DEFAULTS, "Network Us
 
 $msg = ( !empty($msg) ) ? $msg: $error_msg;
 if ( $msg!= "" ) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg);
   $m = $msg_tpl->fetch();
   $page->add_module("middle", "top", $m);

@@ -55,7 +55,7 @@ class UserMessagesModule extends Module {
       break;
     }
 
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('links', $this->links);
     $inner_html = $inner_html_gen->fetch();
 

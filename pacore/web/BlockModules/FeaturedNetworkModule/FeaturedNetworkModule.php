@@ -43,7 +43,7 @@ class FeaturedNetworkModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';   
     }
   
-    $inner_html_gen = & new Template ( $inner_template );
+    $inner_html_gen = new Template ( $inner_template );
     $inner_html_gen->set ( 'network_data', $this->network_data );
     $inner_html = $inner_html_gen->fetch ();
     return $inner_html;

@@ -230,7 +230,7 @@ class ActivitiesModule extends Module {
     }
     $conditions['status'] = 'new';
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
 
     $list = (Activities::get_activities($params, $conditions));
 

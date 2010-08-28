@@ -211,7 +211,7 @@ class BootStrap {
    private function is_ip_innets($ip, $snets) {
      $result = false;
      foreach($snets as $subnet) {
-       list($net, $mask) = split("/", $subnet);
+       list($net, $mask) = explode("/", $subnet);
        $long_net = ip2long($net);
        $long_ip  = ip2long($ip);
        $bin_net  = str_pad(decbin($long_net), 32, "0", STR_PAD_LEFT);
@@ -749,7 +749,8 @@ class BootStrap {
   /* turn off magic quotes as much as possible */
   private function killSlashes() {
     // no magic quotes, thanks!
-    set_magic_quotes_runtime(0);
+    // <!> set_magic_quotes_runtime(0) is now deprecated in PHP 5.3.0
+	ini_set('magic_quotes_runtime', 0);
     if (get_magic_quotes_gpc()) {
       $_POST    = $this->stripslashes_deep($_POST);
       $_GET     = $this->stripslashes_deep($_GET);
