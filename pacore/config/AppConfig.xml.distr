@@ -3,7 +3,7 @@
   <configuration description="Application configuration constants and variables.">
     <pages description="Defined pages">
       <value>
-        <PAGE_USER_PRIVATE category="constant" type="int" readonly="true" section="pages" page_name="User Private Page" page_type="user">
+        <PAGE_USER_PRIVATE category="constant" type="int" readonly="true" section="pages" page_name="User Private Page" page_type="user|network">
           <value>1</value>
         </PAGE_USER_PRIVATE>
         <PAGE_USER_PUBLIC category="constant" type="int" readonly="true" section="pages" page_name="User Public Page" page_type="user|network">
