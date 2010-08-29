@@ -975,8 +975,6 @@ class Navigation {
       /*----------------------------------------------------*/
       case PAGE_FAMILY :
       case PAGE_FAMILY_EDIT :
-      case PAGE_FAMILY_MEMBERS :
-      case PAGE_FAMILY_MODERATION :
         $level_3 = $this->get_level_3('family');
       break;
 
@@ -1084,7 +1082,6 @@ class Navigation {
        /*----------------------------------------------------*/
        case PAGE_GROUP :
        case PAGE_GROUP_AD_CENTER :
-       case PAGE_GROUP_BULLETINS :
        case FILE_GROUP_MEDIA_GALLERY :
        case FILE_GROUP_CALENDAR :
        case FILE_GROUP_INVITATION :
