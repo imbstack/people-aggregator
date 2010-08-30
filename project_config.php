@@ -80,4 +80,6 @@ ini_set('include_path',
 
 define('APPLICATION_CONFIG_FILE', '/config/AppConfig.xml');
 
+// this is to avoid E_STRICT warming, set it to your TZ
+date_default_timezone_set('UTC');
 ?>
