@@ -71,9 +71,12 @@ define('PA_PROJECT_CORE_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR
 define('PA_PROJECT_PROJECT_DIR', PA_PROJECT_CORE_DIR);
 
 // define include paths
-ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PA_PROJECT_PROJECT_DIR
-                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR
-                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext');
+ini_set('include_path', 
+	PA_PROJECT_PROJECT_DIR
+	. PATH_SEPARATOR . PA_PROJECT_CORE_DIR
+	. PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext'
+	. PATH_SEPARATOR . ini_get('include_path')
+	);
 
 define('APPLICATION_CONFIG_FILE', '/config/AppConfig.xml');
 
