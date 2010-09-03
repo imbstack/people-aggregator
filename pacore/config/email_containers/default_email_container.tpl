@@ -1,6 +1,6 @@
 <table width="675" border="0" align="center" cellpadding="8">
   <tr>
-    <td><img src="<?php echo PA::$url .'/images/civic-commons-logo.jpg';?>" width="314" height="65" /></td>
+    <td colspan="2"><img src="<?php echo PA::$url .'/images/civic-commons-logo.jpg';?>" width="314" height="65" /></td>
   </tr>
   <tr>
     <td colspan="2">
