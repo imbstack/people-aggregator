@@ -686,14 +686,12 @@ class BootStrap {
     $agent = $ua;
     $products = array();
 
-    $pattern  = "([^/[:space:]]*)" . "(/([^[:space:]]*))?"
-              . "([[:space:]]*\[[a-zA-Z][a-zA-Z]\])?" . "[[:space:]]*"
-              . "(\\((([^()]|(\\([^()]*\\)))*)\\))?" . "[[:space:]]*";
+	$pattern = '/([^\/]*)\/([0-9\.]*)\s*(\(([^\)]*)\))?\s*/';
 
     while( strlen($agent) > 0 ) {
-      if ($l = ereg($pattern, $agent, $a)) {
-          array_push($products, array($a[1], $a[3], $a[6])); // product, version, comment
-          $agent = substr($agent, $l);
+      if (preg_match($pattern, $agent, $a)) {
+          array_push($products, array($a[1], $a[2], isset($a[4]) ? $a[4] : '')); // product, version, comment
+          $agent = substr($agent, strlen($a[0]));
       } else {
           $agent = "";
       }
