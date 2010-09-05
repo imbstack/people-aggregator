@@ -24,6 +24,8 @@ require_once "api/Logger/Logger.php";
  */
 class ModerationQueue {
 
+	const TYPE_CONTENT = 'content';
+
 	/**
 	 * The ModerationQueue class should not be instantiated.
 	 */
@@ -39,24 +41,10 @@ class ModerationQueue {
 	 */
 	public static function approve_content($content_id) {
 		Logger::log("Enter: ModerationQueue::approve_content() | Args: \$content_id = $content_id");
-		$type = 'content';
-		$res = Dal::query("DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?", array($content_id, $type));
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?';
+		Dal::query($sql, array($content_id, self::TYPE_CONTENT));
 		Content::update_content_status($content_id, ACTIVE);
 		Logger::log("Exit: ModerationQueue::approve_content()");
-	}
-
-	/**
-	 * Disapprove contents and remove it from {moderation_queue} database table
-	 *
-	 * @access public
-	 * @param int id of content
-	 */
-	public static function disapprove_content($content_id) {
-		Logger::log("Enter: ModerationQueue::disapprove_content() | Args: \$content_id = $content_id");
-		$type = 'content';
-		$res = Dal::query("DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?", array($content_id, $type));
-		Content::delete_by_id($content_id);
-		Logger::log("Exit: ModerationQueue::disapprove_content()");
 	}
 
 	/**
@@ -69,9 +57,9 @@ class ModerationQueue {
 	 * which indicates that content is not part of any collection
 	 */
 	public static function content_exists($content_id, $collection_id = -1) {
-		Logger::log("Enter: ModerationQueue::content_exists() | Args: \$item_id = $content_id, \$collection_id = $collection_id");
-		$type = 'content';
-		$res = Dal::query("SELECT * FROM {moderation_queue} WHERE item_id = ? AND collection_id = ? AND type = ?", array($collection_id, $content_id, $type));
+		Logger::log("Enter: ModerationQueue::content_exists() | Args: \$content_id = $content_id, \$collection_id = $collection_id");
+		$sql = 'SELECT * FROM {moderation_queue} WHERE item_id = ? AND collection_id = ? AND type = ?';
+		$res = Dal::query($sql, array($collection_id, $content_id, self::TYPE_CONTENT));
 
 		if ($res->numRows()) {
 			Logger::log("Exit: ModerationQueue::content_exists() | Return: TRUE");
@@ -83,6 +71,20 @@ class ModerationQueue {
 	}
 
 	/**
+	 * Disapprove contents and remove it from {moderation_queue} database table
+	 *
+	 * @access public
+	 * @param int id of content
+	 */
+	public static function disapprove_content($content_id) {
+		Logger::log("Enter: ModerationQueue::disapprove_content() | Args: \$content_id = $content_id");
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?';
+		Dal::query($sql, array($content_id, self::TYPE_CONTENT));
+		Content::delete_by_id($content_id);
+		Logger::log("Exit: ModerationQueue::disapprove_content()");
+	}
+
+	/**
 	 * Add Content to ModerationQueue
 	 *
 	 * @access public
@@ -91,8 +93,35 @@ class ModerationQueue {
 	 */
 	public static function moderate_content($content_id, $collection_id = -1) {
 		Logger::log("Enter: ModerationQueue::moderate_content() | Args: \$content_id = $content_id, \$collection_id = $collection_id");
-		$res = Dal::query("INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)", array($collection_id, $content_id, "content"));
+		$sql = 'INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)';
+		Dal::query($sql, array($collection_id, $content_id, self::TYPE_CONTENT));
 		Content::update_content_status($content_id, MODERATION_WAITING);
 		Logger::log("Exit: ModerationQueue::moderate_content()");
+	}
+
+	/**
+	 * Remove instance of Content from moderation queue.
+	 *
+	 * @access public
+	 * @param int id of content
+	 */
+	public static function remove_content($content_id) {
+		Logger::log("Enter: ModerationQueue::remove_content() | Args: \$content_id = $content_id");
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? AND type = ?';
+		Dal::query($sql, array($content_id, self::TYPE_CONTENT));
+		Logger::log("Exit: ModerationQueue::remove_content()");
+	}
+
+	/**
+	 * Remove all instances of Content from a specific user from the moderation queue.
+	 *
+	 * @access public
+	 * @param int id of content author
+	 */
+	public static function remove_content_from_user($user_id) {
+		Logger::log("Enter: ModerationQueue::remove_content_from_user() | Args: \$user_id = $user_id");
+		$sql = 'DELETE FROM MQ USING {moderation_queue} AS MQ INNER JOIN {contents} AS C ON MQ.item_id = C.content_id AND MQ.type = ? AND C.author_id = ?';
+		Dal::query($sql, array(self::TYPE_CONTENT, $user_id));
+		Logger::log("Exit: ModerationQueue::remove_content_from_user()");
 	}
 }
