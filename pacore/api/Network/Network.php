@@ -1587,6 +1587,7 @@ class Network {
      Logger::log("Enter: Network::item_exists_in_moderation() | Args: \$item_id = $content_id, \$type = $type");
      $val = (ModerationQueue::content_exists($content_id, $collection_id)) ? 'TRUE' : 'FALSE';
      Logger::log("Exit: Network::item_exists_in_moderation() | Return: ".$val);
+     return $val;
   }
 
 }
