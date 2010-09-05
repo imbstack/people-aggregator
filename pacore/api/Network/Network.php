@@ -1585,9 +1585,9 @@ class Network {
   */
   public static function item_exists_in_moderation($content_id, $collection_id, $type = 'content') {
      Logger::log("Enter: Network::item_exists_in_moderation() | Args: \$item_id = $content_id, \$type = $type");
-     $val = (ModerationQueue::content_exists($content_id, $collection_id)) ? 'TRUE' : 'FALSE';
-     Logger::log("Exit: Network::item_exists_in_moderation() | Return: ".$val);
-     return $val;
+     $return_val = ModerationQueue::content_exists($content_id, $collection_id);
+     Logger::log("Exit: Network::item_exists_in_moderation() | Return: ".($return_val ? 'TRUE' : 'FALSE'));
+     return $return_val;
   }
 
 }

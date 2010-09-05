@@ -21,6 +21,7 @@ require_once "api/PAException/PAException.php";
 require_once "api/DB/Dal/Dal.php";
 require_once "api/Category/Category.php";
 require_once "api/Invitation/Invitation.php";
+require_once "api/ModerationQueue/ModerationQueue.php";
 //require_once "api/MessageBoard/MessageBoard.php";
 require_once "api/Access/Access.php";
 require_once "api/Tag/Tag.php";
@@ -270,7 +271,7 @@ class Group extends ContentCollection {
 
      $res = Dal::query("DELETE FROM {groups_users} WHERE group_id = ?", array($this->collection_id));
 
-     $res = Dal::query("DELETE FROM {moderation_queue} WHERE collection_id = ?", array($this->collection_id));
+     ModerationQueue::remove_content_from_collection($this->collection_id);
 
      $res = Dal::query("DELETE FROM {groups} WHERE group_id = ?", array($this->collection_id));
 
@@ -400,8 +401,7 @@ class Group extends ContentCollection {
      Logger::log("Enter: Group::moderate_content() | Args: \$content_id = $content_id");
      $c = Content::load_content($content_id, $_SESSION['user']['id']);
      if(!Group::is_admin($this->collection_id, $c->author_id)) {
-       $res = Dal::query("INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)", array($this->collection_id, $content_id, "content"));
-       Content::update_content_status($content_id, MODERATION_WAITING);
+	   ModerationQueue::moderate_content($content_id, $this->collection_id);
      }
      else {
         $this->approve($content_id, 'content');
@@ -419,7 +419,7 @@ class Group extends ContentCollection {
    private function moderate_user ($user_id) {
      Logger::log("Enter: Group::moderate_user() | Args: \$user_id = $user_id");
      if(!Group::item_exists_in_moderation($user_id, "user")) {
-        $res = Dal::query("INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)", array($this->collection_id, $user_id, "user"));
+	    ModerationQueue::moderate_user($user_id, $this->collection_id);
      } else {
         throw new PAException(OPERATION_NOT_PERMITTED, "Your request for joining the group has been sent already .");
      }
@@ -434,23 +434,7 @@ class Group extends ContentCollection {
     */
    function get_moderation_queue ($type, $cnt=FALSE, $show='ALL', $page=0, $sort_by='created', $direction='DESC') {
      Logger::log("Enter: Group::get_moderation_queue()");
-
-     $order_by = $sort_by.' '.$direction;
-     if ( $show == 'ALL' || $cnt == TRUE) {
-       $limit = '';
-     } else {
-       $start = ($page -1)* $show;
-       $limit = 'LIMIT '.$start.','.$show;
-     }
-
-     $res = Dal::query("SELECT * FROM {moderation_queue} WHERE collection_id = ? AND type = ? $limit", array($this->collection_id, $type));
-     if ( $cnt ) {
-        return $res->numRows();
-     }
-     $contents = array();
-     while ($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
-       $contents[] = $row->item_id;
-     }
+     $contents = ModerationQueue::get_moderation_queue($this->collection_id, $type, $cnt, $show, $page, $sort_by, $direction);
      Logger::log("Exit: Group::get_moderation_queue()");
      return $contents;
    }
@@ -475,7 +459,7 @@ class Group extends ContentCollection {
          $res = Dal::query("UPDATE {contents} SET collection_id = ? WHERE content_id = ?", array($this->collection_id, $item_id));
          break;
      }
-     $res = Dal::query("DELETE FROM {moderation_queue} WHERE collection_id = ? AND item_id = ? and type= ?", array($this->collection_id, $item_id, $type));
+     ModerationQueue::remove($item_id, $this->collection_id, $type);
      Logger::log("Exit : Group::approve()");
    }
 
@@ -487,7 +471,7 @@ class Group extends ContentCollection {
     */
    public function disapprove ($item_id, $type) {
      Logger::log("Enter : Group::disapprove() | Args: \$item_id = $item_id, \$type = $type");
-     $res = Dal::query("DELETE FROM {moderation_queue} WHERE collection_id = ? AND item_id = ? and type= ?", array($this->collection_id, $item_id, $type));
+     ModerationQueue::remove($item_id, $this->collection_id, $type);
      Content::delete_by_id($item_id);
      Logger::log("Exit : Group::disapprove()");
    }
@@ -1008,17 +992,11 @@ class Group extends ContentCollection {
   * @param int $item_id
   */
 
-  function item_exists_in_moderation($item_id, $type='user') {
+  public static function item_exists_in_moderation($item_id, $type='user') {
      Logger::log("Enter: Group::item_exists_in_moderation() | Args: \$item_id = $item_id, \$type = $type");
-     $res = Dal::query("SELECT * FROM {moderation_queue} WHERE collection_id = ? AND item_id = ? AND type = ?", array($this->collection_id, $item_id, $type));
-     if ($res->numRows()) {
-       Logger::log("Exit: Group::item_exists_in_moderation() | Return: TRUE");
-       return TRUE;
-     }
-     else {
-       Logger::log("Exit: Group::item_exists_in_moderation() | Return: FALSE");
-       return FALSE;
-     }
+     $return_val = ModerationQueue::user_exists($item_id);
+     Logger::log("Exit: Group::item_exists_in_moderation() | Return: ".($return_val ? 'TRUE' : 'FALSE'));
+     return $return_val;
   }
 
   /**
