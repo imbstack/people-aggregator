@@ -19,6 +19,7 @@
 include_once dirname(__FILE__)."/../../config.inc";
 require_once "api/api_constants.php";
 require_once "api/DB/Dal/Dal.php";
+require_once "api/ModerationQueue/ModerationQueue.php";
 require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/Tag/Tag.php";
@@ -1545,10 +1546,8 @@ class Network {
    * collection_id = -1 as default for independent content
    */
    public static function moderate_network_content ($collection_id = -1, $content_id) {
-
      Logger::log("Enter: Network::moderate_network_content() | Args: \$content_id = $content_id");
-     $res = Dal::query("INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)", array($collection_id, $content_id, "content"));
-     Content::update_content_status($content_id, MODERATION_WAITING);
+     ModerationQueue::moderate_content($content_id, $collection_id);
      Logger::log("Exit: Network::moderate_network_content()");
      return;
    }
@@ -1560,8 +1559,7 @@ class Network {
     */
    public static function approve_content ($content_id, $type = 'content') {
      Logger::log("Enter : Network::approve_content() | Args: \$item_id = $content_id, \$type = $type");
-     Content::update_content_status($content_id, ACTIVE);
-     $res = Dal::query("DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?", array($content_id, $type));
+     ModerationQueue::approve_content($content_id, $type);
      Logger::log("Exit : Network::approve_content()");
      return;
    }
@@ -1571,14 +1569,13 @@ class Network {
     * @param int id of user/content
     * @param string type ie user/content
     */
-   public function disapprove_content ($content_id, $type = 'content') {
+   public static function disapprove_content ($content_id, $type = 'content') {
      Logger::log("Enter : Network::disapprove_content() | Args: \$item_id = $content_id, \$type = $type");
-     $res = Dal::query("DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?", array($content_id, $type));
-     Content::delete_by_id($content_id);
+     ModerationQueue::disapprove_content($content_id, $type);
      Logger::log("Exit : Network::disapprove_content()");
      return;
    }
-    /**
+ /**
   * check for content in moderation queue.
   * @access private
   * @param int $content_id, $collection_id
@@ -1586,18 +1583,10 @@ class Network {
   * which indicates that content is not part of any collection
   * @param string type ie user/content
   */
-
   public static function item_exists_in_moderation($content_id, $collection_id, $type = 'content') {
      Logger::log("Enter: Network::item_exists_in_moderation() | Args: \$item_id = $content_id, \$type = $type");
-     $res = Dal::query("SELECT * FROM {moderation_queue} WHERE collection_id = ? AND item_id = ? AND type = ?", array($collection_id, $content_id, $type));
-     if ($res->numRows()) {
-       Logger::log("Exit: Network::item_exists_in_moderation() | Return: TRUE");
-       return TRUE;
-     }
-     else {
-       Logger::log("Exit: Network::item_exists_in_moderation() | Return: FALSE");
-       return FALSE;
-     }
+     $val = (ModerationQueue::content_exists($content_id, $collection_id)) ? 'TRUE' : 'FALSE';
+     Logger::log("Exit: Network::item_exists_in_moderation() | Return: ".$val);
   }
 
 }

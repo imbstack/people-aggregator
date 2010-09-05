@@ -401,7 +401,7 @@ class Group extends ContentCollection {
      $c = Content::load_content($content_id, $_SESSION['user']['id']);
      if(!Group::is_admin($this->collection_id, $c->author_id)) {
        $res = Dal::query("INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)", array($this->collection_id, $content_id, "content"));
-       Content::update_content_status($content_id, 2);
+       Content::update_content_status($content_id, MODERATION_WAITING);
      }
      else {
         $this->approve($content_id, 'content');
