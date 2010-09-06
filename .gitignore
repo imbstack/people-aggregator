@@ -7,4 +7,5 @@ paproject/web/cache/
 paproject/web/files/
 paproject/web/files/rsz/
 paproject/log/pa.log
+paproject/config/AppConfig.xml
 *.swp
