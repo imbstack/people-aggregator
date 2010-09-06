@@ -3,4 +3,8 @@ pacore/web/files/
 pacore/web/files/rsz/
 pacore/log/pa.log
 pacore/config/AppConfig.xml
+paproject/web/cache/
+paproject/web/files/
+paproject/web/files/rsz/
+paproject/log/pa.log
 *.swp
