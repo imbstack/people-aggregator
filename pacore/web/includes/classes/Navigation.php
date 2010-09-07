@@ -546,9 +546,13 @@ class Navigation {
 							'caption' => __("Group Settings"),
 							'url' => PA::$url .'/addgroup.php?gid='.$gid
 						),
-						'group_poll' => array(
-					    		'caption' => sprintf(__('%s Poll'), __(PA::$group_noun)),
-    							'url' => $this->base_url .'/group_poll.php?gid='.$group_id
+						'group_poll_select' => array(
+					    		'caption' => sprintf(__('%s Poll Select'), __(PA::$group_noun)),
+    							'url' => $this->base_url .'/group_poll.php?gid='.$group_id.'&type=select'
+				    		),
+						'group_poll_create' => array(
+					    		'caption' => sprintf(__('%s Poll Create'), __(PA::$group_noun)),
+    							'url' => $this->base_url .'/group_poll.php?gid='.$group_id.'&type=create'
 				    		),
 					);
 				}
