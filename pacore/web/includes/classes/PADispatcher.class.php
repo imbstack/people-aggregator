@@ -189,10 +189,10 @@
      $matches = null;
      $match_url = $_SERVER['REQUEST_URI'];
 
-     $this->applyRoutingRules($this->routes, $match_url, &$matches);
+     $this->applyRoutingRules($this->routes, $match_url, $matches);
      if(empty($matches)) {
        $match_url = $_SERVER['REDIRECT_URL'];
-       $this->applyRoutingRules($this->routes, $match_url, &$matches);
+       $this->applyRoutingRules($this->routes, $match_url, $matches);
      }
 
      if(!empty($matches)) {
@@ -320,7 +320,7 @@
              $new_url = $_route;
            }
            if(($res !== false) && (isset($new_url))) {
-             $this->applyRoutingRules($routes, $new_url, &$matches);
+             $this->applyRoutingRules($routes, $new_url, $matches);
            }
            break;
          }
