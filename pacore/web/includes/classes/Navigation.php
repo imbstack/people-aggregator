@@ -486,7 +486,7 @@ class Navigation {
 	),
 	'group_poll' => array(
     		'caption' => sprintf(__('%s Poll'), __(PA::$group_noun)),
-    		'url' => $this->base_url .'/grouppoll.php?gid='.$group_id
+    		'url' => $this->base_url .'/group_poll.php?gid='.$group_id
     		),
 
     	'group_events' => array(
