@@ -34,8 +34,6 @@ $msg = $app->getRequestParam('msg');
 function setup_module($column, $module, $obj) {
   $group_var = new Group();
   $group_var->load($_REQUEST['gid']);
-  switch ($module) {
-    case 'EventCalendarModule':
       $obj->title = sprintf(__('%s Events'), PA::$group_noun);
       $obj->assoc_type = 'group';
       $obj->assoc_id = $_REQUEST['gid'];
@@ -46,12 +44,10 @@ function setup_module($column, $module, $obj) {
       } else {
         $obj->may_edit = true;
       }
-      break;
-  }
   $obj->mode = PUB;
 }
 
-$page = new PageRenderer("setup_module", PAGE_GROUP_CALENDAR, "Calendar - PeopleAggregator", "container_one_column.tpl", "header_group.tpl", PRI, NULL, PA::$network_info);
+$page = new PageRenderer("setup_module", PAGE_GROUP_POLL, "Poll - PeopleAggregator", "container_one_column.tpl", "header_group.tpl", PRI, NULL, PA::$network_info);
 
 $css_path = PA::$theme_url . '/calendar.css';
 $page->add_header_css($css_path);
