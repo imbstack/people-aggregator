@@ -33,7 +33,6 @@ require_once 'NetworkDataTest.php';
 require_once 'ProfanityFilterTest.php';
 require_once 'ReadContentTest.php';
 require_once 'StorageTest.php';
-require_once 'StructuredBloggingParsingTest.php';
 require_once 'UrlGenerationTest.php';
 require_once 'UserProfileDataTest.php';
 require_once 'UserRegistrationTest.php';
@@ -54,7 +53,6 @@ class AllTests
     public static function suite() {
         $suite = new PHPUnit_Framework_TestSuite('PeopleAggregator');
         $suite->addTest(Api_AllTests::suite());
-	$suite->addTestSuite('ConfigVariableTest');
 	$suite->addTestSuite('ContentCommentsTest');
 	$suite->addTestSuite('EmailNotificationTest');
 	$suite->addTestSuite('EventBriteTest');
@@ -63,8 +61,7 @@ class AllTests
 	$suite->addTestSuite('NetworkDataTest');
 	$suite->addTestSuite('ProfanityFilterTest');
 	$suite->addTestSuite('ReadContentTest');
-	$suite->addTestSuite('StorageTest');
-	$suite->addTestSuite('StructuredBloggingParsingTest');
+	$suite->addTestSuite('StorageTest');	
 	$suite->addTestSuite('UrlGenerationTest');
 	$suite->addTestSuite('UserProfileDataTest');
 	$suite->addTestSuite('UserRegistrationTest');

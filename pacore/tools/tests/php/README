@@ -44,3 +44,9 @@ Advantages:
 
 Marek
 (with small modifications from Phil)
+
+2009-09-07	Parag
+
+Dependencies:
+PHPUnit is reqired
+xdebug is required for a few tests.
