@@ -290,7 +290,10 @@
         </PAGE_MEDIA_GALLERY_UPLOAD>
         <PAGE_VIEW_MESSAGE category="constant" type="int" readonly="true" section="pages" page_name="View message" page_type="user">
           <value>107</value>
-        </PAGE_VIEW_MESSAGE>
+	</PAGE_VIEW_MESSAGE>
+	<PAGE_GROUP_POLL category="constant" type="int" readonly="true" section="pages" page_name="Group Pollss" page_type="group">
+          <value>110</value>
+        </PAGE_GROUP_POLL>
         <PAGE_MANAGE_RANKING_POINTS category="constant" type="int" readonly="true" section="pages" page_name="Manage Ranking Points" page_type="">
           <value>200</value>
         </PAGE_MANAGE_RANKING_POINTS>
