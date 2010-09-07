@@ -740,7 +740,7 @@ class php_http_response {
 	* @return int The response status code
 	*/
 	function getStatusCode() {
-		$statusArray = split(' ', $this->statusLine);
+		$statusArray = explode(' ', $this->statusLine);
 		
 		if (count($statusArray > 1)) {
 			return intval($statusArray[1], 10);

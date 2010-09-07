@@ -39,7 +39,7 @@ class PAInstaller {
 
    public function render ($template_vars, $template_path) {
      $template_file = getShadowedPath($template_path);
-     $html = & new Template($template_file);
+     $html = new Template($template_file);
      foreach($template_vars as $name => $value) {
        if(is_object($value)) {
          $html->set_object($name, $value);

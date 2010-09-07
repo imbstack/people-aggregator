@@ -46,7 +46,7 @@ class ChangePasswordModule extends Module {
     function generate_inner_html() {
 
         $tmp_file = PA::$blockmodule_path.'/'.get_class($this).'/center_inner_public.tpl';
-        $inner_html_gen = &new Template($tmp_file);
+        $inner_html_gen = new Template($tmp_file);
         $inner_html_gen->set('forgot_password_id', $this->forgot_password_id);
         $inner_html = $inner_html_gen->fetch();
         return $inner_html;

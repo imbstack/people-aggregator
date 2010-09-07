@@ -90,6 +90,9 @@ ini_set('track_errors', true);
  * IMPORTANT! To use the emulated destructors you need to create the
  * objects by reference: $obj =& new PEAR_child;
  *
+ * MORE IMPORTANT! All calls to new class() return references since
+ * PHP 5 and calling &= is deprecated.
+ *
  * @since PHP 4.0.2
  * @author Stig Bakken <ssb@php.net>
  * @see http://pear.php.net/manual/
@@ -257,7 +260,7 @@ class PEAR
      */
     function isError($data, $code = null)
     {
-        if (is_a($data, 'PEAR_Error')) {
+        if ($data instanceof PEAR_Error) {
             if (is_null($code)) {
                 return true;
             } elseif (is_string($code)) {

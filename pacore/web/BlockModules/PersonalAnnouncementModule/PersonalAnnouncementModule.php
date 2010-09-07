@@ -114,7 +114,7 @@ class PersonalAnnouncementModule extends Module {
      
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl.php';
 
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
 
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

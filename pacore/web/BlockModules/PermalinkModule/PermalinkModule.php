@@ -263,49 +263,6 @@ class PermalinkModule extends Module {
     }
   }
 
-/**
-   function is added for sending the mail of Abuse report
-   parameter required - sender name, subject of mail, message ..
-*/
-/* - Replaced with new PANotify code
-
-  function send_message_to_user($user_name, $suject=null, $mail_sub_msg_array) {
-    // Adding the message for newtork owner
-
-    $network_info = PA::$network_info;
-    $login_uid = PA::$login_uid;
-
-    $network_name = $network_info->name;
-    $report_name = $_SESSION['user']['name'];
-    $site_name = PA::$site_name;
-    $message = $mail_sub_msg_array['message'];
-    $content_url = $mail_sub_msg_array['content_url'];
-    $delete_url  = $mail_sub_msg_array['delete_url'];
-
-    if(empty($suject)) {
-      $subject = "$report_name has reported an abuse about some content in your network $network_name";
-    }
-    $msg = "<br>
-      $report_name has reported an abuse about some comment in your network $network_name.<br>
-      <br>
-      $report_name reported:<br> $message
-      <br>
-      Click Here $content_url to view that comment as well as content.
-      <br>
-      <br>
-      Click here $delete_url to delete that comment.
-      <br>
-      <br>
-      Thanks<br>
-      <br />
-      The $site_name Team.
-      <br />
-      Everyone at $site_name respects your privacy. Your information will never be shared with third parties unless specifically requested by you.
-    ";
-    Message::add_message((int)$login_uid, null, $user_name, $subject, $msg);
-    return;
-  }
-*/
   function render() {
     //$this->title = chop_string($this->content->title, TITLE_LENGTH);
     $this->inner_HTML = $this->generate_inner_html ();

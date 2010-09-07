@@ -80,7 +80,7 @@ class GroupsContentsManagementModule extends Module {
     $this->page_first = $Pagination->getFirstPage();
     $this->page_last = $Pagination->getLastPage();
     $this->page_links = $Pagination->getPageLinks();
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('links', $this->links);
     $inner_html_gen->set('back_page', PA::$url . $app->current_route);
     $inner_html_gen->set('type', $this->type);

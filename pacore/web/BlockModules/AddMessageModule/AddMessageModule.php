@@ -235,7 +235,7 @@ class AddMessageModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
     $inner_html_gen->set('current_theme_path', PA::$theme_url);
     
     if (!empty($this->mid)) {

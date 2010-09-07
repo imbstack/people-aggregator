@@ -44,7 +44,7 @@ class VideosViewAllModule extends Module {
     $this->page_first = $Pagination->getFirstPage();
     $this->page_last = $Pagination->getLastPage();
     $this->page_links = $Pagination->getPageLinks();
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('links', $this->links);
     $inner_html_gen->set('show_view', $this->show_view);
     $inner_html_gen->set('item_id', $this->item_id);

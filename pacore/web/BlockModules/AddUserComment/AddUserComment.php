@@ -50,7 +50,7 @@ class AddUserComment extends Module {
   function generate_inner_html () {
     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
-    $user_comment_form = & new Template($tmp_file);
+    $user_comment_form = new Template($tmp_file);
     $inner_html = $user_comment_form->fetch();
     return $inner_html;
   }

@@ -85,7 +85,7 @@ class MyFamiliesModule extends Module {
   function generate_inner_html() {
     $this->outer_template = 'outer_private_side_module.tpl';
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/my_families.tpl.php';
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
     $inner_html_gen->set('families', $this->families);
     $inner_html_gen->set('mode', $this->mode);
     $inner_html_gen->set('user_name', @$this->user_name);

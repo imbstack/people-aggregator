@@ -41,7 +41,7 @@ class ManageAdCenterModule extends Module {
 		$edit = false;
 		$message = NULL;
 		
-		// check oermissions!
+		// check permissions!
 		$user_may = false;
 		$user_may = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
 		
@@ -230,7 +230,7 @@ class ManageAdCenterModule extends Module {
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
         $config_link_page = 'manage_ad_center';
     }
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
     $inner_html_gen->set('links', $links);
     $inner_html_gen->set('edit', $this->edit);
     $inner_html_gen->set('form_data', $this->form_data);

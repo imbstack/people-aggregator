@@ -184,7 +184,7 @@ class ImagesModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
     
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('gid', $this->gid);
     $obj_inner_template->set('links', $links);
     $obj_inner_template->set('current_theme_path', PA::$theme_url);

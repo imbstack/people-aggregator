@@ -36,7 +36,7 @@ class NewUserByAdminModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
     }
     
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('form_data', @$this->form_data);
      $inner_html_gen->set('config_navigation_url',
                           network_config_navigation( 'create_user' ) );

@@ -28,14 +28,14 @@ $parameter = js_includes("all") . '
 html_header("Javascript API access demo - PeopleAggregator", $parameter);
 default_exception();
 
-$page = & new Template(CURRENT_THEME_FSPATH."/homepage_pa.tpl");
+$page = new Template(CURRENT_THEME_FSPATH."/homepage_pa.tpl");
 
 $page->set('current_theme_path', PA::$theme_path);
 $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
 
 // header
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 $header->set('current_theme_path', PA::$theme_path);
 $header->set('error', $_GET['error']);
 
@@ -171,7 +171,7 @@ demo.start();
 END;
 
 // footer
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_path);
 
 //page settings

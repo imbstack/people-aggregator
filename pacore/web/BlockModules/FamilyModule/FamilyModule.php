@@ -182,7 +182,7 @@ class FamilyModule extends Module {
   }
   
   function generate_inner_html() {
-    $inner_html_gen = & new Template($this->inner_template, $this);
+    $inner_html_gen = new Template($this->inner_template, $this);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;
   }

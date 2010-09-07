@@ -34,7 +34,7 @@ $leftModulesFromDB = $setting_data['left'];
 $middleModulesFromDB = $setting_data['middle'];
 $rightModulesFromDB = $setting_data['right'];
 
-$page = & new Template(CURRENT_THEME_FSPATH."/groups.tpl");
+$page = new Template(CURRENT_THEME_FSPATH."/groups.tpl");
 
 $page->set('current_theme_path', PA::$theme_url);
 
@@ -57,7 +57,7 @@ if ($_GET['tier_three']) {
 $optional_parameters = "onload=\"$onload\"";
 html_body($optional_parameters);
 
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 if (PA::$network_info) {
   $header->set_object('network_info', PA::$network_info);
 }
@@ -106,7 +106,7 @@ foreach ( $rightModulesFromDB as $rightModule)
   }
   $array_right_modules[] = $obj->render();
 }
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 $footer->set('current_theme_path', PA::$theme_url);
 //page settings
 $page->set('header', $header);

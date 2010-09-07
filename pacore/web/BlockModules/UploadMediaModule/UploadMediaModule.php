@@ -116,7 +116,7 @@ class UploadMediaModule extends Module {
       $this->outer_template = 'empty_outer.tpl';
     }
 
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('my_all_album', $this->my_all_album);
     $inner_html_gen->set('default_name', $default_name);
     $inner_html_gen->set('back', @$_SERVER['HTTP_REFERER']);

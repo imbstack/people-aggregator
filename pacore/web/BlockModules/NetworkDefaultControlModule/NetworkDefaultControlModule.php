@@ -50,7 +50,7 @@ class NetworkDefaultControlModule extends Module {
      
 
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html_'.$this->tpl_to_load.'.tpl';
-    $net_details = & new Template($tmp_file);
+    $net_details = new Template($tmp_file);
     if ($this->tpl_to_load == 'stats') {
       $net_details->set('is_edit', @$this->is_edit);
       $net_details->set('network_stats', @$this->network_stats);

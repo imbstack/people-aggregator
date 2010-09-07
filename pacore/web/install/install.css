@@ -50,6 +50,7 @@ fieldset input {
 }
 
 fieldset label {
+  clear: left;
   float: left;
   display: block;
   width: 40%;

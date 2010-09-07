@@ -34,7 +34,7 @@ class RankingModule extends Module {
   
   function generate_inner_html() {
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
-    $inner_html_gen= & new Template($inner_template);
+    $inner_html_gen= new Template($inner_template);
     $inner_html_gen->set('parameters', Ranking::get_parameters());
     $inner_html_gen->set('error', $this->error);
     $inner_html_gen->set('config_navigation_url',

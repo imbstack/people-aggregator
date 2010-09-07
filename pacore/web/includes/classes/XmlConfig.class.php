@@ -54,7 +54,7 @@ class XmlConfig extends DOMDocument
     {
     }
 
-    public function load($filename)
+    public function load($filename, $options = 0)
     {
         if (file_exists($filename))
         {

@@ -61,7 +61,7 @@ class ManageStaticPageModule extends Module {
     $this->page_last = $Pagination->getLastPage();
     $this->page_links = $Pagination->getPageLinks();
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
     $inner_html_gen->set('links', $links);
     $inner_html_gen->set('edit', $this->edit);
     $inner_html_gen->set('form_data', $this->form_data);

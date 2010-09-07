@@ -1,11 +1,25 @@
-<link rel="stylesheet" href="/Themes/Default/jquery-ui.css" type="text/css" media="all" /> 
-<link rel="stylesheet" href="/Themes/Default/ui.theme.css" type="text/css" media="all" /> 
-<script src="/Themes/Default/javascript/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/Themes/Default/javascript/jquery.bgiframe-2.1.1.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.js" type="text/javascript"></script>
+<script src="/Themes/Default/javascript/jquery.bgiframe-2.1.1.js" type="text/javascript"></script>
+<script src="/Themes/Default/javascript/jquery.cookie.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#accordion").accordion({autoHeight: false,collapsible: true});
+		var active = 0;
+		if($.cookie('admin-menu-accordian') !== undefined)
+		{
+			active = $.cookie('admin-menu-accordian');
+		}
+		$("#accordion").accordion(
+			{
+				active: parseInt(active),
+				autoHeight: false,
+				change: function(event, ui) {
+					$.cookie('admin-menu-accordian', $(this).find("h3").index(ui.newHeader[0]));
+				},
+				collapsible: true
+			}
+		);
 	});
 	</script>
 

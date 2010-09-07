@@ -38,7 +38,7 @@ class Flickrclient {
     $this->auth_type = trim($flickr_auth_type);
 
     // set up api wrapper
-    $this->api =& new Flickr_API(array(
+    $this->api = new Flickr_API(array(
 				       'api_key' => $this->api_key,
 				       'api_secret' => $this->api_secret,
 				       ));

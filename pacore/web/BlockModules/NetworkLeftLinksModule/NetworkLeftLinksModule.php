@@ -99,7 +99,7 @@ class NetworkLeftLinksModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
     }
 
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('task_perms', $this->task_perms);
     $obj_inner_template->set('network_content_moderation', $network_content_moderation);
     $inner_html = $obj_inner_template->fetch();

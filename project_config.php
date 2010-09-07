@@ -40,7 +40,7 @@
 //
 
 
-error_reporting(E_ALL);
+error_reporting(E_ALL | E_STRICT);
 
   $path_separator = ":";
   $dir_separator  = "/";
@@ -68,13 +68,18 @@ define('DEFAULT_INSTALL_SCRIPT', 'web/install/install.php');
 
 define('PA_PROJECT_ROOT_DIR', realpath(dirname(__FILE__)));
 define('PA_PROJECT_CORE_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR . PA_CORE_NAME));
-define('PA_PROJECT_PROJECT_DIR', PA_PROJECT_CORE_DIR);
+define('PA_PROJECT_PROJECT_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR . PA_PROJECT_NAME));
 
 // define include paths
-ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PA_PROJECT_PROJECT_DIR
-                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR
-                                                . PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext');
+ini_set('include_path', 
+	PA_PROJECT_PROJECT_DIR
+	. PATH_SEPARATOR . PA_PROJECT_CORE_DIR
+	. PATH_SEPARATOR . PA_PROJECT_CORE_DIR . DIRECTORY_SEPARATOR . 'ext'
+	. PATH_SEPARATOR . ini_get('include_path')
+	);
 
 define('APPLICATION_CONFIG_FILE', '/config/AppConfig.xml');
 
+// this is to avoid E_STRICT warming, set it to your TZ
+date_default_timezone_set('UTC');
 ?>

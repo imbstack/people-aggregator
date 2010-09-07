@@ -54,7 +54,7 @@ class PollArchiveModule extends Module {
   
   function generate_inner_html () {
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/poll_archive.tpl.php';
-    $inner_html_gen= & new Template($inner_template);
+    $inner_html_gen= new Template($inner_template);
     $inner_html_gen->set('polls', $this->prev_polls);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

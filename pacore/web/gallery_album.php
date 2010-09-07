@@ -146,7 +146,7 @@ print html_header();
 ?>
 
 <?php
-$content = & new Template(CURRENT_THEME_FSPATH."/gallery_album.tpl");
+$content = new Template(CURRENT_THEME_FSPATH."/gallery_album.tpl");
 if ($error == TRUE) {
   $content->set('msg', $msg);
 }
@@ -155,7 +155,7 @@ $content->set('user_picture', $user_picture);
 $content->set('uid', $uid);
 $content->set('users', $users);
 
-$header = & new Template(CURRENT_THEME_FSPATH."/header.tpl");
+$header = new Template(CURRENT_THEME_FSPATH."/header.tpl");
 if (PA::$network_info) {
   $header->set_object('network_info', PA::$network_info);
 }
@@ -164,6 +164,6 @@ $content->set('header', $header);
 
 echo $content->fetch();
 
-$footer = & new Template(CURRENT_THEME_FSPATH."/footer.tpl");
+$footer = new Template(CURRENT_THEME_FSPATH."/footer.tpl");
 echo $footer->fetch();
 ?>

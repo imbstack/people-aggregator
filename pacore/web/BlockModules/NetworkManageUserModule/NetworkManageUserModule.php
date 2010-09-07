@@ -37,7 +37,7 @@ class NetworkManageUserModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
     }
    
-    $net_details = & new Template($inner_template);
+    $net_details = new Template($inner_template);
     $net_details->set('config_navigation_url',
                        network_config_navigation( 'manage_user' ) );
     $inner_html = $net_details->fetch();

@@ -108,7 +108,7 @@ class HTTP_Client
     */
     function HTTP_Client($defaultRequestParams = null, $defaultHeaders = null)
     {
-        $this->_cookieManager =& new HTTP_Client_CookieManager();
+        $this->_cookieManager = new HTTP_Client_CookieManager();
         if (isset($defaultHeaders)) {
             $this->setDefaultHeader($defaultHeaders);
         }
@@ -155,7 +155,7 @@ class HTTP_Client
     */
     function &_createRequest($url, $method = HTTP_REQUEST_METHOD_GET)
     {
-        $req =& new HTTP_Request($url, $this->_defaultRequestParams);
+        $req = new HTTP_Request($url, $this->_defaultRequestParams);
         $req->setMethod($method);
         foreach ($this->_defaultHeaders as $name => $value) {
             $req->addHeader($name, $value);

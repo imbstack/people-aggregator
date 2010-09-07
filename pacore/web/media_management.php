@@ -114,7 +114,7 @@ function setup_module($column, $moduleName, $obj) {
 $page = new PageRenderer("setup_module", PAGE_MEDIA_MANAGEMENT, "Media Management", "media_gallery_pa.tpl", "header.tpl", PUB, HOMEPAGE, PA::$network_info);
 
 if (!empty($msg1)) {
-  $msg_tpl = & new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
+  $msg_tpl = new Template(CURRENT_THEME_FSPATH."/display_message.tpl");
   $msg_tpl->set('message', $msg1);
   $page->add_module("middle", "top", $msg_tpl->fetch());
 }

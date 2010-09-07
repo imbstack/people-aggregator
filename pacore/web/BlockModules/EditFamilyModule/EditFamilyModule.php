@@ -147,7 +147,7 @@ class EditFamilyModule extends Module {
   */
   function generate_inner_html () {
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/edit_family.php';
-    $inner_html_gen = & new Template($tmp_file, $this);
+    $inner_html_gen = new Template($tmp_file, $this);
 
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

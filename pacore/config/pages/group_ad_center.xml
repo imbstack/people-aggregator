@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <page>
   <page_id>91</page_id>
+  <is_configurable>1</is_configurable>
+  <page_name>Group Ad Center</page_name>
   <data>
     <left>
     </left>
@@ -63,11 +65,9 @@
       uihelper_get_group_style($gid);
       ]]></boot_code>
     <page_template>container_two_column.tpl</page_template>
-    <header_template>header.tpl</header_template>
+    <header_template>header_group.tpl</header_template>
     <page_mode>private</page_mode>
     <block_type>Homepage</block_type>
-    <page_type>network</page_type>
+    <page_type>group</page_type>
   </data>
-  <is_configurable>0</is_configurable>
-  <page_name>manage_ad_center</page_name>
 </page>

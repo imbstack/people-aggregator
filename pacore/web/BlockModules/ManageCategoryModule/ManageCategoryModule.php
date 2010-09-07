@@ -92,7 +92,7 @@ class ManageCategoryModule extends Module {
   function generate_inner_html () {    
     
     $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('category', $this->category);
     $inner_html_gen->set('categories', $this->categories);
     $inner_html_gen->set('edit_title', $this->edit_title);

@@ -62,7 +62,7 @@ class RegisterModule extends Module {
         $inner_template = PA::$blockmodule_path.'/RegisterModule/center_inner_public.tpl';      
     }
     
-    $obj_inner_template = & new Template($inner_template, $this);
+    $obj_inner_template = new Template($inner_template, $this);
     $obj_inner_template->set('array_of_errors', @$this->array_of_errors);    
     $obj_inner_template->set('current_theme_path', PA::$theme_url);
     $obj_inner_template->set('states', $this->states);

@@ -368,7 +368,7 @@ class FamilyModerationModule extends Module {
   
   function generate_inner_html($template_vars = array()) {
     
-    $inner_html_gen = & new Template($this->inner_template);
+    $inner_html_gen = new Template($this->inner_template);
     foreach($template_vars as $name => $value) {
       if(is_object($value)) {
         $inner_html_gen->set_object($name, $value);
@@ -393,7 +393,7 @@ class FamilyModerationModule extends Module {
      default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
 
     $Pagination = new Pagination;
     $Pagination->setPaging($this->Paging);

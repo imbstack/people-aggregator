@@ -274,8 +274,8 @@ class Auth_OpenID_Consumer {
             $session = new Services_Yadis_PHPSession();
         }
 
-        $this->session =& $session;
-        $this->consumer =& new Auth_OpenID_GenericConsumer($store);
+        $this->session =& $session; // <!> this reference marker can probably be removed
+        $this->consumer = new Auth_OpenID_GenericConsumer($store);
         $this->_token_key = $this->session_key_prefix . $this->_token_suffix;
     }
 
@@ -308,7 +308,7 @@ class Auth_OpenID_Consumer {
             $openid_url = Auth_OpenID::normalizeUrl($user_url);
         }
 
-        $disco =& new Services_Yadis_Discovery($this->session,
+        $disco = new Services_Yadis_Discovery($this->session,
                                                $openid_url,
                                                $this->session_key_prefix);
 

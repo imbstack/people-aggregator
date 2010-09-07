@@ -465,70 +465,150 @@ class Navigation {
     /// EOF group general children
 
     ///group specific menu children
-    $group_id = $this->get_group_id();
-    $group_specific =  array('group_home' =>
-                              array('caption'=>sprintf(__('%s Home'), __(PA::$group_noun)),
-                                      'url'=>$this->base_url . PA_ROUTE_GROUP . '/gid='.$group_id
-                                   ),
-                             'group_forum'=>
-                             array('caption'=>sprintf(__('%s Forum'), __(PA::$group_noun)),
-                                   'url'=> $this->base_url . PA_ROUTE_FORUMS . "/network_id=" .$this->network_info->network_id . '&gid='.$group_id
-                                  ),
-                             'group_members' =>
-                              array('caption'=>sprintf(__('%s Members'), __(PA::$group_noun)),
-                                    'url'=> $this->base_url.'/'.FILE_VIEW_ALL_MEMBERS.'?gid='.$group_id
-                                    ),
-                            'group_gallery' =>
-                             array('caption'=>sprintf(__('%s Gallery'), __(PA::$group_noun)),
-                                   'url'=> $this->base_url . PA_ROUTE_MEDIA_GALLEY_IMAGES . '/view=groups_media&amp;gid='.$group_id
-                                  ),
-                            'group_events' =>
-                             array('caption'=>sprintf(__('%s Events'), __(PA::$group_noun)),
-                                   'url'=> $this->base_url.'/'.FILE_GROUP_CALENDAR.'?gid='.$group_id
-                                  ),
-                       'join' => array('caption'=>__('Join'),
-                                  'url'=>$this->base_url . PA_ROUTE_GROUP . '/gid='.$group_id.'&amp;action=join'
-                                  ),
-                        'unjoin' => array('caption'=>__('Unjoin'),
-                                  'url'=>$this->base_url . PA_ROUTE_GROUP .'/gid='.$group_id.'&amp;action=leave'
-                                  ),
-                       'delete_group' => array('caption'=>__('Delete'),
-                                 'url'=>$this->base_url . PA_ROUTE_GROUP . '/action=delete&amp;gid='.$group_id,
-                                  'extra'=>' onclick ="return delete_confirmation_msg(\''.__('Are you sure you want to delete this group').'?\') "'
-                                  ),
-                      'group_customize_ui' => array('caption'=>__('Themes'),
-                                      'url'=>$this->base_url. PA_ROUTE_CUSTOMIZE_GROUP_GUI . '/theme/gid='.$group_id
-                                   ),
-                            );
-    /// group links are having some more complicated logic
-    // following links are not visible to anonymous
+    $gid = $group_id = $this->get_group_id();
+    $group_specific =  array(
+    	// these are the links everyone get's to see
+    	'group_home' => array(
+    		'caption'=>sprintf(__('%s Home'), __(PA::$group_noun)),
+    		'url'=>$this->base_url . PA_ROUTE_GROUP . '/gid='.$group_id
+    		),
+    	'group_forum' => array(
+    		'caption' => sprintf(__('%s Forum'), __(PA::$group_noun)),
+    		'url' => $this->base_url . PA_ROUTE_FORUMS . "/network_id=" .$this->network_info->network_id . '&gid='.$group_id
+    		),
+    	'group_members' => array(
+    		'caption' => sprintf(__('%s Members'), __(PA::$group_noun)),
+    		'url' => $this->base_url.'/'.FILE_VIEW_ALL_MEMBERS.'?gid='.$group_id
+    		),
+    	'group_gallery' => array(
+    		'caption' => sprintf(__('%s Gallery'), __(PA::$group_noun)),
+    		'url' => $this->base_url . PA_ROUTE_MEDIA_GALLEY_IMAGES . '/view=groups_media&amp;gid='.$group_id
+    		),
+    	'group_events' => array(
+    		'caption' => sprintf(__('%s Events'), __(PA::$group_noun)),
+    		'url' => $this->base_url.'/'.FILE_GROUP_CALENDAR.'?gid='.$group_id
+    		)
+    	);
+	    $group_member = FALSE;
+	    $group_may_post = FALSE;
+	    $group_may_invite = FALSE;
+      $group_moderator = FALSE;
+      $group_manange_ads = FALSE;
+      $group_owner = FALSE;
 
-    if ($this->is_anonymous) {
-      unset($group_specific['create_group']);
-      unset( $group_specific['join'] );
-      unset( $group_specific['unjoin'] );
-      unset($group_specific['edit_group']);
-      unset($group_specific['invite']);
-      unset($group_specific['delete_group']);
-      unset($group_specific['moderate_group']);
-      unset($group_specific['group_customize_ui']);
-    } else if(!empty($group_id) && !Group::is_admin($group_id, $user_id)) {
-      unset($group_specific['edit_group']);
-      unset($group_specific['delete_group']);
-      unset($group_specific['moderate_group']);
+      if (PA::$login_uid) {
+				if (Group::member_exists($gid, PA::$login_uid)) {
+					$group_member = TRUE;
+					// TODO: split this out to it's own perm check				
+					$group_may_post = TRUE; 
+					$group_may_invite = TRUE;
+				}
 
-      if( Group::member_exists($group_id, $user_id) == TRUE)  {
-      unset( $group_specific['join'] );
+				if (PermissionsHandler::can_group_user(PA::$login_uid, $gid, array('permissions' => 'manage_groups, manage_roles'))
+					|| Group::is_admin($gid, PA::$login_uid)) {
+					$group_owner = TRUE;
+					$group_moderator = TRUE;
+				} else if (PermissionsHandler::can_group_user(PA::$login_uid, $gid, array('permissions' => 'manage_groups'))) {
+					$group_moderator = TRUE;
+				}
+				
+				// network level ad manager?
+				$group_manange_ads = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'manage_ads'));
+				// check for manageads of group permissions
+				if (!$group_manange_ads) {
+					// we do this check only if the user is not already permitted to manage ads
+					$group_manange_ads = PermissionsHandler::can_group_user(PA::$login_uid, $gid, array('permissions' => 'manage_ads'));
+				}
+				
+				if ($group_may_invite) {
+					$group_specific = array(
+						'invite' => array(
+							'caption' => __("Invite a Friend"),
+							'url' => PA::$url . PA_ROUTE_GROUP_INVITE . '/gid='.$gid 
+						)
+					) + $group_specific;
+				}
+
+				if ($group_may_post) {
+					// member get's a 'Create Post' link on top
+					$group_specific = array(
+						'create_post' => array(
+							'caption' => __("Create post"),
+							'url' => PA::$url . '/post_content.php?ccid='.$gid
+						)
+					) + $group_specific;
+				}
+				
+				// admin / owner
+				if ($group_owner) {
+					$group_specific = $group_specific + array(
+						'settings' => array(
+							'caption' => __("Group Settings"),
+							'url' => PA::$url .'/addgroup.php?gid='.$gid
+						)
+					);
+				}
+				
+				// admin / moderator
+				if ($group_moderator) { 
+					$group_specific = $group_specific + array(
+						'bulletin' => array(
+							'caption' => __("Group Bulletin"),
+							'url' => PA::$url . PA_ROUTE_GROUP_BULLETINS.'?gid='.$gid
+							),
+						'moderate' => array(
+							'caption' => __("Moderate"),
+							'url' => PA::$url . PA_ROUTE_GROUP_MODERATION . '/view=members&amp;gid='.$gid
+						),
+						'manage_members' => array(
+							'caption' => __("Manage Content"),
+							'url' => PA::$url .'/manage_group_content.php?gid='.$gid
+						),
+					'group_customize_ui' => array(
+						'caption' => __('Group Appearance'),
+						'url' => $this->base_url. PA_ROUTE_CUSTOMIZE_GROUP_GUI . '/theme/gid='.$group_id
+						)
+					);
+	      }
+
+				// ads
+				if ($group_manange_ads) {
+					$group_specific = $group_specific + array(
+						'ads' => array(
+							'caption' => __("Manage Ads"),
+							'url' => PA::$url.PA_ROUTE_GROUP_AD_CENTER .'?gid='.$gid
+						)
+					);
+				}
+				
+				// the join/unjoin/delete go last
+				if ($group_owner) { // only the owner can delete
+					$group_specific = $group_specific + array(
+	    'delete_group' => array(
+	    	'caption' => __('Delete'),
+	    	'url' => $this->base_url . PA_ROUTE_GROUP . '/action=delete&amp;gid='.$group_id,
+	    	'extra'=>' onclick ="return delete_confirmation_msg(\''.__('Are you sure you want to delete this group').'?\') "'
+	    	),
+						);
+				} else { // anyone else
+					if ($group_member) {
+						$group_specific = $group_specific + array(
+				'unjoin' => array(
+					'caption'=>__('Unjoin'),
+					'url' => $this->base_url . PA_ROUTE_GROUP .'/gid='.$group_id.'&amp;action=leave'
+					),
+						);
+					} else {
+						$group_specific = $group_specific + array(
+				'join' => array(
+					'caption' => __('Join'),
+					'url' => $this->base_url . PA_ROUTE_GROUP . '/gid='.$group_id.'&amp;action=join'
+					),
+						);
+					}
+				}
     }
-    else if (Group::member_exists($group_id, $user_id) == FALSE ){
-      unset( $group_specific['unjoin'] );
-    }
-     unset($group_specific['group_customize_ui']);
-   }
-   else if(!empty($group_id) && Group::is_admin($group_id, $user_id)) {
-      unset( $group_specific['join'] );
-      unset( $group_specific['unjoin'] );
-   }
+
 
     ///EOF group specific menu children
 
@@ -895,9 +975,6 @@ class Navigation {
       /*----------------------------------------------------*/
       case PAGE_FAMILY :
       case PAGE_FAMILY_EDIT :
-      case PAGE_FAMILY_MEMBERS :
-      case PAGE_FAMILY_MODERATION :
-        $level_2['highlight'] = 'people';
         $level_3 = $this->get_level_3('family');
       break;
 
@@ -1005,45 +1082,25 @@ class Navigation {
        /*----------------------------------------------------*/
        case PAGE_GROUP :
        case PAGE_GROUP_AD_CENTER :
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'group_home';
-       break;
-       /*----------------------------------------------------*/
-       case FILE_FORUM_MESSAGES :
-       case FILE_FORUM_HOME :
-       case FILE_CREATE_FORUM :
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'group_forum';
-       break;
-       case FILE_GROUP_CALENDAR :
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'group_events';
-       break;
-
-        /*----------------------------------------------------*/
-       case FILE_GROUP_INVITATION :
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'groups_general'));
-        $level_3['highlight'] = 'invite';
-       break;
-        /*----------------------------------------------------*/
-/*
        case FILE_GROUP_MEDIA_GALLERY :
+       case FILE_GROUP_CALENDAR :
+       case FILE_GROUP_INVITATION :
+       case PAGE_GROUP_THEME:
+       case PAGE_GROUP_MODERATION:
+      case FILE_MANAGE_GROUP_CONTENTS:
         $level_2['highlight'] = 'groups';
         $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'group_gallery';
        break;
-*/
-       /*----------------------------------------------------*/
-       case FILE_EDIT_FORUM:
-       case FILE_FORUM_MESSAGES :
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-
-       break;
+       case FILE_ADDGROUP:
+        $level_2['highlight'] = 'group';
+        if ($_GET['gid']) {
+          $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
+          $level_3['highlight'] = 'edit_group';
+        } else {
+          $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'groups_general'));
+          $level_3['highlight'] = 'create_group';
+        }
+      break;
        /*----------------------------------------------------*/
        case FILE_WIDGET:
         $level_2['highlight'] = 'user';
@@ -1071,43 +1128,6 @@ class Navigation {
         $level_3 = $this->get_level_3('user');
         $level_3['highlight'] = 'manage_posts';
        break;
-         /*----------------------------------------------------*/
-       case FILE_ADDGROUP:
-        $level_2['highlight'] = 'group';
-        if ($_GET['gid']) {
-          $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-          $level_3['highlight'] = 'edit_group';
-        } else {
-          $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'groups_general'));
-          $level_3['highlight'] = 'create_group';
-        }
-      break;
-        /*----------------------------------------------------*/
-       case PAGE_GROUP_MODERATION:
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        if ('members'==$_GET['view']) {
-          $level_3['highlight'] = 'moderate_users';
-        }
-        if ('content'==$_GET['view']) {
-          $level_3['highlight'] = 'moderate_posts';
-        }
-        if ('users'==$_GET['view']) {
-          $level_3['highlight'] = 'moderate_membership_requests';
-        }
-      break;
-      case FILE_MANAGE_GROUP_CONTENTS:
-        $level_1['highlight'] = 'networks_directory';
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'manage_group_content';
-      break;
-      case PAGE_GROUP_THEME:
-        $level_1['highlight'] = 'networks_directory';
-        $level_2['highlight'] = 'groups';
-        $level_3 = $this->get_level_3(array('type'=>'groups','sub_type'=>'group_specific'));
-        $level_3['highlight'] = 'group_customize_ui';
-      break;
           /*----------------------------------------------------*/
        case FILE_NETWORKS_HOME:
 
@@ -1141,10 +1161,8 @@ class Navigation {
       case PAGE_ROLE_MANAGE:
       case FILE_ASSIGN_TASK:
         $level_2 = $this->get_level_3('network');
-//         $level_3 = $this->get_level_3('manage_network');
         $level_1['highlight'] = 'configure_network';
         $level_2['highlight'] = 'configure_network';
- /*       $level_3['highlight'] = 'manage_user'*/;
       break;
 
       case FILE_CREATENETWORK:

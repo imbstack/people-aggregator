@@ -3,7 +3,7 @@
   <configuration description="Application configuration constants and variables.">
     <pages description="Defined pages">
       <value>
-        <PAGE_USER_PRIVATE category="constant" type="int" readonly="true" section="pages" page_name="User Private Page" page_type="user">
+        <PAGE_USER_PRIVATE category="constant" type="int" readonly="true" section="pages" page_name="User Private Page" page_type="user|network">
           <value>1</value>
         </PAGE_USER_PRIVATE>
         <PAGE_USER_PUBLIC category="constant" type="int" readonly="true" section="pages" page_name="User Public Page" page_type="user|network">
@@ -1361,11 +1361,6 @@
         <value>2</value>
         <user_settable>1</user_settable>
       </friend_request_approved>
-      <user_send_message>
-        <caption>another user sends a message</caption>
-        <value>2</value>
-        <user_settable>1</user_settable>
-      </user_send_message>
           </value>
         </notify_members>
         <user_defaults category="item" type="array" readonly="false" section="network_defaults" description="User defaults.">

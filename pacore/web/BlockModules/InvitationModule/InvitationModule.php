@@ -188,7 +188,7 @@ class InvitationModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . "/center_inner_public.tpl";
     }
-    $register = & new Template($tmp_file);
+    $register = new Template($tmp_file);
     $inner_html = $register->fetch();
     return $inner_html;
   }

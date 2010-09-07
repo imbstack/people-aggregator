@@ -196,7 +196,7 @@ class PeopleModule extends Module {
     }
     $data = unserialize(base64_decode($request_data['data']));
             $templ = PA::$blockmodule_path .'/'. get_class($this) . "/tooltip.tpl";
-            $html_gen = & new Template($templ);
+            $html_gen = new Template($templ);
             $html_gen->set('link', $data);
             $html_gen->set('rel_term', $this->rel_term);
             $html = $html_gen->fetch();
@@ -385,7 +385,7 @@ class PeopleModule extends Module {
        $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/facewall.tpl';
     }
 
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('links', $this->users_data);
     $inner_html_gen->set('error_msg', $msg);
     $inner_html_gen->set('page_first', $this->page_first);

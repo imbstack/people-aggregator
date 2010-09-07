@@ -53,7 +53,7 @@ class ConfigureEmailModule extends Module {
     $template_list = $this->getEmailContainers(PA::$config_path . "/email_containers");
     $inner_template = NULL;
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_html.tpl';
-    $obj_inner_template = & new Template($inner_template);
+    $obj_inner_template = new Template($inner_template);
     $obj_inner_template->set('email_list', $email_list);
     $obj_inner_template->set('template_list', $template_list);
     $obj_inner_template->set('subject', $this->subject);
@@ -75,7 +75,10 @@ class ConfigureEmailModule extends Module {
   * @return string $email_containers all containers in the location
   */
   private function getEmailContainers($path) {
-    $paths = array(PA::$core_dir . "/$path", PA::$project_dir . "/$path"); // core templates will be overwritten with project templates
+    $paths = array(PA::$core_dir . "/$path");
+    if(file_exists(PA::$project_dir . "/$path")) {
+      $paths[] = PA::$project_dir . "/$path"; // core templates will be overwritten with project templates
+    }
     $email_containers = array('None (Plain Text)' => 'text_only' );
     foreach($paths as $path) {
       foreach (new DirectoryIterator($path) as $fileInfo) {

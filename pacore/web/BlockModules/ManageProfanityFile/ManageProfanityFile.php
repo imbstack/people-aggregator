@@ -36,7 +36,7 @@ class ManageProfanityFile extends Module {
     }
     $this->links = $this->get_links();
 
-    $info = & new Template($inner_template);
+    $info = new Template($inner_template);
     $info->set('links', $this->links);
     $inner_html = $info->fetch();
     return $inner_html;

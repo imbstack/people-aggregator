@@ -77,7 +77,7 @@ class PollModule extends Module {
   
   function generate_inner_html () {
     $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
-    $inner_html_gen= & new Template($inner_template);
+    $inner_html_gen= new Template($inner_template);
     $inner_html_gen->set('flag', $this->flag);
     $inner_html_gen->set('percentage', @$this->option_precent);
     $inner_html_gen->set('vote_count', @$this->option_vote_count);

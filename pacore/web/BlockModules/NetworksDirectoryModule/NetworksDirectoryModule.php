@@ -163,7 +163,7 @@ class NetworksDirectoryModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';   
     }
     $this->Paging["count"] = (@$this->uid) ?  count($links): $this->Paging["count"];
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('links', $links);
     if (!empty($owner_info)) {
       $inner_html_gen->set('owner_info', $owner_info);

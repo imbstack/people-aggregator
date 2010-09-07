@@ -49,7 +49,7 @@ class LinksModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';   
     }
    
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('link_categories_array', $this->get_link_categories());
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

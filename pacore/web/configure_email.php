@@ -60,7 +60,7 @@ if(!empty($_REQUEST['config_action'])) {
       $message = $_POST['email_message'];
       $container_html = $_POST['template'];
       if($container_html != 'text_only') {
-        $email_container = & new Template(PA::$config_path . "/email_containers/$container_html");
+        $email_container = new Template(PA::$config_path . "/email_containers/$container_html");
         $email_container->set('subject', $subject);
         $email_container->set('message', $message);
         $preview_msg = $email_container->fetch();

@@ -45,7 +45,7 @@ class SearchContentModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_public.tpl';
     }
     
-    $inner_html_gen = & new Template($inner_template);
+    $inner_html_gen = new Template($inner_template);
     $inner_html_gen->set('current_theme_path', PA::$theme_url);
     $inner_html = $inner_html_gen->fetch();
     return $inner_html;

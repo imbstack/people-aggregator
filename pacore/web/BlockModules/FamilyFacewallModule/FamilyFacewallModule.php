@@ -100,7 +100,7 @@ class FamilyFacewallModule extends Module {
 
 
   function generate_inner_html($links) {
-    $obj_inner_template = & new Template($this->inner_template, $this);
+    $obj_inner_template = new Template($this->inner_template, $this);
     $obj_inner_template->set('links', $links);
     $obj_inner_template->set('block_name', $this->html_block_id);
     $obj_inner_template->set('current_theme_path', PA::$theme_url);

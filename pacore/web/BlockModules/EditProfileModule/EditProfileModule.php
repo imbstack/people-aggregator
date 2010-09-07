@@ -239,7 +239,7 @@ class EditProfileModule extends Module {
         $inner_template = PA::$blockmodule_path .'/'. get_class($this) . '/center_inner_private.tpl';
     }
 
-    $info = & new Template($inner_template);
+    $info = new Template($inner_template);
 
     // This lets us know what has just been POSTed, if anything.
     // e.g.: if $post_profile_type == 'basic', 'apply changes' has

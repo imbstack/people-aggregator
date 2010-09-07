@@ -29,6 +29,7 @@ require_once "api/PAException/PAException.php";
 require_once "api/Logger/Logger.php";
 require_once "api/Tag/Tag.php";
 require_once "api/Comment/Comment.php";
+require_once "api/ModerationQueue/ModerationQueue.php";
 require_once "api/Validation/Validation.php";
 require_once "api/RssFeedHelper/RssFeedHelper.php";
 require_once "api/User/User.php";
@@ -272,10 +273,8 @@ abstract class Content {
     Logger::log("Enter: Content::delete_by_id()");
 
     // soft deleting
-    $sql = "UPDATE {contents} SET is_active = ? WHERE content_id = ?";
-    $res = Dal::query($sql,array(0, $content_id));
-    $sql = "DELETE FROM {moderation_queue} WHERE item_id = ?";
-    $res = Dal::query($sql,array($content_id));
+    ModerationQueue::remove_content($content_id);
+    Content::update_content_status($content_id, DELETED);
     Tag::delete_tags_for_content($content_id);
     Logger::log("Deleting the all comments related to this object");
     Comment::delete_all_comment_of_content($content_id);
@@ -1118,9 +1117,7 @@ abstract class Content {
     $data = array(DELETED, $user_id );
     Dal::query( $sql, $data );
 
-    $sql = 'DELETE FROM MQ USING {moderation_queue} AS MQ INNER JOIN {contents} AS C ON MQ.item_id = C.content_id AND MQ.type = ? AND C.author_id = ?';
-    $data = array('content', $user_id );//TODO: define the string in constants
-    Dal::query( $sql, $data );
+	ModerationQueue::remove_content_from_user($user_id);
 
     Logger::log("Exit: Content::delete_user_content()");
   }

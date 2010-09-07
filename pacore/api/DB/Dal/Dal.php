@@ -31,7 +31,7 @@ class Dal {
     if (!Dal::$_connection) {
       global $peepagg_dsn;
       Dal::$_connection = DB::connect($peepagg_dsn, array("autofree" => true));
-      if (PEAR::isError(Dal::$_connection)) {
+      if (Dal::$_connection instanceof PEAR_Error) {
   $msg = Dal::$_connection->getMessage();
   if (strpos($msg, "no such database") != -1) {
     ?>
@@ -119,7 +119,7 @@ class Dal {
     $sth = $db->query($sql, $args);
     Dal::execute_post_hooks($sql, $args);
 
-    if (PEAR::isError($sth)) {
+    if ($sth instanceof PEAR_Error) {
       Logger::log(" Throwing exception DB_QUERY_FAILED | Message: ".$sth->getMessage().
         " | SQL that caused this exception: ".$sql, LOGGER_ERROR);
       throw new PAException(DB_QUERY_FAILED, $sth->userinfo);

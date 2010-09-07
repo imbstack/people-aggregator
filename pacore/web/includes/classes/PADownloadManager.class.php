@@ -39,7 +39,7 @@ class PADownloadManager {
   public $file_type;
   public $file_path;
   public $dir_name;
-  private $exlude_sec_test = array('htm', 'html', 'json', 'xml', 'xspf', 'js', 'css', 'gif', 'png', 'jpg', 'jpeg');
+  private $exlude_sec_test = array('htm', 'html', 'json', 'xml', 'xspf', 'js', 'css', 'gif', 'png', 'jpg', 'jpeg', 'ico');
 
   public function __construct($file_path) {
     $this->file_path = $file_path;
@@ -156,6 +156,13 @@ class PADownloadManager {
              return false;
            }
            return $this->streamFiles($image, "image/$this->file_type");
+         break;
+         case "ico":
+           if(!$style = getShadowedPath($this->file_path)) {
+             self::$last_error = __(F_NOT_FOUND);
+             return false;
+           }
+           return $this->streamFiles($style, "image/x-icon");
          break;
          case "asf":
          case "avi":

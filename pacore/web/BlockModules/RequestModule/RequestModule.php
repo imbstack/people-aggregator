@@ -88,7 +88,7 @@ class RequestModule extends Module {
       default:
         $tmp_file = PA::$blockmodule_path .'/'. get_class($this) . '/side_inner_public.tpl';
     }
-    $inner_html_gen = & new Template($tmp_file);
+    $inner_html_gen = new Template($tmp_file);
     $inner_html_gen->set('error', $this->error);
     $inner_html_gen->set('error_msg', $this->error_msg);
     $inner_html_gen->set('success', $this->success);
