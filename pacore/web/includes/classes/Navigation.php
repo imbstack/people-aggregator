@@ -483,7 +483,12 @@ class Navigation {
     	'group_gallery' => array(
     		'caption' => sprintf(__('%s Gallery'), __(PA::$group_noun)),
     		'url' => $this->base_url . PA_ROUTE_MEDIA_GALLEY_IMAGES . '/view=groups_media&amp;gid='.$group_id
+	),
+	'group_poll' => array(
+    		'caption' => sprintf(__('%s Poll'), __(PA::$group_noun)),
+    		'url' => $this->base_url .'/grouppoll.php?gid='.$group_id
     		),
+
     	'group_events' => array(
     		'caption' => sprintf(__('%s Events'), __(PA::$group_noun)),
     		'url' => $this->base_url.'/'.FILE_GROUP_CALENDAR.'?gid='.$group_id
