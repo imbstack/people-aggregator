@@ -68,7 +68,7 @@ define('DEFAULT_INSTALL_SCRIPT', 'web/install/install.php');
 
 define('PA_PROJECT_ROOT_DIR', realpath(dirname(__FILE__)));
 define('PA_PROJECT_CORE_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR . PA_CORE_NAME));
-define('PA_PROJECT_PROJECT_DIR', PA_PROJECT_CORE_DIR);
+define('PA_PROJECT_PROJECT_DIR', realpath(PA_PROJECT_ROOT_DIR . DIRECTORY_SEPARATOR . PA_PROJECT_NAME));
 
 // define include paths
 ini_set('include_path', 

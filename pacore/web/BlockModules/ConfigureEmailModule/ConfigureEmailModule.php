@@ -75,7 +75,10 @@ class ConfigureEmailModule extends Module {
   * @return string $email_containers all containers in the location
   */
   private function getEmailContainers($path) {
-    $paths = array(PA::$core_dir . "/$path", PA::$project_dir . "/$path"); // core templates will be overwritten with project templates
+    $paths = array(PA::$core_dir . "/$path");
+    if(file_exists(PA::$project_dir . "/$path")) {
+      $paths[] = PA::$project_dir . "/$path"; // core templates will be overwritten with project templates
+    }
     $email_containers = array('None (Plain Text)' => 'text_only' );
     foreach($paths as $path) {
       foreach (new DirectoryIterator($path) as $fileInfo) {

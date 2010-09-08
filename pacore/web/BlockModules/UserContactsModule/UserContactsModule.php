@@ -295,6 +295,7 @@ class UserContactsModule extends Module {
             // invitation has been sent, now send mail
             PAMail::send('invite_pa', $inv->inv_email, PA::$login_user, $inv);
             $msg .= "<br />" . $contact['name'] . ", " . $contact['email'];
+		  }
         } // end for : invitation to multiple email
         $msg  = "<br />Invitation message has been sent to: " . $msg;
       } else {

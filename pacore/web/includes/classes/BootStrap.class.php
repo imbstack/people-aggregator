@@ -516,7 +516,7 @@ class BootStrap {
     // load profanity words list from file - merge with list from XML
     $profanity_file = getShadowedPath(PA::$config_path .'/profanity_words.txt');
     if($profanity_file) {
-      $prof_arr = explode("\r\n", file_get_contents(PA::$project_dir . "/config/profanity_words.txt"));
+      $prof_arr = explode("\r\n", file_get_contents($profanity_file));
       $prof_arr = array_merge((array)PA::$config->profanity, (array)$prof_arr);
       PA::$config->profanity = array_unique($prof_arr);
     }
@@ -526,8 +526,10 @@ class BootStrap {
 
     $languages_list = array();
     $languages_list['english'] = 'english';
-    $language_dirs  = array(PA::$core_dir . DIRECTORY_SEPARATOR . PA_LANGUAGES_DIR,
-                            PA::$project_dir . DIRECTORY_SEPARATOR . PA_LANGUAGES_DIR );
+    $language_dirs  = array(PA::$core_dir . DIRECTORY_SEPARATOR . PA_LANGUAGES_DIR);
+    if (file_exists(PA::$project_dir . DIRECTORY_SEPARATOR . PA_LANGUAGES_DIR)) {
+	  $language_dirs[] = PA::$project_dir . DIRECTORY_SEPARATOR . PA_LANGUAGES_DIR;
+    }
 
     foreach($language_dirs as $lang_path) {
       foreach(new RecursiveDirectoryIterator($lang_path, RecursiveDirectoryIterator::KEY_AS_PATHNAME) as $_path => $info) {
@@ -686,14 +688,12 @@ class BootStrap {
     $agent = $ua;
     $products = array();
 
-    $pattern  = "([^/[:space:]]*)" . "(/([^[:space:]]*))?"
-              . "([[:space:]]*\[[a-zA-Z][a-zA-Z]\])?" . "[[:space:]]*"
-              . "(\\((([^()]|(\\([^()]*\\)))*)\\))?" . "[[:space:]]*";
+	$pattern = '/([^\/]*)\/([0-9\.]*)\s*(\(([^\)]*)\))?\s*/';
 
     while( strlen($agent) > 0 ) {
-      if ($l = ereg($pattern, $agent, $a)) {
-          array_push($products, array($a[1], $a[3], $a[6])); // product, version, comment
-          $agent = substr($agent, $l);
+      if (preg_match($pattern, $agent, $a)) {
+          array_push($products, array($a[1], $a[2], isset($a[4]) ? $a[4] : '')); // product, version, comment
+          $agent = substr($agent, strlen($a[0]));
       } else {
           $agent = "";
       }

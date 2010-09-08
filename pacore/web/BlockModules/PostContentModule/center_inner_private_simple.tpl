@@ -3,7 +3,7 @@ require_once "api/Permissions/PermissionsHandler.class.php";
 
 	$permission_to_post = PermissionsHandler::can_user(PA::$login_uid, array('permissions' => 'post_to_community'));
 	
-  $form_action = PA::$url ."/post_content.php";
+  $form_action = isset($form_action) ? $form_action : PA::$url ."/post_content.php";
   if ( $ccid > 0 ) {
   	$ccid_string = "&ccid=".$ccid;
   	$form_action .= "?ccid=$ccid";

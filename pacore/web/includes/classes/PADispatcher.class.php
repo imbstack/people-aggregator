@@ -51,7 +51,7 @@
    public static $request_type;
 
    public function __construct($auto_load_list = array()) {
-     $this->PCRE_MATCH_STRING = "!^([^?=]*)/(([^/?=]+)\.(asf|avi|css|csv|docx|doc|exe|cab|jar|gif|htc|html|htm|jpeg|jpg|json|js|mov|mp3|mpeg|mpg|pdf|php|png|pptx|ppt|rar|swf|txt|wav|wma|wmv|xml|xspf|zip))(.*)$!i";
+     $this->PCRE_MATCH_STRING = "!^([^?=]*)/(([^/?=]+)\.(asf|avi|css|csv|docx|doc|exe|cab|jar|gif|htc|html|htm|ico|jpeg|jpg|json|js|mov|mp3|mpeg|mpg|pdf|php|png|pptx|ppt|rar|swf|txt|wav|wma|wmv|xml|xspf|zip))(.*)$!i";
      $this->core_dir = PA_PROJECT_CORE_DIR;
      $this->project_dir = PA_PROJECT_PROJECT_DIR;
      $this->routes = array();

@@ -31,7 +31,7 @@ class Dal {
     if (!Dal::$_connection) {
       global $peepagg_dsn;
       Dal::$_connection = DB::connect($peepagg_dsn, array("autofree" => true));
-      if (PEAR::isError(Dal::$_connection)) {
+      if (Dal::$_connection instanceof PEAR_Error) {
   $msg = Dal::$_connection->getMessage();
   if (strpos($msg, "no such database") != -1) {
     ?>
