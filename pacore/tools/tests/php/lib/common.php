@@ -16,13 +16,20 @@ if (@$_SERVER['REQUEST_METHOD']) {
   die("Test scripts are not accessible via a browser.");
 }
 
+require_once dirname(__FILE__) . "/../../../../../project_config.php";
+set_include_path(get_include_path() . PATH_SEPARATOR . PA_PROJECT_CORE_DIR);
+
 require_once "PHPUnit/Framework.php";
-require_once dirname(__FILE__)."/../../../config.inc";
+require_once "config.inc";
+require_once "redirect_rules.inc";
+require_once "web/includes/functions/helper_functions.php";
+require_once "web/includes/classes/PA.class.php";
 require_once "api/User/User.php";
 require_once "api/Content/Content.php";
 require_once "api/Comment/Comment.php";
 require_once "api/BlogPost/BlogPost.php";
 require_once "HTTP/Client.php";
+
 
 class PA_TestCase extends PHPUnit_Framework_TestCase {
 
