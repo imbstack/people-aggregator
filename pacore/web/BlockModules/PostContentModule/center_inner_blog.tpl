@@ -22,6 +22,10 @@ install_tinymce('full');
     <input type="text" name="blog_title" class="text long" id="title" style="width:647px;" value="<?=stripslashes($blog_title)?>"/>
   </div>
   <div class="field">
+    <label for="blog_type"><span class="required"> * </span><b> <?= __("Type") ?>:</b></label>
+    <input type="text" name="blog_type" class="text long" id="blog_type" style="width:647px;" value="<?=stripslashes($blog_type)?>"/>
+  </div>
+  <div class="field">
     <textarea name="description" id="description" class="long" cols="89" rows="30"><?php echo htmlspecialchars($body) ?></textarea>
   </div>
 </fieldset>    

@@ -75,6 +75,7 @@ class PostContentModule extends Module {
 
     // some or most of the following can be empty so we use the @
     $inner_html_blog->set('blog_title', str_replace('"','&quot;',@$this->blog_title));
+    $inner_html_blog->set('blog_type', @$this->blog_type);
     $inner_html_blog->set('body', @$this->body);
     $inner_html_blog->set('trackback', @$this->trackback);
     $inner_html_blog->set('tag_entry', @$this->tag_entry);
@@ -152,6 +153,7 @@ class PostContentModule extends Module {
       $content = Content::load_content((int)$this->id, $_SESSION['user']['id']);
       $content_tags = Tag::load_tags_for_content((int)$this->id);
       $this->blog_title = stripslashes($content->title);
+      $this->blog_type = stripslashes($content->type);
       $this->body = stripslashes($content->body);
       $this->trackback = $content->trackbacks;
       $this->collection_id = @$content->collection_id;
@@ -168,6 +170,7 @@ class PostContentModule extends Module {
     $this->error_msg = (isset($error)) ? $error : '';
     $this->err_album_name_exist = (isset($err_album_name_exist)) ? $err_album_name_exist : '';
     $this->blog_title = (isset($data_array["blog_title"])) ? $data_array["blog_title"] : '';
+    $this->blog_type = (isset($data_array['blog_type'])) ? $data_array['blog_type'] : '';
     $this->body = (isset($data_array["description"])) ? $data_array["description"] : ''; 
     $this->trackback = (isset($data_array["trackback"])) ? $data_array["trackback"] : ''; 
     $this->tag_entry = (isset($data_array["tags"])) ? $data_array["tags"] : ''; 
