@@ -23,7 +23,10 @@ install_tinymce('full');
   </div>
   <div class="field">
     <label for="blog_type"><span class="required"> * </span><b> <?= __("Type") ?>:</b></label>
-    <input type="text" name="blog_type" class="text long" id="blog_type" style="width:647px;" value="<?=stripslashes($blog_type)?>"/>
+    <select disabled="disabled" name="blog_type" id="blog_type">
+		<option<?php echo ($blog_type == 'Suggestion') ? '' : ' selected="selected"'; ?> value="BlogPost">BlogPost</option>
+		<option<?php echo ($blog_type == 'Suggestion') ? ' selected="selected"' : ''; ?> value="Suggestion">Suggestion</option>
+	</select>
   </div>
   <div class="field">
     <textarea name="description" id="description" class="long" cols="89" rows="30"><?php echo htmlspecialchars($body) ?></textarea>

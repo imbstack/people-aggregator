@@ -31,10 +31,15 @@ class PostContentModule extends Module {
   public $album_type = IMAGE_ALBUM;
   public $err_album_name_exist;
 
+  public $blog_type = 'BlogPost';
+
   function __construct() {
     parent::__construct();
     $this->html_block_id = 'PostContentModule';
     $this->id = 0;
+    $validBlogTypes = array('BlogPost', 'Suggestion');
+    $this->blog_type = (isset($_GET) && isset($_GET['blog_type']) && in_array($_GET['blog_type'], $validBlogTypes))
+		? $_GET['blog_type'] : 'BlogPost';
   }
   
   function set_id($id) {
