@@ -25,6 +25,7 @@ require_once "api/Logger/Logger.php";
 class ModerationQueue {
 
 	const TYPE_CONTENT = 'content';
+	const TYPE_SUGGESTION = 'suggestion';
 	const TYPE_USER = 'user';
 
 	/**
@@ -42,10 +43,24 @@ class ModerationQueue {
 	 */
 	public static function approve_content($content_id) {
 		Logger::log("Enter: ModerationQueue::approve_content() | Args: \$content_id = $content_id");
-		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?';
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type = ?';
 		Dal::query($sql, array($content_id, self::TYPE_CONTENT));
 		Content::update_content_status($content_id, ACTIVE);
 		Logger::log("Exit: ModerationQueue::approve_content()");
+	}
+
+	/**
+	 * Approve suggestion and remove it from {moderation_queue} database table
+	 *
+	 * @access public
+	 * @param int id of content
+	 */
+	public static function approve_suggestion($suggestion_id) {
+		Logger::log("Enter: ModerationQueue::approve_suggestion() | Args: \$suggestion_id = $suggestion_id");
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type = ?';
+		Dal::query($sql, array($suggestion_id, self::TYPE_SUGGESTION));
+		Content::update_content_status($suggestion_id, ACTIVE);
+		Logger::log("Exit: ModerationQueue::approve_suggestion()");
 	}
 
 	/**
@@ -79,10 +94,24 @@ class ModerationQueue {
 	 */
 	public static function disapprove_content($content_id) {
 		Logger::log("Enter: ModerationQueue::disapprove_content() | Args: \$content_id = $content_id");
-		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type= ?';
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type = ?';
 		Dal::query($sql, array($content_id, self::TYPE_CONTENT));
 		Content::delete_by_id($content_id);
 		Logger::log("Exit: ModerationQueue::disapprove_content()");
+	}
+
+	/**
+	 * Disapprove suggestion and remove it from {moderation_queue} database table
+	 *
+	 * @access public
+	 * @param int id of content
+	 */
+	public static function disapprove_suggestion($suggestion_id) {
+		Logger::log("Enter: ModerationQueue::disapprove_suggestion() | Args: \$suggestion_id = $suggestion_id");
+		$sql = 'DELETE FROM {moderation_queue} WHERE item_id = ? and type = ?';
+		Dal::query($sql, array($suggestion_id, self::TYPE_SUGGESTION));
+		Content::delete_by_id($suggestion_id);
+		Logger::log("Exit: ModerationQueue::disapprove_suggestion()");
 	}
 
 	/**
@@ -134,6 +163,24 @@ class ModerationQueue {
 		Dal::query($sql, array($collection_id, $content_id, self::TYPE_CONTENT));
 		Content::update_content_status($content_id, MODERATION_WAITING);
 		Logger::log("Exit: ModerationQueue::moderate_content()");
+	}
+
+	/**
+	 * Add Suggestion to ModerationQueue
+	 *
+	 * @access public
+	 * @param int id of user
+	 * @param int collection identifier
+	 */
+	public static function moderate_suggestion($suggestion_id, $collection_id = -1) {
+		Logger::log("Enter: ModerationQueue::moderate_user() | Args: \$suggestion_id = $suggestion_id, \$collection_id = $collection_id");
+		if(!self::suggestion_exists($suggestion_id, $collection_id))
+		{
+			$sql = 'INSERT INTO {moderation_queue} (collection_id, item_id, type) VALUES (?, ?, ?)';
+			Dal::query($sql, array($collection_id, $suggestion_id, self::TYPE_SUGGESTION));
+			Content::update_content_status($suggestion_id, MODERATION_WAITING);
+		}
+		Logger::log("Exit: ModerationQueue::moderate_user()");
 	}
 
 	/**
@@ -205,10 +252,31 @@ class ModerationQueue {
 	}
 
 	/**
+	 * Check for Suggestion in moderation queue.
+	 *
+	 * @access public
+	 * @param int id of suggestion
+	 * @param int collection identifier
+	 */
+	public static function suggestion_exists($suggestion_id, $collection_id = -1) {
+		Logger::log("Enter: ModerationQueue::suggestion_exists() | Args: \$suggestion_id = $suggestion_id, \$collection_id = $collection_id");
+		$sql = 'SELECT * FROM {moderation_queue} WHERE item_id = ? AND collection_id = ? AND type = ?';
+		$res = Dal::query($sql, array($suggestion_id, $collection_id, self::TYPE_SUGGESTION));
+
+		if ($res->numRows()) {
+			Logger::log("Exit: ModerationQueue::suggestion_exists() | Return: TRUE");
+			return TRUE;
+		}
+
+		Logger::log("Exit: ModerationQueue::suggestion_exists() | Return: FALSE");
+		return FALSE;
+	}
+
+	/**
 	 * Check for User in moderation queue.
 	 *
 	 * @access public
-	 * @param int id of content
+	 * @param int id of user
 	 * @param int collection identifier
 	 */
 	public static function user_exists($user_id, $collection_id = -1) {

@@ -23,7 +23,7 @@ install_tinymce('full');
   </div>
   <div class="field">
     <label for="blog_type"><span class="required"> * </span><b> <?= __("Type") ?>:</b></label>
-    <select disabled="disabled" name="blog_type" id="blog_type">
+    <select name="blog_type" id="blog_type">
 		<option<?php echo ($blog_type == 'Suggestion') ? '' : ' selected="selected"'; ?> value="BlogPost">BlogPost</option>
 		<option<?php echo ($blog_type == 'Suggestion') ? ' selected="selected"' : ''; ?> value="Suggestion">Suggestion</option>
 	</select>

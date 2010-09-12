@@ -103,6 +103,11 @@ class Suggestion extends BlogPost {
 			$g->post_content($post->content_id, $uid);
 		}
 
+		if (!$cid) {
+			// add to suggestion queue automatically if not editing
+			ModerationQueue::moderate_suggestion($post->content_id);
+		}
+
 		return array(
 			"cid" => (int)$post->content_id,
 			"moderation_required" => $g ? ($g->is_moderated == 1 && $g->author_id != $uid) : FALSE,
