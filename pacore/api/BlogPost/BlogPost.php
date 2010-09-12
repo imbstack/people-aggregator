@@ -113,8 +113,6 @@ class BlogPost extends Content {
     if ($track) {
       $post->trackbacks = implode(",", $track);
     }
-    //TODO; remove this
-    $post->type = 1;
     $post->is_default_content = $is_default_content;
     $post->save();
     //if ($tags) {

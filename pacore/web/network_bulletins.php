@@ -23,6 +23,7 @@ include_once "api/Network/Network.php";
 require_once "web/includes/network.inc.php";
 include_once "api/Theme/Template.php";
 include_once "api/BlogPost/BlogPost.php";
+require_once "api/Suggestion/Suggestion.php";
 require_once "web/includes/functions/mailing.php";
 //require_once "web/includes/functions/auto_email_notify.php";
 require_once "api/Messaging/MessageDispatcher.class.php";
@@ -33,6 +34,9 @@ $authorization_required = TRUE;
 
 if (!empty($_POST)) {
 	filter_all_post($_POST);
+	$valid_post_types = array('BlogPost', 'Suggestion');
+	$type = (isset($_POST) && isset($_POST['blog_type']) && in_array($_POST['blog_type'], $valid_post_types))
+		? $_POST['blog_type'] : 'BlogPost';
 	$user = PA::$login_user;
 	$value_to_validate = array('title'=>'Title','bulletin_body'=>'Bulletin body');
 	foreach ($value_to_validate as $key=>$value) {
@@ -88,7 +92,17 @@ if (!empty($_POST)) {
 				try {
 					$post_subject = "Network's owner bulletin - " . $_POST['title'];
 					$post_message = $_POST['bulletin_body'];
-					$res = BlogPost::save_blogpost(0, $from, $post_subject, $post_message, '', $terms, 0, $is_active = ACTIVE , $user->email);
+
+					switch($type) {
+						case 'Suggestion':
+							$res = Suggestion::save_suggestion(0, $from, $post_subject, $post_message, '', $terms, 0, $is_active = ACTIVE , $user->email);
+							break;
+
+						case 'BlogPost':
+							$res = BlogPost::save_blogpost(0, $from, $post_subject, $post_message, '', $terms, 0, $is_active = ACTIVE , $user->email);
+							break;
+					}
+
 				} catch (PAException $e) {
 					$error_msg .= $e->message;
 				}
