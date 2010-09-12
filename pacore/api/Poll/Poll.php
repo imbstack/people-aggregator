@@ -192,11 +192,11 @@ class Poll extends Content {
   * Loads poll for database
   * @access public
   */
-  public function load_poll($poll_id = 0) {
+  public function load_poll($poll_id = 0, $group_id = 0) {
     Logger::log("Enter: Poll::load_poll()");
     $data = array();
     if ($poll_id == 0) {
-      $sql = "SELECT * FROM {polls} WHERE is_active <> 0 ORDER BY changed DESC";
+      $sql = "SELECT * FROM {polls} WHERE is_active and group_id='".$group_id."' <> 0 ORDER BY changed DESC";
       $res = Dal::query($sql);
       if ($res->numRows()) {
 				while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
