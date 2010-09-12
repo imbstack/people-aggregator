@@ -6,6 +6,7 @@
       <input type="text" class="text longer" name="topic" id= "topic"/>
       <div class="field_text"></div>
 </div>
+<input type="hidden" name="group_id" value="<?=(int)$_REQUEST['gid']?>" />
 <div class="field_medium">
   <h4><label for="option"><span class="required"> * </span><?= __("Number Of Options") ?>:</label></h4>
   <select name="num_option" onchange="javascript: ajax_method_poll_options();" id="num_pollid">

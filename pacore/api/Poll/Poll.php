@@ -109,8 +109,8 @@ class Poll extends Content {
         try {
           $this->created = time();
           $this->changed = $this->created;
-          $sql = "INSERT INTO {polls} (content_id, title, user_id, options, created,                changed, is_active) VALUES (?, ?, ?, ?, ?, ?, ?)";
-          $data = array($this->content_id, $this->title,                                              $this->user_id, $this->options, $this->created,                               $this->changed,$this->is_active);
+          $sql = "INSERT INTO {polls} (content_id, title, user_id, group_id, options, created,                changed, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		  $data = array($this->content_id, $this->title, $this->user_id, $this->group_id, $this->options, $this->created,                               $this->changed,$this->is_active);
           $res = Dal::query($sql, $data);
         } catch (Exception $e) {
             Logger::log("Exception occurred inside Poll::save_poll(); rolling back",                    LOGGER_INFO);
