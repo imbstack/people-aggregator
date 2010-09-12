@@ -18,6 +18,7 @@
 
 require_once dirname(__FILE__)."/lib/common.php";
 require_once "web/includes/functions/auto_email_notify.php";
+ini_set('xdebug.collect_vars', '1');
 
 $this_test_requires_globals = "test";
 
