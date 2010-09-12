@@ -107,8 +107,12 @@ class SelectPollModule extends Module {
       $obj->options = $option;
       $obj->is_active = INACTIVE;
       $obj->save_poll();
-      $this->message = __('Poll has been created successfully.');
-      $this->redirect2 = PA::$url.PA_ROUTE_CONFIG_POLL."?type=select"; //PA_ROUTE_HOME_PAGE; // <-- wtf was this going to the homepage??
+	  $this->message = __('Poll has been created successfully.');
+	  if ($obj->group_id != -1) {
+		  $this->redirect2 = PA::$url."group_poll.php?gid=".$obj->group_id."&type=select"; 
+  		} else {
+		  $this->redirect2 = PA::$url.PA_ROUTE_CONFIG_POLL."?type=select";
+	  }
       $this->queryString = NULL;
       $this->isError = FALSE;
       $this->setWebPageMessage();

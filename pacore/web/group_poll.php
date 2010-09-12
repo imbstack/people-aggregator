@@ -44,7 +44,6 @@ function setup_module($column, $module, $obj) {
       } else {
         $obj->may_edit = true;
       }
-  $obj->mode = PUB;
 }
 
 $page = new PageRenderer("setup_module", PAGE_GROUP_POLL, "Poll - PeopleAggregator", "container_one_column.tpl", "header_group.tpl", PRI, NULL, PA::$network_info);
