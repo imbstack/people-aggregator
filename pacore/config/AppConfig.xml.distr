@@ -334,7 +334,9 @@
         <PAGE_POLL_ARCHIVE category="constant" type="int" readonly="true" section="pages" page_name="Poll Archive" page_type="network">
           <value>799</value>
         </PAGE_POLL_ARCHIVE>
-
+		<PAGE_NETWORK_MANAGE_SUGGESTIONS category="constant" type="int" readonly="true" section="pages" page_name="network_manage_suggestions" page_type="network">
+          <value>738</value>
+		</PAGE_NETWORK_MANAGE_SUGGESTIONS>
       </value>
     </pages>
     <system_strings description="Various strings and messages">

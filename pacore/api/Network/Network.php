@@ -1564,6 +1564,18 @@ class Network {
      return;
    }
    /**
+    * approve suggestion if network content moderation is set
+    * @access public
+    * @param int id of content
+    * @param string type ie user/content
+    */
+   public static function approve_suggestion ($suggestion_id) {
+     Logger::log("Enter : Network::approve_suggestion() | Args: \$suggestion_id = $suggestion_id");
+     ModerationQueue::approve_suggestion($suggestion_id);
+     Logger::log("Exit : Network::approve_suggestion()");
+     return;
+   }
+   /**
     * disapprove content/user in moderated queue
     * @access public
     * @param int id of user/content
@@ -1573,6 +1585,18 @@ class Network {
      Logger::log("Enter : Network::disapprove_content() | Args: \$item_id = $content_id, \$type = $type");
      ModerationQueue::disapprove_content($content_id, $type);
      Logger::log("Exit : Network::disapprove_content()");
+     return;
+   }
+  /**
+    * disapprove content/user in moderated queue
+    * @access public
+    * @param int id of user/content
+    * @param string type ie user/content
+    */
+   public static function disapprove_suggestion ($suggestion_id) {
+     Logger::log("Enter : Network::disapprove_suggestion() | Args: \$suggestion_id = $suggestion_id");
+     ModerationQueue::disapprove_suggestion($suggestion_id);
+     Logger::log("Exit : Network::disapprove_suggestion()");
      return;
    }
  /**

@@ -64,6 +64,7 @@
       				<li><a href="<?php echo PA::$url;?>/network_moderate_content.php"><?= __('Moderate') ?></a></li>
       				<li><a href="<?php echo PA::$url;?>/network_manage_content.php"><?= __('Manage') ?></a></li>
       				<li><a href="<?php echo PA::$url;?>/manage_comments.php"><?= __('Comments') ?></a></li>
+      				<li><a href="<?php echo PA::$url;?>/network_manage_suggestions.php"><?= __('Suggestions') ?></a></li>
 				</ul>
   	<?}?>
 	<?php if ($task_perms['manage_ads'] == TRUE) { ?>

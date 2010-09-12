@@ -25,9 +25,10 @@
  * http://wiki.peopleaggregator.org/index.php
  *
  */
+require_once "api/Suggestion/Suggestion.php";
 require_once "web/includes/classes/Pagination.php";
 
-class NetworkModerateContentModule extends Module {
+class NetworkManageSuggestionsModule extends Module {
   
   public $module_type = 'system|network';
   public $module_placement = 'middle';
@@ -36,12 +37,12 @@ class NetworkModerateContentModule extends Module {
   function __construct() {
     parent::__construct();
     $this->main_block_id = "mod_network_content_result";
-    $this->title = __('Moderate Content');
+    $this->title = __('Manage Suggestions');
   }
   // This function will return contents waiting for being moderated.
   private function get_links() {
     $network = new Network();
-    $condition = array('C.is_active' => MODERATION_WAITING, 'CT.name' => '"BlogPost"');
+    $condition = array('C.is_active' => MODERATION_WAITING, 'CT.name' => '"'.Suggestion::TYPE_NAME.'"');
     $params['cnt'] = TRUE;
     $this->Paging["count"] = Content::load_all_content_for_moderation ($params, $condition);
     $params['cnt'] = FALSE;
@@ -115,7 +116,7 @@ class NetworkModerateContentModule extends Module {
            $type = ($contt['parent_info']['type'] == ALBUM_COLLECTION_TYPE) ? 'Album': 'Group';
            $new_content[$i]['parent_name'] = $contt['parent_info']['title'].'('.$type.')';
       }
-      $link_for_apv_dny = PA::$url ."/network_moderate_content.php?cid=".$new_content[$i]['content_id'];
+      $link_for_apv_dny = PA::$url ."/network_manage_suggestions.php?cid=".$new_content[$i]['content_id'];
       $link_for_approval = $link_for_apv_dny . '&amp;do=approve';
       $link_for_denial = $link_for_apv_dny . '&do=deny';
       // Route media and normal content through to the correct display/editing pages
