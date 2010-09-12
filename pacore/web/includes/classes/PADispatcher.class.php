@@ -65,9 +65,15 @@
      $this->loadRedirectRules();
      self::$request_type = null;
    }
-
-   public function dispatch() {
-     $res_script = null;
+   
+   
+   /**
+    * Determines the request type (php, or file) and dispatches control to the appropriate
+    * classes and functions 
+    */
+   public function dispatch() {   	 
+     $res_script = null;        
+     
      list($file_type, $file_path, $success) = $this->parseRequestURL();
      if($success) {
        switch($file_type) {
@@ -82,7 +88,7 @@
            } else {
              $this->route_query_str = $this->org_query_str;
            }
-           $res_script = $this->bootApp($file_path);
+           $res_script = $this->bootApp($file_path);           
          break;
          default:
            self::$request_type = 'file';
