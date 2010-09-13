@@ -631,10 +631,23 @@ class BootStrap {
 			// get username and password from authToken
 			$user = User::from_auth_token($authToken);
 		}
-		catch(Exception $ex){
+		catch(PAException $ex){
 			// redirect back to the referring URL because the token could not be authenticated
 			// send the error message back as well
 			//TODO: figure out what to do when the auth token cant be validated
+			$referer = "/login";
+			if(isset($_SERVER['HTTP_REFERER'])){
+				$referer = $_SERVER['HTTP_REFERER'];	
+			}
+			
+			$message = null;
+			if(isset($ex) && isset($ex->message)){
+				$message = $ex->message;			
+			}
+			// TODO: standardise the paerror get variable and put in 
+			//	AppConfig.xml as a new option
+			$referer = $referer . "?paerror=" . $message;
+			header("Location: $referer");
 			throw $ex;	
 		}
 	}
