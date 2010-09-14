@@ -3,6 +3,11 @@ $counter = count($topic);
 if (!empty($counter) && is_object($topic[0])) {
 ?>
 <form enctype="multipart/form-data" action="<?php echo PA::$url."/".FILE_DYNAMIC?>?page_id=<?=PAGE_POLL?>&action=SelectPollModuleSubmit" method="post" onsubmit="return validate_form();">
+<?php
+if ($topic[0]->group_id != 0) {
+	echo "<input type='hidden' name='gid' value='".htmlspecialchars($topic[0]->group_id)."' />";
+}
+?>
 <fieldset class="center_box">
   <span style="font-size:16px;font-weight:bold;"><?php echo __('Select Any One Topic') ;?>:-</span>
   <?php
@@ -10,8 +15,8 @@ if (!empty($counter) && is_object($topic[0])) {
         echo '<div class="field_medium" style="height:100%;font-size:14px;">';
         echo '<span style="font-size:14px;font-weight:bold;"><br/>'.$topic[$i]->title.'</span>&nbsp;';
         if ($topic[$i]->poll_id != @$current_poll[0]->poll_id) {
-          echo "<input type = radio name = 'poll' value = $poll_id[$i]"."<br/><br/>";
-          echo '<a href ="' . PA::$url . '/' .FILE_DYNAMIC . '?page_id=' . PAGE_POLL . '&action=delete&id=' . $topic[$i]->poll_id . '&cid=' . $topic[$i]->content_id . '">Delete this poll </a>';
+          echo "<input type ='radio' name='poll' value='$poll_id[$i]' />"."<br/><br/>";
+          echo '<a href ="' . PA::$url . '/' .FILE_DYNAMIC . '?page_id=' . PAGE_POLL . '&action=delete&id=' . $topic[$i]->poll_id . '&cid=' . $topic[$i]->content_id . '&gid=' . $topic[$i]->group_id . '">Delete this poll </a>';
         }
         echo '<br/>'.'options:-'.'<br />';
         $count = count($options[$i]);

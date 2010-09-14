@@ -50,12 +50,13 @@ class SelectPollModule extends Module {
       $c_id = $request_data['cid'];
       $obj->delete_poll($p_id, $c_id);
       $this->message = __('Poll has been deleted successfully.');
-        if ($obj->group_id != 0) {
-		  $this->redirect2 = PA::$url."/group_poll.php?gid=".$obj->group_id."&type=select"; 
+	  $this->queryString = '?page_id='.PAGE_POLL.'&type=select';
+        if ($request_data['gid'] != 0) {
+			$this->redirect2 = PA::$url."/group_poll.php?gid=".((int)$request_data['gid'])."&type=select";
+			$this->queryString .= "&gid=".((int)$request_data['gid']);	
 	}else{
 	      $this->redirect2 = PA::$url."/".FILE_DYNAMIC;
 	}
-      $this->queryString = '?page_id='.PAGE_POLL.'&type=select';
       $this->isError = FALSE;	
       $this->setWebPageMessage();
 	}
@@ -82,8 +83,12 @@ class SelectPollModule extends Module {
       $obj->prev_changed = $request_data['prev_poll_changed'];
       $obj->prev_poll_id = $request_data['prev_poll_id'];
       $obj->save_current();
-      $this->message = __('Poll has been saved successfully.');
-      $this->redirect2 = NULL;
+	  $this->message = __('Poll has been saved successfully.');
+	  if ($request_data['gid'] != 0) {
+		  $this->redirect2 = PA::$url."/group_poll.php?gid=".((int)$request_data['gid'])."&type=select"; 
+	  } else {
+		  $this->redirect2 = NULL;
+	  }
       $this->queryString = NULL;
       $this->isError = FALSE;
       $this->setWebPageMessage();
@@ -105,8 +110,8 @@ class SelectPollModule extends Module {
       $obj->parent_collection_id = 0;
 	  $obj->user_id = PA::$login_uid;
 		$obj->group_id = 0;
-		if ($request_data['group_id'] != NULL) {
-			$obj->group_id = (int)$request_data['group_id'];
+		if ($request_data['gid'] != NULL) {
+			$obj->group_id = (int)$request_data['gid'];
 		}
       $obj->options = $option;
       $obj->is_active = INACTIVE;
