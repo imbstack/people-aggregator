@@ -26,6 +26,7 @@ require_once dirname(__FILE__) . "/../pacore/web/includes/classes/BootStrap.clas
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PADispatcher.class.php";
 require_once dirname(__FILE__) . "/../pacore/web/includes/classes/PADownloadManager.class.php";
 require_once dirname(__FILE__) . "/../pacore/api/Profiler/PAProfiler.class.php";
+require_once dirname(__FILE__) . "/../pacore/api/User/User.php";
 
 
  if(isset($_GET['profiler']) && $_GET['profiler'] == 1) {

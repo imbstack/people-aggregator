@@ -614,6 +614,46 @@ class BootStrap {
     }
   }
 
+
+  /**
+   * Returns a user using the given authToken if the token is valid and has not 
+   * expired. Throws a PAException if the token is not valid. 
+   * @param $token
+   * @return User object
+   */
+   private function getUserFromAuthToken($authToken){
+   	$user = null;
+	if ($authToken != false){
+			
+		// TODO: decrypt $authToken	
+		// TODO: check referer IP address
+		try{			
+			// get username and password from authToken
+			$user = User::from_auth_token($authToken);
+		}
+		catch(PAException $ex){
+			// redirect back to the referring URL because the token could not be authenticated
+			// send the error message back as well
+			//TODO: figure out what to do when the auth token cant be validated
+			$referer = "/login";
+			if(isset($_SERVER['HTTP_REFERER'])){
+				$referer = $_SERVER['HTTP_REFERER'];	
+			}
+			
+			$message = null;
+			if(isset($ex) && isset($ex->message)){
+				$message = $ex->message;			
+			}
+			// TODO: standardise the paerror get variable and put in 
+			//	AppConfig.xml as a new option
+			$referer = $referer . "?paerror=" . $message;
+			header("Location: $referer");
+			throw $ex;	
+		}
+	}
+	return $user;
+   }
+   
   public function getCurrentUser() {
     global $page_uid, $page_user, $login_uid, $login_name, $login_user;
     require_once "api/User/User.php";
@@ -624,7 +664,39 @@ class BootStrap {
       $login_uid = NULL;
       $login_name = NULL;
       $login_user = NULL;
+      
       $this->CurrUser = (isset($_SESSION['user'])) ? $_SESSION['user'] : null;
+      
+      // Check if an authToken variable in GET and use it if available
+      $authToken = (isset($_GET['authToken'])) ? $_GET['authToken'] : null;
+      if($authToken){      	      
+        try {
+          $user = new User();
+          $user = $this->getUserFromAuthToken($authToken);
+          if($user->user_id){			
+          	// User is valid so log_in the user
+          	// 	Since we know that AuthToken was passed into the URL, we can assume this
+          	// 	user was redirected here from a partner web site. We need to log in the user
+          	// 	as if they logged in through the normal PeopleAggregator login form: 
+          	// (ie. set all session variables just as if dologin.php was called).
+			$referer = "external site";
+			if(isset($_SERVER['HTTP_REFERER'])){
+				$referer = $_SERVER['HTTP_REFERER'];		
+			}
+			
+			$pal = new PA_Login();
+		    $pal->log_in($user->user_id, false, $referer);
+          }                             
+        } catch (Exception $e) {
+          if(!in_array($e->getCode(), array(USER_NOT_FOUND, USER_ALREADY_DELETED))) {
+            throw $e;
+          }
+          // The currently logged-in user has been deleted; invalidate the session.
+          session_destroy();
+          session_start();
+          $login_uid = PA::$login_uid = $login_name = $login_user = PA::$login_user = NULL;
+        }      	
+      }
 
       if($this->CurrUser) {
         try {
@@ -639,7 +711,10 @@ class BootStrap {
           session_start();
           $login_uid = PA::$login_uid = $login_name = $login_user = PA::$login_user = NULL;
         }
-
+      }
+            
+	  if($user){
+	  	// if the user variable is set
         if($user->user_id) {
           $login_name = $this->CurrUser['name'];
           PA::$login_user = $login_user = $user;
@@ -650,7 +725,7 @@ class BootStrap {
           PA::$login_user->update_user_time_spent();
           User::track_status(PA::$login_uid);
         }
-      }
+	  }
 
       // If a user is specified on the query string as an ID (uid=123) or
       // login name (login=phil), validate the id/name and load the user
