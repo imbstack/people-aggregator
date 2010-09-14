@@ -27,8 +27,8 @@ class PollArchiveModule extends Module {
   }
   function render() {
     $pollObj = new Poll();
-    // $current = $pollObj->load_current();
-    $this->prev_polls = $pollObj->load_prev_polls();
+    // $current = $pollObj->load_current($_GET['gid']);
+    $this->prev_polls = $pollObj->load_prev_polls($_GET['gid']);
     if ($this->prev_polls) {
     	foreach ($this->prev_polls as $poll) {
     		$votes = $pollObj->load_vote($poll->poll_id);

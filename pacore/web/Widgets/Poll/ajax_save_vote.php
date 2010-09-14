@@ -28,7 +28,7 @@ if (!empty($_POST['vote'])) {
   $uid = $_POST['uid'];
   $poll_data = array();
   $poll = new Poll();
-  $poll_data = $poll->load_poll($poll_id['id']);
+  $poll_data = $poll->load_poll($poll_id['id'],$_GET['gid']);
  if (!empty($poll_data)) {
   $flag=0;
   $user_info = $poll->load_vote($poll_data[0]->poll_id, $uid);

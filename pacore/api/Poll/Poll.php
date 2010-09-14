@@ -159,8 +159,8 @@ class Poll extends Content {
   * Loads current poll topic
   *@access public
   */
-  public function load_current() {
-    $sql = "SELECT * FROM {polls} WHERE is_active = 1 ORDER BY changed DESC LIMIT 0,1";
+  public function load_current($group_id=0) {
+    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id='".$group_id."' ORDER BY changed DESC LIMIT 0,1";
     $res = Dal::query($sql);
     $data = array();
     if ($res->numRows()) {
@@ -175,8 +175,8 @@ class Poll extends Content {
   *loads previous poll topic
   *@access public
   */
-  public function load_prev_polls() {
-    $sql = "SELECT * FROM {polls} WHERE is_active = 1 ORDER BY changed DESC LIMIT 1,18446744073709551615"; // this excludes the first result, but gives all others
+  public function load_prev_polls($group_id = 0) {
+    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id='".$group_id."' ORDER BY changed DESC LIMIT 1,18446744073709551615"; // this excludes the first result, but gives all others
     
     $res = Dal::query($sql);
     $data = array();

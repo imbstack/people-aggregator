@@ -33,7 +33,7 @@ class ViewPollModule extends Module {
   function render() {
     global $login_uid;
    $obj = new Poll();
-   $prev_poll = $obj->load_prevous_polls();
+   $prev_poll = $obj->load_prevous_polls($_GET['gid']);
    $cnt = count($prev_poll);
    for ($i=0; $i<$cnt;$i++) {
      $total_votes[$prev_poll[$i]->poll_id] = count($obj->load_vote($prev_poll[$i]->poll_id));
@@ -53,7 +53,7 @@ class ViewPollModule extends Module {
       
     }
   }
-    $this->current_poll = $obj->load_current();
+    $this->current_poll = $obj->load_current($_GET['gid']);
     $this->per_prev_poll = $percentage;
     $this->prev_poll = $prev_poll;
     $this->prev_options = $prev_options;

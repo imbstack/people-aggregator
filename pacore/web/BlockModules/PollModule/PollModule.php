@@ -21,7 +21,7 @@ require_once "api/Poll/Poll.php";
 
 class PollModule extends Module {
  
-  public $module_type = 'network'; //'user|group|network'; 
+  public $module_type = 'group|network'; //'user|group|network'; 
   public $module_placement = 'left|right';
   public $outer_template = 'outer_public_side_module.tpl';
   public $per_option;
@@ -33,15 +33,15 @@ class PollModule extends Module {
   function render() {
     $this->flag = 0 ;
     $obj = new Poll();
-    $current = $obj->load_current();
-    $prev_poll = $obj->load_prev_polls();
+    $current = $obj->load_current($_GET['gid']);
+    $prev_poll = $obj->load_prev_polls($_GET['gid']);
     $this->cnt_prev = count($prev_poll);
     if ($current) {
       $user_vate = $obj->load_vote($current[0]->poll_id, PA::$login_uid);
       $total_vote = $obj->load_vote($current[0]->poll_id);
       $this->total_vote_count = count($total_vote);
 
-      $this->topic = $obj->load_poll($current[0]->poll_id);
+      $this->topic = $obj->load_poll($current[0]->poll_id, $_GET['gid']);
       $this->options = unserialize($this->topic[0]->options);
       $num_option = count($this->options);
       $cnt = count($total_vote);

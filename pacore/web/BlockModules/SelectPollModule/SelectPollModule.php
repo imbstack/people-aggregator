@@ -134,7 +134,7 @@ class SelectPollModule extends Module {
       } 
     }
     $this->topic = $topic;
-    $this->current_poll = $obj->load_current();
+    $this->current_poll = $obj->load_current($_GET['gid']);
     $this->inner_HTML = $this->generate_inner_html();
     $content = parent::render();
     return $content;

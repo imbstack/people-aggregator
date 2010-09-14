@@ -25,7 +25,7 @@ for($i = 2;$i<count($param);$i++) {
 $poll_data = array();
 if (is_numeric($url_param['id'])) {
   $poll = new Poll();
-  $poll_data = $poll->load_poll($url_param['id']);
+  $poll_data = $poll->load_poll($url_param['id'], $_GET['gid']);
 }
 if (!empty($poll_data)) {
   $flag=0;

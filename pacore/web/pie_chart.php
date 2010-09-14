@@ -26,7 +26,7 @@ require_once "api/PieChart/PieChart.php";
 require_once "api/Poll/Poll.php";
 $poll_id = $_REQUEST['id'];
 $obj = new Poll();
-$data = $obj->load_poll($poll_id);
+$data = $obj->load_poll($poll_id,$_GET['gid']);
 $total_votes = count($obj->load_vote($poll_id)); 
 $prev_options = unserialize($data[0]->options);
 $num_option = count($prev_options);
