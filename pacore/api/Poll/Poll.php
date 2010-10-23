@@ -160,8 +160,8 @@ class Poll extends Content {
   *@access public
   */
   public function load_current($group_id=0) {
-    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id='".$group_id."' ORDER BY changed DESC LIMIT 0,1";
-    $res = Dal::query($sql);
+    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id= ? ORDER BY changed DESC LIMIT 0,1";
+    $res = Dal::query($sql, array($group_id));
     $data = array();
     if ($res->numRows()) {
       while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
@@ -176,9 +176,9 @@ class Poll extends Content {
   *@access public
   */
   public function load_prev_polls($group_id = 0) {
-    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id='".$group_id."' ORDER BY changed DESC LIMIT 1,18446744073709551615"; // this excludes the first result, but gives all others
+    $sql = "SELECT * FROM {polls} WHERE is_active = 1 and group_id= ? ORDER BY changed DESC LIMIT 1,18446744073709551615"; // this excludes the first result, but gives all others
     
-    $res = Dal::query($sql);
+    $res = Dal::query($sql, array($group_id));
     $data = array();
     if ($res->numRows()) {
       while($row = $res->fetchRow(DB_FETCHMODE_OBJECT)) {
