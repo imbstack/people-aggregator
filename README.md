@@ -83,7 +83,7 @@ paproject/config/AppConfig.xml
 
 -------------
 
-<h3>BASIC SHADOWING<h3>
+<h3>BASIC SHADOWING</h3>
 To use a different template from the one defined in pacore/web/Themes/Beta/
  - create a file with the same name in paproject/web/Themes/Default/
 
